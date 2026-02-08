@@ -1,0 +1,27 @@
+[
+	{
+		"InternalName": "Physical",
+		"DisplayName": "Physical",
+		"Image": "Physical.webp"
+	},
+	{
+		"InternalName": "Cryo",
+		"DisplayName": "Cryo",
+		"Image": "Cryo.webp"
+	},
+	{
+		"InternalName": "Heat",
+		"DisplayName": "Heat",
+		"Image": "Heat.webp"
+	},
+	{
+		"InternalName": "Electric",
+		"DisplayName": "Electric",
+		"Image": "Electric.webp"
+	},
+	{
+		"InternalName": "Nature",
+		"DisplayName": "Nature",
+		"Image": "Nature.webp"
+	}
+]
