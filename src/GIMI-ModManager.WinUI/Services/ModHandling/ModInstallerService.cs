@@ -80,7 +80,7 @@ public class ModInstallerService(
 public class InstallOptions
 {
     public Uri? ModUrl { get; set; }
-    public Guid? ExistingModIdToUpdate { get; set; }
+    public string? ExistingModToOverwritePath { get; set; }
 }
 
 public sealed class InstallMonitor : IDisposable
@@ -317,6 +317,7 @@ public sealed class ModInstallation : IDisposable
     {
         ReleaseLockedFiles();
         var skinMod = await CreateSkinModWithOptionsAsync(options).ConfigureAwait(false);
+        
         try
         {
             _destinationModList.DeleteModBySkinEntryId(dupeMod.Id);

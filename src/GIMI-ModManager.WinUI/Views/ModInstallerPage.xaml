@@ -335,7 +335,20 @@
                         TextWrapping="WrapWholeWords"
                         Text="You can also manually select image file for the mod preview image. It's usually fine to just press 'Add Mod'" />
 
+                    <CheckBox
+                        Margin="4,0"
+                        Content="Force Overwrite Different Name Mod?"
+                        IsChecked="{x:Bind ViewModel.ForceOverwriteDifferentNameMod, Mode=TwoWay}"
+                        Visibility="{x:Bind ViewModel.HasExistingModToOverwrite, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
+                        ToolTipService.ToolTip="If checked, JASM will attempt to overwrite the old mod with the new one, even if the folder names are different. (The old folder will be deleted)"/>
 
+                    <CheckBox
+                        Margin="4"
+                        Command="{x:Bind ViewModel.ToggleReplaceDuplicateModInPresetCommand}"
+                        IsChecked="{x:Bind ViewModel.ReplaceDuplicateModInPreset, Mode=OneWay}"
+                        ToolTipService.ToolTip="The duplicate mod will be replaced in presets by the newly installed mod. This is mutually exclusive with the 'replace old mod in presets' checkbox.">
+                        <TextBlock TextWrapping="WrapWholeWords" Text="Replace duplicate mod in presets with new mod" />
+                    </CheckBox>
 
                     <StackPanel Visibility="Collapsed">
 
@@ -389,14 +402,6 @@
                         IsChecked="{x:Bind ViewModel.EnableThisMod, Mode=OneWay}"
                         ToolTipService.ToolTip="This will enable this mod and disable all other mods. If a character then it will only disable for that characters skin" />
 
-
-                    <CheckBox
-                        Grid.Column="1"
-                        Command="{x:Bind ViewModel.ToggleReplaceModToUpdateInPresetCommand}"
-                        Content="Replace mod to update with new mod in presets"
-                        IsChecked="{x:Bind ViewModel.ReplaceModToUpdateInPreset, Mode=OneWay}"
-                        ToolTipService.ToolTip="This will replace the old mod with an update with this new installed mod for all presets. This checkbox is separate from the checkbox for when a duplicate mod is detected"
-                        Visibility="{x:Bind ViewModel.IsUpdatingMod, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                     <Button
                         Grid.Column="2"
