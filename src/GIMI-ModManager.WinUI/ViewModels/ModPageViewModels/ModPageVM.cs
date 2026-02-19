@@ -304,6 +304,7 @@ public partial class ModPageVM : ObservableRecipient
             }
 
             fileInfoVm.Status = ModFileInfoVm.InstallStatus.Installed;
+            _window.Close();
         }
         catch (TaskCanceledException)
         {
