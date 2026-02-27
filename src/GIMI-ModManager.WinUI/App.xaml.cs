@@ -158,6 +158,7 @@ public partial class App : Application
                 services.AddSingleton<GameBananaCoreService>();
                 services.AddSingleton<CommandService>();
                 services.AddSingleton<CommandHandlerService>();
+                services.AddSingleton<ICommunityGamesService, CommunityGamesService>();
 
                 services.AddTransient<HttpLoggerHandler>();
                 services.AddSingleton<GameBananaService>();

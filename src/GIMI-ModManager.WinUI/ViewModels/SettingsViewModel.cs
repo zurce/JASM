@@ -119,6 +119,94 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
     [ObservableProperty] private string _modCacheSizeGB = string.Empty;
 
+    private readonly ICommunityGamesService _communityGamesService;
+
+    [ObservableProperty] private GameSource _selectedGameSource = GameSource.Release;
+    [ObservableProperty] private string _communityRepoUrl = string.Empty;
+    [ObservableProperty] private bool _isCommunitySourceSelected;
+
+    partial void OnSelectedGameSourceChanged(GameSource value)
+    {
+        IsCommunitySourceSelected = value == GameSource.Community;
+        _ = SaveGameSourceSettingsAsync();
+    }
+
+    partial void OnCommunityRepoUrlChanged(string value)
+    {
+        _ = SaveGameSourceSettingsAsync();
+    }
+
+    private async Task SaveGameSourceSettingsAsync()
+    {
+        var modManagerOptions = await _localSettingsService.ReadOrCreateSettingAsync<ModManagerOptions>(ModManagerOptions.Section);
+        if (modManagerOptions.GameSource == SelectedGameSource && modManagerOptions.CommunityRepoUrl == CommunityRepoUrl)
+            return;
+
+        modManagerOptions.GameSource = SelectedGameSource;
+        modManagerOptions.CommunityRepoUrl = CommunityRepoUrl;
+        await _localSettingsService.SaveSettingAsync(ModManagerOptions.Section, modManagerOptions);
+
+        var restartDialog = new ContentDialog()
+        {
+            Title = "Restart Required",
+            Content = new TextBlock()
+            {
+                Text = "Changing the Game Source requires a restart of the application to load the new games. JASM will close now.",
+                TextWrapping = TextWrapping.WrapWholeWords
+            },
+            PrimaryButtonText = "Restart now",
+            CloseButtonText = "Restart later",
+            DefaultButton = ContentDialogButton.Primary
+        };
+
+        var result = await _windowManagerService.ShowDialogAsync(restartDialog);
+        if (result == ContentDialogResult.Primary)
+        {
+            await RestartAppAsync(0);
+        }
+    }
+
+    [RelayCommand]
+    private async Task UpdateCommunityGamesAsync()
+    {
+        if (string.IsNullOrWhiteSpace(CommunityRepoUrl))
+        {
+            _notificationManager.ShowNotification("Error", "Community Repo URL cannot be empty.", TimeSpan.FromSeconds(3));
+            return;
+        }
+
+        var communityDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "JASM", "CommunityGames");
+        _notificationManager.ShowNotification("Updating...", "Pulling latest community games. This might take a moment.", null);
+
+        try
+        {
+            var success = await _communityGamesService.TryUpdateCommunityGamesAsync(CommunityRepoUrl, communityDir);
+
+            if (success)
+            {
+                var games = new[] { await _selectedGameService.GetSelectedGameAsync() };
+                if (_communityGamesService.VerifyIntegrity(communityDir, games))
+                {
+                    _notificationManager.ShowNotification("Success", "Community games updated and verified successfully.", TimeSpan.FromSeconds(5));
+                    await RestartAppAsync(2);
+                }
+                else
+                {
+                    _notificationManager.ShowNotification("Error", "Integrity check failed. Check if repo matches expected structure.", TimeSpan.FromSeconds(5));
+                }
+            }
+            else
+            {
+                _notificationManager.ShowNotification("Error", "Failed to update community games.", TimeSpan.FromSeconds(5));
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.Error(ex, "Failed to update community games");
+            _notificationManager.ShowNotification("Error", "Exception occurred while pulling repo. Check logs.", TimeSpan.FromSeconds(5));
+        }
+    }
+
     public SettingsViewModel(
         IThemeSelectorService themeSelectorService, ILocalSettingsService localSettingsService,
         ElevatorService elevatorService, ILogger logger, NotificationManager notificationManager,
@@ -128,7 +216,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         IGameService gameService, AutoUpdaterService autoUpdaterService, ILanguageLocalizer localizer,
         SelectedGameService selectedGameService, ModUpdateAvailableChecker modUpdateAvailableChecker,
         LifeCycleService lifeCycleService, INavigationService navigationService,
-        ModArchiveRepository modArchiveRepository)
+        ModArchiveRepository modArchiveRepository, ICommunityGamesService communityGamesService)
     {
         _themeSelectorService = themeSelectorService;
         _localSettingsService = localSettingsService;
@@ -146,6 +234,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         _lifeCycleService = lifeCycleService;
         _navigationService = navigationService;
         _modArchiveRepository = modArchiveRepository;
+        _communityGamesService = communityGamesService;
         GenshinProcessManager = genshinProcessManager;
         ThreeDMigtoProcessManager = threeDMigtoProcessManager;
         _logger = logger.ForContext<SettingsViewModel>();
@@ -173,6 +262,10 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
         PathToGIMIFolderPicker.Path = _modManagerOptions?.GimiRootFolderPath;
         PathToModsFolderPicker.Path = _modManagerOptions?.ModsFolderPath;
+
+        _selectedGameSource = _modManagerOptions?.GameSource ?? GameSource.Release;
+        _communityRepoUrl = _modManagerOptions?.CommunityRepoUrl ?? "https://github.com/zurce/JASM-Community-Resources";
+        _isCommunitySourceSelected = _selectedGameSource == GameSource.Community;
 
 
         PathToGIMIFolderPicker.IsValidChanged += (sender, args) => SaveSettingsCommand.NotifyCanExecuteChanged();

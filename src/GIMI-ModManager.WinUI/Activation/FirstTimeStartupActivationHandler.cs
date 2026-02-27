@@ -27,13 +27,14 @@ public class FirstTimeStartupActivationHandler : ActivationHandler<LaunchActivat
     private readonly SelectedGameService _selectedGameService;
     private readonly ModArchiveRepository _modArchiveRepository;
     private readonly CommandService _commandService;
+    private readonly ICommunityGamesService _communityGamesService;
     public override string ActivationName { get; } = "RegularStartup";
 
     public FirstTimeStartupActivationHandler(INavigationService navigationService,
         ILocalSettingsService localSettingsService,
         ISkinManagerService skinManagerService, IGameService gameService, SelectedGameService selectedGameService,
         ModPresetService modPresetService, UserPreferencesService userPreferencesService,
-        ModArchiveRepository modArchiveRepository, CommandService commandService)
+        ModArchiveRepository modArchiveRepository, CommandService commandService, ICommunityGamesService communityGamesService)
     {
         _navigationService = navigationService;
         _localSettingsService = localSettingsService;
@@ -44,6 +45,7 @@ public class FirstTimeStartupActivationHandler : ActivationHandler<LaunchActivat
         _userPreferencesService = userPreferencesService;
         _modArchiveRepository = modArchiveRepository;
         _commandService = commandService;
+        _communityGamesService = communityGamesService;
     }
 
     protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
@@ -60,10 +62,23 @@ public class FirstTimeStartupActivationHandler : ActivationHandler<LaunchActivat
         var modManagerOptions =
             await _localSettingsService.ReadSettingAsync<ModManagerOptions>(ModManagerOptions.Section);
 
+        var selectedGame = await _selectedGameService.GetSelectedGameAsync();
+        var gameDir = Path.Combine(App.ASSET_DIR, "Games", selectedGame);
+
+        if (modManagerOptions?.GameSource == GameSource.Community)
+        {
+            var communityDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "JASM", "CommunityGames");
+            if (_communityGamesService.VerifyIntegrity(communityDir, new[] { selectedGame }))
+            {
+                gameDir = Path.Combine(communityDir, "Games", selectedGame);
+                if (!Directory.Exists(gameDir))
+                    gameDir = Path.Combine(communityDir, selectedGame);
+            }
+        }
+
         var gameServiceOptions = new InitializationOptions
         {
-            AssetsDirectory = Path.Combine(App.ASSET_DIR, "Games",
-                await _selectedGameService.GetSelectedGameAsync()),
+            AssetsDirectory = gameDir,
             LocalSettingsDirectory = _localSettingsService.ApplicationDataFolder,
             CharacterSkinsAsCharacters = modManagerOptions?.CharacterSkinsAsCharacters ?? false
         };

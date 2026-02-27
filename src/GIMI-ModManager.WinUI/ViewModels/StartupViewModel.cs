@@ -34,7 +34,7 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
     private readonly SelectedGameService _selectedGameService;
     private readonly ModArchiveRepository _modArchiveRepository;
     private readonly CommandService _commandService;
-
+    private readonly ICommunityGamesService _communityGamesService;
 
     public PathPicker PathToGIMIFolderPicker { get; }
 
@@ -62,7 +62,7 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         IWindowManagerService windowManagerService, ISkinManagerService skinManagerService,
         SelectedGameService selectedGameService, IGameService gameService, ModPresetService modPresetService,
         UserPreferencesService userPreferencesService, ModArchiveRepository modArchiveRepository,
-        CommandService commandService)
+        CommandService commandService, ICommunityGamesService communityGamesService)
     {
         _navigationService = navigationService;
         _localSettingsService = localSettingsService;
@@ -74,6 +74,7 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         _userPreferencesService = userPreferencesService;
         _modArchiveRepository = modArchiveRepository;
         _commandService = commandService;
+        _communityGamesService = communityGamesService;
 
         PathToGIMIFolderPicker = new PathPicker([]);
 
@@ -100,10 +101,23 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
             UnloadedModsFolderPath = null
         };
 
-        await _selectedGameService.SetSelectedGame(SelectedGame.Value.ToString());
+        var selectedGameStr = SelectedGame.Value.ToString();
+        await _selectedGameService.SetSelectedGame(selectedGameStr);
+
+        var gameDir = Path.Combine(App.ASSET_DIR, "Games", selectedGameStr);
+        if (modManagerOptions.GameSource == GameSource.Community)
+        {
+            var communityDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "JASM", "CommunityGames");
+            if (_communityGamesService.VerifyIntegrity(communityDir, new[] { selectedGameStr }))
+            {
+                gameDir = Path.Combine(communityDir, "Games", selectedGameStr);
+                if (!Directory.Exists(gameDir))
+                    gameDir = Path.Combine(communityDir, selectedGameStr);
+            }
+        }
 
         await _gameService.InitializeAsync(
-            Path.Combine(App.ASSET_DIR, "Games", await _selectedGameService.GetSelectedGameAsync()),
+            gameDir,
             _localSettingsService.ApplicationDataFolder);
 
         await _localSettingsService.SaveSettingAsync(ModManagerOptions.Section,
