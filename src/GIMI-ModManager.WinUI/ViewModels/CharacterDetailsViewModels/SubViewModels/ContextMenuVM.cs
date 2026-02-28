@@ -14,6 +14,9 @@ using GIMI_ModManager.WinUI.Helpers;
 using GIMI_ModManager.WinUI.Models.CustomControlTemplates;
 using GIMI_ModManager.WinUI.Services.ModHandling;
 using GIMI_ModManager.WinUI.Services.Notifications;
+using GIMI_ModManager.Core.Services.CommandService;
+using GIMI_ModManager.Core.Services.CommandService.Models;
+using GIMI_ModManager.WinUI.Services;
 using Microsoft.UI.Dispatching;
 using Serilog;
 
@@ -24,7 +27,8 @@ public partial class ContextMenuVM(
     IGameService gameService,
     NotificationManager notificationManager,
     ILogger logger,
-    ModSettingsService modSettingsService)
+    ModSettingsService modSettingsService,
+    CommandHandlerService commandHandlerService)
     : ObservableRecipient
 {
     private readonly ISkinManagerService _skinManagerService = skinManagerService;
@@ -32,6 +36,7 @@ public partial class ContextMenuVM(
     private readonly NotificationManager _notificationManager = notificationManager;
     private readonly ILogger _logger = logger.ForContext<ContextMenuVM>();
     private readonly ModSettingsService _modSettingsService = modSettingsService;
+    private readonly CommandHandlerService _commandHandlerService = commandHandlerService;
 
     private DispatcherQueue _dispatcherQueue = null!;
     private CancellationToken _navigationCt = default;
@@ -42,6 +47,7 @@ public partial class ContextMenuVM(
     private List<Guid> _selectedMods = [];
 
     [ObservableProperty] private int _selectedModsCount;
+    [ObservableProperty] private bool _isSingleModSelected;
     [ObservableProperty] private bool _isCharacter;
     [ObservableProperty] private bool _multipleSkins;
 
@@ -59,6 +65,8 @@ public partial class ContextMenuVM(
 
     [ObservableProperty] private SelectedSkinVm? _modCharacterSkinOverride;
 
+    public ObservableCollection<ModOverviewCommandVM> CommandDefinitions { get; } = new();
+
     public Task InitializeAsync(ModDetailsPageContext context, BusySetter busySetter, CancellationToken navigationCt)
 
     {
@@ -68,6 +76,8 @@ public partial class ContextMenuVM(
         _busySetter = busySetter;
 
         _modList = _skinManagerService.GetCharacterModList(context.ShownModObject);
+
+        _ = LoadCommandsAsync();
 
         return Task.CompletedTask;
     }
@@ -95,6 +105,7 @@ public partial class ContextMenuVM(
     {
         _selectedMods = selectedMods.ToList();
         SelectedModsCount = _selectedMods.Count;
+        IsSingleModSelected = SelectedModsCount == 1;
         MoveModsCommand.NotifyCanExecuteChanged();
 
         if (_selectedMods.Count != 1) return;
@@ -107,6 +118,16 @@ public partial class ContextMenuVM(
         ModCharacterSkinOverride = skinOverride is not null ? new SelectedSkinVm(skinOverride) : null;
         SelectNewCharacterSkinCommand.NotifyCanExecuteChanged();
         OverrideModCharacterSkinCommand.NotifyCanExecuteChanged();
+
+        if (_selectedMods.Count > 0)
+        {
+            var firstMod = _modList.Mods.FirstOrDefault(m => m.Id == _selectedMods[0]);
+            var targetPath = firstMod?.Mod.FullPath ?? string.Empty;
+            foreach (var viewModelCommandDefinition in CommandDefinitions)
+            {
+                viewModelCommandDefinition.TargetPath = targetPath;
+            }
+        }
     }
 
     private ICharacterSkin? ResolveSkinOverride(CharacterSkinEntry skinEntry, ModSettings settings)
@@ -252,6 +273,49 @@ public partial class ContextMenuVM(
 
         ModCharactersSkinOverriden?.Invoke(this, EventArgs.Empty);
         CloseFlyout?.Invoke(this, EventArgs.Empty);
+    }
+
+    private async Task LoadCommandsAsync()
+    {
+        var commandDefinitions =
+            await _commandHandlerService.GetCommandsThatContainSpecialVariablesAsync(SpecialVariables.TargetPath);
+
+        _dispatcherQueue.TryEnqueue(() =>
+        {
+            CommandDefinitions.Clear();
+
+            foreach (var commandDefinition in commandDefinitions)
+            {
+                CommandDefinitions.Add(new ModOverviewCommandVM(commandDefinition)
+                {
+                    RunCommand = RunCommandCommand,
+                    OpenFolder = OpenFolderCommand
+                });
+            }
+        });
+    }
+
+    [RelayCommand]
+    private async Task RunCommandAsync(ModOverviewCommandVM? commandDefinitionVM)
+    {
+        if (commandDefinitionVM is null || string.IsNullOrEmpty(commandDefinitionVM.TargetPath))
+            return;
+
+        var result = await Task.Run(async () => await _commandHandlerService.RunCommandAsync(commandDefinitionVM.Id,
+            SpecialVariablesInput.CreateWithTargetPath(commandDefinitionVM.TargetPath)).ConfigureAwait(false));
+
+        if (result.HasNotification)
+            _notificationManager.ShowNotification(result.Notification);
+
+        CloseFlyout?.Invoke(this, EventArgs.Empty);
+    }
+
+    [RelayCommand]
+    private async Task OpenFolderAsync(ModOverviewCommandVM? commandDefinitionVM)
+    {
+        if (commandDefinitionVM is null || string.IsNullOrEmpty(commandDefinitionVM.TargetPath) || !Directory.Exists(commandDefinitionVM.TargetPath))
+            return;
+        await Windows.System.Launcher.LaunchFolderPathAsync(commandDefinitionVM.TargetPath);
     }
 
     #endregion
