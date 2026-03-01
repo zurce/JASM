@@ -108,9 +108,25 @@ public partial class ContextMenuVM(
         IsSingleModSelected = SelectedModsCount == 1;
         MoveModsCommand.NotifyCanExecuteChanged();
 
-        if (_selectedMods.Count != 1) return;
+        if (!IsSingleModSelected)
+        {
+            foreach (var commandDefinition in CommandDefinitions)
+            {
+                commandDefinition.TargetPath = string.Empty;
+            }
+            return;
+        }
+
         var mod = _modList.Mods.FirstOrDefault(m => m.Id == _selectedMods[0]);
-        if (mod is null || !mod.Mod.Settings.TryGetSettings(out var modSettings)) return;
+        if (mod is null) return;
+
+        var targetPath = mod.Mod.FullPath;
+        foreach (var commandDefinition in CommandDefinitions)
+        {
+            commandDefinition.TargetPath = targetPath;
+        }
+
+        if (!mod.Mod.Settings.TryGetSettings(out var modSettings)) return;
 
         var skinOverride = ResolveSkinOverride(mod, modSettings);
 
@@ -118,16 +134,6 @@ public partial class ContextMenuVM(
         ModCharacterSkinOverride = skinOverride is not null ? new SelectedSkinVm(skinOverride) : null;
         SelectNewCharacterSkinCommand.NotifyCanExecuteChanged();
         OverrideModCharacterSkinCommand.NotifyCanExecuteChanged();
-
-        if (_selectedMods.Count > 0)
-        {
-            var firstMod = _modList.Mods.FirstOrDefault(m => m.Id == _selectedMods[0]);
-            var targetPath = firstMod?.Mod.FullPath ?? string.Empty;
-            foreach (var viewModelCommandDefinition in CommandDefinitions)
-            {
-                viewModelCommandDefinition.TargetPath = targetPath;
-            }
-        }
     }
 
     private ICharacterSkin? ResolveSkinOverride(CharacterSkinEntry skinEntry, ModSettings settings)
