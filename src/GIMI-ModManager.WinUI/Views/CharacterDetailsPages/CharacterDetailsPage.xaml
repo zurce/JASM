@@ -13,6 +13,7 @@
     xmlns:notifications="using:GIMI_ModManager.WinUI.Services.Notifications"
     xmlns:subViewModels="using:GIMI_ModManager.WinUI.ViewModels.CharacterDetailsViewModels.SubViewModels"
     xmlns:viewModels="using:GIMI_ModManager.WinUI.Models.ViewModels"
+    xmlns:appViewModels="using:GIMI_ModManager.WinUI.ViewModels"
     xmlns:xaml="using:GIMI_ModManager.WinUI.Helpers.Xaml"
     x:Name="CharacterDetailsRoot"
     mc:Ignorable="d">
@@ -26,9 +27,11 @@
                 Closing="ModRowFlyout_OnClosing"
                 Opened="ModRowFlyout_OnOpened"
                 Opening="ModRowFlyout_OnOpening"
-                Placement="RightEdgeAlignedBottom">
-                <Grid MinWidth="200">
+                Placement="RightEdgeAlignedBottom"
+                ShouldConstrainToRootBounds="False">
+                <Grid Width="400">
                     <Grid.RowDefinitions>
+                        <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
@@ -54,19 +57,24 @@
                         </Grid>
                     </Grid>
 
-                    <StackPanel
+                    <Grid
                         Grid.Row="1"
-                        HorizontalAlignment="Center"
-                        Orientation="Horizontal">
+                        Margin="0,8,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
                         <Button
                             x:Name="MoveModsButton"
-                            Margin="0,8,16,0"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,16,0"
                             Command="{x:Bind ViewModel.ContextMenuVM.MoveModsCommand}"
                             Content="Move" />
-                        <StackPanel>
+                        <StackPanel Grid.Column="1">
                             <TextBlock Text="Move Mods To Another Character: " />
                             <AutoSuggestBox
                                 x:Name="MoveModSearchBox"
+                                HorizontalAlignment="Stretch"
                                 IsEnabled="{x:Bind ViewModel.IsNotHardBusy, Mode=OneWay}"
                                 ItemsSource="{x:Bind ViewModel.ContextMenuVM.SuggestedModdableObjects, Mode=OneWay}"
                                 PlaceholderText="Search..."
@@ -81,7 +89,7 @@
                             </AutoSuggestBox>
                         </StackPanel>
 
-                    </StackPanel>
+                    </Grid>
 
                     <StackPanel
                         Grid.Row="2"
@@ -116,6 +124,94 @@
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
+                            </Expander.Content>
+                        </Expander>
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="3"
+                        Margin="0,4,0,4"
+                        Padding="0,4,0,0"
+                        BorderBrush="{ThemeResource ControlElevationBorderBrush}"
+                        BorderThickness="0,4,0,0">
+                        <Expander
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            ExpandDirection="Down"
+                            Header="Run Command on this folder"
+                            IsEnabled="{x:Bind ViewModel.ContextMenuVM.IsSingleModSelected, Mode=OneWay}"
+                            IsExpanded="False">
+                            <Expander.Content>
+                                <ListView
+                                    MaxHeight="350"
+                                    ItemsSource="{x:Bind ViewModel.ContextMenuVM.CommandDefinitions}"
+                                    SelectionMode="None">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate x:DataType="appViewModels:ModOverviewCommandVM">
+                                            <Grid
+                                                Margin="0,4,0,4"
+                                                Padding="4"
+                                                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                                ColumnSpacing="4"
+                                                CornerRadius="4">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Spacing="4">
+                                                    <TextBlock
+                                                        TextTrimming="CharacterEllipsis"
+                                                        ToolTipService.ToolTip="{x:Bind DisplayName}"
+                                                        Text="{x:Bind DisplayName}" />
+
+                                                    <StackPanel>
+                                                        <TextBlock IsTextSelectionEnabled="True" Text="Full Command:" />
+                                                        <TextBlock
+                                                            Padding="6,0,0,0"
+                                                            IsTextSelectionEnabled="True"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            ToolTipService.ToolTip="{x:Bind FullCommand}"
+                                                            Text="{x:Bind FullCommand}" />
+                                                    </StackPanel>
+
+                                                    <StackPanel>
+                                                        <TextBlock IsTextSelectionEnabled="True" Text="Working Directory:" />
+                                                        <TextBlock
+                                                            Padding="6,0,0,0"
+                                                            IsTextSelectionEnabled="True"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            ToolTipService.ToolTip="{x:Bind WorkingDirectory}"
+                                                            Text="{x:Bind WorkingDirectory}" />
+                                                    </StackPanel>
+
+                                                    <StackPanel>
+                                                        <TextBlock IsTextSelectionEnabled="True" Text="'{{TargetPath}}:" />
+                                                        <TextBlock
+                                                            Padding="6,0,0,0"
+                                                            IsTextSelectionEnabled="True"
+                                                            Tag="TargetPathText"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            ToolTipService.ToolTip="{x:Bind TargetPath, Mode=OneWay}"
+                                                            Text="{x:Bind TargetPath, Mode=OneWay}" />
+                                                    </StackPanel>
+                                                </StackPanel>
+
+                                                <Button
+                                                    Grid.Column="1"
+                                                    VerticalAlignment="Center"
+                                                    Command="{x:Bind RunCommand}"
+                                                    CommandParameter="{x:Bind}"
+                                                    Content="Run"
+                                                    Style="{ThemeResource AccentButtonStyle}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
                             </Expander.Content>
                         </Expander>
                     </StackPanel>
