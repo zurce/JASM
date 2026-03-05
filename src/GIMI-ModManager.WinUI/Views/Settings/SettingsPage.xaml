@@ -199,6 +199,57 @@
 
                 <TextBlock
                     Style="{ThemeResource SubtitleTextBlockStyle}"
+                    Text="Game Source"
+                    l:Uids.Uid="/Settings/GameSourceSectionHeader" />
+                <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                    <TextBlock
+                        Margin="0,0,0,8"
+                        IsTextSelectionEnabled="True"
+                        TextWrapping="WrapWholeWords"
+                        Text="Choose whether to load games and character categories from the built-in release or a community repository."
+                        l:Uids.Uid="/Settings/GameSourceTitle" />
+
+                    <StackPanel Orientation="Horizontal" Spacing="24">
+                        <RadioButton
+                            Content="Release"
+                            GroupName="GameSourceGroup"
+                            IsChecked="{x:Bind ViewModel.SelectedGameSource, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Release, Mode=TwoWay}"
+                            l:Uids.Uid="/Settings/GameSource_Release">
+                            <RadioButton.CommandParameter>
+                                <options:GameSource xmlns:options="using:GIMI_ModManager.WinUI.Models.Options">Release</options:GameSource>
+                            </RadioButton.CommandParameter>
+                        </RadioButton>
+                        <RadioButton
+                            Content="Community (GitHub)"
+                            GroupName="GameSourceGroup"
+                            IsChecked="{x:Bind ViewModel.SelectedGameSource, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Community, Mode=TwoWay}"
+                            l:Uids.Uid="/Settings/GameSource_Community">
+                            <RadioButton.CommandParameter>
+                                <options:GameSource xmlns:options="using:GIMI_ModManager.WinUI.Models.Options">Community</options:GameSource>
+                            </RadioButton.CommandParameter>
+                        </RadioButton>
+                    </StackPanel>
+
+                    <StackPanel
+                        Margin="0,16,0,0"
+                        Spacing="8"
+                        Visibility="{x:Bind ViewModel.IsCommunitySourceSelected, Converter={StaticResource BoolToVisibleConverter}, Mode=OneWay}">
+                        <TextBox
+                            Header="Community Repository URL:"
+                            Text="{x:Bind ViewModel.CommunityRepoUrl, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                            Width="400"
+                            HorizontalAlignment="Left"
+                            l:Uids.Uid="/Settings/CommunityRepoUrlTextBox" />
+                        <Button
+                            Command="{x:Bind ViewModel.UpdateCommunityGamesCommand}"
+                            Content="Update Community Games"
+                            Style="{ThemeResource AccentButtonStyle}"
+                            l:Uids.Uid="/Settings/UpdateCommunityGamesButton" />
+                    </StackPanel>
+                </StackPanel>
+
+                <TextBlock
+                    Style="{ThemeResource SubtitleTextBlockStyle}"
                     Text="Elevator Process"
                     l:Uids.Uid="/Settings/ElevatorSectionHeader" />
                 <StackPanel Margin="{StaticResource SmallTopBottomMargin}">

@@ -189,4 +189,22 @@
   <data name="StartElevatorDialogTitle" xml:space="preserve">
     <value>启动同步进程？</value>
   </data>
+  <data name="GameSourceSectionHeader.Text" xml:space="preserve">
+    <value>游戏配置来源</value>
+  </data>
+  <data name="GameSourceTitle.Text" xml:space="preserve">
+    <value>选择从内置的发布版本还是社区仓库加载游戏和角色类别。</value>
+  </data>
+  <data name="GameSource_Release.Content" xml:space="preserve">
+    <value>内置版本 (Release)</value>
+  </data>
+  <data name="GameSource_Community.Content" xml:space="preserve">
+    <value>社区 (GitHub)</value>
+  </data>
+  <data name="CommunityRepoUrlTextBox.Header" xml:space="preserve">
+    <value>社区仓库 URL:</value>
+  </data>
+  <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
+    <value>更新社区游戏配置</value>
+  </data>
 </root>

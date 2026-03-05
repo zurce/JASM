@@ -190,4 +190,22 @@ Después de presionar el botón de Inicio, aparecerá una solicitud de Control d
   <data name="StartElevatorDialogTitle" xml:space="preserve">
     <value>¿Iniciar sincronización?</value>
   </data>
+  <data name="GameSourceSectionHeader.Text" xml:space="preserve">
+    <value>Fuente del Juego</value>
+  </data>
+  <data name="GameSourceTitle.Text" xml:space="preserve">
+    <value>Elige si deseas cargar los juegos y categorías de personajes desde la versión incorporada (lanzamiento) o desde un repositorio de la comunidad.</value>
+  </data>
+  <data name="GameSource_Release.Content" xml:space="preserve">
+    <value>Lanzamiento (Release)</value>
+  </data>
+  <data name="GameSource_Community.Content" xml:space="preserve">
+    <value>Comunidad (GitHub)</value>
+  </data>
+  <data name="CommunityRepoUrlTextBox.Header" xml:space="preserve">
+    <value>URL del Repositorio de la Comunidad:</value>
+  </data>
+  <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
+    <value>Actualizar Juegos de la Comunidad</value>
+  </data>
 </root>

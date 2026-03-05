@@ -189,4 +189,22 @@
   <data name="StartElevatorDialogTitle" xml:space="preserve">
     <value>Запустить синхронизацию?</value>
   </data>
+  <data name="GameSourceSectionHeader.Text" xml:space="preserve">
+    <value>Источник игр</value>
+  </data>
+  <data name="GameSourceTitle.Text" xml:space="preserve">
+    <value>Выберите, загружать ли игры и категории персонажей из встроенного релиза или из репозитория сообщества.</value>
+  </data>
+  <data name="GameSource_Release.Content" xml:space="preserve">
+    <value>Встроенный (Release)</value>
+  </data>
+  <data name="GameSource_Community.Content" xml:space="preserve">
+    <value>Сообщество (GitHub)</value>
+  </data>
+  <data name="CommunityRepoUrlTextBox.Header" xml:space="preserve">
+    <value>URL репозитория сообщества:</value>
+  </data>
+  <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
+    <value>Обновить игры сообщества</value>
+  </data>
 </root>
