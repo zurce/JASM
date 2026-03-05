@@ -34,6 +34,7 @@ public partial class ModUpdateVM : ObservableRecipient
     private readonly CancellationToken _ct;
 
     private ModPageInfo? _modPageInfo;
+    private ISkinMod? _existingModToUpdate;
 
     [ObservableProperty] private string _initializing = "true";
 
@@ -105,6 +106,8 @@ public partial class ModUpdateVM : ObservableRecipient
             await LogErrorAndClose(new InvalidOperationException($"Mod with id {_notification.ModId} not found"));
             return;
         }
+
+        _existingModToUpdate = characterSkinEntry.Mod;
 
         _characterModList = characterSkinEntry.ModList;
         var mod = characterSkinEntry.Mod;
@@ -324,7 +327,7 @@ public partial class ModUpdateVM : ObservableRecipient
                     setup: options =>
                     {
                         options.ModUrl = modUrl;
-                        options.ExistingModIdToUpdate = _notification?.ModId;
+                        options.ExistingModToOverwritePath = _existingModToUpdate?.FullPath;
                     }).ConfigureAwait(false);
 
                 return await task.WaitForCloseAsync(_ct).ConfigureAwait(false);

@@ -106,11 +106,29 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
     [ObservableProperty] private bool _enableThisMod;
     [ObservableProperty] private bool _alwaysOnTop;
 
+    [ObservableProperty]
+    private bool _forceOverwriteDifferentNameMod;
+
+    partial void OnForceOverwriteDifferentNameModChanged(bool value)
+    {
+        _ = Task.Run(async () =>
+        {
+            var settings = await _localSettingsService
+                .ReadOrCreateSettingAsync<ModInstallerSettings>(ModInstallerSettings.Key)
+                .ConfigureAwait(false);
+            settings.ForceOverwriteDifferentNameMod = value;
+            await _localSettingsService.SaveSettingAsync(ModInstallerSettings.Key, settings)
+                .ConfigureAwait(false);
+        });
+    }
+
     [ObservableProperty] private bool _replaceModToUpdateInPreset;
     [ObservableProperty] private bool _replaceDuplicateModInPreset;
 
-    public bool IsUpdatingMod => _installOptions?.ExistingModIdToUpdate is not null;
     private ISkinMod? _existingModToUpdate;
+    private string? _existingModToOverwritePath;
+
+    public bool HasExistingModToOverwrite => !string.IsNullOrEmpty(_existingModToOverwritePath);
 
     public readonly string RootFolderIcon = "\uF89A";
     public readonly string ShaderFixesFolderIcon = "\uE710";
@@ -152,7 +170,6 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         _modInstallation = ModInstallation.Start(modToInstall, _characterModList);
         _dispatcherQueue = dispatcherQueue;
         _installOptions = options;
-        OnPropertyChanged(nameof(IsUpdatingMod));
 
         RootFolder.Clear();
         RootFolder.Add(new RootFolder(modToInstall));
@@ -163,12 +180,11 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
 
         EnableThisMod = !_characterModList.Character.IsMultiMod && installerSettings.EnableModOnInstall;
         AlwaysOnTop = installerSettings.ModInstallerWindowOnTop;
-
-        await Task.Run(async () =>
-        {
-            _existingModToUpdate = _installOptions?.ExistingModIdToUpdate is not null
-                ? _skinManagerService.GetModById(_installOptions.ExistingModIdToUpdate.Value)
-                : null;
+                ForceOverwriteDifferentNameMod = installerSettings.ForceOverwriteDifferentNameMod;
+                _existingModToOverwritePath = options?.ExistingModToOverwritePath;
+                OnPropertyChanged(nameof(HasExistingModToOverwrite));
+        
+                await Task.Run(async () =>        {
 
             var modDir = _modInstallation.AutoSetModRootFolder();
             if (modDir is not null)
@@ -194,41 +210,45 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
                     dispatcherQueue.TryEnqueue(() => { SetShaderFixesFolder(fileSystemItem); });
             }
 
-
-            if (_installOptions?.ExistingModIdToUpdate is not null &&
-                _skinManagerService.GetModById(_installOptions.ExistingModIdToUpdate.Value) is { } oldModToUpdate)
+            if (_existingModToOverwritePath is not null)
             {
-                var oldModSettings = await oldModToUpdate.Settings.TryReadSettingsAsync(true).ConfigureAwait(false);
+                var oldModToUpdate = _characterModList.Mods
+                    .FirstOrDefault(m => m.Mod.FullPath == _existingModToOverwritePath)?.Mod;
 
-                if (oldModSettings is not null)
+                if (oldModToUpdate is not null)
                 {
-                    var oldImage = oldModSettings.ImagePath;
-                    StorageFile? imageFile;
-                    try
-                    {
-                        imageFile = await _imageHandlerService.CopyImageToTmpFolder(oldImage).ConfigureAwait(false);
-                    }
-                    catch (Exception e)
-                    {
-                        _logger.Error(e, "Failed to copy image from old mod");
-                        imageFile = null;
-                    }
+                    var oldModSettings = await oldModToUpdate.Settings.TryReadSettingsAsync(true).ConfigureAwait(false);
 
-                    dispatcherQueue.TryEnqueue(() =>
+                    if (oldModSettings is not null)
                     {
-                        if (imageFile is not null)
+                        var oldImage = oldModSettings.ImagePath;
+                        StorageFile? imageFile;
+                        try
                         {
-                            ClearModPreviewImage();
-                            ModPreviewImagePath = new Uri(imageFile.Path);
-                            ImageSource = "Image from existing Mod";
+                            imageFile = await _imageHandlerService.CopyImageToTmpFolder(oldImage).ConfigureAwait(false);
+                        }
+                        catch (Exception e)
+                        {
+                            _logger.Error(e, "Failed to copy image from old mod");
+                            imageFile = null;
                         }
 
-                        CustomName = oldModSettings.CustomName ?? string.Empty;
-                        Author = oldModSettings.Author ?? string.Empty;
-                        Description = oldModSettings.Description ?? string.Empty;
-                        ModUrl = oldModSettings.ModUrl?.ToString() ?? string.Empty;
-                    });
-                    return;
+                        dispatcherQueue.TryEnqueue(() =>
+                        {
+                            if (imageFile is not null)
+                            {
+                                ClearModPreviewImage();
+                                ModPreviewImagePath = new Uri(imageFile.Path);
+                                ImageSource = "Image from existing Mod";
+                            }
+
+                            CustomName = oldModSettings.CustomName ?? string.Empty;
+                            Author = oldModSettings.Author ?? string.Empty;
+                            Description = oldModSettings.Description ?? string.Empty;
+                            ModUrl = oldModSettings.ModUrl?.ToString() ?? string.Empty;
+                        });
+                        return;
+                    }
                 }
             }
 
@@ -560,6 +580,19 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         if (!canAddMod())
             return;
 
+        if (ForceOverwriteDifferentNameMod && _existingModToOverwritePath is not null)
+        {
+            var existingModToOverwrite =
+                _characterModList.Mods.FirstOrDefault(mod => mod.Mod.FullPath == _existingModToOverwritePath)?.Mod;
+
+            if (existingModToOverwrite is not null)
+            {
+                _duplicateMod = existingModToOverwrite;
+                await AddModAndReplaceAsync();
+                return;
+            }
+        }
+
         var skinModDupe = _modInstallation.AnyDuplicateName();
 
         if (skinModDupe is not null)
@@ -642,9 +675,10 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         {
             oldMod = _duplicateMod;
         }
-        else if (ReplaceModToUpdateInPreset && _installOptions?.ExistingModIdToUpdate != null && _existingModToUpdate?.Id == _installOptions.ExistingModIdToUpdate.Value)
+        else if (ReplaceModToUpdateInPreset && _existingModToOverwritePath is not null)
         {
-            oldMod = _existingModToUpdate;
+            oldMod = _characterModList.Mods
+                .FirstOrDefault(mod => mod.Mod.FullPath == _existingModToOverwritePath)?.Mod;
         }
 
         try
@@ -970,6 +1004,10 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
 
         _dispatcherQueue?.TryEnqueue(() => window?.SetIsAlwaysOnTop(AlwaysOnTop));
     }
+
+
+
+
 
     private async Task EnableOnlyMod(ISkinMod installedMod)
     {
