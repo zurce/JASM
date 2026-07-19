@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Windows.Storage;
 using Windows.System;
@@ -918,6 +918,99 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     {
         _logger.Debug("Refreshing Mods In Game");
         await ElevatorService.RefreshGenshinMods();
+    }
+
+    [RelayCommand]
+    private async Task EnableAllModsDialogAsync(Microsoft.UI.Xaml.Controls.ContentDialog dialog)
+    {
+        dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;
+        var result = await dialog.ShowAsync();
+        if (result == Microsoft.UI.Xaml.Controls.ContentDialogResult.Secondary)
+        {
+            var activeCategories = _backendCharacters.Select(c => c.Character.ModCategory).DistinctBy(c => c.InternalName).ToList();
+            if (activeCategories.Count == 0) return;
+
+            var errors = await _skinManagerService.EnableAllModsAsync(activeCategories);
+
+            await RefreshBackendCharactersModsAsync();
+            ResetContent();
+
+            if (errors.Length == 0)
+            {
+                var categoryNames = string.Join(", ", activeCategories.Select(c => c.DisplayNamePlural));
+                NotificationManager.ShowNotification("Mods enabled", $"All tracked mods have been enabled for {categoryNames}.", TimeSpan.FromSeconds(5));
+            }
+            else
+            {
+                NotificationManager.ShowNotification("Errors while enabling mods", $"An error occurred for {errors.Length} mods. Check logs.", TimeSpan.FromSeconds(10));
+            }
+        }
+    }
+
+    [RelayCommand]
+    private async Task DisableAllModsDialogAsync(Microsoft.UI.Xaml.Controls.ContentDialog dialog)
+    {
+        dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;
+        var result = await dialog.ShowAsync();
+        if (result == Microsoft.UI.Xaml.Controls.ContentDialogResult.Secondary)
+        {
+            var activeCategories = _backendCharacters.Select(c => c.Character.ModCategory).DistinctBy(c => c.InternalName).ToList();
+            if (activeCategories.Count == 0) return;
+
+            var errors = await _skinManagerService.DisableAllModsAsync(activeCategories);
+
+            await RefreshBackendCharactersModsAsync();
+            ResetContent();
+
+            if (errors.Length == 0)
+            {
+                var categoryNames = string.Join(", ", activeCategories.Select(c => c.DisplayNamePlural));
+                NotificationManager.ShowNotification("Mods disabled", $"All tracked mods have been disabled for {categoryNames}.", TimeSpan.FromSeconds(5));
+            }
+            else
+            {
+                NotificationManager.ShowNotification("Errors while disabling mods", $"An error occurred for {errors.Length} mods. Check logs.", TimeSpan.FromSeconds(10));
+            }
+        }
+    }
+
+    [RelayCommand]
+    private async Task CleanUpModsDialogAsync(Microsoft.UI.Xaml.Controls.ContentDialog dialog)
+    {
+        dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;
+        var result = await dialog.ShowAsync();
+        if (result == Microsoft.UI.Xaml.Controls.ContentDialogResult.Secondary)
+        {
+            var activeCategories = _backendCharacters.Select(c => c.Character.ModCategory).DistinctBy(c => c.InternalName).ToList();
+            if (activeCategories.Count == 0) return;
+
+            var totalDeleted = await _skinManagerService.CleanUpDisabledModsAsync(activeCategories);
+            await _skinManagerService.RefreshModsAsync();
+
+            await RefreshBackendCharactersModsAsync();
+            ResetContent();
+
+            var categoryNames = string.Join(", ", activeCategories.Select(c => c.DisplayNamePlural));
+            NotificationManager.ShowNotification("Cleanup complete", $"Deleted {totalDeleted} disabled mods for {categoryNames}.", TimeSpan.FromSeconds(5));
+        }
+    }
+
+    private async Task RefreshBackendCharactersModsAsync()
+    {
+        foreach (var characterGridItemModel in _backendCharacters)
+        {
+            var modList = _skinManagerService.GetCharacterModList(characterGridItemModel.Character);
+
+            var characterModItems = new List<CharacterModItem>();
+            foreach (var skinModEntry in modList.Mods)
+            {
+                var modSettings = await skinModEntry.Mod.Settings.TryReadSettingsAsync(true);
+                characterModItems.Add(new CharacterModItem(skinModEntry.Mod.GetDisplayName(), skinModEntry.IsEnabled, modSettings?.DateAdded ?? default));
+            }
+
+            characterGridItemModel.SetMods(characterModItems);
+        }
+        await RefreshMultipleModsWarningAsync();
     }
 
     [ObservableProperty] private bool _isAddingMod = false;

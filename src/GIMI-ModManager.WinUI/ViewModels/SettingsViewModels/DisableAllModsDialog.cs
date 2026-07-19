@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.GamesService;
 using GIMI_ModManager.WinUI.Services.AppManagement;
@@ -86,38 +86,7 @@ public class DisableAllModsDialog
         }
 
 
-        var modLists = _skinManagerService.CharacterModLists.Where(m => selectedCategories.Contains(m.Character.ModCategory)).ToList();
-
-        var modListDisableTask = new List<Task<List<string>>>();
-
-
-        foreach (var modList in modLists)
-        {
-            var task = Task.Run(() =>
-            {
-                var modsToDisable = modList.Mods.Where(m => m.IsEnabled).ToArray();
-                var errors = new List<string>();
-                foreach (var modEntry in modsToDisable)
-                {
-                    try
-                    {
-                        modList.DisableMod(modEntry.Id);
-                    }
-                    catch (Exception e)
-                    {
-                        _logger.Error(e, "Error while disabling mod.");
-                        errors.Add($"{modEntry.Mod.FullPath}: {e.Message}");
-                    }
-                }
-
-                return errors;
-            });
-
-            modListDisableTask.Add(task);
-        }
-
-        var errorsList = await Task.WhenAll(modListDisableTask);
-        var errors = errorsList.SelectMany(e => e).ToArray();
+        var errors = await _skinManagerService.DisableAllModsAsync(selectedCategories);
 
         if (errors.Length == 0)
         {

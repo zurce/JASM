@@ -1,4 +1,4 @@
-﻿#if DEBUG
+#if DEBUG
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 #endif
@@ -982,6 +982,107 @@ public sealed class SkinManagerService : ISkinManagerService
         }
 
         return deletedFolders;
+    }
+
+    public async Task<string[]> EnableAllModsAsync(IEnumerable<ICategory> categories)
+    {
+        var modLists = CharacterModLists.Where(m => categories.Contains(m.Character.ModCategory)).ToList();
+        var modListEnableTask = new List<Task<List<string>>>();
+
+        foreach (var modList in modLists)
+        {
+            var task = Task.Run(() =>
+            {
+                var modsToEnable = modList.Mods.Where(m => !m.IsEnabled).ToArray();
+                var errors = new List<string>();
+                foreach (var modEntry in modsToEnable)
+                {
+                    try
+                    {
+                        modList.EnableMod(modEntry.Id);
+                    }
+                    catch (Exception e)
+                    {
+                        _logger.Error(e, "Error while enabling mod {ModId}", modEntry.Id);
+                        errors.Add($"{modEntry.Mod.FullPath}: {e.Message}");
+                    }
+                }
+                return errors;
+            });
+            modListEnableTask.Add(task);
+        }
+
+        var errorsList = await Task.WhenAll(modListEnableTask);
+        return errorsList.SelectMany(e => e).ToArray();
+    }
+
+    public async Task<string[]> DisableAllModsAsync(IEnumerable<ICategory> categories)
+    {
+        var modLists = CharacterModLists.Where(m => categories.Contains(m.Character.ModCategory)).ToList();
+        var modListDisableTask = new List<Task<List<string>>>();
+
+        foreach (var modList in modLists)
+        {
+            var task = Task.Run(() =>
+            {
+                var modsToDisable = modList.Mods.Where(m => m.IsEnabled).ToArray();
+                var errors = new List<string>();
+                foreach (var modEntry in modsToDisable)
+                {
+                    try
+                    {
+                        modList.DisableMod(modEntry.Id);
+                    }
+                    catch (Exception e)
+                    {
+                        _logger.Error(e, "Error while disabling mod {ModId}", modEntry.Id);
+                        errors.Add($"{modEntry.Mod.FullPath}: {e.Message}");
+                    }
+                }
+                return errors;
+            });
+            modListDisableTask.Add(task);
+        }
+
+        var errorsList = await Task.WhenAll(modListDisableTask);
+        return errorsList.SelectMany(e => e).ToArray();
+    }
+
+    public async Task<int> CleanUpDisabledModsAsync(IEnumerable<ICategory> categories)
+    {
+        var modLists = CharacterModLists.Where(m => categories.Contains(m.Character.ModCategory)).ToList();
+        var cleanupTask = new List<Task<int>>();
+
+        foreach (var modList in modLists)
+        {
+            var task = Task.Run(() =>
+            {
+                int deleted = 0;
+                if (!Directory.Exists(modList.AbsModsFolderPath)) return 0;
+                
+                var disabledFolders = Directory.GetDirectories(modList.AbsModsFolderPath, "DISABLED_*", SearchOption.TopDirectoryOnly);
+                
+                using var watcher = modList.DisableWatcher();
+                
+                foreach (var folder in disabledFolders)
+                {
+                    try
+                    {
+                        Directory.Delete(folder, true);
+                        deleted++;
+                    }
+                    catch (Exception e)
+                    {
+                        _logger.Error(e, "Error while deleting disabled mod folder: {Folder}", folder);
+                    }
+                }
+                return deleted;
+            });
+            cleanupTask.Add(task);
+        }
+
+        var deletedCounts = await Task.WhenAll(cleanupTask);
+        return deletedCounts.Sum();
     }
 
     public IList<CharacterSkinEntry> GetAllMods(GetOptions getOptions = GetOptions.All)

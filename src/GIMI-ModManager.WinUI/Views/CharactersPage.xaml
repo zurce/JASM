@@ -119,6 +119,33 @@
             </Grid>
         </ContentDialog>
 
+        <ContentDialog
+            x:Name="EnableAllDialog"
+            Title="Enable all mods?"
+            DefaultButton="Primary"
+            PrimaryButtonText="Cancel"
+            SecondaryButtonText="Confirm">
+            <TextBlock TextWrapping="WrapWholeWords" Text="This will enable all currently tracked mods in the active categories." />
+        </ContentDialog>
+
+        <ContentDialog
+            x:Name="DisableAllDialog"
+            Title="Disable all mods?"
+            DefaultButton="Primary"
+            PrimaryButtonText="Cancel"
+            SecondaryButtonText="Confirm">
+            <TextBlock TextWrapping="WrapWholeWords" Text="It's recommended to save your current configurtation as a preset for easy restoring" />
+        </ContentDialog>
+
+        <ContentDialog
+            x:Name="CleanUpDialog"
+            Title="Clean up disable mods?"
+            DefaultButton="Primary"
+            PrimaryButtonText="Cancel"
+            SecondaryButtonText="Yeah man i wanna do it">
+            <TextBlock TextWrapping="WrapWholeWords" Text="This operation is irreversable" />
+        </ContentDialog>
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -234,7 +261,7 @@
                 CornerRadius="8"
                 Orientation="Horizontal">
                 <CommandBar DefaultLabelPosition="Right" IsOpen="False">
-                    <AppBarButton Label="Mod Presets">
+                    <AppBarButton Label="Batch Configurations">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="&#xEA41;" />
                         </AppBarButton.Icon>
@@ -242,6 +269,25 @@
                             <Flyout Placement="Bottom">
                                 <ScrollViewer Margin="-4">
                                     <StackPanel Spacing="8">
+                                        <Button HorizontalAlignment="Stretch" Command="{x:Bind ViewModel.EnableAllModsDialogCommand}" CommandParameter="{x:Bind EnableAllDialog}">
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <FontIcon Glyph="&#xE8A2;" />
+                                                <TextBlock Text="Enable all" />
+                                            </StackPanel>
+                                        </Button>
+                                        <Button HorizontalAlignment="Stretch" Command="{x:Bind ViewModel.DisableAllModsDialogCommand}" CommandParameter="{x:Bind DisableAllDialog}">
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <FontIcon Glyph="&#xE894;" />
+                                                <TextBlock Text="Disable all" />
+                                            </StackPanel>
+                                        </Button>
+                                        <Button HorizontalAlignment="Stretch" Command="{x:Bind ViewModel.CleanUpModsDialogCommand}" CommandParameter="{x:Bind CleanUpDialog}">
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <FontIcon Glyph="&#xE74D;" />
+                                                <TextBlock Text="Clean up" />
+                                            </StackPanel>
+                                        </Button>
+                                        <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
                                         <TextBlock Text="Apply Preset:" />
                                         <ItemsRepeater ItemsSource="{x:Bind ViewModel.ModPresets}">
                                             <ItemsRepeater.Layout>
