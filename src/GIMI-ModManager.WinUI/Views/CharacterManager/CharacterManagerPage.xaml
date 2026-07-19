@@ -43,7 +43,6 @@
                 Width="300"
                 HorizontalAlignment="Left"
                 Header="Search for a character to edit or add a new character"
-                l:Uids.Uid="CharacterManagerPage_SearchBox"
                 ItemsSource="{x:Bind ViewModel.Suggestions}"
                 PlaceholderText="Start typing to search..."
                 QuerySubmitted="CharacterSearchBox_OnQuerySubmitted"

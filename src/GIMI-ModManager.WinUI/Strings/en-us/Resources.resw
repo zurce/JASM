@@ -901,6 +901,12 @@
   <data name="CharacterManagerPage_SearchBox.PlaceholderText" xml:space="preserve">
     <value>Start typing to search...</value>
   </data>
+  <data name="CharacterManagerPage_SearchBox_Header" xml:space="preserve">
+    <value>Search for a character to edit or add a new character</value>
+  </data>
+  <data name="CharacterManagerPage_SearchBox_Placeholder" xml:space="preserve">
+    <value>Start typing to search...</value>
+  </data>
   <data name="CharacterManagerPage_AddCharacterButton.ToolTip" xml:space="preserve">
     <value>Add new character</value>
   </data>

@@ -317,12 +317,14 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         _busyService.BusyChanged += OnBusyChangedHandler;
 
         _category = category;
+        var catName = _localizer.GetLocalizedStringOrDefault("Category_" + category.DisplayName.Replace(" ", "")) ?? category.DisplayName;
+        var catNamePlural = _localizer.GetLocalizedStringOrDefault("Category_" + category.DisplayNamePlural.Replace(" ", "")) ?? category.DisplayNamePlural;
         CategoryPageTitle =
-            $"{category.DisplayName} {_localizer.GetLocalizedStringOrDefault("Overview", useUidAsDefaultValue: true)}";
-        ModToggleText = $"Show only {category.DisplayNamePlural} with Mods";
-        ModEnabledToggleText = $"Show only {category.DisplayNamePlural} with Enabled Mods";
-        ModNotificationsToggleText = $"Show only {category.DisplayNamePlural} with Mod Notifications";
-        SearchBoxPlaceHolder = $"Search {category.DisplayNamePlural}...";
+            $"{catName} {_localizer.GetLocalizedStringOrDefault("Overview") ?? "Overview"}";
+        ModToggleText = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_ModToggleText") ?? "Show only"} {catNamePlural}";
+        ModEnabledToggleText = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_ModEnabledToggleText") ?? "Show only"} {catNamePlural}";
+        ModNotificationsToggleText = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_ModNotificationsToggleText") ?? "Show only"} {catNamePlural}";
+        SearchBoxPlaceHolder = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_SearchPrefix") ?? "Search"} {catNamePlural}...";
 
 
         var characters = _gameService.GetModdableObjects(_category);

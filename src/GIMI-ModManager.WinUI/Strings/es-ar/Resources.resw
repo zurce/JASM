@@ -916,6 +916,12 @@
   <data name="CharacterManagerPage_SearchBox.PlaceholderText" xml:space="preserve">
     <value>Empieza a escribir para buscar...</value>
   </data>
+  <data name="CharacterManagerPage_SearchBox_Header" xml:space="preserve">
+    <value>Busca un personaje para editar o agregar uno nuevo</value>
+  </data>
+  <data name="CharacterManagerPage_SearchBox_Placeholder" xml:space="preserve">
+    <value>Empieza a escribir para buscar...</value>
+  </data>
   <data name="CharacterManagerPage_AddCharacterButton.ToolTip" xml:space="preserve">
     <value>Agregar nuevo personaje</value>
   </data>
