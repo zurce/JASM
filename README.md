@@ -1,4 +1,4 @@
-# JASM - Just Another Skin Manager
+# JASM (Community) - Just Another Skin Manager
 
 JASM is a skin manager for a certain game. Made using WinUI 3 with WinAppSDK. 
 I made this for fun, for myself and to learn WinUI, but it kinda took off over time.
