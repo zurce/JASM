@@ -6,6 +6,7 @@
     xmlns:controls="using:GIMI_ModManager.WinUI.Views.Controls"
     xmlns:converters="using:CommunityToolkit.WinUI.UI.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:local="using:GIMI_ModManager.WinUI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:GIMI_ModManager.WinUI.ViewModels"
@@ -20,20 +21,20 @@
             <MenuFlyoutItem
                 Command="{x:Bind ViewModel.SetModPreviewImageCommand, Mode=OneWay}"
                 CommandParameter="{Binding}"
-                Text="Set mod preview image" />
+                Text="Set mod preview image" l:Uids.Uid="ModInstallerPage_SetModPreviewImage" />
         </MenuFlyout>
 
         <MenuFlyout x:Name="FolderFlyout">
             <MenuFlyoutItem
                 Command="{x:Bind ViewModel.SetRootFolderCommand, Mode=OneWay}"
                 CommandParameter="{Binding}"
-                Text="Set Root Mod Folder" />
+                Text="Set Root Mod Folder" l:Uids.Uid="ModInstallerPage_SetRootModFolder" />
             <!--  TODO: Enable Later  -->
             <MenuFlyoutItem
                 Command="{x:Bind ViewModel.SetShaderFixesFolderCommand}"
                 CommandParameter="{Binding}"
                 Visibility="Collapsed"
-                Text="Set ShaderFixes Folder" />
+                Text="Set ShaderFixes Folder" l:Uids.Uid="ModInstallerPage_SetShaderFixesFolder" />
         </MenuFlyout>
 
         <DataTemplate x:Key="RootFolderTemplate" x:DataType="viewModels:RootFolder">
@@ -87,7 +88,7 @@
     <Grid>
         <ContentDialog
             x:Name="DuplicateModDialog"
-            Title="A folder with the same name exists"
+            Title="A folder with the same name exists" l:Uids.Uid="ModInstallerPage_DuplicateModDialog"
             CloseButtonText="Cancel"
             DefaultButton="Primary"
             IsPrimaryButtonEnabled="{x:Bind ViewModel.CanExecuteDialogCommand, Mode=OneWay}"
@@ -115,7 +116,7 @@
 
 
                         <StackPanel Margin="4">
-                            <TextBlock Text="New Mod:" />
+                            <TextBlock Text="New Mod:" l:Uids.Uid="ModInstallerPage_NewModLabel" />
                             <TextBox
                                 Margin="4"
                                 Header="Custom name"
@@ -131,7 +132,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Margin="4">
-                            <TextBlock Text="Other Mod:" />
+                            <TextBlock Text="Other Mod:" l:Uids.Uid="ModInstallerPage_OtherModLabel" />
                             <TextBox
                                 Margin="4"
                                 Header="Custom name"
@@ -144,7 +145,7 @@
                                 IsEnabled="{x:Bind ViewModel.OverwriteExistingMod, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}"
                                 PlaceholderText="FolderName"
                                 Text="{x:Bind ViewModel.DuplicateModFolderName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            <controls:LinkButton Link="{x:Bind ViewModel.DuplicateModPath, Mode=OneWay}" Text="Open existing mod folder..." />
+                            <controls:LinkButton Link="{x:Bind ViewModel.DuplicateModPath, Mode=OneWay}" Text="Open existing mod folder..." l:Uids.Uid="ModInstallerPage_OpenExistingModFolder" />
                         </StackPanel>
 
                     </Grid>
@@ -152,7 +153,7 @@
                     <StackPanel Grid.Row="2">
                         <CheckBox
                             Margin="4"
-                            Content="Overwrite existing mod"
+                            Content="Overwrite existing mod" l:Uids.Uid="ModInstallerPage_OverwriteExistingMod"
                             IsChecked="{x:Bind ViewModel.OverwriteExistingMod, Mode=TwoWay}" />
 
                         <CheckBox
@@ -228,27 +229,27 @@
 
                 <TextBox
                     Grid.Row="1"
-                    Header="Mod page url"
+                    Header="Mod page url" l:Uids.Uid="ModInstallerPage_ModPageUrl"
                     IsReadOnly="{x:Bind ViewModel.IsRetrievingModInfo, Mode=OneWay}"
                     KeyDown="UrlTextBox_KeyDown"
                     PlaceholderText="Paste URL to auto populate fields (GameBanana only)"
                     Text="{x:Bind ViewModel.ModUrl, Mode=TwoWay}" />
                 <TextBox
                     Grid.Row="2"
-                    Header="Mod Custom Name"
+                    Header="Mod Custom Name" l:Uids.Uid="ModInstallerPage_ModCustomName"
                     IsReadOnly="{x:Bind ViewModel.IsRetrievingModInfo, Mode=OneWay}"
                     PlaceholderText="Custom Name displayed throughout JASM"
                     Text="{x:Bind ViewModel.CustomName, Mode=TwoWay}" />
                 <TextBox
                     Grid.Row="3"
-                    Header="Author"
+                    Header="Author" l:Uids.Uid="ModInstallerPage_Author"
                     IsReadOnly="{x:Bind ViewModel.IsRetrievingModInfo, Mode=OneWay}"
                     Text="{x:Bind ViewModel.Author, Mode=TwoWay}" />
                 <TextBox
                     Grid.Row="4"
                     Margin="0,0,0,8"
                     AcceptsReturn="False"
-                    Header="Note"
+                    Header="Note" l:Uids.Uid="ModInstallerPage_Note"
                     PlaceholderText="Custom free text note, shown in grid on character details page"
                     Text="{x:Bind ViewModel.Description, Mode=TwoWay}" />
             </Grid>
@@ -290,7 +291,7 @@
 
                     <StackPanel Margin="0,8,0,12" Orientation="Horizontal">
                         <FontIcon Margin="4,0" Glyph="{x:Bind ViewModel.RootFolderIcon}" />
-                        <TextBlock Margin="4,0" Text="ModFolder:" />
+                        <TextBlock Margin="4,0" Text="ModFolder:" l:Uids.Uid="ModInstallerPage_ModFolderLabel" />
                         <TextBlock Text="{x:Bind ViewModel.LastSelectedRootFolder.Name, Mode=OneWay, FallbackValue=Unknown}" />
                         <FontIcon Margin="4,0" Glyph="&#xEA62;" />
                         <TextBlock Text="{x:Bind ViewModel.ModCharacterName, Mode=OneWay}" />
@@ -301,7 +302,7 @@
 
                     <StackPanel Orientation="Horizontal">
                         <FontIcon Margin="4,0" Glyph="{x:Bind ViewModel.SelectedImageIcon}" />
-                        <TextBlock Margin="4,0" Text="Preview Image Source:" />
+                        <TextBlock Margin="4,0" Text="Preview Image Source:" l:Uids.Uid="ModInstallerPage_PreviewImageSourceLabel" />
                         <TextBlock Text="{x:Bind ViewModel.ImageSource, Mode=OneWay}" />
                     </StackPanel>
                     <StackPanel
@@ -321,7 +322,7 @@
                         Padding="8"
                         HorizontalAlignment="Left"
                         TextWrapping="WrapWholeWords"
-                        Text="Here you can select the root of the mod folder." />
+                        Text="Here you can select the root of the mod folder." l:Uids.Uid="ModInstallerPage_SelectRootFolderHint" />
 
                     <TextBlock
                         Padding="8"
@@ -337,7 +338,7 @@
 
                     <CheckBox
                         Margin="4,0"
-                        Content="Force Overwrite Different Name Mod?"
+                        Content="Force Overwrite Different Name Mod?" l:Uids.Uid="ModInstallerPage_ForceOverwriteDifferentNameMod"
                         IsChecked="{x:Bind ViewModel.ForceOverwriteDifferentNameMod, Mode=TwoWay}"
                         Visibility="{x:Bind ViewModel.HasExistingModToOverwrite, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
                         ToolTipService.ToolTip="If checked, JASM will attempt to overwrite the old mod with the new one, even if the folder names are different. (The old folder will be deleted)"/>
@@ -354,7 +355,7 @@
 
                         <StackPanel Orientation="Horizontal">
                             <FontIcon Margin="4,0" Glyph="{x:Bind ViewModel.SelectedMergeIniIcon}" />
-                            <TextBlock Margin="4,0" Text="MergedIniFile Folder:" />
+                            <TextBlock Margin="4,0" Text="MergedIniFile Folder:" l:Uids.Uid="ModInstallerPage_MergedIniFileFolderLabel" />
                             <TextBlock Text="Auto" />
                         </StackPanel>
 
@@ -367,14 +368,14 @@
 
                         <StackPanel Orientation="Horizontal">
                             <FontIcon Margin="4,0" Glyph="{x:Bind ViewModel.ShaderFixesFolderIcon}" />
-                            <TextBlock Margin="4,0" Text="ShaderFixes Folder:" />
+                            <TextBlock Margin="4,0" Text="ShaderFixes Folder:" l:Uids.Uid="ModInstallerPage_ShaderFixesFolderLabel" />
                             <TextBlock Text="{x:Bind ViewModel.LastSelectedShaderFixesFolder.Name, Mode=OneWay, FallbackValue=Unknown}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal">
                             <CheckBox Content="Auto" IsEnabled="False" />
                             <CheckBox
-                                Content="Manual Select"
+                                Content="Manual Select" l:Uids.Uid="ModInstallerPage_ShaderFixesManualSelect"
                                 IsChecked="True"
                                 IsEnabled="False" />
                             <CheckBox Content="Ignore" IsEnabled="False" />
@@ -398,7 +399,7 @@
                     <CheckBox
                         Margin="4,0"
                         Command="{x:Bind ViewModel.EnableOnlyToggleCommand}"
-                        Content="Enable this mod and disable others?"
+                        Content="Enable this mod and disable others?" l:Uids.Uid="ModInstallerPage_EnableOnlyMod"
                         IsChecked="{x:Bind ViewModel.EnableThisMod, Mode=OneWay}"
                         ToolTipService.ToolTip="This will enable this mod and disable all other mods. If a character then it will only disable for that characters skin" />
 
@@ -408,7 +409,7 @@
                         Margin="4,0"
                         HorizontalAlignment="Right"
                         Command="{x:Bind ViewModel.AddModCommand}"
-                        Content="Add Mod">
+                        Content="Add Mod" l:Uids.Uid="ModInstallerPage_AddModButton">
                         <Button.KeyboardAccelerators>
                             <KeyboardAccelerator Key="S" Modifiers="Control" />
                         </Button.KeyboardAccelerators>

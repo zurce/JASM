@@ -6,6 +6,7 @@ This file mirrors active tasks and development phases.
 
 ## Completed
 
+- **`JASM-LOCALIZE`** — Localize all missing/hardcoded English strings across XAML views using WinUI3Localizer (committed, pushed).
 - **`JASM-BATCH-CONFIG`** — Implement Batch Configurations (Enable all, Disable all, Clean up mods) on Characters Overview (committed, pushed).
 - **`JASM-OVERRIDE`** — Support for overriding folder settings (merged).
 - **`JASM-COMMUNITY-GAMES`** — Support remote Git-based loading of game assets / community game sources (merged).

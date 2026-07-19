@@ -239,4 +239,580 @@
   <data name="Settings_Language_TexBlock.Text" xml:space="preserve">
     <value>Language options are currently limited. It is a work in progress.</value>
   </data>
+  <!-- ===== ShellPage Navigation ===== -->
+  <data name="ShellPage_NavItem_CharacterManagement.Content" xml:space="preserve">
+    <value>Character Management</value>
+  </data>
+  <data name="ShellPage_NavItem_ModsOverview.Content" xml:space="preserve">
+    <value>Mods Overview</value>
+  </data>
+  <data name="ShellPage_NavItem_ModPresets.Content" xml:space="preserve">
+    <value>Mod Presets</value>
+  </data>
+  <data name="ShellPage_NavItem_Debug.Content" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="ShellPage_NavItem_Notifications.Content" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <!-- ===== CharactersPage ===== -->
+  <data name="CharactersPage_CheckForUpdates.Text" xml:space="preserve">
+    <value>Check for updates</value>
+  </data>
+  <data name="CharactersPage_OpenFolder.Text" xml:space="preserve">
+    <value>Open folder...</value>
+  </data>
+  <data name="CharactersPage_ModsSubMenu.Text" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="CharactersPage_ClearNotifications.Text" xml:space="preserve">
+    <value>Clear Notifications</value>
+  </data>
+  <data name="CharactersPage_DisableAllModsMenuItem.Text" xml:space="preserve">
+    <value>Disable all mods</value>
+  </data>
+  <data name="CharactersPage_SelectProcessDialog.Title" xml:space="preserve">
+    <value>Select Process Path</value>
+  </data>
+  <data name="CharactersPage_SelectProcessDialog_Description.Text" xml:space="preserve">
+    <value>Select the path to the process you want to start. Once saved this will be started when pressing the start button. This can be reset on the settings page.</value>
+  </data>
+  <data name="CharactersPage_CreateAdvancedCommand.Content" xml:space="preserve">
+    <value>Create Advanced Command</value>
+  </data>
+  <data name="CharactersPage_EnableAllDialog.Title" xml:space="preserve">
+    <value>Enable all mods?</value>
+  </data>
+  <data name="CharactersPage_EnableAllDialog_Description.Text" xml:space="preserve">
+    <value>This will enable all currently tracked mods in the active categories.</value>
+  </data>
+  <data name="CharactersPage_DisableAllDialog.Title" xml:space="preserve">
+    <value>Disable all mods?</value>
+  </data>
+  <data name="CharactersPage_DisableAllDialog_Description.Text" xml:space="preserve">
+    <value>It's recommended to save your current configuration as a preset for easy restoring</value>
+  </data>
+  <data name="CharactersPage_CleanUpDialog.Title" xml:space="preserve">
+    <value>Clean up disable mods?</value>
+  </data>
+  <data name="CharactersPage_CleanUpDialog_Description.Text" xml:space="preserve">
+    <value>This operation is irreversable</value>
+  </data>
+  <data name="CharactersPage_GameBananaLink.Text" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
+  <data name="CharactersPage_SortByLabel.Text" xml:space="preserve">
+    <value>Sort by:</value>
+  </data>
+  <data name="CharactersPage_SortCharacters_Placeholder.PlaceholderText" xml:space="preserve">
+    <value>Sort Characters...</value>
+  </data>
+  <data name="CharactersPage_RefreshMods.Content" xml:space="preserve">
+    <value>Refresh Mods</value>
+  </data>
+  <data name="CharactersPage_Start3Dmigoto.Content" xml:space="preserve">
+    <value>Start 3Dmigoto</value>
+  </data>
+  <data name="CharactersPage_BatchConfigurations.Label" xml:space="preserve">
+    <value>Batch Configurations</value>
+  </data>
+  <data name="CharactersPage_EnableAll.Text" xml:space="preserve">
+    <value>Enable all</value>
+  </data>
+  <data name="CharactersPage_DisableAll.Text" xml:space="preserve">
+    <value>Disable all</value>
+  </data>
+  <data name="CharactersPage_CleanUp.Text" xml:space="preserve">
+    <value>Clean up</value>
+  </data>
+  <data name="CharactersPage_ApplyPresetLabel.Text" xml:space="preserve">
+    <value>Apply Preset:</value>
+  </data>
+  <data name="CharactersPage_ConfirmPreset.Text" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="CharactersPage_RandomizeMods.Text" xml:space="preserve">
+    <value>Randomize Mods</value>
+  </data>
+  <data name="CharactersPage_Filters.Label" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="CharactersPage_DropHereText.Text" xml:space="preserve">
+    <value>Drop Here to Auto Detect Mod...</value>
+  </data>
+  <!-- ===== CharacterDetailsPage ===== -->
+  <data name="CharacterDetails_ModsSelected.Text" xml:space="preserve">
+    <value>Mods Selected:</value>
+  </data>
+  <data name="CharacterDetails_MoveModsButton.Content" xml:space="preserve">
+    <value>Move</value>
+  </data>
+  <data name="CharacterDetails_MoveModsToAnother.Text" xml:space="preserve">
+    <value>Move Mods To Another Character: </value>
+  </data>
+  <data name="CharacterDetails_MoveModSearch.PlaceholderText" xml:space="preserve">
+    <value>Search...</value>
+  </data>
+  <data name="CharacterDetails_MoveModsSkinExpander.Header" xml:space="preserve">
+    <value>Move Mods to another Skin</value>
+  </data>
+  <data name="CharacterDetails_OverrideButtonText.Text" xml:space="preserve">
+    <value>Override</value>
+  </data>
+  <data name="CharacterDetails_OverrideSkinSetTo.Text" xml:space="preserve">
+    <value>Override Skin Set To: </value>
+  </data>
+  <data name="CharacterDetails_RunCommandExpander.Header" xml:space="preserve">
+    <value>Run Command on this folder</value>
+  </data>
+  <data name="CharacterDetails_FullCommand.Text" xml:space="preserve">
+    <value>Full Command:</value>
+  </data>
+  <data name="CharacterDetails_WorkingDirectory.Text" xml:space="preserve">
+    <value>Working Directory:</value>
+  </data>
+  <data name="CharacterDetails_TargetPath.Text" xml:space="preserve">
+    <value>'{{TargetPath}}:</value>
+  </data>
+  <data name="CharacterDetails_RunCommand.Content" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="CharacterDetails_Loading.Text" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="CharacterDetails_LoadingEllipsis.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="CharacterDetails_MenuBar_Mods.Title" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="CharacterDetails_AddModMenuItem.Text" xml:space="preserve">
+    <value>Add Mod...</value>
+  </data>
+  <data name="CharacterDetails_AddArchiveMenuItem.Text" xml:space="preserve">
+    <value>Add Archive...</value>
+  </data>
+  <data name="CharacterDetails_RefreshModsMenuItem.Text" xml:space="preserve">
+    <value>Refresh Mods</value>
+  </data>
+  <data name="CharacterDetails_MenuBar_Folders.Title" xml:space="preserve">
+    <value>Folders</value>
+  </data>
+  <data name="CharacterDetails_OpenRootFolder.Text" xml:space="preserve">
+    <value>Open 3Dmigoto Root folder...</value>
+  </data>
+  <data name="CharacterDetails_OpenCharacterModFolder.Text" xml:space="preserve">
+    <value>Open Character's Mod folder...</value>
+  </data>
+  <data name="CharacterDetails_OpenSelectedModFolder.Text" xml:space="preserve">
+    <value>Open Selected Mod folder...</value>
+  </data>
+  <data name="CharacterDetails_MenuBar_View.Title" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="CharacterDetails_SingleSelectToggle.Text" xml:space="preserve">
+    <value>Single Select</value>
+  </data>
+  <data name="CharacterDetails_ShowModFolderNames.Text" xml:space="preserve">
+    <value>Show 'Mod Folder Names' column</value>
+  </data>
+  <data name="CharacterDetails_MenuBar_ModPreferences.Title" xml:space="preserve">
+    <value>Mod Preferences</value>
+  </data>
+  <data name="CharacterDetails_SavePreferencesToggle.Text" xml:space="preserve">
+    <value>Save preferences for selected mod</value>
+  </data>
+  <data name="CharacterDetails_ReadPreferencesToggle.Text" xml:space="preserve">
+    <value>Read preferences for selected mod</value>
+  </data>
+  <data name="CharacterDetails_MultipleModsActive.Message" xml:space="preserve">
+    <value>Multiple Mods active</value>
+  </data>
+  <data name="CharacterDetails_SearchModsTextBox.PlaceholderText" xml:space="preserve">
+    <value>Search Mods...</value>
+  </data>
+  <data name="CharacterDetails_ViewToggle.OffContent" xml:space="preserve">
+    <value>Detailed View</value>
+  </data>
+  <!-- ===== ModPane ===== -->
+  <data name="ModPane_SetModIniFile.Text" xml:space="preserve">
+    <value>Set mod .ini file</value>
+  </data>
+  <data name="ModPane_IgnoreIniFile.Text" xml:space="preserve">
+    <value>Ignore .ini file for this mod</value>
+  </data>
+  <data name="ModPane_ModUrl.Header" xml:space="preserve">
+    <value>Mod Url:</value>
+  </data>
+  <data name="ModPane_ForwardKey.Header" xml:space="preserve">
+    <value>Forward Key</value>
+  </data>
+  <data name="ModPane_Variations.Text" xml:space="preserve">
+    <value>Variations: </value>
+  </data>
+  <data name="ModPane_BackwardKey.Header" xml:space="preserve">
+    <value>Backward Key</value>
+  </data>
+  <data name="ModPane_KeySwapDisabled.Text" xml:space="preserve">
+    <value>Key swap management is disabled for this mod</value>
+  </data>
+  <data name="ModPane_SaveButtonText.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ModPane_ModEnabled.Text" xml:space="preserve">
+    <value>Mod Enabled</value>
+  </data>
+  <data name="ModPane_OpenModFolder.Content" xml:space="preserve">
+    <value>Open Mod Folder...</value>
+  </data>
+  <!-- ===== PresetPage ===== -->
+  <data name="PresetPage_AutoSyncWarning.Text" xml:space="preserve">
+    <value>Auto sync not enabled! Remember to manually reload 3Dmigoto config with the F10 key when doing changes</value>
+  </data>
+  <data name="PresetPage_PageTitle.Text" xml:space="preserve">
+    <value>Mod Presets and Mod Preferences</value>
+  </data>
+  <data name="PresetPage_NewPresetName.Header" xml:space="preserve">
+    <value>New Preset Name</value>
+  </data>
+  <data name="PresetPage_CreatePresetButton.Content" xml:space="preserve">
+    <value>Save active mod preferences and create new preset</value>
+  </data>
+  <data name="PresetPage_CreateEmptyPreset.Content" xml:space="preserve">
+    <value>Create as an empty preset</value>
+  </data>
+  <data name="PresetPage_AutoSyncPreferences.Content" xml:space="preserve">
+    <value>Auto sync Mod Preferences when switching presets</value>
+  </data>
+  <data name="PresetPage_StartElevatorButton.Content" xml:space="preserve">
+    <value>Start Elevator...</value>
+  </data>
+  <data name="PresetPage_SaveActivePreferencesButton.Content" xml:space="preserve">
+    <value>Save active mod preferences (KeySwaps) to mods</value>
+  </data>
+  <data name="PresetPage_ApplySavedPreferencesButton.Content" xml:space="preserve">
+    <value>Apply saved mod preferences (KeySwaps)</value>
+  </data>
+  <data name="PresetPage_ShowManualControls.Content" xml:space="preserve">
+    <value>Show Manual controls</value>
+  </data>
+  <data name="PresetPage_EnabledModsCount.Text" xml:space="preserve">
+    <value>Preset Enabled Mods Count:</value>
+  </data>
+  <data name="PresetPage_CreatedAt.Text" xml:space="preserve">
+    <value>Created at:</value>
+  </data>
+  <data name="PresetPage_GoToPresetDetails.Content" xml:space="preserve">
+    <value>Go to Preset Details</value>
+  </data>
+  <data name="PresetPage_ApplyPresetButton.Content" xml:space="preserve">
+    <value>Apply Preset</value>
+  </data>
+  <data name="PresetPage_ApplyConfirm.Content" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="PresetPage_ReadOnlyMenuItem.Text" xml:space="preserve">
+    <value>Read Only</value>
+  </data>
+  <data name="PresetPage_DuplicateMenuItem.Text" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
+  <data name="PresetPage_DeleteMenuItem.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="PresetPage_RandomizeModsButton.Content" xml:space="preserve">
+    <value>Randomize Mods</value>
+  </data>
+  <data name="PresetPage_ResetModPreferencesButton.Content" xml:space="preserve">
+    <value>Reset Mod Preferences</value>
+  </data>
+  <data name="PresetPage_ResetPreferencesDialogText.Text" xml:space="preserve">
+    <value>Reset persisted mod preferences</value>
+  </data>
+  <data name="PresetPage_ResetOnlyEnabledMods.Content" xml:space="preserve">
+    <value>Reset only for enabled Mods</value>
+  </data>
+  <data name="PresetPage_AlsoReset3DMigoto.Content" xml:space="preserve">
+    <value>Also clear preferences in to 3Dmigoto user ini</value>
+  </data>
+  <data name="PresetPage_ResetConfirm.Content" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <!-- ===== ModInstallerPage ===== -->
+  <data name="ModInstallerPage_SetModPreviewImage.Text" xml:space="preserve">
+    <value>Set mod preview image</value>
+  </data>
+  <data name="ModInstallerPage_SetRootModFolder.Text" xml:space="preserve">
+    <value>Set Root Mod Folder</value>
+  </data>
+  <data name="ModInstallerPage_SetShaderFixesFolder.Text" xml:space="preserve">
+    <value>Set ShaderFixes Folder</value>
+  </data>
+  <data name="ModInstallerPage_DuplicateModDialog.Title" xml:space="preserve">
+    <value>A folder with the same name exists</value>
+  </data>
+  <data name="ModInstallerPage_DuplicateInfoBar.Message" xml:space="preserve">
+    <value>1. You can choose to overwrite the old mod, deleting it.&#x0a;Or&#x0a;2. You can rename either the new or the old mod</value>
+  </data>
+  <data name="ModInstallerPage_NewModLabel.Text" xml:space="preserve">
+    <value>New Mod:</value>
+  </data>
+  <data name="ModInstallerPage_NewModCustomName.Header" xml:space="preserve">
+    <value>Custom name</value>
+  </data>
+  <data name="ModInstallerPage_NewModFolderName.Header" xml:space="preserve">
+    <value>Folder name</value>
+  </data>
+  <data name="ModInstallerPage_OtherModLabel.Text" xml:space="preserve">
+    <value>Other Mod:</value>
+  </data>
+  <data name="ModInstallerPage_OtherModCustomName.Header" xml:space="preserve">
+    <value>Custom name</value>
+  </data>
+  <data name="ModInstallerPage_OtherModFolderName.Header" xml:space="preserve">
+    <value>Folder name</value>
+  </data>
+  <data name="ModInstallerPage_OpenExistingModFolder.Text" xml:space="preserve">
+    <value>Open existing mod folder...</value>
+  </data>
+  <data name="ModInstallerPage_OverwriteExistingMod.Content" xml:space="preserve">
+    <value>Overwrite existing mod</value>
+  </data>
+  <data name="ModInstallerPage_ReplaceInPresets.Text" xml:space="preserve">
+    <value>Replace duplicate mod in presets with new mod</value>
+  </data>
+  <data name="ModInstallerPage_RetrieveModInfo.Text" xml:space="preserve">
+    <value>Retrieve mod info from the mod page</value>
+  </data>
+  <data name="ModInstallerPage_ModPageUrl.Header" xml:space="preserve">
+    <value>Mod page url</value>
+  </data>
+  <data name="ModInstallerPage_ModCustomName.Header" xml:space="preserve">
+    <value>Mod Custom Name</value>
+  </data>
+  <data name="ModInstallerPage_Author.Header" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="ModInstallerPage_Note.Header" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="ModInstallerPage_ModFolderLabel.Text" xml:space="preserve">
+    <value>ModFolder:</value>
+  </data>
+  <data name="ModInstallerPage_PreviewImageSourceLabel.Text" xml:space="preserve">
+    <value>Preview Image Source:</value>
+  </data>
+  <data name="ModInstallerPage_ImageSourceAuto.Content" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="ModInstallerPage_ImageSourceUrl.Content" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="ModInstallerPage_ImageSourceModFiles.Content" xml:space="preserve">
+    <value>Mod Files</value>
+  </data>
+  <data name="ModInstallerPage_ImageSourceIgnore.Content" xml:space="preserve">
+    <value>Ignore</value>
+  </data>
+  <data name="ModInstallerPage_SelectRootFolderHint.Text" xml:space="preserve">
+    <value>Here you can select the root of the mod folder.</value>
+  </data>
+  <data name="ModInstallerPage_ModFolderDescription.Text" xml:space="preserve">
+    <value>This is usually the folder that contains the 'merged.ini/Script.ini' or '.JASM_ModConfig.json'. JASM will automatically detect the mod folder and the merged.ini file. If you want to manually select the mod folder, you can do so by right clicking the folder in the overview above. </value>
+  </data>
+  <data name="ModInstallerPage_ManualImageSelectionHint.Text" xml:space="preserve">
+    <value>You can also manually select image file for the mod preview image. It's usually fine to just press 'Add Mod'</value>
+  </data>
+  <data name="ModInstallerPage_ForceOverwriteDifferentNameMod.Content" xml:space="preserve">
+    <value>Force Overwrite Different Name Mod?</value>
+  </data>
+  <data name="ModInstallerPage_ReplaceInPresetsMain.Text" xml:space="preserve">
+    <value>Replace duplicate mod in presets with new mod</value>
+  </data>
+  <data name="ModInstallerPage_MergedIniFileFolderLabel.Text" xml:space="preserve">
+    <value>MergedIniFile Folder:</value>
+  </data>
+  <data name="ModInstallerPage_ShaderFixesFolderLabel.Text" xml:space="preserve">
+    <value>ShaderFixes Folder:</value>
+  </data>
+  <data name="ModInstallerPage_ShaderFixesAuto.Content" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="ModInstallerPage_ShaderFixesManualSelect.Content" xml:space="preserve">
+    <value>Manual Select</value>
+  </data>
+  <data name="ModInstallerPage_ShaderFixesIgnore.Content" xml:space="preserve">
+    <value>Ignore</value>
+  </data>
+  <data name="ModInstallerPage_EnableOnlyMod.Content" xml:space="preserve">
+    <value>Enable this mod and disable others?</value>
+  </data>
+  <data name="ModInstallerPage_AddModButton.Content" xml:space="preserve">
+    <value>Add Mod</value>
+  </data>
+  <!-- ===== CharacterGalleryPage ===== -->
+  <data name="CharacterGalleryPage_SelectSkin.Content" xml:space="preserve">
+    <value>Select Skin</value>
+  </data>
+  <data name="CharacterGalleryPage_SortBy.Text" xml:space="preserve">
+    <value>Sort by:</value>
+  </data>
+  <data name="CharacterGalleryPage_SortMods.PlaceholderText" xml:space="preserve">
+    <value>Sort Mods...</value>
+  </data>
+  <data name="CharacterGalleryPage_SortDateAdded.Content" xml:space="preserve">
+    <value>Date Added</value>
+  </data>
+  <data name="CharacterGalleryPage_SortFolderName.Content" xml:space="preserve">
+    <value>Folder Name</value>
+  </data>
+  <data name="CharacterGalleryPage_SortName.Content" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="CharacterGalleryPage_ViewButton.Text" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="CharacterGalleryPage_AdjustHeight.Text" xml:space="preserve">
+    <value>Adjust Height:</value>
+  </data>
+  <data name="CharacterGalleryPage_AdjustDesiredWidth.Text" xml:space="preserve">
+    <value>Adjust Desired Width:</value>
+  </data>
+  <data name="CharacterGalleryPage_SingleSelect.ToolTip" xml:space="preserve">
+    <value>Selecting this will only allow one mod to be enabled at a time.</value>
+  </data>
+  <data name="CharacterGalleryPage_SearchMods.PlaceholderText" xml:space="preserve">
+    <value>Search Mods...</value>
+  </data>
+  <data name="CharacterGalleryPage_ViewToggleSwitch.OnContent" xml:space="preserve">
+    <value>Gallery View</value>
+  </data>
+  <data name="CharacterGalleryPage_SaveImage.Text" xml:space="preserve">
+    <value>Save Image</value>
+  </data>
+  <data name="CharacterGalleryPage_OpenModFolder.Text" xml:space="preserve">
+    <value>Open Mod Folder...</value>
+  </data>
+  <data name="CharacterGalleryPage_OpenModPage.Text" xml:space="preserve">
+    <value>Open Mod Page...</value>
+  </data>
+  <data name="CharacterGalleryPage_DeleteMod.Text" xml:space="preserve">
+    <value>Delete Mod</value>
+  </data>
+  <data name="CharacterGalleryPage_Author.Text" xml:space="preserve">
+    <value>Author:</value>
+  </data>
+  <data name="CharacterGalleryPage_Added.Text" xml:space="preserve">
+    <value>Added:</value>
+  </data>
+  <data name="CharacterGalleryPage_LoadingMods.Text" xml:space="preserve">
+    <value>Loading Mods...</value>
+  </data>
+  <!-- ===== ModsOverviewPage ===== -->
+  <data name="ModsOverviewPage_Title.Text" xml:space="preserve">
+    <value>Mods Overview</value>
+  </data>
+  <data name="ModsOverviewPage_RunCommandOnThisFolder.Text" xml:space="preserve">
+    <value>Run Command on this folder:</value>
+  </data>
+  <data name="ModsOverviewPage_FullCommand.Text" xml:space="preserve">
+    <value>Full Command:</value>
+  </data>
+  <data name="ModsOverviewPage_WorkingDirectory.Text" xml:space="preserve">
+    <value>Working Directory:</value>
+  </data>
+  <data name="ModsOverviewPage_TargetPath.Text" xml:space="preserve">
+    <value>'{{TargetPath}}:</value>
+  </data>
+  <data name="ModsOverviewPage_GoToCharacter.Content" xml:space="preserve">
+    <value>Go to Character</value>
+  </data>
+  <data name="ModsOverviewPage_AddedLabel.Text" xml:space="preserve">
+    <value>Added:</value>
+  </data>
+  <!-- ===== PresetDetailsPage ===== -->
+  <data name="PresetDetailsPage_AddMod.Label" xml:space="preserve">
+    <value>Add Mod</value>
+  </data>
+  <data name="PresetDetailsPage_FindReplacementMod.Text" xml:space="preserve">
+    <value>Find Replacement Mod</value>
+  </data>
+  <!-- ===== CharacterCard ===== -->
+  <data name="CharacterCard_TrackedMods.Text" xml:space="preserve">
+    <value>Tracked Mods:</value>
+  </data>
+  <data name="CharacterCard_SelectedInGameSkin.Text" xml:space="preserve">
+    <value>Selected In-Game Skin:</value>
+  </data>
+  <data name="CharacterCard_SelectSkin.Content" xml:space="preserve">
+    <value>Select Skin</value>
+  </data>
+  <data name="CharacterCard_DisableAllMods.Content" xml:space="preserve">
+    <value>Disable All Mods</value>
+  </data>
+  <!-- ===== ModListOverview ===== -->
+  <data name="ModListOverview_ModsMenu.Title" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="ModListOverview_AddMod.Text" xml:space="preserve">
+    <value>Add Mod...</value>
+  </data>
+  <data name="ModListOverview_MultipleSkinWarning.Message" xml:space="preserve">
+    <value>More than one skin selected</value>
+  </data>
+  <!-- ===== DebugPage ===== -->
+  <data name="DebugPage_CreateButton.Content" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="DebugPage_EditButton.Content" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="DebugPage_DeleteButton.Content" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <!-- ===== NotificationsPage ===== -->
+  <data name="NotificationsPage_HeaderText.Text" xml:space="preserve">
+    <value>All Notifications shown during the current application run</value>
+  </data>
+  <data name="NotificationsPage_LogPathLabel.Text" xml:space="preserve">
+    <value>Notifications and Logs are written to:</value>
+  </data>
+  <!-- ===== ErrorWindow ===== -->
+  <data name="ErrorWindow_ErrorHeaderText.Text" xml:space="preserve">
+    <value>An error has occurred: </value>
+  </data>
+  <data name="ErrorWindow_ExceptionDescription.Text" xml:space="preserve">
+    <value>An unhanded exception has occurred. The application ran into a problem that it didn't know how to handle. JASM may be in an unstable state, and it is recommended to restart JASM.</value>
+  </data>
+  <data name="ErrorWindow_StackTraceLabel.Text" xml:space="preserve">
+    <value>Stack trace:</value>
+  </data>
+  <data name="ErrorWindow_InnerExceptionLabel.Text" xml:space="preserve">
+    <value>An inner exception</value>
+  </data>
+  <data name="ErrorWindow_InnerStackTraceLabel.Text" xml:space="preserve">
+    <value>Stack trace:</value>
+  </data>
+  <!-- ===== GbModPageWindow ===== -->
+  <data name="GbModPageWindow_TitleText.Text" xml:space="preserve">
+    <value>Download Mods from GameBanana</value>
+  </data>
+  <data name="GbModPageWindow_LoadingText.Text" xml:space="preserve">
+    <value>Loading Mod Info from GameBanana...</value>
+  </data>
+  <data name="GbModPageWindow_DownloadButton.Content" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="GbModPageWindow_InstallButton.Content" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="GbModPageWindow_CloseButton.Content" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="GbModPageWindow_ModPageLabel.Text" xml:space="preserve">
+    <value>Mod Page:</value>
+  </data>
+  <data name="GbModPageWindow_DownloadsButton.Content" xml:space="preserve">
+    <value>Downloads</value>
+  </data>
 </root>

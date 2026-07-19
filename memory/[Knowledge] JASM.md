@@ -57,12 +57,13 @@ JASM (Just Another Skin Manager) is a skin manager for games like Genshin Impact
 
 ## Progress Summary
 
-**Completed: 7 Custom Tasks**
+**Completed: 8 Custom Tasks**
 
 ### Completed Tasks
 
 | Task | Description | Status | Date |
 |------|-------------|--------|------|
+| `JASM-LOCALIZE` | Localize all hardcoded English strings using WinUI3Localizer | Staged & Committed | 2026-07-19 |
 | `JASM-BATCH-CONFIG` | Added batch Enable All, Disable All, and Clean Up operations to characters overview. | Staged & Committed | 2026-07-18 |
 | `JASM-OVERRIDE` | Merge branch `zurce/add-override-folder` for overriding folder settings. | Merged | 2026-03-05 |
 | `JASM-COMMUNITY-GAMES`| Support remote Git-based loading of game assets / community game sources. | Merged | 2026-03-05 |
@@ -104,4 +105,4 @@ When displaying a `ContentDialog` in WinUI 3 (even if declared in XAML), it can 
 
 ---
 
-**Last Updated:** 2026-07-18
+**Last Updated:** 2026-07-19

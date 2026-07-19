@@ -10,6 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:subViewModels="using:GIMI_ModManager.WinUI.ViewModels.CharacterDetailsViewModels.SubViewModels"
     xmlns:xaml="using:GIMI_ModManager.WinUI.Helpers.Xaml"
+    xmlns:l="using:WinUI3Localizer"
     IsEnabled="{x:Bind ViewModel.IsNotReadOnly, Mode=OneWay}"
     mc:Ignorable="d">
 
@@ -122,7 +123,7 @@
             </Grid.ColumnDefinitions>
             <TextBox
                 VerticalAlignment="Center"
-                Header="Mod Url:"
+                Header="Mod Url:" l:Uids.Uid="ModPane_ModUrl"
                 IsEnabled="{x:Bind ViewModel.IsNotReadOnly, Mode=OneWay}"
                 Text="{x:Bind ViewModel.ModModel.ModUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -155,13 +156,13 @@
                                         <TextBox
                                             MinWidth="100"
                                             HorizontalAlignment="Left"
-                                            Header="Forward Key"
+                                            Header="Forward Key" l:Uids.Uid="ModPane_ForwardKey"
                                             Text="{x:Bind ForwardHotkey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                             <TextBlock HorizontalAlignment="Center" Text="{x:Bind SectionKey}" />
                                             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                                <TextBlock Margin="0,0,4,0" Text="Variations: " />
+                                                <TextBlock Margin="0,0,4,0" Text="Variations: " l:Uids.Uid="ModPane_Variations" />
                                                 <TextBlock Text="{x:Bind VariationsCount, Mode=OneWay}" />
                                             </StackPanel>
                                         </StackPanel>
@@ -169,7 +170,7 @@
                                             Grid.Column="2"
                                             MinWidth="100"
                                             HorizontalAlignment="Right"
-                                            Header="Backward Key"
+                                            Header="Backward Key" l:Uids.Uid="ModPane_BackwardKey"
                                             Text="{x:Bind BackwardHotkey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                     </Grid>
                                 </DataTemplate>
@@ -184,7 +185,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         TextWrapping="WrapWholeWords"
-                        Text="Key swap management is disabled for this mod" />
+                        Text="Key swap management is disabled for this mod" l:Uids.Uid="ModPane_KeySwapDisabled" />
 
                 </controls1:Case>
             </controls1:SwitchPresenter>
@@ -229,7 +230,7 @@
                         Padding="4,0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Text="Mod Enabled" />
+                        Text="Mod Enabled" l:Uids.Uid="ModPane_ModEnabled" />
                 </Border>
 
             </Grid>
@@ -239,7 +240,7 @@
                 Grid.Column="2"
                 HorizontalAlignment="Right"
                 Command="{x:Bind ViewModel.OpenModFolderCommand}"
-                Content="Open Mod Folder..."
+                Content="Open Mod Folder..." l:Uids.Uid="ModPane_OpenModFolder"
                 IsEnabled="{x:Bind ViewModel.IsNotReadOnly, Mode=OneWay}" />
         </Grid>
     </Grid>
