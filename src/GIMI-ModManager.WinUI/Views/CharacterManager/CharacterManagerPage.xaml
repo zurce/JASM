@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:GIMI_ModManager.WinUI.Views"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:GIMI_ModManager.WinUI.ViewModels"
     xmlns:xaml="using:GIMI_ModManager.WinUI.Helpers.Xaml"
@@ -27,7 +28,8 @@
             HorizontalAlignment="Left"
             FontSize="28"
             Style="{StaticResource TitleTextBlockStyle}"
-            Text="Character Manager" />
+            Text="Character Manager"
+            l:Uids.Uid="CharacterManagerPage_Title" />
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -41,6 +43,7 @@
                 Width="300"
                 HorizontalAlignment="Left"
                 Header="Search for a character to edit or add a new character"
+                l:Uids.Uid="CharacterManagerPage_SearchBox"
                 ItemsSource="{x:Bind ViewModel.Suggestions}"
                 PlaceholderText="Start typing to search..."
                 QuerySubmitted="CharacterSearchBox_OnQuerySubmitted"
@@ -79,7 +82,8 @@
                 Margin="16,0,0,0"
                 VerticalAlignment="Bottom"
                 Command="{x:Bind ViewModel.OpenCreateCharacterFormCommand}"
-                ToolTipService.ToolTip="Add new character">
+                ToolTipService.ToolTip="Add new character"
+                l:Uids.Uid="CharacterManagerPage_AddCharacterButton">
                 <FontIcon Glyph="&#xE710;" />
             </Button>
 

@@ -8,6 +8,7 @@
     xmlns:converters="using:CommunityToolkit.WinUI.UI.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:GIMI_ModManager.WinUI.Views"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:modPageViewModels="using:GIMI_ModManager.WinUI.ViewModels.ModPageViewModels"
     xmlns:services="using:GIMI_ModManager.Core.Services"
@@ -44,7 +45,7 @@
                         Margin="10"
                         FontSize="20"
                         FontWeight="Bold"
-                        Text="Download Mods from GameBanana" />
+                        Text="Download Mods from GameBanana" l:Uids.Uid="GbModPageWindow_TitleText" />
 
                     <controls:LinkButton
                         Link="{x:Bind ViewModel.CharacterModListPath, Mode=OneWay}"
@@ -58,7 +59,7 @@
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                             <StackPanel>
                                 <ProgressRing IsActive="True" />
-                                <TextBlock Text="Loading Mod Info from GameBanana..." />
+                                <TextBlock Text="Loading Mod Info from GameBanana..." l:Uids.Uid="GbModPageWindow_LoadingText" />
                             </StackPanel>
                         </Grid>
 
@@ -119,7 +120,7 @@
                                                             HorizontalAlignment="Right"
                                                             Command="{x:Bind DownloadCommand}"
                                                             CommandParameter="{Binding Mode=OneWay}"
-                                                            Content="Download"
+                                                            Content="Download" l:Uids.Uid="GbModPageWindow_DownloadButton"
                                                             Visibility="{Binding Path=ShowDownloadButton, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                                                         <Button
@@ -127,7 +128,7 @@
                                                             HorizontalAlignment="Right"
                                                             Command="{x:Bind InstallCommand}"
                                                             CommandParameter="{Binding Mode=OneWay}"
-                                                            Content="Install"
+                                                            Content="Install" l:Uids.Uid="GbModPageWindow_InstallButton"
                                                             Visibility="{Binding Path=ShowInstallButton, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
                                                     </Grid>
 
@@ -169,7 +170,7 @@
                         Height="50"
                         HorizontalAlignment="Left"
                         Command="{x:Bind ViewModel.CloseCommand}"
-                        Content="Close"
+                        Content="Close" l:Uids.Uid="GbModPageWindow_CloseButton"
                         IsEnabled="{x:Bind ViewModel.IsNotBusy, Mode=OneWay}"
                         ToolTipService.ToolTip="Close window" />
                 </Grid>
@@ -191,7 +192,7 @@
                         <TextBlock
                             Margin="10,0"
                             VerticalAlignment="Center"
-                            Text="Mod Page:" />
+                            Text="Mod Page:" l:Uids.Uid="GbModPageWindow_ModPageLabel" />
                         <controls:LinkButton
                             VerticalAlignment="Center"
                             Link="{x:Bind ViewModel.ModPage, Mode=OneWay}"
@@ -202,7 +203,7 @@
                         Grid.Column="1"
                         Margin="8,0"
                         Click="ButtonBase_OnClick"
-                        Content="Downloads"
+                        Content="Downloads" l:Uids.Uid="GbModPageWindow_DownloadsButton"
                         IsEnabled="{x:Bind ViewModel.IsOpenDownloadButtonEnabled, Mode=OneWay}" />
                     <ProgressRing
                         x:Name="ModPageLoadingRing"

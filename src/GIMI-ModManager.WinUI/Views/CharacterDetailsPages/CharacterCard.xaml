@@ -6,6 +6,7 @@
     xmlns:controls="using:GIMI_ModManager.WinUI.Views.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:GIMI_ModManager.WinUI.Views.CharacterDetailsPages"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     IsEnabled="{x:Bind ViewModel.IsModObjectLoaded, Mode=OneWay}"
     mc:Ignorable="d">
@@ -102,7 +103,7 @@
                     Margin="0,0,4,0"
                     VerticalAlignment="Center"
                     Style="{ThemeResource BodyTextStyle}"
-                    Text="Tracked Mods:" />
+                    Text="Tracked Mods:" l:Uids.Uid="CharacterCard_TrackedMods" />
                 <TextBlock Style="{ThemeResource BodyTextStyle}" Text="{x:Bind ViewModel.TrackedModsCount, Mode=OneWay}" />
             </StackPanel>
 
@@ -115,7 +116,7 @@
                 <TextBlock
                     Padding="0,0,0,16"
                     HorizontalAlignment="Center"
-                    Text="Selected In-Game Skin:" />
+                    Text="Selected In-Game Skin:" l:Uids.Uid="CharacterCard_SelectedInGameSkin" />
                 <TextBlock
                     HorizontalAlignment="Center"
                     FontFamily="{StaticResource GenshinFont}"
@@ -126,6 +127,7 @@
                     Margin="0,16,0,0"
                     HorizontalAlignment="Center"
                     Content="Select Skin"
+                    l:Uids.Uid="CharacterCard_SelectSkin"
                     Flyout="{StaticResource SelectInGameSkin}"
                     IsEnabled="{x:Bind ViewModel.CanChangeInGameSkins, Mode=OneWay}">
 

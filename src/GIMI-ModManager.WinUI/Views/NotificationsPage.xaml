@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:GIMI_ModManager.WinUI.Views"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:GIMI_ModManager.WinUI.Models"
     mc:Ignorable="d">
@@ -20,10 +21,10 @@
         <TextBlock
             Margin="0,4,0,8"
             Style="{ThemeResource TitleTextBlockStyle}"
-            Text="All Notifications shown during the current application run" />
+            Text="All Notifications shown during the current application run" l:Uids.Uid="NotificationsPage_HeaderText" />
 
         <StackPanel Grid.Row="1" Margin="0,4,0,16">
-            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="Notifications and Logs are written to:" />
+            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="Notifications and Logs are written to:" l:Uids.Uid="NotificationsPage_LogPathLabel" />
             <Grid VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />

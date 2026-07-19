@@ -63,7 +63,7 @@ JASM (Just Another Skin Manager) is a skin manager for games like Genshin Impact
 
 | Task | Description | Status | Date |
 |------|-------------|--------|------|
-| `JASM-LOCALIZE` | Localize all hardcoded English strings using WinUI3Localizer | Staged & Committed | 2026-07-19 |
+| `JASM-LOCALIZE` | Localize all hardcoded English strings using WinUI3Localizer | Committed (amended) | 2026-07-19 |
 | `JASM-BATCH-CONFIG` | Added batch Enable All, Disable All, and Clean Up operations to characters overview. | Staged & Committed | 2026-07-18 |
 | `JASM-OVERRIDE` | Merge branch `zurce/add-override-folder` for overriding folder settings. | Merged | 2026-03-05 |
 | `JASM-COMMUNITY-GAMES`| Support remote Git-based loading of game assets / community game sources. | Merged | 2026-03-05 |
@@ -99,10 +99,15 @@ src/
 When compiling in `Release` mode, the .NET trimmer strips reflection metadata from internal serialization types like `JsonCommandRoot` and `JsonCommandDefinition`. This causes commands to lose fields (like `Arguments` or `WorkingDirectory`) during save/load.
 - **Decision:** Introduced a source-generated `CommandJsonContext` class and registered it in `CommandService` to enforce trim-proof compile-time serialization.
 
+### 2026-07-19: ContentDialog resw key naming must match XAML UID exactly
+When localizing a `ContentDialog`, the resw key must follow the pattern `{Uid}.{PropertyName}` (e.g., `CharactersPage_EnableAllDialog.Title`). Do **not** add extra segments like `_Title` — WinUI3Localizer resolves `{Uid}.Title`, so `CharactersPage_EnableAllDialog_Title.Title` would not match.
+
+Also, child elements inside a ContentDialog (like `<TextBlock>`) need their own UIDs to be localizable — the parent dialog's UID does not cascade to children.
+
 ### 2026-07-18: WinUI 3 XamlRoot Defensive Coding
 When displaying a `ContentDialog` in WinUI 3 (even if declared in XAML), it can crash if its `XamlRoot` is null at invocation time.
 - **Decision:** Always assign `dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;` in VM commands before calling `.ShowAsync()`.
 
 ---
 
-**Last Updated:** 2026-07-19
+**Last Updated:** 2026-07-20

@@ -1,4 +1,4 @@
-﻿<Page
+<Page
     x:Class="GIMI_ModManager.WinUI.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -49,7 +49,7 @@
             IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
             IsEnabled="{x:Bind ViewModel.IsEnabled, Mode=OneWay}"
             IsPaneVisible="{x:Bind ViewModel.IsNotFirstTimeStartupPage, Mode=OneWay}"
-            IsSettingsVisible="True"
+            IsSettingsVisible="False"
             OpenPaneLength="220"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
             <!--<NavigationView.KeyboardAccelerators>
@@ -73,20 +73,20 @@
                 </NavigationViewItem>-->
 
 
-                <NavigationViewItem helpers:NavigationHelper.NavigateTo="GIMI_ModManager.WinUI.ViewModels.CharacterManagerViewModel" l:Uids.Uid="ShellPage_NavItem_CharacterManagement" Content="Character Management">
+                <NavigationViewItem x:Name="NavCharManagement" helpers:NavigationHelper.NavigateTo="GIMI_ModManager.WinUI.ViewModels.CharacterManagerViewModel" Content="Character Management">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xEB7E;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem helpers:NavigationHelper.NavigateTo="GIMI_ModManager.WinUI.ViewModels.ModsOverviewVM" l:Uids.Uid="ShellPage_NavItem_ModsOverview" Content="Mods Overview">
+                <NavigationViewItem x:Name="NavModsOverview" helpers:NavigationHelper.NavigateTo="GIMI_ModManager.WinUI.ViewModels.ModsOverviewVM" Content="Mods Overview">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xEA37;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
 
-                <NavigationViewItem helpers:NavigationHelper.NavigateTo="GIMI_ModManager.WinUI.ViewModels.PresetViewModel" l:Uids.Uid="ShellPage_NavItem_ModPresets" Content="Mod Presets">
+                <NavigationViewItem x:Name="NavModPresets" helpers:NavigationHelper.NavigateTo="GIMI_ModManager.WinUI.ViewModels.PresetViewModel" Content="Mod Presets">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xEA41;" />
                     </NavigationViewItem.Icon>
@@ -95,7 +95,8 @@
                 <NavigationViewItem
                     x:Name="DebugItem"
                     helpers:NavigationHelper.NavigateTo="GIMI_ModManager.WinUI.ViewModels.DebugViewModel"
-                    Content="Debug">
+                    Content="Debug"
+                    x:Uid="ShellPage_NavItem_Debug">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE946;" />
                     </NavigationViewItem.Icon>
@@ -106,7 +107,12 @@
             </NavigationView.MenuItems>
 
             <NavigationView.FooterMenuItems>
-                <NavigationViewItem helpers:NavigationHelper.NavigateTo="GIMI_ModManager.WinUI.ViewModels.NotificationsViewModel" Content="Notifications">
+                <NavigationViewItem x:Name="NavSettingsItem" Content="Settings2" x:Uid="ShellPage_NavItem_Settings">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE713;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="NavNotifications" helpers:NavigationHelper.NavigateTo="GIMI_ModManager.WinUI.ViewModels.NotificationsViewModel" Content="Notifications">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE7E7;" />
                     </NavigationViewItem.Icon>

@@ -10,6 +10,7 @@
     xmlns:converters="using:CommunityToolkit.WinUI.UI.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:GIMI_ModManager.WinUI.Views"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:GIMI_ModManager.WinUI.Models"
     xmlns:xaml="using:GIMI_ModManager.WinUI.Helpers.Xaml"
@@ -101,6 +102,7 @@
 
                     <Button
                         Content="Select Skin"
+                        l:Uids.Uid="CharacterGalleryPage_SelectSkin"
                         Flyout="{StaticResource SelectInGameSkin}"
                         IsEnabled="{x:Bind ViewModel.MultipleCharacterSkins, Mode=OneWay}">
                         <Button.KeyboardAccelerators>
@@ -119,6 +121,7 @@
                     Margin="0,0,8,0"
                     VerticalAlignment="Center"
                     Text="Sort by:"
+                    l:Uids.Uid="CharacterGalleryPage_SortBy"
                     TextWrapping="WrapWholeWords" />
 
                 <ComboBox
@@ -126,11 +129,12 @@
                     Margin="0,0,8,0"
                     VerticalAlignment="Center"
                     PlaceholderText="Sort Mods..."
+                    l:Uids.Uid="CharacterGalleryPage_SortMods"
                     SelectionChanged="SortingComboBox_OnSelectionChanged"
                     SelectionChangedTrigger="Committed">
-                    <ComboBoxItem Content="Date Added" Tag="DateAdded" />
-                    <ComboBoxItem Content="Folder Name" Tag="FolderName" />
-                    <ComboBoxItem Content="Name" Tag="Name" />
+                    <ComboBoxItem Content="Date Added" Tag="DateAdded" l:Uids.Uid="CharacterGalleryPage_SortDateAdded" />
+                    <ComboBoxItem Content="Folder Name" Tag="FolderName" l:Uids.Uid="CharacterGalleryPage_SortFolderName" />
+                    <ComboBoxItem Content="Name" Tag="Name" l:Uids.Uid="CharacterGalleryPage_SortName" />
                 </ComboBox>
 
                 <ToggleButton
@@ -152,11 +156,11 @@
 
 
                 <Button>
-                    <TextBlock Text="View" />
+                    <TextBlock Text="View" l:Uids.Uid="CharacterGalleryPage_ViewButton" />
                     <Button.Flyout>
                         <Flyout>
                             <StackPanel MinWidth="200" Spacing="8">
-                                <TextBlock Text="Adjust Height:" />
+                                <TextBlock Text="Adjust Height:" l:Uids.Uid="CharacterGalleryPage_AdjustHeight" />
                                 <Slider
                                     x:Name="GridItemHeightSlider"
                                     Maximum="500"
@@ -164,7 +168,7 @@
                                     SnapsTo="Ticks"
                                     TickFrequency="50"
                                     Value="{x:Bind ViewModel.GridItemHeight, Mode=TwoWay}" />
-                                <TextBlock Text="Adjust Desired Width:" />
+                                <TextBlock Text="Adjust Desired Width:" l:Uids.Uid="CharacterGalleryPage_AdjustDesiredWidth" />
                                 <Slider
                                     x:Name="GridItemWithSlider"
                                     Maximum="800"
@@ -178,7 +182,8 @@
                                         HorizontalAlignment="Left"
                                         Command="{x:Bind ViewModel.ToggleSingleSelectionCommand}"
                                         IsChecked="{x:Bind ViewModel.IsSingleSelection, Mode=OneWay}"
-                                        ToolTipService.ToolTip="Selecting this will only allow one mod to be enabled at a time.">
+                                        ToolTipService.ToolTip="Selecting this will only allow one mod to be enabled at a time."
+                                        l:Uids.Uid="CharacterGalleryPage_SingleSelect">
                                         Single Select
                                     </CheckBox>
                                 </StackPanel>
@@ -193,6 +198,7 @@
                     MinWidth="200"
                     MaxWidth="320"
                     PlaceholderText="Search Mods..."
+                    l:Uids.Uid="CharacterGalleryPage_SearchMods"
                     TextChanged="ModSearchBox_OnTextChanged" />
 
 
@@ -200,6 +206,7 @@
                     x:Name="ViewToggleSwitch"
                     IsOn="True"
                     OffContent="Detailed View"
+                    l:Uids.Uid="CharacterGalleryPage_ViewToggleSwitch"
                     OnContent="Gallery View"
                     Toggled="ViewToggleSwitch_OnToggled" />
 
@@ -310,6 +317,7 @@
                                                             Command="{x:Bind SaveImageCommand}"
                                                             CommandParameter="{x:Bind Mode=OneWay}"
                                                             Text="Save Image"
+                                                            l:Uids.Uid="CharacterGalleryPage_SaveImage"
                                                             IsEnabled="{x:Bind CanSaveImage, Mode=OneWay}">
                                                             <MenuFlyoutItem.Icon>
                                                                 <FontIcon Glyph="&#xE74E;" />
@@ -318,7 +326,8 @@
                                                         <MenuFlyoutItem
                                                             Command="{x:Bind OpenModFolderCommand}"
                                                             CommandParameter="{x:Bind Mode=OneWay}"
-                                                            Text="Open Mod Folder...">
+                                                            Text="Open Mod Folder..."
+                                                            l:Uids.Uid="CharacterGalleryPage_OpenModFolder">
                                                             <MenuFlyoutItem.Icon>
                                                                 <FontIcon Glyph="&#xE838;" />
                                                             </MenuFlyoutItem.Icon>
@@ -326,7 +335,8 @@
                                                         <MenuFlyoutItem
                                                             Command="{x:Bind OpenModUrlCommand}"
                                                             CommandParameter="{x:Bind Mode=OneWay}"
-                                                            Text="Open Mod Page...">
+                                                            Text="Open Mod Page..."
+                                                            l:Uids.Uid="CharacterGalleryPage_OpenModPage">
                                                             <MenuFlyoutItem.Icon>
                                                                 <FontIcon Glyph="&#xE8A7;" />
                                                             </MenuFlyoutItem.Icon>
@@ -334,7 +344,8 @@
                                                         <MenuFlyoutItem
                                                             Command="{x:Bind DeleteModCommand}"
                                                             CommandParameter="{x:Bind Mode=OneWay}"
-                                                            Text="Delete Mod">
+                                                            Text="Delete Mod"
+                                                            l:Uids.Uid="CharacterGalleryPage_DeleteMod">
                                                             <MenuFlyoutItem.Icon>
                                                                 <FontIcon Glyph="&#xE74D;" />
                                                             </MenuFlyoutItem.Icon>
@@ -375,7 +386,7 @@
                                                 VerticalAlignment="Center"
                                                 Orientation="Horizontal"
                                                 Spacing="8">
-                                                <TextBlock Text="Author:" />
+                                                <TextBlock Text="Author:" l:Uids.Uid="CharacterGalleryPage_Author" />
                                                 <TextBlock
                                                     IsTextSelectionEnabled="True"
                                                     Text="{x:Bind Author, Mode=OneWay}"
@@ -391,7 +402,7 @@
                                                 VerticalAlignment="Center"
                                                 Orientation="Horizontal"
                                                 Spacing="4">
-                                                <TextBlock Text="Added:" />
+                                                <TextBlock Text="Added:" l:Uids.Uid="CharacterGalleryPage_Added" />
                                                 <TextBlock Text="{x:Bind TimeSinceFormated, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind DateAddedView, Mode=OneWay}" />
                                             </StackPanel>
 
@@ -421,7 +432,7 @@
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                         <StackPanel Spacing="16">
                             <ProgressRing IsActive="True" />
-                            <TextBlock Text="Loading Mods..." />
+                            <TextBlock Text="Loading Mods..." l:Uids.Uid="CharacterGalleryPage_LoadingMods" />
                         </StackPanel>
                     </Grid>
 

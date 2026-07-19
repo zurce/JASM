@@ -177,6 +177,9 @@
   <data name="ShellMenuBarSettingsButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="SettingsPage_Description.Text" xml:space="preserve">
+    <value>Settings are saved independently for each selected game.</value>
+  </data>
   <data name="Settings_Title.Text" xml:space="preserve">
     <value>Settings</value>
     <comment>Page title for SettingsPage</comment>
@@ -240,20 +243,26 @@
     <value>Language options are currently limited. It is a work in progress.</value>
   </data>
   <!-- ===== ShellPage Navigation ===== -->
-  <data name="ShellPage_NavItem_CharacterManagement.Content" xml:space="preserve">
+  <data name="ShellPage_NavItem_CharacterManagement" xml:space="preserve">
     <value>Character Management</value>
   </data>
-  <data name="ShellPage_NavItem_ModsOverview.Content" xml:space="preserve">
+  <data name="ShellPage_NavItem_ModsOverview" xml:space="preserve">
     <value>Mods Overview</value>
   </data>
-  <data name="ShellPage_NavItem_ModPresets.Content" xml:space="preserve">
+  <data name="ShellPage_NavItem_ModPresets" xml:space="preserve">
     <value>Mod Presets</value>
   </data>
-  <data name="ShellPage_NavItem_Debug.Content" xml:space="preserve">
+  <data name="ShellPage_NavItem_Debug" xml:space="preserve">
     <value>Debug</value>
   </data>
-  <data name="ShellPage_NavItem_Notifications.Content" xml:space="preserve">
+  <data name="ShellPage_NavItem_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="ShellPage_NavItem_Notifications" xml:space="preserve">
     <value>Notifications</value>
+  </data>
+  <data name="ShellPage_SettingsItem" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <!-- ===== CharactersPage ===== -->
   <data name="CharactersPage_CheckForUpdates.Text" xml:space="preserve">
@@ -339,6 +348,34 @@
   </data>
   <data name="CharactersPage_DropHereText.Text" xml:space="preserve">
     <value>Drop Here to Auto Detect Mod...</value>
+  </data>
+  <!-- ===== CharactersPage Sort Names ===== -->
+  <data name="CharactersPage_SortAlphabetical.Text" xml:space="preserve">
+    <value>Alphabetical</value>
+  </data>
+  <data name="CharactersPage_SortModCount.Text" xml:space="preserve">
+    <value>Mod Count</value>
+  </data>
+  <data name="CharactersPage_SortRecentlyAdded.Text" xml:space="preserve">
+    <value>Recently Added Mods</value>
+  </data>
+  <data name="CharactersPage_SortReleaseDate.Text" xml:space="preserve">
+    <value>Release Date</value>
+  </data>
+  <data name="CharactersPage_SortRarity.Text" xml:space="preserve">
+    <value>Rarity</value>
+  </data>
+  <data name="CharactersPage_SearchPrefix" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="CharactersPage_ModToggleText" xml:space="preserve">
+    <value>Show only</value>
+  </data>
+  <data name="CharactersPage_ModEnabledToggleText" xml:space="preserve">
+    <value>Show only</value>
+  </data>
+  <data name="CharactersPage_ModNotificationsToggleText" xml:space="preserve">
+    <value>Show only</value>
   </data>
   <!-- ===== CharacterDetailsPage ===== -->
   <data name="CharacterDetails_ModsSelected.Text" xml:space="preserve">
@@ -687,6 +724,12 @@
   <data name="CharacterGalleryPage_ViewToggleSwitch.OnContent" xml:space="preserve">
     <value>Gallery View</value>
   </data>
+  <data name="CharacterGalleryPage_ViewToggleSwitch.OffContent" xml:space="preserve">
+    <value>Detailed View</value>
+  </data>
+  <data name="CharacterGalleryPage_SingleSelect.Content" xml:space="preserve">
+    <value>Single Select</value>
+  </data>
   <data name="CharacterGalleryPage_SaveImage.Text" xml:space="preserve">
     <value>Save Image</value>
   </data>
@@ -730,12 +773,39 @@
   <data name="ModsOverviewPage_AddedLabel.Text" xml:space="preserve">
     <value>Added:</value>
   </data>
+  <data name="ModsOverviewPage_RunButton.Content" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="ModsOverviewPage_SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Press Enter to search...</value>
+  </data>
+  <data name="ModsOverviewPage_CloseAll.Content" xml:space="preserve">
+    <value>Close All</value>
+  </data>
   <!-- ===== PresetDetailsPage ===== -->
   <data name="PresetDetailsPage_AddMod.Label" xml:space="preserve">
     <value>Add Mod</value>
   </data>
   <data name="PresetDetailsPage_FindReplacementMod.Text" xml:space="preserve">
     <value>Find Replacement Mod</value>
+  </data>
+  <data name="PresetDetailsPage_SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Search Mods...</value>
+  </data>
+  <data name="PresetDetailsPage_ReadAndSavePreferences.Text" xml:space="preserve">
+    <value>Read and Save Preferences</value>
+  </data>
+  <data name="PresetDetailsPage_RemoveModFromPreset.Text" xml:space="preserve">
+    <value>Remove Mod From Preset</value>
+  </data>
+  <data name="PresetDetailsPage_AddedToPresetAt.Text" xml:space="preserve">
+    <value>Added To Preset At:</value>
+  </data>
+  <data name="PresetDetailsPage_ModNotFound.Text" xml:space="preserve">
+    <value>This mod could not be found on disk!</value>
+  </data>
+  <data name="PresetDetailsPage_OriginalPath.Text" xml:space="preserve">
+    <value>Original Path:</value>
   </data>
   <!-- ===== CharacterCard ===== -->
   <data name="CharacterCard_TrackedMods.Text" xml:space="preserve">
@@ -759,6 +829,12 @@
   </data>
   <data name="ModListOverview_MultipleSkinWarning.Message" xml:space="preserve">
     <value>More than one skin selected</value>
+  </data>
+  <data name="ModListOverview_ModEnabledHeader.Header" xml:space="preserve">
+    <value>ModEnabled</value>
+  </data>
+  <data name="ModListOverview_ModNameHeader.Header" xml:space="preserve">
+    <value>Mod Name</value>
   </data>
   <!-- ===== DebugPage ===== -->
   <data name="DebugPage_CreateButton.Content" xml:space="preserve">
@@ -814,5 +890,90 @@
   </data>
   <data name="GbModPageWindow_DownloadsButton.Content" xml:space="preserve">
     <value>Downloads</value>
+  </data>
+  <!-- ===== CharacterManagerPage ===== -->
+  <data name="CharacterManagerPage_Title.Text" xml:space="preserve">
+    <value>Character Manager</value>
+  </data>
+  <data name="CharacterManagerPage_SearchBox.Header" xml:space="preserve">
+    <value>Search for a character to edit or add a new character</value>
+  </data>
+  <data name="CharacterManagerPage_SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Start typing to search...</value>
+  </data>
+  <data name="CharacterManagerPage_AddCharacterButton.ToolTip" xml:space="preserve">
+    <value>Add new character</value>
+  </data>
+  <!-- ===== ModSelector ===== -->
+  <data name="ModSelector_Title.Text" xml:space="preserve">
+    <value>Select Mods</value>
+  </data>
+  <data name="ModSelector_SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Search Mods...</value>
+  </data>
+  <data name="ModSelector_DateAdded.Text" xml:space="preserve">
+    <value>Date Added:</value>
+  </data>
+  <data name="ModSelector_SelectModButton.Content" xml:space="preserve">
+    <value>Select Mod</value>
+  </data>
+  <!-- ===== ModUpdateAvailableWindow ===== -->
+  <data name="ModUpdateAvailableWindow_Title.Text" xml:space="preserve">
+    <value>New Downloadable Files Found</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_LoadingText.Text" xml:space="preserve">
+    <value>Loading Mod Info from GameBanana...</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_NewSinceLastCheck.Text" xml:space="preserve">
+    <value>New since last check</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_DownloadButton.Content" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_InstallButton.Content" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_IgnoreCloseButton.Content" xml:space="preserve">
+    <value>Ignore and Close</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_LastCheck.Text" xml:space="preserve">
+    <value>Last Check:</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_ModPageLabel.Text" xml:space="preserve">
+    <value>Mod Page:</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_DownloadsButton.Content" xml:space="preserve">
+    <value>Downloads</value>
+  </data>
+  <!-- ===== Category Names ===== -->
+  <data name="Category_Character" xml:space="preserve">
+    <value>Character</value>
+  </data>
+  <data name="Category_Characters" xml:space="preserve">
+    <value>Characters</value>
+  </data>
+  <data name="Category_NPC" xml:space="preserve">
+    <value>NPC</value>
+  </data>
+  <data name="Category_NPCs" xml:space="preserve">
+    <value>NPCs</value>
+  </data>
+  <data name="Category_Object" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="Category_Objects" xml:space="preserve">
+    <value>Objects</value>
+  </data>
+  <data name="Category_Weapon" xml:space="preserve">
+    <value>Weapon</value>
+  </data>
+  <data name="Category_Weapons" xml:space="preserve">
+    <value>Weapons</value>
+  </data>
+  <data name="Category_Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="Category_Characters_Resumen" xml:space="preserve">
+    <value>Character Resumen</value>
   </data>
 </root>

@@ -98,7 +98,17 @@ Localize all hardcoded English strings across the XAML views using the existing 
 - The `TargetPath` UID contains `{{` which must be escaped in PowerShell
 
 ## Review Feedback Addressed
-(TBD after PR review)
+
+### Bug Fix: ContentDialog resw keys had wrong format (amended in commit `f270204`)
+
+**Issue:** 4 ContentDialogs (`SelectProcessDialog`, `EnableAllDialog`, `DisableAllDialog`, `CleanUpDialog`) had resw keys named `..._Title.Title` but the XAML UID was `...Dialog`, so WinUI3Localizer looked for `...Dialog.Title`. The `_Title` infix broke matching — title localization silently fell back to English.
+
+**Fix:**
+- Renamed `_Title.Title` → `.Title` in `en-us/Resources.resw` for all 4 dialogs
+- Added `l:Uids.Uid` to the `<TextBlock>` children inside those dialogs (they were unlocalizable)
+- The `_Description.Text` resw entries were already present — they now match the XAML UIDs
+- Fixed typo: `"configurtation"` → `"configuration"` (in both XAML fallback and resw)
+- es-ar already had correct `.Title` keys; no changes needed there
 
 ## Deferred Work
 - Remaining ShellPage navigation items (Debug, Notifications) — multi-line elements need manual UID addition

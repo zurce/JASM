@@ -6,6 +6,7 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:GIMI_ModManager.WinUI.Views.Controls"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:GIMI_ModManager.WinUI.Models"
     d:DataContext="{d:DesignInstance Type=models:ModModel}"
@@ -25,10 +26,10 @@
 
             <StackPanel Orientation="Horizontal">
                 <MenuBar>
-                    <MenuBarItem Title="Mods">
+                    <MenuBarItem Title="Mods" l:Uids.Uid="ModListOverview_ModsMenu">
                         <MenuBarItem.Items>
 
-                            <MenuFlyoutItem Text="Add Mod...">
+                            <MenuFlyoutItem Text="Add Mod..." l:Uids.Uid="ModListOverview_AddMod">
                                 <MenuFlyoutItem.KeyboardAccelerators>
                                     <KeyboardAccelerator Key="O" Modifiers="Control" />
                                 </MenuFlyoutItem.KeyboardAccelerators>
@@ -44,7 +45,7 @@
                 <InfoBar
                     IsClosable="False"
                     IsOpen="True"
-                    Message="More than one skin selected"
+                    Message="More than one skin selected" l:Uids.Uid="ModListOverview_MultipleSkinWarning"
                     Severity="Warning" />
             </Grid>
 
@@ -63,14 +64,14 @@
                         Binding="{Binding IsEnabled, Mode=TwoWay}"
                         CanUserResize="False"
                         CanUserSort="True"
-                        Header="ModEnabled"
+                        Header="ModEnabled" l:Uids.Uid="ModListOverview_ModEnabledHeader"
                         IsReadOnly="True"
                         Tag="IsEnabled" />
                     <controls:DataGridTextColumn
                         Width="SizeToCells"
                         Binding="{Binding Name, Mode=OneWay}"
                         CanUserSort="True"
-                        Header="Mod Name"
+                        Header="Mod Name" l:Uids.Uid="ModListOverview_ModNameHeader"
                         IsReadOnly="True"
                         Tag="Name" />
                 </controls:DataGrid.Columns>

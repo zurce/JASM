@@ -186,7 +186,8 @@
                     <TextBlock
                         Margin="0,0,0,8"
                         IsTextSelectionEnabled="True"
-                        Text="Settings are saved independently for each selected game." />
+                        Text="Settings are saved independently for each selected game."
+                        l:Uids.Uid="SettingsPage_Description" />
 
                     <ComboBox
                         x:Name="GameSelectorComboBox"
