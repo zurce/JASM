@@ -133,7 +133,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
 
         DockPanelVM = new OverviewDockPanelVM();
         StartGameIcon = _gameService.GameIcon;
-        ShortGameName = "Start " + _gameService.GameShortName;
+        ShortGameName = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_StartGamePrefix") ?? "Start"} {_gameService.GameShortName}";
         GameBananaLink = _gameService.GameBananaUrl;
 
         CanCheckForUpdates = _modUpdateAvailableChecker.IsReady;
@@ -319,11 +319,11 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         _category = category;
         var catName = _localizer.GetLocalizedStringOrDefault("Category_" + category.DisplayName.Replace(" ", "")) ?? category.DisplayName;
         var catNamePlural = _localizer.GetLocalizedStringOrDefault("Category_" + category.DisplayNamePlural.Replace(" ", "")) ?? category.DisplayNamePlural;
-        CategoryPageTitle =
-            $"{catName} {_localizer.GetLocalizedStringOrDefault("Overview") ?? "Overview"}";
-        ModToggleText = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_ModToggleText") ?? "Show only"} {catNamePlural}";
-        ModEnabledToggleText = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_ModEnabledToggleText") ?? "Show only"} {catNamePlural}";
-        ModNotificationsToggleText = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_ModNotificationsToggleText") ?? "Show only"} {catNamePlural}";
+        var pageTitleFormat = _localizer.GetLocalizedStringOrDefault("CharactersPage_TitleFormat") ?? "{0} Overview";
+        CategoryPageTitle = string.Format(pageTitleFormat, catName);
+        ModToggleText = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_ModToggleText") ?? "Show only"} {catNamePlural} {_localizer.GetLocalizedStringOrDefault("CharactersPage_ModToggleSuffix") ?? "with Mods"}";
+        ModEnabledToggleText = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_ModEnabledToggleText") ?? "Show only"} {catNamePlural} {_localizer.GetLocalizedStringOrDefault("CharactersPage_ModEnabledToggleSuffix") ?? "with Enabled Mods"}";
+        ModNotificationsToggleText = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_ModNotificationsToggleText") ?? "Show only"} {catNamePlural} {_localizer.GetLocalizedStringOrDefault("CharactersPage_ModNotificationsToggleSuffix") ?? "with Mod Notifications"}";
         SearchBoxPlaceHolder = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_SearchPrefix") ?? "Search"} {catNamePlural}...";
 
 
@@ -926,6 +926,9 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     private async Task EnableAllModsDialogAsync(Microsoft.UI.Xaml.Controls.ContentDialog dialog)
     {
         dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;
+        dialog.Title = _localizer.GetLocalizedStringOrDefault("CharactersPage_EnableAllDialog_Title") ?? "Enable all mods?";
+        dialog.PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("CharactersPage_EnableAllDialog_PrimaryButtonText") ?? "Cancel";
+        dialog.SecondaryButtonText = _localizer.GetLocalizedStringOrDefault("CharactersPage_EnableAllDialog_SecondaryButtonText") ?? "Confirm";
         var result = await dialog.ShowAsync();
         if (result == Microsoft.UI.Xaml.Controls.ContentDialogResult.Secondary)
         {
@@ -953,6 +956,9 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     private async Task DisableAllModsDialogAsync(Microsoft.UI.Xaml.Controls.ContentDialog dialog)
     {
         dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;
+        dialog.Title = _localizer.GetLocalizedStringOrDefault("CharactersPage_DisableAllDialog_Title") ?? "Disable all mods?";
+        dialog.PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("CharactersPage_DisableAllDialog_PrimaryButtonText") ?? "Cancel";
+        dialog.SecondaryButtonText = _localizer.GetLocalizedStringOrDefault("CharactersPage_DisableAllDialog_SecondaryButtonText") ?? "Confirm";
         var result = await dialog.ShowAsync();
         if (result == Microsoft.UI.Xaml.Controls.ContentDialogResult.Secondary)
         {
@@ -980,6 +986,9 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     private async Task CleanUpModsDialogAsync(Microsoft.UI.Xaml.Controls.ContentDialog dialog)
     {
         dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;
+        dialog.Title = _localizer.GetLocalizedStringOrDefault("CharactersPage_CleanUpDialog_Title") ?? "Clean up disable mods?";
+        dialog.PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("CharactersPage_CleanUpDialog_PrimaryButtonText") ?? "Cancel";
+        dialog.SecondaryButtonText = _localizer.GetLocalizedStringOrDefault("CharactersPage_CleanUpDialog_SecondaryButtonText") ?? "Yeah man i wanna do it";
         var result = await dialog.ShowAsync();
         if (result == Microsoft.UI.Xaml.Controls.ContentDialogResult.Secondary)
         {
@@ -1152,25 +1161,25 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         var othersCharacter = _backendCharacters.FirstOrDefault(ch =>
             ch.Character.InternalName.Id.Contains("Others", StringComparison.OrdinalIgnoreCase));
 
-        var alphabetical = new GridItemSortingMethod(GridItemSorter.Alphabetical, othersCharacter, lastCharacters);
+        var alphabetical = new GridItemSortingMethod(GridItemSorter.Alphabetical, _localizer.GetLocalizedStringOrDefault("CharactersPage_SortAlphabetical_Name") ?? "Alphabetical", othersCharacter, lastCharacters);
         SortingMethods.Add(alphabetical);
 
-        var byModCount = new GridItemSortingMethod(GridItemSorter.ModCount, othersCharacter, lastCharacters);
+        var byModCount = new GridItemSortingMethod(GridItemSorter.ModCount, _localizer.GetLocalizedStringOrDefault("CharactersPage_SortModCount_Name") ?? "Mod Count", othersCharacter, lastCharacters);
         SortingMethods.Add(byModCount);
 
 
-        var byModRecentlyAdded = new GridItemSortingMethod(GridItemSorter.ModRecentlyAdded, othersCharacter, lastCharacters);
+        var byModRecentlyAdded = new GridItemSortingMethod(GridItemSorter.ModRecentlyAdded, _localizer.GetLocalizedStringOrDefault("CharactersPage_SortRecentlyAdded_Name") ?? "Recently Added", othersCharacter, lastCharacters);
         SortingMethods.Add(byModRecentlyAdded);
 
         if (_category.ModCategory == ModCategory.Character)
         {
-            SortingMethods.Add(new GridItemSortingMethod(GridItemSorter.ReleaseDate, othersCharacter, lastCharacters));
-            SortingMethods.Add(new GridItemSortingMethod(GridItemSorter.Rarity, othersCharacter, lastCharacters));
+            SortingMethods.Add(new GridItemSortingMethod(GridItemSorter.ReleaseDate, _localizer.GetLocalizedStringOrDefault("CharactersPage_SortReleaseDate_Name") ?? "Release Date", othersCharacter, lastCharacters));
+            SortingMethods.Add(new GridItemSortingMethod(GridItemSorter.Rarity, _localizer.GetLocalizedStringOrDefault("CharactersPage_SortRarity_Name") ?? "Rarity", othersCharacter, lastCharacters));
         }
 
         if (_category.ModCategory == ModCategory.Weapons)
         {
-            SortingMethods.Add(new GridItemSortingMethod(GridItemSorter.Rarity, othersCharacter, lastCharacters));
+            SortingMethods.Add(new GridItemSortingMethod(GridItemSorter.Rarity, _localizer.GetLocalizedStringOrDefault("CharactersPage_SortRarity_Name") ?? "Rarity", othersCharacter, lastCharacters));
         }
     }
 
@@ -1205,10 +1214,12 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
 
     public sealed class GridItemSortingMethod(
         Sorter<CharacterGridItemModel> sortingMethodType,
+        string localizedDisplayName,
         CharacterGridItemModel? firstItem = null,
         ICollection<CharacterGridItemModel>? lastItems = null)
         : SortingMethod<CharacterGridItemModel>(sortingMethodType, firstItem, lastItems)
     {
+        public override string ToString() => localizedDisplayName;
         protected override void PostSortAction(List<CharacterGridItemModel> sortedList)
         {
             var pinnedCharacters = sortedList.Where(x => x.IsPinned).ToArray();

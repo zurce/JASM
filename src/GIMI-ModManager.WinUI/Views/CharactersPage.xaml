@@ -124,28 +124,19 @@
 
         <ContentDialog
             x:Name="EnableAllDialog"
-            Title="Enable all mods?" l:Uids.Uid="CharactersPage_EnableAllDialog"
-            DefaultButton="Primary"
-            PrimaryButtonText="Cancel"
-            SecondaryButtonText="Confirm">
+            DefaultButton="Primary">
             <TextBlock TextWrapping="WrapWholeWords" Text="This will enable all currently tracked mods in the active categories." l:Uids.Uid="CharactersPage_EnableAllDialog_Description" />
         </ContentDialog>
 
         <ContentDialog
             x:Name="DisableAllDialog"
-            Title="Disable all mods?" l:Uids.Uid="CharactersPage_DisableAllDialog"
-            DefaultButton="Primary"
-            PrimaryButtonText="Cancel"
-            SecondaryButtonText="Confirm">
+            DefaultButton="Primary">
             <TextBlock TextWrapping="WrapWholeWords" Text="It's recommended to save your current configuration as a preset for easy restoring" l:Uids.Uid="CharactersPage_DisableAllDialog_Description" />
         </ContentDialog>
 
         <ContentDialog
             x:Name="CleanUpDialog"
-            Title="Clean up disable mods?" l:Uids.Uid="CharactersPage_CleanUpDialog"
-            DefaultButton="Primary"
-            PrimaryButtonText="Cancel"
-            SecondaryButtonText="Yeah man i wanna do it">
+            DefaultButton="Primary">
             <TextBlock TextWrapping="WrapWholeWords" Text="This operation is irreversable" l:Uids.Uid="CharactersPage_CleanUpDialog_Description" />
         </ContentDialog>
 

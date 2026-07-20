@@ -340,6 +340,63 @@
   <data name="CharactersPage_ApplyPresetConfirmText" xml:space="preserve">
     <value>Confirm</value>
   </data>
+  <data name="CharactersPage_StartGamePrefix" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="CharactersPage_TitleFormat" xml:space="preserve">
+    <value>{0} Overview</value>
+  </data>
+  <data name="CharactersPage_EnableAllDialog_Title" xml:space="preserve">
+    <value>Enable all mods?</value>
+  </data>
+  <data name="CharactersPage_EnableAllDialog_PrimaryButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CharactersPage_EnableAllDialog_SecondaryButtonText" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="CharactersPage_DisableAllDialog_Title" xml:space="preserve">
+    <value>Disable all mods?</value>
+  </data>
+  <data name="CharactersPage_DisableAllDialog_PrimaryButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CharactersPage_DisableAllDialog_SecondaryButtonText" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="CharactersPage_CleanUpDialog_Title" xml:space="preserve">
+    <value>Clean up disabled mods?</value>
+  </data>
+  <data name="CharactersPage_CleanUpDialog_PrimaryButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CharactersPage_CleanUpDialog_SecondaryButtonText" xml:space="preserve">
+    <value>Yeah man i wanna do it</value>
+  </data>
+  <data name="CharactersPage_ModToggleSuffix" xml:space="preserve">
+    <value>with Mods</value>
+  </data>
+  <data name="CharactersPage_ModEnabledToggleSuffix" xml:space="preserve">
+    <value>with Enabled Mods</value>
+  </data>
+  <data name="CharactersPage_ModNotificationsToggleSuffix" xml:space="preserve">
+    <value>with Mod Notifications</value>
+  </data>
+  <data name="CharactersPage_SortAlphabetical_Name" xml:space="preserve">
+    <value>Alphabetical</value>
+  </data>
+  <data name="CharactersPage_SortModCount_Name" xml:space="preserve">
+    <value>Mod Count</value>
+  </data>
+  <data name="CharactersPage_SortRecentlyAdded_Name" xml:space="preserve">
+    <value>Recently Added</value>
+  </data>
+  <data name="CharactersPage_SortReleaseDate_Name" xml:space="preserve">
+    <value>Release Date</value>
+  </data>
+  <data name="CharactersPage_SortRarity_Name" xml:space="preserve">
+    <value>Rarity</value>
+  </data>
   <data name="CharactersPage_ConfirmPreset.Text" xml:space="preserve">
     <value>Confirm</value>
   </data>
