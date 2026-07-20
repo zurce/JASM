@@ -3658,4 +3658,19 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="CharacterDetails_DropModsHere" xml:space="preserve">
     <value>Suelta los Mods Aquí</value>
   </data>
+  <data name="ModInstallerPage_ReplaceDuplicateMod.Text" xml:space="preserve">
+    <value>Reemplazar mod duplicado en presets con el nuevo mod</value>
+  </data>
+  <data name="ModInstallerPage_ReplaceDuplicateMod2.Text" xml:space="preserve">
+    <value>Reemplazar mod duplicado en presets con el nuevo mod</value>
+  </data>
+  <data name="ModInstallerPage_DuplicateModDialog.CloseButtonText" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ModPage_DownloadTitle" xml:space="preserve">
+    <value>Descargar archivos de mod</value>
+  </data>
+  <data name="ModPage_DownloadsForTitle" xml:space="preserve">
+    <value>Descargas para: {0}</value>
+  </data>
 </root>

@@ -62,7 +62,7 @@ public partial class ModPageVM : ObservableRecipient
         _moddableObject = moddableObject;
         ModPage = modPage;
         _window = window;
-        _window.Title = "Download Mod files";
+        _window.Title = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPage_DownloadTitle") ?? "Download Mod files";
         _ct = ctsToken;
         Initialize();
     }
@@ -115,7 +115,7 @@ public partial class ModPageVM : ObservableRecipient
             return;
         }
 
-        _window.Title = $"Downloads for: {_modPageInfo.ModName}";
+        _window.Title = string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPage_DownloadsForTitle") ?? "Downloads for: {0}", _modPageInfo.ModName);
         CharacterModListPath = new Uri(_characterModList.AbsModsFolderPath);
 
         _modFiles = _modPageInfo.Files.ToList();

@@ -161,7 +161,7 @@
                             Command="{x:Bind ViewModel.ToggleReplaceDuplicateModInPresetCommand}"
                             IsChecked="{x:Bind ViewModel.ReplaceDuplicateModInPreset, Mode=OneWay}"
                             ToolTipService.ToolTip="The duplicate mod will be replaced in presets by the newly installed mod. This is mutually exclusive with the 'replace old mod in presets' checkbox.">
-                            <TextBlock TextWrapping="WrapWholeWords" Text="Replace duplicate mod in presets with new mod" />
+                            <TextBlock TextWrapping="WrapWholeWords" Text="Replace duplicate mod in presets with new mod" l:Uids.Uid="ModInstallerPage_ReplaceDuplicateMod" />
                         </CheckBox>
                     </StackPanel>
 
@@ -348,7 +348,7 @@
                         Command="{x:Bind ViewModel.ToggleReplaceDuplicateModInPresetCommand}"
                         IsChecked="{x:Bind ViewModel.ReplaceDuplicateModInPreset, Mode=OneWay}"
                         ToolTipService.ToolTip="The duplicate mod will be replaced in presets by the newly installed mod. This is mutually exclusive with the 'replace old mod in presets' checkbox.">
-                        <TextBlock TextWrapping="WrapWholeWords" Text="Replace duplicate mod in presets with new mod" />
+                        <TextBlock TextWrapping="WrapWholeWords" Text="Replace duplicate mod in presets with new mod" l:Uids.Uid="ModInstallerPage_ReplaceDuplicateMod2" />
                     </CheckBox>
 
                     <StackPanel Visibility="Collapsed">

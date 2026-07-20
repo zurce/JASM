@@ -660,6 +660,9 @@
   <data name="ModInstallerPage_DuplicateModDialog.Title" xml:space="preserve">
     <value>A folder with the same name exists</value>
   </data>
+  <data name="ModInstallerPage_DuplicateModDialog.CloseButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="ModInstallerPage_DuplicateInfoBar.Message" xml:space="preserve">
     <value>1. You can choose to overwrite the old mod, deleting it.&#x0a;Or&#x0a;2. You can rename either the new or the old mod</value>
   </data>
@@ -1978,5 +1981,20 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="CharacterDetails_DropModsHere" xml:space="preserve">
     <value>Drop Mods Here</value>
+  </data>
+  <data name="ModInstallerPage_ReplaceDuplicateMod.Text" xml:space="preserve">
+    <value>Replace duplicate mod in presets with new mod</value>
+  </data>
+  <data name="ModInstallerPage_ReplaceDuplicateMod2.Text" xml:space="preserve">
+    <value>Replace duplicate mod in presets with new mod</value>
+  </data>
+  <data name="ModInstallerPage_DuplicateModDialog.CloseButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ModPage_DownloadTitle" xml:space="preserve">
+    <value>Download Mod files</value>
+  </data>
+  <data name="ModPage_DownloadsForTitle" xml:space="preserve">
+    <value>Downloads for: {0}</value>
   </data>
 </root>
