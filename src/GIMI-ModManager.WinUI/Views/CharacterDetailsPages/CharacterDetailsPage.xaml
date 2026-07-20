@@ -70,7 +70,7 @@
                             VerticalAlignment="Bottom"
                             Margin="0,0,16,0"
                             Command="{x:Bind ViewModel.ContextMenuVM.MoveModsCommand}"
-                            Content="Move" />
+                            Content="Move" l:Uids.Uid="CharacterDetails_MoveModsButton" />
                         <StackPanel Grid.Column="1">
                             <TextBlock Text="Move Mods To Another Character: " l:Uids.Uid="CharacterDetails_MoveModsToAnother" />
                             <AutoSuggestBox
@@ -115,13 +115,13 @@
                                             <Button.Content>
                                                 <StackPanel Orientation="Horizontal">
                                                     <FontIcon Margin="0,0,4,0" Glyph="&#xE74E;" />
-                                                    <TextBlock Text="Override" />
+                                                    <TextBlock Text="Override" l:Uids.Uid="CharacterDetails_OverrideText" />
                                                 </StackPanel>
                                             </Button.Content>
                                         </Button>
 
                                         <StackPanel Margin="4,0,0,0" Visibility="{x:Bind ViewModel.ContextMenuVM.ModHasCharacterSkinOverride, Mode=OneWay}">
-                                            <TextBlock Text="Override Skin Set To: " />
+                                            <TextBlock Text="Override Skin Set To: " l:Uids.Uid="CharacterDetails_OverrideSkinSetTo" />
                                             <TextBlock HorizontalAlignment="Center" Text="{x:Bind ViewModel.ContextMenuVM.ModCharacterSkinOverride.DisplayName, FallbackValue='', Mode=OneWay}" />
                                         </StackPanel>
                                     </StackPanel>
@@ -208,7 +208,7 @@
                                                     VerticalAlignment="Center"
                                                     Command="{x:Bind RunCommand}"
                                                     CommandParameter="{x:Bind}"
-                                                    Content="Run"
+                                                    Content="Run" l:Uids.Uid="CharacterDetails_RunCommandButton"
                                                     Style="{ThemeResource AccentButtonStyle}" />
                                             </Grid>
                                         </DataTemplate>
@@ -239,7 +239,7 @@
                     Visibility="Visible">
                     <ProgressRing />
                     <TextBlock>
-                        <Run Text="Loading" />
+                        <Run Text="Loading" l:Uids.Uid="CharacterDetails_LoadingText" />
                         <Run Text="{x:Bind ViewModel.LoadingItemText, Mode=OneWay}" />
                         <Run Text="..." />
 
@@ -305,7 +305,7 @@
                                     <MenuFlyoutItem
                                         Command="{x:Bind ViewModel.OpenModFolderCommand}"
                                         IsEnabled="{x:Bind ViewModel.ModGridVM.IsSingleModSelected, Mode=OneWay}"
-                                        Text="Open Selected Mod folder..." />
+                                        Text="Open Selected Mod folder..." l:Uids.Uid="CharacterDetails_OpenSelectedModFolder" />
                                 </MenuBarItem>
 
                                 <MenuBarItem Title="View" l:Uids.Uid="CharacterDetails_MenuBar_View">
@@ -313,11 +313,11 @@
                                         Command="{x:Bind ViewModel.ToggleSingleSelectCommand}"
                                         IsChecked="{x:Bind ViewModel.IsSingleSelectEnabled, Mode=OneWay}"
                                         ToolTipService.ToolTip="Selecting this will only allow one mod to be enabled at a time."
-                                        Text="Single Select" />
+                                        Text="Single Select" l:Uids.Uid="CharacterDetails_SingleSelectToggle" />
                                     <ToggleMenuFlyoutItem
                                         Command="{x:Bind ViewModel.ToggleHideModFolderColumnCommand}"
                                         IsChecked="{x:Bind ViewModel.IsModFolderNameColumnVisible, Mode=OneWay}"
-                                        Text="Show 'Mod Folder Names' column" />
+                                        Text="Show 'Mod Folder Names' column" l:Uids.Uid="CharacterDetails_ShowModFolderColumn" />
                                 </MenuBarItem>
 
                                 <MenuBarItem

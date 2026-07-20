@@ -104,12 +104,12 @@
                         <MenuFlyoutItem
                             Command="{x:Bind ViewModel.SetModIniFileCommand}"
                             ToolTipService.ToolTip="Set the mod .ini file to be read by JASM"
-                            Text="Set mod .ini file" />
+                            Text="Set mod .ini file" l:Uids.Uid="ModPane_SetModIniFile" />
                         <MenuFlyoutItem
                             Command="{x:Bind ViewModel.ClearSetModIniFileCommand}"
                             Icon="Clear"
                             ToolTipService.ToolTip="JASM will not look for merged.ini/Script.ini file and ignore keyswaps for this mod"
-                            Text="Ignore .ini file for this mod" />
+                            Text="Ignore .ini file for this mod" l:Uids.Uid="ModPane_IgnoreIniFile" />
                     </MenuFlyout>
                 </SplitButton.Flyout>
 
@@ -205,7 +205,7 @@
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <FontIcon Margin="0,0,4,0" Glyph="&#xE74E;" />
-                        <TextBlock Text="Save" />
+                        <TextBlock Text="Save" l:Uids.Uid="ModPane_SaveButtonText" />
                     </StackPanel>
                 </Button.Content>
                 <Button.KeyboardAccelerators>

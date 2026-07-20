@@ -1712,4 +1712,1704 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="Settings_Export_Status_DisableAll" xml:space="preserve">
     <value>Deshabilitar Todos los Mods</value>
   </data>
+  <data name="CharacterDetails_ViewToggle.OnContent" xml:space="preserve">
+    <value>Vista Galería</value>
+  </data>
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppDisplayName" xml:space="preserve">
+    <value>JASM - Just Another Skin Manager</value>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>JASM - Just Another Skin Manager</value>
+  </data>
+  <data name="Startup1.Text" xml:space="preserve">
+    <value>Como parte de la configuración inicial, necesitarás seleccionar una carpeta de Model-Importer (3dmigoto) y su carpeta de Mods conectada. La carpeta de 3dmigoto contiene 3DMigoto Loader.exe/3DMigotoLoader.exe y una carpeta de Mods. Si aún no has configurado el model importer, por favor hazlo ahora, ve el enlace abajo. Encuentro la mayoría de los mods en Gamebanana, pero Nexusmods también tiene algunos.</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Startup2.Text" xml:space="preserve">
+    <value>Una vez que se guarden los ajustes, la aplicación creará una carpeta para cada personaje dentro de la carpeta 'Mods'. Las carpetas de mods fuera de estas carpetas de personajes serán ignoradas. Esta aplicación habilita y deshabilita mods prefijando las carpetas de mods con 'DISABLED_'. JASM también soporta la exportación de Mods gestionados por ella si deseas usarlos con otras aplicaciones.</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Startup3.Text" xml:space="preserve">
+    <value>Siempre es una buena idea hacer una copia de seguridad de tus archivos/mods antes de usar aplicaciones que interactúan con tus archivos</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="ShellMenuItem_Views_Main.Text" xml:space="preserve">
+    <value>Principal</value>
+  </data>
+  <data name="Main_Title.Text" xml:space="preserve">
+    <value>Principal</value>
+    <comment>Título de la página para MainPage</comment>
+  </data>
+  <data name="ShellMenuItem_Views_Startup.Text" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="Startup_Title.Text" xml:space="preserve">
+    <value>Primera vez configuración</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Settings_Personalization.Text" xml:space="preserve">
+    <value>Personalización</value>
+  </data>
+  <data name="Settings_Theme.Text" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="Settings_Theme_Light.Content" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
+    <value>Oscuro</value>
+  </data>
+  <data name="Settings_Theme_Default.Content" xml:space="preserve">
+    <value>Predeterminado</value>
+  </data>
+  <data name="Settings_AboutDescription.Text" xml:space="preserve">
+    <value>El objetivo de JASM es facilitar la organización de una gran cantidad de mods de skin</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
+    <value>Declaración de Privacidad</value>
+  </data>
+  <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
+    <value>https://YourPrivacyUrlGoesHere/</value>
+  </data>
+  <data name="ShellMenuBarSettingsButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="SettingsPage_Description.Text" xml:space="preserve">
+    <value>La configuración se guarda de forma independiente para cada juego seleccionado.</value>
+  </data>
+  <data name="Settings_Title.Text" xml:space="preserve">
+    <value>Configuración</value>
+    <comment>Título de la página para SettingsPage</comment>
+  </data>
+  <data name="Startup/Tooltip1.Text" xml:space="preserve">
+    <value>Habilitar esta opción hará que la aplicación ordene los mods existentes en carpetas asignadas a sus respectivos personajes. Cualquier mod que no se pueda emparejar razonablemente será colocado en una carpeta 'Otros'.</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Startup/Tooltip2.Text" xml:space="preserve">
+    <value>Una carpeta de mod que contiene nombres de múltiples personajes puede ser movida incorrectamente al directorio de un personaje. Esto asume una estructura plana de mod, donde las carpetas de skins se almacenan sueltas en la carpeta de mods. Si tienes una estructura de carpetas personalizada, hay una alta probabilidad de que JASM identifique incorrectamente tus skins. Esto también es el caso si tienes carpetas anidadas con skins dentro de ellas.</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Startup/Tooltip3.Text" xml:space="preserve">
+    <value>Esto se puede activar más tarde en la página de configuración.</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Settings_About.Text" xml:space="preserve">
+    <value>Acerca de esta aplicación</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Settings_ComboBox_Header.Text" xml:space="preserve">
+    <value>Seleccionar idioma de visualización:</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Settings_ExportDialog.Text" xml:space="preserve">
+    <value>Esto exportará todos los mods que JASM está gestionando a una carpeta de exportación de tu elección. Los mods serán copiados a la carpeta de exportación y no serán eliminados de la carpeta original.</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Settings_ExportDialogButtons.CloseButtonText" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Settings_ExportDialogButtons.PrimaryButtonText" xml:space="preserve">
+    <value>Exportar</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Settings_ExportDialog_ChangeStatus.Text" xml:space="preserve">
+    <value>Cambiar estado de los mods exportados</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Settings_ExportDialog_KeepStructure.Text" xml:space="preserve">
+    <value>Mantener la estructura de carpetas de CharacterName/Mods en la carpeta de exportación</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Settings_ExportDialog_RemoveJasm.Text" xml:space="preserve">
+    <value>Eliminar archivos de configuración de JASM de los mods exportados</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Settings_Export_Button.Text" xml:space="preserve">
+    <value>Exportar Mods</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Settings_Export_Title.Text" xml:space="preserve">
+    <value>Exportar/Hacer copia de seguridad de Mods</value>
+    <comment>[No se usa más]</comment>
+  </data>
+  <data name="Settings_Language.Text" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="Settings_Language_TexBlock.Text" xml:space="preserve">
+    <value>Las opciones de idioma son actualmente limitadas. Es un trabajo en progreso.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Resumen</value>
+  </data>
+  <data name="Running" xml:space="preserve">
+    <value>En ejecución</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Detenido</value>
+  </data>
+  <data name="Waiting" xml:space="preserve">
+    <value>Esperando</value>
+  </data>
+  <!-- ===== ShellPage Navigation ===== -->
+  <data name="ShellPage_NavItem_CharacterManagement" xml:space="preserve">
+    <value>Gestión de Personajes</value>
+  </data>
+  <data name="ShellPage_NavItem_ModsOverview" xml:space="preserve">
+    <value>Visión General de Mods</value>
+  </data>
+  <data name="ShellPage_NavItem_ModPresets" xml:space="preserve">
+    <value>Presets de Mods</value>
+  </data>
+  <data name="ShellPage_NavItem_Debug" xml:space="preserve">
+    <value>Depuración</value>
+  </data>
+  <data name="ShellPage_NavItem_Settings" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="ShellPage_NavItem_Notifications" xml:space="preserve">
+    <value>Notificaciones</value>
+  </data>
+  <data name="ShellPage_SettingsItem" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <!-- ===== CharactersPage ===== -->
+  <data name="CharactersPage_CheckForUpdates.Text" xml:space="preserve">
+    <value>Buscar actualizaciones</value>
+  </data>
+  <data name="CharactersPage_OpenFolder.Text" xml:space="preserve">
+    <value>Abrir carpeta...</value>
+  </data>
+  <data name="CharactersPage_ModsSubMenu.Text" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="CharactersPage_ClearNotifications.Text" xml:space="preserve">
+    <value>Limpiar Notificaciones</value>
+  </data>
+  <data name="CharactersPage_DisableAllModsMenuItem.Text" xml:space="preserve">
+    <value>Deshabilitar todos los mods</value>
+  </data>
+  <data name="CharactersPage_SelectProcessDialog.Title" xml:space="preserve">
+    <value>Seleccionar Ruta del Proceso</value>
+  </data>
+  <data name="CharactersPage_SelectProcessDialog_Description.Text" xml:space="preserve">
+    <value>Selecciona la ruta al proceso que deseas iniciar. Una vez guardado, se iniciará al presionar el botón de inicio. Esto se puede restablecer en la página de configuración.</value>
+  </data>
+  <data name="CharactersPage_CreateAdvancedCommand.Content" xml:space="preserve">
+    <value>Crear Comando Avanzado</value>
+  </data>
+  <data name="CharactersPage_EnableAllDialog.Title" xml:space="preserve">
+    <value>¿Habilitar todos los mods?</value>
+  </data>
+  <data name="CharactersPage_EnableAllDialog_Description.Text" xml:space="preserve">
+    <value>Esto habilitará todos los mods rastreados en las categorías activas.</value>
+  </data>
+  <data name="CharactersPage_DisableAllDialog.Title" xml:space="preserve">
+    <value>¿Deshabilitar todos los mods?</value>
+  </data>
+  <data name="CharactersPage_DisableAllDialog_Description.Text" xml:space="preserve">
+    <value>Se recomienda guardar tu configuración actual como un preset para restaurarla fácilmente</value>
+  </data>
+  <data name="CharactersPage_CleanUpDialog.Title" xml:space="preserve">
+    <value>¿Limpiar mods deshabilitados?</value>
+  </data>
+  <data name="CharactersPage_CleanUpDialog_Description.Text" xml:space="preserve">
+    <value>Esta operación es irreversible</value>
+  </data>
+  <data name="CharactersPage_GameBananaLink.Text" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
+  <data name="CharactersPage_SortByLabel.Text" xml:space="preserve">
+    <value>Ordenar por:</value>
+  </data>
+  <data name="CharactersPage_SortCharacters_Placeholder.PlaceholderText" xml:space="preserve">
+    <value>Ordenar Personajes...</value>
+  </data>
+  <data name="CharactersPage_RefreshMods.Content" xml:space="preserve">
+    <value>Refrescar Mods</value>
+  </data>
+  <data name="CharactersPage_Start3Dmigoto.Content" xml:space="preserve">
+    <value>Iniciar 3Dmigoto</value>
+  </data>
+  <data name="CharactersPage_BatchConfigurations.Label" xml:space="preserve">
+    <value>Configuraciones por Lote</value>
+  </data>
+  <data name="CharactersPage_EnableAll.Text" xml:space="preserve">
+    <value>Habilitar todos</value>
+  </data>
+  <data name="CharactersPage_DisableAll.Text" xml:space="preserve">
+    <value>Deshabilitar todos</value>
+  </data>
+  <data name="CharactersPage_CleanUp.Text" xml:space="preserve">
+    <value>Limpiar</value>
+  </data>
+  <data name="CharactersPage_ApplyPresetLabel.Text" xml:space="preserve">
+    <value>Aplicar Preset:</value>
+  </data>
+  <data name="CharactersPage_ApplyPresetConfirmText" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="CharactersPage_StartGamePrefix" xml:space="preserve">
+    <value>Iniciar</value>
+  </data>
+  <data name="CharactersPage_TitleFormat" xml:space="preserve">
+    <value>Resumen de {0}</value>
+  </data>
+  <data name="CharactersPage_EnableAllDialog_Title" xml:space="preserve">
+    <value>¿Habilitar todos los mods?</value>
+  </data>
+  <data name="CharactersPage_EnableAllDialog_PrimaryButtonText" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="CharactersPage_EnableAllDialog_SecondaryButtonText" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="CharactersPage_DisableAllDialog_Title" xml:space="preserve">
+    <value>¿Deshabilitar todos los mods?</value>
+  </data>
+  <data name="CharactersPage_DisableAllDialog_PrimaryButtonText" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="CharactersPage_DisableAllDialog_SecondaryButtonText" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="CharactersPage_CleanUpDialog_Title" xml:space="preserve">
+    <value>¿Limpiar mods deshabilitados?</value>
+  </data>
+  <data name="CharactersPage_CleanUpDialog_PrimaryButtonText" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="CharactersPage_CleanUpDialog_SecondaryButtonText" xml:space="preserve">
+    <value>Sí, hazlo</value>
+  </data>
+  <data name="CharactersPage_ModToggleSuffix" xml:space="preserve">
+    <value>con Mods</value>
+  </data>
+  <data name="CharactersPage_ModEnabledToggleSuffix" xml:space="preserve">
+    <value>con Mods Habilitados</value>
+  </data>
+  <data name="CharactersPage_ModNotificationsToggleSuffix" xml:space="preserve">
+    <value>con Notificaciones de Mods</value>
+  </data>
+  <data name="CharactersPage_SortAlphabetical_Name" xml:space="preserve">
+    <value>Alfabético</value>
+  </data>
+  <data name="CharactersPage_SortModCount_Name" xml:space="preserve">
+    <value>Cant. de Mods</value>
+  </data>
+  <data name="CharactersPage_SortRecentlyAdded_Name" xml:space="preserve">
+    <value>Agregado Recientemente</value>
+  </data>
+  <data name="CharactersPage_SortReleaseDate_Name" xml:space="preserve">
+    <value>Fecha de Lanzamiento</value>
+  </data>
+  <data name="CharactersPage_SortRarity_Name" xml:space="preserve">
+    <value>Rareza</value>
+  </data>
+  <data name="CharactersPage_ConfirmPreset.Text" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="CharactersPage_RandomizeMods.Text" xml:space="preserve">
+    <value>Aleatorizar Mods</value>
+  </data>
+  <data name="CharactersPage_Filters.Label" xml:space="preserve">
+    <value>Filtros</value>
+  </data>
+  <data name="CharactersPage_DropHereText.Text" xml:space="preserve">
+    <value>Suelta aquí para detectar mod automáticamente...</value>
+  </data>
+  <!-- ===== CharactersPage Sort Names ===== -->
+  <data name="CharactersPage_SortAlphabetical.Text" xml:space="preserve">
+    <value>Alfabético</value>
+  </data>
+  <data name="CharactersPage_SortModCount.Text" xml:space="preserve">
+    <value>Cantidad de Mods</value>
+  </data>
+  <data name="CharactersPage_SortRecentlyAdded.Text" xml:space="preserve">
+    <value>Mods Agregados Recientemente</value>
+  </data>
+  <data name="CharactersPage_SortReleaseDate.Text" xml:space="preserve">
+    <value>Fecha de Lanzamiento</value>
+  </data>
+  <data name="CharactersPage_SortRarity.Text" xml:space="preserve">
+    <value>Rareza</value>
+  </data>
+  <data name="CharactersPage_SearchPrefix" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="CharactersPage_ModToggleText" xml:space="preserve">
+    <value>Mostrar solo</value>
+  </data>
+  <data name="CharactersPage_ModEnabledToggleText" xml:space="preserve">
+    <value>Mostrar solo</value>
+  </data>
+  <data name="CharactersPage_ModNotificationsToggleText" xml:space="preserve">
+    <value>Mostrar solo</value>
+  </data>
+  <!-- ===== CharacterDetailsPage ===== -->
+  <data name="CharacterDetails_ModsSelected.Text" xml:space="preserve">
+    <value>Mods Seleccionados:</value>
+  </data>
+  <data name="CharacterDetails_MoveModsButton.Content" xml:space="preserve">
+    <value>Mover</value>
+  </data>
+  <data name="CharacterDetails_MoveModsToAnother.Text" xml:space="preserve">
+    <value>Mover Mods a Otro Personaje: </value>
+  </data>
+  <data name="CharacterDetails_MoveModSearch.PlaceholderText" xml:space="preserve">
+    <value>Buscar...</value>
+  </data>
+  <data name="CharacterDetails_MoveModsSkinExpander.Header" xml:space="preserve">
+    <value>Mover Mods a otro Skin</value>
+  </data>
+  <data name="CharacterDetails_OverrideButtonText.Text" xml:space="preserve">
+    <value>Sobrescribir</value>
+  </data>
+  <data name="CharacterDetails_OverrideSkinSetTo.Text" xml:space="preserve">
+    <value>Sobrescribir Skin a: </value>
+  </data>
+  <data name="CharacterDetails_RunCommandExpander.Header" xml:space="preserve">
+    <value>Ejecutar Comando en esta carpeta</value>
+  </data>
+  <data name="CharacterDetails_FullCommand.Text" xml:space="preserve">
+    <value>Comando Completo:</value>
+  </data>
+  <data name="CharacterDetails_WorkingDirectory.Text" xml:space="preserve">
+    <value>Directorio de Trabajo:</value>
+  </data>
+  <data name="CharacterDetails_TargetPath.Text" xml:space="preserve">
+    <value>'{{TargetPath}}:</value>
+  </data>
+  <data name="CharacterDetails_RunCommand.Content" xml:space="preserve">
+    <value>Ejecutar</value>
+  </data>
+  <data name="CharacterDetails_Loading.Text" xml:space="preserve">
+    <value>Cargando</value>
+  </data>
+  <data name="CharacterDetails_LoadingEllipsis.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="CharacterDetails_MenuBar_Mods.Title" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="CharacterDetails_AddModMenuItem.Text" xml:space="preserve">
+    <value>Agregar Mod...</value>
+  </data>
+  <data name="CharacterDetails_AddArchiveMenuItem.Text" xml:space="preserve">
+    <value>Agregar Archivo...</value>
+  </data>
+  <data name="CharacterDetails_RefreshModsMenuItem.Text" xml:space="preserve">
+    <value>Refrescar Mods</value>
+  </data>
+  <data name="CharacterDetails_MenuBar_Folders.Title" xml:space="preserve">
+    <value>Carpetas</value>
+  </data>
+  <data name="CharacterDetails_OpenRootFolder.Text" xml:space="preserve">
+    <value>Abrir carpeta raíz de 3Dmigoto...</value>
+  </data>
+  <data name="CharacterDetails_OpenCharacterModFolder.Text" xml:space="preserve">
+    <value>Abrir carpeta de Mods del Personaje...</value>
+  </data>
+  <data name="CharacterDetails_OpenSelectedModFolder.Text" xml:space="preserve">
+    <value>Abrir carpeta del Mod seleccionado...</value>
+  </data>
+  <data name="CharacterDetails_MenuBar_View.Title" xml:space="preserve">
+    <value>Vista</value>
+  </data>
+  <data name="CharacterDetails_SingleSelectToggle.Text" xml:space="preserve">
+    <value>Selección Única</value>
+  </data>
+  <data name="CharacterDetails_ShowModFolderNames.Text" xml:space="preserve">
+    <value>Mostrar columna 'Nombres de Carpeta de Mods'</value>
+  </data>
+  <data name="CharacterDetails_MenuBar_ModPreferences.Title" xml:space="preserve">
+    <value>Preferencias de Mod</value>
+  </data>
+  <data name="CharacterDetails_SavePreferencesToggle.Text" xml:space="preserve">
+    <value>Guardar preferencias para el mod seleccionado</value>
+  </data>
+  <data name="CharacterDetails_ReadPreferencesToggle.Text" xml:space="preserve">
+    <value>Leer preferencias para el mod seleccionado</value>
+  </data>
+  <data name="CharacterDetails_MultipleModsActive.Message" xml:space="preserve">
+    <value>Múltiples Mods activos</value>
+  </data>
+  <data name="CharacterDetails_SearchModsTextBox.PlaceholderText" xml:space="preserve">
+    <value>Buscar Mods...</value>
+  </data>
+  <data name="CharacterDetails_ViewToggle.OffContent" xml:space="preserve">
+    <value>Vista Detallada</value>
+  </data>
+  <!-- ===== ModPane ===== -->
+  <data name="ModPane_SetModIniFile.Text" xml:space="preserve">
+    <value>Establecer archivo .ini del mod</value>
+  </data>
+  <data name="ModPane_IgnoreIniFile.Text" xml:space="preserve">
+    <value>Ignorar archivo .ini para este mod</value>
+  </data>
+  <data name="ModPane_ModUrl.Header" xml:space="preserve">
+    <value>URL del Mod:</value>
+  </data>
+  <data name="ModPane_ForwardKey.Header" xml:space="preserve">
+    <value>Tecla Adelante</value>
+  </data>
+  <data name="ModPane_Variations.Text" xml:space="preserve">
+    <value>Variaciones: </value>
+  </data>
+  <data name="ModPane_BackwardKey.Header" xml:space="preserve">
+    <value>Tecla Atrás</value>
+  </data>
+  <data name="ModPane_KeySwapDisabled.Text" xml:space="preserve">
+    <value>La gestión de intercambio de teclas está deshabilitada para este mod</value>
+  </data>
+  <data name="ModPane_SaveButtonText.Text" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="ModPane_ModEnabled.Text" xml:space="preserve">
+    <value>Mod Habilitado</value>
+  </data>
+  <data name="ModPane_OpenModFolder.Content" xml:space="preserve">
+    <value>Abrir Carpeta del Mod...</value>
+  </data>
+  <!-- ===== PresetPage ===== -->
+  <data name="PresetPage_AutoSyncWarning.Text" xml:space="preserve">
+    <value>¡Sincronización automática no habilitada! Recuerda recargar manualmente la configuración de 3Dmigoto con la tecla F10 al hacer cambios</value>
+  </data>
+  <data name="PresetPage_PageTitle.Text" xml:space="preserve">
+    <value>Mod Presets y Preferencias de Mod</value>
+  </data>
+  <data name="PresetPage_NewPresetName.Header" xml:space="preserve">
+    <value>Nuevo Nombre de Preset</value>
+  </data>
+  <data name="PresetPage_CreatePresetButton.Content" xml:space="preserve">
+    <value>Guardar preferencias activas de mod y crear nuevo preset</value>
+  </data>
+  <data name="PresetPage_CreateEmptyPreset.Content" xml:space="preserve">
+    <value>Crear como un preset vacío</value>
+  </data>
+  <data name="PresetPage_AutoSyncPreferences.Content" xml:space="preserve">
+    <value>Sincronización automática de Preferencias de Mod al cambiar de preset</value>
+  </data>
+  <data name="PresetPage_StartElevatorButton.Content" xml:space="preserve">
+    <value>Iniciar Elevator...</value>
+  </data>
+  <data name="PresetPage_SaveActivePreferencesButton.Content" xml:space="preserve">
+    <value>Guardar preferencias activas de mod (KeySwaps) en los mods</value>
+  </data>
+  <data name="PresetPage_ApplySavedPreferencesButton.Content" xml:space="preserve">
+    <value>Aplicar preferencias guardadas de mod (KeySwaps)</value>
+  </data>
+  <data name="PresetPage_ShowManualControls.Content" xml:space="preserve">
+    <value>Mostrar controles manuales</value>
+  </data>
+  <data name="PresetPage_EnabledModsCount.Text" xml:space="preserve">
+    <value>Conteo de Mods Habilitados del Preset:</value>
+  </data>
+  <data name="PresetPage_CreatedAt.Text" xml:space="preserve">
+    <value>Creado el:</value>
+  </data>
+  <data name="PresetPage_GoToPresetDetails.Content" xml:space="preserve">
+    <value>Ir a Detalles del Preset</value>
+  </data>
+  <data name="PresetPage_ApplyPresetButton.Content" xml:space="preserve">
+    <value>Aplicar Preset</value>
+  </data>
+  <data name="PresetPage_ApplyConfirm.Content" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="PresetPage_ReadOnlyMenuItem.Text" xml:space="preserve">
+    <value>Solo Lectura</value>
+  </data>
+  <data name="PresetPage_DuplicateMenuItem.Text" xml:space="preserve">
+    <value>Duplicar</value>
+  </data>
+  <data name="PresetPage_DeleteMenuItem.Text" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="PresetPage_RandomizeModsButton.Content" xml:space="preserve">
+    <value>Aleatorizar Mods</value>
+  </data>
+  <data name="PresetPage_ResetModPreferencesButton.Content" xml:space="preserve">
+    <value>Restablecer Preferencias de Mod</value>
+  </data>
+  <data name="PresetPage_ResetPreferencesDialogText.Text" xml:space="preserve">
+    <value>Restablecer preferencias de mod persistidas</value>
+  </data>
+  <data name="PresetPage_ResetOnlyEnabledMods.Content" xml:space="preserve">
+    <value>Restablecer solo para Mods habilitados</value>
+  </data>
+  <data name="PresetPage_AlsoReset3DMigoto.Content" xml:space="preserve">
+    <value>También limpiar preferencias en el ini de usuario de 3Dmigoto</value>
+  </data>
+  <data name="PresetPage_RenameText" xml:space="preserve">
+    <value>Renombrar</value>
+  </data>
+  <data name="PresetPage_ConfirmText" xml:space="preserve">
+    <value>Guardar Nuevo Nombre</value>
+  </data>
+  <data name="PresetPage_ResetConfirm.Content" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <!-- ===== ModInstallerPage ===== -->
+  <data name="ModInstallerPage_SetModPreviewImage.Text" xml:space="preserve">
+    <value>Establecer imagen de vista previa del mod</value>
+  </data>
+  <data name="ModInstallerPage_SetRootModFolder.Text" xml:space="preserve">
+    <value>Establecer Carpeta Raíz del Mod</value>
+  </data>
+  <data name="ModInstallerPage_SetShaderFixesFolder.Text" xml:space="preserve">
+    <value>Establecer Carpeta de ShaderFixes</value>
+  </data>
+  <data name="ModInstallerPage_DuplicateModDialog.Title" xml:space="preserve">
+    <value>Ya existe una carpeta con el mismo nombre</value>
+  </data>
+  <data name="ModInstallerPage_DuplicateInfoBar.Message" xml:space="preserve">
+    <value>1. Puedes sobrescribir el mod antiguo eliminándolo.&#x0a;O&#x0a;2. Puedes renombrar el mod nuevo o el antiguo</value>
+  </data>
+  <data name="ModInstallerPage_NewModLabel.Text" xml:space="preserve">
+    <value>Nuevo Mod:</value>
+  </data>
+  <data name="ModInstallerPage_NewModCustomName.Header" xml:space="preserve">
+    <value>Nombre personalizado</value>
+  </data>
+  <data name="ModInstallerPage_NewModFolderName.Header" xml:space="preserve">
+    <value>Nombre de carpeta</value>
+  </data>
+  <data name="ModInstallerPage_OtherModLabel.Text" xml:space="preserve">
+    <value>Otro Mod:</value>
+  </data>
+  <data name="ModInstallerPage_OtherModCustomName.Header" xml:space="preserve">
+    <value>Nombre personalizado</value>
+  </data>
+  <data name="ModInstallerPage_OtherModFolderName.Header" xml:space="preserve">
+    <value>Nombre de carpeta</value>
+  </data>
+  <data name="ModInstallerPage_OpenExistingModFolder.Text" xml:space="preserve">
+    <value>Abrir carpeta de mod existente...</value>
+  </data>
+  <data name="ModInstallerPage_OverwriteExistingMod.Content" xml:space="preserve">
+    <value>Sobrescribir mod existente</value>
+  </data>
+  <data name="ModInstallerPage_ReplaceInPresets.Text" xml:space="preserve">
+    <value>Reemplazar mod duplicado en presets con el nuevo mod</value>
+  </data>
+  <data name="ModInstallerPage_RetrieveModInfo.Text" xml:space="preserve">
+    <value>Obtener información del mod desde la página del mod</value>
+  </data>
+  <data name="ModInstallerPage_ModPageUrl.Header" xml:space="preserve">
+    <value>URL de la página del mod</value>
+  </data>
+  <data name="ModInstallerPage_ModCustomName.Header" xml:space="preserve">
+    <value>Nombre Personalizado del Mod</value>
+  </data>
+  <data name="ModInstallerPage_Author.Header" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="ModInstallerPage_Note.Header" xml:space="preserve">
+    <value>Nota</value>
+  </data>
+  <data name="ModInstallerPage_ModFolderLabel.Text" xml:space="preserve">
+    <value>CarpetaMod:</value>
+  </data>
+  <data name="ModInstallerPage_PreviewImageSourceLabel.Text" xml:space="preserve">
+    <value>Fuente de Imagen de Vista Previa:</value>
+  </data>
+  <data name="ModInstallerPage_ImageSourceAuto.Content" xml:space="preserve">
+    <value>Automático</value>
+  </data>
+  <data name="ModInstallerPage_ImageSourceUrl.Content" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="ModInstallerPage_ImageSourceModFiles.Content" xml:space="preserve">
+    <value>Archivos del Mod</value>
+  </data>
+  <data name="ModInstallerPage_ImageSourceIgnore.Content" xml:space="preserve">
+    <value>Ignorar</value>
+  </data>
+  <data name="ModInstallerPage_SelectRootFolderHint.Text" xml:space="preserve">
+    <value>Aquí puedes seleccionar la raíz de la carpeta del mod.</value>
+  </data>
+  <data name="ModInstallerPage_ModFolderDescription.Text" xml:space="preserve">
+    <value>Esta es usualmente la carpeta que contiene el 'merged.ini/Script.ini' o '.JASM_ModConfig.json'. JASM detectará automáticamente la carpeta del mod y el archivo merged.ini. Si deseas seleccionar manualmente la carpeta del mod, puedes hacerlo haciendo clic derecho en la carpeta en la vista general de arriba.</value>
+  </data>
+  <data name="ModInstallerPage_ManualImageSelectionHint.Text" xml:space="preserve">
+    <value>También puedes seleccionar manualmente un archivo de imagen para la vista previa del mod. Generalmente es suficiente con presionar 'Agregar Mod'.</value>
+  </data>
+  <data name="ModInstallerPage_ForceOverwriteDifferentNameMod.Content" xml:space="preserve">
+    <value>¿Forzar Sobrescritura de Mod con Nombre Diferente?</value>
+  </data>
+  <data name="ModInstallerPage_ReplaceInPresetsMain.Text" xml:space="preserve">
+    <value>Reemplazar mod duplicado en presets con el nuevo mod</value>
+  </data>
+  <data name="ModInstallerPage_MergedIniFileFolderLabel.Text" xml:space="preserve">
+    <value>Carpeta de MergedIniFile:</value>
+  </data>
+  <data name="ModInstallerPage_ShaderFixesFolderLabel.Text" xml:space="preserve">
+    <value>Carpeta de ShaderFixes:</value>
+  </data>
+  <data name="ModInstallerPage_ShaderFixesAuto.Content" xml:space="preserve">
+    <value>Automático</value>
+  </data>
+  <data name="ModInstallerPage_ShaderFixesManualSelect.Content" xml:space="preserve">
+    <value>Selección Manual</value>
+  </data>
+  <data name="ModInstallerPage_ShaderFixesIgnore.Content" xml:space="preserve">
+    <value>Ignorar</value>
+  </data>
+  <data name="ModInstallerPage_EnableOnlyMod.Content" xml:space="preserve">
+    <value>¿Habilitar este mod y deshabilitar otros?</value>
+  </data>
+  <data name="ModInstallerPage_AddModButton.Content" xml:space="preserve">
+    <value>Agregar Mod</value>
+  </data>
+  <!-- ===== CharacterGalleryPage ===== -->
+  <data name="CharacterGalleryPage_SelectSkin.Content" xml:space="preserve">
+    <value>Seleccionar Skin</value>
+  </data>
+  <data name="CharacterGalleryPage_SortBy.Text" xml:space="preserve">
+    <value>Ordenar por:</value>
+  </data>
+  <data name="CharacterGalleryPage_SortMods.PlaceholderText" xml:space="preserve">
+    <value>Ordenar Mods...</value>
+  </data>
+  <data name="CharacterGalleryPage_SortDateAdded.Content" xml:space="preserve">
+    <value>Fecha Agregado</value>
+  </data>
+  <data name="CharacterGalleryPage_SortFolderName.Content" xml:space="preserve">
+    <value>Nombre de Carpeta</value>
+  </data>
+  <data name="CharacterGalleryPage_SortName.Content" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="CharacterGalleryPage_ViewButton.Text" xml:space="preserve">
+    <value>Ver</value>
+  </data>
+  <data name="CharacterGalleryPage_AdjustHeight.Text" xml:space="preserve">
+    <value>Ajustar Altura:</value>
+  </data>
+  <data name="CharacterGalleryPage_AdjustDesiredWidth.Text" xml:space="preserve">
+    <value>Ajustar Ancho Deseado:</value>
+  </data>
+  <data name="CharacterGalleryPage_SingleSelect.ToolTip" xml:space="preserve">
+    <value>Seleccionar esto solo permitirá que un mod esté habilitado a la vez.</value>
+  </data>
+  <data name="CharacterGalleryPage_SearchMods.PlaceholderText" xml:space="preserve">
+    <value>Buscar Mods...</value>
+  </data>
+  <data name="CharacterGalleryPage_ViewToggleSwitch.OnContent" xml:space="preserve">
+    <value>Vista Galería</value>
+  </data>
+  <data name="CharacterGalleryPage_ViewToggleSwitch.OffContent" xml:space="preserve">
+    <value>Vista Detallada</value>
+  </data>
+  <data name="CharacterGalleryPage_SingleSelect.Content" xml:space="preserve">
+    <value>Selección Única</value>
+  </data>
+  <data name="CharacterGalleryPage_SaveImage.Text" xml:space="preserve">
+    <value>Guardar Imagen</value>
+  </data>
+  <data name="CharacterGalleryPage_OpenModFolder.Text" xml:space="preserve">
+    <value>Abrir Carpeta del Mod...</value>
+  </data>
+  <data name="CharacterGalleryPage_OpenModPage.Text" xml:space="preserve">
+    <value>Abrir Página del Mod...</value>
+  </data>
+  <data name="CharacterGalleryPage_DeleteMod.Text" xml:space="preserve">
+    <value>Eliminar Mod</value>
+  </data>
+  <data name="CharacterGalleryPage_Author.Text" xml:space="preserve">
+    <value>Autor:</value>
+  </data>
+  <data name="CharacterGalleryPage_Added.Text" xml:space="preserve">
+    <value>Agregado:</value>
+  </data>
+  <data name="CharacterGalleryPage_LoadingMods.Text" xml:space="preserve">
+    <value>Cargando Mods...</value>
+  </data>
+  <!-- ===== ModsOverviewPage ===== -->
+  <data name="ModsOverviewPage_Title.Text" xml:space="preserve">
+    <value>Visión General de Mods</value>
+  </data>
+  <data name="ModsOverviewPage_RunCommandOnThisFolder.Text" xml:space="preserve">
+    <value>Ejecutar Comando en esta carpeta:</value>
+  </data>
+  <data name="ModsOverviewPage_FullCommand.Text" xml:space="preserve">
+    <value>Comando Completo:</value>
+  </data>
+  <data name="ModsOverviewPage_WorkingDirectory.Text" xml:space="preserve">
+    <value>Directorio de Trabajo:</value>
+  </data>
+  <data name="ModsOverviewPage_TargetPath.Text" xml:space="preserve">
+    <value>'{{TargetPath}}:</value>
+  </data>
+  <data name="ModsOverviewPage_GoToCharacter.Content" xml:space="preserve">
+    <value>Ir al Personaje</value>
+  </data>
+  <data name="ModsOverviewPage_AddedLabel.Text" xml:space="preserve">
+    <value>Agregado:</value>
+  </data>
+  <data name="ModsOverviewPage_RunButton.Content" xml:space="preserve">
+    <value>Ejecutar</value>
+  </data>
+  <data name="ModsOverviewPage_SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Presiona Enter para buscar...</value>
+  </data>
+  <data name="ModsOverviewPage_CloseAll.Content" xml:space="preserve">
+    <value>Cerrar Todos</value>
+  </data>
+  <!-- ===== PresetDetailsPage ===== -->
+  <data name="PresetDetailsPage_AddMod.Label" xml:space="preserve">
+    <value>Agregar Mod</value>
+  </data>
+  <data name="PresetDetailsPage_FindReplacementMod.Text" xml:space="preserve">
+    <value>Buscar Mod de Reemplazo</value>
+  </data>
+  <data name="PresetDetailsPage_SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Buscar Mods...</value>
+  </data>
+  <data name="PresetDetailsPage_ReadAndSavePreferences.Text" xml:space="preserve">
+    <value>Leer y Guardar Preferencias</value>
+  </data>
+  <data name="PresetDetailsPage_RemoveModFromPreset.Text" xml:space="preserve">
+    <value>Eliminar Mod del Preset</value>
+  </data>
+  <data name="PresetDetailsPage_AddedToPresetAt.Text" xml:space="preserve">
+    <value>Agregado al Preset el:</value>
+  </data>
+  <data name="PresetDetailsPage_ModNotFound.Text" xml:space="preserve">
+    <value>¡Este mod no se encontró en el disco!</value>
+  </data>
+  <data name="PresetDetailsPage_OriginalPath.Text" xml:space="preserve">
+    <value>Ruta Original:</value>
+  </data>
+  <!-- ===== CharacterCard ===== -->
+  <data name="CharacterCard_TrackedMods.Text" xml:space="preserve">
+    <value>Mods Rastreados:</value>
+  </data>
+  <data name="CharacterCard_SelectedInGameSkin.Text" xml:space="preserve">
+    <value>Skin Seleccionado en el Juego:</value>
+  </data>
+  <data name="CharacterCard_SelectSkin.Content" xml:space="preserve">
+    <value>Seleccionar Skin</value>
+  </data>
+  <data name="CharacterCard_DisableAllMods.Content" xml:space="preserve">
+    <value>Deshabilitar Todos los Mods</value>
+  </data>
+  <!-- ===== ModListOverview ===== -->
+  <data name="ModListOverview_ModsMenu.Title" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="ModListOverview_AddMod.Text" xml:space="preserve">
+    <value>Agregar Mod...</value>
+  </data>
+  <data name="ModListOverview_MultipleSkinWarning.Message" xml:space="preserve">
+    <value>Más de un skin seleccionado</value>
+  </data>
+  <data name="ModListOverview_ModEnabledHeader.Header" xml:space="preserve">
+    <value>ModHabilitado</value>
+  </data>
+  <data name="ModListOverview_ModNameHeader.Header" xml:space="preserve">
+    <value>Nombre del Mod</value>
+  </data>
+  <!-- ===== DebugPage ===== -->
+  <data name="DebugPage_CreateButton.Content" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="DebugPage_EditButton.Content" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="DebugPage_DeleteButton.Content" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <!-- ===== NotificationsPage ===== -->
+  <data name="NotificationsPage_HeaderText.Text" xml:space="preserve">
+    <value>Todas las Notificaciones mostradas durante la ejecución actual de la aplicación</value>
+  </data>
+  <data name="NotificationsPage_LogPathLabel.Text" xml:space="preserve">
+    <value>Las Notificaciones y Registros se escriben en:</value>
+  </data>
+  <!-- ===== ErrorWindow ===== -->
+  <data name="ErrorWindow_ErrorHeaderText.Text" xml:space="preserve">
+    <value>Ha ocurrido un error: </value>
+  </data>
+  <data name="ErrorWindow_ExceptionDescription.Text" xml:space="preserve">
+    <value>Ha ocurrido una excepción no controlada. La aplicación encontró un problema que no supo cómo manejar. JASM puede estar en un estado inestable, y se recomienda reiniciar JASM.</value>
+  </data>
+  <data name="ErrorWindow_StackTraceLabel.Text" xml:space="preserve">
+    <value>Traza de pila:</value>
+  </data>
+  <data name="ErrorWindow_InnerExceptionLabel.Text" xml:space="preserve">
+    <value>Una excepción interna</value>
+  </data>
+  <data name="ErrorWindow_InnerStackTraceLabel.Text" xml:space="preserve">
+    <value>Traza de pila:</value>
+  </data>
+  <!-- ===== GbModPageWindow ===== -->
+  <data name="GbModPageWindow_TitleText.Text" xml:space="preserve">
+    <value>Descargar Mods desde GameBanana</value>
+  </data>
+  <data name="GbModPageWindow_LoadingText.Text" xml:space="preserve">
+    <value>Cargando Información del Mod desde GameBanana...</value>
+  </data>
+  <data name="GbModPageWindow_DownloadButton.Content" xml:space="preserve">
+    <value>Descargar</value>
+  </data>
+  <data name="GbModPageWindow_InstallButton.Content" xml:space="preserve">
+    <value>Instalar</value>
+  </data>
+  <data name="GbModPageWindow_CloseButton.Content" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="GbModPageWindow_ModPageLabel.Text" xml:space="preserve">
+    <value>Página del Mod:</value>
+  </data>
+  <data name="GbModPageWindow_DownloadsButton.Content" xml:space="preserve">
+    <value>Descargas</value>
+  </data>
+  <!-- ===== CharacterManagerPage ===== -->
+  <data name="CharacterManagerPage_Title.Text" xml:space="preserve">
+    <value>Administrador de Personajes</value>
+  </data>
+  <data name="CharacterManagerPage_SearchBox.Header" xml:space="preserve">
+    <value>Busca un personaje para editar o agregar uno nuevo</value>
+  </data>
+  <data name="CharacterManagerPage_SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Empieza a escribir para buscar...</value>
+  </data>
+  <data name="CharacterManagerPage_SearchBox_Header" xml:space="preserve">
+    <value>Busca un personaje para editar o agregar uno nuevo</value>
+  </data>
+  <data name="CharacterManagerPage_SearchBox_Placeholder" xml:space="preserve">
+    <value>Empieza a escribir para buscar...</value>
+  </data>
+  <data name="CharacterManagerPage_AddCharacterButton.ToolTip" xml:space="preserve">
+    <value>Agregar nuevo personaje</value>
+  </data>
+  <!-- ===== ModSelector ===== -->
+  <data name="ModSelector_Title.Text" xml:space="preserve">
+    <value>Seleccionar Mods</value>
+  </data>
+  <data name="ModSelector_SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Buscar Mods...</value>
+  </data>
+  <data name="ModSelector_DateAdded.Text" xml:space="preserve">
+    <value>Fecha Agregado:</value>
+  </data>
+  <data name="ModSelector_SelectModButton.Content" xml:space="preserve">
+    <value>Seleccionar Mod</value>
+  </data>
+  <!-- ===== ModUpdateAvailableWindow ===== -->
+  <data name="ModUpdateAvailableWindow_Title.Text" xml:space="preserve">
+    <value>Nuevos Archivos Descargables Encontrados</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_LoadingText.Text" xml:space="preserve">
+    <value>Cargando Información del Mod desde GameBanana...</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_NewSinceLastCheck.Text" xml:space="preserve">
+    <value>Nuevo desde la última revisión</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_DownloadButton.Content" xml:space="preserve">
+    <value>Descargar</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_InstallButton.Content" xml:space="preserve">
+    <value>Instalar</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_IgnoreCloseButton.Content" xml:space="preserve">
+    <value>Ignorar y Cerrar</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_LastCheck.Text" xml:space="preserve">
+    <value>Última Revisión:</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_ModPageLabel.Text" xml:space="preserve">
+    <value>Página del Mod:</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_DownloadsButton.Content" xml:space="preserve">
+    <value>Descargas</value>
+  </data>
+  <!-- ===== SettingsPage remaining strings ===== -->
+  <data name="Settings_Window.Text" xml:space="preserve">
+    <value>Ventana</value>
+  </data>
+  <data name="Settings_WindowSize.Content" xml:space="preserve">
+    <value>Recordar tamaño de ventana</value>
+  </data>
+  <data name="Settings_WindowPosition.Content" xml:space="preserve">
+    <value>Recordar posición de ventana</value>
+  </data>
+  <data name="Settings_Commands.Text" xml:space="preserve">
+    <value>Comandos</value>
+  </data>
+  <data name="Settings_CreateCustomCommands.Header" xml:space="preserve">
+    <value>Crear Comandos Personalizados</value>
+  </data>
+  <data name="Settings_CreateCustomCommands.Description" xml:space="preserve">
+    <value>Se pueden definir comandos (scripts) para ejecutarlos en mods específicos</value>
+  </data>
+  <data name="Settings_FolderWarning_No3DMigotoEntry" xml:space="preserve">
+    <value>La carpeta no contiene ninguna entrada con los nombres especificados:</value>
+  </data>
+  <data name="Settings_Notification_ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Settings_Notification_SuccessTitle" xml:space="preserve">
+    <value>Éxito</value>
+  </data>
+  <data name="Settings_Notification_UpdatingTitle" xml:space="preserve">
+    <value>Actualizando...</value>
+  </data>
+  <data name="Settings_Notification_RestartingTitle" xml:space="preserve">
+    <value>Reiniciando...</value>
+  </data>
+  <data name="Settings_CommunityGames_EmptyUrl" xml:space="preserve">
+    <value>La URL del repositorio comunitario no puede estar vacía.</value>
+  </data>
+  <data name="Settings_CommunityGames_Pulling" xml:space="preserve">
+    <value>Obteniendo juegos comunitarios. Esto puede tomar un momento.</value>
+  </data>
+  <data name="Settings_CommunityGames_Updated" xml:space="preserve">
+    <value>Juegos comunitarios actualizados y verificados correctamente.</value>
+  </data>
+  <data name="Settings_CommunityGames_IntegrityFailed" xml:space="preserve">
+    <value>Error de integridad. Verifique si el repositorio coincide con la estructura esperada.</value>
+  </data>
+  <data name="Settings_CommunityGames_UpdateFailed" xml:space="preserve">
+    <value>Error al actualizar los juegos comunitarios.</value>
+  </data>
+  <data name="Settings_CommunityGames_ExceptionPulling" xml:space="preserve">
+    <value>Ocurrió una excepción al obtener el repositorio. Revise los registros.</value>
+  </data>
+  <data name="Settings_Restart_Restarting" xml:space="preserve">
+    <value>La aplicación se reiniciará ahora.</value>
+  </data>
+  <data name="Settings_Restart_SettingsSaved" xml:space="preserve">
+    <value>Configuración guardada. Reiniciando la aplicación...</value>
+  </data>
+  <data name="Settings_Mods_ReorganizeFailed" xml:space="preserve">
+    <value>Error al reorganizar los mods.</value>
+  </data>
+  <data name="Settings_Mods_Reorganized" xml:space="preserve">
+    <value>Mods reorganizados.</value>
+  </data>
+  <data name="Settings_Elevator_UnableToStart" xml:space="preserve">
+    <value>No se puede iniciar Elevator</value>
+  </data>
+  <data name="Settings_Export_ModsExported" xml:space="preserve">
+    <value>Mods exportados</value>
+  </data>
+  <data name="Settings_Export_ModsExportedToFormat" xml:space="preserve">
+    <value>Mods exportados a {0}</value>
+  </data>
+  <data name="Settings_Export_ErrorExporting" xml:space="preserve">
+    <value>Error al exportar mods</value>
+  </data>
+  <data name="Settings_Update_ErrorStarting" xml:space="preserve">
+    <value>Error al iniciar el proceso de actualización</value>
+  </data>
+  <data name="Settings_Update_CouldNotStart" xml:space="preserve">
+    <value>No se pudo iniciar el proceso de actualización</value>
+  </data>
+  <data name="Commands_Notification_FailedKillTitle" xml:space="preserve">
+    <value>Error al terminar el proceso</value>
+  </data>
+  <data name="Commands_Notification_NotRunningTitle" xml:space="preserve">
+    <value>El proceso no está ejecutándose</value>
+  </data>
+  <data name="Commands_Notification_KilledTitle" xml:space="preserve">
+    <value>Proceso terminado exitosamente</value>
+  </data>
+  <data name="Commands_Notification_NotFoundTitle" xml:space="preserve">
+    <value>Error al obtener el comando</value>
+  </data>
+  <data name="Commands_Notification_NotFoundMessage" xml:space="preserve">
+    <value>Comando no encontrado</value>
+  </data>
+  <data name="Commands_Notification_FailedDeleteTitle" xml:space="preserve">
+    <value>Error al eliminar el comando</value>
+  </data>
+  <data name="Commands_Notification_DeletedTitle" xml:space="preserve">
+    <value>Comando eliminado exitosamente</value>
+  </data>
+  <data name="CreateCommand_Notification_UpdatedTitle" xml:space="preserve">
+    <value>Comando actualizado exitosamente</value>
+  </data>
+  <data name="CreateCommand_Notification_CreatedTitle" xml:space="preserve">
+    <value>Comando creado exitosamente</value>
+  </data>
+  <data name="CreateCommand_Notification_UpdateFailed" xml:space="preserve">
+    <value>Error al actualizar el comando.</value>
+  </data>
+  <data name="CreateCommand_Notification_CreateFailed" xml:space="preserve">
+    <value>Error al crear el comando.</value>
+  </data>
+  <data name="Settings_ClearEmptyFolders_Title" xml:space="preserve">
+    <value>Limpiar Carpetas Vacías</value>
+  </data>
+  <data name="Settings_ClearEmptyFolders_Content" xml:space="preserve">
+    <value>Esto eliminará todas las carpetas vacías en la lista de mods de un personaje si la carpeta está vacía o solo contiene archivos/carpetas .JASM_
+Si una carpeta de personaje está vacía, también se eliminará.
+Las carpetas vacías en la raíz de la carpeta Mods también se eliminarán</value>
+  </data>
+  <data name="Settings_ClearEmptyFolders_PrimaryButton" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="Settings_ClearEmptyFolders_CloseButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Settings_ClearEmptyFolders_NotificationTitle" xml:space="preserve">
+    <value>Carpetas vacías eliminadas</value>
+  </data>
+  <data name="Settings_DisableAllMods_Title" xml:space="preserve">
+    <value>Deshabilitar Mods</value>
+  </data>
+  <data name="Settings_DisableAllMods_PrimaryButton" xml:space="preserve">
+    <value>Deshabilitar Mods en Categorías</value>
+  </data>
+  <data name="Settings_DisableAllMods_CloseButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Settings_DisableAllMods_SelectText" xml:space="preserve">
+    <value>Selecciona las categorías para las que deseas deshabilitar mods:</value>
+  </data>
+  <data name="Settings_DisableAllMods_SuggestionText" xml:space="preserve">
+    <value>Sugiero crear un preset (o una copia de seguridad) de tus mods antes de deshabilitarlos si tienes muchos mods habilitados.
+
+Solo los mods rastreados por JASM se deshabilitarán dentro de las categorías seleccionadas</value>
+  </data>
+  <data name="Settings_DisableAllMods_NoCategoriesTitle" xml:space="preserve">
+    <value>Ninguna categoría seleccionada</value>
+  </data>
+  <data name="Settings_DisableAllMods_NoCategoriesMessage" xml:space="preserve">
+    <value>No se seleccionaron categorías para deshabilitar mods.</value>
+  </data>
+  <data name="Settings_DisableAllMods_SuccessTitle" xml:space="preserve">
+    <value>Mods deshabilitados</value>
+  </data>
+  <data name="Settings_DisableAllMods_SuccessMessage" xml:space="preserve">
+    <value>Todos los mods rastreados han sido deshabilitados para las categorías seleccionadas: {0}</value>
+  </data>
+  <data name="Settings_DisableAllMods_ErrorsTitle" xml:space="preserve">
+    <value>Errores al deshabilitar mods</value>
+  </data>
+  <data name="Settings_UpdateButton.Content" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="Settings_ReorganizeMods.Content" xml:space="preserve">
+    <value>Reorganizar Mods</value>
+  </data>
+  <data name="Settings_CleanMods.Content" xml:space="preserve">
+    <value>Limpiar carpeta de Mods</value>
+  </data>
+  <data name="Settings_DisableAllMods.Content" xml:space="preserve">
+    <value>Deshabilitar Todos los Mods</value>
+  </data>
+  <data name="Settings_Reset3DmigotoPath.Content" xml:space="preserve">
+    <value>Restablecer Ruta de 3Dmigoto</value>
+  </data>
+  <data name="Settings_ResetGenshinPath.Content" xml:space="preserve">
+    <value>Restablecer Ruta de Genshin</value>
+  </data>
+  <data name="Settings_SkinsAsCharacters.Content" xml:space="preserve">
+    <value>Tratar Skins de Personajes como personajes separados</value>
+  </data>
+  <data name="Settings_CacheDescription.Text" xml:space="preserve">
+    <value>Cuando usas JASM para descargar mods, automáticamente almacena en caché los archivos zip. Puedes especificar un límite máximo en gigabytes para el directorio de caché, y JASM mantendrá el tamaño de la caché por debajo del límite al iniciar.</value>
+  </data>
+  <data name="Settings_GithubLink.Content" xml:space="preserve">
+    <value>Just Another Skin Manager Github</value>
+  </data>
+  <data name="Settings_GameBananaLink.Content" xml:space="preserve">
+    <value>Just Another Skin Manager GameBanana</value>
+  </data>
+  <data name="Settings_NewUpdateAvailable.Text" xml:space="preserve">
+    <value>Nueva Actualización Disponible en GitHub:</value>
+  </data>
+  <data name="Settings_SeeWhatsNew.Text" xml:space="preserve">
+    <value>Ver las novedades de la última versión</value>
+  </data>
+  <data name="Settings_UpdateDialogText.Text" xml:space="preserve">
+    <value>JASM se cerrará y la actualización comenzará. ¿Quieres continuar?</value>
+  </data>
+  <data name="Settings_UpdateJASMButton.Content" xml:space="preserve">
+    <value>Sí, Actualizar JASM</value>
+  </data>
+  <data name="Settings_UpdateJASMTo.Text" xml:space="preserve">
+    <value>Actualizar JASM a </value>
+  </data>
+  <data name="Settings_IgnoreUpdate.Content" xml:space="preserve">
+    <value>¿Ignorar Actualización Actual?</value>
+  </data>
+  <data name="Settings_OpenCacheFolder.Text" xml:space="preserve">
+    <value>Abrir carpeta de caché...</value>
+  </data>
+  <data name="Settings_CurrentCacheSize.Text" xml:space="preserve">
+    <value>Tamaño Actual del Caché de Mods para</value>
+  </data>
+  <data name="FolderSelector_Browse.Content" xml:space="preserve">
+    <value>Examinar</value>
+  </data>
+  <!-- ===== CommandsSettingsPage ===== -->
+  <data name="CommandsSettingsPage_WarningTitle" xml:space="preserve">
+    <value>Aviso Amigable</value>
+  </data>
+  <data name="CommandsSettingsPage_WarningContent" xml:space="preserve">
+    <value>Ten cuidado al crear comandos. Los comandos pueden ejecutar cualquier programa en tu sistema. Solo crea comandos de fuentes confiables. JASM no es perfecto y no puede protegerte de scripts maliciosos o errores de JASM. Al hacer clic en 'Entiendo' reconoces que entiendes los riesgos.</value>
+  </data>
+  <data name="CommandsSettingsPage_WarningPrimary" xml:space="preserve">
+    <value>Entiendo</value>
+  </data>
+  <data name="CommandsSettingsPage_WarningClose" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="CommandsSettingsPage_Title.Text" xml:space="preserve">
+    <value>Configuración de Comandos</value>
+  </data>
+  <data name="CommandsSettingsPage_CreateCommand.Header" xml:space="preserve">
+    <value>Crear nuevo comando</value>
+  </data>
+  <data name="CommandsSettingsPage_CreateCommand.Description" xml:space="preserve">
+    <value>Aquí puedes definir comandos personalizados que JASM puede ejecutar. Actualmente, los comandos que contienen {{TargetPath}} solo se pueden ejecutar desde la página de Resumen de Mods</value>
+  </data>
+  <data name="CommandsSettingsPage_CreateNewCommandButton.Content" xml:space="preserve">
+    <value>Crear Nuevo Comando</value>
+  </data>
+  <data name="CommandsSettingsPage_CommandDefinitions.Header" xml:space="preserve">
+    <value>Definiciones de Comandos</value>
+  </data>
+  <data name="CommandsSettingsPage_CommandDefinitions.Description" xml:space="preserve">
+    <value>Aquí puedes ver y eliminar definiciones de comandos creadas</value>
+  </data>
+  <data name="CommandsSettingsPage_DisplayName.Text" xml:space="preserve">
+    <value>Nombre a Mostrar:</value>
+  </data>
+  <data name="CommandsSettingsPage_CommandDefinitionId.Text" xml:space="preserve">
+    <value>ID de Definición de Comando:</value>
+  </data>
+  <data name="CommandsSettingsPage_RunButton.Content" xml:space="preserve">
+    <value>Ejecutar</value>
+  </data>
+  <data name="CommandsSettingsPage_RunConfirmText.Text" xml:space="preserve">
+    <value>¿Estás seguro de que quieres ejecutar este comando?</value>
+  </data>
+  <data name="CommandsSettingsPage_RunConfirmButton.Content" xml:space="preserve">
+    <value>Ejecutar</value>
+  </data>
+  <data name="CommandsSettingsPage_EditButton.Content" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="CommandsSettingsPage_DeleteButton.Content" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="CommandsSettingsPage_DeleteConfirmText.Text" xml:space="preserve">
+    <value>¿Estás seguro de que quieres eliminar este comando?</value>
+  </data>
+  <data name="CommandsSettingsPage_DeleteConfirmButton.Content" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="CommandsSettingsPage_Executable.Text" xml:space="preserve">
+    <value>Ejecutable: </value>
+  </data>
+  <data name="CommandsSettingsPage_WorkingDirectory.Text" xml:space="preserve">
+    <value>Directorio de Trabajo: </value>
+  </data>
+  <data name="CommandsSettingsPage_Arguments.Text" xml:space="preserve">
+    <value>Argumentos: </value>
+  </data>
+  <data name="CommandsSettingsPage_RunningCommands.Header" xml:space="preserve">
+    <value>Comandos en Ejecución</value>
+  </data>
+  <data name="CommandsSettingsPage_RunningCommands.Description" xml:space="preserve">
+    <value>Comandos iniciados desde JASM para la instancia actual</value>
+  </data>
+  <data name="CommandsSettingsPage_RunningDisplayName.Text" xml:space="preserve">
+    <value>Nombre a Mostrar: </value>
+  </data>
+  <data name="CommandsSettingsPage_RunningFullCommand.Text" xml:space="preserve">
+    <value>Comando Completo: </value>
+  </data>
+  <data name="CommandsSettingsPage_RunningCommandDefId.Text" xml:space="preserve">
+    <value>ID de Definición de Comando: </value>
+  </data>
+  <data name="CommandsSettingsPage_KillButton.Content" xml:space="preserve">
+    <value>Matar</value>
+  </data>
+  <!-- ===== CreateCommandView ===== -->
+  <data name="CreateCommandView_Title.Text" xml:space="preserve">
+    <value>Crear Comando</value>
+  </data>
+  <data name="CreateCommandView_CommandName.Header" xml:space="preserve">
+    <value>* Nombre del Comando:</value>
+  </data>
+  <data name="CreateCommandView_CommandName_PlaceholderText" xml:space="preserve">
+    <value>Nombre a Mostrar del Comando (Requerido)</value>
+  </data>
+  <data name="CreateCommandView_CommandName.PlaceholderText" xml:space="preserve">
+    <value>Nombre a Mostrar del Comando (Requerido)</value>
+  </data>
+  <data name="CreateCommandView_CustomCommand.Content" xml:space="preserve">
+    <value>Comando Personalizado</value>
+  </data>
+  <data name="CreateCommandView_ChainedCommand.Content" xml:space="preserve">
+    <value>Comando Encadenado Personalizado</value>
+  </data>
+  <data name="CreateCommandView_Executable.Title" xml:space="preserve">
+    <value>* Ejecutable</value>
+  </data>
+  <data name="CreateCommandView_Executable_PlaceHolderText" xml:space="preserve">
+    <value>Debe estar en $PATH o ser una ruta absoluta al ejecutable (Requerido)</value>
+  </data>
+  <data name="CreateCommandView_Executable.PlaceHolderText" xml:space="preserve">
+    <value>Debe estar en $PATH o ser una ruta absoluta al ejecutable (Requerido)</value>
+  </data>
+  <data name="CreateCommandView_WorkingDirectory.Title" xml:space="preserve">
+    <value>Directorio de Trabajo</value>
+  </data>
+  <data name="CreateCommandView_WorkingDirectory_PlaceHolderText" xml:space="preserve">
+    <value>Al especificar una ruta manualmente, la carpeta debe existir</value>
+  </data>
+  <data name="CreateCommandView_WorkingDirectory.PlaceHolderText" xml:space="preserve">
+    <value>Al especificar una ruta manualmente, la carpeta debe existir</value>
+  </data>
+  <data name="CreateCommandView_Arguments.Header" xml:space="preserve">
+    <value>Argumentos</value>
+  </data>
+  <data name="CreateCommandView_Arguments_PlaceholderText" xml:space="preserve">
+    <value>Argumentos que se pasarán al ejecutable</value>
+  </data>
+  <data name="CreateCommandView_Arguments.PlaceholderText" xml:space="preserve">
+    <value>Argumentos que se pasarán al ejecutable</value>
+  </data>
+  <data name="CreateCommandView_TargetPathHelp.Text" xml:space="preserve">
+    <value>Cuando el comando se ejecuta contra un objeto del sistema de archivos (es decir, una carpeta de skin/mod), {{TargetPath}} será reemplazado por la ruta real.</value>
+  </data>
+  <data name="CreateCommandView_KillProcess.Content" xml:space="preserve">
+    <value>Matar Proceso al salir de JASM</value>
+  </data>
+  <data name="CreateCommandView_RunAsAdmin.Content" xml:space="preserve">
+    <value>Ejecutar como Administrador</value>
+  </data>
+  <data name="CreateCommandView_UseShellExecute.Content" xml:space="preserve">
+    <value>Usar Ejecución del Sistema</value>
+  </data>
+  <data name="CreateCommandView_CreateWindow.Content" xml:space="preserve">
+    <value>Crear ventana</value>
+  </data>
+  <data name="CreateCommandView_CommandPreview.Header" xml:space="preserve">
+    <value>Comando que se ejecutará:</value>
+  </data>
+  <data name="WindowManagerService_Close" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkTitle" xml:space="preserve">
+    <value>Cómo funcionan los Presets</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkClose" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkDesc1" xml:space="preserve">
+    <value>Un Preset es una lista de Mods para activar y sus preferencias. JASM lee y almacena las preferencias de los mods en los propios mods en el archivo .JASM_ModConfig.json</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkDesc2" xml:space="preserve">
+    <value>Cuando creas un nuevo preset, JASM crea una lista de todos los mods habilitados y las preferencias almacenadas en ellos. Cuando aplicas el preset más tarde, habilitará solo esos mods y aplicará las preferencias almacenadas en el preset</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkDesc3" xml:space="preserve">
+    <value>Puedes permitir que JASM maneje la recarga de 3Dmigoto iniciando Elevator y marcando la casilla Auto Sync. También puedes hacerlo tú mismo marcando la casilla Mostrar Controles Manuales y guardando/cargando preferencias manualmente y refrescando 3Dmigoto con la tecla F10.</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkDesc4" xml:space="preserve">
+    <value>Es posible simplemente ignorar la parte de presets de esta página y solo usar los controles manuales para persistir las preferencias de los mods.</value>
+  </data>
+  <data name="RandomizeModsDialog_Title" xml:space="preserve">
+    <value>Aleatorizar Mods</value>
+  </data>
+  <data name="RandomizeModsDialog_Primary" xml:space="preserve">
+    <value>Aleatorizar</value>
+  </data>
+  <data name="RandomizeModsDialog_Close" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="RandomizeModsDialog_DescPrefix" xml:space="preserve">
+    <value>Selecciona las categorías que deseas aleatorizar:</value>
+  </data>
+  <data name="RandomizeModsDialog_DescNote" xml:space="preserve">
+    <value>Nota: Esto solo aleatorizará las carpetas de mods que están diseñadas para tener solo un mod activo. Las carpetas 'Otros __' no se aleatorizarán. Solo se habilitará un mod por skin de personaje en el juego.</value>
+  </data>
+  <data name="RandomizeModsDialog_AllowNone" xml:space="preserve">
+    <value>Permitir ningún mod como resultado. Esto significa que es posible que no se habilite ningún mod para una carpeta de mods</value>
+  </data>
+  <data name="RandomizeModsDialog_Suggestion" xml:space="preserve">
+    <value>Te sugiero crear un preset (o una copia de seguridad) de tus mods antes de aleatorizar si tienes muchos mods habilitados</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifNoCategories" xml:space="preserve">
+    <value>Ninguna categoría seleccionada</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifNoCategoriesDesc" xml:space="preserve">
+    <value>No se seleccionaron categorías para aleatorizar.</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifFailed" xml:space="preserve">
+    <value>Error al aleatorizar mods</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifSuccess" xml:space="preserve">
+    <value>Mods aleatorizados</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifSuccessDesc" xml:space="preserve">
+    <value>Mods han sido aleatorizados para las categorías: </value>
+  </data>
+  <data name="CreateCommandView_EffectiveWorkingDirPrefix" xml:space="preserve">
+    <value>Directorio de trabajo efectivo: </value>
+  </data>
+  <data name="CreateCommandView_InvalidWorkingDir" xml:space="preserve">
+    <value>Directorio de trabajo no válido</value>
+  </data>
+  <data name="CreateCommandView_SaveCommand.Content" xml:space="preserve">
+    <value>Guardar Comando</value>
+  </data>
+  <!-- ===== Category Names ===== -->
+  <data name="Category_Character" xml:space="preserve">
+    <value>Personaje</value>
+  </data>
+  <data name="Category_Characters" xml:space="preserve">
+    <value>Personajes</value>
+  </data>
+  <data name="Category_NPC" xml:space="preserve">
+    <value>PNJ</value>
+  </data>
+  <data name="Category_NPCs" xml:space="preserve">
+    <value>PNJs</value>
+  </data>
+  <data name="Category_Object" xml:space="preserve">
+    <value>Objeto</value>
+  </data>
+  <data name="Category_Objects" xml:space="preserve">
+    <value>Objetos</value>
+  </data>
+  <data name="Category_Weapon" xml:space="preserve">
+    <value>Arma</value>
+  </data>
+  <data name="Category_Weapons" xml:space="preserve">
+    <value>Armas</value>
+  </data>
+  <data name="Category_Custom" xml:space="preserve">
+    <value>Personalizado</value>
+  </data>
+  <data name="Characters_ErrorDisablingModsTitle" xml:space="preserve">
+    <value>Error al deshabilitar mods</value>
+  </data>
+  <data name="Characters_ModsDisabledTitle" xml:space="preserve">
+    <value>Mods Deshabilitados</value>
+  </data>
+  <data name="Characters_ModsDisabledMessage" xml:space="preserve">
+    <value>Todos los mods de {0} han sido deshabilitados</value>
+  </data>
+  <data name="Characters_ModsEnabledTitle" xml:space="preserve">
+    <value>Mods habilitados</value>
+  </data>
+  <data name="Characters_ModsEnabledMessage" xml:space="preserve">
+    <value>Todos los mods rastreados han sido habilitados para {0}.</value>
+  </data>
+  <data name="Characters_ErrorsEnablingModsTitle" xml:space="preserve">
+    <value>Errores al habilitar mods</value>
+  </data>
+  <data name="Characters_ErrorsEnablingModsMessage" xml:space="preserve">
+    <value>Ocurrió un error para {0} mods. Revise los registros.</value>
+  </data>
+  <data name="Characters_ModsDisabledSuccessTitle" xml:space="preserve">
+    <value>Mods deshabilitados</value>
+  </data>
+  <data name="Characters_ModsDisabledSuccessMessage" xml:space="preserve">
+    <value>Todos los mods rastreados han sido deshabilitados para {0}.</value>
+  </data>
+  <data name="Characters_ErrorsDisablingModsTitle" xml:space="preserve">
+    <value>Errores al deshabilitar mods</value>
+  </data>
+  <data name="Characters_ErrorsDisablingModsMessage" xml:space="preserve">
+    <value>Ocurrió un error para {0} mods. Revise los registros.</value>
+  </data>
+  <data name="Characters_CleanupCompleteTitle" xml:space="preserve">
+    <value>Limpieza completa</value>
+  </data>
+  <data name="Characters_CleanupCompleteMessage" xml:space="preserve">
+    <value>Se eliminaron {0} mods deshabilitados para {1}.</value>
+  </data>
+  <data name="Characters_ErrorAddingModTitle" xml:space="preserve">
+    <value>Error al agregar mod</value>
+  </data>
+  <data name="Characters_InvalidGameBananaLinkTitle" xml:space="preserve">
+    <value>Enlace de página de mod de GameBanana inválido</value>
+  </data>
+  <data name="Characters_ErrorOpeningModPageTitle" xml:space="preserve">
+    <value>Error al abrir la ventana de página de mod</value>
+  </data>
+  <data name="Settings_Startup_SettingsSavedTitle" xml:space="preserve">
+    <value>Configuración de inicio guardada</value>
+  </data>
+  <data name="Settings_Startup_SettingsSavedMessage" xml:space="preserve">
+    <value>Configuración de inicio guardada exitosamente en '{0}'</value>
+  </data>
+  <data name="Settings_Startup_AlphaTitle" xml:space="preserve">
+    <value>JASM aún está en alpha</value>
+  </data>
+  <data name="Settings_Startup_AlphaMessage" xml:space="preserve">
+    <value>Habrá errores y es probable que algo se rompa. De todos modos, espero que disfrutes usando Just Another Skin Manager.</value>
+  </data>
+  <data name="Settings_RestartRequired_Title" xml:space="preserve">
+    <value>Reinicio requerido</value>
+  </data>
+  <data name="Settings_RestartRequired_Content" xml:space="preserve">
+    <value>Necesitarás reiniciar la aplicación para que el tema surta efecto o de lo contrario la aplicación se volverá inestable. Esto es probablemente porque no configuré los temas correctamente. El modo oscuro es el tema recomendado.
+
+Disculpa las molestias.</value>
+  </data>
+  <data name="Settings_RestartRequired_PrimaryButton" xml:space="preserve">
+    <value>Reiniciar</value>
+  </data>
+  <data name="Settings_RestartRequired_CloseButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Settings_ReorganizeMods_Title" xml:space="preserve">
+    <value>¿Reorganizar Mods?</value>
+  </data>
+  <data name="Settings_ReorganizeMods_Content" xml:space="preserve">
+    <value>¿Deseas reorganizar la carpeta Mods?
+Esto hará que la aplicación ordene los mods existentes que están directamente en la carpeta Mods y en la carpeta Others, dentro de carpetas asignadas a sus respectivos personajes.
+
+Cualquier mod que no pueda ser emparejado razonablemente se colocará en una carpeta 'Others'. Los mods que ya están en la carpeta 'Others' permanecerán allí.</value>
+  </data>
+  <data name="Settings_ReorganizeMods_PrimaryButton" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="Settings_ReorganizeMods_CloseButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Settings_RestartRequired_LangTitle" xml:space="preserve">
+    <value>Reinicio Requerido</value>
+  </data>
+  <data name="Settings_RestartRequired_LangPrimaryButton" xml:space="preserve">
+    <value>Cambiar idioma y reiniciar</value>
+  </data>
+  <data name="Settings_RestartRequired_LangCloseButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Settings_SwitchGame_Title" xml:space="preserve">
+    <value>Cambiar Juego</value>
+  </data>
+  <data name="Settings_SwitchGame_Content" xml:space="preserve">
+    <value>Cambiar de juego reiniciará la aplicación. Esto es necesario para asegurar que la aplicación esté configurada correctamente para el juego seleccionado.
+
+¿Deseas cambiar de juego?</value>
+  </data>
+  <data name="Settings_SwitchGame_PrimaryButton" xml:space="preserve">
+    <value>Cambiar a {0}</value>
+  </data>
+  <data name="Settings_SwitchGame_CloseButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Settings_CharacterSkins_EnableTitle" xml:space="preserve">
+    <value>¿Habilitar Skins de Personaje como Personajes?</value>
+  </data>
+  <data name="Settings_CharacterSkins_EnableContent" xml:space="preserve">
+    <value>Habilitar esto hará que JASM trate las skins del juego como personajes separados en la vista general de personajes.
+Esto podría convertirse en la configuración predeterminada de JASM en el futuro.
+JASM no moverá ninguno de tus mods ni los eliminará.
+
+¿Estás seguro de que deseas habilitar las skins de personaje como personajes? JASM se reiniciará después...</value>
+  </data>
+  <data name="Settings_CharacterSkins_EnablePrimaryButton" xml:space="preserve">
+    <value>Habilitar</value>
+  </data>
+  <data name="Settings_CharacterSkins_DisableTitle" xml:space="preserve">
+    <value>¿Deshabilitar Skins de Personaje como Personajes?</value>
+  </data>
+  <data name="Settings_CharacterSkins_DisableContent" xml:space="preserve">
+    <value>Deshabilitar esto hará que JASM trate las skins del juego como skins del personaje base en la vista general de personajes.
+Esta es actualmente la configuración predeterminada de JASM
+JASM no moverá ninguno de tus mods ni los eliminará.
+
+¿Estás seguro de que deseas deshabilitar las skins de personaje como personajes? JASM se reiniciará después...</value>
+  </data>
+  <data name="Settings_CharacterSkins_DisablePrimaryButton" xml:space="preserve">
+    <value>Deshabilitar</value>
+  </data>
+  <data name="Settings_CharacterSkins_CloseButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Settings_UpdateFolderPaths_Title" xml:space="preserve">
+    <value>¿Actualizar Rutas de Carpetas?</value>
+  </data>
+  <data name="Settings_UpdateFolderPaths_Content" xml:space="preserve">
+    <value>¿Deseas guardar las nuevas rutas de carpeta? La aplicación se reiniciará después.</value>
+  </data>
+  <data name="Settings_UpdateFolderPaths_PrimaryButton" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="Settings_UpdateFolderPaths_CloseButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Settings_Export_ButtonText" xml:space="preserve">
+    <value>Exportar Mods</value>
+  </data>
+  <data name="Settings_GameSource_RestartTitle" xml:space="preserve">
+    <value>Reinicio Requerido</value>
+  </data>
+  <data name="Settings_GameSource_RestartContent" xml:space="preserve">
+    <value>Cambiar la Fuente del Juego requiere reiniciar la aplicación para cargar los nuevos juegos. JASM se cerrará ahora.</value>
+  </data>
+  <data name="Settings_GameSource_RestartPrimary" xml:space="preserve">
+    <value>Reiniciar ahora</value>
+  </data>
+  <data name="Settings_GameSource_RestartClose" xml:space="preserve">
+    <value>Reiniciar después</value>
+  </data>
+  <data name="Settings_StartElevator_CloseButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Settings_StartElevator_PrimaryButton" xml:space="preserve">
+    <value>Iniciar</value>
+  </data>
+  <data name="Settings_Export_PrimaryButton" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="Settings_Export_CloseButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Notifications_LogFileNotFoundTitle" xml:space="preserve">
+    <value>Archivo de registro no encontrado</value>
+  </data>
+  <data name="Notifications_LogFileCouldNotOpenTitle" xml:space="preserve">
+    <value>El archivo de registro no pudo abrirse</value>
+  </data>
+  <data name="Shell_ElevatorNotRunningTitle" xml:space="preserve">
+    <value>Elevator no está ejecutándose</value>
+  </data>
+  <data name="Shell_ElevatorNotRunningMessage" xml:space="preserve">
+    <value>Por favor, inicie Elevator primero en la página de Configuración</value>
+  </data>
+  <data name="CommandsSettingsPage_WarningPrimary" xml:space="preserve">
+    <value>Entiendo</value>
+  </data>
+  <data name="CreateCommand_FilePicker_CommitText" xml:space="preserve">
+    <value>Seleccionar</value>
+  </data>
+  <data name="CreateCommand_FolderPicker_CommitText" xml:space="preserve">
+    <value>Seleccionar Carpeta</value>
+  </data>
+  <data name="Characters_PinToTopText" xml:space="preserve">
+    <value>Fijar al Inicio</value>
+  </data>
+  <data name="Characters_UnpinCharacterText" xml:space="preserve">
+    <value>Desfijar Personaje</value>
+  </data>
+  <data name="Settings_Export_Status_KeepCurrent" xml:space="preserve">
+    <value>Mantener Actual</value>
+  </data>
+  <data name="Settings_Export_Status_EnableAll" xml:space="preserve">
+    <value>Habilitar Todos los Mods</value>
+  </data>
+  <data name="Settings_Export_Status_DisableAll" xml:space="preserve">
+    <value>Deshabilitar Todos los Mods</value>
+  </data>
+  <data name="CharacterDetails_ViewToggle.OnContent" xml:space="preserve">
+    <value>Vista Galería</value>
+  </data>
+  <data name="ModGrid_EnabledColumn" xml:space="preserve">
+    <value>Habilitado</value>
+  </data>
+  <data name="ModGrid_ModNameColumn" xml:space="preserve">
+    <value>Nombre del Mod</value>
+  </data>
+  <data name="ModGrid_ModFolderNameColumn" xml:space="preserve">
+    <value>Nombre de Carpeta del Mod</value>
+  </data>
+  <data name="ModGrid_AuthorColumn" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="ModGrid_AddedColumn" xml:space="preserve">
+    <value>Agregado</value>
+  </data>
+  <data name="ModGrid_PresetsColumn" xml:space="preserve">
+    <value>Presets</value>
+  </data>
+  <data name="ModGrid_NotesColumn" xml:space="preserve">
+    <value>Notas</value>
+  </data>
 </root>

@@ -1709,4 +1709,28 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="Settings_Export_Status_DisableAll" xml:space="preserve">
     <value>Disable All Mods</value>
   </data>
+  <data name="CharacterDetails_ViewToggle.OnContent" xml:space="preserve">
+    <value>Gallery View</value>
+  </data>
+  <data name="ModGrid_EnabledColumn" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="ModGrid_ModNameColumn" xml:space="preserve">
+    <value>Mod Name</value>
+  </data>
+  <data name="ModGrid_ModFolderNameColumn" xml:space="preserve">
+    <value>Mod Folder Name</value>
+  </data>
+  <data name="ModGrid_AuthorColumn" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="ModGrid_AddedColumn" xml:space="preserve">
+    <value>Added</value>
+  </data>
+  <data name="ModGrid_PresetsColumn" xml:space="preserve">
+    <value>Presets</value>
+  </data>
+  <data name="ModGrid_NotesColumn" xml:space="preserve">
+    <value>Notes</value>
+  </data>
 </root>
