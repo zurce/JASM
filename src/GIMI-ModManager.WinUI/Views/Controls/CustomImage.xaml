@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:local="using:GIMI_ModManager.WinUI.Views.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="CustomImageRoot"
@@ -53,7 +54,8 @@
             Background="{ThemeResource SmokeFillColorDefaultBrush}"
             Command="{x:Bind EditButtonCommand, Mode=OneWay}"
             ToolTipService.ToolTip="Pick an Image"
-            Visibility="{x:Bind EditButtonVisibility, Mode=OneWay}">
+            Visibility="{x:Bind EditButtonVisibility, Mode=OneWay}"
+            l:Uids.Uid="CustomImage_PickImageButton">
             <FontIcon x:Name="EditButtonFontIcon" Glyph="&#xE70F;" />
         </Button>
     </Grid>

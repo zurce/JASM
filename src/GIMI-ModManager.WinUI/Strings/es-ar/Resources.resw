@@ -3688,4 +3688,16 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="ModInstallerPage_PreviewImageHint.Text" xml:space="preserve">
     <value>También puede seleccionar manualmente un archivo de imagen para la imagen de vista previa del mod. Generalmente está bien solo presionar 'Agregar Mod'</value>
   </data>
+  <data name="ModInstaller_HelperWindowTitle" xml:space="preserve">
+    <value>Asistente de Instalación de Mods: {0}</value>
+  </data>
+  <data name="ModInstallerPage_AlwaysOnTopToggle.ToolTip" xml:space="preserve">
+    <value>Mantener ventana siempre al frente</value>
+  </data>
+  <data name="ModInstallerPage_RetrieveModInfoButton.ToolTip" xml:space="preserve">
+    <value>Obtener información del mod desde la página de mod</value>
+  </data>
+  <data name="CustomImage_PickImageButton.ToolTip" xml:space="preserve">
+    <value>Seleccionar una Imagen</value>
+  </data>
 </root>

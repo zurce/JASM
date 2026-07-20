@@ -197,7 +197,7 @@
                     VerticalAlignment="Top"
                     Command="{x:Bind ViewModel.ToggleAlwaysOnTopCommand}"
                     IsChecked="{x:Bind ViewModel.AlwaysOnTop, Mode=TwoWay}"
-                    ToolTipService.ToolTip="Keep window always on top">
+                    ToolTipService.ToolTip="Keep window always on top" l:Uids.Uid="ModInstallerPage_AlwaysOnTopToggle">
                     <FontIcon Glyph="&#xE718;" />
                 </ToggleButton>
                 <controls:CustomImage
@@ -215,7 +215,8 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
                     Command="{x:Bind ViewModel.ReRetrieveModInfoCommand}"
-                    ToolTipService.ToolTip="Retrieve mod info from the mod page">
+                    ToolTipService.ToolTip="Retrieve mod info from the mod page"
+                    l:Uids.Uid="ModInstallerPage_RetrieveModInfoButton">
                     <Button.Content>
                         <FontIcon Glyph="&#xE72C;" />
                     </Button.Content>
