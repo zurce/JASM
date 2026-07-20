@@ -337,6 +337,9 @@
   <data name="CharactersPage_ApplyPresetLabel.Text" xml:space="preserve">
     <value>Apply Preset:</value>
   </data>
+  <data name="CharactersPage_ApplyPresetConfirmText" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
   <data name="CharactersPage_ConfirmPreset.Text" xml:space="preserve">
     <value>Confirm</value>
   </data>
@@ -506,6 +509,15 @@
   <data name="PresetPage_AutoSyncWarning.Text" xml:space="preserve">
     <value>Auto sync not enabled! Remember to manually reload 3Dmigoto config with the F10 key when doing changes</value>
   </data>
+  <data name="PresetPage_ApplyPresetButton.Content" xml:space="preserve">
+    <value>Apply Preset</value>
+  </data>
+  <data name="PresetPage_ApplyConfirm.Content" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="PresetPage_ResetConfirm.Content" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
   <data name="PresetPage_PageTitle.Text" xml:space="preserve">
     <value>Mod Presets and Mod Preferences</value>
   </data>
@@ -572,8 +584,11 @@
   <data name="PresetPage_AlsoReset3DMigoto.Content" xml:space="preserve">
     <value>Also clear preferences in to 3Dmigoto user ini</value>
   </data>
-  <data name="PresetPage_ResetConfirm.Content" xml:space="preserve">
-    <value>Confirm</value>
+  <data name="PresetPage_RenameText" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="PresetPage_ConfirmText" xml:space="preserve">
+    <value>Save New Name</value>
   </data>
   <!-- ===== ModInstallerPage ===== -->
   <data name="ModInstallerPage_SetModPreviewImage.Text" xml:space="preserve">
@@ -1175,6 +1190,60 @@
   </data>
   <data name="WindowManagerService_Close" xml:space="preserve">
     <value>Close</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkTitle" xml:space="preserve">
+    <value>How presets work</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkDesc1" xml:space="preserve">
+    <value>A Preset is a list of Mods to enable and their preferences. JASM reads and stores mod preferences in the mods themselves in the file .JASM_ModConfig.json</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkDesc2" xml:space="preserve">
+    <value>When you create a new preset JASM creates a list of all enabled mods and the preferences stored in them. So when you apply the preset later it will enable only those mods and apply the preferences stored in the preset</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkDesc3" xml:space="preserve">
+    <value>You can allow JASM to handle 3Dmigoto reloading by starting the Elevator and checking the Auto Sync checkbox. But you can also do it yourself by checking the Show Manual Controls checkbox and saving/loading preferences manually and refreshing 3Dmigoto with the F10 key.</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkDesc4" xml:space="preserve">
+    <value>It is possible to simply ignore the preset part of this page and only use the manual controls to persist mod preferences.</value>
+  </data>
+  <data name="RandomizeModsDialog_Title" xml:space="preserve">
+    <value>Randomize Mods</value>
+  </data>
+  <data name="RandomizeModsDialog_Primary" xml:space="preserve">
+    <value>Randomize</value>
+  </data>
+  <data name="RandomizeModsDialog_Close" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="RandomizeModsDialog_DescPrefix" xml:space="preserve">
+    <value>Select the categories you want to randomize mods for:</value>
+  </data>
+  <data name="RandomizeModsDialog_DescNote" xml:space="preserve">
+    <value>Note: This will only randomize mod folders that are meant to only have one mod active. So 'Others __' folders will not be randomized. While only one mod wil be enabled per in game character skin</value>
+  </data>
+  <data name="RandomizeModsDialog_AllowNone" xml:space="preserve">
+    <value>Allow no mods as a result. This means it is possible for no mods to be enabled for a mod folder</value>
+  </data>
+  <data name="RandomizeModsDialog_Suggestion" xml:space="preserve">
+    <value>I suggest creating a preset (or a backup) of your mods before randomizing if you have a lot of enabled mods</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifNoCategories" xml:space="preserve">
+    <value>No categories selected</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifNoCategoriesDesc" xml:space="preserve">
+    <value>No categories were selected to randomize.</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifFailed" xml:space="preserve">
+    <value>Failed to randomize mods</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifSuccess" xml:space="preserve">
+    <value>Mods randomized</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifSuccessDesc" xml:space="preserve">
+    <value>Mods have been randomized for the categories: </value>
   </data>
   <data name="CreateCommandView_EffectiveWorkingDirPrefix" xml:space="preserve">
     <value>Effective working directory: </value>

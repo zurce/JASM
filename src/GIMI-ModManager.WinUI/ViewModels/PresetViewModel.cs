@@ -479,7 +479,7 @@ public partial class ModPresetVm : ObservableObject
 
     [ObservableProperty] private bool _isEditingName;
 
-    [ObservableProperty] private string _renameButtonText = RenameText;
+    [ObservableProperty] private string _renameButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetPage_RenameText") ?? "Rename";
     [ObservableProperty] private bool _isReadOnly;
 
     [RelayCommand]
@@ -524,8 +524,8 @@ public partial class ModPresetVm : ObservableObject
     public required IAsyncRelayCommand ApplyPresetCommand { get; init; }
     public required IRelayCommand NavigateToPresetDetailsCommand { get; init; }
 
-    private const string RenameText = "Rename";
-    private const string ConfirmText = "Save New Name";
+    private string RenameText => App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetPage_RenameText") ?? "Rename";
+    private string ConfirmText => App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetPage_ConfirmText") ?? "Save New Name";
 }
 
 public partial class ModPresetEntryVm : ObservableObject

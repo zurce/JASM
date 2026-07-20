@@ -41,6 +41,7 @@
                     <TextBlock
                         VerticalAlignment="Center"
                         Text="Auto sync not enabled! Remember to manually reload 3Dmigoto config with the F10 key when doing changes"
+                        l:Uids.Uid="PresetPage_AutoSyncWarning"
                         Visibility="{x:Bind ViewModel.AutoSync3DMigotoConfigIsDisabled, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                     <Button Click="ButtonBase_OnClick">
@@ -217,14 +218,14 @@
                                     Grid.Column="2"
                                     Orientation="Horizontal"
                                     Spacing="16">
-                                    <Button Content="Apply Preset" ToolTipService.ToolTip="Enables all mods in this preset and writes the preset's mod preferences to mods">
+                                    <Button Content="Apply Preset" l:Uids.Uid="PresetPage_ApplyPresetButton" ToolTipService.ToolTip="Enables all mods in this preset and writes the preset's mod preferences to mods">
                                         <Button.Flyout>
                                             <Flyout Placement="Left">
                                                 <StackPanel>
                                                     <Button
                                                         Command="{x:Bind ApplyPresetCommand}"
                                                         CommandParameter="{Binding}"
-                                                        Content="Confirm" />
+                                                        Content="Confirm" l:Uids.Uid="PresetPage_ApplyConfirm" />
                                                 </StackPanel>
                                             </Flyout>
                                         </Button.Flyout>
@@ -308,7 +309,7 @@
                                 <Button
                                     HorizontalAlignment="Center"
                                     Command="{x:Bind ViewModel.ResetModPreferencesCommand}"
-                                    Content="Confirm" />
+                                    Content="Confirm" l:Uids.Uid="PresetPage_ResetConfirm" />
                             </StackPanel>
                         </Flyout>
                     </Button.Flyout>

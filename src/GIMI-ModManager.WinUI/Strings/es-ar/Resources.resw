@@ -352,6 +352,9 @@
   <data name="CharactersPage_ApplyPresetLabel.Text" xml:space="preserve">
     <value>Aplicar Preset:</value>
   </data>
+  <data name="CharactersPage_ApplyPresetConfirmText" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
   <data name="CharactersPage_ConfirmPreset.Text" xml:space="preserve">
     <value>Confirmar</value>
   </data>
@@ -586,6 +589,12 @@
   </data>
   <data name="PresetPage_AlsoReset3DMigoto.Content" xml:space="preserve">
     <value>También limpiar preferencias en el ini de usuario de 3Dmigoto</value>
+  </data>
+  <data name="PresetPage_RenameText" xml:space="preserve">
+    <value>Renombrar</value>
+  </data>
+  <data name="PresetPage_ConfirmText" xml:space="preserve">
+    <value>Guardar Nuevo Nombre</value>
   </data>
   <data name="PresetPage_ResetConfirm.Content" xml:space="preserve">
     <value>Confirmar</value>
@@ -1190,6 +1199,60 @@
   </data>
   <data name="WindowManagerService_Close" xml:space="preserve">
     <value>Cerrar</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkTitle" xml:space="preserve">
+    <value>Cómo funcionan los Presets</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkClose" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkDesc1" xml:space="preserve">
+    <value>Un Preset es una lista de Mods para activar y sus preferencias. JASM lee y almacena las preferencias de los mods en los propios mods en el archivo .JASM_ModConfig.json</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkDesc2" xml:space="preserve">
+    <value>Cuando creas un nuevo preset, JASM crea una lista de todos los mods habilitados y las preferencias almacenadas en ellos. Cuando aplicas el preset más tarde, habilitará solo esos mods y aplicará las preferencias almacenadas en el preset</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkDesc3" xml:space="preserve">
+    <value>Puedes permitir que JASM maneje la recarga de 3Dmigoto iniciando Elevator y marcando la casilla Auto Sync. También puedes hacerlo tú mismo marcando la casilla Mostrar Controles Manuales y guardando/cargando preferencias manualmente y refrescando 3Dmigoto con la tecla F10.</value>
+  </data>
+  <data name="PresetPage_HowPresetsWorkDesc4" xml:space="preserve">
+    <value>Es posible simplemente ignorar la parte de presets de esta página y solo usar los controles manuales para persistir las preferencias de los mods.</value>
+  </data>
+  <data name="RandomizeModsDialog_Title" xml:space="preserve">
+    <value>Aleatorizar Mods</value>
+  </data>
+  <data name="RandomizeModsDialog_Primary" xml:space="preserve">
+    <value>Aleatorizar</value>
+  </data>
+  <data name="RandomizeModsDialog_Close" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="RandomizeModsDialog_DescPrefix" xml:space="preserve">
+    <value>Selecciona las categorías que deseas aleatorizar:</value>
+  </data>
+  <data name="RandomizeModsDialog_DescNote" xml:space="preserve">
+    <value>Nota: Esto solo aleatorizará las carpetas de mods que están diseñadas para tener solo un mod activo. Las carpetas 'Otros __' no se aleatorizarán. Solo se habilitará un mod por skin de personaje en el juego.</value>
+  </data>
+  <data name="RandomizeModsDialog_AllowNone" xml:space="preserve">
+    <value>Permitir ningún mod como resultado. Esto significa que es posible que no se habilite ningún mod para una carpeta de mods</value>
+  </data>
+  <data name="RandomizeModsDialog_Suggestion" xml:space="preserve">
+    <value>Te sugiero crear un preset (o una copia de seguridad) de tus mods antes de aleatorizar si tienes muchos mods habilitados</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifNoCategories" xml:space="preserve">
+    <value>Ninguna categoría seleccionada</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifNoCategoriesDesc" xml:space="preserve">
+    <value>No se seleccionaron categorías para aleatorizar.</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifFailed" xml:space="preserve">
+    <value>Error al aleatorizar mods</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifSuccess" xml:space="preserve">
+    <value>Mods aleatorizados</value>
+  </data>
+  <data name="RandomizeModsDialog_NotifSuccessDesc" xml:space="preserve">
+    <value>Mods han sido aleatorizados para las categorías: </value>
   </data>
   <data name="CreateCommandView_EffectiveWorkingDirPrefix" xml:space="preserve">
     <value>Directorio de trabajo efectivo: </value>

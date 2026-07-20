@@ -24,6 +24,7 @@ public class ModRandomizationService
     private readonly ElevatorService _elevatorService;
     private readonly NotificationManager _notificationManager;
     private readonly ILogger _logger;
+    private readonly ILanguageLocalizer _localizer;
     private static readonly Random Random = new();
 
     public ModRandomizationService(
@@ -33,7 +34,8 @@ public class ModRandomizationService
         CharacterSkinService characterSkinService,
         ElevatorService elevatorService,
         NotificationManager notificationManager,
-        ILogger logger)
+        ILogger logger,
+        ILanguageLocalizer localizer)
     {
         _gameService = gameService;
         _skinManagerService = skinManagerService;
@@ -41,16 +43,18 @@ public class ModRandomizationService
         _characterSkinService = characterSkinService;
         _elevatorService = elevatorService;
         _notificationManager = notificationManager;
+        _localizer = localizer;
         _logger = logger.ForContext<ModRandomizationService>();
     }
 
     public async Task ShowRandomizeModsDialog()
     {
+        var localizer = _localizer;
         var dialog = new ContentDialog
         {
-            Title = "Randomize Mods",
-            PrimaryButtonText = "Randomize",
-            CloseButtonText = "Cancel",
+            Title = localizer.GetLocalizedStringOrDefault("RandomizeModsDialog_Title") ?? "Randomize Mods",
+            PrimaryButtonText = localizer.GetLocalizedStringOrDefault("RandomizeModsDialog_Primary") ?? "Randomize",
+            CloseButtonText = localizer.GetLocalizedStringOrDefault("RandomizeModsDialog_Close") ?? "Cancel",
             DefaultButton = ContentDialogButton.Primary
         };
 
@@ -59,12 +63,12 @@ public class ModRandomizationService
 
         stackPanel.Children.Add(new TextBlock
         {
-            Text = "Select the categories you want to randomize mods for:"
+            Text = localizer.GetLocalizedStringOrDefault("RandomizeModsDialog_DescPrefix") ?? "Select the categories you want to randomize mods for:"
         });
 
         stackPanel.Children.Add(new TextBlock
         {
-            Text = "Note: This will only randomize mod folders that are meant to only have one mod active. So 'Others __' folders will not be randomized. While only one mod wil be enabled per in game character skin",
+            Text = localizer.GetLocalizedStringOrDefault("RandomizeModsDialog_DescNote") ?? "Note: This will only randomize mod folders that are meant to only have one mod active. So 'Others __' folders will not be randomized. While only one mod wil be enabled per in game character skin",
             TextWrapping = TextWrapping.WrapWholeWords,
             Margin = new Thickness(0, 0, 0, 10)
         });
@@ -73,7 +77,7 @@ public class ModRandomizationService
         {
             var checkBox = new CheckBox
             {
-                Content = category.DisplayNamePlural,
+                Content = localizer.GetLocalizedStringOrDefault("Category_" + category.DisplayNamePlural.Replace(" ", "")) ?? category.DisplayNamePlural,
                 IsChecked = true
             };
             stackPanel.Children.Add(checkBox);
@@ -82,13 +86,13 @@ public class ModRandomizationService
         stackPanel.Children.Add(new CheckBox
         {
             Margin = new Thickness(0, 10, 0, 0),
-            Content = "Allow no mods as a result. This means it is possible for no mods to be enabled for a mod folder",
+            Content = localizer.GetLocalizedStringOrDefault("RandomizeModsDialog_AllowNone") ?? "Allow no mods as a result. This means it is possible for no mods to be enabled for a mod folder",
             IsChecked = false
         });
 
         stackPanel.Children.Add(new TextBlock
         {
-            Text = "I suggest creating a preset (or a backup) of your mods before randomizing if you have a lot of enabled mods",
+            Text = localizer.GetLocalizedStringOrDefault("RandomizeModsDialog_Suggestion") ?? "I suggest creating a preset (or a backup) of your mods before randomizing if you have a lot of enabled mods",
             TextWrapping = TextWrapping.WrapWholeWords,
             Margin = new Thickness(0, 10, 0, 0)
         });
@@ -115,7 +119,9 @@ public class ModRandomizationService
 
         if (selectedCategories.Count == 0)
         {
-            _notificationManager.ShowNotification("No categories selected", "No categories were selected to randomize.",
+            _notificationManager.ShowNotification(
+                localizer.GetLocalizedStringOrDefault("RandomizeModsDialog_NotifNoCategories") ?? "No categories selected",
+                localizer.GetLocalizedStringOrDefault("RandomizeModsDialog_NotifNoCategoriesDesc") ?? "No categories were selected to randomize.",
                 TimeSpan.FromSeconds(5));
             return;
         }
@@ -184,7 +190,9 @@ public class ModRandomizationService
         catch (Exception e)
         {
             _logger.Error(e, "Failed to randomize mods");
-            _notificationManager.ShowNotification("Failed to randomize mods", e.Message, TimeSpan.FromSeconds(5));
+            _notificationManager.ShowNotification(
+                localizer.GetLocalizedStringOrDefault("RandomizeModsDialog_NotifFailed") ?? "Failed to randomize mods",
+                e.Message, TimeSpan.FromSeconds(5));
             return;
         }
 
@@ -193,9 +201,10 @@ public class ModRandomizationService
             await Task.Run(() => _elevatorService.RefreshGenshinMods());
         }
 
-        _notificationManager.ShowNotification("Mods randomized",
-            "Mods have been randomized for the categories: " +
-            string.Join(", ", selectedCategories.Select(c => c.DisplayNamePlural)),
+        _notificationManager.ShowNotification(
+            localizer.GetLocalizedStringOrDefault("RandomizeModsDialog_NotifSuccess") ?? "Mods randomized",
+            (localizer.GetLocalizedStringOrDefault("RandomizeModsDialog_NotifSuccessDesc") ?? "Mods have been randomized for the categories: ") +
+            string.Join(", ", selectedCategories.Select(c => localizer.GetLocalizedStringOrDefault("Category_" + c.DisplayNamePlural.Replace(" ", "")) ?? c.DisplayNamePlural)),
             TimeSpan.FromSeconds(5));
     }
 }

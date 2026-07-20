@@ -1,5 +1,6 @@
 ﻿using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.WinUI.Services.AppManagement;
 using GIMI_ModManager.WinUI.ViewModels;
 using GIMI_ModManager.WinUI.Views.Controls;
@@ -50,10 +51,11 @@ public sealed partial class PresetPage : Page
 
     private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {
+        var localizer = App.GetService<ILanguageLocalizer>();
         var dialog = new ContentDialog
         {
-            Title = "How presets work",
-            CloseButtonText = "Close",
+            Title = localizer.GetLocalizedStringOrDefault("PresetPage_HowPresetsWorkTitle") ?? "How presets work",
+            CloseButtonText = localizer.GetLocalizedStringOrDefault("PresetPage_HowPresetsWorkClose") ?? "Close",
             DefaultButton = ContentDialogButton.Close,
             Content = new StackPanel
             {
@@ -61,14 +63,18 @@ public sealed partial class PresetPage : Page
                 Children =
                 {
                     CreateTextBlock(
+                        localizer.GetLocalizedStringOrDefault("PresetPage_HowPresetsWorkDesc1") ??
                         "A Preset is a list of Mods to enable and their preferences. JASM reads and stores mod preferences in the mods themselves in the file .JASM_ModConfig.json"),
                     CreateTextBlock(
+                        localizer.GetLocalizedStringOrDefault("PresetPage_HowPresetsWorkDesc2") ??
                         "When you create a new preset JASM creates a list of all enabled mods and the preferences stored in them. So when you apply the preset later it will enable only those mods and apply the preferences stored in the preset"),
 
                     CreateTextBlock(
+                        localizer.GetLocalizedStringOrDefault("PresetPage_HowPresetsWorkDesc3") ??
                         "You can allow JASM to handle 3Dmigoto reloading by starting the Elevator and checking the Auto Sync checkbox. But you can also do it yourself by checking the Show Manual Controls checkbox and saving/loading preferences manually and refreshing 3Dmigoto with the F10 key."),
 
                     CreateTextBlock(
+                        localizer.GetLocalizedStringOrDefault("PresetPage_HowPresetsWorkDesc4") ??
                         "It is possible to simply ignore the preset part of this page and only use the manual controls to persist mod preferences."
                     )
                 }

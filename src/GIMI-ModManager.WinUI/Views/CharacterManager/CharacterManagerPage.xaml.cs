@@ -19,6 +19,7 @@ public sealed partial class CharacterManagerPage : Page
         Loaded += (sender, args) =>
         {
             var localizer = App.GetService<ILanguageLocalizer>();
+            CharacterSearchBox.Header = localizer.GetLocalizedStringOrDefault("CharacterManagerPage_SearchBox_Header") ?? "Search for a character to edit or add a new character";
             CharacterSearchBox.PlaceholderText = localizer.GetLocalizedStringOrDefault("CharacterManagerPage_SearchBox_Placeholder") ?? "Start typing to search...";
             CharacterSearchBox.Focus(FocusState.Programmatic);
         };
