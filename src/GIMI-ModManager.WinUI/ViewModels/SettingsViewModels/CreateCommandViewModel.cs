@@ -235,7 +235,7 @@ public partial class CreateCommandViewModel : ObservableObject
         {
             SuggestedStartLocation = PickerLocationId.ComputerFolder,
             FileTypeFilter = { "*", ".exe", ".py" },
-            CommitButtonText = "Select"
+            CommitButtonText = _localizer.GetLocalizedStringOrDefault("CreateCommand_FilePicker_CommitText") ?? "Select"
         };
 
 
@@ -283,7 +283,7 @@ public partial class CreateCommandViewModel : ObservableObject
         var folderPicker = new FolderPicker()
         {
             SuggestedStartLocation = PickerLocationId.ComputerFolder,
-            CommitButtonText = "Select Folder"
+            CommitButtonText = _localizer.GetLocalizedStringOrDefault("CreateCommand_FolderPicker_CommitText") ?? "Select Folder"
         };
 
 
@@ -311,7 +311,7 @@ public partial class CreateCommandViewModel : ObservableObject
         catch (Exception e)
         {
             _notificationManager.ShowNotification(
-                IsEditingCommand ? "Failed to update command." : "Failed to create command.", e.Message,
+                IsEditingCommand ? (_localizer.GetLocalizedStringOrDefault("CreateCommand_Notification_UpdateFailed") ?? "Failed to update command.") : (_localizer.GetLocalizedStringOrDefault("CreateCommand_Notification_CreateFailed") ?? "Failed to create command."), e.Message,
                 TimeSpan.FromSeconds(5));
 
             CloseRequested?.Invoke(this, EventArgs.Empty);
@@ -345,7 +345,7 @@ public partial class CreateCommandViewModel : ObservableObject
                 .ConfigureAwait(false);
             CloseRequested?.Invoke(this, EventArgs.Empty);
 
-            _notificationManager.ShowNotification($"Command '{createOptions.CommandDisplayName}' updated successfully.",
+            _notificationManager.ShowNotification(string.Format(_localizer.GetLocalizedStringOrDefault("CreateCommand_Notification_UpdatedTitle") ?? "Command '{0}' updated successfully.", createOptions.CommandDisplayName),
                 "", TimeSpan.FromSeconds(3));
 
             await _commandService.SetSpecialCommands(_createOptions.CommandDefinition.Id,
@@ -356,7 +356,7 @@ public partial class CreateCommandViewModel : ObservableObject
             await _commandService.SaveCommandDefinitionAsync(createOptions).ConfigureAwait(false);
             CloseRequested?.Invoke(this, EventArgs.Empty);
 
-            _notificationManager.ShowNotification($"Command '{createOptions.CommandDisplayName}' created successfully.",
+            _notificationManager.ShowNotification(string.Format(_localizer.GetLocalizedStringOrDefault("CreateCommand_Notification_CreatedTitle") ?? "Command '{0}' created successfully.", createOptions.CommandDisplayName),
                 "",
                 TimeSpan.FromSeconds(3));
 

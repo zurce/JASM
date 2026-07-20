@@ -61,7 +61,7 @@ public sealed partial class CommandsSettingsViewModel(
                     IsTextSelectionEnabled = true,
                     TextWrapping = TextWrapping.WrapWholeWords
                 },
-                PrimaryButtonText = "I understand",
+                PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("CommandsSettingsPage_WarningPrimary") ?? "I understand",
                 CloseButtonText = _localizer.GetLocalizedStringOrDefault("CommandsSettingsPage_WarningClose") ?? "Close"
             };
 
@@ -102,18 +102,18 @@ public sealed partial class CommandsSettingsViewModel(
             }
             catch (Exception e)
             {
-                _notificationManager.ShowNotification("Failed to kill process", e.Message, TimeSpan.FromSeconds(5));
+                _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Commands_Notification_FailedKillTitle") ?? "Failed to kill process", e.Message, TimeSpan.FromSeconds(5));
                 return;
             }
         }
         else
         {
-            _notificationManager.ShowNotification("Process is not running", string.Empty, TimeSpan.FromSeconds(2));
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Commands_Notification_NotRunningTitle") ?? "Process is not running", string.Empty, TimeSpan.FromSeconds(2));
             await RefreshRunningCommandsAsync();
             return;
         }
 
-        _notificationManager.ShowNotification("Process killed successfully", string.Empty, TimeSpan.FromSeconds(2));
+        _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Commands_Notification_KilledTitle") ?? "Process killed successfully", string.Empty, TimeSpan.FromSeconds(2));
     }
 
     private bool CanEditCommand(CommandDefinitionVM? commandVM)
@@ -134,7 +134,7 @@ public sealed partial class CommandsSettingsViewModel(
 
         if (existingCommand is null)
         {
-            _notificationManager.ShowNotification("Failed to get command", "Command not found",
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Commands_Notification_NotFoundTitle") ?? "Failed to get command", _localizer.GetLocalizedStringOrDefault("Commands_Notification_NotFoundMessage") ?? "Command not found",
                 TimeSpan.FromSeconds(5));
             return;
         }
@@ -159,7 +159,7 @@ public sealed partial class CommandsSettingsViewModel(
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification("Failed to delete command", e.Message, TimeSpan.FromSeconds(5));
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Commands_Notification_FailedDeleteTitle") ?? "Failed to delete command", e.Message, TimeSpan.FromSeconds(5));
             return;
         }
         finally
@@ -167,7 +167,7 @@ public sealed partial class CommandsSettingsViewModel(
             await RefreshCommandDefinitionsAsync();
         }
 
-        _notificationManager.ShowNotification($"Command '{commandDefinition.CommandDisplayName}' deleted successfully",
+        _notificationManager.ShowNotification(string.Format(_localizer.GetLocalizedStringOrDefault("Commands_Notification_DeletedTitle") ?? "Command '{0}' deleted successfully", commandDefinition.CommandDisplayName),
             string.Empty, TimeSpan.FromSeconds(2));
     }
 

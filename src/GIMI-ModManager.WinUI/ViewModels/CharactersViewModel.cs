@@ -751,18 +751,24 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     const string DefaultUnpinGlyph = "\uE77A";
     const string DefaultUnpinText = "Unpin Character";
 
+    private string GetLocalizedPinText() =>
+        _localizer.GetLocalizedStringOrDefault("Characters_PinToTopText") ?? DefaultPinText;
+
+    private string GetLocalizedUnpinText() =>
+        _localizer.GetLocalizedStringOrDefault("Characters_UnpinCharacterText") ?? DefaultUnpinText;
+
     public void OnRightClickContext(CharacterGridItemModel clickedCharacter)
     {
         ClearNotificationsCommand.NotifyCanExecuteChanged();
         DisableCharacterModsCommand.NotifyCanExecuteChanged();
         if (clickedCharacter.IsPinned)
         {
-            PinText = DefaultUnpinText;
+            PinText = GetLocalizedUnpinText();
             PinGlyph = DefaultUnpinGlyph;
         }
         else
         {
-            PinText = DefaultPinText;
+            PinText = GetLocalizedPinText();
             PinGlyph = DefaultPinGlyph;
         }
     }
@@ -845,13 +851,13 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         catch (Exception e)
         {
             _logger.Error(e, "Error disabling mods for character {Character}", character.Character.InternalName);
-            NotificationManager.ShowNotification("Error disabling mods", e.Message, TimeSpan.FromSeconds(6));
+            NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ErrorDisablingModsTitle") ?? "Error disabling mods", e.Message, TimeSpan.FromSeconds(6));
             return;
         }
 
         character.SetMods(updatedMods);
         await RefreshMultipleModsWarningAsync();
-        NotificationManager.ShowNotification("Mods Disabled", $"Alls mods for {character.Character.DisplayName} have been disabled", null);
+        NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ModsDisabledTitle") ?? "Mods Disabled", string.Format(_localizer.GetLocalizedStringOrDefault("Characters_ModsDisabledMessage") ?? "Alls mods for {0} have been disabled", character.Character.DisplayName), null);
     }
 
     [RelayCommand]
@@ -943,11 +949,11 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
             if (errors.Length == 0)
             {
                 var categoryNames = string.Join(", ", activeCategories.Select(c => c.DisplayNamePlural));
-                NotificationManager.ShowNotification("Mods enabled", $"All tracked mods have been enabled for {categoryNames}.", TimeSpan.FromSeconds(5));
+                NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ModsEnabledTitle") ?? "Mods enabled", string.Format(_localizer.GetLocalizedStringOrDefault("Characters_ModsEnabledMessage") ?? "All tracked mods have been enabled for {0}.", categoryNames), TimeSpan.FromSeconds(5));
             }
             else
             {
-                NotificationManager.ShowNotification("Errors while enabling mods", $"An error occurred for {errors.Length} mods. Check logs.", TimeSpan.FromSeconds(10));
+                NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ErrorsEnablingModsTitle") ?? "Errors while enabling mods", string.Format(_localizer.GetLocalizedStringOrDefault("Characters_ErrorsEnablingModsMessage") ?? "An error occurred for {0} mods. Check logs.", errors.Length), TimeSpan.FromSeconds(10));
             }
         }
     }
@@ -973,11 +979,11 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
             if (errors.Length == 0)
             {
                 var categoryNames = string.Join(", ", activeCategories.Select(c => c.DisplayNamePlural));
-                NotificationManager.ShowNotification("Mods disabled", $"All tracked mods have been disabled for {categoryNames}.", TimeSpan.FromSeconds(5));
+                NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ModsDisabledSuccessTitle") ?? "Mods disabled", string.Format(_localizer.GetLocalizedStringOrDefault("Characters_ModsDisabledSuccessMessage") ?? "All tracked mods have been disabled for {0}.", categoryNames), TimeSpan.FromSeconds(5));
             }
             else
             {
-                NotificationManager.ShowNotification("Errors while disabling mods", $"An error occurred for {errors.Length} mods. Check logs.", TimeSpan.FromSeconds(10));
+                NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ErrorsDisablingModsTitle") ?? "Errors while disabling mods", string.Format(_localizer.GetLocalizedStringOrDefault("Characters_ErrorsDisablingModsMessage") ?? "An error occurred for {0} mods. Check logs.", errors.Length), TimeSpan.FromSeconds(10));
             }
         }
     }
@@ -1002,7 +1008,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
             ResetContent();
 
             var categoryNames = string.Join(", ", activeCategories.Select(c => c.DisplayNamePlural));
-            NotificationManager.ShowNotification("Cleanup complete", $"Deleted {totalDeleted} disabled mods for {categoryNames}.", TimeSpan.FromSeconds(5));
+            NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_CleanupCompleteTitle") ?? "Cleanup complete", string.Format(_localizer.GetLocalizedStringOrDefault("Characters_CleanupCompleteMessage") ?? "Deleted {0} disabled mods for {1}.", totalDeleted, categoryNames), TimeSpan.FromSeconds(5));
         }
     }
 
@@ -1053,7 +1059,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         catch (Exception e)
         {
             _logger.Error(e, "Error adding mod");
-            NotificationManager.ShowNotification("Error adding mod", e.Message, TimeSpan.FromSeconds(10));
+            NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ErrorAddingModTitle") ?? "Error adding mod", e.Message, TimeSpan.FromSeconds(10));
         }
         finally
         {
@@ -1079,7 +1085,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
 
         if (!GameBananaUrlHelper.TryGetModIdFromUrl(uri, out _))
         {
-            NotificationManager.ShowNotification("Invalid GameBanana mod page link", "", null);
+            NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_InvalidGameBananaLinkTitle") ?? "Invalid GameBanana mod page link", "", null);
             return;
         }
 
@@ -1091,7 +1097,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         catch (Exception e)
         {
             _logger.Error(e, "Error opening mod page window");
-            NotificationManager.ShowNotification("Error opening mod page window", e.Message, TimeSpan.FromSeconds(10));
+            NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ErrorOpeningModPageTitle") ?? "Error opening mod page window", e.Message, TimeSpan.FromSeconds(10));
         }
         finally
         {

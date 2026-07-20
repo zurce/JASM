@@ -149,14 +149,14 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
         var restartDialog = new ContentDialog()
         {
-            Title = "Restart Required",
+            Title = _localizer.GetLocalizedStringOrDefault("Settings_GameSource_RestartTitle") ?? "Restart Required",
             Content = new TextBlock()
             {
-                Text = "Changing the Game Source requires a restart of the application to load the new games. JASM will close now.",
+                Text = _localizer.GetLocalizedStringOrDefault("Settings_GameSource_RestartContent") ?? "Changing the Game Source requires a restart of the application to load the new games. JASM will close now.",
                 TextWrapping = TextWrapping.WrapWholeWords
             },
-            PrimaryButtonText = "Restart now",
-            CloseButtonText = "Restart later",
+            PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("Settings_GameSource_RestartPrimary") ?? "Restart now",
+            CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_GameSource_RestartClose") ?? "Restart later",
             DefaultButton = ContentDialogButton.Primary
         };
 
@@ -172,12 +172,12 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     {
         if (string.IsNullOrWhiteSpace(CommunityRepoUrl))
         {
-            _notificationManager.ShowNotification("Error", "Community Repo URL cannot be empty.", TimeSpan.FromSeconds(3));
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_ErrorTitle") ?? "Error", _localizer.GetLocalizedStringOrDefault("Settings_CommunityGames_EmptyUrl") ?? "Community Repo URL cannot be empty.", TimeSpan.FromSeconds(3));
             return;
         }
 
         var communityDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "JASM", "CommunityGames");
-        _notificationManager.ShowNotification("Updating...", "Pulling latest community games. This might take a moment.", null);
+        _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_UpdatingTitle") ?? "Updating...", _localizer.GetLocalizedStringOrDefault("Settings_CommunityGames_Pulling") ?? "Pulling latest community games. This might take a moment.", null);
 
         try
         {
@@ -188,23 +188,23 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
                 var games = new[] { await _selectedGameService.GetSelectedGameAsync() };
                 if (_communityGamesService.VerifyIntegrity(communityDir, games))
                 {
-                    _notificationManager.ShowNotification("Success", "Community games updated and verified successfully.", TimeSpan.FromSeconds(5));
+                    _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_SuccessTitle") ?? "Success", _localizer.GetLocalizedStringOrDefault("Settings_CommunityGames_Updated") ?? "Community games updated and verified successfully.", TimeSpan.FromSeconds(5));
                     await RestartAppAsync(2);
                 }
                 else
                 {
-                    _notificationManager.ShowNotification("Error", "Integrity check failed. Check if repo matches expected structure.", TimeSpan.FromSeconds(5));
+                    _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_ErrorTitle") ?? "Error", _localizer.GetLocalizedStringOrDefault("Settings_CommunityGames_IntegrityFailed") ?? "Integrity check failed. Check if repo matches expected structure.", TimeSpan.FromSeconds(5));
                 }
             }
             else
             {
-                _notificationManager.ShowNotification("Error", "Failed to update community games.", TimeSpan.FromSeconds(5));
+                _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_ErrorTitle") ?? "Error", _localizer.GetLocalizedStringOrDefault("Settings_CommunityGames_UpdateFailed") ?? "Failed to update community games.", TimeSpan.FromSeconds(5));
             }
         }
         catch (Exception ex)
         {
             _logger.Error(ex, "Failed to update community games");
-            _notificationManager.ShowNotification("Error", "Exception occurred while pulling repo. Check logs.", TimeSpan.FromSeconds(5));
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_ErrorTitle") ?? "Error", _localizer.GetLocalizedStringOrDefault("Settings_CommunityGames_ExceptionPulling") ?? "Exception occurred while pulling repo. Check logs.", TimeSpan.FromSeconds(5));
         }
     }
 
@@ -330,17 +330,17 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         {
             var result = await _windowManagerService.ShowDialogAsync(new ContentDialog()
             {
-                Title = "Restart required",
+                Title = _localizer.GetLocalizedStringOrDefault("Settings_RestartRequired_Title") ?? "Restart required",
                 Content = new TextBlock()
                 {
-                    Text =
+                    Text = _localizer.GetLocalizedStringOrDefault("Settings_RestartRequired_Content") ??
                         "You'll need to restart the application for the theme to take effect or else the application will become unstable. " +
                         "This is most likely me not configuring the theming correctly. Dark Mode is the recommended theme.\n\n" +
                         "Sorry for the inconvenience.",
                     TextWrapping = TextWrapping.Wrap
                 },
-                PrimaryButtonText = "Restart",
-                CloseButtonText = "Cancel",
+                PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("Settings_RestartRequired_PrimaryButton") ?? "Restart",
+                CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_RestartRequired_CloseButton") ?? "Cancel",
                 DefaultButton = ContentDialogButton.Primary
             });
 
@@ -348,7 +348,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
             ElementTheme = param;
             await _themeSelectorService.SetThemeAsync(param);
-            _notificationManager.ShowNotification("Restarting...", "The application will restart now.",
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_RestartingTitle") ?? "Restarting...", _localizer.GetLocalizedStringOrDefault("Settings_Restart_Restarting") ?? "The application will restart now.",
                 null);
             await RestartAppAsync();
         }
@@ -400,11 +400,11 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         var dialog = new ContentDialog();
         dialog.XamlRoot = App.MainWindow.Content.XamlRoot;
         dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-        dialog.Title = "Update Folder Paths?";
-        dialog.CloseButtonText = "Cancel";
-        dialog.PrimaryButtonText = "Save";
+        dialog.Title = _localizer.GetLocalizedStringOrDefault("Settings_UpdateFolderPaths_Title") ?? "Update Folder Paths?";
+        dialog.CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_UpdateFolderPaths_CloseButton") ?? "Cancel";
+        dialog.PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("Settings_UpdateFolderPaths_PrimaryButton") ?? "Save";
         dialog.DefaultButton = ContentDialogButton.Primary;
-        dialog.Content = "Do you want to save the new folder paths? The App will restart afterwards.";
+        dialog.Content = _localizer.GetLocalizedStringOrDefault("Settings_UpdateFolderPaths_Content") ?? "Do you want to save the new folder paths? The App will restart afterwards.";
 
         var result = await dialog.ShowAsync();
 
@@ -419,7 +419,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             await _localSettingsService.SaveSettingAsync(ModManagerOptions.Section,
                 modManagerOptions);
             _logger.Information("Saved startup settings: {@ModManagerOptions}", modManagerOptions);
-            _notificationManager.ShowNotification("Settings saved. Restarting App...", "", TimeSpan.FromSeconds(2));
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Restart_SettingsSaved") ?? "Settings saved. Restarting App...", "", TimeSpan.FromSeconds(2));
 
 
             await RestartAppAsync();
@@ -447,19 +447,19 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     {
         var result = await _windowManagerService.ShowDialogAsync(new ContentDialog()
         {
-            Title = "Reorganize Mods?",
+            Title = _localizer.GetLocalizedStringOrDefault("Settings_ReorganizeMods_Title") ?? "Reorganize Mods?",
             Content = new TextBlock()
             {
-                Text =
+                Text = _localizer.GetLocalizedStringOrDefault("Settings_ReorganizeMods_Content") ??
                     "Do you want to reorganize the Mods folder?\n" +
                     "This will prompt the application to sort existing mods that are directly in the Mods folder and Others folder, into folders assigned to their respective characters.\n\n" +
                     "Any mods that can't be reasonably matched will be placed in an 'Others' folder. While the mods already in 'Others' folder will remain there.",
                 TextWrapping = TextWrapping.WrapWholeWords,
                 IsTextSelectionEnabled = true
             },
-            PrimaryButtonText = "Yes",
+            PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("Settings_ReorganizeMods_PrimaryButton") ?? "Yes",
             DefaultButton = ContentDialogButton.Primary,
-            CloseButtonText = "Cancel",
+            CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_ReorganizeMods_CloseButton") ?? "Cancel",
             Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style
         });
 
@@ -480,11 +480,11 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
                 await _skinManagerService.RefreshModsAsync();
 
                 if (movedModsCount == -1)
-                    _notificationManager.ShowNotification("Mods reorganization failed.",
+                    _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Mods_ReorganizeFailed") ?? "Mods reorganization failed.",
                         "See logs for more details.", TimeSpan.FromSeconds(5));
 
                 else
-                    _notificationManager.ShowNotification("Mods reorganized.",
+                    _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Mods_Reorganized") ?? "Mods reorganized.",
                         $"Moved {movedModsCount} mods to character folders", TimeSpan.FromSeconds(5));
             }
             finally
@@ -551,8 +551,8 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
                     "Start Elevator Process?",
             Content = stackPanel,
             DefaultButton = ContentDialogButton.Primary,
-            CloseButtonText = "Cancel",
-            PrimaryButtonText = "Start",
+            CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_StartElevator_CloseButton") ?? "Cancel",
+            PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("Settings_StartElevator_PrimaryButton") ?? "Start",
             XamlRoot = App.MainWindow.Content.XamlRoot
         };
 
@@ -573,7 +573,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             }
             catch (Win32Exception e)
             {
-                _notificationManager.ShowNotification("Unable to start Elevator", e.Message, TimeSpan.FromSeconds(10));
+                _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Elevator_UnableToStart") ?? "Unable to start Elevator", e.Message, TimeSpan.FromSeconds(10));
                 _showElevatorStartDialog = true;
             }
     }
@@ -641,7 +641,9 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             DefaultButton = ContentDialogButton.Primary
         };
 
-        dialog.Title = "Export Mods";
+        dialog.Title = _localizer.GetLocalizedStringOrDefault("Settings_Export_ButtonText") ?? "Export Mods";
+        dialog.PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("Settings_Export_PrimaryButton") ?? "Export";
+        dialog.CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_Export_CloseButton") ?? "Cancel";
 
         dialog.ContentTemplate = contentDialog.ContentTemplate;
 
@@ -676,15 +678,15 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             {
                 _skinManagerService.ExportMods(modsList, folder.Path,
                     removeLocalJasmSettings: model.RemoveJasmSettings, zip: false,
-                    keepCharacterFolderStructure: model.KeepFolderStructure, setModStatus: model.SetModStatus);
+                    keepCharacterFolderStructure: model.KeepFolderStructure, setModStatus: model.SetModStatus.Value);
             });
-            _notificationManager.ShowNotification("Mods exported", $"Mods exported to {folder.Path}",
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Export_ModsExported") ?? "Mods exported", string.Format(_localizer.GetLocalizedStringOrDefault("Settings_Export_ModsExportedToFormat") ?? "Mods exported to {0}", folder.Path),
                 TimeSpan.FromSeconds(5));
         }
         catch (Exception e)
         {
             _logger.Error(e, "Error exporting mods");
-            _notificationManager.ShowNotification("Error exporting mods", e.Message, TimeSpan.FromSeconds(10));
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Export_ErrorExporting") ?? "Error exporting mods", e.Message, TimeSpan.FromSeconds(10));
         }
         finally
         {
@@ -715,7 +717,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
             var restartDialog = new ContentDialog()
             {
-                Title = "Restart Required",
+                Title = _localizer.GetLocalizedStringOrDefault("Settings_RestartRequired_LangTitle") ?? "Restart Required",
                 Content = new TextBlock()
                 {
                     Text = _localizer.GetLocalizedStringOrDefault("/Settings/ChangeLanguageDialogText",
@@ -726,8 +728,8 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
                     TextWrapping = TextWrapping.WrapWholeWords,
                     IsTextSelectionEnabled = true
                 },
-                PrimaryButtonText = "Change Language and restart",
-                CloseButtonText = "Cancel",
+                PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("Settings_RestartRequired_LangPrimaryButton") ?? "Change Language and restart",
+                CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_RestartRequired_LangCloseButton") ?? "Cancel",
                 DefaultButton = ContentDialogButton.Primary
             };
 
@@ -763,13 +765,13 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         catch (Exception e)
         {
             _logger.Error(e, "Error starting update process");
-            _notificationManager.ShowNotification("Error starting update process", e.Message, TimeSpan.FromSeconds(10));
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Update_ErrorStarting") ?? "Error starting update process", e.Message, TimeSpan.FromSeconds(10));
         }
 
         if (errors is not null && errors.Any())
         {
             var errorMessages = errors.Select(e => e.Description).ToArray();
-            _notificationManager.ShowNotification("Could not start update process", string.Join('\n', errorMessages),
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Update_CouldNotStart") ?? "Could not start update process", string.Join('\n', errorMessages),
                 TimeSpan.FromSeconds(10));
         }
     }
@@ -785,18 +787,18 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
         var switchGameDialog = new ContentDialog()
         {
-            Title = "Switch Game",
+            Title = _localizer.GetLocalizedStringOrDefault("Settings_SwitchGame_Title") ?? "Switch Game",
             Content = new TextBlock()
             {
-                Text =
+                Text = _localizer.GetLocalizedStringOrDefault("Settings_SwitchGame_Content") ??
                     "Switching games will restart the application. " +
                     "This is required to ensure that the application is configured correctly for the selected game.\n\n" +
                     "Do you want to switch games?",
                 TextWrapping = TextWrapping.WrapWholeWords
             },
 
-            PrimaryButtonText = $"Switch to {game}",
-            CloseButtonText = "Cancel",
+            PrimaryButtonText = string.Format(_localizer.GetLocalizedStringOrDefault("Settings_SwitchGame_PrimaryButton") ?? "Switch to {0}", game),
+            CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_SwitchGame_CloseButton") ?? "Cancel",
             DefaultButton = ContentDialogButton.Primary
         };
 
@@ -879,7 +881,8 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
         if (gameInfo is not null)
         {
-            PathToGIMIFolderPicker.SetValidators(GimiFolderRootValidators.Validators(gameInfo.GameModelImporterExeNames));
+            var folderWarning = _localizer.GetLocalizedStringOrDefault("Settings_FolderWarning_No3DMigotoEntry") ?? "Folder does not contain any entry with the specified names:";
+            PathToGIMIFolderPicker.SetValidators(GimiFolderRootValidators.Validators(gameInfo.GameModelImporterExeNames, folderWarning));
         }
 
         var windowSettings =
@@ -945,19 +948,34 @@ public partial class ExportModsDialogModel : ObservableObject
 
     public ObservableCollection<CharacterCheckboxModel> CharacterModsToBackup { get; set; } = new();
 
-    public ObservableCollection<SetModStatus> SetModStatuses { get; set; } = new()
+    public ObservableCollection<ModStatusOption> SetModStatuses { get; set; } = new()
     {
-        SetModStatus.KeepCurrent,
-        SetModStatus.EnableAllMods,
-        SetModStatus.DisableAllMods
+        new(GIMI_ModManager.Core.Contracts.Services.SetModStatus.KeepCurrent, "Settings_Export_Status_KeepCurrent"),
+        new(GIMI_ModManager.Core.Contracts.Services.SetModStatus.EnableAllMods, "Settings_Export_Status_EnableAll"),
+        new(GIMI_ModManager.Core.Contracts.Services.SetModStatus.DisableAllMods, "Settings_Export_Status_DisableAll")
     };
 
-    [ObservableProperty] private SetModStatus _setModStatus = SetModStatus.KeepCurrent;
+    [ObservableProperty] private ModStatusOption _setModStatus = null!;
 
     public ExportModsDialogModel(IEnumerable<IModdableObject> characters)
     {
-        SetModStatus = SetModStatus.KeepCurrent;
+        SetModStatus = SetModStatuses[0];
         foreach (var character in characters) CharacterModsToBackup.Add(new CharacterCheckboxModel(character));
+    }
+
+    public class ModStatusOption
+    {
+        public SetModStatus Value { get; }
+        public string DisplayName { get; }
+
+        public ModStatusOption(SetModStatus value, string resourceKey)
+        {
+            Value = value;
+            var localizer = App.GetService<ILanguageLocalizer>();
+            DisplayName = localizer.GetLocalizedStringOrDefault(resourceKey) ?? value.ToString();
+        }
+
+        public override string ToString() => DisplayName;
     }
 }
 

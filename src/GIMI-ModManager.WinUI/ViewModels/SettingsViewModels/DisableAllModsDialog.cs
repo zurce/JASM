@@ -19,11 +19,12 @@ public class DisableAllModsDialog
 
     public async Task ShowDialogAsync()
     {
+        var localizer = App.GetService<ILanguageLocalizer>();
         var dialog = new ContentDialog
         {
-            Title = "Disable Mods",
-            PrimaryButtonText = "Disable Mods in Categories",
-            CloseButtonText = "Cancel",
+            Title = localizer.GetLocalizedStringOrDefault("Settings_DisableAllMods_Title") ?? "Disable Mods",
+            PrimaryButtonText = localizer.GetLocalizedStringOrDefault("Settings_DisableAllMods_PrimaryButton") ?? "Disable Mods in Categories",
+            CloseButtonText = localizer.GetLocalizedStringOrDefault("Settings_DisableAllMods_CloseButton") ?? "Cancel",
             DefaultButton = ContentDialogButton.Primary
         };
 
@@ -34,7 +35,7 @@ public class DisableAllModsDialog
 
         stackPanel.Children.Add(new TextBlock
         {
-            Text = "Select the categories you want to disable mods for:",
+            Text = localizer.GetLocalizedStringOrDefault("Settings_DisableAllMods_SelectText") ?? "Select the categories you want to disable mods for:",
             IsTextSelectionEnabled = true
         });
 
@@ -43,7 +44,7 @@ public class DisableAllModsDialog
         {
             var checkBox = new CheckBox
             {
-                Content = category.DisplayNamePlural,
+                Content = localizer.GetLocalizedStringOrDefault("Category_" + category.DisplayNamePlural.Replace(" ", "")) ?? category.DisplayNamePlural,
                 IsChecked = true
             };
 
@@ -53,8 +54,9 @@ public class DisableAllModsDialog
 
         stackPanel.Children.Add(new TextBlock
         {
-            Text = "I suggest creating a preset (or a backup) of your mods before disabling mods if you have a lot of enabled mods.\n\n" +
-                   "Only mods tracked by JASM will be disabled within the selected categories",
+            Text = localizer.GetLocalizedStringOrDefault("Settings_DisableAllMods_SuggestionText") ??
+                "I suggest creating a preset (or a backup) of your mods before disabling mods if you have a lot of enabled mods.\n\n" +
+                "Only mods tracked by JASM will be disabled within the selected categories",
             IsTextSelectionEnabled = true,
             TextWrapping = TextWrapping.WrapWholeWords,
             Margin = new Thickness(0, 10, 0, 0)
@@ -80,7 +82,7 @@ public class DisableAllModsDialog
 
         if (selectedCategories.Count == 0)
         {
-            _notificationManager.ShowNotification("No categories selected", "No categories were selected to disable mods.",
+            _notificationManager.ShowNotification(localizer.GetLocalizedStringOrDefault("Settings_DisableAllMods_NoCategoriesTitle") ?? "No categories selected", localizer.GetLocalizedStringOrDefault("Settings_DisableAllMods_NoCategoriesMessage") ?? "No categories were selected to disable mods.",
                 TimeSpan.FromSeconds(5));
             return;
         }
@@ -90,8 +92,8 @@ public class DisableAllModsDialog
 
         if (errors.Length == 0)
         {
-            _notificationManager.ShowNotification("Mods disabled",
-                $"All tracked mods have been disabled for the selected categories: {string.Join(',', selectedCategories.Select(c => c.DisplayNamePlural))}",
+            _notificationManager.ShowNotification(localizer.GetLocalizedStringOrDefault("Settings_DisableAllMods_SuccessTitle") ?? "Mods disabled",
+                string.Format(localizer.GetLocalizedStringOrDefault("Settings_DisableAllMods_SuccessMessage") ?? "All tracked mods have been disabled for the selected categories: {0}", string.Join(',', selectedCategories.Select(c => c.DisplayNamePlural))),
                 TimeSpan.FromSeconds(5));
             return;
         }
@@ -106,6 +108,6 @@ public class DisableAllModsDialog
         }
 
 
-        _notificationManager.ShowNotification("Errors while disabling mods", sb.ToString(), TimeSpan.FromSeconds(10));
+        _notificationManager.ShowNotification(localizer.GetLocalizedStringOrDefault("Settings_DisableAllMods_ErrorsTitle") ?? "Errors while disabling mods", sb.ToString(), TimeSpan.FromSeconds(10));
     }
 }

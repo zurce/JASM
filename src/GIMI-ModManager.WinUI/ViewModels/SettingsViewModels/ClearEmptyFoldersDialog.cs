@@ -16,12 +16,13 @@ internal class ClearEmptyFoldersDialog
 
     public async Task ShowDialogAsync()
     {
+        var localizer = App.GetService<ILanguageLocalizer>();
         var dialog = new ContentDialog()
         {
-            Title = "Clear Empty Folders",
+            Title = localizer.GetLocalizedStringOrDefault("Settings_ClearEmptyFolders_Title") ?? "Clear Empty Folders",
             Content = new TextBlock()
             {
-                Text =
+                Text = localizer.GetLocalizedStringOrDefault("Settings_ClearEmptyFolders_Content") ??
                     "This will delete all empty folders in a character's modList if the folder is empty or only contains .JASM_ files/folders\n" +
                     "If a character folder is empty then it will be deleted as well.\n" +
                     "Empty folders in the root of the Mods folder will also be deleted",
@@ -29,8 +30,8 @@ internal class ClearEmptyFoldersDialog
                 IsTextSelectionEnabled = true
             },
             DefaultButton = ContentDialogButton.Primary,
-            PrimaryButtonText = "Delete",
-            CloseButtonText = "Cancel"
+            PrimaryButtonText = localizer.GetLocalizedStringOrDefault("Settings_ClearEmptyFolders_PrimaryButton") ?? "Delete",
+            CloseButtonText = localizer.GetLocalizedStringOrDefault("Settings_ClearEmptyFolders_CloseButton") ?? "Cancel"
         };
 
 
@@ -48,7 +49,7 @@ internal class ClearEmptyFoldersDialog
 
             var message = sb.ToString();
 
-            _notificationManager.ShowNotification("Empty folders deleted", message, TimeSpan.FromSeconds(5));
+            _notificationManager.ShowNotification(localizer.GetLocalizedStringOrDefault("Settings_ClearEmptyFolders_NotificationTitle") ?? "Empty folders deleted", message, TimeSpan.FromSeconds(5));
         }
     }
 }

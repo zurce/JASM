@@ -1039,6 +1039,157 @@
   <data name="Settings_CreateCustomCommands.Header" xml:space="preserve">
     <value>Create Custom Commands</value>
   </data>
+  <data name="Settings_CreateCustomCommands.Description" xml:space="preserve">
+    <value>Commands (scripts) can be defined and then be run on specified mods</value>
+  </data>
+  <data name="Settings_FolderWarning_No3DMigotoEntry" xml:space="preserve">
+    <value>Folder does not contain any entry with the specified names:</value>
+  </data>
+  <data name="Settings_Notification_ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Settings_Notification_SuccessTitle" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="Settings_Notification_UpdatingTitle" xml:space="preserve">
+    <value>Updating...</value>
+  </data>
+  <data name="Settings_Notification_RestartingTitle" xml:space="preserve">
+    <value>Restarting...</value>
+  </data>
+  <data name="Settings_CommunityGames_EmptyUrl" xml:space="preserve">
+    <value>Community Repo URL cannot be empty.</value>
+  </data>
+  <data name="Settings_CommunityGames_Pulling" xml:space="preserve">
+    <value>Pulling latest community games. This might take a moment.</value>
+  </data>
+  <data name="Settings_CommunityGames_Updated" xml:space="preserve">
+    <value>Community games updated and verified successfully.</value>
+  </data>
+  <data name="Settings_CommunityGames_IntegrityFailed" xml:space="preserve">
+    <value>Integrity check failed. Check if repo matches expected structure.</value>
+  </data>
+  <data name="Settings_CommunityGames_UpdateFailed" xml:space="preserve">
+    <value>Failed to update community games.</value>
+  </data>
+  <data name="Settings_CommunityGames_ExceptionPulling" xml:space="preserve">
+    <value>Exception occurred while pulling repo. Check logs.</value>
+  </data>
+  <data name="Settings_Restart_Restarting" xml:space="preserve">
+    <value>The application will restart now.</value>
+  </data>
+  <data name="Settings_Restart_SettingsSaved" xml:space="preserve">
+    <value>Settings saved. Restarting App...</value>
+  </data>
+  <data name="Settings_Mods_ReorganizeFailed" xml:space="preserve">
+    <value>Mods reorganization failed.</value>
+  </data>
+  <data name="Settings_Mods_Reorganized" xml:space="preserve">
+    <value>Mods reorganized.</value>
+  </data>
+  <data name="Settings_Elevator_UnableToStart" xml:space="preserve">
+    <value>Unable to start Elevator</value>
+  </data>
+  <data name="Settings_Export_ModsExported" xml:space="preserve">
+    <value>Mods exported</value>
+  </data>
+  <data name="Settings_Export_ModsExportedTo" xml:space="preserve">
+    <value>Mods exported to {0}</value>
+  </data>
+  <data name="Settings_Export_ErrorExporting" xml:space="preserve">
+    <value>Error exporting mods</value>
+  </data>
+  <data name="Settings_Update_ErrorStarting" xml:space="preserve">
+    <value>Error starting update process</value>
+  </data>
+  <data name="Settings_Update_CouldNotStart" xml:space="preserve">
+    <value>Could not start update process</value>
+  </data>
+  <data name="Commands_Notification_FailedKillTitle" xml:space="preserve">
+    <value>Failed to kill process</value>
+  </data>
+  <data name="Commands_Notification_NotRunningTitle" xml:space="preserve">
+    <value>Process is not running</value>
+  </data>
+  <data name="Commands_Notification_KilledTitle" xml:space="preserve">
+    <value>Process killed successfully</value>
+  </data>
+  <data name="Commands_Notification_NotFoundTitle" xml:space="preserve">
+    <value>Failed to get command</value>
+  </data>
+  <data name="Commands_Notification_NotFoundMessage" xml:space="preserve">
+    <value>Command not found</value>
+  </data>
+  <data name="Commands_Notification_FailedDeleteTitle" xml:space="preserve">
+    <value>Failed to delete command</value>
+  </data>
+  <data name="Commands_Notification_DeletedTitle" xml:space="preserve">
+    <value>Command deleted successfully</value>
+  </data>
+  <data name="CreateCommand_Notification_UpdatedTitle" xml:space="preserve">
+    <value>Command updated successfully</value>
+  </data>
+  <data name="CreateCommand_Notification_CreatedTitle" xml:space="preserve">
+    <value>Command created successfully</value>
+  </data>
+  <data name="CreateCommand_Notification_UpdateFailed" xml:space="preserve">
+    <value>Failed to update command.</value>
+  </data>
+  <data name="CreateCommand_Notification_CreateFailed" xml:space="preserve">
+    <value>Failed to create command.</value>
+  </data>
+  <data name="Settings_Notification_ModsExportedToFormat" xml:space="preserve">
+    <value>Mods exported to {0}</value>
+  </data>
+  <data name="Settings_ClearEmptyFolders_Title" xml:space="preserve">
+    <value>Clear Empty Folders</value>
+  </data>
+  <data name="Settings_ClearEmptyFolders_Content" xml:space="preserve">
+    <value>This will delete all empty folders in a character's modList if the folder is empty or only contains .JASM_ files/folders
+If a character folder is empty then it will be deleted as well.
+Empty folders in the root of the Mods folder will also be deleted</value>
+  </data>
+  <data name="Settings_ClearEmptyFolders_PrimaryButton" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Settings_ClearEmptyFolders_CloseButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Settings_ClearEmptyFolders_NotificationTitle" xml:space="preserve">
+    <value>Empty folders deleted</value>
+  </data>
+  <data name="Settings_DisableAllMods_Title" xml:space="preserve">
+    <value>Disable Mods</value>
+  </data>
+  <data name="Settings_DisableAllMods_PrimaryButton" xml:space="preserve">
+    <value>Disable Mods in Categories</value>
+  </data>
+  <data name="Settings_DisableAllMods_CloseButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Settings_DisableAllMods_SelectText" xml:space="preserve">
+    <value>Select the categories you want to disable mods for:</value>
+  </data>
+  <data name="Settings_DisableAllMods_SuggestionText" xml:space="preserve">
+    <value>I suggest creating a preset (or a backup) of your mods before disabling mods if you have a lot of enabled mods.
+
+Only mods tracked by JASM will be disabled within the selected categories</value>
+  </data>
+  <data name="Settings_DisableAllMods_NoCategoriesTitle" xml:space="preserve">
+    <value>No categories selected</value>
+  </data>
+  <data name="Settings_DisableAllMods_NoCategoriesMessage" xml:space="preserve">
+    <value>No categories were selected to disable mods.</value>
+  </data>
+  <data name="Settings_DisableAllMods_SuccessTitle" xml:space="preserve">
+    <value>Mods disabled</value>
+  </data>
+  <data name="Settings_DisableAllMods_SuccessMessage" xml:space="preserve">
+    <value>All tracked mods have been disabled for the selected categories: {0}</value>
+  </data>
+  <data name="Settings_DisableAllMods_ErrorsTitle" xml:space="preserve">
+    <value>Errors while disabling mods</value>
+  </data>
   <data name="Settings_UpdateButton.Content" xml:space="preserve">
     <value>Update</value>
   </data>
@@ -1341,5 +1492,221 @@
   </data>
   <data name="Category_Characters_Resumen" xml:space="preserve">
     <value>Character Resumen</value>
+  </data>
+  <data name="Characters_ErrorDisablingModsTitle" xml:space="preserve">
+    <value>Error disabling mods</value>
+  </data>
+  <data name="Characters_ModsDisabledTitle" xml:space="preserve">
+    <value>Mods Disabled</value>
+  </data>
+  <data name="Characters_ModsDisabledMessage" xml:space="preserve">
+    <value>Alls mods for {0} have been disabled</value>
+  </data>
+  <data name="Characters_ModsEnabledTitle" xml:space="preserve">
+    <value>Mods enabled</value>
+  </data>
+  <data name="Characters_ModsEnabledMessage" xml:space="preserve">
+    <value>All tracked mods have been enabled for {0}.</value>
+  </data>
+  <data name="Characters_ErrorsEnablingModsTitle" xml:space="preserve">
+    <value>Errors while enabling mods</value>
+  </data>
+  <data name="Characters_ErrorsEnablingModsMessage" xml:space="preserve">
+    <value>An error occurred for {0} mods. Check logs.</value>
+  </data>
+  <data name="Characters_ModsDisabledSuccessTitle" xml:space="preserve">
+    <value>Mods disabled</value>
+  </data>
+  <data name="Characters_ModsDisabledSuccessMessage" xml:space="preserve">
+    <value>All tracked mods have been disabled for {0}.</value>
+  </data>
+  <data name="Characters_ErrorsDisablingModsTitle" xml:space="preserve">
+    <value>Errors while disabling mods</value>
+  </data>
+  <data name="Characters_ErrorsDisablingModsMessage" xml:space="preserve">
+    <value>An error occurred for {0} mods. Check logs.</value>
+  </data>
+  <data name="Characters_CleanupCompleteTitle" xml:space="preserve">
+    <value>Cleanup complete</value>
+  </data>
+  <data name="Characters_CleanupCompleteMessage" xml:space="preserve">
+    <value>Deleted {0} disabled mods for {1}.</value>
+  </data>
+  <data name="Characters_ErrorAddingModTitle" xml:space="preserve">
+    <value>Error adding mod</value>
+  </data>
+  <data name="Characters_InvalidGameBananaLinkTitle" xml:space="preserve">
+    <value>Invalid GameBanana mod page link</value>
+  </data>
+  <data name="Characters_ErrorOpeningModPageTitle" xml:space="preserve">
+    <value>Error opening mod page window</value>
+  </data>
+  <data name="Settings_Startup_SettingsSavedTitle" xml:space="preserve">
+    <value>Startup settings saved</value>
+  </data>
+  <data name="Settings_Startup_SettingsSavedMessage" xml:space="preserve">
+    <value>Startup settings saved successfully to '{0}'</value>
+  </data>
+  <data name="Settings_Startup_AlphaTitle" xml:space="preserve">
+    <value>JASM is still in alpha</value>
+  </data>
+  <data name="Settings_Startup_AlphaMessage" xml:space="preserve">
+    <value>There will be bugs and things will most likely break. Anyway, hope you enjoy using Just Another Skin Manager!</value>
+  </data>
+  <data name="Settings_RestartRequired_Title" xml:space="preserve">
+    <value>Restart required</value>
+  </data>
+  <data name="Settings_RestartRequired_Content" xml:space="preserve">
+    <value>You'll need to restart the application for the theme to take effect or else the application will become unstable. This is most likely me not configuring the theming correctly. Dark Mode is the recommended theme.
+
+Sorry for the inconvenience.</value>
+  </data>
+  <data name="Settings_RestartRequired_PrimaryButton" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="Settings_RestartRequired_CloseButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Settings_ReorganizeMods_Title" xml:space="preserve">
+    <value>Reorganize Mods?</value>
+  </data>
+  <data name="Settings_ReorganizeMods_Content" xml:space="preserve">
+    <value>Do you want to reorganize the Mods folder?
+This will prompt the application to sort existing mods that are directly in the Mods folder and Others folder, into folders assigned to their respective characters.
+
+Any mods that can't be reasonably matched will be placed in an 'Others' folder. While the mods already in 'Others' folder will remain there.</value>
+  </data>
+  <data name="Settings_ReorganizeMods_PrimaryButton" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Settings_ReorganizeMods_CloseButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Settings_RestartRequired_LangTitle" xml:space="preserve">
+    <value>Restart Required</value>
+  </data>
+  <data name="Settings_RestartRequired_LangPrimaryButton" xml:space="preserve">
+    <value>Change Language and restart</value>
+  </data>
+  <data name="Settings_RestartRequired_LangCloseButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Settings_SwitchGame_Title" xml:space="preserve">
+    <value>Switch Game</value>
+  </data>
+  <data name="Settings_SwitchGame_Content" xml:space="preserve">
+    <value>Switching games will restart the application. This is required to ensure that the application is configured correctly for the selected game.
+
+Do you want to switch games?</value>
+  </data>
+  <data name="Settings_SwitchGame_PrimaryButton" xml:space="preserve">
+    <value>Switch to {0}</value>
+  </data>
+  <data name="Settings_SwitchGame_CloseButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Settings_CharacterSkins_EnableTitle" xml:space="preserve">
+    <value>Enable Character Skins as Characters?</value>
+  </data>
+  <data name="Settings_CharacterSkins_EnableContent" xml:space="preserve">
+    <value>Enabling this will make JASM treat in game skins as separate characters in the character overview.
+This could potentially become the default setting of JASM in the future.
+JASM will not move any of your mods nor will it delete any.
+
+Are you sure you want to enable character skins as characters? JASM will restart afterwards...</value>
+  </data>
+  <data name="Settings_CharacterSkins_EnablePrimaryButton" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="Settings_CharacterSkins_DisableTitle" xml:space="preserve">
+    <value>Disable Character Skins as Characters?</value>
+  </data>
+  <data name="Settings_CharacterSkins_DisableContent" xml:space="preserve">
+    <value>Disabling this will make JASM treat in game skins as skins of the base character in the character overview.
+This is currently the default setting of JASM
+JASM will not move any of your mods nor will it delete any.
+
+Are you sure you want to disable character skins as characters? JASM will restart afterwards...</value>
+  </data>
+  <data name="Settings_CharacterSkins_DisablePrimaryButton" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="Settings_CharacterSkins_CloseButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Settings_UpdateFolderPaths_Title" xml:space="preserve">
+    <value>Update Folder Paths?</value>
+  </data>
+  <data name="Settings_UpdateFolderPaths_Content" xml:space="preserve">
+    <value>Do you want to save the new folder paths? The App will restart afterwards.</value>
+  </data>
+  <data name="Settings_UpdateFolderPaths_PrimaryButton" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Settings_UpdateFolderPaths_CloseButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Settings_Export_ButtonText" xml:space="preserve">
+    <value>Export Mods</value>
+  </data>
+  <data name="Settings_GameSource_RestartTitle" xml:space="preserve">
+    <value>Restart Required</value>
+  </data>
+  <data name="Settings_GameSource_RestartContent" xml:space="preserve">
+    <value>Changing the Game Source requires a restart of the application to load the new games. JASM will close now.</value>
+  </data>
+  <data name="Settings_GameSource_RestartPrimary" xml:space="preserve">
+    <value>Restart now</value>
+  </data>
+  <data name="Settings_GameSource_RestartClose" xml:space="preserve">
+    <value>Restart later</value>
+  </data>
+  <data name="Settings_StartElevator_CloseButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Settings_StartElevator_PrimaryButton" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Settings_Export_PrimaryButton" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Settings_Export_CloseButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Notifications_LogFileNotFoundTitle" xml:space="preserve">
+    <value>Log file not found</value>
+  </data>
+  <data name="Notifications_LogFileCouldNotOpenTitle" xml:space="preserve">
+    <value>Log file could not be opened</value>
+  </data>
+  <data name="Shell_ElevatorNotRunningTitle" xml:space="preserve">
+    <value>Elevator is not running</value>
+  </data>
+  <data name="Shell_ElevatorNotRunningMessage" xml:space="preserve">
+    <value>Please start the Elevator first in the Settings page</value>
+  </data>
+  <data name="CommandsSettingsPage_WarningPrimary" xml:space="preserve">
+    <value>I understand</value>
+  </data>
+  <data name="CreateCommand_FilePicker_CommitText" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="CreateCommand_FolderPicker_CommitText" xml:space="preserve">
+    <value>Select Folder</value>
+  </data>
+  <data name="Characters_PinToTopText" xml:space="preserve">
+    <value>Pin To Top</value>
+  </data>
+  <data name="Characters_UnpinCharacterText" xml:space="preserve">
+    <value>Unpin Character</value>
+  </data>
+  <data name="Settings_Export_Status_KeepCurrent" xml:space="preserve">
+    <value>Keep Current</value>
+  </data>
+  <data name="Settings_Export_Status_EnableAll" xml:space="preserve">
+    <value>Enable All Mods</value>
+  </data>
+  <data name="Settings_Export_Status_DisableAll" xml:space="preserve">
+    <value>Disable All Mods</value>
   </data>
 </root>

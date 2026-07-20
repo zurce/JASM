@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.GamesService;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Services;
@@ -107,8 +108,8 @@ public partial class ShellViewModel : ObservableRecipient
 
         if (ElevatorService.ElevatorStatus == ElevatorStatus.NotRunning)
         {
-            NotificationManager.ShowNotification("Elevator is not running",
-                "Please start the Elevator first in the Settings page",
+            NotificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Shell_ElevatorNotRunningTitle") ?? "Elevator is not running",
+                App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Shell_ElevatorNotRunningMessage") ?? "Please start the Elevator first in the Settings page",
                 TimeSpan.FromSeconds(5));
         }
         else
