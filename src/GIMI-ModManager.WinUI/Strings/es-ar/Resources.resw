@@ -3652,4 +3652,10 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="EditCharacter_ShowDataModelClose" xml:space="preserve">
     <value>Cerrar</value>
   </data>
+  <data name="CharacterDetails_NoModsFound" xml:space="preserve">
+    <value>No se encontraron mods para este personaje 😖</value>
+  </data>
+  <data name="CharacterDetails_DropModsHere" xml:space="preserve">
+    <value>Suelta los Mods Aquí</value>
+  </data>
 </root>

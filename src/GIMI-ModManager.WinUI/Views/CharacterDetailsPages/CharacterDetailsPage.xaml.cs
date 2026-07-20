@@ -155,9 +155,10 @@ public sealed partial class CharacterDetailsPage : Page
             AllowDrop = false
         };
 
+        var localizer = App.GetService<ILanguageLocalizer>();
         var title = new TextBlock()
         {
-            Text = "No mods found for this character 😖",
+            Text = localizer.GetLocalizedStringOrDefault("CharacterDetails_NoModsFound") ?? "No mods found for this character 😖",
             FontSize = 28,
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
@@ -194,7 +195,7 @@ public sealed partial class CharacterDetailsPage : Page
         // Create the TextBlock for "Drop Mods Here"
         var dropText = new TextBlock
         {
-            Text = "Drop Mods Here",
+            Text = localizer.GetLocalizedStringOrDefault("CharacterDetails_DropModsHere") ?? "Drop Mods Here",
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
             FontSize = 20,

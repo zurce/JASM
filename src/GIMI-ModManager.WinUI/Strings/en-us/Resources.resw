@@ -1973,4 +1973,10 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="EditCharacter_ShowDataModelClose" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="CharacterDetails_NoModsFound" xml:space="preserve">
+    <value>No mods found for this character 😖</value>
+  </data>
+  <data name="CharacterDetails_DropModsHere" xml:space="preserve">
+    <value>Drop Mods Here</value>
+  </data>
 </root>
