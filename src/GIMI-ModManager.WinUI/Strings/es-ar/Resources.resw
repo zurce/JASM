@@ -3619,4 +3619,28 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="EditCharacter_EnableCharacterClose" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="CreateCharacterPage_IsMultiMod.Content" xml:space="preserve">
+    <value>Es Multi Mod</value>
+  </data>
+  <data name="EditCharacterPage_IsMultiMod.Content" xml:space="preserve">
+    <value>Es Multi Mod</value>
+  </data>
+  <data name="EditCharacterPage_GoToCharacter.Content" xml:space="preserve">
+    <value>Ir al personaje</value>
+  </data>
+  <data name="CreateCharacterPage_InternalNameHelp.Text" xml:space="preserve">
+    <value>El Nombre Interno es usado por JASM para identificar personajes/Objetos de Mod. También se usa como nombre de la carpeta de mods. Debe ser único. Cambiar esto después de haber creado el personaje significa que JASM identificará esto como un nuevo personaje.</value>
+  </data>
+  <data name="CreateCharacterPage_ModFilesNameHelp.Text" xml:space="preserve">
+    <value>JASM puede en algunos casos intentar determinar para qué personaje es un mod. Al hacer esto, usa el texto de ModFilesName para intentar encontrar un archivo de mod con el mismo nombre. Por ejemplo, si ModFilesName es 'paimon', coincidirá con un archivo llamado: PaimonHeadLightMap.dds Déjalo vacío si no quieres que JASM intente coincidir archivos de mod.</value>
+  </data>
+  <data name="CreateCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
+    <value>Si está marcado, JASM no mostrará una advertencia cuando múltiples mods estén habilitados para este objeto de mod.</value>
+  </data>
+  <data name="EditCharacterPage_InternalNameHelp.Text" xml:space="preserve">
+    <value>El Nombre Interno es usado por JASM para identificar personajes/Objetos de Mod. También se usa como nombre de la carpeta de mods. Debe ser único. Cambiar esto después de haber creado el personaje significa que JASM identificará esto como un nuevo personaje.</value>
+  </data>
+  <data name="EditCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
+    <value>Si está marcado, JASM no mostrará una advertencia cuando múltiples mods estén habilitados para este objeto de mod.</value>
+  </data>
 </root>

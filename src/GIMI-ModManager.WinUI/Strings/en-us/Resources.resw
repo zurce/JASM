@@ -1940,4 +1940,28 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="EditCharacter_EnableCharacterClose" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="CreateCharacterPage_IsMultiMod.Content" xml:space="preserve">
+    <value>Is Multi Mod</value>
+  </data>
+  <data name="EditCharacterPage_IsMultiMod.Content" xml:space="preserve">
+    <value>Is Multi Mod</value>
+  </data>
+  <data name="EditCharacterPage_GoToCharacter.Content" xml:space="preserve">
+    <value>Go to character</value>
+  </data>
+  <data name="CreateCharacterPage_InternalNameHelp.Text" xml:space="preserve">
+    <value>The Internal Name is used by JASM to identify characters/ModObjects. It is also used as the name of mod folder. Must be unique. Changing this after character has been created means JASM will identify this as a new character.</value>
+  </data>
+  <data name="CreateCharacterPage_ModFilesNameHelp.Text" xml:space="preserve">
+    <value>JASM can in some cases try and determine what character a mod is for. When doing this it uses the ModFilesName text to try and find a mod file with the same name. For example, lets say ModFilesName is 'paimon' then it will match a file with name: PaimonHeadLightMap.dds Leave empty if you don't want JASM to try and match mod files.</value>
+  </data>
+  <data name="CreateCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
+    <value>If Checked JASM won't show a warning when multiple mods are enabled for this mod object.</value>
+  </data>
+  <data name="EditCharacterPage_InternalNameHelp.Text" xml:space="preserve">
+    <value>The Internal Name is used by JASM to identify characters/ModObjects. It is also used as the name of mod folder. Must be unique. Changing this after character has been created means JASM will identify this as a new character.</value>
+  </data>
+  <data name="EditCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
+    <value>If Checked JASM won't show a warning when multiple mods are enabled for this mod object.</value>
+  </data>
 </root>

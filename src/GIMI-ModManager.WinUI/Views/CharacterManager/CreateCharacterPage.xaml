@@ -65,7 +65,7 @@
                         </local:InputWrapper.Input>
 
                         <local:InputWrapper.HelpInfo>
-                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="WrapWholeWords">
+                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="WrapWholeWords" l:Uids.Uid="CreateCharacterPage_InternalNameHelp">
                                 The Internal Name is used by JASM to identify characters/ModObjects. It is also used as the name of mod folder. Must be unique.
                                 Changing this after character has been created means JASM will identify this as a new character.
                             </TextBlock>
@@ -93,7 +93,7 @@
                         </local:InputWrapper.Input>
 
                         <local:InputWrapper.HelpInfo>
-                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="WrapWholeWords">
+                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="WrapWholeWords" l:Uids.Uid="CreateCharacterPage_ModFilesNameHelp">
                                 JASM can in some cases try and determine what character a mod is for. When doing this it uses the ModFilesName text to try and find a mod file with the same name. For example, lets say ModFilesName is 'paimon' then it will match a file with name: PaimonHeadLightMap.dds
                                 Leave empty if you don't want JASM to try and match mod files.
                             </TextBlock>
@@ -136,11 +136,11 @@
 
                     <local:InputWrapper InputField="{x:Bind ViewModel.Form.IsMultiMod}">
                         <local:InputWrapper.Input>
-                            <CheckBox Content="Is Multi Mod" IsChecked="{x:Bind ViewModel.Form.IsMultiMod.Value, Mode=TwoWay}" />
+                            <CheckBox Content="Is Multi Mod" IsChecked="{x:Bind ViewModel.Form.IsMultiMod.Value, Mode=TwoWay}" l:Uids.Uid="CreateCharacterPage_IsMultiMod" />
                         </local:InputWrapper.Input>
 
                         <local:InputWrapper.HelpInfo>
-                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="WrapWholeWords">
+                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="WrapWholeWords" l:Uids.Uid="CreateCharacterPage_IsMultiModHelp">
                                 If Checked JASM won't show a warning when multiple mods are enabled for this mod object.
                             </TextBlock>
                         </local:InputWrapper.HelpInfo>
