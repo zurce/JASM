@@ -3,6 +3,7 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Helpers;
 using GIMI_ModManager.Core.Services.CommandService;
 using GIMI_ModManager.Core.Services.CommandService.Models;
@@ -19,6 +20,7 @@ public partial class CreateCommandViewModel : ObservableObject
     private readonly CommandService _commandService;
     private readonly NotificationManager _notificationManager;
     private readonly SelectedGameService _selectedGameService;
+    private readonly ILanguageLocalizer _localizer;
 
     private CreateCommandOptions? _createOptions;
 
@@ -26,11 +28,13 @@ public partial class CreateCommandViewModel : ObservableObject
     public bool IsEditingCommand => _createOptions?.IsEditingCommand == true;
 
     public CreateCommandViewModel(ILogger logger, CommandService commandService,
-        NotificationManager notificationManager, SelectedGameService selectedGameService)
+        NotificationManager notificationManager, SelectedGameService selectedGameService,
+        ILanguageLocalizer localizer)
     {
         _commandService = commandService;
         _notificationManager = notificationManager;
         _selectedGameService = selectedGameService;
+        _localizer = localizer;
         _logger = logger.ForContext<CreateCommandViewModel>();
         PropertyChanged += (_, e) =>
         {
@@ -134,13 +138,13 @@ public partial class CreateCommandViewModel : ObservableObject
 
     private string? SetEffectiveWorkingDirectory()
     {
-        const string prefix = "Effective working directory: ";
+        var prefix = _localizer.GetLocalizedStringOrDefault("CreateCommandView_EffectiveWorkingDirPrefix") ?? "Effective working directory: ";
         var jasmWorkingDirectory = App.ROOT_DIR;
         string? workingDirectory = null;
 
         if (!IsValidWorkingDirectory())
         {
-            EffectiveWorkingDirectory = prefix + "Invalid working directory";
+            EffectiveWorkingDirectory = prefix + (_localizer.GetLocalizedStringOrDefault("CreateCommandView_InvalidWorkingDir") ?? "Invalid working directory");
             return null;
         }
 

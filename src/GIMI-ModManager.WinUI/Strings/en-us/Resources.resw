@@ -951,6 +951,240 @@
   <data name="ModUpdateAvailableWindow_DownloadsButton.Content" xml:space="preserve">
     <value>Downloads</value>
   </data>
+  <!-- ===== SettingsPage remaining strings ===== -->
+  <data name="Settings_Window.Text" xml:space="preserve">
+    <value>Window</value>
+  </data>
+  <data name="Settings_WindowSize.Content" xml:space="preserve">
+    <value>Remember window size</value>
+  </data>
+  <data name="Settings_WindowPosition.Content" xml:space="preserve">
+    <value>Remember window position</value>
+  </data>
+  <data name="Settings_Commands.Text" xml:space="preserve">
+    <value>Commands</value>
+  </data>
+  <data name="Settings_CreateCustomCommands.Header" xml:space="preserve">
+    <value>Create Custom Commands</value>
+  </data>
+  <data name="Settings_UpdateButton.Content" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Settings_ReorganizeMods.Content" xml:space="preserve">
+    <value>Reorganize Mods</value>
+  </data>
+  <data name="Settings_CleanMods.Content" xml:space="preserve">
+    <value>Clean Mods folder</value>
+  </data>
+  <data name="Settings_DisableAllMods.Content" xml:space="preserve">
+    <value>Disable All Mods</value>
+  </data>
+  <data name="Settings_Reset3DmigotoPath.Content" xml:space="preserve">
+    <value>Reset 3Dmigoto Exe Path</value>
+  </data>
+  <data name="Settings_ResetGenshinPath.Content" xml:space="preserve">
+    <value>Reset Genshin Exe Path</value>
+  </data>
+  <data name="Settings_SkinsAsCharacters.Content" xml:space="preserve">
+    <value>Treat Character Skins as separate characters</value>
+  </data>
+  <data name="Settings_CacheDescription.Text" xml:space="preserve">
+    <value>When using JASM to download mods, it automatically caches the archives or zip files. You can specify a maximum limit in gigabytes for the cache directory, and JASM will keep the cache size under the limit when starting up.</value>
+  </data>
+  <data name="Settings_GithubLink.Content" xml:space="preserve">
+    <value>Just Another Skin Manager Github</value>
+  </data>
+  <data name="Settings_GameBananaLink.Content" xml:space="preserve">
+    <value>Just Another Skin Manager GameBanana</value>
+  </data>
+  <data name="Settings_NewUpdateAvailable.Text" xml:space="preserve">
+    <value>New Update Available on GitHub:</value>
+  </data>
+  <data name="Settings_SeeWhatsNew.Text" xml:space="preserve">
+    <value>See what's new in the latest release</value>
+  </data>
+  <data name="Settings_UpdateDialogText.Text" xml:space="preserve">
+    <value>JASM will exit and the update will start. Do you want to continue?</value>
+  </data>
+  <data name="Settings_UpdateJASMButton.Content" xml:space="preserve">
+    <value>Yes, Update JASM</value>
+  </data>
+  <data name="Settings_UpdateJASMTo.Text" xml:space="preserve">
+    <value>Update JASM to </value>
+  </data>
+  <data name="Settings_IgnoreUpdate.Content" xml:space="preserve">
+    <value>Ignore Current Update?</value>
+  </data>
+  <data name="Settings_OpenCacheFolder.Text" xml:space="preserve">
+    <value>Open cache folder...</value>
+  </data>
+  <data name="Settings_CurrentCacheSize.Text" xml:space="preserve">
+    <value>Current Size of Mod Cache for</value>
+  </data>
+  <data name="FolderSelector_Browse.Content" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <!-- ===== CommandsSettingsPage ===== -->
+  <data name="CommandsSettingsPage_WarningTitle" xml:space="preserve">
+    <value>Friendly Warning</value>
+  </data>
+  <data name="CommandsSettingsPage_WarningContent" xml:space="preserve">
+    <value>Please be careful when creating commands. Commands can be used to run any executable on your system. Only create commands from trusted sources. JASM isn't perfect and can't protect you from malicious scripts or JASM bugs/glitches. By clicking 'I understand' you acknowledge that you understand the risks.</value>
+  </data>
+  <data name="CommandsSettingsPage_WarningPrimary" xml:space="preserve">
+    <value>I understand</value>
+  </data>
+  <data name="CommandsSettingsPage_WarningClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CommandsSettingsPage_Title.Text" xml:space="preserve">
+    <value>Command Settings</value>
+  </data>
+  <data name="CommandsSettingsPage_CreateCommand.Header" xml:space="preserve">
+    <value>Create new command</value>
+  </data>
+  <data name="CommandsSettingsPage_CreateCommand.Description" xml:space="preserve">
+    <value>Here you can define custom commands that JASM can run for you. Currently, commands that contain {{TargetPath}} can only be run from the Mods Overview page</value>
+  </data>
+  <data name="CommandsSettingsPage_CreateNewCommandButton.Content" xml:space="preserve">
+    <value>Create New Command</value>
+  </data>
+  <data name="CommandsSettingsPage_CommandDefinitions.Header" xml:space="preserve">
+    <value>Command Definitions</value>
+  </data>
+  <data name="CommandsSettingsPage_CommandDefinitions.Description" xml:space="preserve">
+    <value>Here you can view and delete created command definitions</value>
+  </data>
+  <data name="CommandsSettingsPage_DisplayName.Text" xml:space="preserve">
+    <value>Display Name:</value>
+  </data>
+  <data name="CommandsSettingsPage_CommandDefinitionId.Text" xml:space="preserve">
+    <value>Command Definition Id:</value>
+  </data>
+  <data name="CommandsSettingsPage_RunButton.Content" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="CommandsSettingsPage_RunConfirmText.Text" xml:space="preserve">
+    <value>Are you sure you want to run this command?</value>
+  </data>
+  <data name="CommandsSettingsPage_RunConfirmButton.Content" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="CommandsSettingsPage_EditButton.Content" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="CommandsSettingsPage_DeleteButton.Content" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="CommandsSettingsPage_DeleteConfirmText.Text" xml:space="preserve">
+    <value>Are you sure you want to delete this command?</value>
+  </data>
+  <data name="CommandsSettingsPage_DeleteConfirmButton.Content" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="CommandsSettingsPage_Executable.Text" xml:space="preserve">
+    <value>Executable: </value>
+  </data>
+  <data name="CommandsSettingsPage_WorkingDirectory.Text" xml:space="preserve">
+    <value>Working Directory: </value>
+  </data>
+  <data name="CommandsSettingsPage_Arguments.Text" xml:space="preserve">
+    <value>Arguments: </value>
+  </data>
+  <data name="CommandsSettingsPage_RunningCommands.Header" xml:space="preserve">
+    <value>Currently Running Commands</value>
+  </data>
+  <data name="CommandsSettingsPage_RunningCommands.Description" xml:space="preserve">
+    <value>Commands started from JASM for the current running instance</value>
+  </data>
+  <data name="CommandsSettingsPage_RunningDisplayName.Text" xml:space="preserve">
+    <value>Display Name: </value>
+  </data>
+  <data name="CommandsSettingsPage_RunningFullCommand.Text" xml:space="preserve">
+    <value>Full Command: </value>
+  </data>
+  <data name="CommandsSettingsPage_RunningCommandDefId.Text" xml:space="preserve">
+    <value>Command Definition Id: </value>
+  </data>
+  <data name="CommandsSettingsPage_KillButton.Content" xml:space="preserve">
+    <value>Kill</value>
+  </data>
+  <!-- ===== CreateCommandView ===== -->
+  <data name="CreateCommandView_Title.Text" xml:space="preserve">
+    <value>Create Command</value>
+  </data>
+  <data name="CreateCommandView_CommandName.Header" xml:space="preserve">
+    <value>* Command Name:</value>
+  </data>
+  <data name="CreateCommandView_CommandName_PlaceholderText" xml:space="preserve">
+    <value>Command Display Name (Required)</value>
+  </data>
+  <data name="CreateCommandView_CommandName.PlaceholderText" xml:space="preserve">
+    <value>Command Display Name (Required)</value>
+  </data>
+  <data name="CreateCommandView_CustomCommand.Content" xml:space="preserve">
+    <value>Custom Command</value>
+  </data>
+  <data name="CreateCommandView_ChainedCommand.Content" xml:space="preserve">
+    <value>Custom Chained Command</value>
+  </data>
+  <data name="CreateCommandView_Executable.Title" xml:space="preserve">
+    <value>* Executable</value>
+  </data>
+  <data name="CreateCommandView_Executable_PlaceHolderText" xml:space="preserve">
+    <value>Must either be in $PATH or be an absolute path to the executable (Required)</value>
+  </data>
+  <data name="CreateCommandView_Executable.PlaceHolderText" xml:space="preserve">
+    <value>Must either be in $PATH or be an absolute path to the executable (Required)</value>
+  </data>
+  <data name="CreateCommandView_WorkingDirectory.Title" xml:space="preserve">
+    <value>Working Directory</value>
+  </data>
+  <data name="CreateCommandView_WorkingDirectory_PlaceHolderText" xml:space="preserve">
+    <value>When manually specifying a path, the folder must exist</value>
+  </data>
+  <data name="CreateCommandView_WorkingDirectory.PlaceHolderText" xml:space="preserve">
+    <value>When manually specifying a path, the folder must exist</value>
+  </data>
+  <data name="CreateCommandView_Arguments.Header" xml:space="preserve">
+    <value>Arguments</value>
+  </data>
+  <data name="CreateCommandView_Arguments_PlaceholderText" xml:space="preserve">
+    <value>Arguments that will be passed to the executable</value>
+  </data>
+  <data name="CreateCommandView_Arguments.PlaceholderText" xml:space="preserve">
+    <value>Arguments that will be passed to the executable</value>
+  </data>
+  <data name="CreateCommandView_TargetPathHelp.Text" xml:space="preserve">
+    <value>When command is run against a file system object (i.e. a skin/mod folder), {{TargetPath}} will be replaced by the actual path.</value>
+  </data>
+  <data name="CreateCommandView_KillProcess.Content" xml:space="preserve">
+    <value>Kill Process on JASM exit</value>
+  </data>
+  <data name="CreateCommandView_RunAsAdmin.Content" xml:space="preserve">
+    <value>Run as Admin</value>
+  </data>
+  <data name="CreateCommandView_UseShellExecute.Content" xml:space="preserve">
+    <value>Use Shell Execute</value>
+  </data>
+  <data name="CreateCommandView_CreateWindow.Content" xml:space="preserve">
+    <value>Create window</value>
+  </data>
+  <data name="CreateCommandView_CommandPreview.Header" xml:space="preserve">
+    <value>Command that will be run:</value>
+  </data>
+  <data name="WindowManagerService_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CreateCommandView_EffectiveWorkingDirPrefix" xml:space="preserve">
+    <value>Effective working directory: </value>
+  </data>
+  <data name="CreateCommandView_InvalidWorkingDir" xml:space="preserve">
+    <value>Invalid working directory</value>
+  </data>
+  <data name="CreateCommandView_SaveCommand.Content" xml:space="preserve">
+    <value>Save Command</value>
+  </data>
   <!-- ===== Category Names ===== -->
   <data name="Category_Character" xml:space="preserve">
     <value>Character</value>

@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Services.CommandService.Models;
 using GIMI_ModManager.WinUI.Services.AppManagement;
 using Microsoft.UI.Xaml.Controls;
@@ -15,7 +16,17 @@ public sealed partial class CreateCommandView : UserControl, IClosableElement
     public CreateCommandView(CreateCommandOptions? options = null)
     {
         InitializeComponent();
-        Loaded += async (_, _) => await ViewModel.Initialize(options).ConfigureAwait(false);
+        Loaded += async (_, _) =>
+        {
+            var localizer = App.GetService<ILanguageLocalizer>();
+            ExecutableFolderSelector.PlaceHolderText = localizer.GetLocalizedStringOrDefault("CreateCommandView_Executable_PlaceHolderText") ?? "Must either be in $PATH or be an absolute path to the executable (Required)";
+            WorkingDirectoryFolderSelector.PlaceHolderText = localizer.GetLocalizedStringOrDefault("CreateCommandView_WorkingDirectory_PlaceHolderText") ?? "When manually specifying a path, the folder must exist";
+            var ph1 = localizer.GetLocalizedStringOrDefault("CreateCommandView_CommandName_PlaceholderText");
+            if (ph1 != null) CommandNameBox.PlaceholderText = ph1;
+            var ph2 = localizer.GetLocalizedStringOrDefault("CreateCommandView_Arguments_PlaceholderText");
+            if (ph2 != null) ArgumentsBox.PlaceholderText = ph2;
+            await ViewModel.Initialize(options).ConfigureAwait(false);
+        };
         ViewModel.CloseRequested += (_, _) => CloseRequested?.Invoke(this, EventArgs.Empty);
     }
 }

@@ -6,6 +6,7 @@
     xmlns:controls="using:CommunityToolkit.WinUI.Controls"
     xmlns:controls1="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:controls2="using:GIMI_ModManager.WinUI.Views.Controls"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:GIMI_ModManager.WinUI.Views.Settings"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -20,11 +21,12 @@
 
 
         <StackPanel Margin="0,0,0,16">
-            <TextBlock FontSize="18" Text="Create Command" />
-            <TextBox
+            <TextBlock FontSize="18" Text="Create Command" l:Uids.Uid="CreateCommandView_Title" />
+            <TextBox x:Name="CommandNameBox"
                 MinWidth="300"
                 HorizontalAlignment="Left"
                 Header="* Command Name:"
+                l:Uids.Uid="CreateCommandView_CommandName"
                 PlaceholderText="Command Display Name (Required)"
                 Text="{x:Bind ViewModel.CommandDisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
@@ -41,9 +43,10 @@
                 HorizontalAlignment="Center"
                 SelectedIndex="0"
                 SelectionMode="Single">
-                <controls:SegmentedItem Content="Custom Command" />
+                <controls:SegmentedItem Content="Custom Command" l:Uids.Uid="CreateCommandView_CustomCommand" />
                 <controls:SegmentedItem
                     Content="Custom Chained Command"
+                    l:Uids.Uid="CreateCommandView_ChainedCommand"
                     IsEnabled="False"
                     ToolTipService.ToolTip="Not Implemented" />
             </controls:Segmented>
@@ -55,13 +58,17 @@
 
                         <StackPanel Spacing="8">
                             <controls2:FolderSelector
+                                x:Name="ExecutableFolderSelector"
                                 Title="* Executable"
+                                l:Uids.Uid="CreateCommandView_Executable"
                                 BrowseCommand="{x:Bind ViewModel.SelectExecutableCommand}"
                                 PlaceHolderText="Must either be in $PATH or be an absolute path to the executable (Required)"
                                 SelectedFolderValue="{x:Bind ViewModel.Command, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                             <controls2:FolderSelector
+                                x:Name="WorkingDirectoryFolderSelector"
                                 Title="Working Directory"
+                                l:Uids.Uid="CreateCommandView_WorkingDirectory"
                                 BrowseCommand="{x:Bind ViewModel.SelectWorkingDirectoryCommand}"
                                 Footer="{x:Bind ViewModel.EffectiveWorkingDirectory, Mode=OneWay}"
                                 IsEnabled="{x:Bind ViewModel.CanEditWorkingDirectory, Mode=OneWay}"
@@ -69,32 +76,37 @@
                                 SelectedFolderValue="{x:Bind ViewModel.WorkingDirectory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                             <StackPanel>
-                                <TextBox
+                                <TextBox x:Name="ArgumentsBox"
                                     Header="Arguments"
+                                    l:Uids.Uid="CreateCommandView_Arguments"
                                     PlaceholderText="Arguments that will be passed to the executable"
                                     Text="{x:Bind ViewModel.Arguments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                <TextBlock IsTextSelectionEnabled="True" Text="When command is run against a file system object (i.e. a skin/mod folder), {{TargetPath}} will be replaced by the actual path." />
+                                <TextBlock IsTextSelectionEnabled="True" Text="When command is run against a file system object (i.e. a skin/mod folder), {{TargetPath}} will be replaced by the actual path." l:Uids.Uid="CreateCommandView_TargetPathHelp" />
                             </StackPanel>
 
 
                             <StackPanel>
                                 <CheckBox
                                     Content="Kill Process on JASM exit"
+                                    l:Uids.Uid="CreateCommandView_KillProcess"
                                     IsChecked="{x:Bind ViewModel.KillProcessOnMainAppExit, Mode=TwoWay}"
                                     ToolTipService.ToolTip="If checked the process will be killed when JASM exits" />
                                 <CheckBox
                                     Command="{x:Bind ViewModel.ToggleRunAsAdminCommand}"
                                     Content="Run as Admin"
+                                    l:Uids.Uid="CreateCommandView_RunAsAdmin"
                                     IsChecked="{x:Bind ViewModel.RunAsAdmin, Mode=TwoWay}"
                                     ToolTipService.ToolTip="Run the executable as an Administrator" />
                                 <CheckBox
                                     Command="{x:Bind ViewModel.ToggleUseShellExecuteCommand}"
                                     Content="Use Shell Execute"
+                                    l:Uids.Uid="CreateCommandView_UseShellExecute"
                                     IsChecked="{x:Bind ViewModel.UseShellExecute, Mode=TwoWay}"
                                     IsEnabled="{x:Bind ViewModel.CanToggleUseShellExecute, Mode=OneWay}"
                                     ToolTipService.ToolTip="Use the Operating System to start the executable" />
                                 <CheckBox
                                     Content="Create window"
+                                    l:Uids.Uid="CreateCommandView_CreateWindow"
                                     IsChecked="{x:Bind ViewModel.CreateWindow, Mode=TwoWay}"
                                     IsEnabled="False"
                                     ToolTipService.ToolTip="If checked it will be run in an external window" />
@@ -111,11 +123,13 @@
         <StackPanel Grid.Row="2" Spacing="16">
             <TextBox
                 Header="Command that will be run:"
+                l:Uids.Uid="CreateCommandView_CommandPreview"
                 IsReadOnly="True"
                 Text="{x:Bind ViewModel.CommandPreview, Mode=OneWay}" />
             <Button
                 Command="{x:Bind ViewModel.CreateCommandCommand}"
                 Content="Save Command"
+                l:Uids.Uid="CreateCommandView_SaveCommand"
                 Style="{ThemeResource AccentButtonStyle}" />
         </StackPanel>
 
