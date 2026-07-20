@@ -1763,4 +1763,181 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="CharacterGallery_DisableButton" xml:space="preserve">
     <value>Disable</value>
   </data>
+  <data name="CreateCharacterPage_Title.Text" xml:space="preserve">
+    <value>Create Character</value>
+  </data>
+  <data name="CreateCharacterPage_CharacterImage.Text" xml:space="preserve">
+    <value>Character Image</value>
+  </data>
+  <data name="CreateCharacterPage_InternalName.Header" xml:space="preserve">
+    <value>Internal Name (Required)</value>
+  </data>
+  <data name="CreateCharacterPage_DisplayName.Header" xml:space="preserve">
+    <value>Display Name</value>
+  </data>
+  <data name="CreateCharacterPage_ModFilesName.Header" xml:space="preserve">
+    <value>Mod Files name</value>
+  </data>
+  <data name="CreateCharacterPage_Rarity.Header" xml:space="preserve">
+    <value>Rarity</value>
+  </data>
+  <data name="CreateCharacterPage_Element.Header" xml:space="preserve">
+    <value>Element</value>
+  </data>
+  <data name="CreateCharacterPage_SearchKeys.Text" xml:space="preserve">
+    <value>Search Keys</value>
+  </data>
+  <data name="CreateCharacterPage_NewKeyName.PlaceholderText" xml:space="preserve">
+    <value>New Key Name...</value>
+  </data>
+  <data name="CreateCharacterPage_AddSearchKey.Content" xml:space="preserve">
+    <value>Add Search Key</value>
+  </data>
+  <data name="CreateCharacterPage_SearchKeysDescription.Text" xml:space="preserve">
+    <value>JASM uses keys to help improve search functionality. Some characters may have multiple names, so you can add additional name or search terms as Keys.</value>
+  </data>
+  <data name="CreateCharacterPage_RemoveKey.Content" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="CreateCharacterPage_SaveButton.Content" xml:space="preserve">
+    <value>Create Character</value>
+  </data>
+  <data name="EditCharacterPage_ModFolderPath.Text" xml:space="preserve">
+    <value>Mod Folder Path:</value>
+  </data>
+  <data name="EditCharacterPage_DisableCharacter.Content" xml:space="preserve">
+    <value>Disable Character</value>
+  </data>
+  <data name="EditCharacterPage_EnableCharacter.Content" xml:space="preserve">
+    <value>Enable Character</value>
+  </data>
+  <data name="EditCharacterPage_DeleteCharacter.Content" xml:space="preserve">
+    <value>Delete Custom Character</value>
+  </data>
+  <data name="EditCharacterPage_InternalNameId.Text" xml:space="preserve">
+    <value>Internal Name (Id): </value>
+  </data>
+  <data name="EditCharacterPage_DisplayName.Header" xml:space="preserve">
+    <value>Display Name</value>
+  </data>
+  <data name="EditCharacterPage_TotalMods.Text" xml:space="preserve">
+    <value>Total Mods:</value>
+  </data>
+  <data name="EditCharacterPage_SearchKeys.Text" xml:space="preserve">
+    <value>Character Search Keys</value>
+  </data>
+  <data name="EditCharacterPage_NewKeyName.PlaceholderText" xml:space="preserve">
+    <value>New Key Name...</value>
+  </data>
+  <data name="EditCharacterPage_AddSearchKey.Content" xml:space="preserve">
+    <value>Add Search Key</value>
+  </data>
+  <data name="EditCharacterPage_SearchKeysDescription.Text" xml:space="preserve">
+    <value>JASM uses keys to help improve search functionality. Some characters may have multiple names, so you can add additional name or search terms as Keys.</value>
+  </data>
+  <data name="EditCharacterPage_RemoveKey.Content" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="EditCharacterPage_UndoChanges.Content" xml:space="preserve">
+    <value>Undo changes</value>
+  </data>
+  <data name="EditCharacterPage_SaveChanges.Content" xml:space="preserve">
+    <value>Save changes</value>
+  </data>
+  <data name="EditCharacterPage_ShowDataModel.Text" xml:space="preserve">
+    <value>Show Character Data Model...</value>
+  </data>
+  <data name="EditCharacterPage_ResetCharacter.Content" xml:space="preserve">
+    <value>Reset Character</value>
+  </data>
+  <data name="CreateCharacterPage_ExportJson.Content" xml:space="preserve">
+    <value>Export character json</value>
+  </data>
+  <data name="CreateCharacterPage_OpenCustomJson.Content" xml:space="preserve">
+    <value>Open custom Character json file</value>
+  </data>
+  <data name="CreateCharacter_FailedTitle" xml:space="preserve">
+    <value>Failed to create character</value>
+  </data>
+  <data name="CreateCharacter_EnableFailedTitle" xml:space="preserve">
+    <value>Character created, but failed to enable mod list for character</value>
+  </data>
+  <data name="CreateCharacter_SuccessTitle" xml:space="preserve">
+    <value>Character created</value>
+  </data>
+  <data name="CreateCharacter_SuccessMessage" xml:space="preserve">
+    <value>Character '{0}' was created successfully</value>
+  </data>
+  <data name="CreateCharacter_PasteImageFailedTitle" xml:space="preserve">
+    <value>Failed to paste image</value>
+  </data>
+  <data name="CreateCharacter_NoImageInClipboard" xml:space="preserve">
+    <value>No image found in clipboard</value>
+  </data>
+  <data name="CreateCharacter_JsonExportFailedTitle" xml:space="preserve">
+    <value>Failed to create json export</value>
+  </data>
+  <data name="CreateCharacter_JsonExportTitle" xml:space="preserve">
+    <value>Character Model Json Export</value>
+  </data>
+  <data name="CreateCharacter_JsonExportPrimary" xml:space="preserve">
+    <value>Copy to clipboard and Close</value>
+  </data>
+  <data name="CreateCharacter_JsonExportClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CreateCharacter_JsonCopiedTitle" xml:space="preserve">
+    <value>Character json copied to clipboard</value>
+  </data>
+  <data name="EditCharacter_PasteImageFailedTitle" xml:space="preserve">
+    <value>Failed to paste image</value>
+  </data>
+  <data name="EditCharacter_NoImageInClipboard" xml:space="preserve">
+    <value>No image found in clipboard</value>
+  </data>
+  <data name="EditCharacter_DeletedTitle" xml:space="preserve">
+    <value>Custom Character Deleted</value>
+  </data>
+  <data name="EditCharacter_DeletedMessage" xml:space="preserve">
+    <value>Custom Character '{0}' was deleted successfully</value>
+  </data>
+  <data name="EditCharacter_SaveFailedTitle" xml:space="preserve">
+    <value>Failed to save changes to character</value>
+  </data>
+  <data name="EditCharacter_DisableCharacterTitle" xml:space="preserve">
+    <value>Disable Character</value>
+  </data>
+  <data name="EditCharacter_DisableCharacterContent" xml:space="preserve">
+    <value>Are you sure you want to disable this character? This will not remove the character, but JASM will no longer recognize the character. Character can be reactivated later. This will be executed immediately on pressing yes</value>
+  </data>
+  <data name="EditCharacter_DisableCharacterPrimary" xml:space="preserve">
+    <value>Yes, disable this character</value>
+  </data>
+  <data name="EditCharacter_DisableCharacterClose" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="EditCharacter_DeleteCharacterTitle" xml:space="preserve">
+    <value>Delete Custom Character</value>
+  </data>
+  <data name="EditCharacter_DeleteCharacterContent" xml:space="preserve">
+    <value>Are you sure you want to delete this custom character? This will remove the character, and JASM will no longer recognize the character. This will be executed immediately on pressing yes</value>
+  </data>
+  <data name="EditCharacter_DeleteCharacterPrimary" xml:space="preserve">
+    <value>Yes, delete this custom character</value>
+  </data>
+  <data name="EditCharacter_DeleteCharacterClose" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="EditCharacter_EnableCharacterTitle" xml:space="preserve">
+    <value>Enable Character</value>
+  </data>
+  <data name="EditCharacter_EnableCharacterContent" xml:space="preserve">
+    <value>Are you sure you want to enable this character? This will be executed immediately on pressing yes</value>
+  </data>
+  <data name="EditCharacter_EnableCharacterPrimary" xml:space="preserve">
+    <value>Yes, enable this character</value>
+  </data>
+  <data name="EditCharacter_EnableCharacterClose" xml:space="preserve">
+    <value>No</value>
+  </data>
 </root>

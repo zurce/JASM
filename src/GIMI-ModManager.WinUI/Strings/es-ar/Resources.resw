@@ -3442,4 +3442,181 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="CharacterGallery_DisableButton" xml:space="preserve">
     <value>Deshabilitar</value>
   </data>
+  <data name="CreateCharacterPage_Title.Text" xml:space="preserve">
+    <value>Crear Personaje</value>
+  </data>
+  <data name="CreateCharacterPage_CharacterImage.Text" xml:space="preserve">
+    <value>Imagen del Personaje</value>
+  </data>
+  <data name="CreateCharacterPage_InternalName.Header" xml:space="preserve">
+    <value>Nombre Interno (Requerido)</value>
+  </data>
+  <data name="CreateCharacterPage_DisplayName.Header" xml:space="preserve">
+    <value>Nombre para Mostrar</value>
+  </data>
+  <data name="CreateCharacterPage_ModFilesName.Header" xml:space="preserve">
+    <value>Nombre de Archivos de Mods</value>
+  </data>
+  <data name="CreateCharacterPage_Rarity.Header" xml:space="preserve">
+    <value>Rareza</value>
+  </data>
+  <data name="CreateCharacterPage_Element.Header" xml:space="preserve">
+    <value>Elemento</value>
+  </data>
+  <data name="CreateCharacterPage_SearchKeys.Text" xml:space="preserve">
+    <value>Claves de Búsqueda</value>
+  </data>
+  <data name="CreateCharacterPage_NewKeyName.PlaceholderText" xml:space="preserve">
+    <value>Nuevo Nombre de Clave...</value>
+  </data>
+  <data name="CreateCharacterPage_AddSearchKey.Content" xml:space="preserve">
+    <value>Agregar Clave de Búsqueda</value>
+  </data>
+  <data name="CreateCharacterPage_SearchKeysDescription.Text" xml:space="preserve">
+    <value>JASM usa claves para ayudar a mejorar la funcionalidad de búsqueda. Algunos personajes pueden tener múltiples nombres, por lo que puedes agregar nombres adicionales o términos de búsqueda como Claves.</value>
+  </data>
+  <data name="CreateCharacterPage_RemoveKey.Content" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="CreateCharacterPage_SaveButton.Content" xml:space="preserve">
+    <value>Crear Personaje</value>
+  </data>
+  <data name="EditCharacterPage_ModFolderPath.Text" xml:space="preserve">
+    <value>Ruta de Carpeta de Mods:</value>
+  </data>
+  <data name="EditCharacterPage_DisableCharacter.Content" xml:space="preserve">
+    <value>Deshabilitar Personaje</value>
+  </data>
+  <data name="EditCharacterPage_EnableCharacter.Content" xml:space="preserve">
+    <value>Habilitar Personaje</value>
+  </data>
+  <data name="EditCharacterPage_DeleteCharacter.Content" xml:space="preserve">
+    <value>Eliminar Personaje Personalizado</value>
+  </data>
+  <data name="EditCharacterPage_InternalNameId.Text" xml:space="preserve">
+    <value>Nombre Interno (Id): </value>
+  </data>
+  <data name="EditCharacterPage_DisplayName.Header" xml:space="preserve">
+    <value>Nombre para Mostrar</value>
+  </data>
+  <data name="EditCharacterPage_TotalMods.Text" xml:space="preserve">
+    <value>Total de Mods:</value>
+  </data>
+  <data name="EditCharacterPage_SearchKeys.Text" xml:space="preserve">
+    <value>Claves de Búsqueda de Personajes</value>
+  </data>
+  <data name="EditCharacterPage_NewKeyName.PlaceholderText" xml:space="preserve">
+    <value>Nuevo Nombre de Clave...</value>
+  </data>
+  <data name="EditCharacterPage_AddSearchKey.Content" xml:space="preserve">
+    <value>Agregar Clave de Búsqueda</value>
+  </data>
+  <data name="EditCharacterPage_SearchKeysDescription.Text" xml:space="preserve">
+    <value>JASM usa claves para ayudar a mejorar la funcionalidad de búsqueda. Algunos personajes pueden tener múltiples nombres, por lo que puedes agregar nombres adicionales o términos de búsqueda como Claves.</value>
+  </data>
+  <data name="EditCharacterPage_RemoveKey.Content" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="EditCharacterPage_UndoChanges.Content" xml:space="preserve">
+    <value>Deshacer cambios</value>
+  </data>
+  <data name="EditCharacterPage_SaveChanges.Content" xml:space="preserve">
+    <value>Guardar cambios</value>
+  </data>
+  <data name="EditCharacterPage_ShowDataModel.Text" xml:space="preserve">
+    <value>Mostrar Modelo de Datos del Personaje...</value>
+  </data>
+  <data name="EditCharacterPage_ResetCharacter.Content" xml:space="preserve">
+    <value>Restablecer Personaje</value>
+  </data>
+  <data name="CreateCharacterPage_ExportJson.Content" xml:space="preserve">
+    <value>Exportar json de personaje</value>
+  </data>
+  <data name="CreateCharacterPage_OpenCustomJson.Content" xml:space="preserve">
+    <value>Abrir archivo json de personaje personalizado</value>
+  </data>
+  <data name="CreateCharacter_FailedTitle" xml:space="preserve">
+    <value>Error al crear el personaje</value>
+  </data>
+  <data name="CreateCharacter_EnableFailedTitle" xml:space="preserve">
+    <value>Personaje creado, pero no se pudo habilitar la lista de mods</value>
+  </data>
+  <data name="CreateCharacter_SuccessTitle" xml:space="preserve">
+    <value>Personaje creado</value>
+  </data>
+  <data name="CreateCharacter_SuccessMessage" xml:space="preserve">
+    <value>El personaje '{0}' fue creado exitosamente</value>
+  </data>
+  <data name="CreateCharacter_PasteImageFailedTitle" xml:space="preserve">
+    <value>Error al pegar la imagen</value>
+  </data>
+  <data name="CreateCharacter_NoImageInClipboard" xml:space="preserve">
+    <value>No se encontró imagen en el portapapeles</value>
+  </data>
+  <data name="CreateCharacter_JsonExportFailedTitle" xml:space="preserve">
+    <value>Error al crear la exportación json</value>
+  </data>
+  <data name="CreateCharacter_JsonExportTitle" xml:space="preserve">
+    <value>Exportación de Modelo de Personaje Json</value>
+  </data>
+  <data name="CreateCharacter_JsonExportPrimary" xml:space="preserve">
+    <value>Copiar al portapapeles y Cerrar</value>
+  </data>
+  <data name="CreateCharacter_JsonExportClose" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="CreateCharacter_JsonCopiedTitle" xml:space="preserve">
+    <value>Json de personaje copiado al portapapeles</value>
+  </data>
+  <data name="EditCharacter_PasteImageFailedTitle" xml:space="preserve">
+    <value>Error al pegar la imagen</value>
+  </data>
+  <data name="EditCharacter_NoImageInClipboard" xml:space="preserve">
+    <value>No se encontró imagen en el portapapeles</value>
+  </data>
+  <data name="EditCharacter_DeletedTitle" xml:space="preserve">
+    <value>Personaje Personalizado Eliminado</value>
+  </data>
+  <data name="EditCharacter_DeletedMessage" xml:space="preserve">
+    <value>El Personaje Personalizado '{0}' fue eliminado exitosamente</value>
+  </data>
+  <data name="EditCharacter_SaveFailedTitle" xml:space="preserve">
+    <value>Error al guardar cambios del personaje</value>
+  </data>
+  <data name="EditCharacter_DisableCharacterTitle" xml:space="preserve">
+    <value>Deshabilitar Personaje</value>
+  </data>
+  <data name="EditCharacter_DisableCharacterContent" xml:space="preserve">
+    <value>¿Estás seguro de que deseas deshabilitar este personaje? Esto no eliminará el personaje, pero JASM ya no lo reconocerá. El personaje puede ser reactivado más tarde. Esto se ejecutará inmediatamente al presionar sí</value>
+  </data>
+  <data name="EditCharacter_DisableCharacterPrimary" xml:space="preserve">
+    <value>Sí, deshabilitar este personaje</value>
+  </data>
+  <data name="EditCharacter_DisableCharacterClose" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="EditCharacter_DeleteCharacterTitle" xml:space="preserve">
+    <value>Eliminar Personaje Personalizado</value>
+  </data>
+  <data name="EditCharacter_DeleteCharacterContent" xml:space="preserve">
+    <value>¿Estás seguro de que deseas eliminar este personaje personalizado? Esto eliminará el personaje y JASM ya no lo reconocerá. Esto se ejecutará inmediatamente al presionar sí</value>
+  </data>
+  <data name="EditCharacter_DeleteCharacterPrimary" xml:space="preserve">
+    <value>Sí, eliminar este personaje personalizado</value>
+  </data>
+  <data name="EditCharacter_DeleteCharacterClose" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="EditCharacter_EnableCharacterTitle" xml:space="preserve">
+    <value>Habilitar Personaje</value>
+  </data>
+  <data name="EditCharacter_EnableCharacterContent" xml:space="preserve">
+    <value>¿Estás seguro de que deseas habilitar este personaje? Esto se ejecutará inmediatamente al presionar sí</value>
+  </data>
+  <data name="EditCharacter_EnableCharacterPrimary" xml:space="preserve">
+    <value>Sí, habilitar este personaje</value>
+  </data>
+  <data name="EditCharacter_EnableCharacterClose" xml:space="preserve">
+    <value>No</value>
+  </data>
 </root>

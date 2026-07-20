@@ -6,6 +6,7 @@
     xmlns:characterManagerViewModels="using:GIMI_ModManager.WinUI.ViewModels.CharacterManagerViewModels"
     xmlns:controls="using:GIMI_ModManager.WinUI.Views.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:local="using:GIMI_ModManager.WinUI.Views.CharacterManager"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="CreateCharacterPageName"
@@ -26,14 +27,14 @@
             </Grid.ColumnDefinitions>
 
 
-            <TextBlock Margin="0,8,0,8" Text="Create Character" />
+            <TextBlock Margin="0,8,0,8" Text="Create Character" l:Uids.Uid="CreateCharacterPage_Title" />
 
             <ScrollViewer Grid.Row="1" Grid.Column="0">
 
                 <StackPanel Spacing="8">
 
                     <StackPanel>
-                        <TextBlock Text="Character Image" />
+                        <TextBlock Text="Character Image" l:Uids.Uid="CreateCharacterPage_CharacterImage" />
                         <local:InputWrapper InputField="{x:Bind ViewModel.Form.Image}">
                             <local:InputWrapper.Input>
                                 <controls:CustomImage
@@ -58,7 +59,7 @@
                         <local:InputWrapper.Input>
                             <TextBox
                                 MinWidth="200"
-                                Header="Internal Name (Required)"
+                                Header="Internal Name (Required)" l:Uids.Uid="CreateCharacterPage_InternalName"
                                 PlaceholderText="{x:Bind ViewModel.Form.InternalName.PlaceHolderText, Mode=OneWay}"
                                 Text="{x:Bind ViewModel.Form.InternalName.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </local:InputWrapper.Input>
@@ -76,7 +77,7 @@
                         <local:InputWrapper.Input>
                             <TextBox
                                 MinWidth="200"
-                                Header="Display Name"
+                                Header="Display Name" l:Uids.Uid="CreateCharacterPage_DisplayName"
                                 PlaceholderText="{x:Bind ViewModel.Form.DisplayName.PlaceHolderText, Mode=OneWay}"
                                 Text="{x:Bind ViewModel.Form.DisplayName.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </local:InputWrapper.Input>
@@ -86,7 +87,7 @@
                         <local:InputWrapper.Input>
                             <TextBox
                                 MinWidth="200"
-                                Header="Mod Files name"
+                                Header="Mod Files name" l:Uids.Uid="CreateCharacterPage_ModFilesName"
                                 PlaceholderText="{x:Bind ViewModel.Form.ModFilesName.PlaceHolderText, Mode=OneWay}"
                                 Text="{x:Bind ViewModel.Form.ModFilesName.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </local:InputWrapper.Input>
@@ -127,7 +128,7 @@
                     <local:InputWrapper InputField="{x:Bind ViewModel.Form.Element}">
                         <local:InputWrapper.Input>
                             <ComboBox
-                                Header="Element"
+                                Header="Element" l:Uids.Uid="CreateCharacterPage_Element"
                                 ItemsSource="{x:Bind ViewModel.Elements}"
                                 SelectedItem="{x:Bind ViewModel.SelectedElement, Mode=TwoWay}" />
                         </local:InputWrapper.Input>
@@ -171,17 +172,17 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock FontSize="16" Text="Search Keys" />
+                    <TextBlock FontSize="16" Text="Search Keys" l:Uids.Uid="CreateCharacterPage_SearchKeys" />
                     <TextBox
                         Grid.Column="1"
-                        PlaceholderText="New Key Name..."
+                        PlaceholderText="New Key Name..." l:Uids.Uid="CreateCharacterPage_NewKeyName"
                         Text="{x:Bind ViewModel.NewKeyNameInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <Button
                         Grid.Column="2"
                         Margin="0,0,20,0"
                         HorizontalAlignment="Right"
                         Command="{x:Bind ViewModel.AddNewKeyCommand}"
-                        Content="Add Search Key" />
+                        Content="Add Search Key" l:Uids.Uid="CreateCharacterPage_AddSearchKey" />
 
                     <Button
                         Grid.Column="3"
@@ -193,7 +194,7 @@
                                     <TextBlock
                                         IsTextSelectionEnabled="True"
                                         TextWrapping="WrapWholeWords"
-                                        Text="JASM uses keys to help improve search functionality. Some characters may have multiple names, so you can add additional name or search terms as Keys." />
+                                        Text="JASM uses keys to help improve search functionality. Some characters may have multiple names, so you can add additional name or search terms as Keys." l:Uids.Uid="CreateCharacterPage_SearchKeysDescription" />
                                 </Grid>
                             </Flyout>
                         </Button.Flyout>
@@ -224,7 +225,7 @@
                                         HorizontalAlignment="Right"
                                         Command="{Binding ElementName=CreateCharacterPageName, Path=ViewModel.RemoveKeyCommand, Mode=OneWay}"
                                         CommandParameter="{Binding Mode=OneTime}"
-                                        Content="Remove" />
+                                        Content="Remove" l:Uids.Uid="CreateCharacterPage_RemoveKey" />
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -244,9 +245,9 @@
                     HorizontalAlignment="Right"
                     Orientation="Horizontal"
                     Spacing="40">
-                    <Button Command="{x:Bind ViewModel.ExportCharacterCommand}">Export character json</Button>
-                    <Button Command="{x:Bind ViewModel.OpenCustomCharacterJsonFileCommand}">Open custom Character json file</Button>
-                    <Button Background="{ThemeResource AccentFillColorDefaultBrush}" Command="{x:Bind ViewModel.SaveCharacterCommand}">Create Character</Button>
+                    <Button Command="{x:Bind ViewModel.ExportCharacterCommand}" Content="Export character json" l:Uids.Uid="CreateCharacterPage_ExportJson" />
+                    <Button Command="{x:Bind ViewModel.OpenCustomCharacterJsonFileCommand}" Content="Open custom Character json file" l:Uids.Uid="CreateCharacterPage_OpenCustomJson" />
+                    <Button Background="{ThemeResource AccentFillColorDefaultBrush}" Command="{x:Bind ViewModel.SaveCharacterCommand}" Content="Create Character" l:Uids.Uid="CreateCharacterPage_SaveButton" />
                 </StackPanel>
             </Grid>
 
