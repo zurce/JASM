@@ -699,8 +699,14 @@
   <data name="ModInstallerPage_ModPageUrl.Header" xml:space="preserve">
     <value>Mod page url</value>
   </data>
+  <data name="ModInstallerPage_ModPageUrl.PlaceholderText" xml:space="preserve">
+    <value>Paste URL to auto populate fields (GameBanana only)</value>
+  </data>
   <data name="ModInstallerPage_ModCustomName.Header" xml:space="preserve">
     <value>Mod Custom Name</value>
+  </data>
+  <data name="ModInstallerPage_ModCustomName.PlaceholderText" xml:space="preserve">
+    <value>Custom Name displayed throughout JASM</value>
   </data>
   <data name="ModInstallerPage_Author.Header" xml:space="preserve">
     <value>Author</value>
@@ -708,8 +714,26 @@
   <data name="ModInstallerPage_Note.Header" xml:space="preserve">
     <value>Note</value>
   </data>
+  <data name="ModInstallerPage_Note.PlaceholderText" xml:space="preserve">
+    <value>Custom free text note, shown in grid on character details page</value>
+  </data>
   <data name="ModInstallerPage_ModFolderLabel.Text" xml:space="preserve">
     <value>ModFolder:</value>
+  </data>
+  <data name="ModInstallerPage_ModPageUrl.PlaceholderText" xml:space="preserve">
+    <value>Paste URL to auto populate fields (GameBanana only)</value>
+  </data>
+  <data name="ModInstallerPage_ModCustomName.PlaceholderText" xml:space="preserve">
+    <value>Custom Name displayed throughout JASM</value>
+  </data>
+  <data name="ModInstallerPage_Note.PlaceholderText" xml:space="preserve">
+    <value>Custom free text note, shown in grid on character details page</value>
+  </data>
+  <data name="ModInstallerPage_RootFolderHint.Text" xml:space="preserve">
+    <value>This is usually the folder that contains the 'merged.ini/Script.ini' or '.JASM_ModConfig.json'. JASM will automatically detect the mod folder and the merged.ini file. If you want to manually select the mod folder, you can do so by right clicking the folder in the overview above.</value>
+  </data>
+  <data name="ModInstallerPage_PreviewImageHint.Text" xml:space="preserve">
+    <value>You can also manually select image file for the mod preview image. It's usually fine to just press 'Add Mod'</value>
   </data>
   <data name="ModInstallerPage_PreviewImageSourceLabel.Text" xml:space="preserve">
     <value>Preview Image Source:</value>

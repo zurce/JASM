@@ -3673,4 +3673,19 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="ModPage_DownloadsForTitle" xml:space="preserve">
     <value>Descargas para: {0}</value>
   </data>
+  <data name="ModInstallerPage_ModPageUrl.PlaceholderText" xml:space="preserve">
+    <value>Pegue la URL para auto completar campos (solo GameBanana)</value>
+  </data>
+  <data name="ModInstallerPage_ModCustomName.PlaceholderText" xml:space="preserve">
+    <value>Nombre personalizado mostrado en JASM</value>
+  </data>
+  <data name="ModInstallerPage_Note.PlaceholderText" xml:space="preserve">
+    <value>Nota de texto libre personalizada, mostrada en la cuadrícula en la página de detalles del personaje</value>
+  </data>
+  <data name="ModInstallerPage_RootFolderHint.Text" xml:space="preserve">
+    <value>Esta suele ser la carpeta que contiene 'merged.ini/Script.ini' o '.JASM_ModConfig.json'. JASM detectará automáticamente la carpeta de mods y el archivo merged.ini. Si desea seleccionar manualmente la carpeta de mods, puede hacerlo haciendo clic derecho en la carpeta en la vista general arriba.</value>
+  </data>
+  <data name="ModInstallerPage_PreviewImageHint.Text" xml:space="preserve">
+    <value>También puede seleccionar manualmente un archivo de imagen para la imagen de vista previa del mod. Generalmente está bien solo presionar 'Agregar Mod'</value>
+  </data>
 </root>
