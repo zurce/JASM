@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using Windows.ApplicationModel.DataTransfer;
 using CommunityToolkit.WinUI.UI.Animations;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Helpers.Xaml;
 using GIMI_ModManager.WinUI.ViewModels.CharacterDetailsViewModels;
@@ -27,6 +28,7 @@ public sealed partial class CharacterDetailsPage : Page
         ModPane.ViewModel = ViewModel.ModPaneVM;
         ModGrid.ViewModel = ViewModel.ModGridVM;
         ModGrid.ViewModel.OnModsReloaded += OnModsReloaded;
+        MultipleModsInfoBar.Message = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharacterDetails_MultipleModsActiveMessage") ?? "Multiple Mods active";
 
         ViewModel.OnModObjectLoaded += OnModObjectLoaded;
         ViewModel.OnModsLoaded += OnModsLoaded;
@@ -313,6 +315,13 @@ public sealed partial class CharacterDetailsPage : Page
     {
         ViewModel.ContextMenuVM.OnSuggestionChosen((SuggestedModObject)args.ChosenSuggestion);
         MoveModsButton.Focus(FocusState.Programmatic);
+    }
+
+    private void ViewToggleSwitch_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        var localizer = App.GetService<ILanguageLocalizer>();
+        ViewToggleSwitch.OffContent = localizer.GetLocalizedStringOrDefault("CharacterDetails_ViewToggle_OffContent") ?? "Detailed View";
+        ViewToggleSwitch.OnContent = localizer.GetLocalizedStringOrDefault("CharacterDetails_ViewToggle_OnContent") ?? "Gallery View";
     }
 
     #endregion

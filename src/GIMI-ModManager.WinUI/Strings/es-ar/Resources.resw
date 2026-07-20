@@ -3391,6 +3391,24 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="CharacterDetails_ViewToggle.OnContent" xml:space="preserve">
     <value>Vista Galería</value>
   </data>
+  <data name="CharacterDetails_ViewToggle_OffContent" xml:space="preserve">
+    <value>Vista Detallada</value>
+  </data>
+  <data name="CharacterDetails_ViewToggle_OnContent" xml:space="preserve">
+    <value>Vista Galería</value>
+  </data>
+  <data name="CharacterGalleryPage_ViewToggleSwitch_OffContent" xml:space="preserve">
+    <value>Vista Detallada</value>
+  </data>
+  <data name="CharacterGalleryPage_ViewToggleSwitch_OnContent" xml:space="preserve">
+    <value>Vista Galería</value>
+  </data>
+  <data name="CharacterGalleryPage_SingleSelect_Content" xml:space="preserve">
+    <value>Selección Única</value>
+  </data>
+  <data name="CharacterGalleryPage_SingleSelect_ToolTip" xml:space="preserve">
+    <value>Seleccionar esto solo permitirá habilitar un mod a la vez.</value>
+  </data>
   <data name="ModGrid_EnabledColumn" xml:space="preserve">
     <value>Habilitado</value>
   </data>
@@ -3411,5 +3429,17 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   </data>
   <data name="ModGrid_NotesColumn" xml:space="preserve">
     <value>Notas</value>
+  </data>
+  <data name="CharacterDetails_MultipleModsActiveMessage" xml:space="preserve">
+    <value>Múltiples Mods activos</value>
+  </data>
+  <data name="CharacterCard_DisableAllMods.Content" xml:space="preserve">
+    <value>Deshabilitar Todos los Mods</value>
+  </data>
+  <data name="CharacterGallery_EnableButton" xml:space="preserve">
+    <value>Habilitar</value>
+  </data>
+  <data name="CharacterGallery_DisableButton" xml:space="preserve">
+    <value>Deshabilitar</value>
   </data>
 </root>

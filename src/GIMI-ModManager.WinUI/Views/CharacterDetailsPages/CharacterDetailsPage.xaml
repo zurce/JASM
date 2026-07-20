@@ -334,6 +334,7 @@
 
 
                         <InfoBar
+                            x:Name="MultipleModsInfoBar"
                             Grid.Column="1"
                             Height="50"
                             HorizontalAlignment="Right"
@@ -385,8 +386,9 @@
                         <ToggleSwitch
                             x:Name="ViewToggleSwitch"
                             IsOn="False"
-                            OffContent="Detailed View" l:Uids.Uid="CharacterDetails_ViewToggle"
-                            OnContent="Gallery View"
+                            OffContent="TEMP_Detailed"
+                            OnContent="TEMP_Gallery"
+                            Loaded="ViewToggleSwitch_OnLoaded"
                             Toggled="ViewToggleSwitch_OnToggled" />
 
                         <Grid MinWidth="32">

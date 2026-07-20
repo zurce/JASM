@@ -179,13 +179,11 @@
 
                                 <StackPanel Orientation="Horizontal" Spacing="8">
                                     <CheckBox
+                                        x:Name="SingleSelectCheckBox"
                                         HorizontalAlignment="Left"
                                         Command="{x:Bind ViewModel.ToggleSingleSelectionCommand}"
                                         IsChecked="{x:Bind ViewModel.IsSingleSelection, Mode=OneWay}"
-                                        ToolTipService.ToolTip="Selecting this will only allow one mod to be enabled at a time."
-                                        l:Uids.Uid="CharacterGalleryPage_SingleSelect">
-                                        Single Select
-                                    </CheckBox>
+                                        Loaded="SingleSelectCheckBox_OnLoaded" />
                                 </StackPanel>
                             </StackPanel>
                         </Flyout>
@@ -205,9 +203,9 @@
                 <ToggleSwitch
                     x:Name="ViewToggleSwitch"
                     IsOn="True"
-                    OffContent="Detailed View"
-                    l:Uids.Uid="CharacterGalleryPage_ViewToggleSwitch"
-                    OnContent="Gallery View"
+                    OffContent="TEMP_Detailed"
+                    OnContent="TEMP_Gallery"
+                    Loaded="ViewToggleSwitch_OnLoaded"
                     Toggled="ViewToggleSwitch_OnToggled" />
 
                 <Grid MinWidth="32">

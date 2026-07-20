@@ -142,7 +142,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" Margin="0,0,0,8">
-            <Button HorizontalAlignment="Center" Command="{x:Bind ViewModel.DisableAllModsCommand}">Disable All Mods</Button>
+            <Button HorizontalAlignment="Center" Command="{x:Bind ViewModel.DisableAllModsCommand}" Content="Disable All Mods" l:Uids.Uid="CharacterCard_DisableAllMods" />
         </StackPanel>
     </Grid>
 </UserControl>

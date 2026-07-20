@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.GamesService.Interfaces;
 using GIMI_ModManager.WinUI.Helpers;
 using GIMI_ModManager.WinUI.Models;
@@ -31,7 +32,9 @@ namespace GIMI_ModManager.WinUI.ViewModels.CharacterGalleryViewModels
         public Uri? ModUrl => string.IsNullOrWhiteSpace(_modModel.ModUrl) ? null : new Uri(_modModel.ModUrl);
         public bool HasModUrl => ModUrl is not null;
         public string NameTooltip => $"Custom Name: {Name}\nFolder Name: {FolderName}";
-        public string ButtonText => _modModel.IsEnabled ? "Disable" : "Enable";
+        public string ButtonText => _modModel.IsEnabled
+            ? (App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharacterGallery_DisableButton") ?? "Disable")
+            : (App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharacterGallery_EnableButton") ?? "Enable");
 
         public string FolderName
         {

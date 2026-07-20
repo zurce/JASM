@@ -1712,6 +1712,24 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="CharacterDetails_ViewToggle.OnContent" xml:space="preserve">
     <value>Gallery View</value>
   </data>
+  <data name="CharacterDetails_ViewToggle_OffContent" xml:space="preserve">
+    <value>Detailed View</value>
+  </data>
+  <data name="CharacterDetails_ViewToggle_OnContent" xml:space="preserve">
+    <value>Gallery View</value>
+  </data>
+  <data name="CharacterGalleryPage_ViewToggleSwitch_OffContent" xml:space="preserve">
+    <value>Detailed View</value>
+  </data>
+  <data name="CharacterGalleryPage_ViewToggleSwitch_OnContent" xml:space="preserve">
+    <value>Gallery View</value>
+  </data>
+  <data name="CharacterGalleryPage_SingleSelect_Content" xml:space="preserve">
+    <value>Single Select</value>
+  </data>
+  <data name="CharacterGalleryPage_SingleSelect_ToolTip" xml:space="preserve">
+    <value>Selecting this will only allow one mod to be enabled at a time.</value>
+  </data>
   <data name="ModGrid_EnabledColumn" xml:space="preserve">
     <value>Enabled</value>
   </data>
@@ -1732,5 +1750,17 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="ModGrid_NotesColumn" xml:space="preserve">
     <value>Notes</value>
+  </data>
+  <data name="CharacterDetails_MultipleModsActiveMessage" xml:space="preserve">
+    <value>Multiple Mods active</value>
+  </data>
+  <data name="CharacterCard_DisableAllMods.Content" xml:space="preserve">
+    <value>Disable All Mods</value>
+  </data>
+  <data name="CharacterGallery_EnableButton" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="CharacterGallery_DisableButton" xml:space="preserve">
+    <value>Disable</value>
   </data>
 </root>
