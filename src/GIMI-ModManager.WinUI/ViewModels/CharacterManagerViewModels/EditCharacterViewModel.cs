@@ -523,11 +523,12 @@ public partial class EditCharacterViewModel : ObservableRecipient, INavigationAw
             }
         };
 
+        var localizer = App.GetService<ILanguageLocalizer>();
         var characterModelDialog = new ContentDialog
         {
-            Title = "Character Model",
+            Title = localizer.GetLocalizedStringOrDefault("EditCharacter_ShowDataModelTitle") ?? "Character Model",
             Content = contentWrapper,
-            CloseButtonText = "Close",
+            CloseButtonText = localizer.GetLocalizedStringOrDefault("EditCharacter_ShowDataModelClose") ?? "Close",
             DefaultButton = ContentDialogButton.Close,
             XamlRoot = App.MainWindow.Content.XamlRoot,
             Resources =

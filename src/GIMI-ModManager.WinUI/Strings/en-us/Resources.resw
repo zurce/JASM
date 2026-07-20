@@ -1967,4 +1967,10 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="EditCharacterPage_ResetCharacterSettings.Content" xml:space="preserve">
     <value>Reset Character Settings</value>
   </data>
+  <data name="EditCharacter_ShowDataModelTitle" xml:space="preserve">
+    <value>Character Model</value>
+  </data>
+  <data name="EditCharacter_ShowDataModelClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
 </root>
