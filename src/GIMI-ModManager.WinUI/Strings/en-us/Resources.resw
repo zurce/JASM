@@ -1964,4 +1964,7 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="EditCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
     <value>If Checked JASM won't show a warning when multiple mods are enabled for this mod object.</value>
   </data>
+  <data name="EditCharacterPage_ResetCharacterSettings.Content" xml:space="preserve">
+    <value>Reset Character Settings</value>
+  </data>
 </root>

@@ -3643,4 +3643,7 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="EditCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
     <value>Si está marcado, JASM no mostrará una advertencia cuando múltiples mods estén habilitados para este objeto de mod.</value>
   </data>
+  <data name="EditCharacterPage_ResetCharacterSettings.Content" xml:space="preserve">
+    <value>Restablecer Configuración del Personaje</value>
+  </data>
 </root>

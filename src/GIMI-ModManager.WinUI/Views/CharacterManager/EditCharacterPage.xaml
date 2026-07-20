@@ -127,10 +127,8 @@
                                         MaxWidth="300"
                                         IsTextSelectionEnabled="True"
                                         TextWrapping="WrapWholeWords"
-                                        l:Uids.Uid="EditCharacterPage_InternalNameHelp">
-                                        The Internal Name is used by JASM to identify characters/ModObjects. It is also used as the name of mod folder. Must be unique.
-                                        Changing this after character has been created means JASM will identify this as a new character.
-                                    </TextBlock>
+                                        Text="The Internal Name is used by JASM to identify characters/ModObjects. It is also used as the name of mod folder. Must be unique. Changing this after character has been created means JASM will identify this as a new character."
+                                        l:Uids.Uid="EditCharacterPage_InternalNameHelp" />
                                 </Flyout>
                             </Button.Flyout>
                         </Button>
@@ -156,9 +154,7 @@
                             </local:InputWrapper.Input>
 
                             <local:InputWrapper.HelpInfo>
-                                <TextBlock IsTextSelectionEnabled="True" TextWrapping="WrapWholeWords" l:Uids.Uid="EditCharacterPage_IsMultiModHelp">
-                                    If Checked JASM won't show a warning when multiple mods are enabled for this mod object.
-                                </TextBlock>
+                                <TextBlock IsTextSelectionEnabled="True" TextWrapping="WrapWholeWords" Text="If Checked JASM won't show a warning when multiple mods are enabled for this mod object." l:Uids.Uid="EditCharacterPage_IsMultiModHelp" />
                             </local:InputWrapper.HelpInfo>
                         </local:InputWrapper>
                     </StackPanel>
@@ -360,7 +356,7 @@
                 Visibility="{x:Bind ViewModel.IsNotCustomCharacter, Converter={StaticResource BoolToVisibilityConverter}}">
                 <Button.Flyout>
                     <Flyout>
-                        <Button Command="{x:Bind ViewModel.ResetCharacterToDefaultCommand}" Content="Reset Character Settings" />
+                        <Button Command="{x:Bind ViewModel.ResetCharacterToDefaultCommand}" Content="Reset Character Settings" l:Uids.Uid="EditCharacterPage_ResetCharacterSettings" />
                     </Flyout>
                 </Button.Flyout>
             </Button>

@@ -65,10 +65,7 @@
                         </local:InputWrapper.Input>
 
                         <local:InputWrapper.HelpInfo>
-                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="WrapWholeWords" l:Uids.Uid="CreateCharacterPage_InternalNameHelp">
-                                The Internal Name is used by JASM to identify characters/ModObjects. It is also used as the name of mod folder. Must be unique.
-                                Changing this after character has been created means JASM will identify this as a new character.
-                            </TextBlock>
+                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="WrapWholeWords" Text="The Internal Name is used by JASM to identify characters/ModObjects. It is also used as the name of mod folder. Must be unique. Changing this after character has been created means JASM will identify this as a new character." l:Uids.Uid="CreateCharacterPage_InternalNameHelp" />
                         </local:InputWrapper.HelpInfo>
                     </local:InputWrapper>
 
@@ -93,10 +90,7 @@
                         </local:InputWrapper.Input>
 
                         <local:InputWrapper.HelpInfo>
-                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="WrapWholeWords" l:Uids.Uid="CreateCharacterPage_ModFilesNameHelp">
-                                JASM can in some cases try and determine what character a mod is for. When doing this it uses the ModFilesName text to try and find a mod file with the same name. For example, lets say ModFilesName is 'paimon' then it will match a file with name: PaimonHeadLightMap.dds
-                                Leave empty if you don't want JASM to try and match mod files.
-                            </TextBlock>
+                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="WrapWholeWords" Text="JASM can in some cases try and determine what character a mod is for. When doing this it uses the ModFilesName text to try and find a mod file with the same name. For example, lets say ModFilesName is 'paimon' then it will match a file with name: PaimonHeadLightMap.dds Leave empty if you don't want JASM to try and match mod files." l:Uids.Uid="CreateCharacterPage_ModFilesNameHelp" />
                         </local:InputWrapper.HelpInfo>
                     </local:InputWrapper>
 
@@ -140,9 +134,7 @@
                         </local:InputWrapper.Input>
 
                         <local:InputWrapper.HelpInfo>
-                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="WrapWholeWords" l:Uids.Uid="CreateCharacterPage_IsMultiModHelp">
-                                If Checked JASM won't show a warning when multiple mods are enabled for this mod object.
-                            </TextBlock>
+                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="WrapWholeWords" Text="If Checked JASM won't show a warning when multiple mods are enabled for this mod object." l:Uids.Uid="CreateCharacterPage_IsMultiModHelp" />
                         </local:InputWrapper.HelpInfo>
                     </local:InputWrapper>
 
