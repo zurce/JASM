@@ -493,8 +493,8 @@ public partial class ModGridVM(
             return;
 
         _notificationService.ShowNotification(
-            $"Folder Activity Detected in {_context.ShownModObject.DisplayName}'s Mod Folder",
-            "Files/Folders were changed in the characters mod folder and mods have been refreshed.",
+            string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_FolderActivityDetected") ?? "Folder Activity Detected in {0}'s Mod Folder", _context.ShownModObject.DisplayName),
+            App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_FolderActivityMsg") ?? "Files/Folders were changed in the characters mod folder and mods have been refreshed.",
             TimeSpan.FromSeconds(5));
 
 

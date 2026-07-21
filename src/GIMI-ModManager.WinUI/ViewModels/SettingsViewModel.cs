@@ -573,7 +573,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             }
             catch (Win32Exception e)
             {
-                _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Elevator_UnableToStart") ?? "Unable to start Elevator", e.Message, TimeSpan.FromSeconds(10));
+                _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Elevator_UnableToStart") ?? "Unable to start Elevator", string.Format(_localizer.GetLocalizedStringOrDefault("Notification_SystemError") ?? "System error: {0}", e.Message), TimeSpan.FromSeconds(10));
                 _showElevatorStartDialog = true;
             }
     }

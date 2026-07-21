@@ -327,8 +327,8 @@ public partial class App : Application
         window.CenterOnScreen();
 
         GetService<NotificationManager>()
-            .ShowNotification("An error occured!",
-                "JASM may be in an unstable state could crash at any moment. It is suggested to restart the app.",
+            .ShowNotification(GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_ErrorOccurred") ?? "An error occured!",
+                GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_UnstableState") ?? "JASM may be in an unstable state could crash at any moment. It is suggested to restart the app.",
                 TimeSpan.FromMinutes(60));
 
         if (_ErrorWindowsOpen > 4)

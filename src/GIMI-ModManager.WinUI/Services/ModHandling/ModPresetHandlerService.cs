@@ -1,4 +1,5 @@
 ﻿using GIMI_ModManager.Core.Helpers;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Services;
 using GIMI_ModManager.Core.Services.ModPresetService;
 using GIMI_ModManager.Core.Services.ModPresetService.Models;
@@ -41,7 +42,7 @@ public sealed class ModPresetHandlerService(
 #endif
 
             _logger.Error(e, "An error occured when applying preset {PresetName}", presetName);
-            return Result.Error(new SimpleNotification("Failed to apply preset", e.Message, null));
+            return Result.Error(new SimpleNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_PresetApplyFailed") ?? "Failed to apply preset", e.Message, null));
         }
     }
 
@@ -57,8 +58,8 @@ public sealed class ModPresetHandlerService(
 
         if (!preferencesResult)
         {
-            _notificationManager.ShowNotification("Could not write mod preferences to 3Dmigoto user .ini",
-                "See logs for details", null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CannotWritePrefs") ?? "Could not write mod preferences to 3Dmigoto user .ini",
+                App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_SeeLogsDetails") ?? "See logs for details", null);
         }
 
 
@@ -67,8 +68,8 @@ public sealed class ModPresetHandlerService(
 
         var simpleNotification = new SimpleNotification
         (
-            "Mod preset applied",
-            $"Mod preset {modPreset.Name} applied successfully",
+            App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_PresetApplied") ?? "Mod preset applied",
+            string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_PresetAppliedMsg") ?? "Mod preset {0} applied successfully", modPreset.Name),
             TimeSpan.FromSeconds(5)
         );
 
@@ -128,7 +129,7 @@ public sealed class ModPresetHandlerService(
 #endif
 
             _logger.Error(e, "An error occured when saving active preferences");
-            return Result.Error(new SimpleNotification("Failed to save active preferences", e.Message, null));
+            return Result.Error(new SimpleNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_SavePrefsFailed") ?? "Failed to save active preferences", e.Message, null));
         }
     }
 
@@ -136,8 +137,8 @@ public sealed class ModPresetHandlerService(
     {
         await _userPreferencesService.SaveModPreferencesAsync().ConfigureAwait(false);
 
-        return Result.Success(new SimpleNotification("Active preferences saved",
-            $"Preferences stored in {Constants.UserIniFileName} have been saved for enabled mods",
+        return Result.Success(new SimpleNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_PrefsSaved") ?? "Active preferences saved",
+            string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_PrefsSavedMsg") ?? "Preferences stored in {0} have been saved for enabled mods", Constants.UserIniFileName),
             TimeSpan.FromSeconds(5)));
     }
 
@@ -155,7 +156,7 @@ public sealed class ModPresetHandlerService(
 #endif
 
             _logger.Error(e, "An error occured when applying active preferences");
-            return Result.Error(new SimpleNotification("Failed to apply saved preferences", e.Message, null));
+            return Result.Error(new SimpleNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_ApplyPrefsFailed") ?? "Failed to apply saved preferences", e.Message, null));
         }
     }
 
@@ -164,8 +165,8 @@ public sealed class ModPresetHandlerService(
         await _userPreferencesService.SetModPreferencesAsync(cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 
-        return Result.Success(new SimpleNotification("Saved preferences applied",
-            $"Mod preferences written to 3DMigoto {Constants.UserIniFileName}",
+        return Result.Success(new SimpleNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_PrefsApplied") ?? "Saved preferences applied",
+            string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_PrefsAppliedMsg") ?? "Mod preferences written to 3DMigoto {0}", Constants.UserIniFileName),
             TimeSpan.FromSeconds(5)));
     }
 }

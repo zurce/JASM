@@ -1046,6 +1046,12 @@ Or
   <data name="Settings_Mods_Reorganized" xml:space="preserve">
     <value>Mods reorganized.</value>
   </data>
+  <data name="Settings_SeeLogs" xml:space="preserve">
+    <value>See logs for more details.</value>
+  </data>
+  <data name="Settings_ModsMovedMsg" xml:space="preserve">
+    <value>Moved {0} mods to character folders</value>
+  </data>
   <data name="Settings_Elevator_UnableToStart" xml:space="preserve">
     <value>Unable to start Elevator</value>
   </data>
@@ -1083,13 +1089,13 @@ Or
     <value>Failed to delete command</value>
   </data>
   <data name="Commands_Notification_DeletedTitle" xml:space="preserve">
-    <value>Command deleted successfully</value>
+    <value>Command '{0}' deleted successfully</value>
   </data>
   <data name="CreateCommand_Notification_UpdatedTitle" xml:space="preserve">
-    <value>Command updated successfully</value>
+    <value>Command '{0}' updated successfully.</value>
   </data>
   <data name="CreateCommand_Notification_CreatedTitle" xml:space="preserve">
-    <value>Command created successfully</value>
+    <value>Command '{0}' created successfully.</value>
   </data>
   <data name="CreateCommand_Notification_UpdateFailed" xml:space="preserve">
     <value>Failed to update command.</value>
@@ -1098,6 +1104,9 @@ Or
     <value>Failed to create command.</value>
   </data>
   <data name="Settings_Notification_ModsExportedToFormat" xml:space="preserve">
+    <value>Mods exported to {0}</value>
+  </data>
+  <data name="Settings_Export_ModsExportedToFormat" xml:space="preserve">
     <value>Mods exported to {0}</value>
   </data>
   <data name="Settings_ClearEmptyFolders_Title" xml:space="preserve">
@@ -2025,6 +2034,18 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="ModInstaller_AnErrorOccurred" xml:space="preserve">
     <value>An error occurred</value>
   </data>
+  <data name="ModInstaller_ErrorAddingMod" xml:space="preserve">
+    <value>An error occurred while adding the mod. See logs for more details</value>
+  </data>
+  <data name="CharDetails_InvalidModFile" xml:space="preserve">
+    <value>The operation failed because the selected item is not a valid mod file or folder.</value>
+  </data>
+  <data name="CharDetails_InvalidModUrl" xml:space="preserve">
+    <value>The operation failed because the selected item is not a valid https GameBanana mod URL.</value>
+  </data>
+  <data name="CharDetails_DestModListNotFoundMsg" xml:space="preserve">
+    <value>Destination mod list not found</value>
+  </data>
   <data name="ModUpdate_FailedGetInfo" xml:space="preserve">
     <value>Failed to get mod update info</value>
   </data>
@@ -2145,6 +2166,9 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="PresetDetails_PrefsSavedMsg" xml:space="preserve">
     <value>Preferences saved successfully for mod {0}</value>
   </data>
+  <data name="Preset_ElevatorFailed" xml:space="preserve">
+    <value>Elevator failed to start</value>
+  </data>
   <data name="Preset_ModPrefsRemovedMsg" xml:space="preserve">
     <value>Mod preferences have been removed{0}</value>
   </data>
@@ -2168,5 +2192,252 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="CharDetails_SkinOverrideSetMsg" xml:space="preserve">
     <value>Set skin override for mod '{0}' to {1}</value>
+  </data>
+  
+  <data name="Notification_ErrorOccurred" xml:space="preserve">
+    <value>An error occured!</value>
+  </data>
+  <data name="Notification_UnstableState" xml:space="preserve">
+    <value>JASM may be in an unstable state could crash at any moment. It is suggested to restart the app.</value>
+  </data>
+  <data name="Notification_CommandError" xml:space="preserve">
+    <value>An error occured error while executing command '{0}'</value>
+  </data>
+  <data name="Notification_ErrorTogglingMod" xml:space="preserve">
+    <value>An error occurred {0} the mod: {1}</value>
+  </data>
+  <data name="Notification_SeeLogs" xml:space="preserve">
+    <value>See logs for more details.</value>
+  </data>
+  <data name="Notification_MovedMods" xml:space="preserve">
+    <value>Moved {0} mods to new character folders</value>
+  </data>
+  <data name="Notification_ErrorRestartingApp" xml:space="preserve">
+    <value>Error restarting app</value>
+  </data>
+  <data name="Notification_RestartManually" xml:space="preserve">
+    <value>Please restart manually</value>
+  </data>
+  <data name="Notification_TryingLegacyRestart" xml:space="preserve">
+    <value>Trying legacy restart method. Reason: {0}</value>
+  </data>
+  <data name="Notification_PleaseRestartManuallyReason" xml:space="preserve">
+    <value>Please restart manually. Reason: {0}</value>
+  </data>
+  <data name="Notification_CommandStartError" xml:space="preserve">
+    <value>An error occured when starting command</value>
+  </data>
+  <data name="Notification_CommandNotFound" xml:space="preserve">
+    <value>Command not found</value>
+  </data>
+  <data name="Notification_CommandNotFoundMsg" xml:space="preserve">
+    <value>Command with id '{0}' not found</value>
+  </data>
+  <data name="Notification_CommandCannotStart" xml:space="preserve">
+    <value>Command cannot be started</value>
+  </data>
+  <data name="Notification_CommandCannotStartMsg" xml:space="preserve">
+    <value>Command '{0}' cannot be started due to the following errors: {1}</value>
+  </data>
+  <data name="Notification_CommandStarted" xml:space="preserve">
+    <value>Command started</value>
+  </data>
+  <data name="Notification_CommandStartedMsg" xml:space="preserve">
+    <value>Command '{0}' started</value>
+  </data>
+  <data name="Notification_KeySwapSaveFailed" xml:space="preserve">
+    <value>Failed to save key swap configuration for mod {0}</value>
+  </data>
+  <data name="Notification_KeySwapSaveError" xml:space="preserve">
+    <value>An error occurred when saving. Reason: {0}</value>
+  </data>
+  <data name="Notification_DragDropMultipleItems" xml:space="preserve">
+    <value>Drag and drop called with more than one storage item, this is currently not supported</value>
+  </data>
+  <data name="Notification_FinishAddingMod" xml:space="preserve">
+    <value>Please finish adding the mod for '{0}' first</value>
+  </data>
+  <data name="Notification_NoMultipleInstalls" xml:space="preserve">
+    <value>JASM does not support multiple mod installs for the same character</value>
+  </data>
+  <data name="Notification_PresetApplyFailed" xml:space="preserve">
+    <value>Failed to apply preset</value>
+  </data>
+  <data name="Notification_CannotWritePrefs" xml:space="preserve">
+    <value>Could not write mod preferences to 3Dmigoto user .ini</value>
+  </data>
+  <data name="Notification_SeeLogsDetails" xml:space="preserve">
+    <value>See logs for details</value>
+  </data>
+  <data name="Notification_PresetApplied" xml:space="preserve">
+    <value>Mod preset applied</value>
+  </data>
+  <data name="Notification_PresetAppliedMsg" xml:space="preserve">
+    <value>Mod preset {0} applied successfully</value>
+  </data>
+  <data name="Notification_SavePrefsFailed" xml:space="preserve">
+    <value>Failed to save active preferences</value>
+  </data>
+  <data name="Notification_PrefsSaved" xml:space="preserve">
+    <value>Active preferences saved</value>
+  </data>
+  <data name="Notification_PrefsSavedMsg" xml:space="preserve">
+    <value>Preferences stored in {0} have been saved for enabled mods</value>
+  </data>
+  <data name="Notification_ApplyPrefsFailed" xml:space="preserve">
+    <value>Failed to apply saved preferences</value>
+  </data>
+  <data name="Notification_PrefsApplied" xml:space="preserve">
+    <value>Saved preferences applied</value>
+  </data>
+  <data name="Notification_PrefsAppliedMsg" xml:space="preserve">
+    <value>Mod preferences written to 3DMigoto {0}</value>
+  </data>
+  <data name="Notification_SettingsSaveFailed" xml:space="preserve">
+    <value>Failed to save settings for mod {0}</value>
+  </data>
+  <data name="Notification_SettingsErrorMsg" xml:space="preserve">
+    <value>An Error Occurred. Reason: {0}</value>
+  </data>
+  <data name="Notification_SettingsFileNotFound" xml:space="preserve">
+    <value>Could not find settings file for mod {0}</value>
+  </data>
+  <data name="Notification_SettingsReadFailed" xml:space="preserve">
+    <value>Failed to read settings for mod {0}</value>
+  </data>
+  <data name="Notification_SettingsReadErrorMsg" xml:space="preserve">
+    <value>An error occurred. Reason: {0}</value>
+  </data>
+  <data name="Notification_NoChanges" xml:space="preserve">
+    <value>No changes were detected</value>
+  </data>
+  <data name="Notification_NoChangesMsg" xml:space="preserve">
+    <value>Mod settings not updated</value>
+  </data>
+  <data name="Notification_ImagePathNotFound" xml:space="preserve">
+    <value>Image path not found</value>
+  </data>
+  <data name="Notification_ImagePathNotFoundMsg" xml:space="preserve">
+    <value>When saving mod settings the currently set image could not be found</value>
+  </data>
+  <data name="Notification_ModSettingsUpdated" xml:space="preserve">
+    <value>Mod settings updated</value>
+  </data>
+  <data name="Notification_ModSettingsUpdatedMsg" xml:space="preserve">
+    <value>Mod settings have been updated for {0}</value>
+  </data>
+  <data name="Notification_CouldNotFindMod" xml:space="preserve">
+    <value>Could not find mod</value>
+  </data>
+  <data name="Notification_CouldNotFindModMsg" xml:space="preserve">
+    <value>An error occured trying to set Mod ini, restarting JASM may help</value>
+  </data>
+  <data name="Notification_CouldNotFindModSettings" xml:space="preserve">
+    <value>Could not find mod settings</value>
+  </data>
+  <data name="Notification_InvalidModIniPath" xml:space="preserve">
+    <value>Invalid Mod ini path</value>
+  </data>
+  <data name="Notification_InvalidModIniPathMsg" xml:space="preserve">
+    <value>An error occured trying to parse the path to the .ini</value>
+  </data>
+  <data name="Notification_ModIniNotExist" xml:space="preserve">
+    <value>Mod ini file does not exist</value>
+  </data>
+  <data name="Notification_ModIniNotExistMsg" xml:space="preserve">
+    <value>Could not find file at {0}</value>
+  </data>
+  <data name="Notification_ModIniNotInModFolder" xml:space="preserve">
+    <value>Mod ini file is not in mod folder</value>
+  </data>
+  <data name="Notification_ModIniNotInModFolderMsg" xml:space="preserve">
+    <value>The mod ini file must be in the mod folder. Mod folder: {0}\nIni path: {1}</value>
+  </data>
+  <data name="Notification_AnErrorOccurred" xml:space="preserve">
+    <value>An Error Occurred</value>
+  </data>
+  <data name="Notification_BgCheckerError" xml:space="preserve">
+    <value>An error occurred in the mod update background checker</value>
+  </data>
+  <data name="Notification_BgCheckerFatal" xml:space="preserve">
+    <value>A fatal error occured in the background checker ({0} : {1}). This means that JASM can no longer check for mod updates in the background or manually. Error: {2}</value>
+  </data>
+  <data name="Notification_UpdateCheckError" xml:space="preserve">
+    <value>An error occurred while checking for mod updates.</value>
+  </data>
+  <data name="Notification_StoppingBgChecker" xml:space="preserve">
+    <value>Stopping background mod update checker...</value>
+  </data>
+  <data name="Notification_NoModsToCheck" xml:space="preserve">
+    <value>No mods to check for updates</value>
+  </data>
+  <data name="Notification_NoModsToCheckMsg" xml:space="preserve">
+    <value>None of the mods were valid, therefore no check has been performed</value>
+  </data>
+  <data name="Notification_FinishedChecking" xml:space="preserve">
+    <value>Finished checking for mod updates</value>
+  </data>
+  <data name="Notification_FinishedCheckingMsg" xml:space="preserve">
+    <value>Finished checking {0} mods for updates for {1}</value>
+  </data>
+  <data name="Notification_NotImplemented" xml:space="preserve">
+    <value>Not Implemented</value>
+  </data>
+  <data name="Notification_NotImplementedMsg" xml:space="preserve">
+    <value>This feature is not implemented yet.</value>
+  </data>
+  <data name="Notification_CouldNotStartProcess" xml:space="preserve">
+    <value>Could not start process</value>
+  </data>
+  <data name="Notification_UnknownError" xml:space="preserve">
+    <value>An unknown error occurred</value>
+  </data>
+  <data name="Notification_FailedToStartProcess" xml:space="preserve">
+    <value>Failed to start {0}</value>
+  </data>
+  <data name="Notification_FailedToStartUac" xml:space="preserve">
+    <value>Failed to start {0}, this can happen due to the user cancelling the UAC (admin) prompt</value>
+  </data>
+  <data name="Notification_FailedToStartRunAsAdmin" xml:space="preserve">
+    <value>Failed to start {0}, this can happen if the exe has the 'Run as administrator' option enabled in the exe properties</value>
+  </data>
+  <data name="Notification_SkinOverrideFailed" xml:space="preserve">
+    <value>Failed to override character skin for mod {0}</value>
+  </data>
+  <data name="Notification_SkinOverrideErrorMsg" xml:space="preserve">
+    <value>An Error Occurred. Reason: {0}</value>
+  </data>
+  <data name="Notification_FolderActivityDetected" xml:space="preserve">
+    <value>Folder Activity Detected in {0}'s Mod Folder</value>
+  </data>
+  <data name="Notification_FolderActivityMsg" xml:space="preserve">
+    <value>Files/Folders were changed in the characters mod folder and mods have been refreshed.</value>
+  </data>
+  <data name="Notification_GetPresetsFailed" xml:space="preserve">
+    <value>Failed to get presets, could not automatically update mod entries in presets</value>
+  </data>
+  <data name="Notification_UpdatePresetFailed" xml:space="preserve">
+    <value>Failed to update preset {0}, could not automatically update mod entries in preset. Please check your presets manually</value>
+  </data>
+  <data name="Notification_ModUpdatedForPresets" xml:space="preserve">
+    <value>Mod was updated for presets</value>
+  </data>
+  <data name="Notification_ModNotUpdatedForPresets" xml:space="preserve">
+    <value>Mod was not updated for any presets</value>
+  </data>
+  <data name="Notification_ReadOnlyPresetsNotUpdated" xml:space="preserve">
+    <value>The following presets were not updated due to being read-only: {0}</value>
+  </data>
+  <data name="Notification_ModUpdatedInPresets" xml:space="preserve">
+    <value>The mod was updated in the following presets: {0}</value>
+  </data>
+  <data name="Notification_CouldNotDetermineSkin" xml:space="preserve">
+    <value>Could not determine skin for new mod</value>
+  </data>
+  <data name="Notification_CouldNotDetermineSkinMsg" xml:space="preserve">
+    <value>JASM could not determine what ingame skin this mod is for, therefore it can't determine what mods to disable.</value>
+  </data>
+  <data name="Notification_SystemError" xml:space="preserve">
+    <value>System error: {0}</value>
   </data>
 </root>

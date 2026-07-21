@@ -1,4 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
+using GIMI_ModManager.Core.Contracts.Services;
+using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Services.ModHandling;
 using GIMI_ModManager.WinUI.Services.Notifications;
 
@@ -23,7 +25,7 @@ public static class HandlerServiceHelpers
                 throw;
 
             return customErrorHandler?.Invoke() ??
-                   Result<T>.Error(ex, new SimpleNotification($"An error occured error while executing command '{commandName}'",
+                   Result<T>.Error(ex, new SimpleNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CommandError") ?? "An error occured error while executing command '{0}'", commandName),
                        ex.ToString(),
                        TimeSpan.FromSeconds(6)));
         }

@@ -720,7 +720,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
             _logger.Error(e, "Failed to get presets");
 
             _notificationManager.ShowNotification(
-                "Failed to get presets, could not automatically update mod entries in presets", e.Message,
+                App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_GetPresetsFailed") ?? "Failed to get presets, could not automatically update mod entries in presets", e.Message,
                 TimeSpan.FromSeconds(5));
 
             return;
@@ -747,7 +747,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
                 _logger.Error(e, "Failed to update preset {presetName}", modPreset.Name);
 
                 _notificationManager.ShowNotification(
-                    $"Failed to update preset {modPreset.Name}, could not automatically update mod entries in preset. Please check your presets manually",
+                    string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_UpdatePresetFailed") ?? "Failed to update preset {0}, could not automatically update mod entries in preset. Please check your presets manually", modPreset.Name),
                     e.Message, TimeSpan.FromSeconds(5));
                 return;
             }
@@ -761,21 +761,22 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         if (readOnlyPresetsWithMod.Length == 0 && presetsUpdated.Count == 0)
             return;
 
+        var localizer = App.GetService<ILanguageLocalizer>();
         var readOnlyPresetsMessage = readOnlyPresetsWithMod.Length == 0
             ? ""
-            : "The following presets were not updated due to being read-only: " +
-              string.Join(", ", readOnlyPresets.Select(p => p.Name));
+            : string.Format(localizer.GetLocalizedStringOrDefault("Notification_ReadOnlyPresetsNotUpdated") ?? "The following presets were not updated due to being read-only: {0}",
+              string.Join(", ", readOnlyPresets.Select(p => p.Name)));
 
         TimeSpan? notificationDuration = readOnlyPresetsMessage.Any() ? null : TimeSpan.FromSeconds(6);
 
         var presetsUpdatedMessage = presetsUpdated.Count == 0
             ? ""
-            : "The mod was updated in the following presets: " +
-              string.Join(", ", presets.Select(p => p.Name)) + "\n" +
+            : string.Format(localizer.GetLocalizedStringOrDefault("Notification_ModUpdatedInPresets") ?? "The mod was updated in the following presets: {0}",
+              string.Join(", ", presets.Select(p => p.Name))) + "\n" +
               readOnlyPresetsMessage;
 
         var notification = new SimpleNotification(
-            title: presetsUpdated.Count == 0 ? "Mod was not updated for any presets" : "Mod was updated for presets",
+            title: presetsUpdated.Count == 0 ? App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_ModNotUpdatedForPresets") ?? "Mod was not updated for any presets" : App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_ModUpdatedForPresets") ?? "Mod was updated for presets",
             message: presetsUpdatedMessage,
             notificationDuration);
 
@@ -1040,8 +1041,8 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
             }
             else
             {
-                _notificationManager.QueueNotification("Could not determine skin for new mod",
-                    "JASM could not determine what ingame skin this mod is for, therefore it can't determine what mods to disable.");
+                _notificationManager.QueueNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CouldNotDetermineSkin") ?? "Could not determine skin for new mod",
+                    App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CouldNotDetermineSkinMsg") ?? "JASM could not determine what ingame skin this mod is for, therefore it can't determine what mods to disable.");
                 return;
             }
         }

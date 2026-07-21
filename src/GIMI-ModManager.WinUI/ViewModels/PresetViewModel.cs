@@ -331,7 +331,7 @@ public partial class PresetViewModel(
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_FailedStartElevator") ?? "Failed to start elevator", e.Message, TimeSpan.FromSeconds(5));
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_FailedStartElevator") ?? "Failed to start elevator", string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_SystemError") ?? "System error: {0}", e.Message), TimeSpan.FromSeconds(5));
         }
 
         IsBusy = false;

@@ -2,8 +2,10 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using CommunityToolkit.Mvvm.ComponentModel;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Services.CommandService;
 using GIMI_ModManager.Core.Services.CommandService.Models;
+using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Models.Options;
 using GIMI_ModManager.WinUI.Services.Notifications;
 using Serilog;
@@ -111,20 +113,21 @@ public abstract partial class BaseProcessManager<TProcessOptions> : ObservableOb
         {
             if (result.Exception is Win32Exception e)
             {
-                var message = $"Failed to start {ProcessName}";
+                var localizer = App.GetService<ILanguageLocalizer>();
+                var message = string.Format(localizer.GetLocalizedStringOrDefault("Notification_FailedToStartProcess") ?? "Failed to start {0}", ProcessName);
 
                 if (e.NativeErrorCode == 1223)
                 {
                     message =
-                        $"Failed to start {ProcessName}, this can happen due to the user cancelling the UAC (admin) prompt";
+                        string.Format(localizer.GetLocalizedStringOrDefault("Notification_FailedToStartUac") ?? "Failed to start {0}, this can happen due to the user cancelling the UAC (admin) prompt", ProcessName);
                 }
                 else if (e.NativeErrorCode == 740)
                 {
                     message =
-                        $"Failed to start {ProcessName}, this can happen if the exe has the 'Run as administrator' option enabled in the exe properties";
+                        string.Format(localizer.GetLocalizedStringOrDefault("Notification_FailedToStartRunAsAdmin") ?? "Failed to start {0}, this can happen if the exe has the 'Run as administrator' option enabled in the exe properties", ProcessName);
                 }
 
-                _notificationManager.ShowNotification("Could not start process", message, null);
+                _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CouldNotStartProcess") ?? "Could not start process", message, null);
                 return;
             }
 
@@ -135,7 +138,7 @@ public abstract partial class BaseProcessManager<TProcessOptions> : ObservableOb
                 return;
             }
 
-            _notificationManager.ShowNotification("Could not start process", "An unknown error occurred", null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CouldNotStartProcess") ?? "Could not start process", App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_UnknownError") ?? "An unknown error occurred", null);
             return;
         }
 

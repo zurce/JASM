@@ -528,12 +528,12 @@ public class ActivationService : IActivationService
                 await _skinManagerService.RefreshModsAsync();
 
                 if (movedModsCount == -1)
-                    _notificationManager.ShowNotification("Mods reorganization failed.",
-                        "See logs for more details.", TimeSpan.FromSeconds(5));
+                    _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Settings_Mods_ReorganizeFailed") ?? "Mods reorganization failed.",
+                        App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_SeeLogs") ?? "See logs for more details.", TimeSpan.FromSeconds(5));
 
                 else
-                    _notificationManager.ShowNotification("Mods reorganized.",
-                        $"Moved {movedModsCount} mods to new character folders", TimeSpan.FromSeconds(5));
+                    _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Settings_Mods_Reorganized") ?? "Mods reorganized.",
+                        string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_MovedMods") ?? "Moved {0} mods to new character folders", movedModsCount), TimeSpan.FromSeconds(5));
             }
             finally
             {

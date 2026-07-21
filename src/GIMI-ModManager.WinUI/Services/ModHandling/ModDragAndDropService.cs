@@ -2,7 +2,9 @@
 using Windows.Win32;
 using Windows.Win32.Media.Audio;
 using GIMI_ModManager.Core.Contracts.Entities;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Services;
+using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Services.AppManagement;
 using GIMI_ModManager.WinUI.Views;
 using Serilog;
@@ -46,7 +48,7 @@ public class ModDragAndDropService
         if (storageItems.Count > 1)
         {
             _notificationManager.ShowNotification(
-                "Drag and drop called with more than one storage item, this is currently not supported", "",
+                App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_DragDropMultipleItems") ?? "Drag and drop called with more than one storage item, this is currently not supported", "",
                 TimeSpan.FromSeconds(5));
             return null;
         }
@@ -54,8 +56,8 @@ public class ModDragAndDropService
         if (_windowManagerService.GetWindow(modList) is { } window)
         {
             _notificationManager.ShowNotification(
-                $"Please finish adding the mod for '{modList.Character.DisplayName}' first",
-                $"JASM does not support multiple mod installs for the same character",
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_FinishAddingMod") ?? "Please finish adding the mod for '{0}' first", modList.Character.DisplayName),
+                App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_NoMultipleInstalls") ?? "JASM does not support multiple mod installs for the same character",
                 TimeSpan.FromSeconds(8));
 
             PInvoke.PlaySound("SystemAsterisk", null,

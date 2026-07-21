@@ -271,8 +271,8 @@ public partial class ContextMenuVM(
             var error = result.IsT1 ? result.AsT1.ToString() : result.AsT2.ToString();
             _logger.Error("Failed to override character skin for mod {modName}", modEntry.Mod.GetDisplayName());
             _notificationManager.ShowNotification(
-                $"Failed to override character skin for mod {modEntry.Mod.GetDisplayName()}",
-                $"An Error Occurred. Reason: {error}",
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_SkinOverrideFailed") ?? "Failed to override character skin for mod {0}", modEntry.Mod.GetDisplayName()),
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_SkinOverrideErrorMsg") ?? "An Error Occurred. Reason: {0}", error),
                 TimeSpan.FromSeconds(5));
         }
 

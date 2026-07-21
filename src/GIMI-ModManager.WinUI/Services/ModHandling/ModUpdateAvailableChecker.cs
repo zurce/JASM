@@ -91,8 +91,8 @@ public sealed class ModUpdateAvailableChecker
         {
             _logger.Error(e, "An error occurred while executing {FuncName}", methodName);
             _notificationManager.ShowNotification(
-                $"An error occurred in the mod update background checker",
-                $"A fatal error occured in the background checker ({methodName} : {e.HResult}). This means that JASM can no longer check for mod updates in the background or manually. Error: {e}",
+                App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_BgCheckerError") ?? "An error occurred in the mod update background checker",
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_BgCheckerFatal") ?? "A fatal error occured in the background checker ({0} : {1}). This means that JASM can no longer check for mod updates in the background or manually. Error: {2}", methodName, e.HResult, e),
                 TimeSpan.FromSeconds(20));
             Status = RunningState.Error;
         }
@@ -168,8 +168,8 @@ public sealed class ModUpdateAvailableChecker
                 _logger.Error(e,
                     "An error occurred while checking for mod updates. Stopping background mod update checker...");
                 _notificationManager.ShowNotification(
-                    "An error occurred while checking for mod updates.",
-                    "Stopping background mod update checker...",
+                    App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_UpdateCheckError") ?? "An error occurred while checking for mod updates.",
+                    App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_StoppingBgChecker") ?? "Stopping background mod update checker...",
                     TimeSpan.FromSeconds(20));
                 Status = RunningState.Error;
                 NextRunAt = null;
@@ -215,8 +215,8 @@ public sealed class ModUpdateAvailableChecker
         if (!modCheckOperation.ModsToCheck.Any())
         {
             if (!modCheckOperation.ModCheckRequest.ScheduledCheck)
-                _notificationManager.ShowNotification("No mods to check for updates",
-                    $"None of the mods were valid, therefore no check has been performed", TimeSpan.FromSeconds(4));
+                _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_NoModsToCheck") ?? "No mods to check for updates",
+                    App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_NoModsToCheckMsg") ?? "None of the mods were valid, therefore no check has been performed", TimeSpan.FromSeconds(4));
             return;
         }
 
@@ -233,15 +233,14 @@ public sealed class ModUpdateAvailableChecker
         if (modCheckOperation.ModCheckRequest.IsCharacterCheck &&
             modCheckOperation.ModCheckRequest.Characters.Length == 1)
         {
-            _notificationManager.ShowNotification("Finished checking for mod updates",
-                $"Finished checking {modCheckOperation.ModsToCheck.Count} mods for updates for" +
-                $" {modCheckOperation.ModCheckRequest.Characters.First().DisplayName}",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_FinishedChecking") ?? "Finished checking for mod updates",
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_FinishedCheckingMsg") ?? "Finished checking {0} mods for updates for {1}", modCheckOperation.ModsToCheck.Count, modCheckOperation.ModCheckRequest.Characters.First().DisplayName),
                 TimeSpan.FromSeconds(4));
         }
         else if (anyModsChecked)
         {
-            _notificationManager.ShowNotification("Finished checking for mod updates",
-                "Finished checking for mod updates", TimeSpan.FromSeconds(4));
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_FinishedChecking") ?? "Finished checking for mod updates",
+                App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_FinishedChecking") ?? "Finished checking for mod updates", TimeSpan.FromSeconds(4));
         }
     }
 
