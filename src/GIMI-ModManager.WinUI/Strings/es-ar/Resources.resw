@@ -2049,4 +2049,184 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
     <value>Nota personalizada visible en detalles del personaje</value>
   </data>
+  <data name="Preset_FailedCreate" xml:space="preserve">
+    <value>Error al crear el preset</value>
+  </data>
+  <data name="Preset_FailedDuplicate" xml:space="preserve">
+    <value>Error al duplicar el preset</value>
+  </data>
+  <data name="Preset_FailedDelete" xml:space="preserve">
+    <value>Error al eliminar el preset</value>
+  </data>
+  <data name="Preset_Applied" xml:space="preserve">
+    <value>Preset aplicado</value>
+  </data>
+  <data name="Preset_AppliedMessage" xml:space="preserve">
+    <value>El preset '{0}' ha sido aplicado</value>
+  </data>
+  <data name="Preset_FailedApply" xml:space="preserve">
+    <value>Error al aplicar el preset</value>
+  </data>
+  <data name="Preset_FailedRename" xml:space="preserve">
+    <value>Error al renombrar el preset</value>
+  </data>
+  <data name="Preset_FailedSaveOrder" xml:space="preserve">
+    <value>Error al guardar el orden del preset</value>
+  </data>
+  <data name="Preset_FailedToggleReadOnly" xml:space="preserve">
+    <value>Error al cambiar solo lectura</value>
+  </data>
+  <data name="Preset_FailedStartElevator" xml:space="preserve">
+    <value>Error al iniciar Elevator</value>
+  </data>
+  <data name="Preset_ModPrefsReset" xml:space="preserve">
+    <value>Preferencias de mod restablecidas</value>
+  </data>
+  <data name="Preset_FailedResetModPrefs" xml:space="preserve">
+    <value>Error al restablecer preferencias de mod</value>
+  </data>
+  <data name="PresetDetails_ModRemoved" xml:space="preserve">
+    <value>Mod eliminado del preset</value>
+  </data>
+  <data name="PresetDetails_FailedRemoveMod" xml:space="preserve">
+    <value>Error al eliminar mod del preset</value>
+  </data>
+  <data name="PresetDetails_ModAdded" xml:space="preserve">
+    <value>Mod agregado al preset</value>
+  </data>
+  <data name="PresetDetails_ModAddedMessage" xml:space="preserve">
+    <value>Mod '{0}' agregado al preset {1}</value>
+  </data>
+  <data name="PresetDetails_FailedAddMod" xml:space="preserve">
+    <value>Error al agregar mod al preset</value>
+  </data>
+  <data name="PresetDetails_PrefsSaved" xml:space="preserve">
+    <value>Preferencias guardadas para el mod</value>
+  </data>
+  <data name="PresetDetails_FailedSavePrefs" xml:space="preserve">
+    <value>Error al guardar preferencias del mod</value>
+  </data>
+  <data name="ModInstaller_ModInstalled" xml:space="preserve">
+    <value>Mod '{0}' instalado</value>
+  </data>
+  <data name="ModInstaller_FailedClipboardImage" xml:space="preserve">
+    <value>Error al obtener imagen del portapapeles</value>
+  </data>
+  <data name="ModInstaller_FailedDownloadImage" xml:space="preserve">
+    <value>Error al descargar imagen desde modUrl</value>
+  </data>
+  <data name="ModInstaller_AnErrorOccurred" xml:space="preserve">
+    <value>Ocurrió un error</value>
+  </data>
+  <data name="ModUpdate_FailedGetInfo" xml:space="preserve">
+    <value>Error al obtener información de actualización del mod</value>
+  </data>
+  <data name="ModUpdate_FailedDownload" xml:space="preserve">
+    <value>Error al descargar archivo de mod</value>
+  </data>
+  <data name="ModUpdate_FailedInstall" xml:space="preserve">
+    <value>Error al instalar archivo de mod</value>
+  </data>
+  <data name="ModPage_FailedGetUpdateInfo" xml:space="preserve">
+    <value>Error al obtener información de actualización del mod</value>
+  </data>
+  <data name="ModPage_FailedDownload" xml:space="preserve">
+    <value>Error al descargar archivo de mod</value>
+  </data>
+  <data name="ModPage_FailedInstall" xml:space="preserve">
+    <value>Error al instalar archivo de mod</value>
+  </data>
+  <data name="Gallery_FailedDeleteMod" xml:space="preserve">
+    <value>Error al eliminar mod</value>
+  </data>
+  <data name="Gallery_ModDeleted" xml:space="preserve">
+    <value>Mod eliminado</value>
+  </data>
+  <data name="Gallery_ModDeletedMessage" xml:space="preserve">
+    <value>{0} ha sido eliminado</value>
+  </data>
+  <data name="Gallery_FailedSaveImage" xml:space="preserve">
+    <value>Error al guardar imagen</value>
+  </data>
+  <data name="CharDetails_ErrorSwitchSkin" xml:space="preserve">
+    <value>Error al cambiar la skin del personaje.</value>
+  </data>
+  <data name="CharDetails_ErrorDisableMods" xml:space="preserve">
+    <value>Error al deshabilitar mods</value>
+  </data>
+  <data name="CharDetails_ErrorDeleteMods" xml:space="preserve">
+    <value>Error al Eliminar Mods</value>
+  </data>
+  <data name="CharDetails_ModsDeleted" xml:space="preserve">
+    <value>{0} Mods Eliminados</value>
+  </data>
+  <data name="CharDetails_ErrorLoading" xml:space="preserve">
+    <value>Ocurrió un error al cargar la página de detalles del personaje.</value>
+  </data>
+  <data name="CharDetails_UnknownError" xml:space="preserve">
+    <value>Ocurrió un error desconocido al ejecutar el comando</value>
+  </data>
+  <data name="CharDetails_DragDropFailed" xml:space="preserve">
+    <value>La operación de arrastrar y soltar falló</value>
+  </data>
+  <data name="CharDetails_ErrorOpenModPage" xml:space="preserve">
+    <value>Error al abrir la ventana de página de mod</value>
+  </data>
+  <data name="CharDetails_ErrorAddStorageItems" xml:space="preserve">
+    <value>Error al agregar elementos de almacenamiento.</value>
+  </data>
+  <data name="CharDetails_DestModListNotFound" xml:space="preserve">
+    <value>Lista de Mods de Destino No Encontrada</value>
+  </data>
+  <data name="CharDetails_InvalidOpException" xml:space="preserve">
+    <value>Excepción de Operación Inválida</value>
+  </data>
+  <data name="CharDetails_SkinOverrideChanged" xml:space="preserve">
+    <value>Se cambió la anulación de skin para el mod</value>
+  </data>
+  <data name="CharDetails_ModsMoved" xml:space="preserve">
+    <value>{0} Mods Movidos</value>
+  </data>
+  <data name="CharDetails_ErrorRefreshMods" xml:space="preserve">
+    <value>Error al actualizar mods</value>
+  </data>
+  <data name="CharDetails_DuplicateModsDetected" xml:space="preserve">
+    <value>Mods Duplicados Detectados</value>
+  </data>
+  <data name="CharDetails_ErrorDisablingMod" xml:space="preserve">
+    <value>Ocurrió un error al deshabilitar mod</value>
+  </data>
+  <data name="CharDetails_ErrorTogglingMod" xml:space="preserve">
+    <value>Ocurrió un error al alternar mod</value>
+  </data>
+  <data name="CharDetails_ErrorSaveModSettings" xml:space="preserve">
+    <value>Ocurrió un error al guardar la configuración del mod</value>
+  </data>
+  <data name="CharDetails_ModSettingsSaved" xml:space="preserve">
+    <value>Configuración del mod guardada</value>
+  </data>
+  <data name="CharDetails_ErrorLoadingMod" xml:space="preserve">
+    <value>Error al cargar mod</value>
+  </data>
+  <data name="CharDetails_FailedLoadKeySwaps" xml:space="preserve">
+    <value>Error al cargar key swaps para el mod {0}</value>
+  </data>
+  <data name="CharDetails_ModFolderCopied" xml:space="preserve">
+    <value>Ruta de carpeta de mod copiada al portapapeles</value>
+  </data>
+  <data name="CharDetails_ClipboardNoImage" xml:space="preserve">
+    <value>El portapapeles no contiene una imagen válida</value>
+  </data>
+  <data name="CharDetails_CouldNotGetClipboardImage" xml:space="preserve">
+    <value>No se pudo obtener la imagen del portapapeles</value>
+  </data>
+  <data name="CharDetails_FailedSaveKeySwaps" xml:space="preserve">
+    <value>Error al guardar key swaps</value>
+  </data>
+  <data name="CharDetails_ErrorRunCommand" xml:space="preserve">
+    <value>Ocurrió un error al ejecutar el comando {0}</value>
+  </data>
+  <data name="CharDetails_CouldNotDisableAllMods" xml:space="preserve">
+    <value>No se pudieron deshabilitar todos los mods.</value>
+  </data>
 </root>

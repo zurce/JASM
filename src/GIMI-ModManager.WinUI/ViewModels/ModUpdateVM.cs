@@ -168,7 +168,7 @@ public partial class ModUpdateVM : ObservableRecipient
         _logger.Error(e, "Failed to get mod update info");
         App.MainWindow.DispatcherQueue.TryEnqueue(() =>
         {
-            App.GetService<NotificationManager>().ShowNotification("Failed to get mod update info",
+            App.GetService<NotificationManager>().ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModUpdate_FailedGetInfo") ?? "Failed to get mod update info",
                 e.Message, TimeSpan.FromSeconds(10));
         });
         _window.Close();
@@ -259,7 +259,7 @@ public partial class ModUpdateVM : ObservableRecipient
         {
             _logger.Error(e, "Failed to download mod file");
 
-            _notificationManager.ShowNotification("Failed to download mod file",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModUpdate_FailedDownload") ?? "Failed to download mod file",
                 e.Message, TimeSpan.FromSeconds(10));
 
             Reset();
@@ -360,7 +360,7 @@ public partial class ModUpdateVM : ObservableRecipient
         {
             _logger.Error(e, "Failed to install mod file");
 
-            _notificationManager.ShowNotification("Failed to install mod file",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModUpdate_FailedInstall") ?? "Failed to install mod file",
                 e.InnerException?.Message ?? e.Message, TimeSpan.FromSeconds(10));
 
             fileInfoVm.Status = ModFileInfoVm.InstallStatus.Downloaded;

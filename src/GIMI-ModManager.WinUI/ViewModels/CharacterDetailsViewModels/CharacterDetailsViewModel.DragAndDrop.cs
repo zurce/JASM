@@ -1,4 +1,5 @@
 ﻿using Windows.Storage;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Helpers;
 using GIMI_ModManager.Core.Services.GameBanana;
 
@@ -37,7 +38,7 @@ public partial class CharacterDetailsViewModel
     {
         if (!CanDragDropMod(items))
         {
-            _notificationService.ShowNotification("Drag And Drop operation failed",
+            _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DragDropFailed") ?? "Drag And Drop operation failed",
                 "The operation failed because the selected item is not a valid mod file or folder.",
                 TimeSpan.FromSeconds(5));
             return;
@@ -56,7 +57,7 @@ public partial class CharacterDetailsViewModel
             catch (Exception e)
             {
                 _logger.Error(e, "Error while adding storage items.");
-                _notificationService.ShowNotification("Drag And Drop operation failed",
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DragDropFailed") ?? "Drag And Drop operation failed",
                     $"An error occurred while adding the storage items. Reason:\n{e.Message}",
                     TimeSpan.FromSeconds(5));
             }
@@ -87,7 +88,7 @@ public partial class CharacterDetailsViewModel
     {
         if (!CanDragDropModUrl(uri))
         {
-            _notificationService.ShowNotification("Drag And Drop operation failed",
+            _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DragDropFailed") ?? "Drag And Drop operation failed",
                 "The operation failed because the selected item is not a valid https GameBanana mod URL.",
                 TimeSpan.FromSeconds(5));
             return;
@@ -101,8 +102,8 @@ public partial class CharacterDetailsViewModel
             }
             catch (Exception e)
             {
-                _logger.Error(e, "Error opening mod page window");
-                _notificationService.ShowNotification("Error opening mod page window", e.Message, TimeSpan.FromSeconds(10));
+                _logger.Error(e, App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorOpenModPage") ?? "Error opening mod page window");
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorOpenModPage") ?? "Error opening mod page window", e.Message, TimeSpan.FromSeconds(10));
             }
         }).ConfigureAwait(false);
     }

@@ -1,4 +1,5 @@
 ﻿using Windows.System;
+using GIMI_ModManager.Core.Contracts.Services;
 using CommunityToolkit.Mvvm.Input;
 using GIMI_ModManager.Core.Helpers;
 using Microsoft.UI.Xaml.Controls;
@@ -105,10 +106,10 @@ public partial class CharacterGalleryViewModel
         catch (Exception e)
         {
             _logger.Error(e, "Failed to delete mod");
-            notificationManager.ShowNotification("Failed to delete mod", e.Message, TimeSpan.FromSeconds(10));
+            notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Gallery_FailedDeleteMod") ?? "Failed to delete mod", e.Message, TimeSpan.FromSeconds(10));
             return;
         }
 
-        notificationManager.ShowNotification("Mod deleted", $"{vm.Name} has been deleted", TimeSpan.FromSeconds(5));
+        notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Gallery_ModDeleted") ?? "Mod deleted", string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Gallery_ModDeletedMessage") ?? "{0} has been deleted", vm.Name), TimeSpan.FromSeconds(5));
     }
 }

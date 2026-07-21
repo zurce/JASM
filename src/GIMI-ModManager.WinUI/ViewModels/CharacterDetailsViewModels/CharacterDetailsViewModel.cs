@@ -338,10 +338,10 @@ public partial class CharacterDetailsViewModel : ObservableObject, INavigationAw
         {
             await Task.Delay(500);
             if (exception is not null)
-                _notificationService.ShowNotification("An error occurred while loading the character details page.",
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorLoading") ?? "An error occurred while loading the character details page.",
                     exception.Message, null);
             else
-                _notificationService.ShowNotification("An error occurred while loading the character details page.", "",
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorLoading") ?? "An error occurred while loading the character details page.", "",
                     null);
             App.MainWindow.DispatcherQueue.TryEnqueue(() =>
             {
@@ -390,7 +390,7 @@ public partial class CharacterDetailsViewModel : ObservableObject, INavigationAw
         }
         catch (Exception e)
         {
-            _notificationService.ShowNotification("An unknown error occured while executing the command", e.Message,
+            _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_UnknownError") ?? "An unknown error occured while executing the command", e.Message,
                 TimeSpan.FromSeconds(5));
         }
     }

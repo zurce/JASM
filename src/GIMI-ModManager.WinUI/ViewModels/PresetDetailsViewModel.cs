@@ -188,13 +188,13 @@ public sealed partial class PresetDetailsViewModel(
 
             ModEntries.Remove(modPresetEntryVm);
 
-            _notificationManager.ShowNotification("Mod removed from preset",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetDetails_ModRemoved") ?? "Mod removed from preset",
                 $"Removed {(modPresetEntryVm.IsMissing ? "missing" : "")} mod '{modPresetEntryVm.Name}' from preset {PresetName}",
                 null);
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification("Failed to remove mod from preset", e.Message, null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetDetails_FailedRemoveMod") ?? "Failed to remove mod from preset", e.Message, null);
         }
         finally
         {
@@ -238,13 +238,13 @@ public sealed partial class PresetDetailsViewModel(
             ModEntries.Insert(0, modEntryVm);
             _backendModEntries.Insert(0, modEntryVm);
 
-            _notificationManager.ShowNotification("Mod added to preset",
-                $"Added mod '{modEntryVm.Name}' to preset {PresetName}",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetDetails_ModAdded") ?? "Mod added to preset",
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetDetails_ModAddedMessage") ?? "Added mod '{0}' to preset {1}", modEntryVm.Name, PresetName),
                 null);
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification("Failed to add mod to preset", e.Message, null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetDetails_FailedAddMod") ?? "Failed to add mod to preset", e.Message, null);
         }
         finally
         {
@@ -302,13 +302,13 @@ public sealed partial class PresetDetailsViewModel(
 
             await Task.Run(() => _modPresetService.DeleteModEntryAsync(PresetName, vm.ModId));
 
-            _notificationManager.ShowNotification("Mod added to preset",
-                $"Added mod '{modEntryVm.Name}' to preset {PresetName}",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetDetails_ModAdded") ?? "Mod added to preset",
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetDetails_ModAddedMessage") ?? "Added mod '{0}' to preset {1}", modEntryVm.Name, PresetName),
                 null);
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification("Failed to add mod to preset", e.Message, null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetDetails_FailedAddMod") ?? "Failed to add mod to preset", e.Message, null);
         }
         finally
         {
@@ -351,12 +351,12 @@ public sealed partial class PresetDetailsViewModel(
             _backendModEntries[backendIndex] = updatedModEntry;
 
 
-            _notificationManager.ShowNotification("Preferences saved for mod",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetDetails_PrefsSaved") ?? "Preferences saved for mod",
                 $"Preferences saved successfully for mod {presetEntryDetailedVm.Name}", null);
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification("Failed to save mod preferences", e.Message, null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetDetails_FailedSavePrefs") ?? "Failed to save mod preferences", e.Message, null);
         }
         finally
         {

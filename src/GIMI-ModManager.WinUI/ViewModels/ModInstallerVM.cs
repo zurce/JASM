@@ -311,7 +311,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         InstallerFinished?.Invoke(this, EventArgs.Empty);
         _logger.Debug("Mod {newModPath} was added to {modListPath}", newMod.FullPath,
             _characterModList.AbsModsFolderPath);
-        _notificationManager.ShowNotification($"Mod '{modName}' installed",
+        _notificationManager.ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_ModInstalled") ?? "Mod '{0}' installed", modName),
             $"Mod '{modName}' ({newMod.Name}), was successfully added to {_characterModList.Character.DisplayName} ModList",
             TimeSpan.FromSeconds(5));
 
@@ -530,7 +530,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         catch (Exception e)
         {
             _logger.Error(e, "Failed retrieve image from clipboard");
-            _notificationManager.ShowNotification("Failed retrieve image from clipboard", e.Message,
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_FailedClipboardImage") ?? "Failed retrieve image from clipboard", e.Message,
                 TimeSpan.FromSeconds(5));
             return;
         }
@@ -909,7 +909,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
                 catch (Exception e)
                 {
                     _logger.Error(e, "Failed to download image");
-                    _notificationManager.ShowNotification("Failed to download image from modUrl", e.Message,
+                    _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_FailedDownloadImage") ?? "Failed to download image from modUrl", e.Message,
                         TimeSpan.FromSeconds(5));
                 }
             }
@@ -969,7 +969,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         PInvoke.PlaySound("SystemAsterisk", null,
             SND_FLAGS.SND_ASYNC | SND_FLAGS.SND_ALIAS | SND_FLAGS.SND_NODEFAULT);
 
-        _notificationManager.ShowNotification("An error occurred",
+        _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_AnErrorOccurred") ?? "An error occurred",
             "An error occurred while adding the mod. See logs for more details",
             TimeSpan.FromSeconds(10));
 

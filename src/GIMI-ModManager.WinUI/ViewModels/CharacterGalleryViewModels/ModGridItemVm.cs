@@ -151,7 +151,7 @@ namespace GIMI_ModManager.WinUI.ViewModels.CharacterGalleryViewModels
             }
             catch (Exception e)
             {
-                notificationService.ShowNotification("Failed to save image", e.Message, null);
+                notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Gallery_FailedSaveImage") ?? "Failed to save image", e.Message, null);
             }
         },
         () => CanSaveImage);

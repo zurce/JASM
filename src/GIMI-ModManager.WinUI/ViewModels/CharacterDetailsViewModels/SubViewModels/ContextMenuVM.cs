@@ -172,7 +172,7 @@ public partial class ContextMenuVM(
         if (destinationModList is null)
         {
             _logger.Warning("Destination mod list not found");
-            _notificationManager.ShowNotification("Destination Mod List Not Found",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DestModListNotFound") ?? "Destination Mod List Not Found",
                 "Destination mod list not found", TimeSpan.FromSeconds(5));
             return;
         }
@@ -188,12 +188,12 @@ public partial class ContextMenuVM(
         {
             _logger.Error(e, "Error moving mods");
             _notificationManager
-                .ShowNotification("Invalid Operation Exception",
+                .ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_InvalidOpException") ?? "Invalid Operation Exception",
                     $"Cannot move mods\n{e.Message}, see logs for details.", TimeSpan.FromSeconds(10));
             return;
         }
 
-        _notificationManager.ShowNotification($"{SelectedModsCount} Mods Moved",
+        _notificationManager.ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ModsMoved") ?? "{0} Mods Moved", SelectedModsCount),
             $"Successfully moved {string.Join(",", selectedMods.Select(m => m.Mod.GetDisplayName()))} mods to {destinationModList.Character.DisplayName}",
             TimeSpan.FromSeconds(5));
 
@@ -263,7 +263,7 @@ public partial class ContextMenuVM(
 
         if (result.IsT0)
         {
-            _notificationManager.ShowNotification("Changed skin override for mod",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_SkinOverrideChanged") ?? "Changed skin override for mod",
                 $"Set skin override for mod '{modEntry.Mod.GetDisplayName()}' to {characterSkinToSet.DisplayName}", null);
         }
         else

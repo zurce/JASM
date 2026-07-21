@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using GIMI_ModManager.Core.Contracts.Services;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.System;
@@ -207,7 +208,7 @@ public partial class CharacterDetailsViewModel
             catch (Exception e)
             {
                 _logger.Error(e, "Error while adding archive.");
-                _notificationService.ShowNotification("Error while adding storage items.",
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorAddStorageItems") ?? "Error while adding storage items.",
                     $"An error occurred while adding the storage items.\n{e.Message}",
                     TimeSpan.FromSeconds(5));
             }

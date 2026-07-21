@@ -113,7 +113,7 @@ public partial class ModGridVM(
             }
             catch (Exception e)
             {
-                _notificationService.ShowNotification("Error refreshing mods", e.Message, null);
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorRefreshMods") ?? "Error refreshing mods", e.Message, null);
             }
         }
     }
@@ -178,7 +178,7 @@ public partial class ModGridVM(
                         current +
                         $"Mod: '{duplicateMod.ExistingFolderName}' was renamed to '{duplicateMod.RenamedFolderName}' to avoid conflicts.\n");
 
-                _notificationService.ShowNotification("Duplicate Mods Detected",
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DuplicateModsDetected") ?? "Duplicate Mods Detected",
                     message,
                     TimeSpan.FromSeconds(10));
             }
@@ -383,7 +383,7 @@ public partial class ModGridVM(
                 }
                 catch (Exception e)
                 {
-                    _notificationService.ShowNotification("An error occured disabling mod", e.Message, TimeSpan.FromSeconds(5));
+                    _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorDisablingMod") ?? "An error occured disabling mod", e.Message, TimeSpan.FromSeconds(5));
                 }
 
 
@@ -400,7 +400,7 @@ public partial class ModGridVM(
         }
         catch (Exception e)
         {
-            _notificationService.ShowNotification("An error occured toggling mod", e.Message, TimeSpan.FromSeconds(5));
+            _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorTogglingMod") ?? "An error occured toggling mod", e.Message, TimeSpan.FromSeconds(5));
         }
 
         RefreshMultipleModsActiveWarning();
@@ -430,13 +430,13 @@ public partial class ModGridVM(
             if (result.HasNotification)
                 _notificationService.ShowNotification(result.Notification);
             else
-                _notificationService.ShowNotification("An error occured saving mod settings", result.Exception?.ToString() ?? result.ErrorMessage ?? "",
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorSaveModSettings") ?? "An error occured saving mod settings", result.Exception?.ToString() ?? result.ErrorMessage ?? "",
                     TimeSpan.FromSeconds(6));
         }
 
         if (result.IsSuccess)
         {
-            _notificationService.ShowNotification("Mod settings saved", messageBody, TimeSpan.FromSeconds(3));
+            _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ModSettingsSaved") ?? "Mod settings saved", messageBody, TimeSpan.FromSeconds(3));
         }
 
         await UpdateModVmAsync(mod, true, CancellationToken.None);

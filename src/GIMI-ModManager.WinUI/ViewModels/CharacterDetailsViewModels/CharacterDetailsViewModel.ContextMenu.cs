@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using GIMI_ModManager.Core.Contracts.Services;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 
@@ -184,12 +185,12 @@ public partial class CharacterDetailsViewModel
                     }
                 }
 
-                _notificationService.ShowNotification("Error Deleting Mods", content.ToString(), TimeSpan.FromSeconds(10));
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorDeleteMods") ?? "Error Deleting Mods", content.ToString(), TimeSpan.FromSeconds(10));
                 return;
             }
 
 
-            _notificationService.ShowNotification($"{modsDeleted.Count} Mods Deleted",
+            _notificationService.ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ModsDeleted") ?? "{0} Mods Deleted", modsDeleted.Count),
                 $"Successfully deleted {string.Join(", ", selectedMods.Select(m => m.DisplayName))} in {shownCharacterName} Mods Folder",
                 TimeSpan.FromSeconds(5));
         }).ConfigureAwait(false);

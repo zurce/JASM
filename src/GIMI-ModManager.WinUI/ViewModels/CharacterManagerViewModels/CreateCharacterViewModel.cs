@@ -113,7 +113,7 @@ public partial class CreateCharacterViewModel : ObservableObject
         catch (Exception e)
         {
             _logger.Error(e, "Failed to create character");
-            _notificationManager.ShowNotification("Failed to create character", e.Message, null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CreateCharacter_FailedTitle") ?? "Failed to create character", e.Message, null);
             return;
         }
 
@@ -124,13 +124,13 @@ public partial class CreateCharacterViewModel : ObservableObject
         catch (Exception e)
         {
             _logger.Error(e, "Failed to enable mod list for character");
-            _notificationManager.ShowNotification("Character created, but failed to enable mod list for character", e.Message, null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CreateCharacter_EnableFailedTitle") ?? "Character created, but failed to enable mod list for character", e.Message, null);
             return;
         }
 
         IsFinished = true;
         _navigationService.NavigateTo(typeof(CharacterManagerViewModel).FullName!, character.InternalName);
-        _notificationManager.ShowNotification("Character created", $"Character '{character.DisplayName}' was created successfully", null);
+        _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CreateCharacter_SuccessTitle") ?? "Character created", string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CreateCharacter_SuccessMessage") ?? "Character '{0}' was created successfully", character.DisplayName), null);
     }
 
     #region ImageCommands
@@ -212,7 +212,7 @@ public partial class CreateCharacterViewModel : ObservableObject
         catch (Exception e)
         {
             _logger.Error(e, "Failed to create json export");
-            _notificationManager.ShowNotification("Failed to create json export", e.Message, null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CreateCharacter_JsonExportFailedTitle") ?? "Failed to create json export", e.Message, null);
             return;
         }
 
