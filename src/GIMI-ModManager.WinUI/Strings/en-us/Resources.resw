@@ -2024,13 +2024,4 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="ModInstaller_HelperWindowTitle" xml:space="preserve">
     <value>Mod Installer Helper: {0}</value>
   </data>
-  <data name="ModInstallerPage_AlwaysOnTopToggle.ToolTip" xml:space="preserve">
-    <value>Keep window always on top</value>
-  </data>
-  <data name="ModInstallerPage_RetrieveModInfoButton.ToolTip" xml:space="preserve">
-    <value>Retrieve mod info from the mod page</value>
-  </data>
-  <data name="CustomImage_PickImageButton.ToolTip" xml:space="preserve">
-    <value>Pick an Image</value>
-  </data>
 </root>

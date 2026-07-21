@@ -3697,7 +3697,4 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="ModInstallerPage_RetrieveModInfoButton.ToolTip" xml:space="preserve">
     <value>Obtener información del mod desde la página de mod</value>
   </data>
-  <data name="CustomImage_PickImageButton.ToolTip" xml:space="preserve">
-    <value>Seleccionar una Imagen</value>
-  </data>
 </root>
