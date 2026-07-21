@@ -2136,4 +2136,37 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="CharDetails_CouldNotDisableAllMods" xml:space="preserve">
     <value>Could not disable all mods.</value>
   </data>
+  <data name="ModInstaller_AddedToModList" xml:space="preserve">
+    <value>Mod '{0}' ({1}), was successfully added to {2} ModList</value>
+  </data>
+  <data name="PresetDetails_RemovedModMsg" xml:space="preserve">
+    <value>Removed {0} mod '{1}' from preset {2}</value>
+  </data>
+  <data name="PresetDetails_PrefsSavedMsg" xml:space="preserve">
+    <value>Preferences saved successfully for mod {0}</value>
+  </data>
+  <data name="Preset_ModPrefsRemovedMsg" xml:space="preserve">
+    <value>Mod preferences have been removed{0}</value>
+  </data>
+  <data name="CharDetails_DeletedSuccessMsg" xml:space="preserve">
+    <value>Successfully deleted {0} in {1} Mods Folder</value>
+  </data>
+  <data name="CharDetails_ErrorAddStorageReason" xml:space="preserve">
+    <value>An error occurred while adding the storage items. Reason:
+{0}</value>
+  </data>
+  <data name="CharDetails_ErrorAddStorageReason2" xml:space="preserve">
+    <value>An error occurred while adding the storage items.
+{0}</value>
+  </data>
+  <data name="CharDetails_CannotMoveModsMsg" xml:space="preserve">
+    <value>Cannot move mods
+{0}, see logs for details.</value>
+  </data>
+  <data name="CharDetails_MovedSuccessMsg" xml:space="preserve">
+    <value>Successfully moved {0} mods to {1}</value>
+  </data>
+  <data name="CharDetails_SkinOverrideSetMsg" xml:space="preserve">
+    <value>Set skin override for mod '{0}' to {1}</value>
+  </data>
 </root>

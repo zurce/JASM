@@ -189,7 +189,7 @@ public sealed partial class PresetDetailsViewModel(
             ModEntries.Remove(modPresetEntryVm);
 
             _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetDetails_ModRemoved") ?? "Mod removed from preset",
-                $"Removed {(modPresetEntryVm.IsMissing ? "missing" : "")} mod '{modPresetEntryVm.Name}' from preset {PresetName}",
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetDetails_RemovedModMsg") ?? "Removed {0} mod '{1}' from preset {2}", modPresetEntryVm.IsMissing ? "missing" : "", modPresetEntryVm.Name, PresetName),
                 null);
         }
         catch (Exception e)
@@ -352,7 +352,7 @@ public sealed partial class PresetDetailsViewModel(
 
 
             _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetDetails_PrefsSaved") ?? "Preferences saved for mod",
-                $"Preferences saved successfully for mod {presetEntryDetailedVm.Name}", null);
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetDetails_PrefsSavedMsg") ?? "Preferences saved successfully for mod {0}", presetEntryDetailedVm.Name), null);
         }
         catch (Exception e)
         {

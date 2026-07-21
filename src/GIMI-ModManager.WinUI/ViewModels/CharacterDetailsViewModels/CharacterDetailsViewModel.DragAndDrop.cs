@@ -39,7 +39,7 @@ public partial class CharacterDetailsViewModel
         if (!CanDragDropMod(items))
         {
             _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DragDropFailed") ?? "Drag And Drop operation failed",
-                "The operation failed because the selected item is not a valid mod file or folder.",
+                App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_InvalidModFile") ?? "The operation failed because the selected item is not a valid mod file or folder.",
                 TimeSpan.FromSeconds(5));
             return;
         }
@@ -58,7 +58,7 @@ public partial class CharacterDetailsViewModel
             {
                 _logger.Error(e, "Error while adding storage items.");
                 _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DragDropFailed") ?? "Drag And Drop operation failed",
-                    $"An error occurred while adding the storage items. Reason:\n{e.Message}",
+                    string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorAddStorageReason") ?? "An error occurred while adding the storage items. Reason:\n{0}", e.Message),
                     TimeSpan.FromSeconds(5));
             }
         }).ConfigureAwait(false);
@@ -89,7 +89,7 @@ public partial class CharacterDetailsViewModel
         if (!CanDragDropModUrl(uri))
         {
             _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DragDropFailed") ?? "Drag And Drop operation failed",
-                "The operation failed because the selected item is not a valid https GameBanana mod URL.",
+                App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_InvalidModUrl") ?? "The operation failed because the selected item is not a valid https GameBanana mod URL.",
                 TimeSpan.FromSeconds(5));
             return;
         }

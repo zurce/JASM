@@ -312,7 +312,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         _logger.Debug("Mod {newModPath} was added to {modListPath}", newMod.FullPath,
             _characterModList.AbsModsFolderPath);
         _notificationManager.ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_ModInstalled") ?? "Mod '{0}' installed", modName),
-            $"Mod '{modName}' ({newMod.Name}), was successfully added to {_characterModList.Character.DisplayName} ModList",
+            string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_AddedToModList") ?? "Mod '{0}' ({1}), was successfully added to {2} ModList", modName, newMod.Name, _characterModList.Character.DisplayName),
             TimeSpan.FromSeconds(5));
 
         if (EnableThisMod)
@@ -970,7 +970,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
             SND_FLAGS.SND_ASYNC | SND_FLAGS.SND_ALIAS | SND_FLAGS.SND_NODEFAULT);
 
         _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_AnErrorOccurred") ?? "An error occurred",
-            "An error occurred while adding the mod. See logs for more details",
+            App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_ErrorAddingMod") ?? "An error occurred while adding the mod. See logs for more details",
             TimeSpan.FromSeconds(10));
 
         CloseRequested?.Invoke(this, new CloseRequestedArgs(CloseReasons.Error, e));

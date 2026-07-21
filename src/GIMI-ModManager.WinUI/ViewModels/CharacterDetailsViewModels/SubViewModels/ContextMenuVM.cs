@@ -171,9 +171,9 @@ public partial class ContextMenuVM(
 
         if (destinationModList is null)
         {
-            _logger.Warning("Destination mod list not found");
+            _logger.Warning(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DestModListNotFoundMsg") ?? "Destination mod list not found");
             _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DestModListNotFound") ?? "Destination Mod List Not Found",
-                "Destination mod list not found", TimeSpan.FromSeconds(5));
+                App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DestModListNotFoundMsg") ?? "Destination mod list not found", TimeSpan.FromSeconds(5));
             return;
         }
 
@@ -189,12 +189,12 @@ public partial class ContextMenuVM(
             _logger.Error(e, "Error moving mods");
             _notificationManager
                 .ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_InvalidOpException") ?? "Invalid Operation Exception",
-                    $"Cannot move mods\n{e.Message}, see logs for details.", TimeSpan.FromSeconds(10));
+                    string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_CannotMoveModsMsg") ?? "Cannot move mods\n{0}, see logs for details.", e.Message), TimeSpan.FromSeconds(10));
             return;
         }
 
         _notificationManager.ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ModsMoved") ?? "{0} Mods Moved", SelectedModsCount),
-            $"Successfully moved {string.Join(",", selectedMods.Select(m => m.Mod.GetDisplayName()))} mods to {destinationModList.Character.DisplayName}",
+            string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_MovedSuccessMsg") ?? "Successfully moved {0} mods to {1}", string.Join(",", selectedMods.Select(m => m.Mod.GetDisplayName())), destinationModList.Character.DisplayName),
             TimeSpan.FromSeconds(5));
 
         ModsMoved?.Invoke(this, EventArgs.Empty);
@@ -264,7 +264,7 @@ public partial class ContextMenuVM(
         if (result.IsT0)
         {
             _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_SkinOverrideChanged") ?? "Changed skin override for mod",
-                $"Set skin override for mod '{modEntry.Mod.GetDisplayName()}' to {characterSkinToSet.DisplayName}", null);
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_SkinOverrideSetMsg") ?? "Set skin override for mod '{0}' to {1}", modEntry.Mod.GetDisplayName(), characterSkinToSet.DisplayName), null);
         }
         else
         {

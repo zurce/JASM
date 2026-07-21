@@ -322,7 +322,7 @@ public partial class PresetViewModel(
 
             if (!isStarted)
                 _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_FailedStartElevator") ?? "Failed to start elevator",
-                    "Elevator failed to start",
+                    App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_ElevatorFailed") ?? "Elevator failed to start",
                     TimeSpan.FromSeconds(5));
 
             AutoSync3DMigotoConfig = ElevatorService.ElevatorStatus == ElevatorStatus.Running &&
@@ -353,7 +353,7 @@ public partial class PresetViewModel(
                         .ConfigureAwait(false);
 
                 _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_ModPrefsReset") ?? "Mod preferences reset",
-                    $"Mod preferences have been removed{(AlsoReset3DmigotoConfig ? $" and {Constants.UserIniFileName} have been cleared" : "")}",
+                    string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_ModPrefsRemovedMsg") ?? "Mod preferences have been removed{0}", AlsoReset3DmigotoConfig ? $" and {Constants.UserIniFileName} have been cleared" : ""),
                     TimeSpan.FromSeconds(5));
             });
         }

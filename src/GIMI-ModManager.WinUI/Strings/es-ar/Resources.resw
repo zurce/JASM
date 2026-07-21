@@ -2229,4 +2229,37 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="CharDetails_CouldNotDisableAllMods" xml:space="preserve">
     <value>No se pudieron deshabilitar todos los mods.</value>
   </data>
+  <data name="ModInstaller_AddedToModList" xml:space="preserve">
+    <value>Mod '{0}' ({1}) se agregó exitosamente a {2} ModList</value>
+  </data>
+  <data name="PresetDetails_RemovedModMsg" xml:space="preserve">
+    <value>Se eliminó {0} mod '{1}' del preset {2}</value>
+  </data>
+  <data name="PresetDetails_PrefsSavedMsg" xml:space="preserve">
+    <value>Preferencias guardadas exitosamente para el mod {0}</value>
+  </data>
+  <data name="Preset_ModPrefsRemovedMsg" xml:space="preserve">
+    <value>Se han eliminado las preferencias de mod{0}</value>
+  </data>
+  <data name="CharDetails_DeletedSuccessMsg" xml:space="preserve">
+    <value>Se eliminaron exitosamente {0} en la carpeta de Mods de {1}</value>
+  </data>
+  <data name="CharDetails_ErrorAddStorageReason" xml:space="preserve">
+    <value>Ocurrió un error al agregar los elementos de almacenamiento. Motivo:
+{0}</value>
+  </data>
+  <data name="CharDetails_ErrorAddStorageReason2" xml:space="preserve">
+    <value>Ocurrió un error al agregar los elementos de almacenamiento.
+{0}</value>
+  </data>
+  <data name="CharDetails_CannotMoveModsMsg" xml:space="preserve">
+    <value>No se pueden mover mods
+{0}, consulte los registros para más detalles.</value>
+  </data>
+  <data name="CharDetails_MovedSuccessMsg" xml:space="preserve">
+    <value>Se movieron exitosamente {0} mods a {1}</value>
+  </data>
+  <data name="CharDetails_SkinOverrideSetMsg" xml:space="preserve">
+    <value>Se estableció la anulación de skin para el mod '{0}' a {1}</value>
+  </data>
 </root>

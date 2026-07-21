@@ -481,11 +481,11 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
                 if (movedModsCount == -1)
                     _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Mods_ReorganizeFailed") ?? "Mods reorganization failed.",
-                        "See logs for more details.", TimeSpan.FromSeconds(5));
+                        App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Settings_SeeLogs") ?? "See logs for more details.", TimeSpan.FromSeconds(5));
 
                 else
                     _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Mods_Reorganized") ?? "Mods reorganized.",
-                        $"Moved {movedModsCount} mods to character folders", TimeSpan.FromSeconds(5));
+                        string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Settings_ModsMovedMsg") ?? "Moved {0} mods to character folders", movedModsCount), TimeSpan.FromSeconds(5));
             }
             finally
             {

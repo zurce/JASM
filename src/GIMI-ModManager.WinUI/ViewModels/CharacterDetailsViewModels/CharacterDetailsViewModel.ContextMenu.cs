@@ -191,7 +191,7 @@ public partial class CharacterDetailsViewModel
 
 
             _notificationService.ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ModsDeleted") ?? "{0} Mods Deleted", modsDeleted.Count),
-                $"Successfully deleted {string.Join(", ", selectedMods.Select(m => m.DisplayName))} in {shownCharacterName} Mods Folder",
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DeletedSuccessMsg") ?? "Successfully deleted {0} in {1} Mods Folder", string.Join(", ", selectedMods.Select(m => m.DisplayName)), shownCharacterName),
                 TimeSpan.FromSeconds(5));
         }).ConfigureAwait(false);
     }

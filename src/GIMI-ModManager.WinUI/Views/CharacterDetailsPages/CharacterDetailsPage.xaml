@@ -386,8 +386,8 @@
                         <ToggleSwitch
                             x:Name="ViewToggleSwitch"
                             IsOn="False"
-                            OffContent="TEMP_Detailed"
-                            OnContent="TEMP_Gallery"
+                            OffContent="Detailed View"
+                            OnContent="Gallery View"
                             Loaded="ViewToggleSwitch_OnLoaded"
                             Toggled="ViewToggleSwitch_OnToggled" />
 

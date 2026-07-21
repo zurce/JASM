@@ -209,7 +209,7 @@ public partial class CharacterDetailsViewModel
             {
                 _logger.Error(e, "Error while adding archive.");
                 _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorAddStorageItems") ?? "Error while adding storage items.",
-                    $"An error occurred while adding the storage items.\n{e.Message}",
+                    string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorAddStorageReason2") ?? "An error occurred while adding the storage items.\n{0}", e.Message),
                     TimeSpan.FromSeconds(5));
             }
             finally
