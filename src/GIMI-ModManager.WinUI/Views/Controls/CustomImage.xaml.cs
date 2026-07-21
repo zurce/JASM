@@ -1,4 +1,5 @@
 using System.Windows.Input;
+using GIMI_ModManager.Core.Contracts.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -12,8 +13,14 @@ public sealed partial class CustomImage : UserControl
     public CustomImage()
     {
         InitializeComponent();
+        LocalizeTooltip();
     }
 
+    private void LocalizeTooltip()
+    {
+        var l = App.GetService<ILanguageLocalizer>();
+        ToolTipService.SetToolTip(PickImageButton, l.GetLocalizedStringOrDefault("CustomImage_PickImageButton_ToolTip") ?? "Pick an Image");
+    }
 
     public static readonly DependencyProperty ImageUriProperty = DependencyProperty.Register(
         nameof(ImageUri), typeof(Uri), typeof(CustomImage), new PropertyMetadata(default(Uri)));

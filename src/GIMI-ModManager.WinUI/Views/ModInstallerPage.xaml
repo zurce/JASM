@@ -194,6 +194,7 @@
                 </Grid.RowDefinitions>
 
                 <ToggleButton
+                    x:Name="AlwaysOnTopToggle"
                     VerticalAlignment="Top"
                     Command="{x:Bind ViewModel.ToggleAlwaysOnTopCommand}"
                     IsChecked="{x:Bind ViewModel.AlwaysOnTop, Mode=TwoWay}"
@@ -211,6 +212,7 @@
                     PasteButtonCommand="{x:Bind ViewModel.PasteModImageCommand}" />
 
                 <Button
+                    x:Name="RetrieveModInfoButton"
                     Margin="0,0,0,4"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
@@ -247,6 +249,7 @@
                     IsReadOnly="{x:Bind ViewModel.IsRetrievingModInfo, Mode=OneWay}"
                     Text="{x:Bind ViewModel.Author, Mode=TwoWay}" />
                 <TextBox
+                    x:Name="NoteTextBox"
                     Grid.Row="4"
                     Margin="0,0,0,8"
                     AcceptsReturn="False"

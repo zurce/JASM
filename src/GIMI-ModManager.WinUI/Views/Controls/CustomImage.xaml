@@ -51,6 +51,7 @@
         <Button
             HorizontalAlignment="{x:Bind ButtonHorizontalAlignment, Mode=OneWay}"
             VerticalAlignment="{x:Bind ButtonVerticalAlignment, Mode=OneWay}"
+            x:Name="PickImageButton"
             Background="{ThemeResource SmokeFillColorDefaultBrush}"
             Command="{x:Bind EditButtonCommand, Mode=OneWay}"
             ToolTipService.ToolTip="Pick an Image"

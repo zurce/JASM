@@ -1,110 +1,52 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -242,7 +184,7 @@
   <data name="Settings_Language_TexBlock.Text" xml:space="preserve">
     <value>Language options are currently limited. It is a work in progress.</value>
   </data>
-  <!-- ===== ShellPage Navigation ===== -->
+  
   <data name="ShellPage_NavItem_CharacterManagement" xml:space="preserve">
     <value>Character Management</value>
   </data>
@@ -264,7 +206,7 @@
   <data name="ShellPage_SettingsItem" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <!-- ===== CharactersPage ===== -->
+  
   <data name="CharactersPage_CheckForUpdates.Text" xml:space="preserve">
     <value>Check for updates</value>
   </data>
@@ -409,7 +351,7 @@
   <data name="CharactersPage_DropHereText.Text" xml:space="preserve">
     <value>Drop Here to Auto Detect Mod...</value>
   </data>
-  <!-- ===== CharactersPage Sort Names ===== -->
+  
   <data name="CharactersPage_SortAlphabetical.Text" xml:space="preserve">
     <value>Alphabetical</value>
   </data>
@@ -437,7 +379,7 @@
   <data name="CharactersPage_ModNotificationsToggleText" xml:space="preserve">
     <value>Show only</value>
   </data>
-  <!-- ===== CharacterDetailsPage ===== -->
+  
   <data name="CharacterDetails_ModsSelected.Text" xml:space="preserve">
     <value>Mods Selected:</value>
   </data>
@@ -531,7 +473,7 @@
   <data name="CharacterDetails_ViewToggle.OffContent" xml:space="preserve">
     <value>Detailed View</value>
   </data>
-  <!-- ===== ModPane ===== -->
+  
   <data name="ModPane_SetModIniFile.Text" xml:space="preserve">
     <value>Set mod .ini file</value>
   </data>
@@ -562,7 +504,7 @@
   <data name="ModPane_OpenModFolder.Content" xml:space="preserve">
     <value>Open Mod Folder...</value>
   </data>
-  <!-- ===== PresetPage ===== -->
+  
   <data name="PresetPage_AutoSyncWarning.Text" xml:space="preserve">
     <value>Auto sync not enabled! Remember to manually reload 3Dmigoto config with the F10 key when doing changes</value>
   </data>
@@ -611,12 +553,6 @@
   <data name="PresetPage_GoToPresetDetails.Content" xml:space="preserve">
     <value>Go to Preset Details</value>
   </data>
-  <data name="PresetPage_ApplyPresetButton.Content" xml:space="preserve">
-    <value>Apply Preset</value>
-  </data>
-  <data name="PresetPage_ApplyConfirm.Content" xml:space="preserve">
-    <value>Confirm</value>
-  </data>
   <data name="PresetPage_ReadOnlyMenuItem.Text" xml:space="preserve">
     <value>Read Only</value>
   </data>
@@ -647,7 +583,7 @@
   <data name="PresetPage_ConfirmText" xml:space="preserve">
     <value>Save New Name</value>
   </data>
-  <!-- ===== ModInstallerPage ===== -->
+  
   <data name="ModInstallerPage_SetModPreviewImage.Text" xml:space="preserve">
     <value>Set mod preview image</value>
   </data>
@@ -664,7 +600,9 @@
     <value>Cancel</value>
   </data>
   <data name="ModInstallerPage_DuplicateInfoBar.Message" xml:space="preserve">
-    <value>1. You can choose to overwrite the old mod, deleting it.&#x0a;Or&#x0a;2. You can rename either the new or the old mod</value>
+    <value>1. You can choose to overwrite the old mod, deleting it.
+Or
+2. You can rename either the new or the old mod</value>
   </data>
   <data name="ModInstallerPage_NewModLabel.Text" xml:space="preserve">
     <value>New Mod:</value>
@@ -717,17 +655,11 @@
   <data name="ModInstallerPage_Note.PlaceholderText" xml:space="preserve">
     <value>Custom free text note, shown in grid on character details page</value>
   </data>
+  <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
+    <value>Custom free text note, shown in grid on character details page</value>
+  </data>
   <data name="ModInstallerPage_ModFolderLabel.Text" xml:space="preserve">
     <value>ModFolder:</value>
-  </data>
-  <data name="ModInstallerPage_ModPageUrl.PlaceholderText" xml:space="preserve">
-    <value>Paste URL to auto populate fields (GameBanana only)</value>
-  </data>
-  <data name="ModInstallerPage_ModCustomName.PlaceholderText" xml:space="preserve">
-    <value>Custom Name displayed throughout JASM</value>
-  </data>
-  <data name="ModInstallerPage_Note.PlaceholderText" xml:space="preserve">
-    <value>Custom free text note, shown in grid on character details page</value>
   </data>
   <data name="ModInstallerPage_RootFolderHint.Text" xml:space="preserve">
     <value>This is usually the folder that contains the 'merged.ini/Script.ini' or '.JASM_ModConfig.json'. JASM will automatically detect the mod folder and the merged.ini file. If you want to manually select the mod folder, you can do so by right clicking the folder in the overview above.</value>
@@ -786,7 +718,7 @@
   <data name="ModInstallerPage_AddModButton.Content" xml:space="preserve">
     <value>Add Mod</value>
   </data>
-  <!-- ===== CharacterGalleryPage ===== -->
+  
   <data name="CharacterGalleryPage_SelectSkin.Content" xml:space="preserve">
     <value>Select Skin</value>
   </data>
@@ -850,7 +782,7 @@
   <data name="CharacterGalleryPage_LoadingMods.Text" xml:space="preserve">
     <value>Loading Mods...</value>
   </data>
-  <!-- ===== ModsOverviewPage ===== -->
+  
   <data name="ModsOverviewPage_Title.Text" xml:space="preserve">
     <value>Mods Overview</value>
   </data>
@@ -881,7 +813,7 @@
   <data name="ModsOverviewPage_CloseAll.Content" xml:space="preserve">
     <value>Close All</value>
   </data>
-  <!-- ===== PresetDetailsPage ===== -->
+  
   <data name="PresetDetailsPage_AddMod.Label" xml:space="preserve">
     <value>Add Mod</value>
   </data>
@@ -906,7 +838,7 @@
   <data name="PresetDetailsPage_OriginalPath.Text" xml:space="preserve">
     <value>Original Path:</value>
   </data>
-  <!-- ===== CharacterCard ===== -->
+  
   <data name="CharacterCard_TrackedMods.Text" xml:space="preserve">
     <value>Tracked Mods:</value>
   </data>
@@ -919,7 +851,7 @@
   <data name="CharacterCard_DisableAllMods.Content" xml:space="preserve">
     <value>Disable All Mods</value>
   </data>
-  <!-- ===== ModListOverview ===== -->
+  
   <data name="ModListOverview_ModsMenu.Title" xml:space="preserve">
     <value>Mods</value>
   </data>
@@ -935,7 +867,7 @@
   <data name="ModListOverview_ModNameHeader.Header" xml:space="preserve">
     <value>Mod Name</value>
   </data>
-  <!-- ===== DebugPage ===== -->
+  
   <data name="DebugPage_CreateButton.Content" xml:space="preserve">
     <value>Create</value>
   </data>
@@ -945,14 +877,14 @@
   <data name="DebugPage_DeleteButton.Content" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <!-- ===== NotificationsPage ===== -->
+  
   <data name="NotificationsPage_HeaderText.Text" xml:space="preserve">
     <value>All Notifications shown during the current application run</value>
   </data>
   <data name="NotificationsPage_LogPathLabel.Text" xml:space="preserve">
     <value>Notifications and Logs are written to:</value>
   </data>
-  <!-- ===== ErrorWindow ===== -->
+  
   <data name="ErrorWindow_ErrorHeaderText.Text" xml:space="preserve">
     <value>An error has occurred: </value>
   </data>
@@ -968,7 +900,7 @@
   <data name="ErrorWindow_InnerStackTraceLabel.Text" xml:space="preserve">
     <value>Stack trace:</value>
   </data>
-  <!-- ===== GbModPageWindow ===== -->
+  
   <data name="GbModPageWindow_TitleText.Text" xml:space="preserve">
     <value>Download Mods from GameBanana</value>
   </data>
@@ -990,7 +922,7 @@
   <data name="GbModPageWindow_DownloadsButton.Content" xml:space="preserve">
     <value>Downloads</value>
   </data>
-  <!-- ===== CharacterManagerPage ===== -->
+  
   <data name="CharacterManagerPage_Title.Text" xml:space="preserve">
     <value>Character Manager</value>
   </data>
@@ -1009,7 +941,7 @@
   <data name="CharacterManagerPage_AddCharacterButton.ToolTip" xml:space="preserve">
     <value>Add new character</value>
   </data>
-  <!-- ===== ModSelector ===== -->
+  
   <data name="ModSelector_Title.Text" xml:space="preserve">
     <value>Select Mods</value>
   </data>
@@ -1022,7 +954,7 @@
   <data name="ModSelector_SelectModButton.Content" xml:space="preserve">
     <value>Select Mod</value>
   </data>
-  <!-- ===== ModUpdateAvailableWindow ===== -->
+  
   <data name="ModUpdateAvailableWindow_Title.Text" xml:space="preserve">
     <value>New Downloadable Files Found</value>
   </data>
@@ -1050,7 +982,7 @@
   <data name="ModUpdateAvailableWindow_DownloadsButton.Content" xml:space="preserve">
     <value>Downloads</value>
   </data>
-  <!-- ===== SettingsPage remaining strings ===== -->
+  
   <data name="Settings_Window.Text" xml:space="preserve">
     <value>Window</value>
   </data>
@@ -1274,7 +1206,7 @@ Only mods tracked by JASM will be disabled within the selected categories</value
   <data name="FolderSelector_Browse.Content" xml:space="preserve">
     <value>Browse</value>
   </data>
-  <!-- ===== CommandsSettingsPage ===== -->
+  
   <data name="CommandsSettingsPage_WarningTitle" xml:space="preserve">
     <value>Friendly Warning</value>
   </data>
@@ -1359,7 +1291,7 @@ Only mods tracked by JASM will be disabled within the selected categories</value
   <data name="CommandsSettingsPage_KillButton.Content" xml:space="preserve">
     <value>Kill</value>
   </data>
-  <!-- ===== CreateCommandView ===== -->
+  
   <data name="CreateCommandView_Title.Text" xml:space="preserve">
     <value>Create Command</value>
   </data>
@@ -1489,7 +1421,7 @@ Only mods tracked by JASM will be disabled within the selected categories</value
   <data name="CreateCommandView_SaveCommand.Content" xml:space="preserve">
     <value>Save Command</value>
   </data>
-  <!-- ===== Category Names ===== -->
+  
   <data name="Category_Character" xml:space="preserve">
     <value>Character</value>
   </data>
@@ -1712,9 +1644,6 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="Shell_ElevatorNotRunningMessage" xml:space="preserve">
     <value>Please start the Elevator first in the Settings page</value>
   </data>
-  <data name="CommandsSettingsPage_WarningPrimary" xml:space="preserve">
-    <value>I understand</value>
-  </data>
   <data name="CreateCommand_FilePicker_CommitText" xml:space="preserve">
     <value>Select</value>
   </data>
@@ -1780,9 +1709,6 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="CharacterDetails_MultipleModsActiveMessage" xml:space="preserve">
     <value>Multiple Mods active</value>
-  </data>
-  <data name="CharacterCard_DisableAllMods.Content" xml:space="preserve">
-    <value>Disable All Mods</value>
   </data>
   <data name="CharacterGallery_EnableButton" xml:space="preserve">
     <value>Enable</value>
@@ -2012,9 +1938,6 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="ModInstallerPage_ReplaceDuplicateMod2.Text" xml:space="preserve">
     <value>Replace duplicate mod in presets with new mod</value>
   </data>
-  <data name="ModInstallerPage_DuplicateModDialog.CloseButtonText" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
   <data name="ModPage_DownloadTitle" xml:space="preserve">
     <value>Download Mod files</value>
   </data>
@@ -2023,5 +1946,14 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="ModInstaller_HelperWindowTitle" xml:space="preserve">
     <value>Mod Installer Helper: {0}</value>
+  </data>
+  <data name="ModInstallerPage_AlwaysOnTopToggle_ToolTip" xml:space="preserve">
+    <value>Keep window always on top</value>
+  </data>
+  <data name="ModInstallerPage_RetrieveModInfoButton_ToolTip" xml:space="preserve">
+    <value>Retrieve mod info from the mod page</value>
+  </data>
+  <data name="CustomImage_PickImageButton_ToolTip" xml:space="preserve">
+    <value>Pick an Image</value>
   </data>
 </root>
