@@ -1,0 +1,4 @@
+{
+  "defaultModel": "deepseek-v4-flash",
+  "defaultThinkingLevel": "off"
+}

@@ -19,7 +19,7 @@ This file mirrors active tasks and development phases.
 
 ## In Progress
 
-*None*
+- **`JASM-ELEVATOR-CLEANUP`** — Remove all elevator-related code: Elevator project, ElevatorService, UI, localization, build steps, and docs. Branch: `elevator-cleanup-and-removal`.
 
 ---
 
