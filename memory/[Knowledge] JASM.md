@@ -56,12 +56,13 @@ JASM (Just Another Skin Manager) is a skin manager for games like Genshin Impact
 
 ## Progress Summary
 
-**Completed: 8 Custom Tasks**
+**Completed: 9 Custom Tasks**
 
 ### Completed Tasks
 
 | Task | Description | Status | Date |
 |------|-------------|--------|------|
+| `JASM-ELEVATOR-CLEANUP` | Remove all elevator-related code, project, UI, and localization | Merged | 2026-07-24 |
 | `JASM-LOCALIZE` | Localize all hardcoded English strings using WinUI3Localizer | Committed (amended) | 2026-07-19 |
 | `JASM-BATCH-CONFIG` | Added batch Enable All, Disable All, and Clean Up operations to characters overview. | Staged & Committed | 2026-07-18 |
 | `JASM-OVERRIDE` | Merge branch `zurce/add-override-folder` for overriding folder settings. | Merged | 2026-03-05 |
@@ -107,6 +108,15 @@ Also, child elements inside a ContentDialog (like `<TextBlock>`) need their own 
 When displaying a `ContentDialog` in WinUI 3 (even if declared in XAML), it can crash if its `XamlRoot` is null at invocation time.
 - **Decision:** Always assign `dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;` in VM commands before calling `.ShowAsync()`.
 
+### 2026-07-24: Elevator process removed entirely
+
+The Elevator was a separate elevated (admin) process that communicated with JASM via Named Pipes to send F10 key presses to running games, refreshing 3DMigoto mods. It was flagged as malware by antivirus software when distributed, causing false positives.
+
+- **Decision:** Removed the entire Elevator project (`src/Elevator/`), `ElevatorService`, all DI registrations, UI elements (Settings section, Preset button, Characters "Refresh Mods" button), F10 key handler, 54 localization strings, build steps, and documentation references.
+- The `ToggleAutoSync` and `AutoSync3DMigotoConfig` settings were preserved (now work without elevator dependency).
+- `RefreshGenshinMods()` and `RefreshModsInGameAsync()` methods were removed entirely — not just made no-ops.
+- The `.bak` localization file was deleted.
+
 ---
 
-**Last Updated:** 2026-07-20
+**Last Updated:** 2026-07-24
