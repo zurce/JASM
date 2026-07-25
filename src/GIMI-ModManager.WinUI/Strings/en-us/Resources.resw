@@ -228,6 +228,18 @@
   <data name="CharactersPage_SelectProcessDialog_Description.Text" xml:space="preserve">
     <value>Select the path to the process you want to start. Once saved this will be started when pressing the start button. This can be reset on the settings page.</value>
   </data>
+  <data name="CharactersPage_SelectProcessDialog_PrimaryButtonText" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="CharactersPage_SelectProcessDialog_SecondaryButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CharactersPage_SelectProcessDialog_GamePlaceholderText" xml:space="preserve">
+    <value>Select the game executable</value>
+  </data>
+  <data name="CharactersPage_SelectProcessDialog_ModelImporterPlaceholderText" xml:space="preserve">
+    <value>Select the model importer executable</value>
+  </data>
   <data name="CharactersPage_CreateAdvancedCommand.Content" xml:space="preserve">
     <value>Create Advanced Command</value>
   </data>
@@ -244,7 +256,7 @@
     <value>It's recommended to save your current configuration as a preset for easy restoring</value>
   </data>
   <data name="CharactersPage_CleanUpDialog.Title" xml:space="preserve">
-    <value>Clean up disable mods?</value>
+    <value>Clean up disabled mods?</value>
   </data>
   <data name="CharactersPage_CleanUpDialog_Description.Text" xml:space="preserve">
     <value>This operation is irreversable</value>
@@ -652,9 +664,7 @@ Or
   <data name="ModInstallerPage_Note.PlaceholderText" xml:space="preserve">
     <value>Custom free text note, shown in grid on character details page</value>
   </data>
-  <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
-    <value>Custom free text note, shown in grid on character details page</value>
-  </data>
+
   <data name="ModInstallerPage_ModFolderLabel.Text" xml:space="preserve">
     <value>ModFolder:</value>
   </data>
@@ -929,9 +939,7 @@ Or
   <data name="CharacterManagerPage_SearchBox.PlaceholderText" xml:space="preserve">
     <value>Start typing to search...</value>
   </data>
-  <data name="CharacterManagerPage_SearchBox_Header" xml:space="preserve">
-    <value>Search for a character to edit or add a new character</value>
-  </data>
+
   <data name="CharacterManagerPage_SearchBox_Placeholder" xml:space="preserve">
     <value>Start typing to search...</value>
   </data>
@@ -1301,9 +1309,7 @@ Only mods tracked by JASM will be disabled within the selected categories</value
   <data name="CreateCommandView_CommandName.Header" xml:space="preserve">
     <value>* Command Name:</value>
   </data>
-  <data name="CreateCommandView_CommandName_PlaceholderText" xml:space="preserve">
-    <value>Command Display Name (Required)</value>
-  </data>
+
   <data name="CreateCommandView_CommandName.PlaceholderText" xml:space="preserve">
     <value>Command Display Name (Required)</value>
   </data>
@@ -1316,27 +1322,21 @@ Only mods tracked by JASM will be disabled within the selected categories</value
   <data name="CreateCommandView_Executable.Title" xml:space="preserve">
     <value>* Executable</value>
   </data>
-  <data name="CreateCommandView_Executable_PlaceHolderText" xml:space="preserve">
-    <value>Must either be in $PATH or be an absolute path to the executable (Required)</value>
-  </data>
+
   <data name="CreateCommandView_Executable.PlaceHolderText" xml:space="preserve">
     <value>Must either be in $PATH or be an absolute path to the executable (Required)</value>
   </data>
   <data name="CreateCommandView_WorkingDirectory.Title" xml:space="preserve">
     <value>Working Directory</value>
   </data>
-  <data name="CreateCommandView_WorkingDirectory_PlaceHolderText" xml:space="preserve">
-    <value>When manually specifying a path, the folder must exist</value>
-  </data>
+
   <data name="CreateCommandView_WorkingDirectory.PlaceHolderText" xml:space="preserve">
     <value>When manually specifying a path, the folder must exist</value>
   </data>
   <data name="CreateCommandView_Arguments.Header" xml:space="preserve">
     <value>Arguments</value>
   </data>
-  <data name="CreateCommandView_Arguments_PlaceholderText" xml:space="preserve">
-    <value>Arguments that will be passed to the executable</value>
-  </data>
+
   <data name="CreateCommandView_Arguments.PlaceholderText" xml:space="preserve">
     <value>Arguments that will be passed to the executable</value>
   </data>
@@ -1659,24 +1659,12 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="CharacterDetails_ViewToggle.OnContent" xml:space="preserve">
     <value>Gallery View</value>
   </data>
-  <data name="CharacterDetails_ViewToggle_OffContent" xml:space="preserve">
-    <value>Detailed View</value>
-  </data>
-  <data name="CharacterDetails_ViewToggle_OnContent" xml:space="preserve">
-    <value>Gallery View</value>
-  </data>
-  <data name="CharacterGalleryPage_ViewToggleSwitch_OffContent" xml:space="preserve">
-    <value>Detailed View</value>
-  </data>
-  <data name="CharacterGalleryPage_ViewToggleSwitch_OnContent" xml:space="preserve">
-    <value>Gallery View</value>
-  </data>
-  <data name="CharacterGalleryPage_SingleSelect_Content" xml:space="preserve">
-    <value>Single Select</value>
-  </data>
-  <data name="CharacterGalleryPage_SingleSelect_ToolTip" xml:space="preserve">
-    <value>Selecting this will only allow one mod to be enabled at a time.</value>
-  </data>
+
+
+
+
+
+
   <data name="ModGrid_EnabledColumn" xml:space="preserve">
     <value>Enabled</value>
   </data>
@@ -2416,9 +2404,6 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="Notification_SystemError" xml:space="preserve">
     <value>System error: {0}</value>
   </data>
-  <data name="CharacterDetails_MultipleModsActiveMessage" xml:space="preserve">
-    <value>Multiple Mods active</value>
-  </data>
   <data name="CharacterCard_GoToModsOverview.ToolTipService.ToolTip" xml:space="preserve">
     <value>Go to character in Mods Overview</value>
   </data>
@@ -2439,9 +2424,6 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="CharacterDetails_OpenGIMIRootFolder.Text" xml:space="preserve">
     <value>Open 3Dmigoto Root folder...</value>
-  </data>
-  <data name="CharacterDetails_OpenCharacterModFolder.Text" xml:space="preserve">
-    <value>Open Character's Mod folder...</value>
   </data>
   <data name="CharacterDetails_SingleSelect.ToolTipService.ToolTip" xml:space="preserve">
     <value>Selecting this will only allow one mod to be enabled at a time.</value>
@@ -2550,5 +2532,64 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="CharactersPage_NoCategoryFound" xml:space="preserve">
     <value>No {0} Found...</value>
+  </data>
+  <!-- Restored underscore versions for C# GetLocalizedStringOrDefault lookups -->
+  <data name="CharacterDetails_ViewToggle_OffContent" xml:space="preserve">
+    <value>Detailed View</value>
+  </data>
+  <data name="CharacterDetails_ViewToggle_OnContent" xml:space="preserve">
+    <value>Gallery View</value>
+  </data>
+  <data name="CharacterGalleryPage_SingleSelect_Content" xml:space="preserve">
+    <value>Single Select</value>
+  </data>
+  <data name="CharacterGalleryPage_SingleSelect_ToolTip" xml:space="preserve">
+    <value>Selecting this will only allow one mod to be enabled at a time.</value>
+  </data>
+  <data name="CharacterGalleryPage_ViewToggleSwitch_OffContent" xml:space="preserve">
+    <value>Detailed View</value>
+  </data>
+  <data name="CharacterGalleryPage_ViewToggleSwitch_OnContent" xml:space="preserve">
+    <value>Gallery View</value>
+  </data>
+  <data name="CharacterManagerPage_SearchBox_Header" xml:space="preserve">
+    <value>Search for a character to edit or add a new character</value>
+  </data>
+  <data name="CreateCommandView_Arguments_PlaceholderText" xml:space="preserve">
+    <value>Arguments that will be passed to the executable</value>
+  </data>
+  <data name="CreateCommandView_CommandName_PlaceholderText" xml:space="preserve">
+    <value>Command Display Name (Required)</value>
+  </data>
+  <data name="CreateCommandView_Executable_PlaceHolderText" xml:space="preserve">
+    <value>Must either be in $PATH or be an absolute path to the executable (Required)</value>
+  </data>
+  <data name="CreateCommandView_WorkingDirectory_PlaceHolderText" xml:space="preserve">
+    <value>When manually specifying a path, the folder must exist</value>
+  </data>
+  <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
+    <value>Custom free text note, shown in grid on character details page</value>
+  </data>
+  <!-- Missing keys from es that en-us should have -->
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Running" xml:space="preserve">
+    <value>Running</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Stopped</value>
+  </data>
+  <data name="Waiting" xml:space="preserve">
+    <value>Waiting</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="ModInstallerPage_AlwaysOnTopToggle.ToolTip" xml:space="preserve">
+    <value>Keep window always on top</value>
+  </data>
+  <data name="ModInstallerPage_RetrieveModInfoButton.ToolTip" xml:space="preserve">
+    <value>Get mod info from the mod page</value>
   </data>
 </root>

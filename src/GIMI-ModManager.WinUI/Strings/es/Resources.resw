@@ -243,6 +243,18 @@
   <data name="CharactersPage_SelectProcessDialog_Description.Text" xml:space="preserve">
     <value>Selecciona la ruta al proceso que deseas iniciar. Una vez guardado, se iniciará al presionar el botón de inicio. Esto se puede restablecer en la página de configuración.</value>
   </data>
+  <data name="CharactersPage_SelectProcessDialog_PrimaryButtonText" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="CharactersPage_SelectProcessDialog_SecondaryButtonText" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="CharactersPage_SelectProcessDialog_GamePlaceholderText" xml:space="preserve">
+    <value>Selecciona el ejecutable del juego</value>
+  </data>
+  <data name="CharactersPage_SelectProcessDialog_ModelImporterPlaceholderText" xml:space="preserve">
+    <value>Selecciona el ejecutable del model importer</value>
+  </data>
   <data name="CharactersPage_CreateAdvancedCommand.Content" xml:space="preserve">
     <value>Crear Comando Avanzado</value>
   </data>
@@ -923,9 +935,7 @@ O
   <data name="CharacterManagerPage_SearchBox.PlaceholderText" xml:space="preserve">
     <value>Empieza a escribir para buscar...</value>
   </data>
-  <data name="CharacterManagerPage_SearchBox_Header" xml:space="preserve">
-    <value>Busca un personaje para editar o agregar uno nuevo</value>
-  </data>
+
   <data name="CharacterManagerPage_SearchBox_Placeholder" xml:space="preserve">
     <value>Empieza a escribir para buscar...</value>
   </data>
@@ -1289,9 +1299,7 @@ Solo los mods rastreados por JASM se deshabilitarán dentro de las categorías s
   <data name="CreateCommandView_CommandName.Header" xml:space="preserve">
     <value>* Nombre del Comando:</value>
   </data>
-  <data name="CreateCommandView_CommandName_PlaceholderText" xml:space="preserve">
-    <value>Nombre a Mostrar del Comando (Requerido)</value>
-  </data>
+
   <data name="CreateCommandView_CommandName.PlaceholderText" xml:space="preserve">
     <value>Nombre a Mostrar del Comando (Requerido)</value>
   </data>
@@ -1304,27 +1312,21 @@ Solo los mods rastreados por JASM se deshabilitarán dentro de las categorías s
   <data name="CreateCommandView_Executable.Title" xml:space="preserve">
     <value>* Ejecutable</value>
   </data>
-  <data name="CreateCommandView_Executable_PlaceHolderText" xml:space="preserve">
-    <value>Debe estar en $PATH o ser una ruta absoluta al ejecutable (Requerido)</value>
-  </data>
+
   <data name="CreateCommandView_Executable.PlaceHolderText" xml:space="preserve">
     <value>Debe estar en $PATH o ser una ruta absoluta al ejecutable (Requerido)</value>
   </data>
   <data name="CreateCommandView_WorkingDirectory.Title" xml:space="preserve">
     <value>Directorio de Trabajo</value>
   </data>
-  <data name="CreateCommandView_WorkingDirectory_PlaceHolderText" xml:space="preserve">
-    <value>Al especificar una ruta manualmente, la carpeta debe existir</value>
-  </data>
+
   <data name="CreateCommandView_WorkingDirectory.PlaceHolderText" xml:space="preserve">
     <value>Al especificar una ruta manualmente, la carpeta debe existir</value>
   </data>
   <data name="CreateCommandView_Arguments.Header" xml:space="preserve">
     <value>Argumentos</value>
   </data>
-  <data name="CreateCommandView_Arguments_PlaceholderText" xml:space="preserve">
-    <value>Argumentos que se pasarán al ejecutable</value>
-  </data>
+
   <data name="CreateCommandView_Arguments.PlaceholderText" xml:space="preserve">
     <value>Argumentos que se pasarán al ejecutable</value>
   </data>
@@ -1722,24 +1724,12 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CharacterDetails_ViewToggle_OffContent" xml:space="preserve">
-    <value>Vista Detallada</value>
-  </data>
-  <data name="CharacterDetails_ViewToggle_OnContent" xml:space="preserve">
-    <value>Vista Galería</value>
-  </data>
-  <data name="CharacterGalleryPage_ViewToggleSwitch_OffContent" xml:space="preserve">
-    <value>Vista Detallada</value>
-  </data>
-  <data name="CharacterGalleryPage_ViewToggleSwitch_OnContent" xml:space="preserve">
-    <value>Vista Galería</value>
-  </data>
-  <data name="CharacterGalleryPage_SingleSelect_Content" xml:space="preserve">
-    <value>Selección Única</value>
-  </data>
-  <data name="CharacterGalleryPage_SingleSelect_ToolTip" xml:space="preserve">
-    <value>Seleccionar esto solo permitirá habilitar un mod a la vez.</value>
-  </data>
+
+
+
+
+
+
   <data name="ModGrid_EnabledColumn" xml:space="preserve">
     <value>Habilitado</value>
   </data>
@@ -2025,18 +2015,12 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="ModInstallerPage_RetrieveModInfoButton.ToolTip" xml:space="preserve">
     <value>Obtener información del mod desde la página de mod</value>
   </data>
-  <data name="ModInstallerPage_AlwaysOnTopToggle_ToolTip" xml:space="preserve">
-    <value>Mantener ventana siempre al frente</value>
-  </data>
-  <data name="ModInstallerPage_RetrieveModInfoButton_ToolTip" xml:space="preserve">
-    <value>Obtener información del mod desde la página de mod</value>
-  </data>
+
+
   <data name="CustomImage_PickImageButton_ToolTip" xml:space="preserve">
     <value>Seleccionar una Imagen</value>
   </data>
-  <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
-    <value>Nota personalizada visible en detalles del personaje</value>
-  </data>
+
   <data name="Preset_FailedCreate" xml:space="preserve">
     <value>Error al crear el preset</value>
   </data>
@@ -2506,9 +2490,6 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="Notification_SystemError" xml:space="preserve">
     <value>Error del sistema: {0}</value>
   </data>
-  <data name="CharacterDetails_MultipleModsActiveMessage" xml:space="preserve">
-    <value>Múltiples Mods activos</value>
-  </data>
   <data name="CharacterCard_GoToModsOverview.ToolTipService.ToolTip" xml:space="preserve">
     <value>Ir al personaje en Vista General de Mods</value>
   </data>
@@ -2529,9 +2510,6 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   </data>
   <data name="CharacterDetails_OpenGIMIRootFolder.Text" xml:space="preserve">
     <value>Abrir carpeta raíz de 3Dmigoto...</value>
-  </data>
-  <data name="CharacterDetails_OpenCharacterModFolder.Text" xml:space="preserve">
-    <value>Abrir carpeta de Mods del Personaje...</value>
   </data>
   <data name="CharacterDetails_SingleSelect.ToolTipService.ToolTip" xml:space="preserve">
     <value>Seleccionar esto solo permitirá habilitar un mod a la vez.</value>
@@ -2640,5 +2618,58 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   </data>
   <data name="CharactersPage_NoCategoryFound" xml:space="preserve">
     <value>No se encontraron {0}...</value>
+  </data>
+  <!-- Restored underscore versions for C# GetLocalizedStringOrDefault lookups -->
+  <data name="CharacterDetails_ViewToggle_OffContent" xml:space="preserve">
+    <value>Vista Detallada</value>
+  </data>
+  <data name="CharacterDetails_ViewToggle_OnContent" xml:space="preserve">
+    <value>Vista Galería</value>
+  </data>
+  <data name="CharacterGalleryPage_SingleSelect_Content" xml:space="preserve">
+    <value>Selección Única</value>
+  </data>
+  <data name="CharacterGalleryPage_SingleSelect_ToolTip" xml:space="preserve">
+    <value>Seleccionar esto solo permitirá que un mod esté habilitado a la vez.</value>
+  </data>
+  <data name="CharacterGalleryPage_ViewToggleSwitch_OffContent" xml:space="preserve">
+    <value>Vista Detallada</value>
+  </data>
+  <data name="CharacterGalleryPage_ViewToggleSwitch_OnContent" xml:space="preserve">
+    <value>Vista Galería</value>
+  </data>
+  <data name="CharacterManagerPage_SearchBox_Header" xml:space="preserve">
+    <value>Busca un personaje para editar o agregar uno nuevo</value>
+  </data>
+  <data name="CreateCommandView_Arguments_PlaceholderText" xml:space="preserve">
+    <value>Argumentos que se pasarán al ejecutable</value>
+  </data>
+  <data name="CreateCommandView_CommandName_PlaceholderText" xml:space="preserve">
+    <value>Nombre a Mostrar del Comando (Requerido)</value>
+  </data>
+  <data name="CreateCommandView_Executable_PlaceHolderText" xml:space="preserve">
+    <value>Debe estar en $PATH o ser una ruta absoluta al ejecutable (Requerido)</value>
+  </data>
+  <data name="CreateCommandView_WorkingDirectory_PlaceHolderText" xml:space="preserve">
+    <value>Al especificar una ruta manualmente, la carpeta debe existir</value>
+  </data>
+  <data name="ModInstallerPage_AlwaysOnTopToggle_ToolTip" xml:space="preserve">
+    <value>Mantener ventana siempre al frente</value>
+  </data>
+  <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
+    <value>Nota de texto libre personalizada, mostrada en la cuadrícula en la página de detalles del personaje</value>
+  </data>
+  <data name="ModInstallerPage_RetrieveModInfoButton_ToolTip" xml:space="preserve">
+    <value>Obtener información del mod desde la página de mod</value>
+  </data>
+  <!-- Missing keys from en-us that es should have -->
+  <data name="Category_Characters_Resumen" xml:space="preserve">
+    <value>Resumen de Personajes</value>
+  </data>
+  <data name="Settings_Export_ModsExportedTo" xml:space="preserve">
+    <value>Mods exportados a {0}</value>
+  </data>
+  <data name="Settings_Notification_ModsExportedToFormat" xml:space="preserve">
+    <value>Mods exportados a {0}</value>
   </data>
 </root>

@@ -1,8 +1,8 @@
 # AGENT.md - JASM Guide for AI Agents
 
-**Last Updated:** 2026-07-18
+**Last Updated:** 2026-07-25
 **Project:** JASM - Custom Features & Stability
-**Status:** In Progress
+**Status:** In Progress (all elevator tasks complete, migrated patterns to antigravity-cli)
 
 ---
 
