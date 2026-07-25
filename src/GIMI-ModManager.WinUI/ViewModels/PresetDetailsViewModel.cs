@@ -27,7 +27,6 @@ public sealed partial class PresetDetailsViewModel(
     NotificationManager notificationManager,
     IWindowManagerService windowManagerService,
     BusyService busyService,
-    ElevatorService elevatorService,
     UserPreferencesService userPreferencesService)
     : ObservableRecipient, INavigationAware
 {
@@ -38,7 +37,6 @@ public sealed partial class PresetDetailsViewModel(
     private readonly NotificationManager _notificationManager = notificationManager;
     private readonly IWindowManagerService _windowManagerService = windowManagerService;
     private readonly BusyService _busyService = busyService;
-    private readonly ElevatorService _elevatorService = elevatorService;
     private readonly UserPreferencesService _userPreferencesService = userPreferencesService;
 
     private const string SelectModsWindowKey = "SelectModsWindow";
@@ -332,9 +330,6 @@ public sealed partial class PresetDetailsViewModel(
         {
             var updatedModEntry = await Task.Run(async () =>
             {
-                if (_elevatorService.ElevatorStatus == ElevatorStatus.Running)
-                    await _elevatorService.RefreshAndWaitForUserIniChangesAsync().ConfigureAwait(false);
-
                 await _userPreferencesService.SaveModPreferencesAsync(presetEntryDetailedVm.ModId)
                     .ConfigureAwait(false);
 

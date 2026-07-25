@@ -51,7 +51,6 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     public readonly string StartGameIcon;
     public readonly string ShortGameName;
     public NotificationManager NotificationManager { get; }
-    public ElevatorService ElevatorService { get; }
 
     public OverviewDockPanelVM DockPanelVM { get; }
 
@@ -96,7 +95,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
 
     public CharactersViewModel(IGameService gameService, ILogger logger, INavigationService navigationService,
         ISkinManagerService skinManagerService, ILocalSettingsService localSettingsService,
-        NotificationManager notificationManager, ElevatorService elevatorService,
+        NotificationManager notificationManager,
         GenshinProcessManager genshinProcessManager, ThreeDMigtoProcessManager threeDMigtoProcessManager,
         ModDragAndDropService modDragAndDropService, ModNotificationManager modNotificationManager,
         ModCrawlerService modCrawlerService, ModSettingsService modSettingsService,
@@ -109,7 +108,6 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         _skinManagerService = skinManagerService;
         _localSettingsService = localSettingsService;
         NotificationManager = notificationManager;
-        ElevatorService = elevatorService;
         GenshinProcessManager = genshinProcessManager;
         ThreeDMigtoProcessManager = threeDMigtoProcessManager;
         _modDragAndDropService = modDragAndDropService;
@@ -121,12 +119,6 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         _busyService = busyService;
         _localizer = localizer;
         _modRandomizationService = modRandomizationService;
-
-        ElevatorService.PropertyChanged += (_, args) =>
-        {
-            if (args.PropertyName == nameof(ElevatorService.ElevatorStatus))
-                RefreshModsInGameCommand.NotifyCanExecuteChanged();
-        };
 
         _modNotificationManager.OnModNotification += (_, _) =>
             App.MainWindow.DispatcherQueue.EnqueueAsync(RefreshNotificationsAsync);
@@ -916,16 +908,12 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         await SimpleSelectProcessDialogVM.InternalStart(GenshinProcessManager,
             SimpleSelectProcessDialogVM.StartType.Game);
 
-    private bool CanRefreshModsInGame()
+    [RelayCommand]
+    private Task RefreshModsInGameAsync()
     {
-        return ElevatorService.ElevatorStatus == ElevatorStatus.Running;
-    }
-
-    [RelayCommand(CanExecute = nameof(CanRefreshModsInGame))]
-    private async Task RefreshModsInGameAsync()
-    {
-        _logger.Debug("Refreshing Mods In Game");
-        await ElevatorService.RefreshGenshinMods();
+        // Elevator has been removed. In-game mod refresh via F10 is no longer available.
+        _logger.Debug("Refresh Mods In Game — elevator removed, no-op");
+        return Task.CompletedTask;
     }
 
     [RelayCommand]
