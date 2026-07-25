@@ -21,7 +21,6 @@ public class ModRandomizationService
     private readonly ISkinManagerService _skinManagerService;
     private readonly IWindowManagerService _windowManagerService;
     private readonly CharacterSkinService _characterSkinService;
-    private readonly ElevatorService _elevatorService;
     private readonly NotificationManager _notificationManager;
     private readonly ILogger _logger;
     private readonly ILanguageLocalizer _localizer;
@@ -32,7 +31,6 @@ public class ModRandomizationService
         ISkinManagerService skinManagerService,
         IWindowManagerService windowManagerService,
         CharacterSkinService characterSkinService,
-        ElevatorService elevatorService,
         NotificationManager notificationManager,
         ILogger logger,
         ILanguageLocalizer localizer)
@@ -41,7 +39,6 @@ public class ModRandomizationService
         _skinManagerService = skinManagerService;
         _windowManagerService = windowManagerService;
         _characterSkinService = characterSkinService;
-        _elevatorService = elevatorService;
         _notificationManager = notificationManager;
         _localizer = localizer;
         _logger = logger.ForContext<ModRandomizationService>();
@@ -194,11 +191,6 @@ public class ModRandomizationService
                 localizer.GetLocalizedStringOrDefault("RandomizeModsDialog_NotifFailed") ?? "Failed to randomize mods",
                 e.Message, TimeSpan.FromSeconds(5));
             return;
-        }
-
-        if (_elevatorService.ElevatorStatus == ElevatorStatus.Running)
-        {
-            await Task.Run(() => _elevatorService.RefreshGenshinMods());
         }
 
         _notificationManager.ShowNotification(

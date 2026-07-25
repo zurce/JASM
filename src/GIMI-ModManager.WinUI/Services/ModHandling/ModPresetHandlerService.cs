@@ -15,14 +15,12 @@ public sealed class ModPresetHandlerService(
     ModPresetService modPresetService,
     UserPreferencesService preferencesService,
     NotificationManager notificationManager,
-    ElevatorService elevatorService,
     ILocalSettingsService localSettingsService)
 {
     private readonly ILogger _logger = logger.ForContext<ModPresetHandlerService>();
     private readonly ModPresetService _modPresetService = modPresetService;
     private readonly UserPreferencesService _userPreferencesService = preferencesService;
     private readonly NotificationManager _notificationManager = notificationManager;
-    private readonly ElevatorService _elevatorService = elevatorService;
     private readonly ILocalSettingsService _localSettingsService = localSettingsService;
 
 
@@ -74,34 +72,7 @@ public sealed class ModPresetHandlerService(
         );
 
 
-        if (await CanAutoSyncAsync().ConfigureAwait(false))
-        {
-            await _elevatorService.RefreshGenshinMods().ConfigureAwait(false);
-            if (modPreset.Mods.Count == 0)
-                return Result.Success(simpleNotification);
 
-            await Task.Delay(5000, cancellationToken).ConfigureAwait(false);
-            await _userPreferencesService.SetModPreferencesAsync(cancellationToken: cancellationToken)
-                .ConfigureAwait(false);
-        }
-
-
-        if (await CanAutoSyncAsync().ConfigureAwait(false))
-        {
-            //await ElevatorService.RefreshGenshinMods().ConfigureAwait(false); // Wait and check for changes timout 5 seconds
-            //await Task.Delay(5000).ConfigureAwait(false);
-            await _elevatorService.RefreshAndWaitForUserIniChangesAsync().ConfigureAwait(false);
-            await Task.Delay(1000, cancellationToken).ConfigureAwait(false);
-            await _userPreferencesService.SetModPreferencesAsync(cancellationToken: cancellationToken)
-                .ConfigureAwait(false);
-        }
-
-
-        if (await CanAutoSyncAsync().ConfigureAwait(false))
-        {
-            await Task.Delay(2000, cancellationToken).ConfigureAwait(false);
-            await _elevatorService.RefreshGenshinMods().ConfigureAwait(false);
-        }
 
 
         return Result.Success(simpleNotification);
@@ -113,7 +84,7 @@ public sealed class ModPresetHandlerService(
         var autoSync = await _localSettingsService.ReadOrCreateSettingAsync<ModPresetSettings>(ModPresetSettings.Key)
             .ConfigureAwait(false);
 
-        return _elevatorService.CheckStatus() == ElevatorStatus.Running && autoSync.AutoSyncMods;
+        return autoSync.AutoSyncMods;
     }
 
     public async Task<Result> SaveActiveModPreferencesAsync(CancellationToken cancellationToken = default)
