@@ -125,12 +125,6 @@
 Это необходимо для корректной настройки приложения для выбранного языка.
 Хотите изменить язык?</value>
   </data>
-  <data name="ElevatorSectionHeader.Text" xml:space="preserve">
-    <value>Процесс Синхронизации</value>
-  </data>
-  <data name="ElevatorStatusTitle.Text" xml:space="preserve">
-    <value>Статус синхронизации</value>
-  </data>
   <data name="FolderSectionHeader.Text" xml:space="preserve">
     <value>Папки</value>
   </data>
@@ -168,26 +162,6 @@
   </data>
   <data name="ModUpdateCheckerSectionHeader.Text" xml:space="preserve">
     <value>Проверка обновлений у модов</value>
-  </data>
-  <data name="StartElevatorButton.Content" xml:space="preserve">
-    <value>Начать Процесс Синхронизации</value>
-  </data>
-  <data name="StartElevatorDialogDontShowContent" xml:space="preserve">
-    <value>Не показывайте это снова</value>
-  </data>
-  <data name="StartElevatorDialogText" xml:space="preserve">
-    <value>Нажмите кнопку Start, чтобы запустить процесс синхронизации. Синхронизация - это административный процесс, который используется для связи с 3DMigoto и игрой.
-
-Пока синхронизация активна, вы можете нажать F10 в приложении, чтобы обновить активные моды в игре.
-
-Включение и отключение модов также автоматически обновит работу 3DMigoto в игре. Процесс синхронизации должен автоматически завершиться после закрытия программы.
-
-После нажатия кнопки Start появится запрос User Account Control (UAC) для разрешения от имени администратора.
-
-(Для этого необходимо, чтобы игра и 3Dmigoto были запущены, при нажатии F10)</value>
-  </data>
-  <data name="StartElevatorDialogTitle" xml:space="preserve">
-    <value>Запустить синхронизацию?</value>
   </data>
   <data name="GameSourceSectionHeader.Text" xml:space="preserve">
     <value>Источник игр</value>

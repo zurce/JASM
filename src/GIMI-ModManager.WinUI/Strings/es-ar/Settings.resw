@@ -125,12 +125,6 @@
 Esto es necesario para configurar correctamente la aplicación para el idioma seleccionado.
 ¿Quieres cambiar el idioma?</value>
   </data>
-  <data name="ElevatorSectionHeader.Text" xml:space="preserve">
-    <value>Proceso de Sincronización</value>
-  </data>
-  <data name="ElevatorStatusTitle.Text" xml:space="preserve">
-    <value>Estado de la sincronización</value>
-  </data>
   <data name="FolderSectionHeader.Text" xml:space="preserve">
     <value>Carpetas</value>
   </data>
@@ -169,26 +163,6 @@ La verificación manual de actualizaciones siempre consulta directamente a GameB
   </data>
   <data name="ModUpdateCheckerSectionHeader.Text" xml:space="preserve">
     <value>Verificación de actualizaciones de mods</value>
-  </data>
-  <data name="StartElevatorButton.Content" xml:space="preserve">
-    <value>Iniciar Proceso de Sincronización</value>
-  </data>
-  <data name="StartElevatorDialogDontShowContent" xml:space="preserve">
-    <value>No mostrar esto nuevamente</value>
-  </data>
-  <data name="StartElevatorDialogText" xml:space="preserve">
-    <value>Presiona el botón de Inicio para comenzar el proceso de sincronización. La sincronización es un proceso administrativo que se utiliza para comunicarse con 3DMigoto y el juego.
-
-Mientras la sincronización está activa, puedes presionar F10 en la aplicación para actualizar los mods activos en el juego.
-
-Habilitar y deshabilitar mods también actualizará automáticamente el funcionamiento de 3DMigoto en el juego. El proceso de sincronización debe finalizar automáticamente después de cerrar el programa.
-
-Después de presionar el botón de Inicio, aparecerá una solicitud de Control de Cuentas de Usuario (UAC) para permisos de administrador.
-
-(Para esto es necesario que el juego y 3Dmigoto estén ejecutándose, al presionar F10)</value>
-  </data>
-  <data name="StartElevatorDialogTitle" xml:space="preserve">
-    <value>¿Iniciar sincronización?</value>
   </data>
   <data name="GameSourceSectionHeader.Text" xml:space="preserve">
     <value>Fuente del Juego</value>

@@ -532,9 +532,6 @@
   <data name="PresetPage_AutoSyncPreferences.Content" xml:space="preserve">
     <value>Auto sync Mod Preferences when switching presets</value>
   </data>
-  <data name="PresetPage_StartElevatorButton.Content" xml:space="preserve">
-    <value>Start Elevator...</value>
-  </data>
   <data name="PresetPage_SaveActivePreferencesButton.Content" xml:space="preserve">
     <value>Save active mod preferences (KeySwaps) to mods</value>
   </data>
@@ -1052,9 +1049,6 @@ Or
   <data name="Settings_ModsMovedMsg" xml:space="preserve">
     <value>Moved {0} mods to character folders</value>
   </data>
-  <data name="Settings_Elevator_UnableToStart" xml:space="preserve">
-    <value>Unable to start Elevator</value>
-  </data>
   <data name="Settings_Export_ModsExported" xml:space="preserve">
     <value>Mods exported</value>
   </data>
@@ -1380,7 +1374,7 @@ Only mods tracked by JASM will be disabled within the selected categories</value
     <value>When you create a new preset JASM creates a list of all enabled mods and the preferences stored in them. So when you apply the preset later it will enable only those mods and apply the preferences stored in the preset</value>
   </data>
   <data name="PresetPage_HowPresetsWorkDesc3" xml:space="preserve">
-    <value>You can allow JASM to handle 3Dmigoto reloading by starting the Elevator and checking the Auto Sync checkbox. But you can also do it yourself by checking the Show Manual Controls checkbox and saving/loading preferences manually and refreshing 3Dmigoto with the F10 key.</value>
+    <value>You can allow JASM to handle 3Dmigoto reloading by checking the Auto Sync checkbox. But you can also do it yourself by checking the Show Manual Controls checkbox and saving/loading preferences manually and refreshing 3Dmigoto with the F10 key.</value>
   </data>
   <data name="PresetPage_HowPresetsWorkDesc4" xml:space="preserve">
     <value>It is possible to simply ignore the preset part of this page and only use the manual controls to persist mod preferences.</value>
@@ -1629,12 +1623,6 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="Settings_GameSource_RestartClose" xml:space="preserve">
     <value>Restart later</value>
   </data>
-  <data name="Settings_StartElevator_CloseButton" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="Settings_StartElevator_PrimaryButton" xml:space="preserve">
-    <value>Start</value>
-  </data>
   <data name="Settings_Export_PrimaryButton" xml:space="preserve">
     <value>Export</value>
   </data>
@@ -1646,12 +1634,6 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="Notifications_LogFileCouldNotOpenTitle" xml:space="preserve">
     <value>Log file could not be opened</value>
-  </data>
-  <data name="Shell_ElevatorNotRunningTitle" xml:space="preserve">
-    <value>Elevator is not running</value>
-  </data>
-  <data name="Shell_ElevatorNotRunningMessage" xml:space="preserve">
-    <value>Please start the Elevator first in the Settings page</value>
   </data>
   <data name="CreateCommand_FilePicker_CommitText" xml:space="preserve">
     <value>Select</value>
@@ -1992,9 +1974,6 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="Preset_FailedToggleReadOnly" xml:space="preserve">
     <value>Failed to toggle read only</value>
   </data>
-  <data name="Preset_FailedStartElevator" xml:space="preserve">
-    <value>Failed to start elevator</value>
-  </data>
   <data name="Preset_ModPrefsReset" xml:space="preserve">
     <value>Mod preferences reset</value>
   </data>
@@ -2165,9 +2144,6 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="PresetDetails_PrefsSavedMsg" xml:space="preserve">
     <value>Preferences saved successfully for mod {0}</value>
-  </data>
-  <data name="Preset_ElevatorFailed" xml:space="preserve">
-    <value>Elevator failed to start</value>
   </data>
   <data name="Preset_ModPrefsRemovedMsg" xml:space="preserve">
     <value>Mod preferences have been removed{0}</value>

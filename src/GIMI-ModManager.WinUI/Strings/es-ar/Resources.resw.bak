@@ -596,9 +596,6 @@
   <data name="PresetPage_AutoSyncPreferences.Content" xml:space="preserve">
     <value>Sincronización automática de Preferencias de Mod al cambiar de preset</value>
   </data>
-  <data name="PresetPage_StartElevatorButton.Content" xml:space="preserve">
-    <value>Iniciar Elevator...</value>
-  </data>
   <data name="PresetPage_SaveActivePreferencesButton.Content" xml:space="preserve">
     <value>Guardar preferencias activas de mod (KeySwaps) en los mods</value>
   </data>
@@ -1096,9 +1093,6 @@
   <data name="Settings_Mods_Reorganized" xml:space="preserve">
     <value>Mods reorganizados.</value>
   </data>
-  <data name="Settings_Elevator_UnableToStart" xml:space="preserve">
-    <value>No se puede iniciar Elevator</value>
-  </data>
   <data name="Settings_Export_ModsExported" xml:space="preserve">
     <value>Mods exportados</value>
   </data>
@@ -1418,7 +1412,7 @@ Solo los mods rastreados por JASM se deshabilitarán dentro de las categorías s
     <value>Cuando creas un nuevo preset, JASM crea una lista de todos los mods habilitados y las preferencias almacenadas en ellos. Cuando aplicas el preset más tarde, habilitará solo esos mods y aplicará las preferencias almacenadas en el preset</value>
   </data>
   <data name="PresetPage_HowPresetsWorkDesc3" xml:space="preserve">
-    <value>Puedes permitir que JASM maneje la recarga de 3Dmigoto iniciando Elevator y marcando la casilla Auto Sync. También puedes hacerlo tú mismo marcando la casilla Mostrar Controles Manuales y guardando/cargando preferencias manualmente y refrescando 3Dmigoto con la tecla F10.</value>
+    <value>Puedes permitir que JASM maneje la recarga de 3Dmigoto marcando la casilla Auto Sync. También puedes hacerlo tú mismo marcando la casilla Mostrar Controles Manuales y guardando/cargando preferencias manualmente y refrescando 3Dmigoto con la tecla F10.</value>
   </data>
   <data name="PresetPage_HowPresetsWorkDesc4" xml:space="preserve">
     <value>Es posible simplemente ignorar la parte de presets de esta página y solo usar los controles manuales para persistir las preferencias de los mods.</value>
@@ -1664,12 +1658,6 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="Settings_GameSource_RestartClose" xml:space="preserve">
     <value>Reiniciar después</value>
   </data>
-  <data name="Settings_StartElevator_CloseButton" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="Settings_StartElevator_PrimaryButton" xml:space="preserve">
-    <value>Iniciar</value>
-  </data>
   <data name="Settings_Export_PrimaryButton" xml:space="preserve">
     <value>Exportar</value>
   </data>
@@ -1681,12 +1669,6 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   </data>
   <data name="Notifications_LogFileCouldNotOpenTitle" xml:space="preserve">
     <value>El archivo de registro no pudo abrirse</value>
-  </data>
-  <data name="Shell_ElevatorNotRunningTitle" xml:space="preserve">
-    <value>Elevator no está ejecutándose</value>
-  </data>
-  <data name="Shell_ElevatorNotRunningMessage" xml:space="preserve">
-    <value>Por favor, inicie Elevator primero en la página de Configuración</value>
   </data>
   <data name="CommandsSettingsPage_WarningPrimary" xml:space="preserve">
     <value>Entiendo</value>
@@ -2272,9 +2254,6 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="PresetPage_AutoSyncPreferences.Content" xml:space="preserve">
     <value>Sincronización automática de Preferencias de Mod al cambiar de preset</value>
   </data>
-  <data name="PresetPage_StartElevatorButton.Content" xml:space="preserve">
-    <value>Iniciar Elevator...</value>
-  </data>
   <data name="PresetPage_SaveActivePreferencesButton.Content" xml:space="preserve">
     <value>Guardar preferencias activas de mod (KeySwaps) en los mods</value>
   </data>
@@ -2772,9 +2751,6 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="Settings_Mods_Reorganized" xml:space="preserve">
     <value>Mods reorganizados.</value>
   </data>
-  <data name="Settings_Elevator_UnableToStart" xml:space="preserve">
-    <value>No se puede iniciar Elevator</value>
-  </data>
   <data name="Settings_Export_ModsExported" xml:space="preserve">
     <value>Mods exportados</value>
   </data>
@@ -3094,7 +3070,7 @@ Solo los mods rastreados por JASM se deshabilitarán dentro de las categorías s
     <value>Cuando creas un nuevo preset, JASM crea una lista de todos los mods habilitados y las preferencias almacenadas en ellos. Cuando aplicas el preset más tarde, habilitará solo esos mods y aplicará las preferencias almacenadas en el preset</value>
   </data>
   <data name="PresetPage_HowPresetsWorkDesc3" xml:space="preserve">
-    <value>Puedes permitir que JASM maneje la recarga de 3Dmigoto iniciando Elevator y marcando la casilla Auto Sync. También puedes hacerlo tú mismo marcando la casilla Mostrar Controles Manuales y guardando/cargando preferencias manualmente y refrescando 3Dmigoto con la tecla F10.</value>
+    <value>Puedes permitir que JASM maneje la recarga de 3Dmigoto marcando la casilla Auto Sync. También puedes hacerlo tú mismo marcando la casilla Mostrar Controles Manuales y guardando/cargando preferencias manualmente y refrescando 3Dmigoto con la tecla F10.</value>
   </data>
   <data name="PresetPage_HowPresetsWorkDesc4" xml:space="preserve">
     <value>Es posible simplemente ignorar la parte de presets de esta página y solo usar los controles manuales para persistir las preferencias de los mods.</value>
@@ -3340,12 +3316,6 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="Settings_GameSource_RestartClose" xml:space="preserve">
     <value>Reiniciar después</value>
   </data>
-  <data name="Settings_StartElevator_CloseButton" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="Settings_StartElevator_PrimaryButton" xml:space="preserve">
-    <value>Iniciar</value>
-  </data>
   <data name="Settings_Export_PrimaryButton" xml:space="preserve">
     <value>Exportar</value>
   </data>
@@ -3357,12 +3327,6 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   </data>
   <data name="Notifications_LogFileCouldNotOpenTitle" xml:space="preserve">
     <value>El archivo de registro no pudo abrirse</value>
-  </data>
-  <data name="Shell_ElevatorNotRunningTitle" xml:space="preserve">
-    <value>Elevator no está ejecutándose</value>
-  </data>
-  <data name="Shell_ElevatorNotRunningMessage" xml:space="preserve">
-    <value>Por favor, inicie Elevator primero en la página de Configuración</value>
   </data>
   <data name="CommandsSettingsPage_WarningPrimary" xml:space="preserve">
     <value>Entiendo</value>
