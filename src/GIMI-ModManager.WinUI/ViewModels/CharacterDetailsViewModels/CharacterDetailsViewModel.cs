@@ -49,7 +49,7 @@ public partial class CharacterDetailsViewModel : ObservableObject, INavigationAw
 
     private readonly BusySetter _busySetter;
 
-    [ObservableProperty] private string _loadingItemText = "Character";
+    [ObservableProperty] private string _loadingItemText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_Loading_Character") ?? "Character";
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsNotSoftBusy), nameof(IsWorking))]
@@ -117,7 +117,7 @@ public partial class CharacterDetailsViewModel : ObservableObject, INavigationAw
 
         // Init character card
         InitCharacterCard(parameter);
-        LoadingItemText = "Mods";
+        LoadingItemText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_Loading_Mods") ?? "Mods";
 
         // Yield to UI, render character card, specifically the image
         await Task.Delay(100, CancellationToken);
@@ -126,7 +126,7 @@ public partial class CharacterDetailsViewModel : ObservableObject, INavigationAw
 
         // Load mods
         await InitModGridAsync();
-        LoadingItemText = "ModPane";
+        LoadingItemText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_Loading_ModPane") ?? "ModPane";
 
         if (IsReturning) return;
 
@@ -137,14 +137,14 @@ public partial class CharacterDetailsViewModel : ObservableObject, INavigationAw
 
         // Init Mod Pane
         await InitModPaneAsync();
-        LoadingItemText = "Toolbar";
+        LoadingItemText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_Loading_Toolbar") ?? "Toolbar";
         if (IsReturning) return;
 
         await InitToolbarAsync();
-        LoadingItemText = "Context Menu";
+        LoadingItemText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_Loading_ContextMenu") ?? "Context Menu";
 
         await InitContextMenuAsync();
-        LoadingItemText = "Grid";
+        LoadingItemText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_Loading_Grid") ?? "Grid";
 
 
         // Wait for the grid to load the datasource

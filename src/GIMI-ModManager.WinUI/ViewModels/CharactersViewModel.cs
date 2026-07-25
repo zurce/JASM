@@ -169,7 +169,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     }
 
     private CharacterGridItemModel NoCharacterFound =>
-        new(new Character("None", $"No {_category.DisplayNamePlural} Found..."));
+        new(new Character("None", string.Format(_localizer.GetLocalizedStringOrDefault("CharactersPage_NoCategoryFound") ?? "No {0} Found...", _localizer.GetLocalizedStringOrDefault("Category_" + _category.DisplayNamePlural.Replace(" ", "")) ?? _category.DisplayNamePlural)));
 
     public void AutoSuggestBox_TextChanged(string text)
     {

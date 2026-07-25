@@ -289,7 +289,7 @@
                                         </MenuFlyoutItem>
 
                                         <MenuFlyoutSeparator />
-                                        <MenuFlyoutItem Command="{x:Bind ViewModel.RefreshAllModsCommand}" Text="Refresh Mods">
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.RefreshAllModsCommand}" Text="Refresh Mods" l:Uids.Uid="CharacterDetails_RefreshMods">
                                             <MenuFlyoutItem.KeyboardAccelerators>
                                                 <KeyboardAccelerator Key="F5" />
                                             </MenuFlyoutItem.KeyboardAccelerators>
@@ -298,9 +298,9 @@
                                 </MenuBarItem>
 
                                 <MenuBarItem Title="Folders" l:Uids.Uid="CharacterDetails_MenuBar_Folders">
-                                    <MenuFlyoutItem Command="{x:Bind ViewModel.OpenGIMIRootFolderCommand}" Text="Open 3Dmigoto Root folder..." />
+                                    <MenuFlyoutItem Command="{x:Bind ViewModel.OpenGIMIRootFolderCommand}" Text="Open 3Dmigoto Root folder..." l:Uids.Uid="CharacterDetails_OpenGIMIRootFolder" />
                                     <MenuFlyoutSeparator />
-                                    <MenuFlyoutItem Command="{x:Bind ViewModel.OpenCharacterFolderCommand}" Text="Open Character's Mod folder..." />
+                                    <MenuFlyoutItem Command="{x:Bind ViewModel.OpenCharacterFolderCommand}" Text="Open Character's Mod folder..." l:Uids.Uid="CharacterDetails_OpenCharacterModFolder" />
                                     <MenuFlyoutSeparator />
                                     <MenuFlyoutItem
                                         Command="{x:Bind ViewModel.OpenModFolderCommand}"
@@ -324,9 +324,9 @@
                                     Title="Mod Preferences" l:Uids.Uid="CharacterDetails_MenuBar_ModPreferences"
                                     IsEnabled="{x:Bind ViewModel.IsSingleModSelected, Mode=OneWay}"
                                     Visibility="Collapsed">
-                                    <ToggleMenuFlyoutItem ToolTipService.ToolTip="Reads 3Dmigoto mod preferences (d3dx_user.ini) for the selected mod and stores the settings in the Mod's .JASM_Config.json file" Text="Save preferences for selected mod" />
+                                    <ToggleMenuFlyoutItem x:Name="SavePreferencesMenuItem" ToolTipService.ToolTip="Reads 3Dmigoto mod preferences (d3dx_user.ini) for the selected mod and stores the settings in the Mod's .JASM_Config.json file" Text="Save preferences for selected mod" />
                                     <MenuFlyoutSeparator />
-                                    <ToggleMenuFlyoutItem ToolTipService.ToolTip="Reads the currently selected mod's preferences from .JASM_Config.json and writes them to d3dx_user.ini for 3Dmigoto to read" Text="Read preferences for selected mod" />
+                                    <ToggleMenuFlyoutItem x:Name="ReadPreferencesMenuItem" ToolTipService.ToolTip="Reads the currently selected mod's preferences from .JASM_Config.json and writes them to d3dx_user.ini for 3Dmigoto to read" Text="Read preferences for selected mod" />
                                 </MenuBarItem>
                             </MenuBar>
 

@@ -171,12 +171,12 @@ public partial class ModGridVM(
 
             if (refreshResult.ModsDuplicate.Any())
             {
-                var message = $"Duplicate mods were detected in {_context.ModObjectDisplayName}'s mod folder.\n";
+                var message = string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DuplicateModsMessage") ?? "Duplicate mods were detected in {0}'s mod folder.\n", _context.ModObjectDisplayName);
 
                 message = refreshResult.ModsDuplicate.Aggregate(message,
                     (current, duplicateMod) =>
                         current +
-                        $"Mod: '{duplicateMod.ExistingFolderName}' was renamed to '{duplicateMod.RenamedFolderName}' to avoid conflicts.\n");
+                        string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DuplicateRenamedMessage") ?? "Mod: '{0}' was renamed to '{1}' to avoid conflicts.\n", duplicateMod.ExistingFolderName, duplicateMod.RenamedFolderName));
 
                 _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DuplicateModsDetected") ?? "Duplicate Mods Detected",
                     message,
@@ -480,7 +480,7 @@ public partial class ModGridVM(
         var modWindow = new ModUpdateAvailableWindow(notification.Id)
         {
             Title =
-                $"New Mod Files Available: {ModFolderHelpers.GetFolderNameWithoutDisabledPrefix(skinEntry.Mod.Name)}"
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_NewModFilesAvailable") ?? "New Mod Files Available: {0}", ModFolderHelpers.GetFolderNameWithoutDisabledPrefix(skinEntry.Mod.Name))
         };
         _windowManagerService.CreateWindow(modWindow, identifier: notification.Id);
         await Task.Delay(100);

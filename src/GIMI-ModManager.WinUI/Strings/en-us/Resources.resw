@@ -2440,4 +2440,139 @@ Are you sure you want to disable character skins as characters? JASM will restar
   <data name="Notification_SystemError" xml:space="preserve">
     <value>System error: {0}</value>
   </data>
+  <data name="CharacterDetails_MultipleModsActiveMessage" xml:space="preserve">
+    <value>Multiple Mods active</value>
+  </data>
+  <data name="CharacterCard_GoToModsOverview.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Go to character in Mods Overview</value>
+  </data>
+  <data name="CharacterCard_EditCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Edit Character</value>
+  </data>
+  <data name="CharacterDetails_SearchMoveMod.PlaceholderText" xml:space="preserve">
+    <value>Search...</value>
+  </data>
+  <data name="CharacterDetails_AddModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Add a mod folder</value>
+  </data>
+  <data name="CharacterDetails_AddArchive.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Add a mod inside a compressed archive</value>
+  </data>
+  <data name="CharacterDetails_RefreshMods.Text" xml:space="preserve">
+    <value>Refresh Mods</value>
+  </data>
+  <data name="CharacterDetails_OpenGIMIRootFolder.Text" xml:space="preserve">
+    <value>Open 3Dmigoto Root folder...</value>
+  </data>
+  <data name="CharacterDetails_OpenCharacterModFolder.Text" xml:space="preserve">
+    <value>Open Character's Mod folder...</value>
+  </data>
+  <data name="CharacterDetails_SingleSelect.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Selecting this will only allow one mod to be enabled at a time.</value>
+  </data>
+  <data name="CharacterDetails_SavePreferences.Text" xml:space="preserve">
+    <value>Save preferences for selected mod</value>
+  </data>
+  <data name="CharacterDetails_SavePreferences.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Reads 3Dmigoto mod preferences (d3dx_user.ini) for the selected mod and stores the settings in the Mod's .JASM_Config.json file</value>
+  </data>
+  <data name="CharacterDetails_ReadPreferences.Text" xml:space="preserve">
+    <value>Read preferences for selected mod</value>
+  </data>
+  <data name="CharacterDetails_ReadPreferences.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Reads the currently selected mod's preferences from .JASM_Config.json and writes them to d3dx_user.ini for 3Dmigoto to read</value>
+  </data>
+  <data name="ModPane_ChangeDisplayName.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Change mod display name</value>
+  </data>
+  <data name="ModPane_SetModIni.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Set the mod .ini file to be read by JASM</value>
+  </data>
+  <data name="ModPane_IgnoreIni.ToolTipService.ToolTip" xml:space="preserve">
+    <value>JASM will not look for merged.ini/Script.ini file and ignore keyswaps for this mod</value>
+  </data>
+  <data name="CharDetails_DeleteDialog.Content" xml:space="preserve">
+    <value>Move to Recycle Bin?</value>
+  </data>
+  <data name="CharDetails_RemovePresetsDialog.Content" xml:space="preserve">
+    <value>Remove from Presets?</value>
+  </data>
+  <data name="CharDetails_DeleteButton.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="CharDetails_CancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CharDetails_ErrorDeletingMods.Text" xml:space="preserve">
+    <value>Error deleting mods:</value>
+  </data>
+  <data name="CharDetails_DuplicateModsMessage" xml:space="preserve">
+    <value>Duplicate mods were detected in {0}'s mod folder.</value>
+  </data>
+  <data name="CharDetails_DuplicateRenamedMessage" xml:space="preserve">
+    <value>Mod: '{0}' was renamed to '{1}' to avoid conflicts.</value>
+  </data>
+  <data name="CharDetails_NewModFilesAvailable" xml:space="preserve">
+    <value>New Mod Files Available: {0}</value>
+  </data>
+  <data name="CharDetails_SetButton.Text" xml:space="preserve">
+    <value>Set</value>
+  </data>
+  <data name="CharDetails_SetImageButton.Text" xml:space="preserve">
+    <value>Set Image</value>
+  </data>
+  <data name="CharacterDetails_OnlyOneSkin.ToolTip" xml:space="preserve">
+    <value>This character only has one default in-game skin, so you can't change it.</value>
+  </data>
+  <data name="ModPane_Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="CharDetails_DeleteModsDialog.Title" xml:space="preserve">
+    <value>Delete These {0} Mods?</value>
+  </data>
+  <data name="CharDetails_PresetErrorMods" xml:space="preserve">
+    <value>Preset error Mods:</value>
+  </data>
+  <data name="CharDetails_DeleteErrorMods" xml:space="preserve">
+    <value>Delete error Mods:</value>
+  </data>
+  <data name="CharDetails_Loading_Mods" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="CharDetails_Loading_ModPane" xml:space="preserve">
+    <value>ModPane</value>
+  </data>
+  <data name="CharDetails_Loading_Toolbar" xml:space="preserve">
+    <value>Toolbar</value>
+  </data>
+  <data name="CharDetails_Loading_ContextMenu" xml:space="preserve">
+    <value>Context Menu</value>
+  </data>
+  <data name="CharDetails_Loading_Grid" xml:space="preserve">
+    <value>Grid</value>
+  </data>
+  <data name="CharDetails_Loading_Character" xml:space="preserve">
+    <value>Character</value>
+  </data>
+  <data name="CustomImage_PasteImage.Text" xml:space="preserve">
+    <value>Paste Image</value>
+  </data>
+  <data name="CustomImage_CopyImage.Text" xml:space="preserve">
+    <value>Copy Image</value>
+  </data>
+  <data name="CustomImage_ClearImage.Text" xml:space="preserve">
+    <value>Clear image</value>
+  </data>
+  <data name="LinkButton_CopyLink.Text" xml:space="preserve">
+    <value>Copy Link</value>
+  </data>
+  <data name="CharacterDetails_ShowModFolderColumn.Text" xml:space="preserve">
+    <value>Show 'Mod Folder Names' column</value>
+  </data>
+  <data name="CharacterManager_NoResultsFound" xml:space="preserve">
+    <value>No results found</value>
+  </data>
+  <data name="CharactersPage_NoCategoryFound" xml:space="preserve">
+    <value>No {0} Found...</value>
+  </data>
 </root>

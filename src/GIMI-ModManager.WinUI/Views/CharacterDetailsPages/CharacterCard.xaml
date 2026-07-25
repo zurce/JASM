@@ -50,7 +50,7 @@
                     <Button
                         HorizontalAlignment="Center"
                         Command="{x:Bind ViewModel.GoToModsOverviewCommand}"
-                        ToolTipService.ToolTip="Go to character in Mods Overview">
+                        ToolTipService.ToolTip="Go to character in Mods Overview" l:Uids.Uid="CharacterCard_GoToModsOverview">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xEA37;" />
                     </Button>
 
@@ -58,7 +58,7 @@
                     <Button
                         HorizontalAlignment="Right"
                         Command="{x:Bind ViewModel.GoToCharacterEditScreenCommand}"
-                        ToolTipService.ToolTip="Edit Character">
+                        ToolTipService.ToolTip="Edit Character" l:Uids.Uid="CharacterCard_EditCharacter">
                         <FontIcon Glyph="&#xE70F;" />
                     </Button>
                 </StackPanel>
