@@ -6,6 +6,7 @@ This file mirrors active tasks and development phases.
 
 ## Completed
 
+- **`JASM-ELEVATOR-CLEANUP`** — Remove all elevator-related code: Elevator project, ElevatorService, UI, localization, build steps, and docs. (branch: `elevator-cleanup-and-removal`)
 - **`JASM-LOCALIZE`** — Localize all missing/hardcoded English strings across XAML views using WinUI3Localizer (committed, pushed, amended `f270204` with review fixes).
 - **`JASM-BATCH-CONFIG`** — Implement Batch Configurations (Enable all, Disable all, Clean up mods) on Characters Overview (committed, pushed).
 - **`JASM-OVERRIDE`** — Support for overriding folder settings (merged).
@@ -19,7 +20,7 @@ This file mirrors active tasks and development phases.
 
 ## In Progress
 
-- **`JASM-ELEVATOR-CLEANUP`** — Remove all elevator-related code: Elevator project, ElevatorService, UI, localization, build steps, and docs. Branch: `elevator-cleanup-and-removal`.
+*None*
 
 ---
 
