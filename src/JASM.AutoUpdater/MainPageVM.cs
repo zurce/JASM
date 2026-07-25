@@ -333,7 +333,7 @@ public partial class MainPageVM : ObservableRecipient
 
         Log("Deleting old files...", $"Path: {_installedJasmFolder.FullName}");
 
-        string[] doNotDeleteFiles = ["Elevator.exe", "JASM - Just Another Skin Manager.exe.WebView2", "logs"];
+        string[] doNotDeleteFiles = ["JASM - Just Another Skin Manager.exe.WebView2", "logs"];
 
         foreach (var fileSystemInfo in _installedJasmFolder.EnumerateFileSystemInfos())
         {

@@ -26,7 +26,7 @@ I am no longer actively developing or maintaining JASM. This is due to lack of t
 
 ## Hotkeys
 - "SPACE" - In character view, toggles selected mods on/off
-- "F10" - Refresh Mods in the game, if the elevator process and a certain game is running
+- "F10" - No longer available (elevator process removed)
 - "F5" - In character view, refresh the character's mods from disk
 - "CTRL + F" - In character overview, focus on the search bar
 - "ESCAPE" - In character view, Go back to character overview
@@ -48,14 +48,6 @@ Latest development release can be downloaded from [Actions Tab](https://github.c
 
 If you don't have these downloaded the application will prompt you to download necessary dependencies and provide links.
  
-
-### Elevator process
-The elevator process is a small program that can be started as an elevated process from the app. It is completely optional and is kind of a niche feature.
-It is used to send the F10 key to the game to refresh the mods. Enabling and disabling mods in JASM will also automatically refresh the mods. This is done through named pipes. 
-The process does not listen for keybinds it only waits for a simple "1" command from the app. This makes it send the F10 key to the game.
-
-The [H.InputSimulator](https://github.com/HavenDV/H.InputSimulator) library is used to send keyboard input.
-
 
 ### Limitations and Acknowledgements
 - The Json file that stores the the game characters is a modified and stripped down version of this [genshin-impact-tools ](https://github.com/tokafew420/genshin-impact-tools/blob/3d10e411a411b8ed532356ccb45fcd80b6b2383b/data/characters.json) and some of the images are also from the same repository.
@@ -114,9 +106,4 @@ Powershell:
 
 For each page navigated a lot of memory is allocated and not released. This causes the app to quickly use more than 1GB of memory by quickly navigating between pages. This isn't a quick fix. I suggest restarting the app if you notice it getting slow.
 
-From my research WinUI seems to maybe have a memory leak when navigating pages. I am not sure if this is the case or if I am doing something wrong. Most of the memory is unmanaged memory which means a memory profiler won't help much. 
-
-
-### Elevator download link
-
-As the Elevator  gets flagged as malware you'll need to download it manually from the [Releases Page](https://github.com/Jorixon/JASM/releases/tag/v2.14.3)
+From my research WinUI seems to maybe have a memory leak when navigating pages. I am not sure if this is the case or if I am doing something wrong. Most of the memory is unmanaged memory which means a memory profiler won't help much.

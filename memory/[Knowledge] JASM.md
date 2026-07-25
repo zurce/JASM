@@ -22,7 +22,6 @@ JASM (Just Another Skin Manager) is a skin manager for games like Genshin Impact
 - Provide a smooth, dark-mode GUI for organizing, installing, and switching skin mods.
 - Watch folder structures and react to filesystem events instantly (auto-detection of mods).
 - Support advanced batch operations (enable all, disable all, and clean up inactive folders).
-- Run side-car processes (like the elevated Elevator tool) to interact with running games (e.g. sending F10 via Named Pipes to refresh skins).
 - Allow users to run customizable command-line utilities (like texture upscalers) directly against mod folders.
 
 ---
