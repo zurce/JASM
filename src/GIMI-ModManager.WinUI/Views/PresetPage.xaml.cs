@@ -71,7 +71,7 @@ public sealed partial class PresetPage : Page
 
                     CreateTextBlock(
                         localizer.GetLocalizedStringOrDefault("PresetPage_HowPresetsWorkDesc3") ??
-                        "You can allow JASM to handle 3Dmigoto reloading by starting the Elevator and checking the Auto Sync checkbox. But you can also do it yourself by checking the Show Manual Controls checkbox and saving/loading preferences manually and refreshing 3Dmigoto with the F10 key."),
+                        "You can allow JASM to handle 3Dmigoto reloading by checking the Auto Sync checkbox. But you can also do it yourself by checking the Show Manual Controls checkbox and saving/loading preferences manually and refreshing 3Dmigoto with the F10 key."),
 
                     CreateTextBlock(
                         localizer.GetLocalizedStringOrDefault("PresetPage_HowPresetsWorkDesc4") ??

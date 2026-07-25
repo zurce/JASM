@@ -253,38 +253,6 @@
 
                 <TextBlock
                     Style="{ThemeResource SubtitleTextBlockStyle}"
-                    Text="Elevator Process"
-                    l:Uids.Uid="/Settings/ElevatorSectionHeader" />
-                <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
-                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                        <TextBlock
-                            Margin="0,0,8,0"
-                            VerticalAlignment="Center"
-                            IsTextSelectionEnabled="True"
-                            Style="{ThemeResource BodyTextBlockStyle}"
-                            Text="Elevator Status:"
-                            l:Uids.Uid="/Settings/ElevatorStatusTitle" />
-                        <Border
-                            Background="{ThemeResource ControlAltFillColorDisabledBrush}"
-                            BorderBrush="{ThemeResource ControlAltFillColorDisabledBrush}"
-                            BorderThickness="8"
-                            CornerRadius="4">
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                Style="{ThemeResource BodyTextBlockStyle}"
-                                Text="{x:Bind ViewModel.ElevatorService.ElevatorStatus, Mode=OneWay}" />
-                        </Border>
-                    </StackPanel>
-
-                    <Button
-                        Margin="0,4,0,0"
-                        Command="{x:Bind ViewModel.StartElevatorCommand}"
-                        Content="Start Elevator Process..."
-                        l:Uids.Uid="/Settings/StartElevatorButton" />
-                </StackPanel>
-
-                <TextBlock
-                    Style="{ThemeResource SubtitleTextBlockStyle}"
                     Text="Mod Update Checker"
                     l:Uids.Uid="/Settings/ModUpdateCheckerSectionHeader" />
                 <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
