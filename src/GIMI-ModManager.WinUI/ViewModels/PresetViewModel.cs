@@ -57,7 +57,8 @@ public partial class PresetViewModel(
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(CreatePresetCommand), nameof(DeletePresetCommand), nameof(ApplyPresetCommand),
         nameof(DuplicatePresetCommand), nameof(RenamePresetCommand), nameof(ReorderPresetsCommand),
-        nameof(SaveActivePreferencesCommand), nameof(ApplyPresetCommand), nameof(NavigateToPresetDetailsCommand))]
+        nameof(SaveActivePreferencesCommand), nameof(ApplyPresetCommand), nameof(NavigateToPresetDetailsCommand),
+        nameof(ToggleAutoSyncCommand))]
     [NotifyPropertyChangedFor(nameof(IsNotBusy))]
     private bool _isBusy;
 
@@ -274,6 +275,16 @@ public partial class PresetViewModel(
     [RelayCommand]
     private Task RandomizeMods() => _modRandomizationService.ShowRandomizeModsDialog();
 
+
+    [RelayCommand(CanExecute = nameof(IsNotBusy))]
+    private async Task ToggleAutoSync()
+    {
+        AutoSync3DMigotoConfig = !AutoSync3DMigotoConfig;
+
+        var settings = await _localSettingsService.ReadOrCreateSettingAsync<ModPresetSettings>(ModPresetSettings.Key);
+        settings.AutoSyncMods = AutoSync3DMigotoConfig;
+        await _localSettingsService.SaveSettingAsync(ModPresetSettings.Key, settings);
+    }
 
     [RelayCommand]
     private async Task ResetModPreferences()
