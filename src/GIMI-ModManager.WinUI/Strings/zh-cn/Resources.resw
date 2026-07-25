@@ -215,4 +215,48 @@
   <data name="Running" xml:space="preserve">
     <value>运行中</value>
   </data>
+  <data name="ShellMenuItem_Views_Main.Text" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Main.Text page -->
+    <value>主页</value>
+  </data>
+  <data name="ShellMenuItem_Views_Startup.Text" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Startup.Text page -->
+    <value>启动</value>
+  </data>
+  <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
+    <!-- Privacy statement hyperlink text -->
+    <value>隐私声明</value>
+  </data>
+  <data name="ShellMenuBarSettingsButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <!-- UI element in the main navigation shell -->
+    <value>设置</value>
+  </data>
+  <data name="SettingsPage_Description.Text" xml:space="preserve">
+    <!-- Description text on the settings page -->
+    <value>每个游戏的设置独立保存。</value>
+  </data>
+  <data name="ShellPage_NavItem_CharacterManagement" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the CharacterManagement page -->
+    <value>角色管理</value>
+  </data>
+  <data name="ShellPage_NavItem_ModsOverview" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the ModsOverview page -->
+    <value>模组概览</value>
+  </data>
+  <data name="ShellPage_NavItem_ModPresets" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the ModPresets page -->
+    <value>模组预设</value>
+  </data>
+  <data name="ShellPage_NavItem_Debug" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Debug page -->
+    <value>调试</value>
+  </data>
+  <data name="ShellPage_NavItem_Settings" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Settings page -->
+    <value>设置</value>
+  </data>
+  <data name="ShellPage_NavItem_Notifications" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Notifications page -->
+    <value>通知</value>
+  </data>
 </root>
