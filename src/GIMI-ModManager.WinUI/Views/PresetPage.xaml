@@ -40,7 +40,7 @@
 
                     <TextBlock
                         VerticalAlignment="Center"
-                        Text="Auto sync not enabled! Remember to manually reload 3Dmigoto config with the F10 key when doing changes"
+                        Text="Auto sync not enabled! Remember to manually reload 3Dmigoto config when doing changes"
                         l:Uids.Uid="PresetPage_AutoSyncWarning"
                         Visibility="{x:Bind ViewModel.AutoSync3DMigotoConfigIsDisabled, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
 

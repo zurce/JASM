@@ -506,7 +506,7 @@
   </data>
   
   <data name="PresetPage_AutoSyncWarning.Text" xml:space="preserve">
-    <value>Auto sync not enabled! Remember to manually reload 3Dmigoto config with the F10 key when doing changes</value>
+    <value>Auto sync not enabled! Remember to manually reload 3Dmigoto config when doing changes</value>
   </data>
   <data name="PresetPage_ApplyPresetButton.Content" xml:space="preserve">
     <value>Apply Preset</value>
@@ -1374,7 +1374,7 @@ Only mods tracked by JASM will be disabled within the selected categories</value
     <value>When you create a new preset JASM creates a list of all enabled mods and the preferences stored in them. So when you apply the preset later it will enable only those mods and apply the preferences stored in the preset</value>
   </data>
   <data name="PresetPage_HowPresetsWorkDesc3" xml:space="preserve">
-    <value>You can allow JASM to handle 3Dmigoto reloading by checking the Auto Sync checkbox. But you can also do it yourself by checking the Show Manual Controls checkbox and saving/loading preferences manually and refreshing 3Dmigoto with the F10 key.</value>
+    <value>You can allow JASM to handle 3Dmigoto reloading by checking the Auto Sync checkbox. But you can also do it yourself by checking the Show Manual Controls checkbox and saving/loading preferences manually.</value>
   </data>
   <data name="PresetPage_HowPresetsWorkDesc4" xml:space="preserve">
     <value>It is possible to simply ignore the preset part of this page and only use the manual controls to persist mod preferences.</value>

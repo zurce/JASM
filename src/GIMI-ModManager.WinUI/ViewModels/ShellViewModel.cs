@@ -96,10 +96,4 @@ public partial class ShellViewModel : ObservableRecipient
 
         NavigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
     }
-
-    public Task RefreshGenshinMods()
-    {
-        // Elevator has been removed. F10 refresh is no longer available.
-        return Task.CompletedTask;
-    }
 }

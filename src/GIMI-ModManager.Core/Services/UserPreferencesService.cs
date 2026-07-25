@@ -27,7 +27,7 @@ public class UserPreferencesService(ILogger logger, ISkinManagerService skinMana
     /// <summary>
     /// Saves the mod preferences to the mod settings file
     /// This overrides the existing preferences in the mod settings file
-    /// 3Dmigoto should do a refresh (F10) so that it store the new preferences in the d3dx_user.ini
+    /// 3Dmigoto should do a refresh so that it stores the new preferences in the d3dx_user.ini
     /// And we save the mod preferences to the mod settings files
     /// Returns  True if success, returns false if 3MigotoFolder or d3dxUserIni is not found or d3dxUserIni is invalid
     /// </summary>

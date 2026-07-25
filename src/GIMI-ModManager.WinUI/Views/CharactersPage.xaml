@@ -203,10 +203,6 @@
                 </ToggleButton>
 
                 <Button
-                    Command="{x:Bind ViewModel.RefreshModsInGameCommand}"
-                    Content="Refresh Mods" l:Uids.Uid="CharactersPage_RefreshMods"
-                    IsHitTestVisible="True" />
-                <Button
                     Margin="32,0,32,0"
                     Command="{x:Bind ViewModel.Start3DmigotoCommand}"
                     Content="Start 3Dmigoto" l:Uids.Uid="CharactersPage_Start3Dmigoto">

@@ -308,12 +308,6 @@ public sealed partial class ShellPage : Page
         if (!IsEnabled)
             return;
 
-        if (e.Key == VirtualKey.F10)
-        {
-            await ViewModel.RefreshGenshinMods();
-            return;
-        }
-
 
         if (_code.Contains(e.Key))
         {

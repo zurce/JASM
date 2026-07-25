@@ -53,10 +53,6 @@
             OpenPaneLength="220"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
             <!--<NavigationView.KeyboardAccelerators>
-                <KeyboardAccelerator
-                    Key="F10"
-                    Invoked="KeyboardAccelerator_OnInvoked"
-                    IsEnabled="True" />
             </NavigationView.KeyboardAccelerators>-->
             <NavigationView.MenuItems>
                 <!--

@@ -521,7 +521,7 @@
   </data>
   
   <data name="PresetPage_AutoSyncWarning.Text" xml:space="preserve">
-    <value>¡Sincronización automática no habilitada! Recuerda recargar manualmente la configuración de 3Dmigoto con la tecla F10 al hacer cambios</value>
+    <value>¡Sincronización automática no habilitada! Recuerda recargar manualmente la configuración de 3Dmigoto al hacer cambios</value>
   </data>
   <data name="PresetPage_PageTitle.Text" xml:space="preserve">
     <value>Mod Presets y Preferencias de Mod</value>
@@ -1362,7 +1362,7 @@ Solo los mods rastreados por JASM se deshabilitarán dentro de las categorías s
     <value>Cuando creas un nuevo preset, JASM crea una lista de todos los mods habilitados y las preferencias almacenadas en ellos. Cuando aplicas el preset más tarde, habilitará solo esos mods y aplicará las preferencias almacenadas en el preset</value>
   </data>
   <data name="PresetPage_HowPresetsWorkDesc3" xml:space="preserve">
-    <value>Puedes permitir que JASM maneje la recarga de 3Dmigoto marcando la casilla Auto Sync. También puedes hacerlo tú mismo marcando la casilla Mostrar Controles Manuales y guardando/cargando preferencias manualmente y refrescando 3Dmigoto con la tecla F10.</value>
+    <value>Puedes permitir que JASM maneje la recarga de 3Dmigoto marcando la casilla Auto Sync. También puedes hacerlo tú mismo marcando la casilla Mostrar Controles Manuales y guardando/cargando preferencias manualmente.</value>
   </data>
   <data name="PresetPage_HowPresetsWorkDesc4" xml:space="preserve">
     <value>Es posible simplemente ignorar la parte de presets de esta página y solo usar los controles manuales para persistir las preferencias de los mods.</value>

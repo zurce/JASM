@@ -909,14 +909,6 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
             SimpleSelectProcessDialogVM.StartType.Game);
 
     [RelayCommand]
-    private Task RefreshModsInGameAsync()
-    {
-        // Elevator has been removed. In-game mod refresh via F10 is no longer available.
-        _logger.Debug("Refresh Mods In Game — elevator removed, no-op");
-        return Task.CompletedTask;
-    }
-
-    [RelayCommand]
     private async Task EnableAllModsDialogAsync(Microsoft.UI.Xaml.Controls.ContentDialog dialog)
     {
         dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;
