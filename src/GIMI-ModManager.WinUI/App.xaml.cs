@@ -128,7 +128,6 @@ public partial class App : Application
                 services.AddTransient<ModDragAndDropService>();
                 services.AddSingleton<CharacterSkinService>();
 
-                services.AddSingleton<ElevatorService>();
                 services.AddSingleton<GenshinProcessManager>();
                 services.AddSingleton<ThreeDMigtoProcessManager>();
 

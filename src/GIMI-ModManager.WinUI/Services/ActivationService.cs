@@ -35,7 +35,6 @@ public class ActivationService : IActivationService
     private readonly ILocalSettingsService _localSettingsService;
     private readonly IGameService _gameService;
     private readonly ILanguageLocalizer _languageLocalizer;
-    private readonly ElevatorService _elevatorService;
     private readonly GenshinProcessManager _genshinProcessManager;
     private readonly ThreeDMigtoProcessManager _threeDMigtoProcessManager;
     private readonly UpdateChecker _updateChecker;
@@ -52,7 +51,7 @@ public class ActivationService : IActivationService
     public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler,
         IEnumerable<IActivationHandler> activationHandlers, IThemeSelectorService themeSelectorService,
         ILocalSettingsService localSettingsService,
-        ElevatorService elevatorService, GenshinProcessManager genshinProcessManager,
+        GenshinProcessManager genshinProcessManager,
         ThreeDMigtoProcessManager threeDMigtoProcessManager, UpdateChecker updateChecker,
         IWindowManagerService windowManagerService, AutoUpdaterService autoUpdaterService, IGameService gameService,
         ILanguageLocalizer languageLocalizer, SelectedGameService selectedGameService,
@@ -65,7 +64,6 @@ public class ActivationService : IActivationService
         _activationHandlers = activationHandlers;
         _themeSelectorService = themeSelectorService;
         _localSettingsService = localSettingsService;
-        _elevatorService = elevatorService;
         _genshinProcessManager = genshinProcessManager;
         _threeDMigtoProcessManager = threeDMigtoProcessManager;
         _updateChecker = updateChecker;
@@ -205,7 +203,6 @@ public class ActivationService : IActivationService
         await _updateChecker.InitializeAsync();
         await _modUpdateAvailableChecker.InitializeAsync().ConfigureAwait(false);
         await Task.Run(() => _autoUpdaterService.UpdateAutoUpdater()).ConfigureAwait(false);
-        await Task.Run(() => _elevatorService.Initialize()).ConfigureAwait(false);
     }
 
     const int MinimizedPosition = -32000;
