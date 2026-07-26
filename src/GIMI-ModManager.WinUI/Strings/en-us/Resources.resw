@@ -3409,4 +3409,125 @@ Are you sure you want to disable character skins as characters? JASM will restar
     <!-- Button/tooltip: fetch mod info from GameBanana -->
     <value>Get mod info from the mod page</value>
   </data>
+  <data name="3dmigotoFolderSelector.Title" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>3Dmigoto Folder</value>
+  </data>
+  <data name="ChangeLanguageDialogText" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Changing the language requires a restart of the application.
+This is required to properly configure the application for the selected language.
+Do you want to change the language?</value>
+  </data>
+  <data name="FolderSectionHeader.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Folders</value>
+  </data>
+  <data name="GameSelectorComboBox.Header" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Selected Game:</value>
+  </data>
+  <data name="GameSelectorSectionHeader.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Game</value>
+  </data>
+  <data name="GameSelectorTitle.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>JASM fully supports Genshin Impact and Honkai Star Rail.
+JASM partially supports WUWA and ZZZ</value>
+  </data>
+  <data name="LanguageSelectionSectionHeader.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Language</value>
+  </data>
+  <data name="LanguageSelectorComboBox.Header" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Select Display Language:</value>
+  </data>
+  <data name="LanguageSelectorTitle.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Language options are currently limited. It is a work in progress.</value>
+  </data>
+  <data name="ModsFolderSelector.Title" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Mods Folder</value>
+  </data>
+  <data name="ModUpdateCheckerCheckBox.Content" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Mod Auto Update Checker:</value>
+  </data>
+  <data name="ModUpdateCheckerDescription.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>The Mod Update Checker checks for mod updates on startup and periodically in the background, only support for GameBanana.
+Does a check every 2 hours when enabled, however, it only checks mods that have not been checked in at least 1 hour.
+Manually checking for updates always checks GameBanana directly</value>
+  </data>
+  <data name="ModUpdateCheckerNextText.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Next Check at: </value>
+  </data>
+  <data name="ModUpdateCheckerSectionHeader.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Mod Update Checker</value>
+  </data>
+  <data name="GameSourceSectionHeader.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Game Source</value>
+  </data>
+  <data name="GameSourceTitle.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Choose whether to load games and character categories from the built-in release or a community repository.</value>
+  </data>
+  <data name="GameSource_Release.Content" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Release</value>
+  </data>
+  <data name="GameSource_Community.Content" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Community (GitHub)</value>
+  </data>
+  <data name="CommunityRepoUrlTextBox.Header" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Community Repository URL:</value>
+  </data>
+  <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Update Community Games</value>
+  </data>
+  <data name="BackupWarning.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>It is always a good idea to backup your files/mods before using applications that interact with your files</value>
+  </data>
+  <data name="Body1.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>As part of the first time setup you will need to select a Model-Importer folder (3dmigoto) and its connected Mods folder. The 3dmigoto folder usually contains 3DMigoto Loader.exe/3DMigotoLoader.exe and a Mods folder. If you have not set up the model importer yet, please do so now, see link below. I find most mods on Gamebanana but Nexusmods also has some.</value>
+  </data>
+  <data name="Body2.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>Once the settings are saved the application will create a folder for each character within the Mods folder. Mod folders outside of these character folders are ignored. This application enables and disables mods by prefixing mod folders with DISABLED_. JASM also supports exporting Mods managed by it if you wish to use them with other applications.</value>
+  </data>
+  <data name="DisableModsTooltip.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>Prepend DISABLED_ to all mods so that they are disabled</value>
+  </data>
+  <data name="GameSelectorBox.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>Select the game you want to manage mods for. This can be changed at any time on the settings page</value>
+  </data>
+  <data name="ReorganizeTooltip1.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>Enabling this option will prompt the application to sort existing mods into folders assigned to their respective characters. Any mods that cant be reasonably matched will be placed in an Others folder.</value>
+  </data>
+  <data name="ReorganizeTooltip2.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>A mod folder containing multiple character names may be wrongly moved to a characters directory. This assumes a flat mod structure, where skin folders are loosely stored in the mods folder. If you have a custom folder structure, there is a high chance that JASM will incorrectly identify your skins. This also the case if you have nested folders with skins inside of them.</value>
+  </data>
+  <data name="ReorganizeTooltip3.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>This can be activated later in the settings page.</value>
+  </data>
+  <data name="Startup_Header.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>First time startup</value>
+  </data>
 </root>

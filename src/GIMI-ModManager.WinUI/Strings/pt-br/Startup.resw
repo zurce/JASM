@@ -118,30 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BackupWarning.Text" xml:space="preserve">
-    <value>Siempre es recomendable hacer copias de seguridad de tus archivos/mods antes de usar aplicaciones que interactúan con tus archivos.</value>
+    <value>É sempre recomendável fazer backup de seus arquivos/mods antes de usar aplicativos que interagem com seus arquivos.</value>
   </data>
   <data name="Body1.Text" xml:space="preserve">
-    <value>Como parte de la configuración inicial, necesitarás seleccionar la carpeta del importador de modelos (3dmigoto) y la carpeta de mods asociada. La carpeta 3dmigoto contiene 3DMigoto Loader.exe/3DMigotoLoader.exe y la carpeta de mods. Si aún no has configurado el importador de modelos, por favor, hazlo ahora utilizando el enlace a continuación. La mayoría de los mods los encuentro en Gamebanana, pero también se pueden usar Nexusmods.</value>
+    <value>Como parte da configuração inicial, você precisará selecionar a pasta do importador de modelos (3dmigoto) e a pasta de mods associada. A pasta 3dmigoto contém 3DMigoto Loader.exe/3DMigotoLoader.exe e a pasta de mods. Se você ainda não configurou o importador de modelos, por favor, faça isso agora usando o link abaixo. A maioria dos mods encontro no Gamebanana, mas também podem ser usados Nexusmods.</value>
   </data>
   <data name="Body2.Text" xml:space="preserve">
-    <value>Después de guardar la configuración, la aplicación creará una carpeta para cada personaje dentro de la carpeta 'Mods'. Las carpetas de mods que se encuentran fuera de estas carpetas de personajes se ignoran. Esta aplicación habilita y deshabilita los mods agregando el prefijo 'DISABLED_' a las carpetas de mods. JASM también admite la exportación de mods gestionados por él, si deseas usarlos con otras aplicaciones.</value>
+    <value>Após salvar as configurações, o aplicativo criará uma pasta para cada personagem dentro da pasta 'Mods'. As pastas de mods que estão fora destas pastas de personagens são ignoradas. Este aplicativo habilita e desabilita os mods adicionando o prefixo 'DISABLED_' às pastas de mods. O JASM também permite a exportação de mods gerenciados por ele, se você desejar usá-los com outros aplicativos.</value>
   </data>
   <data name="DisableModsTooltip.Text" xml:space="preserve">
-    <value>Agrega el prefijo DISABLED_ a todos los mods para que se desactiven</value>
+    <value>Adiciona o prefixo DISABLED_ a todos os mods para desativá-los</value>
   </data>
   <data name="GameSelectorBox.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Selecciona el juego para el que deseas gestionar los mods. Esto se puede cambiar en cualquier momento en la página de configuración.</value>
+    <value>Selecione o jogo para o qual deseja gerenciar os mods. Isso pode ser alterado a qualquer momento na página de configurações.</value>
   </data>
   <data name="ReorganizeTooltip1.Text" xml:space="preserve">
-    <value>Habilitar esta opción hará que la aplicación ordene los mods existentes en carpetas asignadas a los personajes correspondientes. Cualquier mod que no pueda asociarse razonablemente se colocará en la carpeta "Otros".</value>
+    <value>Habilitar esta opção fará com que o aplicativo organize os mods existentes em pastas atribuídas aos personagens correspondentes. Qualquer mod que não possa ser razoavelmente associado será colocado na pasta "Outros".</value>
   </data>
   <data name="ReorganizeTooltip2.Text" xml:space="preserve">
-    <value>Una carpeta de mods que contiene nombres de varios personajes puede moverse incorrectamente al directorio de uno de los personajes. Esto asume una estructura plana de mods, donde las carpetas de skins se almacenan libremente en la carpeta de mods. Si tienes tu propia estructura de carpetas, es muy probable que JASM no identifique correctamente tus skins. Esto también se aplica si tienes carpetas anidadas con skins dentro de ellas.</value>
+    <value>Uma pasta de mods que contém nomes de vários personagens pode ser movida incorretamente para o diretório de um dos personagens. Isso pressupõe uma estrutura plana de mods, onde as pastas de skins são armazenadas livremente na pasta de mods. Se você tem sua própria estrutura de pastas, é muito provável que o JASM não identifique corretamente suas skins. Isso também se aplica se você tiver pastas aninhadas com skins dentro delas.</value>
   </data>
   <data name="ReorganizeTooltip3.Text" xml:space="preserve">
-    <value>Esto se puede activar más tarde en la página de configuración</value>
+    <value>Isso pode ser ativado mais tarde na página de configurações.</value>
   </data>
   <data name="Startup_Header.Text" xml:space="preserve">
-    <value>Inicio de la aplicación</value>
+    <value>Inicialização do aplicativo</value>
   </data>
 </root>

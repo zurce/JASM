@@ -118,68 +118,63 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="3dmigotoFolderSelector.Title" xml:space="preserve">
-    <value>Carpeta 3dMigoto</value>
+    <value>Pasta 3dMigoto</value>
   </data>
   <data name="ChangeLanguageDialogText" xml:space="preserve">
-    <value>Cambiar el idioma requiere reiniciar la aplicación.
-Esto es necesario para configurar correctamente la aplicación para el idioma seleccionado.
-¿Quieres cambiar el idioma?</value>
+    <value>Alterar o idioma requer reiniciar o aplicativo. | Isso é necessário para configurar corretamente o aplicativo para o idioma selecionado. | Deseja alterar o idioma?</value>
   </data>
   <data name="FolderSectionHeader.Text" xml:space="preserve">
-    <value>Carpetas</value>
+    <value>Pastas</value>
   </data>
   <data name="GameSelectorComboBox.Header" xml:space="preserve">
-    <value>Seleccionar juego:</value>
+    <value>Selecionar jogo:</value>
   </data>
   <data name="GameSelectorSectionHeader.Text" xml:space="preserve">
-    <value>Juego</value>
+    <value>Jogo</value>
   </data>
   <data name="GameSelectorTitle.Text" xml:space="preserve">
-    <value>JASM soporta completamente Genshin Impact y Honkai Star Rail.
-JASM soporta parcialmente WUWA y ZZZ</value>
+    <value>O JASM suporta completamente Genshin Impact e Honkai Star Rail. | O JASM suporta parcialmente WUWA e ZZZ</value>
   </data>
   <data name="LanguageSelectionSectionHeader.Text" xml:space="preserve">
     <value>Idioma</value>
   </data>
   <data name="LanguageSelectorComboBox.Header" xml:space="preserve">
-    <value>Seleccionar idioma de visualización:</value>
+    <value>Selecionar idioma de exibição:</value>
   </data>
   <data name="LanguageSelectorTitle.Text" xml:space="preserve">
-    <value>Las opciones de idioma actualmente son limitadas. El trabajo está en progreso.</value>
+    <value>As opções de idioma atualmente são limitadas. O trabalho está em andamento.</value>
   </data>
   <data name="ModsFolderSelector.Title" xml:space="preserve">
-    <value>Carpeta de mods</value>
+    <value>Pasta de mods</value>
   </data>
   <data name="ModUpdateCheckerCheckBox.Content" xml:space="preserve">
-    <value>Verificación automática de mods</value>
+    <value>Verificação automática de mods</value>
   </data>
   <data name="ModUpdateCheckerDescription.Text" xml:space="preserve">
-    <value>Mod Update Checker verifica la disponibilidad de actualizaciones de mods al inicio y periódicamente en segundo plano.
-Al activarse, verifica cada 240 minutos, pero solo los mods que no se han verificado en al menos 60 minutos.
-La verificación manual de actualizaciones siempre consulta directamente a GameBanana.</value>
+    <value>O Mod Update Checker verifica a disponibilidade de atualizações de mods na inicialização e periodicamente em segundo plano. | Quando ativado, verifica a cada 240 minutos, mas apenas mods que não foram verificados nos últimos 60 minutos. | A verificação manual de atualizações sempre consulta diretamente o GameBanana.</value>
   </data>
   <data name="ModUpdateCheckerNextText.Text" xml:space="preserve">
-    <value>Próxima verificación en:</value>
+    <value>Próxima verificação em:</value>
   </data>
   <data name="ModUpdateCheckerSectionHeader.Text" xml:space="preserve">
-    <value>Verificación de actualizaciones de mods</value>
+    <value>Verificação de atualizações de mods</value>
   </data>
   <data name="GameSourceSectionHeader.Text" xml:space="preserve">
-    <value>Fuente del Juego</value>
+    <value>Fonte do Jogo</value>
   </data>
   <data name="GameSourceTitle.Text" xml:space="preserve">
-    <value>Elige si deseas cargar los juegos y categorías de personajes desde la versión incorporada (lanzamiento) o desde un repositorio de la comunidad.</value>
+    <value>Carregar jogos e categorias de personagens da versão interna (lançamento) ou de um repositório da comunidade.</value>
   </data>
   <data name="GameSource_Release.Content" xml:space="preserve">
-    <value>Lanzamiento (Release)</value>
+    <value>Lançamento (Release)</value>
   </data>
   <data name="GameSource_Community.Content" xml:space="preserve">
-    <value>Comunidad (GitHub)</value>
+    <value>Comunidade (GitHub)</value>
   </data>
   <data name="CommunityRepoUrlTextBox.Header" xml:space="preserve">
-    <value>URL del Repositorio de la Comunidad:</value>
+    <value>URL do Repositório da Comunidade:</value>
   </data>
   <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
-    <value>Actualizar Juegos de la Comunidad</value>
+    <value>Atualizar Jogos da Comunidade</value>
   </data>
 </root>
