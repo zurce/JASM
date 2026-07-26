@@ -3255,7 +3255,7 @@ JASM no moverá ninguno de tus mods ni los eliminará.
     <!-- Tooltip: open the character editor for this character -->
     <value>Editar Personaje</value>
   </data>
-  <data name="CharacterDetails_SearchMoveMod.PlaceholderText" xml:space="preserve">
+  <data name="CharacterDetails_SearchMoveMod_PlaceholderText" xml:space="preserve">
     <!-- UI for moving mods between characters -->
     <value>Buscar...</value>
   </data>
@@ -3307,23 +3307,23 @@ JASM no moverá ninguno de tus mods ni los eliminará.
     <!-- Button/checkbox for managing the mod .ini file -->
     <value>JASM no buscará archivos merged.ini/Script.ini e ignorará los keyswaps para este mod</value>
   </data>
-  <data name="CharDetails_DeleteDialog.Content" xml:space="preserve">
+  <data name="CharDetails_DeleteDialog_Content" xml:space="preserve">
     <!-- Checkbox label: whether to move deleted mods to Recycle Bin -->
     <value>¿Mover a la Papelera de Reciclaje?</value>
   </data>
-  <data name="CharDetails_RemovePresetsDialog.Content" xml:space="preserve">
+  <data name="CharDetails_RemovePresetsDialog_Content" xml:space="preserve">
     <!-- Button or toggle label on the CharDetails component -->
     <value>¿Eliminar de los Presets?</value>
   </data>
-  <data name="CharDetails_DeleteButton.Text" xml:space="preserve">
+  <data name="CharDetails_DeleteButton_Text" xml:space="preserve">
     <!-- Delete button label in the mod deletion dialog -->
     <value>Eliminar</value>
   </data>
-  <data name="CharDetails_CancelButton.Text" xml:space="preserve">
+  <data name="CharDetails_CancelButton_Text" xml:space="preserve">
     <!-- Static label text on the CharDetails component -->
     <value>Cancelar</value>
   </data>
-  <data name="CharDetails_ErrorDeletingMods.Text" xml:space="preserve">
+  <data name="CharDetails_ErrorDeletingMods_Text" xml:space="preserve">
     <!-- Notification: error deleting mods -->
     <value>Error al eliminar mods:</value>
   </data>
@@ -3355,7 +3355,7 @@ JASM no moverá ninguno de tus mods ni los eliminará.
     <!-- Fallback text when mod value is unknown -->
     <value>Desconocido</value>
   </data>
-  <data name="CharDetails_DeleteModsDialog.Title" xml:space="preserve">
+  <data name="CharDetails_DeleteModsDialog_Title" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
     <value>¿Eliminar Estos {0} Mods?</value>
   </data>
@@ -3488,5 +3488,33 @@ JASM no moverá ninguno de tus mods ni los eliminará.
   <data name="Settings_Notification_ModsExportedToFormat" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
     <value>Mods exportados a {0}</value>
+  </data>
+  <data name="CharacterGallery_DoNotAskAgain" xml:space="preserve">
+    <!-- Checkbox label in the delete mod confirmation dialog -->
+    <value>No preguntar de nuevo</value>
+  </data>
+  <data name="CharacterGallery_DeleteConfirmText" xml:space="preserve">
+    <!-- Confirmation question when deleting a mod. {0} is the mod name -->
+    <value>Estás seguro de que quieres eliminar {0}?</value>
+  </data>
+  <data name="CharacterGallery_DeleteTitle" xml:space="preserve">
+    <!-- Title of the delete mod confirmation dialog -->
+    <value>Eliminar mod</value>
+  </data>
+  <data name="CharacterGallery_DeletePrimaryButton" xml:space="preserve">
+    <!-- Confirm delete button in the delete mod dialog -->
+    <value>Eliminar</value>
+  </data>
+  <data name="CharacterGallery_DeleteCloseButton" xml:space="preserve">
+    <!-- Cancel/close button in the delete mod dialog -->
+    <value>Cancelar</value>
+  </data>
+  <data name="CharacterDetails_RunCommandButton.Content" xml:space="preserve">
+    <!-- Button to run a custom command -->
+    <value>Ejecutar</value>
+  </data>
+  <data name="CharacterDetails_OverrideText.Text" xml:space="preserve">
+    <!-- Button label to override a skin for this mod -->
+    <value>Sobrescribir</value>
   </data>
 </root>

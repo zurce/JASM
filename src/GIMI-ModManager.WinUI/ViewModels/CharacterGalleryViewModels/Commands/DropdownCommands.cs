@@ -1,6 +1,7 @@
 ﻿using Windows.System;
 using GIMI_ModManager.Core.Contracts.Services;
 using CommunityToolkit.Mvvm.Input;
+using GIMI_ModManager.WinUI.Services;
 using GIMI_ModManager.Core.Helpers;
 using Microsoft.UI.Xaml.Controls;
 using GIMI_ModManager.WinUI.Services.Notifications;
@@ -39,9 +40,10 @@ public partial class CharacterGalleryViewModel
     {
         var windowManager = App.GetService<IWindowManagerService>();
 
+        var localizer = App.GetService<ILanguageLocalizer>();
         var doNotAskAgainCheckBox = new CheckBox()
         {
-            Content = "Do not ask again",
+            Content = localizer.GetLocalizedStringOrDefault("CharacterGallery_DoNotAskAgain") ?? "Do not ask again",
             IsChecked = false,
         };
         var stackPanel = new StackPanel()
@@ -50,7 +52,7 @@ public partial class CharacterGalleryViewModel
             {
                 new TextBlock()
                 {
-                    Text = $"Are you sure you want to delete {vm.Name}?",
+                    Text = string.Format(localizer.GetLocalizedStringOrDefault("CharacterGallery_DeleteConfirmText") ?? "Are you sure you want to delete {0}?", vm.Name),
                     TextWrapping = Microsoft.UI.Xaml.TextWrapping.WrapWholeWords,
                 },
                 doNotAskAgainCheckBox
@@ -59,10 +61,10 @@ public partial class CharacterGalleryViewModel
 
         var dialog = new ContentDialog()
         {
-            Title = "Delete mod",
+            Title = localizer.GetLocalizedStringOrDefault("CharacterGallery_DeleteTitle") ?? "Delete mod",
             Content = stackPanel,
-            PrimaryButtonText = "Delete",
-            CloseButtonText = "Cancel",
+            PrimaryButtonText = localizer.GetLocalizedStringOrDefault("CharacterGallery_DeletePrimaryButton") ?? "Delete",
+            CloseButtonText = localizer.GetLocalizedStringOrDefault("CharacterGallery_DeleteCloseButton") ?? "Cancel",
             DefaultButton = ContentDialogButton.Primary,
         };
 

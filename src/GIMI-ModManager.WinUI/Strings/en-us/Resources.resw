@@ -3167,7 +3167,7 @@ Are you sure you want to disable character skins as characters? JASM will restar
     <!-- Tooltip: open the character editor for this character -->
     <value>Edit Character</value>
   </data>
-  <data name="CharacterDetails_SearchMoveMod.PlaceholderText" xml:space="preserve">
+  <data name="CharacterDetails_SearchMoveMod_PlaceholderText" xml:space="preserve">
     <!-- UI for moving mods between characters -->
     <value>Search...</value>
   </data>
@@ -3219,23 +3219,23 @@ Are you sure you want to disable character skins as characters? JASM will restar
     <!-- Button/checkbox for managing the mod .ini file -->
     <value>JASM will not look for merged.ini/Script.ini file and ignore keyswaps for this mod</value>
   </data>
-  <data name="CharDetails_DeleteDialog.Content" xml:space="preserve">
+  <data name="CharDetails_DeleteDialog_Content" xml:space="preserve">
     <!-- Checkbox label: whether to move deleted mods to Recycle Bin -->
     <value>Move to Recycle Bin?</value>
   </data>
-  <data name="CharDetails_RemovePresetsDialog.Content" xml:space="preserve">
+  <data name="CharDetails_RemovePresetsDialog_Content" xml:space="preserve">
     <!-- Button or toggle label on the CharDetails component -->
     <value>Remove from Presets?</value>
   </data>
-  <data name="CharDetails_DeleteButton.Text" xml:space="preserve">
+  <data name="CharDetails_DeleteButton_Text" xml:space="preserve">
     <!-- Delete button label in the mod deletion dialog -->
     <value>Delete</value>
   </data>
-  <data name="CharDetails_CancelButton.Text" xml:space="preserve">
+  <data name="CharDetails_CancelButton_Text" xml:space="preserve">
     <!-- Static label text on the CharDetails component -->
     <value>Cancel</value>
   </data>
-  <data name="CharDetails_ErrorDeletingMods.Text" xml:space="preserve">
+  <data name="CharDetails_ErrorDeletingMods_Text" xml:space="preserve">
     <!-- Notification: error deleting mods -->
     <value>Error deleting mods:</value>
   </data>
@@ -3267,7 +3267,7 @@ Are you sure you want to disable character skins as characters? JASM will restar
     <!-- Fallback text when mod value is unknown -->
     <value>Unknown</value>
   </data>
-  <data name="CharDetails_DeleteModsDialog.Title" xml:space="preserve">
+  <data name="CharDetails_DeleteModsDialog_Title" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
     <value>Delete These {0} Mods?</value>
   </data>
@@ -3529,5 +3529,33 @@ Manually checking for updates always checks GameBanana directly</value>
   <data name="Startup_Header.Text" xml:space="preserve">
     <!-- UI text on the Startup page -->
     <value>First time startup</value>
+  </data>
+  <data name="CharacterGallery_DoNotAskAgain" xml:space="preserve">
+    <!-- Checkbox label in the delete mod confirmation dialog -->
+    <value>Do not ask again</value>
+  </data>
+  <data name="CharacterGallery_DeleteConfirmText" xml:space="preserve">
+    <!-- Confirmation question when deleting a mod. {0} is the mod name -->
+    <value>Are you sure you want to delete {0}?</value>
+  </data>
+  <data name="CharacterGallery_DeleteTitle" xml:space="preserve">
+    <!-- Title of the delete mod confirmation dialog -->
+    <value>Delete mod</value>
+  </data>
+  <data name="CharacterGallery_DeletePrimaryButton" xml:space="preserve">
+    <!-- Confirm delete button in the delete mod dialog -->
+    <value>Delete</value>
+  </data>
+  <data name="CharacterGallery_DeleteCloseButton" xml:space="preserve">
+    <!-- Cancel/close button in the delete mod dialog -->
+    <value>Cancel</value>
+  </data>
+  <data name="CharacterDetails_RunCommandButton.Content" xml:space="preserve">
+    <!-- Button to run a custom command -->
+    <value>Run</value>
+  </data>
+  <data name="CharacterDetails_OverrideText.Text" xml:space="preserve">
+    <!-- Button label to override a skin for this mod -->
+    <value>Override</value>
   </data>
 </root>

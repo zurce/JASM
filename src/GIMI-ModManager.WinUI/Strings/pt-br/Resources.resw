@@ -3866,7 +3866,7 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
     <value>Editar Personagem</value>
   </data>
 
-  <data name="CharacterDetails_SearchMoveMod.PlaceholderText" xml:space="preserve">
+  <data name="CharacterDetails_SearchMoveMod_PlaceholderText" xml:space="preserve">
     <!-- UI for moving mods between characters -->
     <value>Pesquisar...</value>
   </data>
@@ -3931,27 +3931,27 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
     <value>O JASM não procurará o arquivo merged.ini/Script.ini e ignorará key swaps para este mod</value>
   </data>
 
-  <data name="CharDetails_DeleteDialog.Content" xml:space="preserve">
+  <data name="CharDetails_DeleteDialog_Content" xml:space="preserve">
     <!-- Checkbox label: whether to move deleted mods to Recycle Bin -->
     <value>Mover para a Lixeira?</value>
   </data>
 
-  <data name="CharDetails_RemovePresetsDialog.Content" xml:space="preserve">
+  <data name="CharDetails_RemovePresetsDialog_Content" xml:space="preserve">
     <!-- Button or toggle label on the CharDetails component -->
     <value>Remover dos Presets?</value>
   </data>
 
-  <data name="CharDetails_DeleteButton.Text" xml:space="preserve">
+  <data name="CharDetails_DeleteButton_Text" xml:space="preserve">
     <!-- Delete button label in the mod deletion dialog -->
     <value>Excluir</value>
   </data>
 
-  <data name="CharDetails_CancelButton.Text" xml:space="preserve">
+  <data name="CharDetails_CancelButton_Text" xml:space="preserve">
     <!-- Static label text on the CharDetails component -->
     <value>Cancelar</value>
   </data>
 
-  <data name="CharDetails_ErrorDeletingMods.Text" xml:space="preserve">
+  <data name="CharDetails_ErrorDeletingMods_Text" xml:space="preserve">
     <!-- Notification: error deleting mods -->
     <value>Erro ao excluir mods:</value>
   </data>
@@ -3991,7 +3991,7 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
     <value>Desconhecido</value>
   </data>
 
-  <data name="CharDetails_DeleteModsDialog.Title" xml:space="preserve">
+  <data name="CharDetails_DeleteModsDialog_Title" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
     <value>Excluir Estes {0} Mods?</value>
   </data>
@@ -4166,4 +4166,32 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
     <value>Obter informações do mod na página do mod</value>
   </data>
 
+  <data name="CharacterGallery_DoNotAskAgain" xml:space="preserve">
+    <!-- Checkbox label in the delete mod confirmation dialog -->
+    <value>Não perguntar novamente</value>
+  </data>
+  <data name="CharacterGallery_DeleteConfirmText" xml:space="preserve">
+    <!-- Confirmation question when deleting a mod. {0} is the mod name -->
+    <value>Tem certeza que deseja excluir {0}?</value>
+  </data>
+  <data name="CharacterGallery_DeleteTitle" xml:space="preserve">
+    <!-- Title of the delete mod confirmation dialog -->
+    <value>Excluir mod</value>
+  </data>
+  <data name="CharacterGallery_DeletePrimaryButton" xml:space="preserve">
+    <!-- Confirm delete button in the delete mod dialog -->
+    <value>Excluir</value>
+  </data>
+  <data name="CharacterGallery_DeleteCloseButton" xml:space="preserve">
+    <!-- Cancel/close button in the delete mod dialog -->
+    <value>Cancelar</value>
+  </data>
+  <data name="CharacterDetails_RunCommandButton.Content" xml:space="preserve">
+    <!-- Button to run a custom command -->
+    <value>Executar</value>
+  </data>
+  <data name="CharacterDetails_OverrideText.Text" xml:space="preserve">
+    <!-- Button label to override a skin for this mod -->
+    <value>Sobrescrever</value>
+  </data>
 </root>

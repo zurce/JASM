@@ -78,8 +78,7 @@
                                 HorizontalAlignment="Stretch"
                                 IsEnabled="{x:Bind ViewModel.IsNotHardBusy, Mode=OneWay}"
                                 ItemsSource="{x:Bind ViewModel.ContextMenuVM.SuggestedModdableObjects, Mode=OneWay}"
-                                PlaceholderText="Search..."
-                                l:Uids.Uid="CharacterDetails_MoveModSearch"
+                                PlaceholderText="Search..." l:Uids.Uid="CharacterDetails_MoveModSearch"
                                 QuerySubmitted="MoveModSearch_OnQuerySubmitted"
                                 TextChanged="MoveModSearch_OnTextChanged"
                                 Text="{x:Bind ViewModel.ContextMenuVM.MoveModsSearchText, Mode=TwoWay}">

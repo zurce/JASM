@@ -44,13 +44,13 @@ public partial class CharacterDetailsViewModel
         var localizer = App.GetService<ILanguageLocalizer>();
         var moveToRecycleBinCheckBox = new CheckBox()
         {
-            Content = localizer.GetLocalizedStringOrDefault("CharDetails_DeleteDialog.Content") ?? "Move to Recycle Bin?",
+            Content = localizer.GetLocalizedStringOrDefault("CharDetails_DeleteDialog_Content") ?? "Move to Recycle Bin?",
             IsChecked = _moveToRecycleBinCheckBox
         };
 
         var removeFromPresetsCheckBox = new CheckBox()
         {
-            Content = localizer.GetLocalizedStringOrDefault("CharDetails_RemovePresetsDialog.Content") ?? "Remove from Presets?",
+            Content = localizer.GetLocalizedStringOrDefault("CharDetails_RemovePresetsDialog_Content") ?? "Remove from Presets?",
             IsChecked = _removeFromPresetCheckBox
         };
 
@@ -89,10 +89,10 @@ public partial class CharacterDetailsViewModel
 
         var dialog = new ContentDialog()
         {
-            Title = string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DeleteModsDialog.Title") ?? "Delete These {0} Mods?", selectedModsCount),
+            Title = string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DeleteModsDialog_Title") ?? "Delete These {0} Mods?", selectedModsCount),
             Content = contentWrapper,
-            PrimaryButtonText = localizer.GetLocalizedStringOrDefault("CharDetails_DeleteButton.Text") ?? "Delete",
-            SecondaryButtonText = localizer.GetLocalizedStringOrDefault("CharDetails_CancelButton.Text") ?? "Cancel",
+            PrimaryButtonText = localizer.GetLocalizedStringOrDefault("CharDetails_DeleteButton_Text") ?? "Delete",
+            SecondaryButtonText = localizer.GetLocalizedStringOrDefault("CharDetails_CancelButton_Text") ?? "Cancel",
             DefaultButton = ContentDialogButton.Primary
         };
 
@@ -162,7 +162,7 @@ public partial class CharacterDetailsViewModel
             {
                 var content = new StringBuilder();
 
-                content.AppendLine(localizer.GetLocalizedStringOrDefault("CharDetails_ErrorDeletingMods.Text") ?? "Error deleting mods:");
+                content.AppendLine(localizer.GetLocalizedStringOrDefault("CharDetails_ErrorDeletingMods_Text") ?? "Error deleting mods:");
 
 
                 if (modsToDeletePresetError.Count > 0)

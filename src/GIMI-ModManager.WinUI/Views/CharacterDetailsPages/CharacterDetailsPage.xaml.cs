@@ -33,7 +33,7 @@ public sealed partial class CharacterDetailsPage : Page
         var localizer = App.GetService<ILanguageLocalizer>();
         SavePreferencesMenuItem.Text = localizer.GetLocalizedStringOrDefault("CharacterDetails_SavePreferences.Text") ?? "Save preferences for selected mod";
         ReadPreferencesMenuItem.Text = localizer.GetLocalizedStringOrDefault("CharacterDetails_ReadPreferences.Text") ?? "Read preferences for selected mod";
-        MoveModSearchBox.PlaceholderText = localizer.GetLocalizedStringOrDefault("CharacterDetails_SearchMoveMod.PlaceholderText") ?? "Search...";
+        MoveModSearchBox.PlaceholderText = localizer.GetLocalizedStringOrDefault("CharacterDetails_SearchMoveMod_PlaceholderText") ?? "Search...";
 
         ViewModel.OnModObjectLoaded += OnModObjectLoaded;
         ViewModel.OnModsLoaded += OnModsLoaded;
