@@ -6,6 +6,7 @@ This file mirrors active tasks and development phases.
 
 ## Completed
 
+- **`JASM-JA-LOCALIZE`** — Add Japanese language locale: created ja/Resources.resw (853), Settings.resw (24), Startup.resw (13) with full Japanese translations (branch: `zurce/JASM-JA-LOCALIZE-japanese-localization`, merged)
 - **`JASM-MIGRATE-CLI`** — Migrated JASM patterns, architecture conventions, and development workflows to `antigravity-cli`. (pattern transfer)
 - **`JASM-ELEVATOR-CLEANUP`** — Remove all elevator-related code: Elevator project, ElevatorService, UI, localization, build steps, and docs. (branch: `elevator-cleanup-and-removal`)
 - **`JASM-LOCALIZE`** — Localize all missing/hardcoded English strings across XAML views using WinUI3Localizer (committed, pushed, amended `f270204` with review fixes).
@@ -21,7 +22,6 @@ This file mirrors active tasks and development phases.
 
 ## In Progress
 
-- **`JASM-JA-LOCALIZE`** — Add Japanese language locale: create ja/Resources.resw, Settings.resw, Startup.resw with Japanese translations
 - **`JASM-LOCALIZE-ITERATION`** — Iterate on translations: rename es-ar → es (general Spanish), populate zh-cn and ru-ru resource files, fix any gaps across all locales, validate Release build string coverage
 
 ---

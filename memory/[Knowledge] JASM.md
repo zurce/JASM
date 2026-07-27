@@ -56,12 +56,13 @@ JASM (Just Another Skin Manager) is a skin manager for games like Genshin Impact
 
 ## Progress Summary
 
-**Completed: 10 Custom Tasks**
+**Completed: 11 Custom Tasks**
 
 ### Completed Tasks
 
 | Task | Description | Status | Date |
 |------|-------------|--------|------|
+| `JASM-JA-LOCALIZE` | Add Japanese locale — full translation of 853+24+13 entries | Merged | 2026-07-26 |
 | `JASM-MIGRATE-CLI` | Migrated JASM development patterns to antigravity-cli | Completed | 2026-07-25 |
 | `JASM-ELEVATOR-CLEANUP` | Remove all elevator-related code, project, UI, and localization | Merged | 2026-07-24 |
 | `JASM-LOCALIZE` | Localize all hardcoded English strings using WinUI3Localizer | Committed (amended) | 2026-07-19 |
@@ -77,7 +78,6 @@ JASM (Just Another Skin Manager) is a skin manager for games like Genshin Impact
 
 | Task | Description | Branch | Notes |
 |------|-------------|--------|-------|
-| JASM-JA-LOCALIZE | Add Japanese locale with full translation | zurce/JASM-JA-LOCALIZE-japanese-localization | CSV batches ready at C:/temp/ja_batches/ |
 | JASM-LOCALIZE-ITERATION | Iterate on translations for zh-cn, ru-ru, es | zurce/JASM-LOCALIZE-ITERATION-translation-iteration | Phase 4 complete (deduplication) |
 
 ---

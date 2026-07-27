@@ -2,7 +2,7 @@
 
 **Last Updated:** 2026-07-26
 **Project:** JASM - Custom Features & Stability
-**Status:** In Progress (Japanese localization underway, localization iteration ongoing)
+**Status:** In Progress (localization iteration ongoing)
 
 ---
 
