@@ -21,6 +21,7 @@ This file mirrors active tasks and development phases.
 
 ## In Progress
 
+- **`JASM-JA-LOCALIZE`** — Add Japanese language locale: create ja/Resources.resw, Settings.resw, Startup.resw with Japanese translations
 - **`JASM-LOCALIZE-ITERATION`** — Iterate on translations: rename es-ar → es (general Spanish), populate zh-cn and ru-ru resource files, fix any gaps across all locales, validate Release build string coverage
 
 ---
