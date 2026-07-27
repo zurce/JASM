@@ -56,13 +56,14 @@ JASM (Just Another Skin Manager) is a skin manager for games like Genshin Impact
 
 ## Progress Summary
 
-**Completed: 11 Custom Tasks**
+**Completed: 12 Custom Tasks**
 
 ### Completed Tasks
 
 | Task | Description | Status | Date |
 |------|-------------|--------|------|
 | `JASM-JA-LOCALIZE` | Add Japanese locale — full translation of 853+24+13 entries | Merged | 2026-07-26 |
+| `JASM-RU-LOCALIZE` | Populated Russian locale — 853+24+13 entries translated to Russian | Merged | 2026-07-26 |
 | `JASM-MIGRATE-CLI` | Migrated JASM development patterns to antigravity-cli | Completed | 2026-07-25 |
 | `JASM-ELEVATOR-CLEANUP` | Remove all elevator-related code, project, UI, and localization | Merged | 2026-07-24 |
 | `JASM-LOCALIZE` | Localize all hardcoded English strings using WinUI3Localizer | Committed (amended) | 2026-07-19 |
