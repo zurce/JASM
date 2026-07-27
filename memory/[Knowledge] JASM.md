@@ -73,6 +73,13 @@ JASM (Just Another Skin Manager) is a skin manager for games like Genshin Impact
 | `JASM-CLOSE-INSTALL` | Automatically close the Mod Installer page after a mod successfully installs. | Merged | 2026-02-28 |
 | `JASM-ENDFIELD` | Added initial support for Arknights: Endfield. | Merged | 2026-02-25 |
 
+### In Progress
+
+| Task | Description | Branch | Notes |
+|------|-------------|--------|-------|
+| JASM-JA-LOCALIZE | Add Japanese locale with full translation | zurce/JASM-JA-LOCALIZE-japanese-localization | CSV batches ready at C:/temp/ja_batches/ |
+| JASM-LOCALIZE-ITERATION | Iterate on translations for zh-cn, ru-ru, es | zurce/JASM-LOCALIZE-ITERATION-translation-iteration | Phase 4 complete (deduplication) |
+
 ---
 
 ## Architecture
@@ -120,4 +127,4 @@ The Elevator was a separate elevated (admin) process that communicated with JASM
 
 ---
 
-**Last Updated:** 2026-07-24
+**Last Updated:** 2026-07-26

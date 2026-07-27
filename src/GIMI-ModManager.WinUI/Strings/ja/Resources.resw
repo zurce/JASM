@@ -1,0 +1,4357 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="AppDisplayName" xml:space="preserve">
+    <!-- Application display name in the window title bar -->
+    <value>JASM - Just Another Skin Manager</value>
+  </data>
+
+  <data name="AppDescription" xml:space="preserve">
+    <!-- Application description -->
+    <value>JASM - Just Another Skin Manager</value>
+  </data>
+
+  <data name="Startup1.Text" xml:space="preserve">
+    <!-- Informational text on the first-time setup page (preserved for reference, may not be in use) -->
+    <value>初回セットアップでは、モデルインポーター（3dmigoto）フォルダーとそれに接続するModsフォルダーを選択する必要があります。3dmigotoフォルダーには3DMigoto Loader.exe/3DMigotoLoader.exeとModsフォルダーが含まれています。まだモデルインポーターを設定していない場合は、以下のリンクから今すぐ設定してください。ほとんどのModはGamebananaで見つかりますが、Nexusmodsにもいくつかあります。</value>
+  </data>
+
+  <data name="Startup2.Text" xml:space="preserve">
+    <!-- Informational text on the first-time setup page (preserved for reference, may not be in use) -->
+    <value>設定を保存すると、アプリケーションは'Mods'フォルダー内に各キャラクター用のフォルダーを作成します。これらのキャラクターフォルダーの外にあるModフォルダーは無視されます。このアプリケーションは、Modフォルダー名の先頭に'DISABLED_'を付加することでModを有効/無効にします。JASMは管理しているModを他のアプリケーションで使用するためにエクスポートすることもサポートしています。</value>
+  </data>
+
+  <data name="Startup3.Text" xml:space="preserve">
+    <!-- Informational text on the first-time setup page (preserved for reference, may not be in use) -->
+    <value>ファイルを操作するアプリケーションを使用する前に、ファイル/Modのバックアップを取ることをお勧めします。</value>
+  </data>
+
+  <data name="ShellMenuItem_Views_Main.Text" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Main.Text page -->
+    <value>メイン</value>
+  </data>
+
+  <data name="Main_Title.Text" xml:space="preserve">
+    <!-- Page title for the main view -->
+    <value>メイン</value>
+  </data>
+
+  <data name="ShellMenuItem_Views_Startup.Text" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Startup.Text page -->
+    <value>セットアップ</value>
+  </data>
+
+  <data name="Startup_Title.Text" xml:space="preserve">
+    <!-- UI text on the first-time setup page -->
+    <value>初回セットアップ</value>
+  </data>
+
+  <data name="Settings_Personalization.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>カスタマイズ</value>
+  </data>
+
+  <data name="Settings_Theme.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>テーマ</value>
+  </data>
+
+  <data name="Settings_Theme_Light.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>ライト</value>
+  </data>
+
+  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>ダーク</value>
+  </data>
+
+  <data name="Settings_Theme_Default.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>デフォルト</value>
+  </data>
+
+  <data name="Settings_AboutDescription.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>JASMの目標は、大量のスキンModを簡単に整理できるようにすることです。</value>
+  </data>
+
+  <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
+    <!-- Privacy statement hyperlink text -->
+    <value>プライバシーステートメント</value>
+  </data>
+
+  <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
+    <!-- URL for the privacy statement -->
+    <value>https://YourPrivacyUrlGoesHere/</value>
+  </data>
+
+  <data name="ShellMenuBarSettingsButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <!-- UI element in the main navigation shell -->
+    <value>設定</value>
+  </data>
+
+  <data name="SettingsPage_Description.Text" xml:space="preserve">
+    <!-- Description text on the settings page -->
+    <value>設定は選択したゲームごとに独立して保存されます。</value>
+  </data>
+
+  <data name="Settings_Title.Text" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>設定</value>
+  </data>
+
+  <data name="Startup/Tooltip1.Text" xml:space="preserve">
+    <!-- UI text on the first-time setup page -->
+    <value>このオプションを有効にすると、アプリケーションが既存のModをそれぞれのキャラクターに割り当てられたフォルダーに整理します。適切に一致しないModは'その他'フォルダーに配置されます。</value>
+  </data>
+
+  <data name="Startup/Tooltip2.Text" xml:space="preserve">
+    <!-- UI text on the first-time setup page -->
+    <value>複数のキャラクター名を含むModフォルダーは、誤って特定のキャラクターのディレクトリに移動される可能性があります。これはフラットなMod構造を前提としており、スキンフォルダーがModsフォルダーに緩く保存されていることを想定しています。カスタムフォルダー構造を使用している場合、JASMがスキンを正しく識別できない可能性が高くなります。これはスキンが入ったネストされたフォルダーがある場合も同様です。</value>
+  </data>
+
+  <data name="Startup/Tooltip3.Text" xml:space="preserve">
+    <!-- UI text on the first-time setup page -->
+    <value>これは後で設定ページで有効にできます。</value>
+  </data>
+
+  <data name="Settings_About.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>このアプリケーションについて</value>
+  </data>
+
+  <data name="Settings_ComboBox_Header.Text" xml:space="preserve">
+    <!-- Form field label in Settings page -->
+    <value>表示言語の選択:</value>
+  </data>
+
+  <data name="Settings_ExportDialog.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>JASMが管理しているすべてのModを選択したエクスポートフォルダーにエクスポートします。Modはエクスポートフォルダーにコピーされ、元のフォルダーから削除されることはありません。</value>
+  </data>
+
+  <data name="Settings_ExportDialogButtons.CloseButtonText" xml:space="preserve">
+    <!-- Cancel/dismiss button in a dialog -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="Settings_ExportDialogButtons.PrimaryButtonText" xml:space="preserve">
+    <!-- Button label in the mod export dialog -->
+    <value>エクスポート</value>
+  </data>
+
+  <data name="Settings_ExportDialog_ChangeStatus.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>エクスポートしたModの状態を変更</value>
+  </data>
+
+  <data name="Settings_ExportDialog_KeepStructure.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>エクスポートフォルダーでCharacterName/Modsのフォルダー構造を維持</value>
+  </data>
+
+  <data name="Settings_ExportDialog_RemoveJasm.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>エクスポートされたModからJASM設定ファイルを削除</value>
+  </data>
+
+  <data name="Settings_Export_Button.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Modをエクスポート</value>
+  </data>
+
+  <data name="Settings_Export_Title.Text" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Modのエクスポート/バックアップ</value>
+  </data>
+
+  <data name="Settings_Language.Text" xml:space="preserve">
+    <!-- Language selection UI in Settings -->
+    <value>言語</value>
+  </data>
+
+  <data name="Settings_Language_TexBlock.Text" xml:space="preserve">
+    <!-- Language selection UI in Settings -->
+    <value>言語オプションは現在限られています。作業中です。</value>
+  </data>
+
+  <data name="ShellPage_NavItem_CharacterManagement" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the CharacterManagement page -->
+    <value>キャラクター管理</value>
+  </data>
+
+  <data name="ShellPage_NavItem_ModsOverview" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the ModsOverview page -->
+    <value>Mod概要</value>
+  </data>
+
+  <data name="ShellPage_NavItem_ModPresets" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the ModPresets page -->
+    <value>Modプリセット</value>
+  </data>
+
+  <data name="ShellPage_NavItem_Debug" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Debug page -->
+    <value>デバッグ</value>
+  </data>
+
+  <data name="ShellPage_NavItem_Settings" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Settings page -->
+    <value>設定</value>
+  </data>
+
+  <data name="ShellPage_NavItem_Notifications" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Notifications page -->
+    <value>通知</value>
+  </data>
+
+  <data name="ShellPage_SettingsItem" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the SettingsItem page -->
+    <value>設定</value>
+  </data>
+
+  <data name="CharactersPage_CheckForUpdates.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>アップデートを確認</value>
+  </data>
+
+  <data name="CharactersPage_OpenFolder.Text" xml:space="preserve">
+    <!-- Button label to open the mods folder in file explorer -->
+    <value>フォルダーを開く...</value>
+  </data>
+
+  <data name="CharactersPage_ModsSubMenu.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>Mods</value>
+  </data>
+
+  <data name="CharactersPage_ClearNotifications.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>通知をクリア</value>
+  </data>
+
+  <data name="CharactersPage_DisableAllModsMenuItem.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>すべてのModを無効化</value>
+  </data>
+
+  <data name="CharactersPage_SelectProcessDialog.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharactersPage component -->
+    <value>プロセスパスの選択</value>
+  </data>
+
+  <data name="CharactersPage_SelectProcessDialog_Description.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>起動するプロセスのパスを選択してください。保存すると、開始ボタンを押したときに起動されます。設定ページでリセットできます。</value>
+  </data>
+
+  <data name="CharactersPage_SelectProcessDialog_PrimaryButtonText" xml:space="preserve">
+    <!-- Button label in the process path selection dialog -->
+    <value>保存</value>
+  </data>
+
+  <data name="CharactersPage_SelectProcessDialog_SecondaryButtonText" xml:space="preserve">
+    <!-- Button label in the process path selection dialog -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="CharactersPage_SelectProcessDialog_GamePlaceholderText" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>ゲームの実行ファイルを選択</value>
+  </data>
+
+  <data name="CharactersPage_SelectProcessDialog_ModelImporterPlaceholderText" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>モデルインポーターの実行ファイルを選択</value>
+  </data>
+
+  <data name="CharactersPage_CreateAdvancedCommand.Content" xml:space="preserve">
+    <!-- Button or toggle label on the CharactersPage component -->
+    <value>高度なコマンドを作成</value>
+  </data>
+
+  <data name="CharactersPage_EnableAllDialog.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharactersPage component -->
+    <value>すべてのModを有効化しますか？</value>
+  </data>
+
+  <data name="CharactersPage_EnableAllDialog_Description.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>アクティブなカテゴリ内の現在追跡中のすべてのModを有効化します。</value>
+  </data>
+
+  <data name="CharactersPage_DisableAllDialog.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharactersPage component -->
+    <value>すべてのModを無効化しますか？</value>
+  </data>
+
+  <data name="CharactersPage_DisableAllDialog_Description.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>現在の設定をプリセットとして保存し、簡単に復元できるようにすることをお勧めします。</value>
+  </data>
+
+  <data name="CharactersPage_CleanUpDialog.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharactersPage component -->
+    <value>無効化されたModをクリーンアップしますか？</value>
+  </data>
+
+  <data name="CharactersPage_CleanUpDialog_Description.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>この操作は元に戻せません。</value>
+  </data>
+
+  <data name="CharactersPage_GameBananaLink.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>GameBanana</value>
+  </data>
+
+  <data name="CharactersPage_SortByLabel.Text" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>並び替え:</value>
+  </data>
+
+  <data name="CharactersPage_SortCharacters_Placeholder.PlaceholderText" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>キャラクターを並び替え...</value>
+  </data>
+
+  <data name="CharactersPage_RefreshMods.Content" xml:space="preserve">
+    <!-- Button label to refresh/scand mod files -->
+    <value>Modを再読み込み</value>
+  </data>
+
+  <data name="CharactersPage_Start3Dmigoto.Content" xml:space="preserve">
+    <!-- Button label to launch the 3DMigoto model importer process -->
+    <value>3Dmigotoを起動</value>
+  </data>
+
+  <data name="CharactersPage_BatchConfigurations.Label" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>一括設定</value>
+  </data>
+
+  <data name="CharactersPage_EnableAll.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>すべて有効化</value>
+  </data>
+
+  <data name="CharactersPage_DisableAll.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>すべて無効化</value>
+  </data>
+
+  <data name="CharactersPage_CleanUp.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>クリーンアップ</value>
+  </data>
+
+  <data name="CharactersPage_ApplyPresetLabel.Text" xml:space="preserve">
+    <!-- Label for preset application status -->
+    <value>プリセットを適用:</value>
+  </data>
+
+  <data name="CharactersPage_ApplyPresetConfirmText" xml:space="preserve">
+    <!-- Label for preset application status -->
+    <value>確認</value>
+  </data>
+
+  <data name="CharactersPage_StartGamePrefix" xml:space="preserve">
+    <!-- Prefix for the Start Game button. The game name is appended (e.g. "Start Genshin Impact") -->
+    <value>起動</value>
+  </data>
+
+  <data name="CharactersPage_TitleFormat" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>{0} の概要</value>
+  </data>
+
+  <data name="CharactersPage_EnableAllDialog_Title" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>すべてのModを有効化しますか？</value>
+  </data>
+
+  <data name="CharactersPage_EnableAllDialog_PrimaryButtonText" xml:space="preserve">
+    <!-- Button label in the "Enable All Mods" dialog -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="CharactersPage_EnableAllDialog_SecondaryButtonText" xml:space="preserve">
+    <!-- Button label in the "Enable All Mods" dialog -->
+    <value>確認</value>
+  </data>
+
+  <data name="CharactersPage_DisableAllDialog_Title" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>すべてのModを無効化しますか？</value>
+  </data>
+
+  <data name="CharactersPage_DisableAllDialog_PrimaryButtonText" xml:space="preserve">
+    <!-- Button label in the "Disable All Mods" dialog -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="CharactersPage_DisableAllDialog_SecondaryButtonText" xml:space="preserve">
+    <!-- Button label in the "Disable All Mods" dialog -->
+    <value>確認</value>
+  </data>
+
+  <data name="CharactersPage_CleanUpDialog_Title" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>無効化されたModをクリーンアップしますか？</value>
+  </data>
+
+  <data name="CharactersPage_CleanUpDialog_PrimaryButtonText" xml:space="preserve">
+    <!-- Button label in the "Clean Up Disabled Mods" dialog -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="CharactersPage_CleanUpDialog_SecondaryButtonText" xml:space="preserve">
+    <!-- Button label in the "Clean Up Disabled Mods" dialog -->
+    <value>はい、実行します</value>
+  </data>
+
+  <data name="CharactersPage_ModToggleSuffix" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>Modあり</value>
+  </data>
+
+  <data name="CharactersPage_ModEnabledToggleSuffix" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>有効なModあり</value>
+  </data>
+
+  <data name="CharactersPage_ModNotificationsToggleSuffix" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>Mod通知あり</value>
+  </data>
+
+  <data name="CharactersPage_SortAlphabetical_Name" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>アルファベット順</value>
+  </data>
+
+  <data name="CharactersPage_SortModCount_Name" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Mod数</value>
+  </data>
+
+  <data name="CharactersPage_SortRecentlyAdded_Name" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>最近追加</value>
+  </data>
+
+  <data name="CharactersPage_SortReleaseDate_Name" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>リリース日</value>
+  </data>
+
+  <data name="CharactersPage_SortRarity_Name" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>レアリティ</value>
+  </data>
+
+  <data name="CharactersPage_ConfirmPreset.Text" xml:space="preserve">
+    <!-- Confirmation text when applying a preset -->
+    <value>確認</value>
+  </data>
+
+  <data name="CharactersPage_RandomizeMods.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>Modをランダム化</value>
+  </data>
+
+  <data name="CharactersPage_Filters.Label" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>フィルター</value>
+  </data>
+
+  <data name="CharactersPage_DropHereText.Text" xml:space="preserve">
+    <!-- Drag-and-drop hint text shown on character cards -->
+    <value>ここにドロップしてModを自動検出...</value>
+  </data>
+
+  <data name="CharactersPage_SortAlphabetical.Text" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>アルファベット順</value>
+  </data>
+
+  <data name="CharactersPage_SortModCount.Text" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Mod数</value>
+  </data>
+
+  <data name="CharactersPage_SortRecentlyAdded.Text" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>最近追加されたMod</value>
+  </data>
+
+  <data name="CharactersPage_SortReleaseDate.Text" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>リリース日</value>
+  </data>
+
+  <data name="CharactersPage_SortRarity.Text" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>レアリティ</value>
+  </data>
+
+  <data name="CharactersPage_SearchPrefix" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>検索</value>
+  </data>
+
+  <data name="CharactersPage_ModToggleText" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>表示</value>
+  </data>
+
+  <data name="CharactersPage_ModEnabledToggleText" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>表示</value>
+  </data>
+
+  <data name="CharactersPage_ModNotificationsToggleText" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>表示</value>
+  </data>
+
+  <data name="CharacterDetails_ModsSelected.Text" xml:space="preserve">
+    <!-- Shows how many mods are currently selected -->
+    <value>選択中のMod:</value>
+  </data>
+
+  <data name="CharacterDetails_MoveModsButton.Content" xml:space="preserve">
+    <!-- UI for moving mods between characters -->
+    <value>移動</value>
+  </data>
+
+  <data name="CharacterDetails_MoveModsToAnother.Text" xml:space="preserve">
+    <!-- UI for moving mods between characters -->
+    <value>Modを他のキャラクターに移動:</value>
+  </data>
+
+  <data name="CharacterDetails_MoveModSearch.PlaceholderText" xml:space="preserve">
+    <!-- UI for moving mods between characters -->
+    <value>検索...</value>
+  </data>
+
+  <data name="CharacterDetails_MoveModsSkinExpander.Header" xml:space="preserve">
+    <!-- UI for moving mods between characters -->
+    <value>Modを別のスキンに移動</value>
+  </data>
+
+  <data name="CharacterDetails_OverrideButtonText.Text" xml:space="preserve">
+    <!-- UI for managing skin overrides on this character -->
+    <value>オーバーライド</value>
+  </data>
+
+  <data name="CharacterDetails_OverrideSkinSetTo.Text" xml:space="preserve">
+    <!-- UI for managing skin overrides on this character -->
+    <value>オーバーライドスキンの設定:</value>
+  </data>
+
+  <data name="CharacterDetails_RunCommandExpander.Header" xml:space="preserve">
+    <!-- Button or section for running custom commands on a mod -->
+    <value>このフォルダーでコマンドを実行</value>
+  </data>
+
+  <data name="CharacterDetails_FullCommand.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>コマンド:</value>
+  </data>
+
+  <data name="CharacterDetails_WorkingDirectory.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>作業ディレクトリ:</value>
+  </data>
+
+  <data name="CharacterDetails_TargetPath.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>'{{TargetPath}}:</value>
+  </data>
+
+  <data name="CharacterDetails_RunCommand.Content" xml:space="preserve">
+    <!-- Button or section for running custom commands on a mod -->
+    <value>実行</value>
+  </data>
+
+  <data name="CharacterDetails_Loading.Text" xml:space="preserve">
+    <!-- Loading text -->
+    <value>読み込み中</value>
+  </data>
+
+  <data name="CharacterDetails_LoadingEllipsis.Text" xml:space="preserve">
+    <!-- Loading text -->
+    <value>...</value>
+  </data>
+
+  <data name="CharacterDetails_MenuBar_Mods.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharacterDetails component -->
+    <value>Mods</value>
+  </data>
+
+  <data name="CharacterDetails_AddModMenuItem.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>Modを追加...</value>
+  </data>
+
+  <data name="CharacterDetails_AddArchiveMenuItem.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>アーカイブを追加...</value>
+  </data>
+
+  <data name="CharacterDetails_RefreshModsMenuItem.Text" xml:space="preserve">
+    <!-- Menu item or button to refresh mods -->
+    <value>Modを再読み込み</value>
+  </data>
+
+  <data name="CharacterDetails_MenuBar_Folders.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharacterDetails component -->
+    <value>フォルダー</value>
+  </data>
+
+  <data name="CharacterDetails_OpenRootFolder.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>3Dmigotoルートフォルダーを開く...</value>
+  </data>
+
+  <data name="CharacterDetails_OpenCharacterModFolder.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>キャラクターのModフォルダーを開く...</value>
+  </data>
+
+  <data name="CharacterDetails_OpenSelectedModFolder.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>選択したModのフォルダーを開く...</value>
+  </data>
+
+  <data name="CharacterDetails_MenuBar_View.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharacterDetails component -->
+    <value>表示</value>
+  </data>
+
+  <data name="CharacterDetails_SingleSelectToggle.Text" xml:space="preserve">
+    <!-- Toggle: when enabled, only one mod can be active at a time -->
+    <value>単一選択</value>
+  </data>
+
+  <data name="CharacterDetails_ShowModFolderNames.Text" xml:space="preserve">
+    <!-- Toggle: shows/hides the mod folder name column -->
+    <value>'Modフォルダー名'列を表示</value>
+  </data>
+
+  <data name="CharacterDetails_MenuBar_ModPreferences.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharacterDetails component -->
+    <value>Mod設定</value>
+  </data>
+
+  <data name="CharacterDetails_SavePreferencesToggle.Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>選択したModの設定を保存</value>
+  </data>
+
+  <data name="CharacterDetails_ReadPreferencesToggle.Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>選択したModの設定を読み込み</value>
+  </data>
+
+  <data name="CharacterDetails_MultipleModsActive.Message" xml:space="preserve">
+    <!-- Warning message shown when multiple mods are enabled simultaneously -->
+    <value>複数のModが有効です</value>
+  </data>
+
+  <data name="CharacterDetails_SearchModsTextBox.PlaceholderText" xml:space="preserve">
+    <!-- Placeholder text in the mod search box -->
+    <value>Modを検索...</value>
+  </data>
+
+  <data name="CharacterDetails_ViewToggle.OffContent" xml:space="preserve">
+    <!-- Toggle switch to switch between Gallery View or Detailed View -->
+    <value>詳細表示</value>
+  </data>
+
+  <data name="ModPane_SetModIniFile.Text" xml:space="preserve">
+    <!-- Button/checkbox for managing the mod .ini file -->
+    <value>Modの.iniファイルを設定</value>
+  </data>
+
+  <data name="ModPane_IgnoreIniFile.Text" xml:space="preserve">
+    <!-- Button/checkbox for managing the mod .ini file -->
+    <value>このModの.iniファイルを無視</value>
+  </data>
+
+  <data name="ModPane_ModUrl.Header" xml:space="preserve">
+    <!-- Label for the mod page URL field -->
+    <value>Mod URL:</value>
+  </data>
+
+  <data name="ModPane_ForwardKey.Header" xml:space="preserve">
+    <!-- Label for key swap configuration fields -->
+    <value>前方キー</value>
+  </data>
+
+  <data name="ModPane_Variations.Text" xml:space="preserve">
+    <!-- Section for mod variation options -->
+    <value>バリエーション:</value>
+  </data>
+
+  <data name="ModPane_BackwardKey.Header" xml:space="preserve">
+    <!-- Label for key swap configuration fields -->
+    <value>後方キー</value>
+  </data>
+
+  <data name="ModPane_KeySwapDisabled.Text" xml:space="preserve">
+    <!-- Label: key swaps disabled for this mod -->
+    <value>このModではキー入れ替え管理が無効です</value>
+  </data>
+
+  <data name="ModPane_SaveButtonText.Text" xml:space="preserve">
+    <!-- Button to save mod settings -->
+    <value>保存</value>
+  </data>
+
+  <data name="ModPane_ModEnabled.Text" xml:space="preserve">
+    <!-- Toggle: enable/disable this mod -->
+    <value>Mod有効</value>
+  </data>
+
+  <data name="ModPane_OpenModFolder.Content" xml:space="preserve">
+    <!-- Button to open the mod folder -->
+    <value>Modフォルダーを開く...</value>
+  </data>
+
+  <data name="PresetPage_AutoSyncWarning.Text" xml:space="preserve">
+    <!-- Toggle: auto-sync mod preferences -->
+    <value>自動同期が有効ではありません！変更を行う際は手動で3Dmigoto設定を再読み込みしてください。</value>
+  </data>
+
+  <data name="PresetPage_ApplyPresetButton.Content" xml:space="preserve">
+    <!-- Button to apply or confirm a preset -->
+    <value>プリセットを適用</value>
+  </data>
+
+  <data name="PresetPage_ApplyConfirm.Content" xml:space="preserve">
+    <!-- Button to apply or confirm a preset -->
+    <value>確認</value>
+  </data>
+
+  <data name="PresetPage_ResetConfirm.Content" xml:space="preserve">
+    <!-- Button to apply or confirm a preset -->
+    <value>確認</value>
+  </data>
+
+  <data name="PresetPage_PageTitle.Text" xml:space="preserve">
+    <!-- Static label text on the PresetPage component -->
+    <value>ModプリセットとMod設定</value>
+  </data>
+
+  <data name="PresetPage_NewPresetName.Header" xml:space="preserve">
+    <!-- Placeholder/label for new preset name -->
+    <value>新しいプリセット名</value>
+  </data>
+
+  <data name="PresetPage_CreatePresetButton.Content" xml:space="preserve">
+    <!-- Button to create a new preset -->
+    <value>アクティブなMod設定を保存して新しいプリセットを作成</value>
+  </data>
+
+  <data name="PresetPage_CreateEmptyPreset.Content" xml:space="preserve">
+    <!-- Button to create a new preset -->
+    <value>空のプリセットとして作成</value>
+  </data>
+
+  <data name="PresetPage_AutoSyncPreferences.Content" xml:space="preserve">
+    <!-- Toggle: auto-sync mod preferences -->
+    <value>プリセット切り替え時にMod設定を自動同期</value>
+  </data>
+
+  <data name="PresetPage_SaveActivePreferencesButton.Content" xml:space="preserve">
+    <!-- Button to save current mod states as preferences -->
+    <value>アクティブなMod設定（キー入れ替え）をModに保存</value>
+  </data>
+
+  <data name="PresetPage_ApplySavedPreferencesButton.Content" xml:space="preserve">
+    <!-- Button to apply or confirm a preset -->
+    <value>保存されたMod設定（キー入れ替え）を適用</value>
+  </data>
+
+  <data name="PresetPage_ShowManualControls.Content" xml:space="preserve">
+    <!-- Button to show manual controls -->
+    <value>手動コントロールを表示</value>
+  </data>
+
+  <data name="PresetPage_EnabledModsCount.Text" xml:space="preserve">
+    <!-- Static label text on the PresetPage component -->
+    <value>プリセットの有効Mod数:</value>
+  </data>
+
+  <data name="PresetPage_CreatedAt.Text" xml:space="preserve">
+    <!-- Button to create a new preset -->
+    <value>作成日時:</value>
+  </data>
+
+  <data name="PresetPage_GoToPresetDetails.Content" xml:space="preserve">
+    <!-- Button or toggle label on the PresetPage component -->
+    <value>プリセット詳細へ</value>
+  </data>
+
+  <data name="PresetPage_ReadOnlyMenuItem.Text" xml:space="preserve">
+    <!-- Toggle: mark preset as read-only -->
+    <value>読み取り専用</value>
+  </data>
+
+  <data name="PresetPage_DuplicateMenuItem.Text" xml:space="preserve">
+    <!-- Context menu: duplicate preset -->
+    <value>複製</value>
+  </data>
+
+  <data name="PresetPage_DeleteMenuItem.Text" xml:space="preserve">
+    <!-- Context menu: delete preset -->
+    <value>削除</value>
+  </data>
+
+  <data name="PresetPage_RandomizeModsButton.Content" xml:space="preserve">
+    <!-- Button to open the randomize mods dialog -->
+    <value>Modをランダム化</value>
+  </data>
+
+  <data name="PresetPage_ResetModPreferencesButton.Content" xml:space="preserve">
+    <!-- Button to reset mod preferences -->
+    <value>Mod設定をリセット</value>
+  </data>
+
+  <data name="PresetPage_ResetPreferencesDialogText.Text" xml:space="preserve">
+    <!-- Static label text on the PresetPage component -->
+    <value>保持されているMod設定をリセット</value>
+  </data>
+
+  <data name="PresetPage_ResetOnlyEnabledMods.Content" xml:space="preserve">
+    <!-- Button to reset mod preferences -->
+    <value>有効なModのみリセット</value>
+  </data>
+
+  <data name="PresetPage_AlsoReset3DMigoto.Content" xml:space="preserve">
+    <!-- Button to reset mod preferences -->
+    <value>3Dmigotoのユーザーiniの設定もクリア</value>
+  </data>
+
+  <data name="PresetPage_RenameText" xml:space="preserve">
+    <!-- Button/dialog for renaming a preset -->
+    <value>名前の変更</value>
+  </data>
+
+  <data name="PresetPage_ConfirmText" xml:space="preserve">
+    <!-- Button to apply or confirm a preset -->
+    <value>新しい名前を保存</value>
+  </data>
+
+  <data name="ModInstallerPage_SetModPreviewImage.Text" xml:space="preserve">
+    <!-- UI for setting a custom preview image -->
+    <value>Modのプレビュー画像を設定</value>
+  </data>
+
+  <data name="ModInstallerPage_SetRootModFolder.Text" xml:space="preserve">
+    <!-- Button to select a folder path -->
+    <value>Modルートフォルダーを設定</value>
+  </data>
+
+  <data name="ModInstallerPage_SetShaderFixesFolder.Text" xml:space="preserve">
+    <!-- Radio button: shader fixes folder mode (Auto/Ignore/Manual) -->
+    <value>ShaderFixesフォルダーを設定</value>
+  </data>
+
+  <data name="ModInstallerPage_DuplicateModDialog.Title" xml:space="preserve">
+    <!-- Warning dialog about already-installed mod -->
+    <value>同じ名前のフォルダーが存在します</value>
+  </data>
+
+  <data name="ModInstallerPage_DuplicateModDialog.CloseButtonText" xml:space="preserve">
+    <!-- Cancel/dismiss button in a dialog -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="ModInstallerPage_DuplicateInfoBar.Message" xml:space="preserve">
+    <!-- Informational message on the ModInstallerPage component -->
+    <value>1. 古いModを上書きして削除するか、
+または
+2. 新しいModか古いModのどちらかを名前変更できます</value>
+  </data>
+
+  <data name="ModInstallerPage_NewModLabel.Text" xml:space="preserve">
+    <!-- Section heading text -->
+    <value>新しいMod:</value>
+  </data>
+
+  <data name="ModInstallerPage_NewModCustomName.Header" xml:space="preserve">
+    <!-- Label for the custom display name input -->
+    <value>カスタム名</value>
+  </data>
+
+  <data name="ModInstallerPage_NewModFolderName.Header" xml:space="preserve">
+    <!-- Label for the mod folder name input -->
+    <value>フォルダー名</value>
+  </data>
+
+  <data name="ModInstallerPage_OtherModLabel.Text" xml:space="preserve">
+    <!-- Section heading text -->
+    <value>既存のMod:</value>
+  </data>
+
+  <data name="ModInstallerPage_OtherModCustomName.Header" xml:space="preserve">
+    <!-- Label for the custom display name input -->
+    <value>カスタム名</value>
+  </data>
+
+  <data name="ModInstallerPage_OtherModFolderName.Header" xml:space="preserve">
+    <!-- Label for the mod folder name input -->
+    <value>フォルダー名</value>
+  </data>
+
+  <data name="ModInstallerPage_OpenExistingModFolder.Text" xml:space="preserve">
+    <!-- Static label text on the ModInstallerPage component -->
+    <value>既存のModフォルダーを開く...</value>
+  </data>
+
+  <data name="ModInstallerPage_OverwriteExistingMod.Content" xml:space="preserve">
+    <!-- Checkbox: overwrite if a mod with this name already exists -->
+    <value>既存のModを上書き</value>
+  </data>
+
+  <data name="ModInstallerPage_ReplaceInPresets.Text" xml:space="preserve">
+    <!-- Checkbox: replace old mod in presets with this new version -->
+    <value>プリセット内の重複Modを新しいModで置き換え</value>
+  </data>
+
+  <data name="ModInstallerPage_RetrieveModInfo.Text" xml:space="preserve">
+    <!-- Static label text on the ModInstallerPage component -->
+    <value>Modページから情報を取得</value>
+  </data>
+
+  <data name="ModInstallerPage_ModPageUrl.Header" xml:space="preserve">
+    <!-- Label/placeholder for the GameBanana mod page URL -->
+    <value>ModページURL</value>
+  </data>
+
+  <data name="ModInstallerPage_ModPageUrl.PlaceholderText" xml:space="preserve">
+    <!-- Label/placeholder for the GameBanana mod page URL -->
+    <value>URLを貼り付けて自動入力（GameBananaのみ）</value>
+  </data>
+
+  <data name="ModInstallerPage_ModCustomName.Header" xml:space="preserve">
+    <!-- Label for the custom display name input -->
+    <value>Modカスタム名</value>
+  </data>
+
+  <data name="ModInstallerPage_ModCustomName.PlaceholderText" xml:space="preserve">
+    <!-- Label for the custom display name input -->
+    <value>JASM全体で表示されるカスタム名</value>
+  </data>
+
+  <data name="ModInstallerPage_Author.Header" xml:space="preserve">
+    <!-- Label for the mod author field -->
+    <value>作成者</value>
+  </data>
+
+  <data name="ModInstallerPage_Note.Header" xml:space="preserve">
+    <!-- Label/placeholder for a free-text note about this mod -->
+    <value>メモ</value>
+  </data>
+
+  <data name="ModInstallerPage_Note.PlaceholderText" xml:space="preserve">
+    <!-- Label/placeholder for a free-text note about this mod -->
+    <value>カスタム自由テキストメモ。キャラクター詳細ページのグリッドに表示されます</value>
+  </data>
+
+  <data name="ModInstallerPage_ModFolderLabel.Text" xml:space="preserve">
+    <!-- Section heading text -->
+    <value>Modフォルダー:</value>
+  </data>
+
+  <data name="ModInstallerPage_RootFolderHint.Text" xml:space="preserve">
+    <!-- Static label text on the ModInstallerPage component -->
+    <value>これは通常 'merged.ini/Script.ini' または '.JASM_ModConfig.json' を含むフォルダーです。JASMは自動的にModフォルダーとmerged.iniファイルを検出します。Modフォルダーを手動で選択する場合は、上の概要でフォルダーを右クリックして選択できます。</value>
+  </data>
+
+  <data name="ModInstallerPage_PreviewImageHint.Text" xml:space="preserve">
+    <!-- UI for setting a custom preview image -->
+    <value>Modのプレビュー画像ファイルを手動で選択することもできます。通常は「Modを追加」を押すだけで問題ありません。</value>
+  </data>
+
+  <data name="ModInstallerPage_PreviewImageSourceLabel.Text" xml:space="preserve">
+    <!-- Section heading text -->
+    <value>プレビュー画像ソース:</value>
+  </data>
+
+  <data name="ModInstallerPage_ImageSourceAuto.Content" xml:space="preserve">
+    <!-- Radio button: preview image source (Auto/URL/ModFiles/Ignore) -->
+    <value>自動</value>
+  </data>
+
+  <data name="ModInstallerPage_ImageSourceUrl.Content" xml:space="preserve">
+    <!-- Radio button: preview image source (Auto/URL/ModFiles/Ignore) -->
+    <value>URL</value>
+  </data>
+
+  <data name="ModInstallerPage_ImageSourceModFiles.Content" xml:space="preserve">
+    <!-- Radio button: preview image source (Auto/URL/ModFiles/Ignore) -->
+    <value>Modファイル</value>
+  </data>
+
+  <data name="ModInstallerPage_ImageSourceIgnore.Content" xml:space="preserve">
+    <!-- Radio button: preview image source (Auto/URL/ModFiles/Ignore) -->
+    <value>無視</value>
+  </data>
+
+  <data name="ModInstallerPage_SelectRootFolderHint.Text" xml:space="preserve">
+    <!-- Static label text on the ModInstallerPage component -->
+    <value>ここでModフォルダーのルートを選択できます。</value>
+  </data>
+
+  <data name="ModInstallerPage_ModFolderDescription.Text" xml:space="preserve">
+    <!-- Static label text on the ModInstallerPage component -->
+    <value>これは通常 'merged.ini/Script.ini' または '.JASM_ModConfig.json' を含むフォルダーです。JASMは自動的にModフォルダーとmerged.iniファイルを検出します。Modフォルダーを手動で選択する場合は、上の概要でフォルダーを右クリックして選択できます。</value>
+  </data>
+
+  <data name="ModInstallerPage_ManualImageSelectionHint.Text" xml:space="preserve">
+    <!-- Instruction for manual image selection -->
+    <value>Modのプレビュー画像ファイルを手動で選択することもできます。通常は「Modを追加」を押すだけで十分です。</value>
+  </data>
+
+  <data name="ModInstallerPage_ForceOverwriteDifferentNameMod.Content" xml:space="preserve">
+    <!-- Checkbox: overwrite old mod even if folder names differ -->
+    <value>異なる名前のModを強制上書きしますか？</value>
+  </data>
+
+  <data name="ModInstallerPage_ReplaceInPresetsMain.Text" xml:space="preserve">
+    <!-- Checkbox: replace old mod in presets with this new version -->
+    <value>プリセット内の重複Modを新しいModで置き換え</value>
+  </data>
+
+  <data name="ModInstallerPage_MergedIniFileFolderLabel.Text" xml:space="preserve">
+    <!-- Section heading text -->
+    <value>MergedIniFileフォルダー:</value>
+  </data>
+
+  <data name="ModInstallerPage_ShaderFixesFolderLabel.Text" xml:space="preserve">
+    <!-- Section heading text -->
+    <value>ShaderFixesフォルダー:</value>
+  </data>
+
+  <data name="ModInstallerPage_ShaderFixesAuto.Content" xml:space="preserve">
+    <!-- Radio button: shader fixes folder mode (Auto/Ignore/Manual) -->
+    <value>自動</value>
+  </data>
+
+  <data name="ModInstallerPage_ShaderFixesManualSelect.Content" xml:space="preserve">
+    <!-- Radio button: shader fixes folder mode (Auto/Ignore/Manual) -->
+    <value>手動選択</value>
+  </data>
+
+  <data name="ModInstallerPage_ShaderFixesIgnore.Content" xml:space="preserve">
+    <!-- Radio button: shader fixes folder mode (Auto/Ignore/Manual) -->
+    <value>無視</value>
+  </data>
+
+  <data name="ModInstallerPage_EnableOnlyMod.Content" xml:space="preserve">
+    <!-- Checkbox: disable all other mods, only enable this one -->
+    <value>このModを有効にして他を無効にしますか？</value>
+  </data>
+
+  <data name="ModInstallerPage_AddModButton.Content" xml:space="preserve">
+    <!-- Button to finish installing the mod -->
+    <value>Modを追加</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SelectSkin.Content" xml:space="preserve">
+    <!-- Menu item to select a character skin -->
+    <value>スキンを選択</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SortBy.Text" xml:space="preserve">
+    <!-- Sort option label -->
+    <value>並び替え:</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SortMods.PlaceholderText" xml:space="preserve">
+    <!-- Sort option label -->
+    <value>Modを並び替え...</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SortDateAdded.Content" xml:space="preserve">
+    <!-- Sort option label -->
+    <value>追加日</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SortFolderName.Content" xml:space="preserve">
+    <!-- Sort option label -->
+    <value>フォルダー名</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SortName.Content" xml:space="preserve">
+    <!-- Sort option label -->
+    <value>名前</value>
+  </data>
+
+  <data name="CharacterGalleryPage_ViewButton.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterGalleryPage component -->
+    <value>表示</value>
+  </data>
+
+  <data name="CharacterGalleryPage_AdjustHeight.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterGalleryPage component -->
+    <value>高さ調整:</value>
+  </data>
+
+  <data name="CharacterGalleryPage_AdjustDesiredWidth.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterGalleryPage component -->
+    <value>幅調整:</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SingleSelect.ToolTip" xml:space="preserve">
+    <!-- Toggle/tooltip: restrict to one active mod per character -->
+    <value>これを選択すると、一度に1つのModのみ有効にできます。</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SearchMods.PlaceholderText" xml:space="preserve">
+    <!-- Placeholder text in the mod search box -->
+    <value>Modを検索...</value>
+  </data>
+
+  <data name="CharacterGalleryPage_ViewToggleSwitch.OnContent" xml:space="preserve">
+    <!-- Toggle switch for Gallery View / Detailed View -->
+    <value>ギャラリー表示</value>
+  </data>
+
+  <data name="CharacterGalleryPage_ViewToggleSwitch.OffContent" xml:space="preserve">
+    <!-- Toggle switch for Gallery View / Detailed View -->
+    <value>詳細表示</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SingleSelect.Content" xml:space="preserve">
+    <!-- Toggle/tooltip: restrict to one active mod per character -->
+    <value>単一選択</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SaveImage.Text" xml:space="preserve">
+    <!-- Context menu item for mod operations -->
+    <value>画像を保存</value>
+  </data>
+
+  <data name="CharacterGalleryPage_OpenModFolder.Text" xml:space="preserve">
+    <!-- Context menu item for mod operations -->
+    <value>Modフォルダーを開く...</value>
+  </data>
+
+  <data name="CharacterGalleryPage_OpenModPage.Text" xml:space="preserve">
+    <!-- Context menu item for mod operations -->
+    <value>Modページを開く...</value>
+  </data>
+
+  <data name="CharacterGalleryPage_DeleteMod.Text" xml:space="preserve">
+    <!-- Context menu item for mod operations -->
+    <value>Modを削除</value>
+  </data>
+
+  <data name="CharacterGalleryPage_Author.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterGalleryPage component -->
+    <value>作成者:</value>
+  </data>
+
+  <data name="CharacterGalleryPage_Added.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterGalleryPage component -->
+    <value>追加日:</value>
+  </data>
+
+  <data name="CharacterGalleryPage_LoadingMods.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterGalleryPage component -->
+    <value>Modを読み込み中...</value>
+  </data>
+
+  <data name="ModsOverviewPage_Title.Text" xml:space="preserve">
+    <!-- Static label text on the ModsOverviewPage component -->
+    <value>Mod概要</value>
+  </data>
+
+  <data name="ModsOverviewPage_RunCommandOnThisFolder.Text" xml:space="preserve">
+    <!-- Static label text on the ModsOverviewPage component -->
+    <value>このフォルダーでコマンドを実行:</value>
+  </data>
+
+  <data name="ModsOverviewPage_FullCommand.Text" xml:space="preserve">
+    <!-- Label showing command path/directory details -->
+    <value>コマンド:</value>
+  </data>
+
+  <data name="ModsOverviewPage_WorkingDirectory.Text" xml:space="preserve">
+    <!-- Label showing command path/directory details -->
+    <value>作業ディレクトリ:</value>
+  </data>
+
+  <data name="ModsOverviewPage_TargetPath.Text" xml:space="preserve">
+    <!-- Label showing command path/directory details -->
+    <value>'{{TargetPath}}:</value>
+  </data>
+
+  <data name="ModsOverviewPage_GoToCharacter.Content" xml:space="preserve">
+    <!-- Button to navigate to this character -->
+    <value>キャラクターへ</value>
+  </data>
+
+  <data name="ModsOverviewPage_AddedLabel.Text" xml:space="preserve">
+    <!-- Label showing when the mod was added -->
+    <value>追加日:</value>
+  </data>
+
+  <data name="ModsOverviewPage_RunButton.Content" xml:space="preserve">
+    <!-- Button to run a command on this mod folder -->
+    <value>実行</value>
+  </data>
+
+  <data name="ModsOverviewPage_SearchBox.PlaceholderText" xml:space="preserve">
+    <!-- Placeholder text in the mod search box -->
+    <value>Enterキーで検索...</value>
+  </data>
+
+  <data name="ModsOverviewPage_CloseAll.Content" xml:space="preserve">
+    <!-- Button to close all expanded mod panels -->
+    <value>すべて閉じる</value>
+  </data>
+
+  <data name="PresetDetailsPage_AddMod.Label" xml:space="preserve">
+    <!-- Button to add a mod to this preset -->
+    <value>Modを追加</value>
+  </data>
+
+  <data name="PresetDetailsPage_FindReplacementMod.Text" xml:space="preserve">
+    <!-- Button to find a replacement for a missing mod -->
+    <value>代替Modを検索</value>
+  </data>
+
+  <data name="PresetDetailsPage_SearchBox.PlaceholderText" xml:space="preserve">
+    <!-- Placeholder text in mod search box -->
+    <value>Modを検索...</value>
+  </data>
+
+  <data name="PresetDetailsPage_ReadAndSavePreferences.Text" xml:space="preserve">
+    <!-- Description text for the read/save preferences UI -->
+    <value>設定の読み取りと保存</value>
+  </data>
+
+  <data name="PresetDetailsPage_RemoveModFromPreset.Text" xml:space="preserve">
+    <!-- Button to remove mod from preset -->
+    <value>プリセットからModを削除</value>
+  </data>
+
+  <data name="PresetDetailsPage_AddedToPresetAt.Text" xml:space="preserve">
+    <!-- Static label text on the PresetDetailsPage component -->
+    <value>プリセットに追加:</value>
+  </data>
+
+  <data name="PresetDetailsPage_ModNotFound.Text" xml:space="preserve">
+    <!-- Warning: mod in preset not found -->
+    <value>このModがディスクに見つかりませんでした！</value>
+  </data>
+
+  <data name="PresetDetailsPage_OriginalPath.Text" xml:space="preserve">
+    <!-- Static label text on the PresetDetailsPage component -->
+    <value>元のパス:</value>
+  </data>
+
+  <data name="CharacterCard_TrackedMods.Text" xml:space="preserve">
+    <!-- Displays mod count or selected skin info on the character card -->
+    <value>追跡中のMod:</value>
+  </data>
+
+  <data name="CharacterCard_SelectedInGameSkin.Text" xml:space="preserve">
+    <!-- Displays mod count or selected skin info on the character card -->
+    <value>選択中のゲーム内スキン:</value>
+  </data>
+
+  <data name="CharacterCard_SelectSkin.Content" xml:space="preserve">
+    <!-- Menu item to select a character skin -->
+    <value>スキンを選択</value>
+  </data>
+
+  <data name="CharacterCard_DisableAllMods.Content" xml:space="preserve">
+    <!-- Button title to disable all mods for this character -->
+    <value>すべてのModを無効化</value>
+  </data>
+
+  <data name="ModListOverview_ModsMenu.Title" xml:space="preserve">
+    <!-- Section or dialog title on the ModListOverview component -->
+    <value>Mods</value>
+  </data>
+
+  <data name="ModListOverview_AddMod.Text" xml:space="preserve">
+    <!-- Button to add a mod -->
+    <value>Modを追加...</value>
+  </data>
+
+  <data name="ModListOverview_MultipleSkinWarning.Message" xml:space="preserve">
+    <!-- Warning: multiple mods enabled for this character -->
+    <value>複数のスキンが選択されています</value>
+  </data>
+
+  <data name="ModListOverview_ModEnabledHeader.Header" xml:space="preserve">
+    <!-- Table column header for enabled/disabled status -->
+    <value>Mod有効</value>
+  </data>
+
+  <data name="ModListOverview_ModNameHeader.Header" xml:space="preserve">
+    <!-- Table column header for mod name -->
+    <value>Mod名</value>
+  </data>
+
+  <data name="DebugPage_CreateButton.Content" xml:space="preserve">
+    <!-- Button label on the Debug page -->
+    <value>作成</value>
+  </data>
+
+  <data name="DebugPage_EditButton.Content" xml:space="preserve">
+    <!-- Button label on the Debug page -->
+    <value>編集</value>
+  </data>
+
+  <data name="DebugPage_DeleteButton.Content" xml:space="preserve">
+    <!-- Button label on the Debug page -->
+    <value>削除</value>
+  </data>
+
+  <data name="NotificationsPage_HeaderText.Text" xml:space="preserve">
+    <!-- Page title for the notifications page -->
+    <value>現在のアプリケーション実行中に表示されたすべての通知</value>
+  </data>
+
+  <data name="NotificationsPage_LogPathLabel.Text" xml:space="preserve">
+    <!-- Label showing the log file path -->
+    <value>通知とログの出力先:</value>
+  </data>
+
+  <data name="ErrorWindow_ErrorHeaderText.Text" xml:space="preserve">
+    <!-- Main heading in the error window -->
+    <value>エラーが発生しました:</value>
+  </data>
+
+  <data name="ErrorWindow_ExceptionDescription.Text" xml:space="preserve">
+    <!-- Description text explaining the error -->
+    <value>ハンドルされていない例外が発生しました。アプリケーションが対処方法を知らない問題に遭遇しました。JASMは不安定な状態になっている可能性があります。JASMを再起動することをお勧めします。</value>
+  </data>
+
+  <data name="ErrorWindow_StackTraceLabel.Text" xml:space="preserve">
+    <!-- Label for the stack trace section in the error window -->
+    <value>スタックトレース:</value>
+  </data>
+
+  <data name="ErrorWindow_InnerExceptionLabel.Text" xml:space="preserve">
+    <!-- Label for the inner exception stack trace -->
+    <value>内部例外</value>
+  </data>
+
+  <data name="ErrorWindow_InnerStackTraceLabel.Text" xml:space="preserve">
+    <!-- Label for the stack trace section in the error window -->
+    <value>スタックトレース:</value>
+  </data>
+
+  <data name="GbModPageWindow_TitleText.Text" xml:space="preserve">
+    <!-- Window title -->
+    <value>GameBananaからModをダウンロード</value>
+  </data>
+
+  <data name="GbModPageWindow_LoadingText.Text" xml:space="preserve">
+    <!-- Loading indicator text -->
+    <value>GameBananaからMod情報を読み込み中...</value>
+  </data>
+
+  <data name="GbModPageWindow_DownloadButton.Content" xml:space="preserve">
+    <!-- Button to download the mod file -->
+    <value>ダウンロード</value>
+  </data>
+
+  <data name="GbModPageWindow_InstallButton.Content" xml:space="preserve">
+    <!-- Button to install the mod -->
+    <value>インストール</value>
+  </data>
+
+  <data name="GbModPageWindow_CloseButton.Content" xml:space="preserve">
+    <!-- Button to close the window -->
+    <value>閉じる</value>
+  </data>
+
+  <data name="GbModPageWindow_ModPageLabel.Text" xml:space="preserve">
+    <!-- Label showing the mod page URL -->
+    <value>Modページ:</value>
+  </data>
+
+  <data name="GbModPageWindow_DownloadsButton.Content" xml:space="preserve">
+    <!-- Button to download the mod file -->
+    <value>ダウンロード</value>
+  </data>
+
+  <data name="CharacterManagerPage_Title.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterManagerPage component -->
+    <value>キャラクター管理</value>
+  </data>
+
+  <data name="CharacterManagerPage_SearchBox.Header" xml:space="preserve">
+    <!-- Placeholder or label for the character search box -->
+    <value>編集するキャラクターを検索するか、新しいキャラクターを追加</value>
+  </data>
+
+  <data name="CharacterManagerPage_SearchBox.PlaceholderText" xml:space="preserve">
+    <!-- Placeholder or label for the character search box -->
+    <value>入力して検索...</value>
+  </data>
+
+  <data name="CharacterManagerPage_SearchBox_Placeholder" xml:space="preserve">
+    <!-- Placeholder or label for the character search box -->
+    <value>入力して検索...</value>
+  </data>
+
+  <data name="CharacterManagerPage_AddCharacterButton.ToolTip" xml:space="preserve">
+    <!-- Tooltip explanation on the CharacterManagerPage component -->
+    <value>新しいキャラクターを追加</value>
+  </data>
+
+  <data name="ModSelector_Title.Text" xml:space="preserve">
+    <!-- Title of the mod selector window -->
+    <value>Modを選択</value>
+  </data>
+
+  <data name="ModSelector_SearchBox.PlaceholderText" xml:space="preserve">
+    <!-- Placeholder text in the search box -->
+    <value>Modを検索...</value>
+  </data>
+
+  <data name="ModSelector_DateAdded.Text" xml:space="preserve">
+    <!-- Static label text on the ModSelector component -->
+    <value>追加日:</value>
+  </data>
+
+  <data name="ModSelector_SelectModButton.Content" xml:space="preserve">
+    <!-- Button to confirm mod selection -->
+    <value>Modを選択</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_Title.Text" xml:space="preserve">
+    <!-- Window title -->
+    <value>新しいダウンロード可能ファイルが見つかりました</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_LoadingText.Text" xml:space="preserve">
+    <!-- Loading indicator text -->
+    <value>GameBananaからMod情報を読み込み中...</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_NewSinceLastCheck.Text" xml:space="preserve">
+    <!-- Text showing update check time -->
+    <value>前回のチェック以降の新着</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_DownloadButton.Content" xml:space="preserve">
+    <!-- Button to download the mod file -->
+    <value>ダウンロード</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_InstallButton.Content" xml:space="preserve">
+    <!-- Button to install the mod -->
+    <value>インストール</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_IgnoreCloseButton.Content" xml:space="preserve">
+    <!-- Button to close the window -->
+    <value>無視して閉じる</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_LastCheck.Text" xml:space="preserve">
+    <!-- Text showing update check time -->
+    <value>最終チェック:</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_ModPageLabel.Text" xml:space="preserve">
+    <!-- Label showing the mod page URL -->
+    <value>Modページ:</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_DownloadsButton.Content" xml:space="preserve">
+    <!-- Button to download the mod file -->
+    <value>ダウンロード</value>
+  </data>
+
+  <data name="Settings_Window.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>ウィンドウ</value>
+  </data>
+
+  <data name="Settings_WindowSize.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>ウィンドウサイズを記憶</value>
+  </data>
+
+  <data name="Settings_WindowPosition.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>ウィンドウ位置を記憶</value>
+  </data>
+
+  <data name="Settings_Commands.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>コマンド</value>
+  </data>
+
+  <data name="Settings_CreateCustomCommands.Header" xml:space="preserve">
+    <!-- Form field label in Settings page -->
+    <value>カスタムコマンドを作成</value>
+  </data>
+
+  <data name="Settings_CreateCustomCommands.Description" xml:space="preserve">
+    <!-- Descriptive text on the Settings component -->
+    <value>コマンド（スクリプト）を定義して、指定したModに対して実行できます。</value>
+  </data>
+
+  <data name="Settings_FolderWarning_No3DMigotoEntry" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>フォルダーに指定された名前のエントリが含まれていません:</value>
+  </data>
+
+  <data name="Settings_Notification_ErrorTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>エラー</value>
+  </data>
+
+  <data name="Settings_Notification_SuccessTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>成功</value>
+  </data>
+
+  <data name="Settings_Notification_UpdatingTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>更新中...</value>
+  </data>
+
+  <data name="Settings_Notification_RestartingTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>再起動中...</value>
+  </data>
+
+  <data name="Settings_CommunityGames_EmptyUrl" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>コミュニティリポジトリURLは空にできません。</value>
+  </data>
+
+  <data name="Settings_CommunityGames_Pulling" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>最新のコミュニティゲームを取得中。しばらくお待ちください。</value>
+  </data>
+
+  <data name="Settings_CommunityGames_Updated" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>コミュニティゲームが正常に更新および検証されました。</value>
+  </data>
+
+  <data name="Settings_CommunityGames_IntegrityFailed" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>整合性チェックに失敗しました。リポジトリが期待される構造と一致するか確認してください。</value>
+  </data>
+
+  <data name="Settings_CommunityGames_UpdateFailed" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>コミュニティゲームの更新に失敗しました。</value>
+  </data>
+
+  <data name="Settings_CommunityGames_ExceptionPulling" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>リポジトリの取得中に例外が発生しました。ログを確認してください。</value>
+  </data>
+
+  <data name="Settings_Restart_Restarting" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>アプリケーションを再起動します。</value>
+  </data>
+
+  <data name="Settings_Restart_SettingsSaved" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>設定を保存しました。アプリケーションを再起動中...</value>
+  </data>
+
+  <data name="Settings_Mods_ReorganizeFailed" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Modの再編成に失敗しました。</value>
+  </data>
+
+  <data name="Settings_Mods_Reorganized" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Modが再編成されました。</value>
+  </data>
+
+  <data name="Settings_SeeLogs" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>詳細はログを確認してください。</value>
+  </data>
+
+  <data name="Settings_ModsMovedMsg" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>{0}個のModをキャラクターフォルダーに移動しました</value>
+  </data>
+
+  <data name="Settings_Export_ModsExported" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Modをエクスポートしました</value>
+  </data>
+
+  <data name="Settings_Export_ModsExportedTo" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>{0} にModをエクスポートしました</value>
+  </data>
+
+  <data name="Settings_Export_ErrorExporting" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Modのエクスポート中にエラーが発生しました</value>
+  </data>
+
+  <data name="Settings_Update_ErrorStarting" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>更新プロセスの開始中にエラーが発生しました</value>
+  </data>
+
+  <data name="Settings_Update_CouldNotStart" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>更新プロセスを開始できませんでした</value>
+  </data>
+
+  <data name="Commands_Notification_FailedKillTitle" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>プロセスの強制終了に失敗しました</value>
+  </data>
+
+  <data name="Commands_Notification_NotRunningTitle" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>プロセスが実行されていません</value>
+  </data>
+
+  <data name="Commands_Notification_KilledTitle" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>プロセスを正常に終了しました</value>
+  </data>
+
+  <data name="Commands_Notification_NotFoundTitle" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>コマンドの取得に失敗しました</value>
+  </data>
+
+  <data name="Commands_Notification_NotFoundMessage" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>コマンドが見つかりません</value>
+  </data>
+
+  <data name="Commands_Notification_FailedDeleteTitle" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>コマンドの削除に失敗しました</value>
+  </data>
+
+  <data name="Commands_Notification_DeletedTitle" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the command name -->
+    <value>コマンド「{0}」を削除しました</value>
+  </data>
+
+  <data name="CreateCommand_Notification_UpdatedTitle" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the command name -->
+    <value>コマンド「{0}」を更新しました。</value>
+  </data>
+
+  <data name="CreateCommand_Notification_CreatedTitle" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the command name -->
+    <value>コマンド「{0}」を作成しました。</value>
+  </data>
+
+  <data name="CreateCommand_Notification_UpdateFailed" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>コマンドの更新に失敗しました。</value>
+  </data>
+
+  <data name="CreateCommand_Notification_CreateFailed" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>コマンドの作成に失敗しました。</value>
+  </data>
+
+  <data name="Settings_Notification_ModsExportedToFormat" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>{0} にModをエクスポートしました</value>
+  </data>
+
+  <data name="Settings_Export_ModsExportedToFormat" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>{0} にModをエクスポートしました</value>
+  </data>
+
+  <data name="Settings_ClearEmptyFolders_Title" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>空のフォルダーを削除</value>
+  </data>
+
+  <data name="Settings_ClearEmptyFolders_Content" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>キャラクターのmodリスト内の空のフォルダーをすべて削除します（フォルダーが空であるか、.JASM_ファイル/フォルダーのみを含む場合）。
+キャラクターフォルダーが空の場合も削除されます。
+Modsフォルダーのルートにある空のフォルダーも削除されます。</value>
+  </data>
+
+  <data name="Settings_ClearEmptyFolders_PrimaryButton" xml:space="preserve">
+    <!-- Button label in the "Clear Empty Folders" dialog -->
+    <value>削除</value>
+  </data>
+
+  <data name="Settings_ClearEmptyFolders_CloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="Settings_ClearEmptyFolders_NotificationTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>空のフォルダーを削除しました</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_Title" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Modを無効化</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_PrimaryButton" xml:space="preserve">
+    <!-- Button label in the "Disable All Mods" dialog -->
+    <value>カテゴリ内のModを無効化</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_CloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_SelectText" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Modを無効化するカテゴリを選択:</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_SuggestionText" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>有効なModが多い場合、Modを無効化する前にプリセット（またはバックアップ）を作成することをお勧めします。
+
+選択されたカテゴリ内で、JASMが追跡しているModのみが無効化されます。</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_NoCategoriesTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>カテゴリが選択されていません</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_NoCategoriesMessage" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Modを無効化するカテゴリが選択されていません。</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_SuccessTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Modを無効化しました</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_SuccessMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>選択されたカテゴリのすべての追跡Modが無効化されました: {0}</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_ErrorsTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Modの無効化中にエラーが発生しました</value>
+  </data>
+
+  <data name="Settings_UpdateButton.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>更新</value>
+  </data>
+
+  <data name="Settings_ReorganizeMods.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Modを再編成</value>
+  </data>
+
+  <data name="Settings_CleanMods.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Modフォルダーをクリーンアップ</value>
+  </data>
+
+  <data name="Settings_DisableAllMods.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>すべてのModを無効化</value>
+  </data>
+
+  <data name="Settings_Reset3DmigotoPath.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>3Dmigotoのパスをリセット</value>
+  </data>
+
+  <data name="Settings_ResetGenshinPath.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Genshinのパスをリセット</value>
+  </data>
+
+  <data name="Settings_SkinsAsCharacters.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>キャラクタースキンを別のキャラクターとして扱う</value>
+  </data>
+
+  <data name="Settings_CacheDescription.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>JASMでModをダウンロードすると、アーカイブファイルが自動的にキャッシュされます。キャッシュディレクトリの最大容量（GB）を指定でき、JASMは起動時にキャッシュサイズを制限値未満に維持します。</value>
+  </data>
+
+  <data name="Settings_GithubLink.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Just Another Skin Manager Github</value>
+  </data>
+
+  <data name="Settings_GameBananaLink.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Just Another Skin Manager GameBanana</value>
+  </data>
+
+  <data name="Settings_NewUpdateAvailable.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>GitHubで新しいアップデートが利用可能:</value>
+  </data>
+
+  <data name="Settings_SeeWhatsNew.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>最新リリースの新機能を見る</value>
+  </data>
+
+  <data name="Settings_UpdateDialogText.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>JASMを終了してアップデートを開始します。続行しますか？</value>
+  </data>
+
+  <data name="Settings_UpdateJASMButton.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>はい、JASMを更新</value>
+  </data>
+
+  <data name="Settings_UpdateJASMTo.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>JASMを更新:</value>
+  </data>
+
+  <data name="Settings_IgnoreUpdate.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>現在のアップデートを無視しますか？</value>
+  </data>
+
+  <data name="Settings_OpenCacheFolder.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>キャッシュフォルダーを開く...</value>
+  </data>
+
+  <data name="Settings_CurrentCacheSize.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Modキャッシュの現在のサイズ:</value>
+  </data>
+
+  <data name="FolderSelector_Browse.Content" xml:space="preserve">
+    <!-- Button in the folder picker control -->
+    <value>参照</value>
+  </data>
+
+  <data name="CommandsSettingsPage_WarningTitle" xml:space="preserve">
+    <!-- Page title for the command settings page -->
+    <value>警告</value>
+  </data>
+
+  <data name="CommandsSettingsPage_WarningContent" xml:space="preserve">
+    <!-- Text in the warning/confirmation dialog -->
+    <value>コマンドの作成には十分注意してください。コマンドはシステム上の任意の実行可能ファイルを実行できます。信頼できるソースからのみコマンドを作成してください。JASMは完璧ではなく、惡意のあるスクリプトやJASMのバグからあなたを守ることはできません。「理解しました」をクリックすることで、リスクを理解したことを承認したものとみなされます。</value>
+  </data>
+
+  <data name="CommandsSettingsPage_WarningPrimary" xml:space="preserve">
+    <!-- Text in the warning/confirmation dialog -->
+    <value>理解しました</value>
+  </data>
+
+  <data name="CommandsSettingsPage_WarningClose" xml:space="preserve">
+    <!-- Text in the warning/confirmation dialog -->
+    <value>閉じる</value>
+  </data>
+
+  <data name="CommandsSettingsPage_Title.Text" xml:space="preserve">
+    <!-- Page title for the command settings page -->
+    <value>コマンド設定</value>
+  </data>
+
+  <data name="CommandsSettingsPage_CreateCommand.Header" xml:space="preserve">
+    <!-- Button/section to create a new command -->
+    <value>新しいコマンドを作成</value>
+  </data>
+
+  <data name="CommandsSettingsPage_CreateCommand.Description" xml:space="preserve">
+    <!-- Button/section to create a new command -->
+    <value>JASMが実行できるカスタムコマンドを定義できます。現在、{{TargetPath}}を含むコマンドはMod概要ページからのみ実行できます。</value>
+  </data>
+
+  <data name="CommandsSettingsPage_CreateNewCommandButton.Content" xml:space="preserve">
+    <!-- Button/section to create a new command -->
+    <value>新しいコマンドを作成</value>
+  </data>
+
+  <data name="CommandsSettingsPage_CommandDefinitions.Header" xml:space="preserve">
+    <!-- Section header -->
+    <value>コマンド定義</value>
+  </data>
+
+  <data name="CommandsSettingsPage_CommandDefinitions.Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>作成したコマンド定義の表示と削除ができます。</value>
+  </data>
+
+  <data name="CommandsSettingsPage_DisplayName.Text" xml:space="preserve">
+    <!-- Label showing command details -->
+    <value>表示名:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_CommandDefinitionId.Text" xml:space="preserve">
+    <!-- Label showing command details -->
+    <value>コマンド定義ID:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunButton.Content" xml:space="preserve">
+    <!-- Button to run or kill a command -->
+    <value>実行</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunConfirmText.Text" xml:space="preserve">
+    <!-- Text in the confirmation dialog -->
+    <value>このコマンドを実行してもよろしいですか？</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunConfirmButton.Content" xml:space="preserve">
+    <!-- Text in the confirmation dialog -->
+    <value>実行</value>
+  </data>
+
+  <data name="CommandsSettingsPage_EditButton.Content" xml:space="preserve">
+    <!-- Button to edit or delete a command definition -->
+    <value>編集</value>
+  </data>
+
+  <data name="CommandsSettingsPage_DeleteButton.Content" xml:space="preserve">
+    <!-- Button to edit or delete a command definition -->
+    <value>削除</value>
+  </data>
+
+  <data name="CommandsSettingsPage_DeleteConfirmText.Text" xml:space="preserve">
+    <!-- Text in the confirmation dialog -->
+    <value>このコマンドを削除してもよろしいですか？</value>
+  </data>
+
+  <data name="CommandsSettingsPage_DeleteConfirmButton.Content" xml:space="preserve">
+    <!-- Text in the confirmation dialog -->
+    <value>削除</value>
+  </data>
+
+  <data name="CommandsSettingsPage_Executable.Text" xml:space="preserve">
+    <!-- Label showing command details -->
+    <value>実行ファイル:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_WorkingDirectory.Text" xml:space="preserve">
+    <!-- Label showing command details -->
+    <value>作業ディレクトリ:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_Arguments.Text" xml:space="preserve">
+    <!-- Label showing command details -->
+    <value>引数:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunningCommands.Header" xml:space="preserve">
+    <!-- Section header -->
+    <value>実行中のコマンド</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunningCommands.Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>現在のインスタンスでJASMから起動されたコマンド</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunningDisplayName.Text" xml:space="preserve">
+    <!-- Label showing command details -->
+    <value>表示名:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunningFullCommand.Text" xml:space="preserve">
+    <!-- Label showing command details -->
+    <value>コマンド:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunningCommandDefId.Text" xml:space="preserve">
+    <!-- Static label text on the CommandsSettingsPage component -->
+    <value>コマンド定義ID:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_KillButton.Content" xml:space="preserve">
+    <!-- Button to run or kill a command -->
+    <value>強制終了</value>
+  </data>
+
+  <data name="CreateCommandView_Title.Text" xml:space="preserve">
+    <!-- Window title for the command creator -->
+    <value>コマンドを作成</value>
+  </data>
+
+  <data name="CreateCommandView_CommandName.Header" xml:space="preserve">
+    <!-- Label/placeholder for the command display name (Required field) -->
+    <value>* コマンド名:</value>
+  </data>
+
+  <data name="CreateCommandView_CommandName.PlaceholderText" xml:space="preserve">
+    <!-- Label/placeholder for the command display name (Required field) -->
+    <value>コマンド表示名（必須）</value>
+  </data>
+
+  <data name="CreateCommandView_CustomCommand.Content" xml:space="preserve">
+    <!-- Radio button: create a fully custom command -->
+    <value>カスタムコマンド</value>
+  </data>
+
+  <data name="CreateCommandView_ChainedCommand.Content" xml:space="preserve">
+    <!-- Radio button: use a game start command as base -->
+    <value>カスタムチェーンコマンド</value>
+  </data>
+
+  <data name="CreateCommandView_Executable.Title" xml:space="preserve">
+    <!-- Label/placeholder/title for the executable path (Required field) -->
+    <value>* 実行ファイル</value>
+  </data>
+
+  <data name="CreateCommandView_Executable.PlaceHolderText" xml:space="preserve">
+    <!-- Label/placeholder/title for the executable path (Required field) -->
+    <value>$PATH内か、実行ファイルへの絶対パスである必要があります（必須）</value>
+  </data>
+
+  <data name="CreateCommandView_WorkingDirectory.Title" xml:space="preserve">
+    <!-- Label/placeholder for the working directory -->
+    <value>作業ディレクトリ</value>
+  </data>
+
+  <data name="CreateCommandView_WorkingDirectory.PlaceHolderText" xml:space="preserve">
+    <!-- Label/placeholder for the working directory -->
+    <value>手動でパスを指定する場合、フォルダーが存在している必要があります</value>
+  </data>
+
+  <data name="CreateCommandView_Arguments.Header" xml:space="preserve">
+    <!-- Label/placeholder for command arguments -->
+    <value>引数</value>
+  </data>
+
+  <data name="CreateCommandView_Arguments.PlaceholderText" xml:space="preserve">
+    <!-- Label/placeholder for command arguments -->
+    <value>実行ファイルに渡される引数</value>
+  </data>
+
+  <data name="CreateCommandView_TargetPathHelp.Text" xml:space="preserve">
+    <!-- Help text explaining the {{TargetPath}} variable -->
+    <value>コマンドがファイルシステムオブジェクト（スキン/Modフォルダーなど）に対して実行される場合、{{TargetPath}} が実際のパスに置き換えられます。</value>
+  </data>
+
+  <data name="CreateCommandView_KillProcess.Content" xml:space="preserve">
+    <!-- Checkbox: kill the process when JASM exits -->
+    <value>JASM終了時にプロセスを強制終了</value>
+  </data>
+
+  <data name="CreateCommandView_RunAsAdmin.Content" xml:space="preserve">
+    <!-- Checkbox: launch command with admin privileges -->
+    <value>管理者として実行</value>
+  </data>
+
+  <data name="CreateCommandView_UseShellExecute.Content" xml:space="preserve">
+    <!-- Checkbox: use OS shell to launch the command -->
+    <value>シェル実行を使用</value>
+  </data>
+
+  <data name="CreateCommandView_CreateWindow.Content" xml:space="preserve">
+    <!-- Checkbox: show a visible window for the process -->
+    <value>ウィンドウを作成</value>
+  </data>
+
+  <data name="CreateCommandView_CommandPreview.Header" xml:space="preserve">
+    <!-- Label showing the full command string -->
+    <value>実行されるコマンド:</value>
+  </data>
+
+  <data name="WindowManagerService_Close" xml:space="preserve">
+    <!-- Close button text for full-screen dialogs -->
+    <value>閉じる</value>
+  </data>
+
+  <data name="PresetPage_HowPresetsWorkTitle" xml:space="preserve">
+    <!-- Dialog explaining how presets work -->
+    <value>プリセットの仕組み</value>
+  </data>
+
+  <data name="PresetPage_HowPresetsWorkClose" xml:space="preserve">
+    <!-- Dialog explaining how presets work -->
+    <value>閉じる</value>
+  </data>
+
+  <data name="PresetPage_HowPresetsWorkDesc1" xml:space="preserve">
+    <!-- Dialog explaining how presets work -->
+    <value>プリセットは有効にするModとその設定のリストです。JASMはModの設定をMod自体の.JASM_ModConfig.jsonファイルに読み取り・保存します。</value>
+  </data>
+
+  <data name="PresetPage_HowPresetsWorkDesc2" xml:space="preserve">
+    <!-- Dialog explaining how presets work -->
+    <value>新しいプリセットを作成すると、JASMは有効なすべてのModとそれらに保存された設定のリストを作成します。後でプリセットを適用すると、それらのModのみを有効にし、プリセットに保存された設定を適用します。</value>
+  </data>
+
+  <data name="PresetPage_HowPresetsWorkDesc3" xml:space="preserve">
+    <!-- Dialog explaining how presets work -->
+    <value>自動同期チェックボックスをオンにすると、JASMが3Dmigotoの再読み込みを処理できます。または、手動コントロール表示チェックボックスをオンにして、設定を手動で保存/読み込むこともできます。</value>
+  </data>
+
+  <data name="PresetPage_HowPresetsWorkDesc4" xml:space="preserve">
+    <!-- Dialog explaining how presets work -->
+    <value>このページのプリセット部分を無視して、手動コントロールのみを使用してModの設定を保持することも可能です。</value>
+  </data>
+
+  <data name="RandomizeModsDialog_Title" xml:space="preserve">
+    <!-- Title of the randomize mods dialog -->
+    <value>Modをランダム化</value>
+  </data>
+
+  <data name="RandomizeModsDialog_Primary" xml:space="preserve">
+    <!-- Confirm button -->
+    <value>ランダム化</value>
+  </data>
+
+  <data name="RandomizeModsDialog_Close" xml:space="preserve">
+    <!-- Close/cancel button -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="RandomizeModsDialog_DescPrefix" xml:space="preserve">
+    <!-- Description/suggestion text -->
+    <value>ランダム化するカテゴリを選択:</value>
+  </data>
+
+  <data name="RandomizeModsDialog_DescNote" xml:space="preserve">
+    <!-- Description/suggestion text -->
+    <value>注意：これは1つのModのみアクティブにすることを想定したModフォルダーのみをランダム化します。「その他__」フォルダーはランダム化されません。ゲーム内のキャラクタースキンごとに1つのModのみが有効になります。</value>
+  </data>
+
+  <data name="RandomizeModsDialog_AllowNone" xml:space="preserve">
+    <!-- Toggle: allow all mods to be disabled -->
+    <value>結果としてModなしを許可する。ModフォルダーにModが有効にならない可能性があります。</value>
+  </data>
+
+  <data name="RandomizeModsDialog_Suggestion" xml:space="preserve">
+    <!-- Description/suggestion text -->
+    <value>有効なModが多い場合、ランダム化する前にModのプリセット（またはバックアップ）を作成することをお勧めします。</value>
+  </data>
+
+  <data name="RandomizeModsDialog_NotifNoCategories" xml:space="preserve">
+    <!-- Notification about randomization -->
+    <value>カテゴリが選択されていません</value>
+  </data>
+
+  <data name="RandomizeModsDialog_NotifNoCategoriesDesc" xml:space="preserve">
+    <!-- Description/suggestion text -->
+    <value>ランダム化するカテゴリが選択されていません。</value>
+  </data>
+
+  <data name="RandomizeModsDialog_NotifFailed" xml:space="preserve">
+    <!-- Notification about randomization -->
+    <value>Modのランダム化に失敗しました</value>
+  </data>
+
+  <data name="RandomizeModsDialog_NotifSuccess" xml:space="preserve">
+    <!-- Notification about randomization -->
+    <value>Modをランダム化しました</value>
+  </data>
+
+  <data name="RandomizeModsDialog_NotifSuccessDesc" xml:space="preserve">
+    <!-- Description/suggestion text -->
+    <value>次のカテゴリのModがランダム化されました:</value>
+  </data>
+
+  <data name="CreateCommandView_EffectiveWorkingDirPrefix" xml:space="preserve">
+    <!-- Text on the CreateCommandView component -->
+    <value>実効作業ディレクトリ:</value>
+  </data>
+
+  <data name="CreateCommandView_InvalidWorkingDir" xml:space="preserve">
+    <!-- Text on the CreateCommandView component -->
+    <value>無効な作業ディレクトリ</value>
+  </data>
+
+  <data name="CreateCommandView_SaveCommand.Content" xml:space="preserve">
+    <!-- Button to save the command definition -->
+    <value>コマンドを保存</value>
+  </data>
+
+  <data name="Category_Character" xml:space="preserve">
+    <!-- Filter category: Character -->
+    <value>キャラクター</value>
+  </data>
+
+  <data name="Category_Characters" xml:space="preserve">
+    <!-- Filter category: Characters -->
+    <value>キャラクター</value>
+  </data>
+
+  <data name="Category_NPC" xml:space="preserve">
+    <!-- Filter category: NPC -->
+    <value>NPC</value>
+  </data>
+
+  <data name="Category_NPCs" xml:space="preserve">
+    <!-- Filter category: NPCs -->
+    <value>NPC</value>
+  </data>
+
+  <data name="Category_Object" xml:space="preserve">
+    <!-- Filter category: Object -->
+    <value>オブジェクト</value>
+  </data>
+
+  <data name="Category_Objects" xml:space="preserve">
+    <!-- Filter category: Objects -->
+    <value>オブジェクト</value>
+  </data>
+
+  <data name="Category_Weapon" xml:space="preserve">
+    <!-- Filter category: Weapon -->
+    <value>武器</value>
+  </data>
+
+  <data name="Category_Weapons" xml:space="preserve">
+    <!-- Filter category: Weapons -->
+    <value>武器</value>
+  </data>
+
+  <data name="Category_Custom" xml:space="preserve">
+    <!-- Filter category: Custom -->
+    <value>カスタム</value>
+  </data>
+
+  <data name="Category_Characters_Resumen" xml:space="preserve">
+    <!-- Filter category: Characters_Resumen -->
+    <value>キャラクター概要</value>
+  </data>
+
+  <data name="Characters_ErrorDisablingModsTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Modの無効化中にエラー</value>
+  </data>
+
+  <data name="Characters_ModsDisabledTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Modを無効化しました</value>
+  </data>
+
+  <data name="Characters_ModsDisabledMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>{0} のすべてのModが無効化されました</value>
+  </data>
+
+  <data name="Characters_ModsEnabledTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Modを有効化しました</value>
+  </data>
+
+  <data name="Characters_ModsEnabledMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>{0} のすべての追跡Modが有効化されました。</value>
+  </data>
+
+  <data name="Characters_ErrorsEnablingModsTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Modの有効化中にエラー</value>
+  </data>
+
+  <data name="Characters_ErrorsEnablingModsMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>{0} 個のModでエラーが発生しました。ログを確認してください。</value>
+  </data>
+
+  <data name="Characters_ModsDisabledSuccessTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Modを無効化しました</value>
+  </data>
+
+  <data name="Characters_ModsDisabledSuccessMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>{0} のすべての追跡Modが無効化されました。</value>
+  </data>
+
+  <data name="Characters_ErrorsDisablingModsTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Modの無効化中にエラー</value>
+  </data>
+
+  <data name="Characters_ErrorsDisablingModsMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>{0} 個のModでエラーが発生しました。ログを確認してください。</value>
+  </data>
+
+  <data name="Characters_CleanupCompleteTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>クリーンアップ完了</value>
+  </data>
+
+  <data name="Characters_CleanupCompleteMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>{1} の無効化されたMod {0} 個を削除しました。</value>
+  </data>
+
+  <data name="Characters_ErrorAddingModTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Modの追加中にエラー</value>
+  </data>
+
+  <data name="Characters_InvalidGameBananaLinkTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>無効なGameBanana Modページリンク</value>
+  </data>
+
+  <data name="Characters_ErrorOpeningModPageTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Modページウィンドウの開封エラー</value>
+  </data>
+
+  <data name="Settings_Startup_SettingsSavedTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>起動設定を保存しました</value>
+  </data>
+
+  <data name="Settings_Startup_SettingsSavedMessage" xml:space="preserve">
+    <!-- Contains a dynamic value placeholder -->
+    <value>起動設定を '{0}' に保存しました</value>
+  </data>
+
+  <data name="Settings_Startup_AlphaTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>JASMはまだアルファ版です</value>
+  </data>
+
+  <data name="Settings_Startup_AlphaMessage" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>バグがあり、問題が発生する可能性が高いです。とはいえ、Just Another Skin Managerをお楽しみいただければ幸いです！</value>
+  </data>
+
+  <data name="Settings_RestartRequired_Title" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>再起動が必要です</value>
+  </data>
+
+  <data name="Settings_RestartRequired_Content" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>テーマを有効にするにはアプリケーションを再起動する必要があります。そうしないとアプリケーションが不安定になる可能性があります。これはおそらくテーマ設定が正しく構成されていないためです。ダークモードをお勧めします。
+
+ご不便をおかけして申し訳ありません。</value>
+  </data>
+
+  <data name="Settings_RestartRequired_PrimaryButton" xml:space="preserve">
+    <!-- Button label in the "Restart Required" dialog -->
+    <value>再起動</value>
+  </data>
+
+  <data name="Settings_RestartRequired_CloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="Settings_ReorganizeMods_Title" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Modを再編成しますか？</value>
+  </data>
+
+  <data name="Settings_ReorganizeMods_Content" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Modsフォルダーを再編成しますか？
+これにより、ModsフォルダーとOthersフォルダーに直接ある既存のModを、それぞれのキャラクターに割り当てられたフォルダーに整理します。
+
+適切に一致しないModは'Others'フォルダーに配置されます。すでにOthersフォルダーにあるModはそこに残ります。</value>
+  </data>
+
+  <data name="Settings_ReorganizeMods_PrimaryButton" xml:space="preserve">
+    <!-- Button label in the "Reorganize Mods" dialog -->
+    <value>はい</value>
+  </data>
+
+  <data name="Settings_ReorganizeMods_CloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="Settings_RestartRequired_LangTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>再起動が必要です</value>
+  </data>
+
+  <data name="Settings_RestartRequired_LangPrimaryButton" xml:space="preserve">
+    <!-- Button label in the "Restart Required" dialog -->
+    <value>言語を変更して再起動</value>
+  </data>
+
+  <data name="Settings_RestartRequired_LangCloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="Settings_SwitchGame_Title" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>ゲームの切り替え</value>
+  </data>
+
+  <data name="Settings_SwitchGame_Content" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>ゲームを切り替えるとアプリケーションが再起動します。これは選択したゲームに対してアプリケーションが正しく設定されるために必要です。
+
+ゲームを切り替えますか？</value>
+  </data>
+
+  <data name="Settings_SwitchGame_PrimaryButton" xml:space="preserve">
+    <!-- Contains a dynamic value placeholder -->
+    <value>{0} に切り替え</value>
+  </data>
+
+  <data name="Settings_SwitchGame_CloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="Settings_CharacterSkins_EnableTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>キャラクタースキンを別のキャラクターとして有効にしますか？</value>
+  </data>
+
+  <data name="Settings_CharacterSkins_EnableContent" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>これを有効にすると、JASMはゲーム内スキンをキャラクター概要で別のキャラクターとして扱います。
+これは将来JASMのデフォルト設定になる可能性があります。
+JASMはModを移動したり削除したりしません。
+
+キャラクタースキンを別のキャラクターとして有効にしてもよろしいですか？JASMはその後再起動します...</value>
+  </data>
+
+  <data name="Settings_CharacterSkins_EnablePrimaryButton" xml:space="preserve">
+    <!-- Button label in the character skins dialog -->
+    <value>有効化</value>
+  </data>
+
+  <data name="Settings_CharacterSkins_DisableTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>キャラクタースキンを別のキャラクターとして扱うのを無効にしますか？</value>
+  </data>
+
+  <data name="Settings_CharacterSkins_DisableContent" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>これを無効にすると、JASMはゲーム内スキンをキャラクター概要でベースキャラクターのスキンとして扱います。
+これは現在のJASMのデフォルト設定です。
+JASMはModを移動したり削除したりしません。
+
+キャラクタースキンを別のキャラクターとして扱うのを無効にしてもよろしいですか？JASMはその後再起動します...</value>
+  </data>
+
+  <data name="Settings_CharacterSkins_DisablePrimaryButton" xml:space="preserve">
+    <!-- Button label in the character skins dialog -->
+    <value>無効化</value>
+  </data>
+
+  <data name="Settings_CharacterSkins_CloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="Settings_UpdateFolderPaths_Title" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>フォルダーパスを更新しますか？</value>
+  </data>
+
+  <data name="Settings_UpdateFolderPaths_Content" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>新しいフォルダーパスを保存しますか？アプリはその後再起動します。</value>
+  </data>
+
+  <data name="Settings_UpdateFolderPaths_PrimaryButton" xml:space="preserve">
+    <!-- Button label in the "Update Folder Paths" dialog -->
+    <value>保存</value>
+  </data>
+
+  <data name="Settings_UpdateFolderPaths_CloseButton" xml:space="preserve">
+    <!-- Folder path selector label in Settings page -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="Settings_Export_ButtonText" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Modをエクスポート</value>
+  </data>
+
+  <data name="Settings_GameSource_RestartTitle" xml:space="preserve">
+    <!-- Game source selection UI (Release vs Community) -->
+    <value>再起動が必要です</value>
+  </data>
+
+  <data name="Settings_GameSource_RestartContent" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>ゲームソースを変更するには、新しいゲームを読み込むためにアプリケーションの再起動が必要です。JASMを終了します。</value>
+  </data>
+
+  <data name="Settings_GameSource_RestartPrimary" xml:space="preserve">
+    <!-- Game source selection UI (Release vs Community) -->
+    <value>今すぐ再起動</value>
+  </data>
+
+  <data name="Settings_GameSource_RestartClose" xml:space="preserve">
+    <!-- Game source selection UI (Release vs Community) -->
+    <value>後で再起動</value>
+  </data>
+
+  <data name="Settings_Export_PrimaryButton" xml:space="preserve">
+    <!-- Button label in the mod export dialog -->
+    <value>エクスポート</value>
+  </data>
+
+  <data name="Settings_Export_CloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="Notifications_LogFileNotFoundTitle" xml:space="preserve">
+    <!-- Text on the Notifications component -->
+    <value>ログファイルが見つかりません</value>
+  </data>
+
+  <data name="Notifications_LogFileCouldNotOpenTitle" xml:space="preserve">
+    <!-- Text on the Notifications component -->
+    <value>ログファイルを開けませんでした</value>
+  </data>
+
+  <data name="CreateCommand_FilePicker_CommitText" xml:space="preserve">
+    <!-- Text for the file/folder picker dialog -->
+    <value>選択</value>
+  </data>
+
+  <data name="CreateCommand_FolderPicker_CommitText" xml:space="preserve">
+    <!-- Text for the file/folder picker dialog -->
+    <value>フォルダーを選択</value>
+  </data>
+
+  <data name="Characters_PinToTopText" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>先頭に固定</value>
+  </data>
+
+  <data name="Characters_UnpinCharacterText" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>固定を解除</value>
+  </data>
+
+  <data name="Settings_Export_Status_KeepCurrent" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>現在の状態を維持</value>
+  </data>
+
+  <data name="Settings_Export_Status_EnableAll" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>すべてのModを有効化</value>
+  </data>
+
+  <data name="Settings_Export_Status_DisableAll" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>すべてのModを無効化</value>
+  </data>
+
+  <data name="CharacterDetails_ViewToggle.OnContent" xml:space="preserve">
+    <!-- Toggle switch to switch between Gallery View or Detailed View -->
+    <value>ギャラリー表示</value>
+  </data>
+
+  <data name="ModGrid_EnabledColumn" xml:space="preserve">
+    <!-- Column header in the mod list: EnabledColumn -->
+    <value>有効</value>
+  </data>
+
+  <data name="ModGrid_ModNameColumn" xml:space="preserve">
+    <!-- Column header in the mod list: ModNameColumn -->
+    <value>Mod名</value>
+  </data>
+
+  <data name="ModGrid_ModFolderNameColumn" xml:space="preserve">
+    <!-- Column header in the mod list: ModFolderNameColumn -->
+    <value>Modフォルダー名</value>
+  </data>
+
+  <data name="ModGrid_AuthorColumn" xml:space="preserve">
+    <!-- Column header in the mod list: AuthorColumn -->
+    <value>作成者</value>
+  </data>
+
+  <data name="ModGrid_AddedColumn" xml:space="preserve">
+    <!-- Column header in the mod list: AddedColumn -->
+    <value>追加日</value>
+  </data>
+
+  <data name="ModGrid_PresetsColumn" xml:space="preserve">
+    <!-- Column header in the mod list: PresetsColumn -->
+    <value>プリセット</value>
+  </data>
+
+  <data name="ModGrid_NotesColumn" xml:space="preserve">
+    <!-- Column header in the mod list: NotesColumn -->
+    <value>メモ</value>
+  </data>
+
+  <data name="CharacterDetails_MultipleModsActiveMessage" xml:space="preserve">
+    <!-- Warning message shown when multiple mods are enabled simultaneously -->
+    <value>複数のModが有効です</value>
+  </data>
+
+  <data name="CharacterGallery_EnableButton" xml:space="preserve">
+    <!-- Text on the CharacterGallery component -->
+    <value>有効化</value>
+  </data>
+
+  <data name="CharacterGallery_DisableButton" xml:space="preserve">
+    <!-- Text on the CharacterGallery component -->
+    <value>無効化</value>
+  </data>
+
+  <data name="CreateCharacterPage_Title.Text" xml:space="preserve">
+    <!-- Static label text on the CreateCharacterPage component -->
+    <value>キャラクターを作成</value>
+  </data>
+
+  <data name="CreateCharacterPage_CharacterImage.Text" xml:space="preserve">
+    <!-- Static label text on the CreateCharacterPage component -->
+    <value>キャラクター画像</value>
+  </data>
+
+  <data name="CreateCharacterPage_InternalName.Header" xml:space="preserve">
+    <!-- Label/help for the internal name (used for mod folder naming, must be unique) -->
+    <value>内部名（必須）</value>
+  </data>
+
+  <data name="CreateCharacterPage_DisplayName.Header" xml:space="preserve">
+    <!-- Label for the character display name field -->
+    <value>表示名</value>
+  </data>
+
+  <data name="CreateCharacterPage_ModFilesName.Header" xml:space="preserve">
+    <!-- Label/help for the mod files folder name -->
+    <value>Modファイル名</value>
+  </data>
+
+  <data name="CreateCharacterPage_Rarity.Header" xml:space="preserve">
+    <!-- Label for the rarity selector -->
+    <value>レアリティ</value>
+  </data>
+
+  <data name="CreateCharacterPage_Element.Header" xml:space="preserve">
+    <!-- Label for the element/type selector -->
+    <value>属性</value>
+  </data>
+
+  <data name="CreateCharacterPage_SearchKeys.Text" xml:space="preserve">
+    <!-- Section label or help: additional search keywords for this character -->
+    <value>検索キー</value>
+  </data>
+
+  <data name="CreateCharacterPage_NewKeyName.PlaceholderText" xml:space="preserve">
+    <!-- Hint text inside an input field on the CreateCharacterPage component -->
+    <value>新しいキー名...</value>
+  </data>
+
+  <data name="CreateCharacterPage_AddSearchKey.Content" xml:space="preserve">
+    <!-- Button to add or remove search keywords -->
+    <value>検索キーを追加</value>
+  </data>
+
+  <data name="CreateCharacterPage_SearchKeysDescription.Text" xml:space="preserve">
+    <!-- Section label or help: additional search keywords for this character -->
+    <value>JASMは検索機能を向上させるためにキーを使用します。一部のキャラクターには複数の名前がある場合があるため、追加の名前や検索用語をキーとして追加できます。</value>
+  </data>
+
+  <data name="CreateCharacterPage_RemoveKey.Content" xml:space="preserve">
+    <!-- Button to add or remove search keywords -->
+    <value>削除</value>
+  </data>
+
+  <data name="CreateCharacterPage_SaveButton.Content" xml:space="preserve">
+    <!-- Button to save character changes -->
+    <value>キャラクターを作成</value>
+  </data>
+
+  <data name="EditCharacterPage_ModFolderPath.Text" xml:space="preserve">
+    <!-- Static label text on the EditCharacterPage component -->
+    <value>Modフォルダーパス:</value>
+  </data>
+
+  <data name="EditCharacterPage_DisableCharacter.Content" xml:space="preserve">
+    <!-- Button/dialog for disabling a character -->
+    <value>キャラクターを無効化</value>
+  </data>
+
+  <data name="EditCharacterPage_EnableCharacter.Content" xml:space="preserve">
+    <!-- Button/dialog for enabling a disabled character -->
+    <value>キャラクターを有効化</value>
+  </data>
+
+  <data name="EditCharacterPage_DeleteCharacter.Content" xml:space="preserve">
+    <!-- Button/dialog for deleting a custom character -->
+    <value>カスタムキャラクターを削除</value>
+  </data>
+
+  <data name="EditCharacterPage_InternalNameId.Text" xml:space="preserve">
+    <!-- Label/help for the internal name (used for mod folder naming, must be unique) -->
+    <value>内部名（ID）:</value>
+  </data>
+
+  <data name="EditCharacterPage_DisplayName.Header" xml:space="preserve">
+    <!-- Label for the character display name field -->
+    <value>表示名</value>
+  </data>
+
+  <data name="EditCharacterPage_TotalMods.Text" xml:space="preserve">
+    <!-- Static label text on the EditCharacterPage component -->
+    <value>Mod総数:</value>
+  </data>
+
+  <data name="EditCharacterPage_SearchKeys.Text" xml:space="preserve">
+    <!-- Section label or help: additional search keywords for this character -->
+    <value>キャラクター検索キー</value>
+  </data>
+
+  <data name="EditCharacterPage_NewKeyName.PlaceholderText" xml:space="preserve">
+    <!-- Hint text inside an input field on the EditCharacterPage component -->
+    <value>新しいキー名...</value>
+  </data>
+
+  <data name="EditCharacterPage_AddSearchKey.Content" xml:space="preserve">
+    <!-- Button to add or remove search keywords -->
+    <value>検索キーを追加</value>
+  </data>
+
+  <data name="EditCharacterPage_SearchKeysDescription.Text" xml:space="preserve">
+    <!-- Section label or help: additional search keywords for this character -->
+    <value>JASMは検索機能を向上させるためにキーを使用します。一部のキャラクターには複数の名前がある場合があるため、追加の名前や検索用語をキーとして追加できます。</value>
+  </data>
+
+  <data name="EditCharacterPage_RemoveKey.Content" xml:space="preserve">
+    <!-- Button to add or remove search keywords -->
+    <value>削除</value>
+  </data>
+
+  <data name="EditCharacterPage_UndoChanges.Content" xml:space="preserve">
+    <!-- Button to revert unsaved edits -->
+    <value>変更を元に戻す</value>
+  </data>
+
+  <data name="EditCharacterPage_SaveChanges.Content" xml:space="preserve">
+    <!-- Button to save character changes -->
+    <value>変更を保存</value>
+  </data>
+
+  <data name="EditCharacterPage_ShowDataModel.Text" xml:space="preserve">
+    <!-- Button to show the character JSON data model -->
+    <value>キャラクターデータモデルを表示...</value>
+  </data>
+
+  <data name="EditCharacterPage_ResetCharacter.Content" xml:space="preserve">
+    <!-- Button/dialog for resetting a character -->
+    <value>キャラクターをリセット</value>
+  </data>
+
+  <data name="CreateCharacterPage_ExportJson.Content" xml:space="preserve">
+    <!-- Button to export character data as JSON -->
+    <value>キャラクターJSONをエクスポート</value>
+  </data>
+
+  <data name="CreateCharacterPage_OpenCustomJson.Content" xml:space="preserve">
+    <!-- Button to import a custom JSON file -->
+    <value>カスタムキャラクターJSONファイルを開く</value>
+  </data>
+
+  <data name="CreateCharacter_FailedTitle" xml:space="preserve">
+    <!-- Notification: an operation failed -->
+    <value>キャラクターの作成に失敗しました</value>
+  </data>
+
+  <data name="CreateCharacter_EnableFailedTitle" xml:space="preserve">
+    <!-- Notification: an operation failed -->
+    <value>キャラクターを作成しましたが、Modリストの有効化に失敗しました</value>
+  </data>
+
+  <data name="CreateCharacter_SuccessTitle" xml:space="preserve">
+    <!-- Notification: operation succeeded -->
+    <value>キャラクターを作成しました</value>
+  </data>
+
+  <data name="CreateCharacter_SuccessMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>キャラクター「{0}」を作成しました</value>
+  </data>
+
+  <data name="CreateCharacter_PasteImageFailedTitle" xml:space="preserve">
+    <!-- Notification: paste image operation result -->
+    <value>画像の貼り付けに失敗しました</value>
+  </data>
+
+  <data name="CreateCharacter_NoImageInClipboard" xml:space="preserve">
+    <!-- Notification: clipboard has no image -->
+    <value>クリップボードに画像が見つかりません</value>
+  </data>
+
+  <data name="CreateCharacter_JsonExportFailedTitle" xml:space="preserve">
+    <!-- Dialog/notification for JSON export -->
+    <value>JSONエクスポートの作成に失敗しました</value>
+  </data>
+
+  <data name="CreateCharacter_JsonExportTitle" xml:space="preserve">
+    <!-- Dialog/notification for JSON export -->
+    <value>キャラクターモデルJSONエクスポート</value>
+  </data>
+
+  <data name="CreateCharacter_JsonExportPrimary" xml:space="preserve">
+    <!-- Dialog/notification for JSON export -->
+    <value>クリップボードにコピーして閉じる</value>
+  </data>
+
+  <data name="CreateCharacter_JsonExportClose" xml:space="preserve">
+    <!-- Dialog/notification for JSON export -->
+    <value>閉じる</value>
+  </data>
+
+  <data name="CreateCharacter_JsonCopiedTitle" xml:space="preserve">
+    <!-- Notification: operation succeeded -->
+    <value>キャラクターJSONをクリップボードにコピーしました</value>
+  </data>
+
+  <data name="EditCharacter_PasteImageFailedTitle" xml:space="preserve">
+    <!-- Notification: paste image operation result -->
+    <value>画像の貼り付けに失敗しました</value>
+  </data>
+
+  <data name="EditCharacter_NoImageInClipboard" xml:space="preserve">
+    <!-- Notification: clipboard has no image -->
+    <value>クリップボードに画像が見つかりません</value>
+  </data>
+
+  <data name="EditCharacter_DeletedTitle" xml:space="preserve">
+    <!-- Text on the EditCharacter component -->
+    <value>カスタムキャラクターを削除しました</value>
+  </data>
+
+  <data name="EditCharacter_DeletedMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>カスタムキャラクター「{0}」を削除しました</value>
+  </data>
+
+  <data name="EditCharacter_SaveFailedTitle" xml:space="preserve">
+    <!-- Notification: an operation failed -->
+    <value>キャラクターの変更の保存に失敗しました</value>
+  </data>
+
+  <data name="EditCharacter_DisableCharacterTitle" xml:space="preserve">
+    <!-- Button/dialog for disabling a character -->
+    <value>キャラクターを無効化</value>
+  </data>
+
+  <data name="EditCharacter_DisableCharacterContent" xml:space="preserve">
+    <!-- Button/dialog for disabling a character -->
+    <value>このキャラクターを無効にしてもよろしいですか？キャラクターは削除されませんが、JASMはキャラクターを認識しなくなります。キャラクターは後で再有効化できます。これは「はい」を押すとすぐに実行されます。</value>
+  </data>
+
+  <data name="EditCharacter_DisableCharacterPrimary" xml:space="preserve">
+    <!-- Button/dialog for disabling a character -->
+    <value>はい、このキャラクターを無効化</value>
+  </data>
+
+  <data name="EditCharacter_DisableCharacterClose" xml:space="preserve">
+    <!-- Button/dialog for disabling a character -->
+    <value>いいえ</value>
+  </data>
+
+  <data name="EditCharacter_DeleteCharacterTitle" xml:space="preserve">
+    <!-- Button/dialog for deleting a custom character -->
+    <value>カスタムキャラクターを削除</value>
+  </data>
+
+  <data name="EditCharacter_DeleteCharacterContent" xml:space="preserve">
+    <!-- Button/dialog for deleting a custom character -->
+    <value>このカスタムキャラクターを削除してもよろしいですか？キャラクターは削除され、JASMはキャラクターを認識しなくなります。これは「はい」を押すとすぐに実行されます。</value>
+  </data>
+
+  <data name="EditCharacter_DeleteCharacterPrimary" xml:space="preserve">
+    <!-- Button/dialog for deleting a custom character -->
+    <value>はい、このカスタムキャラクターを削除</value>
+  </data>
+
+  <data name="EditCharacter_DeleteCharacterClose" xml:space="preserve">
+    <!-- Button/dialog for deleting a custom character -->
+    <value>いいえ</value>
+  </data>
+
+  <data name="EditCharacter_EnableCharacterTitle" xml:space="preserve">
+    <!-- Button/dialog for enabling a disabled character -->
+    <value>キャラクターを有効化</value>
+  </data>
+
+  <data name="EditCharacter_EnableCharacterContent" xml:space="preserve">
+    <!-- Button/dialog for enabling a disabled character -->
+    <value>このキャラクターを有効にしてもよろしいですか？これは「はい」を押すとすぐに実行されます。</value>
+  </data>
+
+  <data name="EditCharacter_EnableCharacterPrimary" xml:space="preserve">
+    <!-- Button/dialog for enabling a disabled character -->
+    <value>はい、このキャラクターを有効化</value>
+  </data>
+
+  <data name="EditCharacter_EnableCharacterClose" xml:space="preserve">
+    <!-- Button/dialog for enabling a disabled character -->
+    <value>いいえ</value>
+  </data>
+
+  <data name="CreateCharacterPage_IsMultiMod.Content" xml:space="preserve">
+    <!-- Toggle/help: whether this character supports multiple mods enabled at once -->
+    <value>マルチMod対応</value>
+  </data>
+
+  <data name="EditCharacterPage_IsMultiMod.Content" xml:space="preserve">
+    <!-- Toggle/help: whether this character supports multiple mods enabled at once -->
+    <value>マルチMod対応</value>
+  </data>
+
+  <data name="EditCharacterPage_GoToCharacter.Content" xml:space="preserve">
+    <!-- Button to navigate to this character -->
+    <value>キャラクターへ移動</value>
+  </data>
+
+  <data name="CreateCharacterPage_InternalNameHelp.Text" xml:space="preserve">
+    <!-- Label/help for the internal name (used for mod folder naming, must be unique) -->
+    <value>内部名はJASMがキャラクター/Modオブジェクトを識別するために使用されます。Modフォルダーの名前としても使用されます。一意である必要があります。キャラクター作成後に変更すると、JASMはこれを新しいキャラクターとして認識します。</value>
+  </data>
+
+  <data name="CreateCharacterPage_ModFilesNameHelp.Text" xml:space="preserve">
+    <!-- Label/help for the mod files folder name -->
+    <value>JASMは場合によって、Modがどのキャラクターのものかを判断しようとすることがあります。その際、ModFilesNameテキストを使用して同じ名前のModファイルを検索します。例えば、ModFilesNameが'paimon'の場合、PaimonHeadLightMap.ddsという名前のファイルと一致します。JASMにModファイルの一致を試行させたくない場合は空のままにしてください。</value>
+  </data>
+
+  <data name="CreateCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
+    <!-- Toggle/help: whether this character supports multiple mods enabled at once -->
+    <value>チェックすると、このModオブジェクトで複数のModが有効になっている場合にJASMは警告を表示しなくなります。</value>
+  </data>
+
+  <data name="EditCharacterPage_InternalNameHelp.Text" xml:space="preserve">
+    <!-- Label/help for the internal name (used for mod folder naming, must be unique) -->
+    <value>内部名はJASMがキャラクター/Modオブジェクトを識別するために使用されます。Modフォルダーの名前としても使用されます。一意である必要があります。キャラクター作成後に変更すると、JASMはこれを新しいキャラクターとして認識します。</value>
+  </data>
+
+  <data name="EditCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
+    <!-- Toggle/help: whether this character supports multiple mods enabled at once -->
+    <value>チェックすると、このModオブジェクトで複数のModが有効になっている場合にJASMは警告を表示しなくなります。</value>
+  </data>
+
+  <data name="EditCharacterPage_ResetCharacterSettings.Content" xml:space="preserve">
+    <!-- Button/dialog for resetting a character -->
+    <value>キャラクター設定をリセット</value>
+  </data>
+
+  <data name="EditCharacter_ShowDataModelTitle" xml:space="preserve">
+    <!-- Button to show the character JSON data model -->
+    <value>キャラクターモデル</value>
+  </data>
+
+  <data name="EditCharacter_ShowDataModelClose" xml:space="preserve">
+    <!-- Button to show the character JSON data model -->
+    <value>閉じる</value>
+  </data>
+
+  <data name="CharacterDetails_NoModsFound" xml:space="preserve">
+    <!-- Text on the CharacterDetails component -->
+    <value>このキャラクターのModは見つかりませんでした 😖</value>
+  </data>
+
+  <data name="CharacterDetails_DropModsHere" xml:space="preserve">
+    <!-- Text on the CharacterDetails component -->
+    <value>ここにModをドロップ</value>
+  </data>
+
+  <data name="ModInstallerPage_ReplaceDuplicateMod.Text" xml:space="preserve">
+    <!-- Checkbox: replace old mod in presets with this new version -->
+    <value>プリセット内の重複Modを新しいModで置き換え</value>
+  </data>
+
+  <data name="ModInstallerPage_ReplaceDuplicateMod2.Text" xml:space="preserve">
+    <!-- Checkbox: replace old mod in presets with this new version -->
+    <value>プリセット内の重複Modを新しいModで置き換え</value>
+  </data>
+
+  <data name="ModPage_DownloadTitle" xml:space="preserve">
+    <!-- Text on the ModPage component -->
+    <value>Modファイルをダウンロード</value>
+  </data>
+
+  <data name="ModPage_DownloadsForTitle" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>{0} のダウンロード</value>
+  </data>
+
+  <data name="ModInstaller_HelperWindowTitle" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Modインストーラーヘルパー: {0}</value>
+  </data>
+
+  <data name="ModInstallerPage_AlwaysOnTopToggle_ToolTip" xml:space="preserve">
+    <!-- Toggle tooltip: keep window always on top -->
+    <value>ウィンドウを常に最前面に表示</value>
+  </data>
+
+  <data name="ModInstallerPage_RetrieveModInfoButton_ToolTip" xml:space="preserve">
+    <!-- Button/tooltip: fetch mod info from GameBanana -->
+    <value>Modページから情報を取得</value>
+  </data>
+
+  <data name="CustomImage_PickImageButton_ToolTip" xml:space="preserve">
+    <!-- Context menu item to pickimagebutton_tooltip an image -->
+    <value>画像を選択</value>
+  </data>
+
+  <data name="Preset_FailedCreate" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>プリセットの作成に失敗しました</value>
+  </data>
+
+  <data name="Preset_FailedDuplicate" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>プリセットの複製に失敗しました</value>
+  </data>
+
+  <data name="Preset_FailedDelete" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>プリセットの削除に失敗しました</value>
+  </data>
+
+  <data name="Preset_Applied" xml:space="preserve">
+    <!-- Notification: preset operation succeeded -->
+    <value>プリセットを適用しました</value>
+  </data>
+
+  <data name="Preset_AppliedMessage" xml:space="preserve">
+    <!-- Contains a dynamic value placeholder -->
+    <value>プリセット「{0}」を適用しました</value>
+  </data>
+
+  <data name="Preset_FailedApply" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>プリセットの適用に失敗しました</value>
+  </data>
+
+  <data name="Preset_FailedRename" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>プリセットの名前変更に失敗しました</value>
+  </data>
+
+  <data name="Preset_FailedSaveOrder" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>プリセットの順序保存に失敗しました</value>
+  </data>
+
+  <data name="Preset_FailedToggleReadOnly" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>読み取り専用の切り替えに失敗しました</value>
+  </data>
+
+  <data name="Preset_ModPrefsReset" xml:space="preserve">
+    <!-- Notification: mod preferences updated -->
+    <value>Mod設定をリセットしました</value>
+  </data>
+
+  <data name="Preset_FailedResetModPrefs" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>Mod設定のリセットに失敗しました</value>
+  </data>
+
+  <data name="PresetDetails_ModRemoved" xml:space="preserve">
+    <!-- Notification: preset operation succeeded -->
+    <value>プリセットからModを削除しました</value>
+  </data>
+
+  <data name="PresetDetails_FailedRemoveMod" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>プリセットからのMod削除に失敗しました</value>
+  </data>
+
+  <data name="PresetDetails_ModAdded" xml:space="preserve">
+    <!-- Notification: preset operation succeeded -->
+    <value>プリセットにModを追加しました</value>
+  </data>
+
+  <data name="PresetDetails_ModAddedMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Mod「{0}」をプリセット {1} に追加しました</value>
+  </data>
+
+  <data name="PresetDetails_FailedAddMod" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>プリセットへのMod追加に失敗しました</value>
+  </data>
+
+  <data name="PresetDetails_PrefsSaved" xml:space="preserve">
+    <!-- Text on the PresetDetails component -->
+    <value>Modの設定を保存しました</value>
+  </data>
+
+  <data name="PresetDetails_FailedSavePrefs" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>Mod設定の保存に失敗しました</value>
+  </data>
+
+  <data name="ModInstaller_ModInstalled" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Mod「{0}」をインストールしました</value>
+  </data>
+
+  <data name="ModInstaller_FailedClipboardImage" xml:space="preserve">
+    <!-- Text on the ModInstaller component -->
+    <value>クリップボードからの画像取得に失敗しました</value>
+  </data>
+
+  <data name="ModInstaller_FailedDownloadImage" xml:space="preserve">
+    <!-- Notification: failed to download preview image -->
+    <value>modUrlからの画像ダウンロードに失敗しました</value>
+  </data>
+
+  <data name="ModInstaller_AnErrorOccurred" xml:space="preserve">
+    <!-- Notification: mod installation error -->
+    <value>エラーが発生しました</value>
+  </data>
+
+  <data name="ModInstaller_ErrorAddingMod" xml:space="preserve">
+    <!-- Notification: mod installation error -->
+    <value>Modの追加中にエラーが発生しました。詳細はログを確認してください。</value>
+  </data>
+
+  <data name="CharDetails_InvalidModFile" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>選択されたアイテムが有効なModファイルまたはフォルダーではないため、操作に失敗しました。</value>
+  </data>
+
+  <data name="CharDetails_InvalidModUrl" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>選択されたアイテムが有効なhttps GameBanana Mod URLではないため、操作に失敗しました。</value>
+  </data>
+
+  <data name="CharDetails_DestModListNotFoundMsg" xml:space="preserve">
+    <!-- Notification: destination character not found for mod move -->
+    <value>移動先のModリストが見つかりません</value>
+  </data>
+
+  <data name="ModUpdate_FailedGetInfo" xml:space="preserve">
+    <!-- Text on the ModUpdate component -->
+    <value>Modの更新情報の取得に失敗しました</value>
+  </data>
+
+  <data name="ModUpdate_FailedDownload" xml:space="preserve">
+    <!-- Text on the ModUpdate component -->
+    <value>Modファイルのダウンロードに失敗しました</value>
+  </data>
+
+  <data name="ModUpdate_FailedInstall" xml:space="preserve">
+    <!-- Text on the ModUpdate component -->
+    <value>Modファイルのインストールに失敗しました</value>
+  </data>
+
+  <data name="ModPage_FailedGetUpdateInfo" xml:space="preserve">
+    <!-- Text on the ModPage component -->
+    <value>Modの更新情報の取得に失敗しました</value>
+  </data>
+
+  <data name="ModPage_FailedDownload" xml:space="preserve">
+    <!-- Text on the ModPage component -->
+    <value>Modファイルのダウンロードに失敗しました</value>
+  </data>
+
+  <data name="ModPage_FailedInstall" xml:space="preserve">
+    <!-- Text on the ModPage component -->
+    <value>Modファイルのインストールに失敗しました</value>
+  </data>
+
+  <data name="Gallery_FailedDeleteMod" xml:space="preserve">
+    <!-- Text on the Gallery component -->
+    <value>Modの削除に失敗しました</value>
+  </data>
+
+  <data name="Gallery_ModDeleted" xml:space="preserve">
+    <!-- Text on the Gallery component -->
+    <value>Modを削除しました</value>
+  </data>
+
+  <data name="Gallery_ModDeletedMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>{0} を削除しました</value>
+  </data>
+
+  <data name="Gallery_FailedSaveImage" xml:space="preserve">
+    <!-- Text on the Gallery component -->
+    <value>画像の保存に失敗しました</value>
+  </data>
+
+  <data name="CharDetails_ErrorSwitchSkin" xml:space="preserve">
+    <!-- Notification: error switching character skin -->
+    <value>キャラクタースキンの切り替え中にエラーが発生しました。</value>
+  </data>
+
+  <data name="CharDetails_ErrorDisableMods" xml:space="preserve">
+    <!-- Notification: error disabling mods -->
+    <value>Modの無効化中にエラーが発生しました</value>
+  </data>
+
+  <data name="CharDetails_ErrorDeleteMods" xml:space="preserve">
+    <!-- Notification title when mod deletion fails -->
+    <value>Modの削除中にエラー</value>
+  </data>
+
+  <data name="CharDetails_ModsDeleted" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>{0} 個のModを削除しました</value>
+  </data>
+
+  <data name="CharDetails_ErrorLoading" xml:space="preserve">
+    <!-- Loading text -->
+    <value>キャラクター詳細ページの読み込み中にエラーが発生しました。</value>
+  </data>
+
+  <data name="CharDetails_UnknownError" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>コマンド実行中に不明なエラーが発生しました</value>
+  </data>
+
+  <data name="CharDetails_DragDropFailed" xml:space="preserve">
+    <!-- Notification: error during drag-and-drop -->
+    <value>ドラッグ＆ドロップ操作に失敗しました</value>
+  </data>
+
+  <data name="CharDetails_ErrorOpenModPage" xml:space="preserve">
+    <!-- Notification: error opening mod page -->
+    <value>Modページウィンドウの開封エラー</value>
+  </data>
+
+  <data name="CharDetails_ErrorAddStorageItems" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>ストレージアイテムの追加中にエラーが発生しました。</value>
+  </data>
+
+  <data name="CharDetails_DestModListNotFound" xml:space="preserve">
+    <!-- Notification: destination character not found for mod move -->
+    <value>移動先のModリストが見つかりません</value>
+  </data>
+
+  <data name="CharDetails_InvalidOpException" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>無効な操作例外</value>
+  </data>
+
+  <data name="CharDetails_SkinOverrideChanged" xml:space="preserve">
+    <!-- UI for managing skin overrides on this character -->
+    <value>Modのスキンオーバーライドを変更しました</value>
+  </data>
+
+  <data name="CharDetails_ModsMoved" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>{0} 個のModを移動しました</value>
+  </data>
+
+  <data name="CharDetails_ErrorRefreshMods" xml:space="preserve">
+    <!-- Menu item or button to refresh mods -->
+    <value>Modの再読み込み中にエラー</value>
+  </data>
+
+  <data name="CharDetails_DuplicateModsDetected" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>重複Modが検出されました</value>
+  </data>
+
+  <data name="CharDetails_ErrorDisablingMod" xml:space="preserve">
+    <!-- Notification: error disabling mods -->
+    <value>Modの無効化中にエラーが発生しました</value>
+  </data>
+
+  <data name="CharDetails_ErrorTogglingMod" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>Modの切り替え中にエラーが発生しました</value>
+  </data>
+
+  <data name="CharDetails_ErrorSaveModSettings" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>Mod設定の保存中にエラーが発生しました</value>
+  </data>
+
+  <data name="CharDetails_ModSettingsSaved" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>Mod設定を保存しました</value>
+  </data>
+
+  <data name="CharDetails_ErrorLoadingMod" xml:space="preserve">
+    <!-- Loading text -->
+    <value>Modの読み込み中にエラー</value>
+  </data>
+
+  <data name="CharDetails_FailedLoadKeySwaps" xml:space="preserve">
+    <!-- Contains a dynamic value placeholder -->
+    <value>Mod {0} のキー入れ替えの読み込みに失敗しました</value>
+  </data>
+
+  <data name="CharDetails_ModFolderCopied" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>Modフォルダーパスをクリップボードにコピーしました</value>
+  </data>
+
+  <data name="CharDetails_ClipboardNoImage" xml:space="preserve">
+    <!-- Notification: clipboard operation message -->
+    <value>クリップボードに有効な画像が含まれていません</value>
+  </data>
+
+  <data name="CharDetails_CouldNotGetClipboardImage" xml:space="preserve">
+    <!-- Notification: clipboard operation message -->
+    <value>クリップボードから画像を取得できませんでした</value>
+  </data>
+
+  <data name="CharDetails_FailedSaveKeySwaps" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>キー入れ替えの保存に失敗しました</value>
+  </data>
+
+  <data name="CharDetails_ErrorRunCommand" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the error details -->
+    <value>コマンド {0} の実行中にエラーが発生しました</value>
+  </data>
+
+  <data name="CharDetails_CouldNotDisableAllMods" xml:space="preserve">
+    <!-- Notification body: could not disable all mods -->
+    <value>すべてのModを無効化できませんでした。</value>
+  </data>
+
+  <data name="ModInstaller_AddedToModList" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Mod「{0}」（{1}）が {2} ModList に正常に追加されました</value>
+  </data>
+
+  <data name="PresetDetails_RemovedModMsg" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>{0} 個のMod「{1}」をプリセット {2} から削除しました</value>
+  </data>
+
+  <data name="PresetDetails_PrefsSavedMsg" xml:space="preserve">
+    <!-- Contains a dynamic value placeholder -->
+    <value>Mod {0} の設定を保存しました</value>
+  </data>
+
+  <data name="Preset_ModPrefsRemovedMsg" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Mod設定が削除されました{0}</value>
+  </data>
+
+  <data name="CharDetails_DeletedSuccessMsg" xml:space="preserve">
+    <!-- Contains multiple dynamic value placeholders -->
+    <value>{1} Modsフォルダー内の {0} を削除しました</value>
+  </data>
+
+  <data name="CharDetails_ErrorAddStorageReason" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the error details -->
+    <value>ストレージアイテムの追加中にエラーが発生しました。理由：
+{0}</value>
+  </data>
+
+  <data name="CharDetails_ErrorAddStorageReason2" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the error details -->
+    <value>ストレージアイテムの追加中にエラーが発生しました。
+{0}</value>
+  </data>
+
+  <data name="CharDetails_CannotMoveModsMsg" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Modを移動できません
+{0}、詳細はログを確認してください。</value>
+  </data>
+
+  <data name="CharDetails_MovedSuccessMsg" xml:space="preserve">
+    <!-- Contains multiple dynamic value placeholders -->
+    <value>{0} 個のModを {1} に移動しました</value>
+  </data>
+
+  <data name="CharDetails_SkinOverrideSetMsg" xml:space="preserve">
+    <!-- Contains multiple dynamic value placeholders -->
+    <value>Mod「{0}」のスキンオーバーライドを {1} に設定しました</value>
+  </data>
+
+  <data name="Notification_ErrorOccurred" xml:space="preserve">
+    <!-- Notification title or message. Related to: erroroccurred -->
+    <value>エラーが発生しました！</value>
+  </data>
+
+  <data name="Notification_UnstableState" xml:space="preserve">
+    <!-- Notification title or message. Related to: unstablestate -->
+    <value>JASMは不安定な状態にある可能性があり、いつクラッシュしてもおかしくありません。アプリを再起動することをお勧めします。</value>
+  </data>
+
+  <data name="Notification_CommandError" xml:space="preserve">
+    <!-- Notification title or message. Related to: commanderror -->
+    <value>コマンド「{0}」の実行中にエラーが発生しました</value>
+  </data>
+
+  <data name="Notification_ErrorTogglingMod" xml:space="preserve">
+    <!-- Notification title or message. Related to: errortogglingmod -->
+    <value>Modの{0}中にエラーが発生しました: {1}</value>
+  </data>
+
+  <data name="Notification_SeeLogs" xml:space="preserve">
+    <!-- Notification title or message. Related to: seelogs -->
+    <value>詳細はログを確認してください。</value>
+  </data>
+
+  <data name="Notification_MovedMods" xml:space="preserve">
+    <!-- Notification title or message. Related to: movedmods -->
+    <value>{0} 個のModを新しいキャラクターフォルダーに移動しました</value>
+  </data>
+
+  <data name="Notification_ErrorRestartingApp" xml:space="preserve">
+    <!-- Notification title or message. Related to: errorrestartingapp -->
+    <value>アプリの再起動中にエラー</value>
+  </data>
+
+  <data name="Notification_RestartManually" xml:space="preserve">
+    <!-- Notification title or message. Related to: restartmanually -->
+    <value>手動で再起動してください。</value>
+  </data>
+
+  <data name="Notification_TryingLegacyRestart" xml:space="preserve">
+    <!-- Notification title or message. Related to: tryinglegacyrestart -->
+    <value>従来の再起動方法を試行中。理由: {0}</value>
+  </data>
+
+  <data name="Notification_PleaseRestartManuallyReason" xml:space="preserve">
+    <!-- Notification title or message. Related to: pleaserestartmanuallyreason -->
+    <value>手動で再起動してください。理由: {0}</value>
+  </data>
+
+  <data name="Notification_CommandStartError" xml:space="preserve">
+    <!-- Notification title or message. Related to: commandstarterror -->
+    <value>コマンドの開始中にエラーが発生しました</value>
+  </data>
+
+  <data name="Notification_CommandNotFound" xml:space="preserve">
+    <!-- Notification title or message. Related to: commandnotfound -->
+    <value>コマンドが見つかりません</value>
+  </data>
+
+  <data name="Notification_CommandNotFoundMsg" xml:space="preserve">
+    <!-- Notification body message: Command with id '{0}' not found... Shown when commandnotfoundmsg -->
+    <value>ID「{0}」のコマンドが見つかりません</value>
+  </data>
+
+  <data name="Notification_CommandCannotStart" xml:space="preserve">
+    <!-- Notification title or message. Related to: commandcannotstart -->
+    <value>コマンドを開始できません</value>
+  </data>
+
+  <data name="Notification_CommandCannotStartMsg" xml:space="preserve">
+    <!-- Notification body message: Command '{0}' cannot be started due to the following errors:... Shown when commandcannotstartmsg -->
+    <value>コマンド「{0}」は以下のエラーのため開始できません: {1}</value>
+  </data>
+
+  <data name="Notification_CommandStarted" xml:space="preserve">
+    <!-- Notification title or message. Related to: commandstarted -->
+    <value>コマンドを開始しました</value>
+  </data>
+
+  <data name="Notification_CommandStartedMsg" xml:space="preserve">
+    <!-- Notification body message: Command '{0}' started... Shown when commandstartedmsg -->
+    <value>コマンド「{0}」を開始しました</value>
+  </data>
+
+  <data name="Notification_KeySwapSaveFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: keyswapsavefailed -->
+    <value>Mod {0} のキー入れ替え設定の保存に失敗しました</value>
+  </data>
+
+  <data name="Notification_KeySwapSaveError" xml:space="preserve">
+    <!-- Notification title or message. Related to: keyswapsaveerror -->
+    <value>保存中にエラーが発生しました。理由: {0}</value>
+  </data>
+
+  <data name="Notification_DragDropMultipleItems" xml:space="preserve">
+    <!-- Notification title or message. Related to: dragdropmultipleitems -->
+    <value>ドラッグ＆ドロップに複数のストレージアイテムが指定されました。これは現在サポートされていません。</value>
+  </data>
+
+  <data name="Notification_FinishAddingMod" xml:space="preserve">
+    <!-- Notification title or message. Related to: finishaddingmod -->
+    <value>先に「{0}」のMod追加を完了してください。</value>
+  </data>
+
+  <data name="Notification_NoMultipleInstalls" xml:space="preserve">
+    <!-- Notification title or message. Related to: nomultipleinstalls -->
+    <value>JASMは同じキャラクターへの複数のModインストールをサポートしていません。</value>
+  </data>
+
+  <data name="Notification_PresetApplyFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: presetapplyfailed -->
+    <value>プリセットの適用に失敗しました</value>
+  </data>
+
+  <data name="Notification_CannotWritePrefs" xml:space="preserve">
+    <!-- Notification title or message. Related to: cannotwriteprefs -->
+    <value>Mod設定を3Dmigotoユーザー.iniに書き込めませんでした。</value>
+  </data>
+
+  <data name="Notification_SeeLogsDetails" xml:space="preserve">
+    <!-- Notification title or message. Related to: seelogsdetails -->
+    <value>詳細はログを確認してください。</value>
+  </data>
+
+  <data name="Notification_PresetApplied" xml:space="preserve">
+    <!-- Notification title or message. Related to: presetapplied -->
+    <value>Modプリセットを適用しました</value>
+  </data>
+
+  <data name="Notification_PresetAppliedMsg" xml:space="preserve">
+    <!-- Notification body message: Mod preset {0} applied successfully... Shown when presetappliedmsg -->
+    <value>Modプリセット {0} を正常に適用しました</value>
+  </data>
+
+  <data name="Notification_SavePrefsFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: saveprefsfailed -->
+    <value>アクティブな設定の保存に失敗しました</value>
+  </data>
+
+  <data name="Notification_PrefsSaved" xml:space="preserve">
+    <!-- Notification title or message. Related to: prefssaved -->
+    <value>アクティブな設定を保存しました</value>
+  </data>
+
+  <data name="Notification_PrefsSavedMsg" xml:space="preserve">
+    <!-- Notification body message: Preferences stored in {0} have been saved for enabled mods... Shown when prefssavedmsg -->
+    <value>{0} に保存された設定を有効なModに保存しました</value>
+  </data>
+
+  <data name="Notification_ApplyPrefsFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: applyprefsfailed -->
+    <value>保存された設定の適用に失敗しました</value>
+  </data>
+
+  <data name="Notification_PrefsApplied" xml:space="preserve">
+    <!-- Notification title or message. Related to: prefsapplied -->
+    <value>保存された設定を適用しました</value>
+  </data>
+
+  <data name="Notification_PrefsAppliedMsg" xml:space="preserve">
+    <!-- Notification body message: Mod preferences written to 3DMigoto {0}... Shown when prefsappliedmsg -->
+    <value>Mod設定を3DMigoto {0} に書き込みました</value>
+  </data>
+
+  <data name="Notification_SettingsSaveFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: settingssavefailed -->
+    <value>Mod {0} の設定保存に失敗しました</value>
+  </data>
+
+  <data name="Notification_SettingsErrorMsg" xml:space="preserve">
+    <!-- Notification body message: An Error Occurred. Reason: {0}... Shown when settingserrormsg -->
+    <value>エラーが発生しました。理由: {0}</value>
+  </data>
+
+  <data name="Notification_SettingsFileNotFound" xml:space="preserve">
+    <!-- Notification title or message. Related to: settingsfilenotfound -->
+    <value>Mod {0} の設定ファイルが見つかりませんでした</value>
+  </data>
+
+  <data name="Notification_SettingsReadFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: settingsreadfailed -->
+    <value>Mod {0} の設定の読み取りに失敗しました</value>
+  </data>
+
+  <data name="Notification_SettingsReadErrorMsg" xml:space="preserve">
+    <!-- Notification body message: An error occurred. Reason: {0}... Shown when settingsreaderrormsg -->
+    <value>エラーが発生しました。理由: {0}</value>
+  </data>
+
+  <data name="Notification_NoChanges" xml:space="preserve">
+    <!-- Notification title or message. Related to: nochanges -->
+    <value>変更は検出されませんでした</value>
+  </data>
+
+  <data name="Notification_NoChangesMsg" xml:space="preserve">
+    <!-- Notification body message: Mod settings not updated... Shown when nochangesmsg -->
+    <value>Mod設定は更新されませんでした</value>
+  </data>
+
+  <data name="Notification_ImagePathNotFound" xml:space="preserve">
+    <!-- Notification title or message. Related to: imagepathnotfound -->
+    <value>画像パスが見つかりません</value>
+  </data>
+
+  <data name="Notification_ImagePathNotFoundMsg" xml:space="preserve">
+    <!-- Notification body message: When saving mod settings the currently set image could not b... Shown when imagepathnotfoundmsg -->
+    <value>Mod設定の保存時に、現在設定されている画像が見つかりませんでした。</value>
+  </data>
+
+  <data name="Notification_ModSettingsUpdated" xml:space="preserve">
+    <!-- Notification title or message. Related to: modsettingsupdated -->
+    <value>Mod設定を更新しました</value>
+  </data>
+
+  <data name="Notification_ModSettingsUpdatedMsg" xml:space="preserve">
+    <!-- Notification body message: Mod settings have been updated for {0}... Shown when modsettingsupdatedmsg -->
+    <value>Mod {0} の設定が更新されました</value>
+  </data>
+
+  <data name="Notification_CouldNotFindMod" xml:space="preserve">
+    <!-- Notification title or message. Related to: couldnotfindmod -->
+    <value>Modが見つかりませんでした</value>
+  </data>
+
+  <data name="Notification_CouldNotFindModMsg" xml:space="preserve">
+    <!-- Notification body message: An error occured trying to set Mod ini, restarting JASM may ... Shown when couldnotfindmodmsg -->
+    <value>Mod iniの設定中にエラーが発生しました。JASMを再起動すると解決する場合があります。</value>
+  </data>
+
+  <data name="Notification_CouldNotFindModSettings" xml:space="preserve">
+    <!-- Notification title or message. Related to: couldnotfindmodsettings -->
+    <value>Mod設定が見つかりませんでした</value>
+  </data>
+
+  <data name="Notification_InvalidModIniPath" xml:space="preserve">
+    <!-- Notification title or message. Related to: invalidmodinipath -->
+    <value>無効なMod iniパス</value>
+  </data>
+
+  <data name="Notification_InvalidModIniPathMsg" xml:space="preserve">
+    <!-- Notification body message: An error occured trying to parse the path to the .ini... Shown when invalidmodinipathmsg -->
+    <value>.iniへのパスの解析中にエラーが発生しました</value>
+  </data>
+
+  <data name="Notification_ModIniNotExist" xml:space="preserve">
+    <!-- Notification title or message. Related to: modininotexist -->
+    <value>Mod iniファイルが存在しません</value>
+  </data>
+
+  <data name="Notification_ModIniNotExistMsg" xml:space="preserve">
+    <!-- Notification body message: Could not find file at {0}... Shown when modininotexistmsg -->
+    <value>{0} にファイルが見つかりませんでした</value>
+  </data>
+
+  <data name="Notification_ModIniNotInModFolder" xml:space="preserve">
+    <!-- Notification title or message. Related to: modininotinmodfolder -->
+    <value>Mod iniファイルがModフォルダーにありません</value>
+  </data>
+
+  <data name="Notification_ModIniNotInModFolderMsg" xml:space="preserve">
+    <!-- Notification body message: The mod ini file must be in the mod folder. Mod folder: {0}\... Shown when modininotinmodfoldermsg -->
+    <value>Mod iniファイルはModフォルダー内にある必要があります。Modフォルダー: {0}</value>
+  </data>
+
+  <data name="Notification_AnErrorOccurred" xml:space="preserve">
+    <!-- Notification title or message. Related to: anerroroccurred -->
+    <value>エラーが発生しました</value>
+  </data>
+
+  <data name="Notification_BgCheckerError" xml:space="preserve">
+    <!-- Notification title or message. Related to: bgcheckererror -->
+    <value>Mod更新バックグラウンドチェッカーでエラーが発生しました</value>
+  </data>
+
+  <data name="Notification_BgCheckerFatal" xml:space="preserve">
+    <!-- Notification title or message. Related to: bgcheckerfatal -->
+    <value>バックグラウンドチェッカーで致命的なエラーが発生しました（{0} : {1}）。JASMはバックグラウンドでも手動でもModの更新を確認できなくなりました。エラー: {2}</value>
+  </data>
+
+  <data name="Notification_UpdateCheckError" xml:space="preserve">
+    <!-- Notification title or message. Related to: updatecheckerror -->
+    <value>Modの更新確認中にエラーが発生しました。</value>
+  </data>
+
+  <data name="Notification_StoppingBgChecker" xml:space="preserve">
+    <!-- Notification title or message. Related to: stoppingbgchecker -->
+    <value>バックグラウンドMod更新チェッカーを停止中...</value>
+  </data>
+
+  <data name="Notification_NoModsToCheck" xml:space="preserve">
+    <!-- Notification title or message. Related to: nomodstocheck -->
+    <value>更新を確認するModがありません</value>
+  </data>
+
+  <data name="Notification_NoModsToCheckMsg" xml:space="preserve">
+    <!-- Notification body message: None of the mods were valid, therefore no check has been per... Shown when nomodstocheckmsg -->
+    <value>有効なModがなかったため、チェックは実行されませんでした。</value>
+  </data>
+
+  <data name="Notification_FinishedChecking" xml:space="preserve">
+    <!-- Notification title or message. Related to: finishedchecking -->
+    <value>Modの更新確認が完了しました</value>
+  </data>
+
+  <data name="Notification_FinishedCheckingMsg" xml:space="preserve">
+    <!-- Notification body message: Finished checking {0} mods for updates for {1}... Shown when finishedcheckingmsg -->
+    <value>{1} の {0} 個のModの更新確認が完了しました</value>
+  </data>
+
+  <data name="Notification_NotImplemented" xml:space="preserve">
+    <!-- Notification title or message. Related to: notimplemented -->
+    <value>未実装</value>
+  </data>
+
+  <data name="Notification_NotImplementedMsg" xml:space="preserve">
+    <!-- Notification body message: This feature is not implemented yet.... Shown when notimplementedmsg -->
+    <value>この機能はまだ実装されていません。</value>
+  </data>
+
+  <data name="Notification_CouldNotStartProcess" xml:space="preserve">
+    <!-- Notification title or message. Related to: couldnotstartprocess -->
+    <value>プロセスを開始できませんでした</value>
+  </data>
+
+  <data name="Notification_UnknownError" xml:space="preserve">
+    <!-- Notification title or message. Related to: unknownerror -->
+    <value>不明なエラーが発生しました</value>
+  </data>
+
+  <data name="Notification_FailedToStartProcess" xml:space="preserve">
+    <!-- Notification title or message. Related to: failedtostartprocess -->
+    <value>{0} の開始に失敗しました</value>
+  </data>
+
+  <data name="Notification_FailedToStartUac" xml:space="preserve">
+    <!-- Notification title or message. Related to: failedtostartuac -->
+    <value>{0} の開始に失敗しました。ユーザーがUAC（管理者）プロンプトをキャンセルした可能性があります。</value>
+  </data>
+
+  <data name="Notification_FailedToStartRunAsAdmin" xml:space="preserve">
+    <!-- Notification title or message. Related to: failedtostartrunasadmin -->
+    <value>{0} の開始に失敗しました。exeのプロパティで「管理者として実行」オプションが有効になっている可能性があります。</value>
+  </data>
+
+  <data name="Notification_SkinOverrideFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: skinoverridefailed -->
+    <value>Mod {0} のキャラクタースキンオーバーライドに失敗しました</value>
+  </data>
+
+  <data name="Notification_SkinOverrideErrorMsg" xml:space="preserve">
+    <!-- Notification body message: An Error Occurred. Reason: {0}... Shown when skinoverrideerrormsg -->
+    <value>エラーが発生しました。理由: {0}</value>
+  </data>
+
+  <data name="Notification_FolderActivityDetected" xml:space="preserve">
+    <!-- Notification title or message. Related to: folderactivitydetected -->
+    <value>{0} のModフォルダーでフォルダーアクティビティが検出されました</value>
+  </data>
+
+  <data name="Notification_FolderActivityMsg" xml:space="preserve">
+    <!-- Notification body message: Files/Folders were changed in the characters mod folder and ... Shown when folderactivitymsg -->
+    <value>キャラクターのModフォルダー内のファイル/フォルダーが変更され、Modが再読み込みされました。</value>
+  </data>
+
+  <data name="Notification_GetPresetsFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: getpresetsfailed -->
+    <value>プリセットの取得に失敗しました。プリセット内のModエントリを自動更新できませんでした。</value>
+  </data>
+
+  <data name="Notification_UpdatePresetFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: updatepresetfailed -->
+    <value>プリセット {0} の更新に失敗しました。プリセット内のModエントリを自動更新できませんでした。プリセットを手動で確認してください。</value>
+  </data>
+
+  <data name="Notification_ModUpdatedForPresets" xml:space="preserve">
+    <!-- Notification title or message. Related to: modupdatedforpresets -->
+    <value>Modがプリセット用に更新されました</value>
+  </data>
+
+  <data name="Notification_ModNotUpdatedForPresets" xml:space="preserve">
+    <!-- Notification title or message. Related to: modnotupdatedforpresets -->
+    <value>Modはどのプリセットでも更新されませんでした</value>
+  </data>
+
+  <data name="Notification_ReadOnlyPresetsNotUpdated" xml:space="preserve">
+    <!-- Notification title or message. Related to: readonlypresetsnotupdated -->
+    <value>次のプリセットは読み取り専用のため更新されませんでした: {0}</value>
+  </data>
+
+  <data name="Notification_ModUpdatedInPresets" xml:space="preserve">
+    <!-- Notification title or message. Related to: modupdatedinpresets -->
+    <value>Modは次のプリセットで更新されました: {0}</value>
+  </data>
+
+  <data name="Notification_CouldNotDetermineSkin" xml:space="preserve">
+    <!-- Notification title or message. Related to: couldnotdetermineskin -->
+    <value>新しいModのスキンを特定できませんでした</value>
+  </data>
+
+  <data name="Notification_CouldNotDetermineSkinMsg" xml:space="preserve">
+    <!-- Notification body message: JASM could not determine what ingame skin this mod is for, t... Shown when couldnotdetermineskinmsg -->
+    <value>JASMはこのModがどのゲーム内スキン用かを特定できなかったため、無効にするModを決定できません。</value>
+  </data>
+
+  <data name="Notification_SystemError" xml:space="preserve">
+    <!-- Notification title or message. Related to: systemerror -->
+    <value>システムエラー: {0}</value>
+  </data>
+
+  <data name="CharacterCard_GoToModsOverview.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: navigate to this character in Mods Overview -->
+    <value>Mod概要でキャラクターへ移動</value>
+  </data>
+
+  <data name="CharacterCard_EditCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: open the character editor for this character -->
+    <value>キャラクターを編集</value>
+  </data>
+
+  <data name="CharacterDetails_SearchMoveMod_PlaceholderText" xml:space="preserve">
+    <!-- UI for moving mods between characters -->
+    <value>検索...</value>
+  </data>
+
+  <data name="CharacterDetails_AddModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip explanation on the CharacterDetails component -->
+    <value>Modフォルダーを追加</value>
+  </data>
+
+  <data name="CharacterDetails_AddArchive.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip explanation on the CharacterDetails component -->
+    <value>圧縮アーカイブ内のModを追加</value>
+  </data>
+
+  <data name="CharacterDetails_RefreshMods.Text" xml:space="preserve">
+    <!-- Menu item or button to refresh mods -->
+    <value>Modを再読み込み</value>
+  </data>
+
+  <data name="CharacterDetails_OpenGIMIRootFolder.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>3Dmigotoルートフォルダーを開く...</value>
+  </data>
+
+  <data name="CharacterDetails_SingleSelect.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Toggle: when enabled, only one mod can be active at a time -->
+    <value>これを選択すると、一度に1つのModのみ有効にできます。</value>
+  </data>
+
+  <data name="CharacterDetails_SavePreferences.Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>選択したModの設定を保存</value>
+  </data>
+
+  <data name="CharacterDetails_SavePreferences.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>選択したModの3Dmigoto Mod設定（d3dx_user.ini）を読み取り、設定をModの.JASM_Config.jsonファイルに保存します。</value>
+  </data>
+
+  <data name="CharacterDetails_ReadPreferences.Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>選択したModの設定を読み込み</value>
+  </data>
+
+  <data name="CharacterDetails_ReadPreferences.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Modの.JASM_Config.jsonファイルからMod設定を読み取り、3Dmigoto（d3dx_user.ini）に書き込みます。</value>
+  </data>
+
+  <data name="ModPane_ChangeDisplayName.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: edit the mod display name -->
+    <value>Modの表示名を変更します</value>
+  </data>
+
+  <data name="ModPane_SetModIni.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Button/checkbox for managing the mod .ini file -->
+    <value>Modの.iniファイルを設定します</value>
+  </data>
+
+  <data name="ModPane_IgnoreIni.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Button/checkbox for managing the mod .ini file -->
+    <value>このModの.iniファイルを無視します</value>
+  </data>
+
+  <data name="CharDetails_DeleteDialog_Content" xml:space="preserve">
+    <!-- Checkbox label: whether to move deleted mods to Recycle Bin -->
+    <value>このModを削除してもよろしいですか？</value>
+  </data>
+
+  <data name="CharDetails_RemovePresetsDialog_Content" xml:space="preserve">
+    <!-- Button or toggle label on the CharDetails component -->
+    <value>このModをプリセットから削除してもよろしいですか？</value>
+  </data>
+
+  <data name="CharDetails_DeleteButton_Text" xml:space="preserve">
+    <!-- Delete button label in the mod deletion dialog -->
+    <value>削除</value>
+  </data>
+
+  <data name="CharDetails_CancelButton_Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="CharDetails_ErrorDeletingMods_Text" xml:space="preserve">
+    <!-- Notification: error deleting mods -->
+    <value>Modの削除中にエラーが発生しました</value>
+  </data>
+
+  <data name="CharDetails_DuplicateModsMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>重複Modが検出されました</value>
+  </data>
+
+  <data name="CharDetails_DuplicateRenamedMessage" xml:space="preserve">
+    <!-- Contains multiple dynamic value placeholders -->
+    <value>重複Modの名前が変更されました</value>
+  </data>
+
+  <data name="CharDetails_NewModFilesAvailable" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>新しいModファイルが利用可能です</value>
+  </data>
+
+  <data name="CharDetails_SetButton.Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>設定</value>
+  </data>
+
+  <data name="CharDetails_SetImageButton.Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>画像を設定</value>
+  </data>
+
+  <data name="CharacterDetails_OnlyOneSkin.ToolTip" xml:space="preserve">
+    <!-- Tooltip explanation on the CharacterDetails component -->
+    <value>複数のModが有効です。キャラクターごとに1つのスキンのみがゲームに表示されます。</value>
+  </data>
+
+  <data name="ModPane_Unknown" xml:space="preserve">
+    <!-- Fallback text when mod value is unknown -->
+    <value>不明</value>
+  </data>
+
+  <data name="CharDetails_DeleteModsDialog_Title" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Modを削除</value>
+  </data>
+
+  <data name="CharDetails_PresetErrorMods" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>プリセットにエラーがあるMod</value>
+  </data>
+
+  <data name="CharDetails_DeleteErrorMods" xml:space="preserve">
+    <!-- Notification title when mod deletion fails -->
+    <value>削除中にエラーが発生したMod</value>
+  </data>
+
+  <data name="CharDetails_Loading_Mods" xml:space="preserve">
+    <!-- Loading text -->
+    <value>Modを読み込み中...</value>
+  </data>
+
+  <data name="CharDetails_Loading_ModPane" xml:space="preserve">
+    <!-- Loading text -->
+    <value>Modペインを読み込み中...</value>
+  </data>
+
+  <data name="CharDetails_Loading_Toolbar" xml:space="preserve">
+    <!-- Loading text -->
+    <value>ツールバーを読み込み中...</value>
+  </data>
+
+  <data name="CharDetails_Loading_ContextMenu" xml:space="preserve">
+    <!-- Loading text -->
+    <value>コンテキストメニューを読み込み中...</value>
+  </data>
+
+  <data name="CharDetails_Loading_Grid" xml:space="preserve">
+    <!-- Loading text -->
+    <value>グリッドを読み込み中...</value>
+  </data>
+
+  <data name="CharDetails_Loading_Character" xml:space="preserve">
+    <!-- Loading text -->
+    <value>キャラクターを読み込み中...</value>
+  </data>
+
+  <data name="CustomImage_PasteImage.Text" xml:space="preserve">
+    <!-- Context menu item to pasteimage an image -->
+    <value>画像を貼り付け</value>
+  </data>
+
+  <data name="CustomImage_CopyImage.Text" xml:space="preserve">
+    <!-- Context menu item to copyimage an image -->
+    <value>画像をコピー</value>
+  </data>
+
+  <data name="CustomImage_ClearImage.Text" xml:space="preserve">
+    <!-- Context menu item to clearimage an image -->
+    <value>画像をクリア</value>
+  </data>
+
+  <data name="LinkButton_CopyLink.Text" xml:space="preserve">
+    <!-- Hyperlink button label -->
+    <value>リンクをコピー</value>
+  </data>
+
+  <data name="CharacterDetails_ShowModFolderColumn.Text" xml:space="preserve">
+    <!-- Toggle: shows/hides the mod folder name column -->
+    <value>'Modフォルダー名'列を表示</value>
+  </data>
+
+  <data name="CharacterManager_NoResultsFound" xml:space="preserve">
+    <!-- Text on the CharacterManager component -->
+    <value>結果が見つかりません</value>
+  </data>
+
+  <data name="CharactersPage_NoCategoryFound" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>カテゴリが見つかりません</value>
+  </data>
+
+  <data name="CharacterDetails_ViewToggle_OffContent" xml:space="preserve">
+    <!-- Toggle switch to switch between Gallery View or Detailed View -->
+    <value>詳細表示</value>
+  </data>
+
+  <data name="CharacterDetails_ViewToggle_OnContent" xml:space="preserve">
+    <!-- Toggle switch to switch between Gallery View or Detailed View -->
+    <value>ギャラリー表示</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SingleSelect_Content" xml:space="preserve">
+    <!-- Toggle/tooltip: restrict to one active mod per character -->
+    <value>単一選択</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SingleSelect_ToolTip" xml:space="preserve">
+    <!-- Toggle/tooltip: restrict to one active mod per character -->
+    <value>これを選択すると、一度に1つのModのみ有効にできます。</value>
+  </data>
+
+  <data name="CharacterGalleryPage_ViewToggleSwitch_OffContent" xml:space="preserve">
+    <!-- Toggle switch for Gallery View / Detailed View -->
+    <value>詳細表示</value>
+  </data>
+
+  <data name="CharacterGalleryPage_ViewToggleSwitch_OnContent" xml:space="preserve">
+    <!-- Toggle switch for Gallery View / Detailed View -->
+    <value>ギャラリー表示</value>
+  </data>
+
+  <data name="CharacterManagerPage_SearchBox_Header" xml:space="preserve">
+    <!-- Placeholder or label for the character search box -->
+    <value>編集するキャラクターを検索するか、新しいキャラクターを追加</value>
+  </data>
+
+  <data name="CreateCommandView_Arguments_PlaceholderText" xml:space="preserve">
+    <!-- Label/placeholder for command arguments -->
+    <value>実行ファイルに渡される引数</value>
+  </data>
+
+  <data name="CreateCommandView_CommandName_PlaceholderText" xml:space="preserve">
+    <!-- Label/placeholder for the command display name (Required field) -->
+    <value>コマンド表示名（必須）</value>
+  </data>
+
+  <data name="CreateCommandView_Executable_PlaceHolderText" xml:space="preserve">
+    <!-- Label/placeholder/title for the executable path (Required field) -->
+    <value>$PATH内か、実行ファイルへの絶対パスである必要があります（必須）</value>
+  </data>
+
+  <data name="CreateCommandView_WorkingDirectory_PlaceHolderText" xml:space="preserve">
+    <!-- Label/placeholder for the working directory -->
+    <value>手動でパスを指定する場合、フォルダーが存在している必要があります</value>
+  </data>
+
+  <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
+    <!-- Label/placeholder for a free-text note about this mod -->
+    <value>カスタム自由テキストメモ。キャラクター詳細ページのグリッドに表示されます</value>
+  </data>
+
+  <data name="Error" xml:space="preserve">
+    <!-- Process status indicator: Error -->
+    <value>エラー</value>
+  </data>
+
+  <data name="Running" xml:space="preserve">
+    <!-- Process status indicator: Running -->
+    <value>実行中</value>
+  </data>
+
+  <data name="Stopped" xml:space="preserve">
+    <!-- Process status indicator: Stopped -->
+    <value>停止</value>
+  </data>
+
+  <data name="Waiting" xml:space="preserve">
+    <!-- Process status indicator: Waiting -->
+    <value>待機中</value>
+  </data>
+
+  <data name="Overview" xml:space="preserve">
+    <!-- Process status indicator: Overview -->
+    <value>概要</value>
+  </data>
+
+  <data name="ModInstallerPage_AlwaysOnTopToggle.ToolTip" xml:space="preserve">
+    <!-- Toggle tooltip: keep window always on top -->
+    <value>ウィンドウを常に最前面に表示</value>
+  </data>
+
+  <data name="ModInstallerPage_RetrieveModInfoButton.ToolTip" xml:space="preserve">
+    <!-- Button/tooltip: fetch mod info from GameBanana -->
+    <value>Modページから情報を取得</value>
+  </data>
+
+  <data name="3dmigotoFolderSelector.Title" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>3dMigotoフォルダー</value>
+  </data>
+
+  <data name="ChangeLanguageDialogText" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>言語を変更するにはアプリケーションの再起動が必要です。
+これは選択した言語にアプリを正しく設定するために必要です。
+言語を変更しますか？</value>
+  </data>
+
+  <data name="FolderSectionHeader.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>フォルダー</value>
+  </data>
+
+  <data name="GameSelectorComboBox.Header" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>ゲームを選択:</value>
+  </data>
+
+  <data name="GameSelectorSectionHeader.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>ゲーム</value>
+  </data>
+
+  <data name="GameSelectorTitle.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>JASMはGenshin ImpactとHonkai Star Railを完全サポートしています。
+JASMはWUWAとZZZを部分的にサポートしています。</value>
+  </data>
+
+  <data name="LanguageSelectionSectionHeader.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>言語</value>
+  </data>
+
+  <data name="LanguageSelectorComboBox.Header" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>表示言語を選択:</value>
+  </data>
+
+  <data name="LanguageSelectorTitle.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>言語オプションは現在限られています。作業中です。</value>
+  </data>
+
+  <data name="ModsFolderSelector.Title" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Modフォルダー</value>
+  </data>
+
+  <data name="ModUpdateCheckerCheckBox.Content" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>自動Modチェック</value>
+  </data>
+
+  <data name="ModUpdateCheckerDescription.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Mod Update Checkerは起動時およびバックグラウンドで定期的にModの更新を確認します。
+有効にすると240分ごとにチェックしますが、少なくとも60分以内にチェックされていないModのみを対象とします。
+手動の更新確認は常にGameBananaに直接問い合わせます。</value>
+  </data>
+
+  <data name="ModUpdateCheckerNextText.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>次回チェック:</value>
+  </data>
+
+  <data name="ModUpdateCheckerSectionHeader.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>Mod Update Checker</value>
+  </data>
+
+  <data name="GameSourceSectionHeader.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>ゲームソース</value>
+  </data>
+
+  <data name="GameSourceTitle.Text" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>ゲームとキャラクターカテゴリをビルトイン（リリース）バージョンから読み込むか、コミュニティリポジトリから読み込むかを選択します。</value>
+  </data>
+
+  <data name="GameSource_Release.Content" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>リリース</value>
+  </data>
+
+  <data name="GameSource_Community.Content" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>コミュニティ（GitHub）</value>
+  </data>
+
+  <data name="CommunityRepoUrlTextBox.Header" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>コミュニティリポジトリURL:</value>
+  </data>
+
+  <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
+    <!-- UI text on the Settings page -->
+    <value>コミュニティゲームを更新</value>
+  </data>
+
+  <data name="BackupWarning.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>ファイルを操作するアプリケーションを使用する前に、ファイル/Modのバックアップを取ることを常にお勧めします。</value>
+  </data>
+
+  <data name="Body1.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>初回セットアップの一環として、モデルインポーター（3dmigoto）フォルダーと関連するModフォルダーを選択する必要があります。3dmigotoフォルダーには3DMigoto Loader.exe/3DMigotoLoader.exeとModフォルダーが含まれています。まだモデルインポーターを設定していない場合は、以下のリンクから今すぐ設定してください。ほとんどのModはGamebananaで見つかりますが、Nexusmodsも使用できます。</value>
+  </data>
+
+  <data name="Body2.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>設定を保存すると、アプリケーションは'Mods'フォルダー内に各キャラクター用のフォルダーを作成します。これらのキャラクターフォルダーの外にあるModフォルダーは無視されます。このアプリケーションは、Modフォルダー名の先頭に'DISABLED_'を付加することでModを有効/無効にします。JASMは管理しているModを他のアプリケーションで使用するためにエクスポートすることもサポートしています。</value>
+  </data>
+
+  <data name="DisableModsTooltip.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>すべてのModにDISABLED_プレフィックスを追加して無効化します</value>
+  </data>
+
+  <data name="GameSelectorBox.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>Modを管理するゲームを選択します。これは設定ページでいつでも変更できます。</value>
+  </data>
+
+  <data name="ReorganizeTooltip1.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>有効にすると、アプリケーションが既存のModをそれぞれのキャラクターに割り当てられたフォルダーに整理します。適切に一致しないModは「その他」フォルダーに配置されます。</value>
+  </data>
+
+  <data name="ReorganizeTooltip2.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>複数のキャラクター名を含むModフォルダーは、誤って特定のキャラクターのディレクトリに移動される可能性があります。これはフラットなMod構造を前提としており、スキンフォルダーがModsフォルダーに緩く保存されていることを想定しています。カスタムフォルダー構造を使用している場合、JASMがスキンを正しく識別できない可能性が高くなります。</value>
+  </data>
+
+  <data name="ReorganizeTooltip3.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>これは後で設定ページで有効にできます。</value>
+  </data>
+
+  <data name="Startup_Header.Text" xml:space="preserve">
+    <!-- UI text on the Startup page -->
+    <value>アプリケーションの起動</value>
+  </data>
+
+  <data name="CharacterGallery_DoNotAskAgain" xml:space="preserve">
+    <!-- Checkbox label in the delete mod confirmation dialog -->
+    <value>次回から表示しない</value>
+  </data>
+
+  <data name="CharacterGallery_DeleteConfirmText" xml:space="preserve">
+    <!-- Confirmation question when deleting a mod. {0} is the mod name -->
+    <value>このModを削除してもよろしいですか？</value>
+  </data>
+
+  <data name="CharacterGallery_DeleteTitle" xml:space="preserve">
+    <!-- Title of the delete mod confirmation dialog -->
+    <value>Modを削除</value>
+  </data>
+
+  <data name="CharacterGallery_DeletePrimaryButton" xml:space="preserve">
+    <!-- Confirm delete button in the delete mod dialog -->
+    <value>削除</value>
+  </data>
+
+  <data name="CharacterGallery_DeleteCloseButton" xml:space="preserve">
+    <!-- Cancel/close button in the delete mod dialog -->
+    <value>キャンセル</value>
+  </data>
+
+  <data name="CharacterDetails_RunCommandButton.Content" xml:space="preserve">
+    <!-- Button to run a custom command -->
+    <value>実行</value>
+  </data>
+
+  <data name="CharacterDetails_OverrideText.Text" xml:space="preserve">
+    <!-- Button label to override a skin for this mod -->
+    <value>オーバーライド</value>
+  </data>
+
+</root>
