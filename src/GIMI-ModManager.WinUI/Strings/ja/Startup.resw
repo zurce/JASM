@@ -17,16 +17,7 @@
     <resheader name="version">2.0</resheader>
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value></value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value></value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value></value>
-        <comment>This is a comment</comment>
-    </data>
-                
+                        
     There are any number of "resheader" rows that contain simple 
     name/value pairs.
     
@@ -117,31 +108,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+
   <data name="BackupWarning.Text" xml:space="preserve">
     <value>ファイルを操作するアプリケーションを使用する前に、ファイル/Modのバックアップを取ることを常にお勧めします。</value>
   </data>
+
   <data name="Body1.Text" xml:space="preserve">
     <value>初回セットアップの一環として、モデルインポーター（3dmigoto）フォルダーと関連するModフォルダーを選択する必要があります。3dmigotoフォルダーには3DMigoto Loader.exe/3DMigotoLoader.exeとModフォルダーが含まれています。まだモデルインポーターを設定していない場合は、以下のリンクから今すぐ設定してください。ほとんどのModはGamebananaで見つかりますが、Nexusmodsも使用できます。</value>
   </data>
+
   <data name="Body2.Text" xml:space="preserve">
     <value>設定を保存すると、アプリケーションは'Mods'フォルダー内に各キャラクター用のフォルダーを作成します。これらのキャラクターフォルダーの外にあるModフォルダーは無視されます。このアプリケーションは、Modフォルダー名の先頭に'DISABLED_'を付加することでModを有効/無効にします。JASMは管理しているModを他のアプリケーションで使用するためにエクスポートすることもサポートしています。</value>
   </data>
+
   <data name="DisableModsTooltip.Text" xml:space="preserve">
     <value>すべてのModにDISABLED_プレフィックスを追加して無効化します</value>
   </data>
+
   <data name="GameSelectorBox.ToolTipService.ToolTip" xml:space="preserve">
     <value>Modを管理するゲームを選択します。これは設定ページでいつでも変更できます。</value>
   </data>
+
   <data name="ReorganizeTooltip1.Text" xml:space="preserve">
     <value>有効にすると、アプリケーションが既存のModをそれぞれのキャラクターに割り当てられたフォルダーに整理します。適切に一致しないModは「その他」フォルダーに配置されます。</value>
   </data>
+
   <data name="ReorganizeTooltip2.Text" xml:space="preserve">
     <value>複数のキャラクター名を含むModフォルダーは、誤って特定のキャラクターのディレクトリに移動される可能性があります。これはフラットなMod構造を前提としており、スキンフォルダーがModsフォルダーに緩く保存されていることを想定しています。カスタムフォルダー構造を使用している場合、JASMがスキンを正しく識別できない可能性が高くなります。</value>
   </data>
+
   <data name="ReorganizeTooltip3.Text" xml:space="preserve">
     <value>これは後で設定ページで有効にできます。</value>
   </data>
+
   <data name="Startup_Header.Text" xml:space="preserve">
     <value>アプリケーションの起動</value>
   </data>
+
 </root>

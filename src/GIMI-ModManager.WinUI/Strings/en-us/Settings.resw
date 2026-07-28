@@ -108,41 +108,69 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-
-  <data name="BackupWarning.Text" xml:space="preserve">
-    <value>Всегда рекомендуется создавать резервные копии ваших файлов/модов перед использованием приложений, взаимодействующих с вашими файлами.</value>
+    <data name="3dmigotoFolderSelector.Title" xml:space="preserve">
+    <value>3Dmigoto Folder</value>
   </data>
-
-  <data name="Body1.Text" xml:space="preserve">
-    <value>В рамках первоначальной настройки вам нужно выбрать папку импортёра моделей (3dmigoto) и связанную папку модов. Папка 3dmigoto содержит 3DMigoto Loader.exe/3DMigotoLoader.exe и папку модов. Если вы ещё не настроили импортёр моделей, сделайте это сейчас по ссылке ниже. Большинство модов я нахожу на Gamebanana, но Nexusmods также можно использовать.</value>
+  <data name="ChangeLanguageDialogText" xml:space="preserve">
+    <value>Changing the language requires a restart of the application.
+This is required to properly configure the application for the selected language.
+Do you want to change the language?</value>
   </data>
-
-  <data name="Body2.Text" xml:space="preserve">
-    <value>После сохранения конфигурации приложение создаст папку для каждого персонажа внутри папки 'Mods'. Папки модов, найденные за пределами этих папок персонажей, игнорируются. Это приложение включает и отключает моды, добавляя префикс 'DISABLED_' к именам папок модов. JASM также поддерживает экспорт управляемых им модов, если вы хотите использовать их с другими приложениями.</value>
+  <data name="FolderSectionHeader.Text" xml:space="preserve">
+    <value>Folders</value>
   </data>
-
-  <data name="DisableModsTooltip.Text" xml:space="preserve">
-    <value>Добавляет префикс DISABLED_ ко всем модам, чтобы они были отключены</value>
+  <data name="GameSelectorComboBox.Header" xml:space="preserve">
+    <value>Selected Game:</value>
   </data>
-
-  <data name="GameSelectorBox.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Выберите игру, для которой вы хотите управлять модами. Это можно изменить в любое время на странице настроек.</value>
+  <data name="GameSelectorSectionHeader.Text" xml:space="preserve">
+    <value>Game</value>
   </data>
-
-  <data name="ReorganizeTooltip1.Text" xml:space="preserve">
-    <value>Включение этой опции заставит приложение отсортировать существующие моды в папки, назначенные соответствующим персонажам. Любые моды, которые не удаётся разумно сопоставить, будут помещены в папку «Другие».</value>
+  <data name="GameSelectorTitle.Text" xml:space="preserve">
+    <value>JASM fully supports Genshin Impact and Honkai Star Rail.
+JASM partially supports WUWA and ZZZ</value>
   </data>
-
-  <data name="ReorganizeTooltip2.Text" xml:space="preserve">
-    <value>Папка мода, содержащая несколько имён персонажей, может быть ошибочно перемещена в каталог одного из персонажей. Это предполагает плоскую структуру модов, где папки скинов свободно хранятся в папке модов. Если у вас есть собственная структура папок, JASM, скорее всего, неправильно определит ваши скины. Это также относится к вложенным папкам со скинами внутри.</value>
+  <data name="LanguageSelectionSectionHeader.Text" xml:space="preserve">
+    <value>Language</value>
   </data>
-
-  <data name="ReorganizeTooltip3.Text" xml:space="preserve">
-    <value>Это можно включить позже на странице настроек</value>
+  <data name="LanguageSelectorComboBox.Header" xml:space="preserve">
+    <value>Select Display Language:</value>
   </data>
-
-  <data name="Startup_Header.Text" xml:space="preserve">
-    <value>Запуск приложения</value>
+  <data name="LanguageSelectorTitle.Text" xml:space="preserve">
+    <value>Language options are currently limited. It is a work in progress.</value>
   </data>
-
+  <data name="ModsFolderSelector.Title" xml:space="preserve">
+    <value>Mods Folder</value>
+  </data>
+  <data name="ModUpdateCheckerCheckBox.Content" xml:space="preserve">
+    <value>Mod Auto Update Checker:</value>
+  </data>
+  <data name="ModUpdateCheckerDescription.Text" xml:space="preserve">
+    <value>The Mod Update Checker checks for mod updates on startup and periodically in the background, only support for GameBanana.
+Does a check every 2 hours when enabled, however, it only checks mods that have not been checked in at least 1 hour.
+Manually checking for updates always checks GameBanana directly</value>
+  </data>
+  <data name="ModUpdateCheckerNextText.Text" xml:space="preserve">
+    <value>Next Check at:</value>
+  </data>
+  <data name="ModUpdateCheckerSectionHeader.Text" xml:space="preserve">
+    <value>Mod Update Checker</value>
+  </data>
+  <data name="GameSourceSectionHeader.Text" xml:space="preserve">
+    <value>Game Source</value>
+  </data>
+  <data name="GameSourceTitle.Text" xml:space="preserve">
+    <value>Choose whether to load games and character categories from the built-in release or a community repository.</value>
+  </data>
+  <data name="GameSource_Release.Content" xml:space="preserve">
+    <value>Release</value>
+  </data>
+  <data name="GameSource_Community.Content" xml:space="preserve">
+    <value>Community (GitHub)</value>
+  </data>
+  <data name="CommunityRepoUrlTextBox.Header" xml:space="preserve">
+    <value>Community Repository URL:</value>
+  </data>
+  <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
+    <value>Update Community Games</value>
+  </data>
 </root>

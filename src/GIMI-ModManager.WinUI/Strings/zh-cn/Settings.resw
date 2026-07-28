@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -17,16 +17,7 @@
     <resheader name="version">2.0</resheader>
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
+                        
     There are any number of "resheader" rows that contain simple 
     name/value pairs.
     
@@ -117,68 +108,90 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+
   <data name="3dmigotoFolderSelector.Title" xml:space="preserve">
-    <value>3dMigoto 文件夹选择器</value>
+    <value>3dMigoto文件夹</value>
   </data>
+
   <data name="ChangeLanguageDialogText" xml:space="preserve">
-    <value>更改语言需要重新启动应用程序。
-这是为了正确配置应用程序以适应所选语言。
+    <value>更改语言需要重启应用程序。
+这是正确配置所选语言所必需的。
 是否要更改语言？</value>
   </data>
+
   <data name="FolderSectionHeader.Text" xml:space="preserve">
     <value>文件夹</value>
   </data>
+
   <data name="GameSelectorComboBox.Header" xml:space="preserve">
     <value>选择游戏：</value>
   </data>
+
   <data name="GameSelectorSectionHeader.Text" xml:space="preserve">
     <value>游戏</value>
   </data>
+
   <data name="GameSelectorTitle.Text" xml:space="preserve">
-    <value>JASM 支持原神和崩坏星铁道</value>
+    <value>JASM完全支持原神和崩坏：星穹铁道。
+JASM部分支持鸣潮和绝区零。</value>
   </data>
+
   <data name="LanguageSelectionSectionHeader.Text" xml:space="preserve">
     <value>语言</value>
   </data>
+
   <data name="LanguageSelectorComboBox.Header" xml:space="preserve">
     <value>选择显示语言：</value>
   </data>
+
   <data name="LanguageSelectorTitle.Text" xml:space="preserve">
-    <value>目前语言选项有限。我们正在继续改进。</value>
+    <value>语言选项目前有限。正在完善中。</value>
   </data>
+
   <data name="ModsFolderSelector.Title" xml:space="preserve">
-    <value>修改文件夹</value>
+    <value>Mod文件夹</value>
   </data>
+
   <data name="ModUpdateCheckerCheckBox.Content" xml:space="preserve">
-    <value>自动检查修改更新</value>
+    <value>自动检查Mod</value>
   </data>
+
   <data name="ModUpdateCheckerDescription.Text" xml:space="preserve">
-    <value>修改更新检查器会在启动时和后台定期检查修改的更新。
-启用后每240分钟检查一次，但只检查至少60分钟未检查的修改。
-手动检查总是直接检查 GameBanana。</value>
+    <value>Mod更新检查器在启动时和后台定期检查Mod更新。
+启用后，每240分钟检查一次，但仅检查至少60分钟未检查的Mod。
+手动更新检查始终直接查询GameBanana。</value>
   </data>
+
   <data name="ModUpdateCheckerNextText.Text" xml:space="preserve">
-    <value>下次检查时间：</value>
+    <value>下次检查在：</value>
   </data>
+
   <data name="ModUpdateCheckerSectionHeader.Text" xml:space="preserve">
-    <value>修改更新检查</value>
+    <value>Mod Update Checker</value>
   </data>
+
   <data name="GameSourceSectionHeader.Text" xml:space="preserve">
-    <value>游戏配置来源</value>
+    <value>游戏源</value>
   </data>
+
   <data name="GameSourceTitle.Text" xml:space="preserve">
-    <value>选择从内置的发布版本还是社区仓库加载游戏和角色类别。</value>
+    <value>选择是从内置（发布）版本加载游戏和角色类别，还是从社区仓库加载。</value>
   </data>
+
   <data name="GameSource_Release.Content" xml:space="preserve">
-    <value>内置版本 (Release)</value>
+    <value>发布版</value>
   </data>
+
   <data name="GameSource_Community.Content" xml:space="preserve">
-    <value>社区 (GitHub)</value>
+    <value>社区（GitHub）</value>
   </data>
+
   <data name="CommunityRepoUrlTextBox.Header" xml:space="preserve">
-    <value>社区仓库 URL:</value>
+    <value>社区仓库URL：</value>
   </data>
+
   <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
-    <value>更新社区游戏配置</value>
+    <value>更新社区游戏</value>
   </data>
+
 </root>

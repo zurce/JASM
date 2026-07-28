@@ -4170,155 +4170,34 @@ Ini路径：{1}</value>
     <value>从Mod页面获取Mod信息</value>
   </data>
 
-  <data name="3dmigotoFolderSelector.Title" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>3dMigoto文件夹</value>
-  </data>
 
-  <data name="ChangeLanguageDialogText" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>更改语言需要重启应用程序。
-这是正确配置所选语言所必需的。
-是否要更改语言？</value>
-  </data>
 
-  <data name="FolderSectionHeader.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>文件夹</value>
-  </data>
 
-  <data name="GameSelectorComboBox.Header" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>选择游戏：</value>
-  </data>
 
-  <data name="GameSelectorSectionHeader.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>游戏</value>
-  </data>
 
-  <data name="GameSelectorTitle.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>JASM完全支持原神和崩坏：星穹铁道。
-JASM部分支持鸣潮和绝区零。</value>
-  </data>
 
-  <data name="LanguageSelectionSectionHeader.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>语言</value>
-  </data>
 
-  <data name="LanguageSelectorComboBox.Header" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>选择显示语言：</value>
-  </data>
 
-  <data name="LanguageSelectorTitle.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>语言选项目前有限。正在完善中。</value>
-  </data>
 
-  <data name="ModsFolderSelector.Title" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Mod文件夹</value>
-  </data>
 
-  <data name="ModUpdateCheckerCheckBox.Content" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>自动检查Mod</value>
-  </data>
 
-  <data name="ModUpdateCheckerDescription.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Mod更新检查器在启动时和后台定期检查Mod更新。
-启用后，每240分钟检查一次，但仅检查至少60分钟未检查的Mod。
-手动更新检查始终直接查询GameBanana。</value>
-  </data>
 
-  <data name="ModUpdateCheckerNextText.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>下次检查在：</value>
-  </data>
 
-  <data name="ModUpdateCheckerSectionHeader.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Mod Update Checker</value>
-  </data>
 
-  <data name="GameSourceSectionHeader.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>游戏源</value>
-  </data>
 
-  <data name="GameSourceTitle.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>选择是从内置（发布）版本加载游戏和角色类别，还是从社区仓库加载。</value>
-  </data>
 
-  <data name="GameSource_Release.Content" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>发布版</value>
-  </data>
 
-  <data name="GameSource_Community.Content" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>社区（GitHub）</value>
-  </data>
 
-  <data name="CommunityRepoUrlTextBox.Header" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>社区仓库URL：</value>
-  </data>
 
-  <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>更新社区游戏</value>
-  </data>
 
-  <data name="BackupWarning.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>在使用与文件交互的应用程序之前，始终建议备份你的文件/Mod。</value>
-  </data>
 
-  <data name="Body1.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>作为初始设置的一部分，你需要选择模型导入器（3dmigoto）文件夹和相关的Mod文件夹。3dmigoto文件夹包含3DMigoto Loader.exe/3DMigotoLoader.exe和Mod文件夹。如果尚未设置模型导入器，请立即使用下面的链接进行设置。我在Gamebanana上找到大多数Mod，但Nexusmods也有一些。</value>
-  </data>
 
-  <data name="Body2.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>保存配置后，应用程序将在'Mods'文件夹内为每个角色创建一个文件夹。在这些角色文件夹之外找到的Mod文件夹将被忽略。此应用程序通过在Mod文件夹名称前添加'DISABLED_'前缀来启用和禁用Mod。如果你希望将JASM管理的Mod与其他应用程序一起使用，JASM也支持导出Mod。</value>
-  </data>
 
-  <data name="DisableModsTooltip.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>向所有Mod添加DISABLED_前缀以禁用它们</value>
-  </data>
 
-  <data name="GameSelectorBox.ToolTipService.ToolTip" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>选择要管理Mod的游戏。这可以随时在设置页面更改。</value>
-  </data>
 
-  <data name="ReorganizeTooltip1.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>启用此选项将使应用程序将现有Mod排序到分配给各自角色的文件夹中。任何无法合理匹配的Mod将被放入「其他」文件夹。</value>
-  </data>
 
-  <data name="ReorganizeTooltip2.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>包含多个角色名称的Mod文件夹可能会被错误地移动到其中一个角色的目录中。这假设是扁平化的Mod结构，皮肤文件夹松散地存储在Mod文件夹中。如果你有自己的文件夹结构，JASM很可能无法正确识别你的皮肤。如果其中有包含皮肤的文件嵌套文件夹，情况也是如此。</value>
-  </data>
 
-  <data name="ReorganizeTooltip3.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>可以在稍后的设置页面启用此功能</value>
-  </data>
 
-  <data name="Startup_Header.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>应用程序启动</value>
-  </data>
 
   <data name="CharacterGallery_DoNotAskAgain" xml:space="preserve">
     <!-- Checkbox label in the delete mod confirmation dialog -->

@@ -17,16 +17,7 @@
     <resheader name="version">2.0</resheader>
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value></value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value></value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value></value>
-        <comment>This is a comment</comment>
-    </data>
-                
+                        
     There are any number of "resheader" rows that contain simple 
     name/value pairs.
     
@@ -117,69 +108,90 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+
   <data name="3dmigotoFolderSelector.Title" xml:space="preserve">
     <value>3dMigotoフォルダー</value>
   </data>
+
   <data name="ChangeLanguageDialogText" xml:space="preserve">
     <value>言語を変更するにはアプリケーションの再起動が必要です。
 これは選択した言語にアプリを正しく設定するために必要です。
 言語を変更しますか？</value>
   </data>
+
   <data name="FolderSectionHeader.Text" xml:space="preserve">
     <value>フォルダー</value>
   </data>
+
   <data name="GameSelectorComboBox.Header" xml:space="preserve">
     <value>ゲームを選択:</value>
   </data>
+
   <data name="GameSelectorSectionHeader.Text" xml:space="preserve">
     <value>ゲーム</value>
   </data>
+
   <data name="GameSelectorTitle.Text" xml:space="preserve">
     <value>JASMはGenshin ImpactとHonkai Star Railを完全サポートしています。
 JASMはWUWAとZZZを部分的にサポートしています。</value>
   </data>
+
   <data name="LanguageSelectionSectionHeader.Text" xml:space="preserve">
     <value>言語</value>
   </data>
+
   <data name="LanguageSelectorComboBox.Header" xml:space="preserve">
     <value>表示言語を選択:</value>
   </data>
+
   <data name="LanguageSelectorTitle.Text" xml:space="preserve">
     <value>言語オプションは現在限られています。作業中です。</value>
   </data>
+
   <data name="ModsFolderSelector.Title" xml:space="preserve">
     <value>Modフォルダー</value>
   </data>
+
   <data name="ModUpdateCheckerCheckBox.Content" xml:space="preserve">
     <value>自動Modチェック</value>
   </data>
+
   <data name="ModUpdateCheckerDescription.Text" xml:space="preserve">
     <value>Mod Update Checkerは起動時およびバックグラウンドで定期的にModの更新を確認します。
 有効にすると240分ごとにチェックしますが、少なくとも60分以内にチェックされていないModのみを対象とします。
 手動の更新確認は常にGameBananaに直接問い合わせます。</value>
   </data>
+
   <data name="ModUpdateCheckerNextText.Text" xml:space="preserve">
     <value>次回チェック:</value>
   </data>
+
   <data name="ModUpdateCheckerSectionHeader.Text" xml:space="preserve">
     <value>Mod Update Checker</value>
   </data>
+
   <data name="GameSourceSectionHeader.Text" xml:space="preserve">
     <value>ゲームソース</value>
   </data>
+
   <data name="GameSourceTitle.Text" xml:space="preserve">
     <value>ゲームとキャラクターカテゴリをビルトイン（リリース）バージョンから読み込むか、コミュニティリポジトリから読み込むかを選択します。</value>
   </data>
+
   <data name="GameSource_Release.Content" xml:space="preserve">
     <value>リリース</value>
   </data>
+
   <data name="GameSource_Community.Content" xml:space="preserve">
     <value>コミュニティ（GitHub）</value>
   </data>
+
   <data name="CommunityRepoUrlTextBox.Header" xml:space="preserve">
     <value>コミュニティリポジトリURL:</value>
   </data>
+
   <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
     <value>コミュニティゲームを更新</value>
   </data>
+
 </root>

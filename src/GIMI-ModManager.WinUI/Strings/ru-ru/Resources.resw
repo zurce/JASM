@@ -4170,155 +4170,34 @@ JASM не будет перемещать ваши моды и не будет �
     <value>Получить информацию о моде со страницы мода</value>
   </data>
 
-  <data name="3dmigotoFolderSelector.Title" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Папка 3dMigoto</value>
-  </data>
 
-  <data name="ChangeLanguageDialogText" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Изменение языка требует перезапуска приложения.
-Это необходимо для правильной настройки приложения для выбранного языка.
-Хотите изменить язык?</value>
-  </data>
 
-  <data name="FolderSectionHeader.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Папки</value>
-  </data>
 
-  <data name="GameSelectorComboBox.Header" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Выбрать игру:</value>
-  </data>
 
-  <data name="GameSelectorSectionHeader.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Игра</value>
-  </data>
 
-  <data name="GameSelectorTitle.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>JASM полностью поддерживает Genshin Impact и Honkai Star Rail.
-JASM частично поддерживает WUWA и ZZZ</value>
-  </data>
 
-  <data name="LanguageSelectionSectionHeader.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Язык</value>
-  </data>
 
-  <data name="LanguageSelectorComboBox.Header" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Выберите язык отображения:</value>
-  </data>
 
-  <data name="LanguageSelectorTitle.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Возможности выбора языка в настоящее время ограничены. Работа в процессе.</value>
-  </data>
 
-  <data name="ModsFolderSelector.Title" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Папка модов</value>
-  </data>
 
-  <data name="ModUpdateCheckerCheckBox.Content" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Автоматическая проверка модов</value>
-  </data>
 
-  <data name="ModUpdateCheckerDescription.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Mod Update Checker проверяет наличие обновлений модов при запуске и периодически в фоновом режиме.
-При включении проверка происходит каждые 240 минут, но только для модов, которые не проверялись как минимум 60 минут.
-Ручная проверка обновлений всегда напрямую обращается к GameBanana.</value>
-  </data>
 
-  <data name="ModUpdateCheckerNextText.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Следующая проверка через:</value>
-  </data>
 
-  <data name="ModUpdateCheckerSectionHeader.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Mod Update Checker</value>
-  </data>
 
-  <data name="GameSourceSectionHeader.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Источник игр</value>
-  </data>
 
-  <data name="GameSourceTitle.Text" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Выберите, загружать игры и категории персонажей из встроенной (релизной) версии или из репозитория сообщества.</value>
-  </data>
 
-  <data name="GameSource_Release.Content" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Релиз</value>
-  </data>
 
-  <data name="GameSource_Community.Content" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Сообщество (GitHub)</value>
-  </data>
 
-  <data name="CommunityRepoUrlTextBox.Header" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>URL репозитория сообщества:</value>
-  </data>
 
-  <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
-    <!-- UI text on the Settings page -->
-    <value>Обновить игры сообщества</value>
-  </data>
 
-  <data name="BackupWarning.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>Всегда рекомендуется создавать резервные копии ваших файлов/модов перед использованием приложений, взаимодействующих с вашими файлами.</value>
-  </data>
 
-  <data name="Body1.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>В рамках первоначальной настройки вам нужно выбрать папку импортёра моделей (3dmigoto) и связанную папку модов. Папка 3dmigoto содержит 3DMigoto Loader.exe/3DMigotoLoader.exe и папку модов. Если вы ещё не настроили импортёр моделей, сделайте это сейчас по ссылке ниже. Большинство модов я нахожу на Gamebanana, но Nexusmods также можно использовать.</value>
-  </data>
 
-  <data name="Body2.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>После сохранения конфигурации приложение создаст папку для каждого персонажа внутри папки 'Mods'. Папки модов, найденные за пределами этих папок персонажей, игнорируются. Это приложение включает и отключает моды, добавляя префикс 'DISABLED_' к именам папок модов. JASM также поддерживает экспорт управляемых им модов, если вы хотите использовать их с другими приложениями.</value>
-  </data>
 
-  <data name="DisableModsTooltip.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>Добавляет префикс DISABLED_ ко всем модам, чтобы они были отключены</value>
-  </data>
 
-  <data name="GameSelectorBox.ToolTipService.ToolTip" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>Выберите игру, для которой вы хотите управлять модами. Это можно изменить в любое время на странице настроек.</value>
-  </data>
 
-  <data name="ReorganizeTooltip1.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>Включение этой опции заставит приложение отсортировать существующие моды в папки, назначенные соответствующим персонажам. Любые моды, которые не удаётся разумно сопоставить, будут помещены в папку «Другие».</value>
-  </data>
 
-  <data name="ReorganizeTooltip2.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>Папка мода, содержащая несколько имён персонажей, может быть ошибочно перемещена в каталог одного из персонажей. Это предполагает плоскую структуру модов, где папки скинов свободно хранятся в папке модов. Если у вас есть собственная структура папок, JASM, скорее всего, неправильно определит ваши скины. Это также относится к вложенным папкам со скинами внутри.</value>
-  </data>
 
-  <data name="ReorganizeTooltip3.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>Это можно включить позже на странице настроек</value>
-  </data>
 
-  <data name="Startup_Header.Text" xml:space="preserve">
-    <!-- UI text on the Startup page -->
-    <value>Запуск приложения</value>
-  </data>
 
   <data name="CharacterGallery_DoNotAskAgain" xml:space="preserve">
     <!-- Checkbox label in the delete mod confirmation dialog -->
