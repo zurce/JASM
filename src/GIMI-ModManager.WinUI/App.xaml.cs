@@ -132,7 +132,6 @@ public partial class App : Application
                 services.AddSingleton<ThreeDMigtoProcessManager>();
 
                 services.AddSingleton<UpdateChecker>();
-                services.AddSingleton<AutoUpdaterService>();
 
                 services.AddSingleton<ImageHandlerService>();
                 services.AddSingleton<SelectedGameService>();
@@ -342,9 +341,35 @@ public partial class App : Application
     protected override async void OnLaunched(LaunchActivatedEventArgs args)
     {
         Environment.SetEnvironmentVariable("WEBVIEW2_USE_VISUAL_HOSTING_FOR_OWNED_WINDOWS", "1");
+        ScheduleOldVersionCleanup();
         await GetService<ILanguageLocalizer>().InitializeAsync();
         NotImplemented.NotificationManager = GetService<NotificationManager>();
         base.OnLaunched(args);
         await GetService<IActivationService>().ActivateAsync(args).ConfigureAwait(false);
+    }
+
+    private static void ScheduleOldVersionCleanup()
+    {
+        var parentDir = new DirectoryInfo(ROOT_DIR).Parent?.FullName;
+        if (parentDir is null) return;
+
+        var oldDir = Path.Combine(parentDir, "JASM_Old");
+        var updateMarker = Path.Combine(parentDir, "JASM_Update.cmd");
+
+        // Clean up leftover batch script from previous update
+        if (File.Exists(updateMarker))
+        {
+            try { File.Delete(updateMarker); } catch { /* ignore */ }
+        }
+
+        // Clean up old version backup
+        if (Directory.Exists(oldDir))
+        {
+            Task.Run(() =>
+            {
+                try { Directory.Delete(oldDir, true); }
+                catch { /* best effort */ }
+            });
+        }
     }
 }

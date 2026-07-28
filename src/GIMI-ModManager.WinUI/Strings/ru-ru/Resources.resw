@@ -1667,16 +1667,6 @@
     <value>Ошибка при экспорте модов</value>
   </data>
 
-  <data name="Settings_Update_ErrorStarting" xml:space="preserve">
-    <!-- Text on the Settings component -->
-    <value>Ошибка при запуске процесса обновления</value>
-  </data>
-
-  <data name="Settings_Update_CouldNotStart" xml:space="preserve">
-    <!-- Text on the Settings component -->
-    <value>Не удалось запустить процесс обновления</value>
-  </data>
-
   <data name="Commands_Notification_FailedKillTitle" xml:space="preserve">
     <!-- Notification about command creation/update/deletion -->
     <value>Не удалось завершить процесс</value>
@@ -1879,21 +1869,6 @@
   <data name="Settings_SeeWhatsNew.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
     <value>Посмотреть, что нового в последнем релизе</value>
-  </data>
-
-  <data name="Settings_UpdateDialogText.Text" xml:space="preserve">
-    <!-- Static label text on the Settings component -->
-    <value>JASM+ закроется, и начнётся обновление. Хотите продолжить?</value>
-  </data>
-
-  <data name="Settings_UpdateJASMButton.Content" xml:space="preserve">
-    <!-- Button/toggle label in Settings page -->
-    <value>Да, обновить JASM+</value>
-  </data>
-
-  <data name="Settings_UpdateJASMTo.Text" xml:space="preserve">
-    <!-- Static label text on the Settings component -->
-    <value>Обновить JASM+ до</value>
   </data>
 
   <data name="Settings_IgnoreUpdate.Content" xml:space="preserve">

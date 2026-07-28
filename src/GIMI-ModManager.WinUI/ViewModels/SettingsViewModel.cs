@@ -1,11 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
+using System.IO.Compression;
+using System.Net.Http;
 using System.Reflection;
 using Windows.Storage.Pickers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ErrorOr;
+using Newtonsoft.Json;
 using GIMI_ModManager.Core.Contracts.Entities;
 using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.GamesService;
@@ -43,7 +46,6 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     private readonly ISkinManagerService _skinManagerService;
     private readonly IGameService _gameService;
     private readonly ILanguageLocalizer _localizer;
-    private readonly AutoUpdaterService _autoUpdaterService;
     private readonly SelectedGameService _selectedGameService;
     private readonly ModUpdateAvailableChecker _modUpdateAvailableChecker;
     private readonly LifeCycleService _lifeCycleService;
@@ -210,7 +212,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         INavigationViewService navigationViewService, IWindowManagerService windowManagerService,
         ISkinManagerService skinManagerService, UpdateChecker updateChecker,
         GenshinProcessManager genshinProcessManager, ThreeDMigtoProcessManager threeDMigtoProcessManager,
-        IGameService gameService, AutoUpdaterService autoUpdaterService, ILanguageLocalizer localizer,
+        IGameService gameService, ILanguageLocalizer localizer,
         SelectedGameService selectedGameService, ModUpdateAvailableChecker modUpdateAvailableChecker,
         LifeCycleService lifeCycleService, INavigationService navigationService,
         ModArchiveRepository modArchiveRepository, ICommunityGamesService communityGamesService)
@@ -223,7 +225,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         _skinManagerService = skinManagerService;
         _updateChecker = updateChecker;
         _gameService = gameService;
-        _autoUpdaterService = autoUpdaterService;
+
         _localizer = localizer;
         _selectedGameService = selectedGameService;
         _modUpdateAvailableChecker = modUpdateAvailableChecker;
@@ -673,26 +675,158 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         }
     }
 
+    [ObservableProperty] private bool _updateDownloading;
+    [ObservableProperty] private int _updateDownloadProgress;
+    [ObservableProperty] private string _updateStatusText = string.Empty;
+    public bool IsUpdateProgressIndeterminate => UpdateDownloading && UpdateDownloadProgress == 0;
+    public bool IsUpdateButtonEnabled => !UpdateDownloading;
+
+    private const string UpdateStagingFolder = "JASM_Update";
+    private const string UpdateOldFolder = "JASM_Old";
+
     [RelayCommand]
-    private void UpdateJasm()
+    private async Task UpdateJasmAsync()
     {
-        var errors = Array.Empty<Error>();
+        UpdateDownloading = true;
+        UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_Downloading") ?? "Downloading update...";
+
         try
         {
-            errors = _autoUpdaterService.StartSelfUpdateProcess();
+            var downloadUrl = await GetLatestReleaseDownloadUrlAsync();
+            if (downloadUrl is null)
+            {
+                UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_DownloadFailed") ?? "Could not find download URL";
+                UpdateDownloading = false;
+                return;
+            }
+
+            var tempDir = Path.Combine(Path.GetTempPath(), "JASM_Update");
+            var archivePath = Path.Combine(tempDir, "update.7z");
+
+            Directory.CreateDirectory(tempDir);
+
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "JASM-Update-Downloader");
+
+            using var response = await client.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead);
+            var totalBytes = response.Content.Headers.ContentLength ?? -1;
+
+            await using var stream = await response.Content.ReadAsStreamAsync();
+            await using var fileStream = File.Create(archivePath);
+
+            var buffer = new byte[8192];
+            long totalRead = 0;
+            int bytesRead;
+            var lastProgressUpdate = DateTime.UtcNow;
+
+            while ((bytesRead = await stream.ReadAsync(buffer)) > 0)
+            {
+                await fileStream.WriteAsync(buffer.AsMemory(0, bytesRead));
+                totalRead += bytesRead;
+
+                if (totalBytes > 0 && (DateTime.UtcNow - lastProgressUpdate).TotalMilliseconds > 200)
+                {
+                    UpdateDownloadProgress = (int)(totalRead * 100 / totalBytes);
+                    UpdateStatusText = string.Format(
+                        _localizer.GetLocalizedStringOrDefault("Settings_Update_DownloadingProgress") ?? "Downloading... {0}%",
+                        UpdateDownloadProgress);
+                    lastProgressUpdate = DateTime.UtcNow;
+                }
+            }
+
+            UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_Extracting") ?? "Extracting update...";
+
+            var installParent = new DirectoryInfo(App.ROOT_DIR).Parent!.FullName;
+            var stagingPath = Path.Combine(installParent, UpdateStagingFolder);
+
+            if (Directory.Exists(stagingPath))
+                Directory.Delete(stagingPath, true);
+
+            await Task.Run(() =>
+            {
+                System.IO.Compression.ZipFile.ExtractToDirectory(archivePath, stagingPath);
+            });
+
+            // Clean up temp
+            try { Directory.Delete(tempDir, true); } catch { /* ignore */ }
+
+            // Write and launch the swap script
+            UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_Restarting") ?? "Restarting to apply update...";
+
+            var installDir = App.ROOT_DIR;
+            var parentDir = new DirectoryInfo(installDir).Parent!.FullName;
+            var exeName = Path.GetFileName(Process.GetCurrentProcess().MainModule?.FileName ?? "JASM - Just Another Skin Manager.exe");
+
+            var scriptPath = Path.Combine(parentDir, "JASM_Update.cmd");
+            var script = $@"@echo off
+timeout /t 3 /nobreak > nul
+cd /d ""{parentDir}""
+if exist ""{UpdateOldFolder}"" rmdir /s /q ""{UpdateOldFolder}""
+move ""{Path.GetFileName(installDir)}"" ""{UpdateOldFolder}""
+move ""{UpdateStagingFolder}"" ""{Path.GetFileName(installDir)}""
+start """" ""{Path.GetFileName(installDir)}\{exeName}""
+del ""%~f0""
+";
+
+            File.WriteAllText(scriptPath, script);
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = scriptPath,
+                UseShellExecute = true,
+                WindowStyle = ProcessWindowStyle.Hidden
+            });
+
+            Application.Current.Exit();
         }
         catch (Exception e)
         {
-            _logger.Error(e, "Error starting update process");
-            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Update_ErrorStarting") ?? "Error starting update process", e.Message, TimeSpan.FromSeconds(10));
+            _logger.Error(e, "Error during update process");
+            UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_ErrorStarting") ?? "Error during update";
+            UpdateDownloading = false;
+            _notificationManager.ShowNotification(
+                _localizer.GetLocalizedStringOrDefault("Settings_Update_ErrorStarting") ?? "Update failed",
+                e.Message, TimeSpan.FromSeconds(10));
         }
+    }
 
-        if (errors is not null && errors.Any())
-        {
-            var errorMessages = errors.Select(e => e.Description).ToArray();
-            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Update_CouldNotStart") ?? "Could not start update process", string.Join('\n', errorMessages),
-                TimeSpan.FromSeconds(10));
-        }
+    private async Task<Uri?> GetLatestReleaseDownloadUrlAsync()
+    {
+        const string releasesApiUrl = "https://api.github.com/repos/zurce/JASM/releases?per_page=2";
+
+        using var client = new HttpClient();
+        client.DefaultRequestHeaders.Add("X-GitHub-Api-Version", "2022-11-28");
+        client.DefaultRequestHeaders.Add("User-Agent", "JASM-Update-Checker");
+
+        var result = await client.GetAsync(releasesApiUrl);
+        if (!result.IsSuccessStatusCode)
+            return null;
+
+        var text = await result.Content.ReadAsStringAsync();
+        var releases = Newtonsoft.Json.JsonConvert.DeserializeObject<GitHubRelease[]>(text) ?? Array.Empty<GitHubRelease>();
+
+        var latest = releases
+            .Where(r => !r.prerelease)
+            .OrderByDescending(r => new Version(r.tag_name?.Trim('v') ?? ""))
+            .FirstOrDefault();
+
+        var asset = latest?.assets?.FirstOrDefault(a =>
+            a.name?.StartsWith("JASM_", StringComparison.OrdinalIgnoreCase) ?? false);
+
+        return asset?.browser_download_url is not null ? new Uri(asset.browser_download_url) : null;
+    }
+
+    private class GitHubRelease
+    {
+        public string? tag_name;
+        public bool prerelease;
+        public GitHubAsset[]? assets;
+    }
+
+    private class GitHubAsset
+    {
+        public string? name;
+        public string? browser_download_url;
     }
 
 

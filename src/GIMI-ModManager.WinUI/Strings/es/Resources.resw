@@ -1382,14 +1382,6 @@ O
     <!-- Text on the Settings component -->
     <value>Error al exportar mods</value>
   </data>
-  <data name="Settings_Update_ErrorStarting" xml:space="preserve">
-    <!-- Text on the Settings component -->
-    <value>Error al iniciar el proceso de actualización</value>
-  </data>
-  <data name="Settings_Update_CouldNotStart" xml:space="preserve">
-    <!-- Text on the Settings component -->
-    <value>No se pudo iniciar el proceso de actualización</value>
-  </data>
   <data name="Commands_Notification_FailedKillTitle" xml:space="preserve">
     <!-- Notification about command creation/update/deletion -->
     <value>Error al terminar el proceso</value>
@@ -1545,18 +1537,6 @@ Solo los mods rastreados por JASM+ se deshabilitarán dentro de las categorías 
   <data name="Settings_SeeWhatsNew.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
     <value>Ver las novedades de la última versión</value>
-  </data>
-  <data name="Settings_UpdateDialogText.Text" xml:space="preserve">
-    <!-- Static label text on the Settings component -->
-    <value>JASM+ se cerrará y la actualización comenzará. ¿Quieres continuar?</value>
-  </data>
-  <data name="Settings_UpdateJASMButton.Content" xml:space="preserve">
-    <!-- Button/toggle label in Settings page -->
-    <value>Sí, Actualizar JASM+</value>
-  </data>
-  <data name="Settings_UpdateJASMTo.Text" xml:space="preserve">
-    <!-- Static label text on the Settings component -->
-    <value>Actualizar JASM+ a </value>
   </data>
   <data name="Settings_IgnoreUpdate.Content" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->

@@ -3,13 +3,10 @@ To start JASM+ run "JASM - Just Another Skin Manager.exe" inside JASM folder. Yo
 
 JASM+ (Just Another Skin Manager Plus) is a community fork based on JASM. It is a Skin Manager, not a mod injector. It helps manage mod folders by organizing and displaying them. 3Dmigoto is the loader responsible for injecting mods into Genshin.
 
-Updating from previous versions: 
+Updating: JASM+ checks for updates automatically. When a new version is available, you will see a notification in the Settings page. Click "Update" and JASM+ will download and install the update for you.
 
-From Version 1.4.3 and upwards -> Click the update button at the bottom of the settings page.
-
-						OR
-
-1. Download JASM+.
+To update manually:
+1. Download the latest JASM+ release.
 2. Delete the old JASM folder and replace it with the new one. 
 
 Personal settings are stored in "C:\Users\<username>\AppData\Local\JASM\ApplicationData" or in the mods themselves

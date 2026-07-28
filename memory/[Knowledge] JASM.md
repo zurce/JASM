@@ -107,6 +107,14 @@ src/
 
 ## Key Decisions and Learnings
 
+### 2026-07-28: Auto-updater replaced with directory-swap mechanism
+
+The previous auto-updater was a separate exe (`JASM.AutoUpdater`) that downloaded a 7z archive, deleted all files in the JASM folder one by one, and copied new files in — a pattern that triggered antivirus false positives (similar to the previously removed Elevator).
+
+- **Decision:** Removed the `JASM.AutoUpdater` project entirely. Replaced it with an in-app download + atomic directory swap: the main app downloads the new release, extracts to `JASM_Update/` alongside the install folder, writes a batch script to `%TEMP%`, and exits. The batch script renames `JASM/` → `JASM_Old/`, renames `JASM_Update/` → `JASM/`, and launches the new exe. On next startup, `JASM_Old/` is cleaned up in the background.
+- The `UpdateChecker` now points to `https://api.github.com/repos/zurce/JASM/releases`.
+- The `AutoUpdaterService` was removed; download + extraction logic lives directly in `SettingsViewModel.UpdateJasmAsync()`.
+
 ### 2026-03-15: Release Build JSON Serialization & Trimming
 When compiling in `Release` mode, the .NET trimmer strips reflection metadata from internal serialization types like `JsonCommandRoot` and `JsonCommandDefinition`. This causes commands to lose fields (like `Arguments` or `WorkingDirectory`) during save/load.
 - **Decision:** Introduced a source-generated `CommandJsonContext` class and registered it in `CommandService` to enforce trim-proof compile-time serialization.

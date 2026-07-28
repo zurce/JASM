@@ -39,7 +39,6 @@ public class ActivationService : IActivationService
     private readonly ThreeDMigtoProcessManager _threeDMigtoProcessManager;
     private readonly UpdateChecker _updateChecker;
     private readonly IWindowManagerService _windowManagerService;
-    private readonly AutoUpdaterService _autoUpdaterService;
     private readonly SelectedGameService _selectedGameService;
     private readonly ModUpdateAvailableChecker _modUpdateAvailableChecker;
     private readonly ModNotificationManager _modNotificationManager;
@@ -53,7 +52,7 @@ public class ActivationService : IActivationService
         ILocalSettingsService localSettingsService,
         GenshinProcessManager genshinProcessManager,
         ThreeDMigtoProcessManager threeDMigtoProcessManager, UpdateChecker updateChecker,
-        IWindowManagerService windowManagerService, AutoUpdaterService autoUpdaterService, IGameService gameService,
+        IWindowManagerService windowManagerService, IGameService gameService,
         ILanguageLocalizer languageLocalizer, SelectedGameService selectedGameService,
         ModUpdateAvailableChecker modUpdateAvailableChecker, ILogger logger,
         ModNotificationManager modNotificationManager, INavigationViewService navigationViewService,
@@ -68,7 +67,6 @@ public class ActivationService : IActivationService
         _threeDMigtoProcessManager = threeDMigtoProcessManager;
         _updateChecker = updateChecker;
         _windowManagerService = windowManagerService;
-        _autoUpdaterService = autoUpdaterService;
         _gameService = gameService;
         _languageLocalizer = languageLocalizer;
         _selectedGameService = selectedGameService;
@@ -202,7 +200,6 @@ public class ActivationService : IActivationService
         await _threeDMigtoProcessManager.TryInitialize();
         await _updateChecker.InitializeAsync();
         await _modUpdateAvailableChecker.InitializeAsync().ConfigureAwait(false);
-        await Task.Run(() => _autoUpdaterService.UpdateAutoUpdater()).ConfigureAwait(false);
     }
 
     const int MinimizedPosition = -32000;

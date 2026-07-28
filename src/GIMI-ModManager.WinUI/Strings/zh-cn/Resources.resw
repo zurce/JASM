@@ -1667,16 +1667,6 @@
     <value>导出Mod时出错</value>
   </data>
 
-  <data name="Settings_Update_ErrorStarting" xml:space="preserve">
-    <!-- Text on the Settings component -->
-    <value>启动更新过程时出错</value>
-  </data>
-
-  <data name="Settings_Update_CouldNotStart" xml:space="preserve">
-    <!-- Text on the Settings component -->
-    <value>无法启动更新过程</value>
-  </data>
-
   <data name="Commands_Notification_FailedKillTitle" xml:space="preserve">
     <!-- Notification about command creation/update/deletion -->
     <value>终止进程失败</value>
@@ -1879,21 +1869,6 @@ Mods文件夹根目录下的空文件夹也将被删除。</value>
   <data name="Settings_SeeWhatsNew.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
     <value>查看最新版本的新功能</value>
-  </data>
-
-  <data name="Settings_UpdateDialogText.Text" xml:space="preserve">
-    <!-- Static label text on the Settings component -->
-    <value>JASM将退出并开始更新。是否继续？</value>
-  </data>
-
-  <data name="Settings_UpdateJASMButton.Content" xml:space="preserve">
-    <!-- Button/toggle label in Settings page -->
-    <value>是的，更新JASM+</value>
-  </data>
-
-  <data name="Settings_UpdateJASMTo.Text" xml:space="preserve">
-    <!-- Static label text on the Settings component -->
-    <value>将JASM更新到</value>
   </data>
 
   <data name="Settings_IgnoreUpdate.Content" xml:space="preserve">

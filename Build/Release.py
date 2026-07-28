@@ -8,10 +8,6 @@ import sys
 JASM_CSPROJ = "src\\GIMI-ModManager.WinUI\\GIMI-ModManager.WinUI.csproj"
 JASM_OUTPUT = "src\\GIMI-ModManager.WinUI\\bin\\Release\Publish\\"
 
-JASM_Updater_CSPROJ = "src\\JASM.AutoUpdater\\JASM.AutoUpdater.csproj"
-JASM_Updater_OUTPUT = "src\\\\JASM.AutoUpdater\\bin\\Release\Publish\\"
-JASM_Updater_FolderName = "JASM - Auto Updater_New"
-
 RELEASE_DIR = "output"
 JASM_RELEASE_DIR = "output\\JASM"
 
@@ -39,34 +35,16 @@ if versionNumber is None or len(versionNumber) == 0:
 	exit(1)
 versionNumber = versionNumber[0]
 
-if (SelfContained == False):
-	print("Building JASM - Auto Updater...")
-	jasmUpdaterPublishCommand = "dotnet publish " + JASM_Updater_CSPROJ + " /p:PublishProfile=FolderProfile.pubxml -c Release"
-	print(jasmUpdaterPublishCommand)
-	checkSuccessfulExitCode(os.system(jasmUpdaterPublishCommand))
-	print()
-	print("Finished building JASM - Auto Updater")
-else:
-	print("Skipping JASM - Auto Updater build because it is not supported for self-contained build")
-	print()
-
-print("Building JASM...")
+print("Building JASM+...")
 jasmPublishCommand = "dotnet publish " + JASM_CSPROJ + (" /p:PublishProfile=FolderProfileSelfContained.pubxml" if SelfContained else " /p:PublishProfile=FolderProfile.pubxml") + " -c Release" 
 print(jasmPublishCommand)
 checkSuccessfulExitCode(os.system(jasmPublishCommand))
 print()
-print("Finished building JASM")
+print("Finished building JASM+")
 
 # Create release directory
 os.makedirs(RELEASE_DIR, exist_ok=True)
 os.makedirs(JASM_RELEASE_DIR, exist_ok=True)
-
-if (SelfContained == False):
-	print("Copying JASM - Auto Updater to output...")
-	os.mkdir(JASM_RELEASE_DIR + "\\" + JASM_Updater_FolderName)
-	shutil.copytree(JASM_Updater_OUTPUT, JASM_RELEASE_DIR + "\\" + JASM_Updater_FolderName, dirs_exist_ok=True)
-	print()
-	print("Finished copying JASM - Auto Updater to release directory")
 
 print("Copying text files to RELEASE_DIR...")
 shutil.copy("Build\\README.txt", RELEASE_DIR)
