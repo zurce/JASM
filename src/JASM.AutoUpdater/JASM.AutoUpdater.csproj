@@ -12,7 +12,7 @@
 	<Nullable>enable</Nullable>
 	<EnableMsixTooling>true</EnableMsixTooling>
 	<WindowsPackageType>None</WindowsPackageType>
-	<Title>JASM - Auto Updater</Title>
+	<Title>JASM+ - Auto Updater</Title>
 	<AssemblyName>JASM - Auto Updater</AssemblyName>
 	<CsWinRTAotOptimizerEnabled>false</CsWinRTAotOptimizerEnabled>
   </PropertyGroup>

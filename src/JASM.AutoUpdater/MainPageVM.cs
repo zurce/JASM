@@ -61,8 +61,8 @@ public partial class MainPageVM : ObservableRecipient
         StopReason = null;
 
         Log(InstalledVersion.Equals(new Version(0, 0, 0, 0))
-            ? "Could not determine installed JASM version..."
-            : $"Installed JASM version: {InstalledVersion}");
+            ? "Could not determine installed JASM+ version..."
+            : $"Installed JASM+ version: {InstalledVersion}");
 
 
         try
@@ -162,8 +162,8 @@ public partial class MainPageVM : ObservableRecipient
         if (getJasmAsset?.browser_download_url is null)
         {
             Stop(
-                "Could not find JASM archive in the newest release on GitHub. This may be due to the developer having to manually upload the zip which can take a few minutes. " +
-                "If the problem persists, then you may have to update JASM manually");
+                "Could not find JASM+ archive in the newest release on GitHub. This may be due to the developer having to manually upload the zip which can take a few minutes. " +
+                "If the problem persists, then you may have to update JASM+ manually");
             return null;
         }
 
@@ -251,11 +251,11 @@ public partial class MainPageVM : ObservableRecipient
 
         if (_extractedJasmFolder is null)
         {
-            Stop("Failed to find JASM folder in extracted zip file");
+            Stop("Failed to find JASM+ folder in extracted zip file");
             return;
         }
 
-        Log($"JASM Application folder extracted successfully. Path: {_extractedJasmFolder.FullName}");
+        Log($"JASM+ Application folder extracted successfully. Path: {_extractedJasmFolder.FullName}");
     }
 
     private async Task InstallLatestVersion()
@@ -263,7 +263,7 @@ public partial class MainPageVM : ObservableRecipient
         _installedJasmFolder = new DirectoryInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory)).Parent!;
         if (_installedJasmFolder is null)
         {
-            Stop("Failed to find installed JASM folder in path");
+            Stop("Failed to find installed JASM+ folder in path");
             return;
         }
 
@@ -309,14 +309,14 @@ public partial class MainPageVM : ObservableRecipient
         if (!containsJasmExe)
         {
             Stop(
-                $"Failed to find '{jasmExe}' in installed JASM folder. Path: {_installedJasmFolder}");
+                $"Failed to find '{jasmExe}' in installed JASM+ folder. Path: {_installedJasmFolder}");
             return;
         }
 
         if (containsSystemFiles)
         {
             Stop(
-                $"JASM folder seems to contain windows system files, this should never happen. File Found: '{systemFileFound}' at " +
+                $"JASM+ folder seems to contain windows system files, this should never happen. File Found: '{systemFileFound}' at " +
                 $"Path: {_installedJasmFolder}");
             return;
         }
@@ -360,7 +360,7 @@ public partial class MainPageVM : ObservableRecipient
 
         await Task.Run(() => { CopyFilesRecursively(_extractedJasmFolder, _installedJasmFolder); });
 
-        Log("JASM updated successfully");
+        Log("JASM+ updated successfully");
     }
 
     // https://stackoverflow.com/questions/58744/copy-the-entire-contents-of-a-directory-in-c-sharp
@@ -487,9 +487,9 @@ public partial class MainPageVM : ObservableRecipient
         stackPanel.Children.Add(new TextBlock
         {
             Text =
-                "All files/folders in the installed JASM folder will be deleted permanently!\n" +
+                "All files/folders in the installed JASM+ folder will be deleted permanently!\n" +
                 "This excludes the update folder itself. This action cannot be undone.\n" +
-                $"JASM Directory: {_installedJasmFolder.FullName}",
+                $"JASM+ Directory: {_installedJasmFolder.FullName}",
             TextWrapping = TextWrapping.WrapWholeWords,
             IsTextSelectionEnabled = true,
             Margin = new Thickness(0, 0, 0, 10)
@@ -498,7 +498,7 @@ public partial class MainPageVM : ObservableRecipient
         if (warningFiles.Any())
             stackPanel.Children.Add(new TextBlock
             {
-                Text = "These files/folders do not belong to JASM and will be deleted as well:\n" +
+                Text = "These files/folders do not belong to JASM+ and will be deleted as well:\n" +
                        string.Join("\n", warningFiles),
                 IsTextSelectionEnabled = true,
                 TextWrapping = TextWrapping.WrapWholeWords,
@@ -507,7 +507,7 @@ public partial class MainPageVM : ObservableRecipient
 
         stackPanel.Children.Add(new Button()
         {
-            Content = "Open installed JASM folder...",
+            Content = "Open installed JASM+ folder...",
             Margin = new Thickness(0, 8, 0, 8),
             Command = new AsyncRelayCommand(async () =>
             {

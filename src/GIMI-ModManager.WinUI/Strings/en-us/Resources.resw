@@ -61,11 +61,11 @@
   </resheader>
   <data name="AppDisplayName" xml:space="preserve">
     <!-- Application display name in the window title bar -->
-    <value>JASM - Just Another Skin Manager</value>
+    <value>JASM+ - Just Another Skin Manager Plus</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
     <!-- Application description -->
-    <value>JASM - Just Another Skin Manager</value>
+    <value>JASM+ - Just Another Skin Manager Plus</value>
   </data>
   <data name="Startup1.Text" xml:space="preserve">
     <!-- Informational text on the first-time setup page (preserved for reference, may not be in use) -->
@@ -74,7 +74,7 @@
   </data>
   <data name="Startup2.Text" xml:space="preserve">
     <!-- Informational text on the first-time setup page (preserved for reference, may not be in use) -->
-    <value>Once the settings are saved the application will create a folder for each character within the 'Mods' folder. Mod folders outside of these character folders are ignored. This application enables and disables mods by prefixing mod folders with 'DISABLED_'.  JASM also supports exporting Mods managed by it if you wish to use them with other applications.</value>
+    <value>Once the settings are saved the application will create a folder for each character within the 'Mods' folder. Mod folders outside of these character folders are ignored. This application enables and disables mods by prefixing mod folders with 'DISABLED_'.  JASM+ also supports exporting Mods managed by it if you wish to use them with other applications.</value>
     <comment>[No longer in use]</comment>
   </data>
   <data name="Startup3.Text" xml:space="preserve">
@@ -122,7 +122,7 @@
   </data>
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>The goal of JASM is to make it easy to organize a larger amount of skin mods</value>
+    <value>The goal of JASM+ is to make it easy to organize a larger amount of skin mods</value>
     <comment>[No longer in use]</comment>
   </data>
   <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
@@ -153,7 +153,7 @@
   </data>
   <data name="Startup/Tooltip2.Text" xml:space="preserve">
     <!-- UI text on the first-time setup page -->
-    <value>A mod folder containing multiple character names may be wrongly moved to a character's directory. This assumes a flat mod structure, where skin folders are loosely stored in the mods folder. If you have a custom folder structure, there is a high chance that JASM will incorrectly identify your skins. This also the case if you have nested folders with skins inside of them.</value>
+    <value>A mod folder containing multiple character names may be wrongly moved to a character's directory. This assumes a flat mod structure, where skin folders are loosely stored in the mods folder. If you have a custom folder structure, there is a high chance that JASM+ will incorrectly identify your skins. This also the case if you have nested folders with skins inside of them.</value>
     <comment>[No longer in use]</comment>
   </data>
   <data name="Startup/Tooltip3.Text" xml:space="preserve">
@@ -173,7 +173,7 @@
   </data>
   <data name="Settings_ExportDialog.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>This will export all mods that JASM is managing to a an export folder of your choice. The mods will be copied to the export folder and will not be removed from the original folder.</value>
+    <value>This will export all mods that JASM+ is managing to a an export folder of your choice. The mods will be copied to the export folder and will not be removed from the original folder.</value>
     <comment>[No longer in use]</comment>
   </data>
   <data name="Settings_ExportDialogButtons.CloseButtonText" xml:space="preserve">
@@ -198,7 +198,7 @@
   </data>
   <data name="Settings_ExportDialog_RemoveJasm.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>Removes JASM configuration files from the exported Mods</value>
+    <value>Removes JASM+ configuration files from the exported Mods</value>
     <comment>[No longer in use]</comment>
   </data>
   <data name="Settings_Export_Button.Text" xml:space="preserve">
@@ -842,7 +842,7 @@ Or
   </data>
   <data name="ModInstallerPage_ModCustomName.PlaceholderText" xml:space="preserve">
     <!-- Label for the custom display name input -->
-    <value>Custom Name displayed throughout JASM</value>
+    <value>Custom Name displayed throughout JASM+</value>
   </data>
   <data name="ModInstallerPage_Author.Header" xml:space="preserve">
     <!-- Label for the mod author field -->
@@ -863,7 +863,7 @@ Or
   </data>
   <data name="ModInstallerPage_RootFolderHint.Text" xml:space="preserve">
     <!-- Static label text on the ModInstallerPage component -->
-    <value>This is usually the folder that contains the 'merged.ini/Script.ini' or '.JASM_ModConfig.json'. JASM will automatically detect the mod folder and the merged.ini file. If you want to manually select the mod folder, you can do so by right clicking the folder in the overview above.</value>
+    <value>This is usually the folder that contains the 'merged.ini/Script.ini' or '.JASM_ModConfig.json'. JASM+ will automatically detect the mod folder and the merged.ini file. If you want to manually select the mod folder, you can do so by right clicking the folder in the overview above.</value>
   </data>
   <data name="ModInstallerPage_PreviewImageHint.Text" xml:space="preserve">
     <!-- UI for setting a custom preview image -->
@@ -895,7 +895,7 @@ Or
   </data>
   <data name="ModInstallerPage_ModFolderDescription.Text" xml:space="preserve">
     <!-- Static label text on the ModInstallerPage component -->
-    <value>This is usually the folder that contains the 'merged.ini/Script.ini' or '.JASM_ModConfig.json'. JASM will automatically detect the mod folder and the merged.ini file. If you want to manually select the mod folder, you can do so by right clicking the folder in the overview above. </value>
+    <value>This is usually the folder that contains the 'merged.ini/Script.ini' or '.JASM_ModConfig.json'. JASM+ will automatically detect the mod folder and the merged.ini file. If you want to manually select the mod folder, you can do so by right clicking the folder in the overview above. </value>
   </data>
   <data name="ModInstallerPage_ManualImageSelectionHint.Text" xml:space="preserve">
     <!-- Instruction for manual image selection -->
@@ -1163,7 +1163,7 @@ Or
   </data>
   <data name="ErrorWindow_ExceptionDescription.Text" xml:space="preserve">
     <!-- Description text explaining the error -->
-    <value>An unhanded exception has occurred. The application ran into a problem that it didn't know how to handle. JASM may be in an unstable state, and it is recommended to restart JASM.</value>
+    <value>An unhanded exception has occurred. The application ran into a problem that it didn't know how to handle. JASM+ may be in an unstable state, and it is recommended to restart JASM+.</value>
   </data>
   <data name="ErrorWindow_StackTraceLabel.Text" xml:space="preserve">
     <!-- Label for the stack trace section in the error window -->
@@ -1489,7 +1489,7 @@ Empty folders in the root of the Mods folder will also be deleted</value>
     <!-- Text on the Settings component -->
     <value>I suggest creating a preset (or a backup) of your mods before disabling mods if you have a lot of enabled mods.
 
-Only mods tracked by JASM will be disabled within the selected categories</value>
+Only mods tracked by JASM+ will be disabled within the selected categories</value>
   </data>
   <data name="Settings_DisableAllMods_NoCategoriesTitle" xml:space="preserve">
     <!-- Text on the Settings component -->
@@ -1541,7 +1541,7 @@ Only mods tracked by JASM will be disabled within the selected categories</value
   </data>
   <data name="Settings_CacheDescription.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>When using JASM to download mods, it automatically caches the archives or zip files. You can specify a maximum limit in gigabytes for the cache directory, and JASM will keep the cache size under the limit when starting up.</value>
+    <value>When using JASM+ to download mods, it automatically caches the archives or zip files. You can specify a maximum limit in gigabytes for the cache directory, and JASM+ will keep the cache size under the limit when starting up.</value>
   </data>
   <data name="Settings_GithubLink.Content" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
@@ -1561,15 +1561,15 @@ Only mods tracked by JASM will be disabled within the selected categories</value
   </data>
   <data name="Settings_UpdateDialogText.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>JASM will exit and the update will start. Do you want to continue?</value>
+    <value>JASM+ will exit and the update will start. Do you want to continue?</value>
   </data>
   <data name="Settings_UpdateJASMButton.Content" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>Yes, Update JASM</value>
+    <value>Yes, Update JASM+</value>
   </data>
   <data name="Settings_UpdateJASMTo.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>Update JASM to </value>
+    <value>Update JASM+ to </value>
   </data>
   <data name="Settings_IgnoreUpdate.Content" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
@@ -1594,7 +1594,7 @@ Only mods tracked by JASM will be disabled within the selected categories</value
   </data>
   <data name="CommandsSettingsPage_WarningContent" xml:space="preserve">
     <!-- Text in the warning/confirmation dialog -->
-    <value>Please be careful when creating commands. Commands can be used to run any executable on your system. Only create commands from trusted sources. JASM isn't perfect and can't protect you from malicious scripts or JASM bugs/glitches. By clicking 'I understand' you acknowledge that you understand the risks.</value>
+    <value>Please be careful when creating commands. Commands can be used to run any executable on your system. Only create commands from trusted sources. JASM+ isn't perfect and can't protect you from malicious scripts or JASM+ bugs/glitches. By clicking 'I understand' you acknowledge that you understand the risks.</value>
   </data>
   <data name="CommandsSettingsPage_WarningPrimary" xml:space="preserve">
     <!-- Text in the warning/confirmation dialog -->
@@ -1614,7 +1614,7 @@ Only mods tracked by JASM will be disabled within the selected categories</value
   </data>
   <data name="CommandsSettingsPage_CreateCommand.Description" xml:space="preserve">
     <!-- Button/section to create a new command -->
-    <value>Here you can define custom commands that JASM can run for you. Currently, commands that contain {{TargetPath}} can only be run from the Mods Overview page</value>
+    <value>Here you can define custom commands that JASM+ can run for you. Currently, commands that contain {{TargetPath}} can only be run from the Mods Overview page</value>
   </data>
   <data name="CommandsSettingsPage_CreateNewCommandButton.Content" xml:space="preserve">
     <!-- Button/section to create a new command -->
@@ -1682,7 +1682,7 @@ Only mods tracked by JASM will be disabled within the selected categories</value
   </data>
   <data name="CommandsSettingsPage_RunningCommands.Description" xml:space="preserve">
     <!-- Section header -->
-    <value>Commands started from JASM for the current running instance</value>
+    <value>Commands started from JASM+ for the current running instance</value>
   </data>
   <data name="CommandsSettingsPage_RunningDisplayName.Text" xml:space="preserve">
     <!-- Label showing command details -->
@@ -1754,8 +1754,8 @@ Only mods tracked by JASM will be disabled within the selected categories</value
     <value>When command is run against a file system object (i.e. a skin/mod folder), {{TargetPath}} will be replaced by the actual path.</value>
   </data>
   <data name="CreateCommandView_KillProcess.Content" xml:space="preserve">
-    <!-- Checkbox: kill the process when JASM exits -->
-    <value>Kill Process on JASM exit</value>
+    <!-- Checkbox: kill the process when JASM+ exits -->
+    <value>Kill Process on JASM+ exit</value>
   </data>
   <data name="CreateCommandView_RunAsAdmin.Content" xml:space="preserve">
     <!-- Checkbox: launch command with admin privileges -->
@@ -1787,15 +1787,15 @@ Only mods tracked by JASM will be disabled within the selected categories</value
   </data>
   <data name="PresetPage_HowPresetsWorkDesc1" xml:space="preserve">
     <!-- Dialog explaining how presets work -->
-    <value>A Preset is a list of Mods to enable and their preferences. JASM reads and stores mod preferences in the mods themselves in the file .JASM_ModConfig.json</value>
+    <value>A Preset is a list of Mods to enable and their preferences. JASM+ reads and stores mod preferences in the mods themselves in the file .JASM_ModConfig.json</value>
   </data>
   <data name="PresetPage_HowPresetsWorkDesc2" xml:space="preserve">
     <!-- Dialog explaining how presets work -->
-    <value>When you create a new preset JASM creates a list of all enabled mods and the preferences stored in them. So when you apply the preset later it will enable only those mods and apply the preferences stored in the preset</value>
+    <value>When you create a new preset JASM+ creates a list of all enabled mods and the preferences stored in them. So when you apply the preset later it will enable only those mods and apply the preferences stored in the preset</value>
   </data>
   <data name="PresetPage_HowPresetsWorkDesc3" xml:space="preserve">
     <!-- Dialog explaining how presets work -->
-    <value>You can allow JASM to handle 3Dmigoto reloading by checking the Auto Sync checkbox. But you can also do it yourself by checking the Show Manual Controls checkbox and saving/loading preferences manually.</value>
+    <value>You can allow JASM+ to handle 3Dmigoto reloading by checking the Auto Sync checkbox. But you can also do it yourself by checking the Show Manual Controls checkbox and saving/loading preferences manually.</value>
   </data>
   <data name="PresetPage_HowPresetsWorkDesc4" xml:space="preserve">
     <!-- Dialog explaining how presets work -->
@@ -1976,7 +1976,7 @@ Only mods tracked by JASM will be disabled within the selected categories</value
   </data>
   <data name="Settings_Startup_AlphaTitle" xml:space="preserve">
     <!-- Text on the Settings component -->
-    <value>JASM is still in alpha</value>
+    <value>JASM+ is still in alpha</value>
   </data>
   <data name="Settings_Startup_AlphaMessage" xml:space="preserve">
     <!-- Text on the Settings component -->
@@ -2055,11 +2055,11 @@ Do you want to switch games?</value>
   </data>
   <data name="Settings_CharacterSkins_EnableContent" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>Enabling this will make JASM treat in game skins as separate characters in the character overview.
-This could potentially become the default setting of JASM in the future.
-JASM will not move any of your mods nor will it delete any.
+    <value>Enabling this will make JASM+ treat in game skins as separate characters in the character overview.
+This could potentially become the default setting of JASM+ in the future.
+JASM+ will not move any of your mods nor will it delete any.
 
-Are you sure you want to enable character skins as characters? JASM will restart afterwards...</value>
+Are you sure you want to enable character skins as characters? JASM+ will restart afterwards...</value>
   </data>
   <data name="Settings_CharacterSkins_EnablePrimaryButton" xml:space="preserve">
     <!-- Button label in the character skins dialog -->
@@ -2071,11 +2071,11 @@ Are you sure you want to enable character skins as characters? JASM will restart
   </data>
   <data name="Settings_CharacterSkins_DisableContent" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>Disabling this will make JASM treat in game skins as skins of the base character in the character overview.
-This is currently the default setting of JASM
-JASM will not move any of your mods nor will it delete any.
+    <value>Disabling this will make JASM+ treat in game skins as skins of the base character in the character overview.
+This is currently the default setting of JASM+
+JASM+ will not move any of your mods nor will it delete any.
 
-Are you sure you want to disable character skins as characters? JASM will restart afterwards...</value>
+Are you sure you want to disable character skins as characters? JASM+ will restart afterwards...</value>
   </data>
   <data name="Settings_CharacterSkins_DisablePrimaryButton" xml:space="preserve">
     <!-- Button label in the character skins dialog -->
@@ -2111,7 +2111,7 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="Settings_GameSource_RestartContent" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>Changing the Game Source requires a restart of the application to load the new games. JASM will close now.</value>
+    <value>Changing the Game Source requires a restart of the application to load the new games. JASM+ will close now.</value>
   </data>
   <data name="Settings_GameSource_RestartPrimary" xml:space="preserve">
     <!-- Game source selection UI (Release vs Community) -->
@@ -2257,7 +2257,7 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="CreateCharacterPage_SearchKeysDescription.Text" xml:space="preserve">
     <!-- Section label or help: additional search keywords for this character -->
-    <value>JASM uses keys to help improve search functionality. Some characters may have multiple names, so you can add additional name or search terms as Keys.</value>
+    <value>JASM+ uses keys to help improve search functionality. Some characters may have multiple names, so you can add additional name or search terms as Keys.</value>
   </data>
   <data name="CreateCharacterPage_RemoveKey.Content" xml:space="preserve">
     <!-- Button to add or remove search keywords -->
@@ -2309,7 +2309,7 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="EditCharacterPage_SearchKeysDescription.Text" xml:space="preserve">
     <!-- Section label or help: additional search keywords for this character -->
-    <value>JASM uses keys to help improve search functionality. Some characters may have multiple names, so you can add additional name or search terms as Keys.</value>
+    <value>JASM+ uses keys to help improve search functionality. Some characters may have multiple names, so you can add additional name or search terms as Keys.</value>
   </data>
   <data name="EditCharacterPage_RemoveKey.Content" xml:space="preserve">
     <!-- Button to add or remove search keywords -->
@@ -2409,7 +2409,7 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="EditCharacter_DisableCharacterContent" xml:space="preserve">
     <!-- Button/dialog for disabling a character -->
-    <value>Are you sure you want to disable this character? This will not remove the character, but JASM will no longer recognize the character. Character can be reactivated later. This will be executed immediately on pressing yes</value>
+    <value>Are you sure you want to disable this character? This will not remove the character, but JASM+ will no longer recognize the character. Character can be reactivated later. This will be executed immediately on pressing yes</value>
   </data>
   <data name="EditCharacter_DisableCharacterPrimary" xml:space="preserve">
     <!-- Button/dialog for disabling a character -->
@@ -2425,7 +2425,7 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="EditCharacter_DeleteCharacterContent" xml:space="preserve">
     <!-- Button/dialog for deleting a custom character -->
-    <value>Are you sure you want to delete this custom character? This will remove the character, and JASM will no longer recognize the character. This will be executed immediately on pressing yes</value>
+    <value>Are you sure you want to delete this custom character? This will remove the character, and JASM+ will no longer recognize the character. This will be executed immediately on pressing yes</value>
   </data>
   <data name="EditCharacter_DeleteCharacterPrimary" xml:space="preserve">
     <!-- Button/dialog for deleting a custom character -->
@@ -2465,23 +2465,23 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="CreateCharacterPage_InternalNameHelp.Text" xml:space="preserve">
     <!-- Label/help for the internal name (used for mod folder naming, must be unique) -->
-    <value>The Internal Name is used by JASM to identify characters/ModObjects. It is also used as the name of mod folder. Must be unique. Changing this after character has been created means JASM will identify this as a new character.</value>
+    <value>The Internal Name is used by JASM+ to identify characters/ModObjects. It is also used as the name of mod folder. Must be unique. Changing this after character has been created means JASM+ will identify this as a new character.</value>
   </data>
   <data name="CreateCharacterPage_ModFilesNameHelp.Text" xml:space="preserve">
     <!-- Label/help for the mod files folder name -->
-    <value>JASM can in some cases try and determine what character a mod is for. When doing this it uses the ModFilesName text to try and find a mod file with the same name. For example, lets say ModFilesName is 'paimon' then it will match a file with name: PaimonHeadLightMap.dds Leave empty if you don't want JASM to try and match mod files.</value>
+    <value>JASM+ can in some cases try and determine what character a mod is for. When doing this it uses the ModFilesName text to try and find a mod file with the same name. For example, lets say ModFilesName is 'paimon' then it will match a file with name: PaimonHeadLightMap.dds Leave empty if you don't want JASM+ to try and match mod files.</value>
   </data>
   <data name="CreateCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
     <!-- Toggle/help: whether this character supports multiple mods enabled at once -->
-    <value>If Checked JASM won't show a warning when multiple mods are enabled for this mod object.</value>
+    <value>If Checked JASM+ won't show a warning when multiple mods are enabled for this mod object.</value>
   </data>
   <data name="EditCharacterPage_InternalNameHelp.Text" xml:space="preserve">
     <!-- Label/help for the internal name (used for mod folder naming, must be unique) -->
-    <value>The Internal Name is used by JASM to identify characters/ModObjects. It is also used as the name of mod folder. Must be unique. Changing this after character has been created means JASM will identify this as a new character.</value>
+    <value>The Internal Name is used by JASM+ to identify characters/ModObjects. It is also used as the name of mod folder. Must be unique. Changing this after character has been created means JASM+ will identify this as a new character.</value>
   </data>
   <data name="EditCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
     <!-- Toggle/help: whether this character supports multiple mods enabled at once -->
-    <value>If Checked JASM won't show a warning when multiple mods are enabled for this mod object.</value>
+    <value>If Checked JASM+ won't show a warning when multiple mods are enabled for this mod object.</value>
   </data>
   <data name="EditCharacterPage_ResetCharacterSettings.Content" xml:space="preserve">
     <!-- Button/dialog for resetting a character -->
@@ -2837,7 +2837,7 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="Notification_UnstableState" xml:space="preserve">
     <!-- Notification title or message. Related to: unstablestate -->
-    <value>JASM may be in an unstable state could crash at any moment. It is suggested to restart the app.</value>
+    <value>JASM+ may be in an unstable state could crash at any moment. It is suggested to restart the app.</value>
   </data>
   <data name="Notification_CommandError" xml:space="preserve">
     <!-- Notification title or message. Related to: commanderror -->
@@ -2917,7 +2917,7 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="Notification_NoMultipleInstalls" xml:space="preserve">
     <!-- Notification title or message. Related to: nomultipleinstalls -->
-    <value>JASM does not support multiple mod installs for the same character</value>
+    <value>JASM+ does not support multiple mod installs for the same character</value>
   </data>
   <data name="Notification_PresetApplyFailed" xml:space="preserve">
     <!-- Notification title or message. Related to: presetapplyfailed -->
@@ -3012,8 +3012,8 @@ Are you sure you want to disable character skins as characters? JASM will restar
     <value>Could not find mod</value>
   </data>
   <data name="Notification_CouldNotFindModMsg" xml:space="preserve">
-    <!-- Notification body message: An error occured trying to set Mod ini, restarting JASM may ... Shown when couldnotfindmodmsg -->
-    <value>An error occured trying to set Mod ini, restarting JASM may help</value>
+    <!-- Notification body message: An error occured trying to set Mod ini, restarting JASM+ may ... Shown when couldnotfindmodmsg -->
+    <value>An error occured trying to set Mod ini, restarting JASM+ may help</value>
   </data>
   <data name="Notification_CouldNotFindModSettings" xml:space="preserve">
     <!-- Notification title or message. Related to: couldnotfindmodsettings -->
@@ -3053,7 +3053,7 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="Notification_BgCheckerFatal" xml:space="preserve">
     <!-- Notification title or message. Related to: bgcheckerfatal -->
-    <value>A fatal error occured in the background checker ({0} : {1}). This means that JASM can no longer check for mod updates in the background or manually. Error: {2}</value>
+    <value>A fatal error occured in the background checker ({0} : {1}). This means that JASM+ can no longer check for mod updates in the background or manually. Error: {2}</value>
   </data>
   <data name="Notification_UpdateCheckError" xml:space="preserve">
     <!-- Notification title or message. Related to: updatecheckerror -->
@@ -3152,8 +3152,8 @@ Are you sure you want to disable character skins as characters? JASM will restar
     <value>Could not determine skin for new mod</value>
   </data>
   <data name="Notification_CouldNotDetermineSkinMsg" xml:space="preserve">
-    <!-- Notification body message: JASM could not determine what ingame skin this mod is for, t... Shown when couldnotdetermineskinmsg -->
-    <value>JASM could not determine what ingame skin this mod is for, therefore it can't determine what mods to disable.</value>
+    <!-- Notification body message: JASM+ could not determine what ingame skin this mod is for, t... Shown when couldnotdetermineskinmsg -->
+    <value>JASM+ could not determine what ingame skin this mod is for, therefore it can't determine what mods to disable.</value>
   </data>
   <data name="Notification_SystemError" xml:space="preserve">
     <!-- Notification title or message. Related to: systemerror -->
@@ -3213,11 +3213,11 @@ Are you sure you want to disable character skins as characters? JASM will restar
   </data>
   <data name="ModPane_SetModIni.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Button/checkbox for managing the mod .ini file -->
-    <value>Set the mod .ini file to be read by JASM</value>
+    <value>Set the mod .ini file to be read by JASM+</value>
   </data>
   <data name="ModPane_IgnoreIni.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Button/checkbox for managing the mod .ini file -->
-    <value>JASM will not look for merged.ini/Script.ini file and ignore keyswaps for this mod</value>
+    <value>JASM+ will not look for merged.ini/Script.ini file and ignore keyswaps for this mod</value>
   </data>
   <data name="CharDetails_DeleteDialog_Content" xml:space="preserve">
     <!-- Checkbox label: whether to move deleted mods to Recycle Bin -->

@@ -124,7 +124,7 @@
     <value>Jogo</value>
   </data>
   <data name="GameSelectorTitle.Text" xml:space="preserve">
-    <value>O JASM suporta completamente Genshin Impact e Honkai Star Rail. | O JASM suporta parcialmente WUWA e ZZZ</value>
+    <value>O JASM+ suporta completamente Genshin Impact e Honkai Star Rail. | O JASM+ suporta parcialmente WUWA e ZZZ</value>
   </data>
   <data name="LanguageSelectionSectionHeader.Text" xml:space="preserve">
     <value>Idioma</value>

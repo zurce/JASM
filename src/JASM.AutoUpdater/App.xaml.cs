@@ -58,7 +58,7 @@ public partial class App : Application
         MainWindow.IsMaximizable = false;
         MainWindow.IsMinimizable = false;
         MainWindow.IsResizable = false;
-        MainWindow.Title = "JASM Auto Updater";
+        MainWindow.Title = "JASM+ Auto Updater";
 
         var arguments = Environment.GetCommandLineArgs();
 

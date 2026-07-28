@@ -1,23 +1,21 @@
-# JASM (Community) - Just Another Skin Manager
+# JASM+ (Community Fork) - Just Another Skin Manager Plus
 
-JASM is a skin manager for a certain game. Made using WinUI 3 with WinAppSDK. 
-I made this for fun, for myself and to learn WinUI, but it kinda took off over time.
+JASM+ is a community-maintained fork of [JASM](https://github.com/Jorixon/JASM) by Jorixon — a skin manager for a certain game, made using WinUI 3 with WinAppSDK.
+
+This fork builds on the original project with additional features, fixes, and ongoing maintenance. See the [reference section](#reference) below for details on the original project.
 
 Download link and images are also available over at [GameBanana](https://gamebanana.com/tools/14574)
 
-**Remeber to Make backups ⚠️** 
+**Remember to Make backups ⚠️** 
 
 Unhandled exceptions are written to the Logs file within the JASM app directory.
-
-## JASM Status
-I am no longer actively developing or maintaining JASM. This is due to lack of time and interest. I might fix critical bugs or do small updates in the future, but don't expect much.
 
 ## Features
 - Pretty UI 👀
 - Drag And Drop files directly into the app
 - Automatically sort unsorted mods into respective character's folders
 - Move Mods between characters
-- Start a 3Dmigto launcher and/or a certain game straight from the app
+- Start a 3Dmigoto launcher and/or a certain game straight from the app
 - The app watches character folders and automatically updates if skins are added or removed from folders.
 - Edit merged.ini keys
 - Export (copy) all mods managed by JASM to a user specified folder
@@ -33,10 +31,10 @@ I am no longer actively developing or maintaining JASM. This is due to lack of t
 - "F1" - In character view, opens selectable in-game skins
 
 ## Download
-Latest release can be downloaded either from GameBanana or from the [Releases](https://github.com/Jorixon/JASM/releases) page. To start the app run ```JASM - Just Another Skin Manager.exe``` in ```JASM/``` folder, I suggest creating a shortcut to it.
+Latest release can be downloaded either from GameBanana or from the [Releases](https://github.com/zurce/JASM/releases) page. To start the app run ```JASM - Just Another Skin Manager.exe``` in ```JASM/``` folder, I suggest creating a shortcut to it.
 
-Latest development release can be downloaded from [Actions Tab](https://github.com/Jorixon/JASM/actions/workflows/dotnet-desktop.yml?query=branch%3Amain+is%3Asuccess) these are automatically built from the main branch and are '''usually stable''' but not necessarily ⚠️
-1. Link to the latest successful [build](https://github.com/Jorixon/JASM/actions/workflows/dotnet-desktop.yml?query=branch%3Amain+is%3Asuccess)
+Latest development release can be downloaded from [Actions Tab](https://github.com/zurce/JASM/actions/workflows/dotnet-desktop.yml?query=branch%3Amain+is%3Asuccess) these are automatically built from the main branch and are '''usually stable''' but not necessarily ⚠️
+1. Link to the latest successful [build](https://github.com/zurce/JASM/actions/workflows/dotnet-desktop.yml?query=branch%3Amain+is%3Asuccess)
 2. Select the latest build (top of the list)
 3. Scroll down to the "Artifacts" section and click the "Upload JASM" link to download.
 
@@ -48,6 +46,12 @@ Latest development release can be downloaded from [Actions Tab](https://github.c
 
 If you don't have these downloaded the application will prompt you to download necessary dependencies and provide links.
  
+
+### Reference
+
+JASM+ is a community fork based on the original **JASM - Just Another Skin Manager** by [Jorixon](https://github.com/Jorixon). The original project can be found at:
+- GitHub: [https://github.com/Jorixon/JASM](https://github.com/Jorixon/JASM)
+- GameBanana: [https://gamebanana.com/tools/14574](https://gamebanana.com/tools/14574)
 
 ### Limitations and Acknowledgements
 - The Json file that stores the the game characters is a modified and stripped down version of this [genshin-impact-tools ](https://github.com/tokafew420/genshin-impact-tools/blob/3d10e411a411b8ed532356ccb45fcd80b6b2383b/data/characters.json) and some of the images are also from the same repository.
@@ -66,7 +70,7 @@ If you don't have these downloaded the application will prompt you to download n
 
 ### Building from source
 - I suggest following the [Install tools for the Windows App SDK](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment?tabs=cs-vs-community%2Ccpp-vs-community%2Cvs-2022-17-1-a%2Cvs-2022-17-1-b) tutorial.
-- From then on it should be a simple git clone https://github.com/Jorixon/JASM
+- From then on it should be a simple git clone https://github.com/zurce/JASM
 - Then inside the cloned folder, click on JASM\src\GIMI-ModManager.sln or open it trough Visual Studio.
 - Then right click GIMI-ModManager.WinUI project in the sidebar and then click publish and click publish again.
 - In the target location the application should have been built.
@@ -75,7 +79,7 @@ If you don't have these downloaded the application will prompt you to download n
 
 ### JASM does not start anymore
 
-I believe this is due to some oddity with WinAppSdk not installing correctly. I do not know what causes this. A temporary (permanent?) solution is to use the self contained version of JASM that does not require WinAppSdk or .NET. See the releases page [SelfContainted_JASM_vx.x.x.7z](https://github.com/Jorixon/JASM/releases). Ref [#72](https://github.com/Jorixon/JASM/issues/72) and [#171](https://github.com/Jorixon/JASM/issues/171)
+I believe this is due to some oddity with WinAppSdk not installing correctly. I do not know what causes this. A temporary (permanent?) solution is to use the self contained version of JASM that does not require WinAppSdk or .NET. See the releases page [SelfContained_JASM_vx.x.x.7z](https://github.com/zurce/JASM/releases). Ref [#72](https://github.com/Jorixon/JASM/issues/72) and [#171](https://github.com/Jorixon/JASM/issues/171)
 
 Another potential fix if JASM used to work, is to delete the JASM user settings folder. This will wipe your settings i.e. presets, folder paths etc. However, your mods will be untouched as well as the mod settings like custom display name and images. JASM settings are stored here: `%localappdata%\JASM` / `C:\Users\<username>\AppData\Local\JASM`. You can start by deleting each game settings folder to see if it helps, alternativly just delete the entire folder. Presets are stored inside the preset folder. Might be a good idea make a backup first.
 

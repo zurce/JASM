@@ -62,12 +62,12 @@
 
   <data name="AppDisplayName" xml:space="preserve">
     <!-- Application display name in the window title bar -->
-    <value>JASM - Just Another Skin Manager</value>
+    <value>JASM+ - Just Another Skin Manager</value>
   </data>
 
   <data name="AppDescription" xml:space="preserve">
     <!-- Application description -->
-    <value>JASM - Just Another Skin Manager</value>
+    <value>JASM+ - Just Another Skin Manager</value>
   </data>
 
   <data name="Startup1.Text" xml:space="preserve">
@@ -1394,7 +1394,7 @@
 
   <data name="ErrorWindow_ExceptionDescription.Text" xml:space="preserve">
     <!-- Description text explaining the error -->
-    <value>发生未处理的异常。应用程序遇到了不知道如何处理的问题。JASM可能处于不稳定状态，建议重新启动JASM。</value>
+    <value>发生未处理的异常。应用程序遇到了不知道如何处理的问题。JASM可能处于不稳定状态，建议重新启动JASM+。</value>
   </data>
 
   <data name="ErrorWindow_StackTraceLabel.Text" xml:space="preserve">
@@ -1888,7 +1888,7 @@ Mods文件夹根目录下的空文件夹也将被删除。</value>
 
   <data name="Settings_UpdateJASMButton.Content" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>是的，更新JASM</value>
+    <value>是的，更新JASM+</value>
   </data>
 
   <data name="Settings_UpdateJASMTo.Text" xml:space="preserve">
@@ -2117,7 +2117,7 @@ Mods文件夹根目录下的空文件夹也将被删除。</value>
   </data>
 
   <data name="CreateCommandView_KillProcess.Content" xml:space="preserve">
-    <!-- Checkbox: kill the process when JASM exits -->
+    <!-- Checkbox: kill the process when JASM+ exits -->
     <value>退出JASM时终止进程</value>
   </data>
 
@@ -3675,7 +3675,7 @@ JASM不会移动你的任何Mod，也不会删除任何Mod。
   </data>
 
   <data name="Notification_CouldNotFindModMsg" xml:space="preserve">
-    <!-- Notification body message: An error occured trying to set Mod ini, restarting JASM may ... Shown when couldnotfindmodmsg -->
+    <!-- Notification body message: An error occured trying to set Mod ini, restarting JASM+ may ... Shown when couldnotfindmodmsg -->
     <value>尝试设置Mod ini时发生错误，重新启动JASM可能有帮助</value>
   </data>
 
@@ -3851,7 +3851,7 @@ Ini路径：{1}</value>
   </data>
 
   <data name="Notification_CouldNotDetermineSkinMsg" xml:space="preserve">
-    <!-- Notification body message: JASM could not determine what ingame skin this mod is for, t... Shown when couldnotdetermineskinmsg -->
+    <!-- Notification body message: JASM+ could not determine what ingame skin this mod is for, t... Shown when couldnotdetermineskinmsg -->
     <value>JASM无法确定此Mod适用于哪个游戏内皮肤，因此无法确定要禁用哪些Mod。</value>
   </data>
 

@@ -115,7 +115,7 @@
     <value>As part of the first time setup you will need to select a Model-Importer folder (3dmigoto) and its connected Mods folder. The 3dmigoto folder usually contains 3DMigoto Loader.exe/3DMigotoLoader.exe and a Mods folder. If you have not set up the model importer yet, please do so now, see link below. I find most mods on Gamebanana but Nexusmods also has some.</value>
   </data>
   <data name="Body2.Text" xml:space="preserve">
-    <value>Once the settings are saved the application will create a folder for each character within the Mods folder. Mod folders outside of these character folders are ignored. This application enables and disables mods by prefixing mod folders with DISABLED_. JASM also supports exporting Mods managed by it if you wish to use them with other applications.</value>
+    <value>Once the settings are saved the application will create a folder for each character within the Mods folder. Mod folders outside of these character folders are ignored. This application enables and disables mods by prefixing mod folders with DISABLED_. JASM+ also supports exporting Mods managed by it if you wish to use them with other applications.</value>
   </data>
   <data name="DisableModsTooltip.Text" xml:space="preserve">
     <value>Prepend DISABLED_ to all mods so that they are disabled</value>
@@ -127,7 +127,7 @@
     <value>Enabling this option will prompt the application to sort existing mods into folders assigned to their respective characters. Any mods that cant be reasonably matched will be placed in an Others folder.</value>
   </data>
   <data name="ReorganizeTooltip2.Text" xml:space="preserve">
-    <value>A mod folder containing multiple character names may be wrongly moved to a characters directory. This assumes a flat mod structure, where skin folders are loosely stored in the mods folder. If you have a custom folder structure, there is a high chance that JASM will incorrectly identify your skins. This also the case if you have nested folders with skins inside of them.</value>
+    <value>A mod folder containing multiple character names may be wrongly moved to a characters directory. This assumes a flat mod structure, where skin folders are loosely stored in the mods folder. If you have a custom folder structure, there is a high chance that JASM+ will incorrectly identify your skins. This also the case if you have nested folders with skins inside of them.</value>
   </data>
   <data name="ReorganizeTooltip3.Text" xml:space="preserve">
     <value>This can be activated later in the settings page.</value>

@@ -132,8 +132,8 @@
   </data>
 
   <data name="GameSelectorTitle.Text" xml:space="preserve">
-    <value>JASM полностью поддерживает Genshin Impact и Honkai Star Rail.
-JASM частично поддерживает WUWA и ZZZ</value>
+    <value>JASM+ полностью поддерживает Genshin Impact и Honkai Star Rail.
+JASM+ частично поддерживает WUWA и ZZZ</value>
   </data>
 
   <data name="LanguageSelectionSectionHeader.Text" xml:space="preserve">

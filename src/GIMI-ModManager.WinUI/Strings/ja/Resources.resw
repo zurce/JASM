@@ -62,12 +62,12 @@
 
   <data name="AppDisplayName" xml:space="preserve">
     <!-- Application display name in the window title bar -->
-    <value>JASM - Just Another Skin Manager</value>
+    <value>JASM+ - Just Another Skin Manager</value>
   </data>
 
   <data name="AppDescription" xml:space="preserve">
     <!-- Application description -->
-    <value>JASM - Just Another Skin Manager</value>
+    <value>JASM+ - Just Another Skin Manager</value>
   </data>
 
   <data name="Startup1.Text" xml:space="preserve">
@@ -2117,7 +2117,7 @@ Modsフォルダーのルートにある空のフォルダーも削除されま�
   </data>
 
   <data name="CreateCommandView_KillProcess.Content" xml:space="preserve">
-    <!-- Checkbox: kill the process when JASM exits -->
+    <!-- Checkbox: kill the process when JASM+ exits -->
     <value>JASM終了時にプロセスを強制終了</value>
   </data>
 
@@ -3675,7 +3675,7 @@ JASMはModを移動したり削除したりしません。
   </data>
 
   <data name="Notification_CouldNotFindModMsg" xml:space="preserve">
-    <!-- Notification body message: An error occured trying to set Mod ini, restarting JASM may ... Shown when couldnotfindmodmsg -->
+    <!-- Notification body message: An error occured trying to set Mod ini, restarting JASM+ may ... Shown when couldnotfindmodmsg -->
     <value>Mod iniの設定中にエラーが発生しました。JASMを再起動すると解決する場合があります。</value>
   </data>
 
@@ -3850,7 +3850,7 @@ JASMはModを移動したり削除したりしません。
   </data>
 
   <data name="Notification_CouldNotDetermineSkinMsg" xml:space="preserve">
-    <!-- Notification body message: JASM could not determine what ingame skin this mod is for, t... Shown when couldnotdetermineskinmsg -->
+    <!-- Notification body message: JASM+ could not determine what ingame skin this mod is for, t... Shown when couldnotdetermineskinmsg -->
     <value>JASMはこのModがどのゲーム内スキン用かを特定できなかったため、無効にするModを決定できません。</value>
   </data>
 

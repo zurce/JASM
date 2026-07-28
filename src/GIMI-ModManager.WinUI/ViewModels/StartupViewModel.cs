@@ -162,7 +162,7 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         {
             await Task.Delay(TimeSpan.FromSeconds(7));
             App.GetService<NotificationManager>().ShowNotification(localizer.GetLocalizedStringOrDefault("Settings_Startup_AlphaTitle") ?? "JASM is still in alpha",
-                localizer.GetLocalizedStringOrDefault("Settings_Startup_AlphaMessage") ?? "There will be bugs and things will most likely break. Anyway, hope you enjoy using Just Another Skin Manager!",
+                localizer.GetLocalizedStringOrDefault("Settings_Startup_AlphaMessage") ?? "There will be bugs and things will most likely break. Anyway, hope you enjoy using JASM+!",
                 TimeSpan.FromSeconds(20));
         });
     }

@@ -62,12 +62,12 @@
 
   <data name="AppDisplayName" xml:space="preserve">
     <!-- Application display name in the window title bar -->
-    <value>JASM - Just Another Skin Manager</value>
+    <value>JASM+ - Just Another Skin Manager</value>
   </data>
 
   <data name="AppDescription" xml:space="preserve">
     <!-- Application description -->
-    <value>JASM - Just Another Skin Manager</value>
+    <value>JASM+ - Just Another Skin Manager</value>
   </data>
 
   <data name="Startup1.Text" xml:space="preserve">
@@ -77,7 +77,7 @@
 
   <data name="Startup2.Text" xml:space="preserve">
     <!-- Informational text on the first-time setup page (preserved for reference, may not be in use) -->
-    <value>После сохранения настроек приложение создаст папку для каждого персонажа внутри папки 'Mods'. Папки модов за пределами этих папок персонажей игнорируются. Это приложение включает и отключает моды, добавляя префикс 'DISABLED_' к именам папок модов. JASM также поддерживает экспорт управляемых им модов, если вы хотите использовать их с другими приложениями.</value>
+    <value>После сохранения настроек приложение создаст папку для каждого персонажа внутри папки 'Mods'. Папки модов за пределами этих папок персонажей игнорируются. Это приложение включает и отключает моды, добавляя префикс 'DISABLED_' к именам папок модов. JASM+ также поддерживает экспорт управляемых им модов, если вы хотите использовать их с другими приложениями.</value>
   </data>
 
   <data name="Startup3.Text" xml:space="preserve">
@@ -132,7 +132,7 @@
 
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>Цель JASM — упростить организацию большого количества модов скинов</value>
+    <value>Цель JASM+ — упростить организацию большого количества модов скинов</value>
   </data>
 
   <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
@@ -167,7 +167,7 @@
 
   <data name="Startup/Tooltip2.Text" xml:space="preserve">
     <!-- UI text on the first-time setup page -->
-    <value>Папка мода, содержащая несколько имён персонажей, может быть ошибочно перемещена в каталог одного из персонажей. Это предполагает плоскую структуру модов, где папки скинов свободно хранятся в папке модов. Если у вас есть собственная структура папок, велика вероятность, что JASM неправильно определит ваши скины. Это также относится к вложенным папкам со скинами внутри.</value>
+    <value>Папка мода, содержащая несколько имён персонажей, может быть ошибочно перемещена в каталог одного из персонажей. Это предполагает плоскую структуру модов, где папки скинов свободно хранятся в папке модов. Если у вас есть собственная структура папок, велика вероятность, что JASM+ неправильно определит ваши скины. Это также относится к вложенным папкам со скинами внутри.</value>
   </data>
 
   <data name="Startup/Tooltip3.Text" xml:space="preserve">
@@ -187,7 +187,7 @@
 
   <data name="Settings_ExportDialog.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>Это экспортирует все моды, которыми управляет JASM, в выбранную вами папку экспорта. Моды будут скопированы в папку экспорта и не будут удалены из исходной папки.</value>
+    <value>Это экспортирует все моды, которыми управляет JASM+, в выбранную вами папку экспорта. Моды будут скопированы в папку экспорта и не будут удалены из исходной папки.</value>
   </data>
 
   <data name="Settings_ExportDialogButtons.CloseButtonText" xml:space="preserve">
@@ -212,7 +212,7 @@
 
   <data name="Settings_ExportDialog_RemoveJasm.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>Удалить файлы конфигурации JASM из экспортированных модов</value>
+    <value>Удалить файлы конфигурации JASM+ из экспортированных модов</value>
   </data>
 
   <data name="Settings_Export_Button.Text" xml:space="preserve">
@@ -1004,7 +1004,7 @@
 
   <data name="ModInstallerPage_ModCustomName.PlaceholderText" xml:space="preserve">
     <!-- Label for the custom display name input -->
-    <value>Пользовательское имя, отображаемое в JASM</value>
+    <value>Пользовательское имя, отображаемое в JASM+</value>
   </data>
 
   <data name="ModInstallerPage_Author.Header" xml:space="preserve">
@@ -1029,7 +1029,7 @@
 
   <data name="ModInstallerPage_RootFolderHint.Text" xml:space="preserve">
     <!-- Static label text on the ModInstallerPage component -->
-    <value>Обычно это папка, содержащая 'merged.ini/Script.ini' или '.JASM_ModConfig.json'. JASM автоматически определит папку мода и файл merged.ini. Если вы хотите вручную выбрать папку мода, вы можете сделать это, щёлкнув правой кнопкой мыши по папке в обзоре выше.</value>
+    <value>Обычно это папка, содержащая 'merged.ini/Script.ini' или '.JASM_ModConfig.json'. JASM+ автоматически определит папку мода и файл merged.ini. Если вы хотите вручную выбрать папку мода, вы можете сделать это, щёлкнув правой кнопкой мыши по папке в обзоре выше.</value>
   </data>
 
   <data name="ModInstallerPage_PreviewImageHint.Text" xml:space="preserve">
@@ -1069,7 +1069,7 @@
 
   <data name="ModInstallerPage_ModFolderDescription.Text" xml:space="preserve">
     <!-- Static label text on the ModInstallerPage component -->
-    <value>Обычно это папка, содержащая 'merged.ini/Script.ini' или '.JASM_ModConfig.json'. JASM автоматически определит папку мода и файл merged.ini. Если вы хотите вручную выбрать папку мода, вы можете сделать это, щёлкнув правой кнопкой мыши по папке в обзоре выше.</value>
+    <value>Обычно это папка, содержащая 'merged.ini/Script.ini' или '.JASM_ModConfig.json'. JASM+ автоматически определит папку мода и файл merged.ini. Если вы хотите вручную выбрать папку мода, вы можете сделать это, щёлкнув правой кнопкой мыши по папке в обзоре выше.</value>
   </data>
 
   <data name="ModInstallerPage_ManualImageSelectionHint.Text" xml:space="preserve">
@@ -1394,7 +1394,7 @@
 
   <data name="ErrorWindow_ExceptionDescription.Text" xml:space="preserve">
     <!-- Description text explaining the error -->
-    <value>Произошло необработанное исключение. Приложение столкнулось с проблемой, которую не знало, как обработать. JASM может находиться в нестабильном состоянии, рекомендуется перезапустить JASM.</value>
+    <value>Произошло необработанное исключение. Приложение столкнулось с проблемой, которую не знало, как обработать. JASM+ может находиться в нестабильном состоянии, рекомендуется перезапустить JASM+.</value>
   </data>
 
   <data name="ErrorWindow_StackTraceLabel.Text" xml:space="preserve">
@@ -1793,7 +1793,7 @@
     <!-- Text on the Settings component -->
     <value>Я рекомендую создать пресет (или резервную копию) ваших модов перед отключением, если у вас много включённых модов.
 
-Только моды, отслеживаемые JASM, будут отключены в выбранных категориях.</value>
+Только моды, отслеживаемые JASM+, будут отключены в выбранных категориях.</value>
   </data>
 
   <data name="Settings_DisableAllMods_NoCategoriesTitle" xml:space="preserve">
@@ -1858,7 +1858,7 @@
 
   <data name="Settings_CacheDescription.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>При использовании JASM для загрузки модов он автоматически кеширует архивы или zip-файлы. Вы можете указать максимальный лимит в гигабайтах для каталога кеша, и JASM будет поддерживать размер кеша ниже лимита при запуске.</value>
+    <value>При использовании JASM+ для загрузки модов он автоматически кеширует архивы или zip-файлы. Вы можете указать максимальный лимит в гигабайтах для каталога кеша, и JASM+ будет поддерживать размер кеша ниже лимита при запуске.</value>
   </data>
 
   <data name="Settings_GithubLink.Content" xml:space="preserve">
@@ -1883,17 +1883,17 @@
 
   <data name="Settings_UpdateDialogText.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>JASM закроется, и начнётся обновление. Хотите продолжить?</value>
+    <value>JASM+ закроется, и начнётся обновление. Хотите продолжить?</value>
   </data>
 
   <data name="Settings_UpdateJASMButton.Content" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>Да, обновить JASM</value>
+    <value>Да, обновить JASM+</value>
   </data>
 
   <data name="Settings_UpdateJASMTo.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>Обновить JASM до</value>
+    <value>Обновить JASM+ до</value>
   </data>
 
   <data name="Settings_IgnoreUpdate.Content" xml:space="preserve">
@@ -1923,7 +1923,7 @@
 
   <data name="CommandsSettingsPage_WarningContent" xml:space="preserve">
     <!-- Text in the warning/confirmation dialog -->
-    <value>Пожалуйста, будьте осторожны при создании команд. Команды могут запускать любые исполняемые файлы в вашей системе. Создавайте команды только из надёжных источников. JASM несовершенен и не может защитить вас от вредоносных скриптов или ошибок JASM. Нажимая «Я понимаю», вы подтверждаете, что понимаете риски.</value>
+    <value>Пожалуйста, будьте осторожны при создании команд. Команды могут запускать любые исполняемые файлы в вашей системе. Создавайте команды только из надёжных источников. JASM+ несовершенен и не может защитить вас от вредоносных скриптов или ошибок JASM+. Нажимая «Я понимаю», вы подтверждаете, что понимаете риски.</value>
   </data>
 
   <data name="CommandsSettingsPage_WarningPrimary" xml:space="preserve">
@@ -1948,7 +1948,7 @@
 
   <data name="CommandsSettingsPage_CreateCommand.Description" xml:space="preserve">
     <!-- Button/section to create a new command -->
-    <value>Здесь вы можете определить пользовательские команды, которые JASM может выполнять за вас. В настоящее время команды, содержащие {{TargetPath}}, могут быть запущены только со страницы обзора модов.</value>
+    <value>Здесь вы можете определить пользовательские команды, которые JASM+ может выполнять за вас. В настоящее время команды, содержащие {{TargetPath}}, могут быть запущены только со страницы обзора модов.</value>
   </data>
 
   <data name="CommandsSettingsPage_CreateNewCommandButton.Content" xml:space="preserve">
@@ -2033,7 +2033,7 @@
 
   <data name="CommandsSettingsPage_RunningCommands.Description" xml:space="preserve">
     <!-- Section header -->
-    <value>Команды, запущенные из JASM для текущего экземпляра</value>
+    <value>Команды, запущенные из JASM+ для текущего экземпляра</value>
   </data>
 
   <data name="CommandsSettingsPage_RunningDisplayName.Text" xml:space="preserve">
@@ -2117,8 +2117,8 @@
   </data>
 
   <data name="CreateCommandView_KillProcess.Content" xml:space="preserve">
-    <!-- Checkbox: kill the process when JASM exits -->
-    <value>Завершить процесс при выходе из JASM</value>
+    <!-- Checkbox: kill the process when JASM+ exits -->
+    <value>Завершить процесс при выходе из JASM+</value>
   </data>
 
   <data name="CreateCommandView_RunAsAdmin.Content" xml:space="preserve">
@@ -2158,17 +2158,17 @@
 
   <data name="PresetPage_HowPresetsWorkDesc1" xml:space="preserve">
     <!-- Dialog explaining how presets work -->
-    <value>Пресет — это список модов для включения и их настроек. JASM читает и сохраняет настройки модов в самих модах в файле .JASM_ModConfig.json.</value>
+    <value>Пресет — это список модов для включения и их настроек. JASM+ читает и сохраняет настройки модов в самих модах в файле .JASM_ModConfig.json.</value>
   </data>
 
   <data name="PresetPage_HowPresetsWorkDesc2" xml:space="preserve">
     <!-- Dialog explaining how presets work -->
-    <value>Когда вы создаёте новый пресет, JASM создаёт список всех включённых модов и сохранённых в них настроек. Поэтому при последующем применении пресета он включит только эти моды и применит настройки, сохранённые в пресете.</value>
+    <value>Когда вы создаёте новый пресет, JASM+ создаёт список всех включённых модов и сохранённых в них настроек. Поэтому при последующем применении пресета он включит только эти моды и применит настройки, сохранённые в пресете.</value>
   </data>
 
   <data name="PresetPage_HowPresetsWorkDesc3" xml:space="preserve">
     <!-- Dialog explaining how presets work -->
-    <value>Вы можете разрешить JASM обрабатывать перезагрузку 3Dmigoto, установив флажок Auto Sync. Но вы также можете сделать это вручную, установив флажок «Показать ручное управление» и сохраняя/загружая настройки вручную.</value>
+    <value>Вы можете разрешить JASM+ обрабатывать перезагрузку 3Dmigoto, установив флажок Auto Sync. Но вы также можете сделать это вручную, установив флажок «Показать ручное управление» и сохраняя/загружая настройки вручную.</value>
   </data>
 
   <data name="PresetPage_HowPresetsWorkDesc4" xml:space="preserve">
@@ -2393,7 +2393,7 @@
 
   <data name="Settings_Startup_AlphaTitle" xml:space="preserve">
     <!-- Text on the Settings component -->
-    <value>JASM всё ещё в альфа-версии</value>
+    <value>JASM+ всё ещё в альфа-версии</value>
   </data>
 
   <data name="Settings_Startup_AlphaMessage" xml:space="preserve">
@@ -2490,11 +2490,11 @@
 
   <data name="Settings_CharacterSkins_EnableContent" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>Включение этой опции заставит JASM рассматривать игровые скины как отдельных персонажей в обзоре персонажей.
+    <value>Включение этой опции заставит JASM+ рассматривать игровые скины как отдельных персонажей в обзоре персонажей.
 В будущем это может стать настройкой по умолчанию.
-JASM не будет перемещать ваши моды и не будет их удалять.
+JASM+ не будет перемещать ваши моды и не будет их удалять.
 
-Вы уверены, что хотите включить скины персонажей как отдельных персонажей? JASM перезапустится после...</value>
+Вы уверены, что хотите включить скины персонажей как отдельных персонажей? JASM+ перезапустится после...</value>
   </data>
 
   <data name="Settings_CharacterSkins_EnablePrimaryButton" xml:space="preserve">
@@ -2509,11 +2509,11 @@ JASM не будет перемещать ваши моды и не будет �
 
   <data name="Settings_CharacterSkins_DisableContent" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>Отключение этой опции заставит JASM рассматривать игровые скины как скины базового персонажа в обзоре персонажей.
-Это текущая настройка JASM по умолчанию.
-JASM не будет перемещать ваши моды и не будет их удалять.
+    <value>Отключение этой опции заставит JASM+ рассматривать игровые скины как скины базового персонажа в обзоре персонажей.
+Это текущая настройка JASM+ по умолчанию.
+JASM+ не будет перемещать ваши моды и не будет их удалять.
 
-Вы уверены, что хотите отключить скины персонажей как отдельных персонажей? JASM перезапустится после...</value>
+Вы уверены, что хотите отключить скины персонажей как отдельных персонажей? JASM+ перезапустится после...</value>
   </data>
 
   <data name="Settings_CharacterSkins_DisablePrimaryButton" xml:space="preserve">
@@ -2558,7 +2558,7 @@ JASM не будет перемещать ваши моды и не будет �
 
   <data name="Settings_GameSource_RestartContent" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>Изменение источника игр требует перезапуска приложения для загрузки новых игр. JASM закроется сейчас.</value>
+    <value>Изменение источника игр требует перезапуска приложения для загрузки новых игр. JASM+ закроется сейчас.</value>
   </data>
 
   <data name="Settings_GameSource_RestartPrimary" xml:space="preserve">
@@ -2733,7 +2733,7 @@ JASM не будет перемещать ваши моды и не будет �
 
   <data name="CreateCharacterPage_SearchKeysDescription.Text" xml:space="preserve">
     <!-- Section label or help: additional search keywords for this character -->
-    <value>JASM использует ключи для улучшения функциональности поиска. Некоторые персонажи могут иметь несколько имён, поэтому вы можете добавить дополнительные имена или поисковые запросы в качестве ключей.</value>
+    <value>JASM+ использует ключи для улучшения функциональности поиска. Некоторые персонажи могут иметь несколько имён, поэтому вы можете добавить дополнительные имена или поисковые запросы в качестве ключей.</value>
   </data>
 
   <data name="CreateCharacterPage_RemoveKey.Content" xml:space="preserve">
@@ -2798,7 +2798,7 @@ JASM не будет перемещать ваши моды и не будет �
 
   <data name="EditCharacterPage_SearchKeysDescription.Text" xml:space="preserve">
     <!-- Section label or help: additional search keywords for this character -->
-    <value>JASM использует ключи для улучшения функциональности поиска. Некоторые персонажи могут иметь несколько имён, поэтому вы можете добавить дополнительные имена или поисковые запросы в качестве ключей.</value>
+    <value>JASM+ использует ключи для улучшения функциональности поиска. Некоторые персонажи могут иметь несколько имён, поэтому вы можете добавить дополнительные имена или поисковые запросы в качестве ключей.</value>
   </data>
 
   <data name="EditCharacterPage_RemoveKey.Content" xml:space="preserve">
@@ -2923,7 +2923,7 @@ JASM не будет перемещать ваши моды и не будет �
 
   <data name="EditCharacter_DisableCharacterContent" xml:space="preserve">
     <!-- Button/dialog for disabling a character -->
-    <value>Вы уверены, что хотите отключить этого персонажа? Это не удалит персонажа, но JASM больше не будет его распознавать. Персонажа можно повторно активировать позже. Это будет выполнено немедленно при нажатии «Да».</value>
+    <value>Вы уверены, что хотите отключить этого персонажа? Это не удалит персонажа, но JASM+ больше не будет его распознавать. Персонажа можно повторно активировать позже. Это будет выполнено немедленно при нажатии «Да».</value>
   </data>
 
   <data name="EditCharacter_DisableCharacterPrimary" xml:space="preserve">
@@ -2943,7 +2943,7 @@ JASM не будет перемещать ваши моды и не будет �
 
   <data name="EditCharacter_DeleteCharacterContent" xml:space="preserve">
     <!-- Button/dialog for deleting a custom character -->
-    <value>Вы уверены, что хотите удалить этого пользовательского персонажа? Это удалит персонажа, и JASM больше не будет его распознавать. Это будет выполнено немедленно при нажатии «Да».</value>
+    <value>Вы уверены, что хотите удалить этого пользовательского персонажа? Это удалит персонажа, и JASM+ больше не будет его распознавать. Это будет выполнено немедленно при нажатии «Да».</value>
   </data>
 
   <data name="EditCharacter_DeleteCharacterPrimary" xml:space="preserve">
@@ -2993,27 +2993,27 @@ JASM не будет перемещать ваши моды и не будет �
 
   <data name="CreateCharacterPage_InternalNameHelp.Text" xml:space="preserve">
     <!-- Label/help for the internal name (used for mod folder naming, must be unique) -->
-    <value>Внутреннее имя используется JASM для идентификации персонажей/объектов модов. Оно также используется как имя папки модов. Должно быть уникальным. Изменение этого после создания персонажа означает, что JASM будет идентифицировать его как нового персонажа.</value>
+    <value>Внутреннее имя используется JASM+ для идентификации персонажей/объектов модов. Оно также используется как имя папки модов. Должно быть уникальным. Изменение этого после создания персонажа означает, что JASM+ будет идентифицировать его как нового персонажа.</value>
   </data>
 
   <data name="CreateCharacterPage_ModFilesNameHelp.Text" xml:space="preserve">
     <!-- Label/help for the mod files folder name -->
-    <value>JASM в некоторых случаях может попытаться определить, для какого персонажа предназначен мод. При этом он использует текст ModFilesName, чтобы попытаться найти файл мода с таким же именем. Например, если ModFilesName равен «paimon», он будет соответствовать файлу с именем: PaimonHeadLightMap.dds. Оставьте пустым, если не хотите, чтобы JASM пытался сопоставлять файлы модов.</value>
+    <value>JASM+ в некоторых случаях может попытаться определить, для какого персонажа предназначен мод. При этом он использует текст ModFilesName, чтобы попытаться найти файл мода с таким же именем. Например, если ModFilesName равен «paimon», он будет соответствовать файлу с именем: PaimonHeadLightMap.dds. Оставьте пустым, если не хотите, чтобы JASM+ пытался сопоставлять файлы модов.</value>
   </data>
 
   <data name="CreateCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
     <!-- Toggle/help: whether this character supports multiple mods enabled at once -->
-    <value>Если отмечено, JASM не будет показывать предупреждение, когда для этого объекта мода включено несколько модов.</value>
+    <value>Если отмечено, JASM+ не будет показывать предупреждение, когда для этого объекта мода включено несколько модов.</value>
   </data>
 
   <data name="EditCharacterPage_InternalNameHelp.Text" xml:space="preserve">
     <!-- Label/help for the internal name (used for mod folder naming, must be unique) -->
-    <value>Внутреннее имя используется JASM для идентификации персонажей/объектов модов. Оно также используется как имя папки модов. Должно быть уникальным. Изменение этого после создания персонажа означает, что JASM будет идентифицировать его как нового персонажа.</value>
+    <value>Внутреннее имя используется JASM+ для идентификации персонажей/объектов модов. Оно также используется как имя папки модов. Должно быть уникальным. Изменение этого после создания персонажа означает, что JASM+ будет идентифицировать его как нового персонажа.</value>
   </data>
 
   <data name="EditCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
     <!-- Toggle/help: whether this character supports multiple mods enabled at once -->
-    <value>Если отмечено, JASM не будет показывать предупреждение, когда для этого объекта мода включено несколько модов.</value>
+    <value>Если отмечено, JASM+ не будет показывать предупреждение, когда для этого объекта мода включено несколько модов.</value>
   </data>
 
   <data name="EditCharacterPage_ResetCharacterSettings.Content" xml:space="preserve">
@@ -3456,7 +3456,7 @@ JASM не будет перемещать ваши моды и не будет �
 
   <data name="Notification_UnstableState" xml:space="preserve">
     <!-- Notification title or message. Related to: unstablestate -->
-    <value>JASM может находиться в нестабильном состоянии и может вылететь в любой момент. Рекомендуется перезапустить приложение.</value>
+    <value>JASM+ может находиться в нестабильном состоянии и может вылететь в любой момент. Рекомендуется перезапустить приложение.</value>
   </data>
 
   <data name="Notification_CommandError" xml:space="preserve">
@@ -3556,7 +3556,7 @@ JASM не будет перемещать ваши моды и не будет �
 
   <data name="Notification_NoMultipleInstalls" xml:space="preserve">
     <!-- Notification title or message. Related to: nomultipleinstalls -->
-    <value>JASM не поддерживает множественную установку модов для одного персонажа</value>
+    <value>JASM+ не поддерживает множественную установку модов для одного персонажа</value>
   </data>
 
   <data name="Notification_PresetApplyFailed" xml:space="preserve">
@@ -3675,8 +3675,8 @@ JASM не будет перемещать ваши моды и не будет �
   </data>
 
   <data name="Notification_CouldNotFindModMsg" xml:space="preserve">
-    <!-- Notification body message: An error occured trying to set Mod ini, restarting JASM may ... Shown when couldnotfindmodmsg -->
-    <value>Произошла ошибка при попытке установить ini мода, перезапуск JASM может помочь</value>
+    <!-- Notification body message: An error occured trying to set Mod ini, restarting JASM+ may ... Shown when couldnotfindmodmsg -->
+    <value>Произошла ошибка при попытке установить ini мода, перезапуск JASM+ может помочь</value>
   </data>
 
   <data name="Notification_CouldNotFindModSettings" xml:space="preserve">
@@ -3727,7 +3727,7 @@ JASM не будет перемещать ваши моды и не будет �
 
   <data name="Notification_BgCheckerFatal" xml:space="preserve">
     <!-- Notification title or message. Related to: bgcheckerfatal -->
-    <value>Произошла фатальная ошибка в фоновом модуле проверки ({0} : {1}). Это означает, что JASM больше не может проверять обновления модов в фоновом режиме или вручную. Ошибка: {2}</value>
+    <value>Произошла фатальная ошибка в фоновом модуле проверки ({0} : {1}). Это означает, что JASM+ больше не может проверять обновления модов в фоновом режиме или вручную. Ошибка: {2}</value>
   </data>
 
   <data name="Notification_UpdateCheckError" xml:space="preserve">
@@ -3851,8 +3851,8 @@ JASM не будет перемещать ваши моды и не будет �
   </data>
 
   <data name="Notification_CouldNotDetermineSkinMsg" xml:space="preserve">
-    <!-- Notification body message: JASM could not determine what ingame skin this mod is for, t... Shown when couldnotdetermineskinmsg -->
-    <value>JASM не смог определить, для какого игрового скина предназначен этот мод, поэтому не может определить, какие моды отключать.</value>
+    <!-- Notification body message: JASM+ could not determine what ingame skin this mod is for, t... Shown when couldnotdetermineskinmsg -->
+    <value>JASM+ не смог определить, для какого игрового скина предназначен этот мод, поэтому не может определить, какие моды отключать.</value>
   </data>
 
   <data name="Notification_SystemError" xml:space="preserve">

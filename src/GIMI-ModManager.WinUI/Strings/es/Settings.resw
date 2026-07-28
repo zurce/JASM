@@ -126,8 +126,8 @@ Esto es necesario para configurar correctamente la aplicación para el idioma se
     <value>Juego</value>
   </data>
   <data name="GameSelectorTitle.Text" xml:space="preserve">
-    <value>JASM soporta completamente Genshin Impact y Honkai Star Rail.
-JASM soporta parcialmente WUWA y ZZZ</value>
+    <value>JASM+ soporta completamente Genshin Impact y Honkai Star Rail.
+JASM+ soporta parcialmente WUWA y ZZZ</value>
   </data>
   <data name="LanguageSelectionSectionHeader.Text" xml:space="preserve">
     <value>Idioma</value>

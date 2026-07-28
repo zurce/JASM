@@ -126,8 +126,8 @@ Do you want to change the language?</value>
     <value>Game</value>
   </data>
   <data name="GameSelectorTitle.Text" xml:space="preserve">
-    <value>JASM fully supports Genshin Impact and Honkai Star Rail.
-JASM partially supports WUWA and ZZZ</value>
+    <value>JASM+ fully supports Genshin Impact and Honkai Star Rail.
+JASM+ partially supports WUWA and ZZZ</value>
   </data>
   <data name="LanguageSelectionSectionHeader.Text" xml:space="preserve">
     <value>Language</value>

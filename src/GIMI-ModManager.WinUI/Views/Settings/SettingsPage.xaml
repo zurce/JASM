@@ -40,7 +40,7 @@
                         <TextBlock
                             IsTextSelectionEnabled="True"
                             TextWrapping="WrapWholeWords"
-                            Text="This will export all mods that JASM is managing to an export folder of your choice. The mods will be copied to the export folder and will not be removed from the original folder."
+                            Text="This will export all mods that JASM+ is managing to an export folder of your choice. The mods will be copied to the export folder and will not be removed from the original folder."
                             l:Uids.Uid="Settings_ExportDialog" />
 
                         <StackPanel
@@ -61,7 +61,7 @@
                             <CheckBox IsChecked="{x:Bind RemoveJasmSettings, Mode=TwoWay}" />
                             <TextBlock
                                 IsTextSelectionEnabled="True"
-                                Text="Removes JASM configuration files from the exported Mods"
+                                Text="Removes JASM+ configuration files from the exported Mods"
                                 l:Uids.Uid="Settings_ExportDialog_RemoveJasm" />
                         </StackPanel>
 
@@ -140,14 +140,14 @@
                             Content="Remember window size"
                             l:Uids.Uid="Settings_WindowSize"
                             IsChecked="{x:Bind ViewModel.PersistWindowSize, Mode=OneWay}"
-                            ToolTipService.ToolTip="If checked then the main window size is saved when JASM exits" />
+                            ToolTipService.ToolTip="If checked then the main window size is saved when JASM+ exits" />
                         <CheckBox
                             Command="{x:Bind ViewModel.WindowSizePositionToggleCommand}"
                             CommandParameter="position"
                             Content="Remember window position"
                             l:Uids.Uid="Settings_WindowPosition"
                             IsChecked="{x:Bind ViewModel.PersistWindowPosition, Mode=OneWay}"
-                            ToolTipService.ToolTip="If checked then the main window position is saved when JASM exits" />
+                            ToolTipService.ToolTip="If checked then the main window position is saved when JASM+ exits" />
                     </StackPanel>
 
 
@@ -183,7 +183,7 @@
                     <TextBlock
                         IsTextSelectionEnabled="True"
                         TextWrapping="WrapWholeWords"
-                        Text="JASM supports Genshin Impact, Honkai Star Rail, Wuthering Waves, Zenless Zone Zero and Arknights: Endfield"
+                        Text="JASM+ supports Genshin Impact, Honkai Star Rail, Wuthering Waves, Zenless Zone Zero and Arknights: Endfield"
                         l:Uids.Uid="/Settings/GameSelectorTitle" />
                     <TextBlock
                         Margin="0,0,0,8"
@@ -379,7 +379,7 @@
                             HorizontalAlignment="Left"
                             IsTextSelectionEnabled="True"
                             TextWrapping="WrapWholeWords"
-                            Text="When using JASM to download mods, it automatically caches the archives or zip files. You can specify a maximum limit in gigabytes for the cache directory, and JASM will keep the cache size under the limit when starting up."
+                            Text="When using JASM+ to download mods, it automatically caches the archives or zip files. You can specify a maximum limit in gigabytes for the cache directory, and JASM+ will keep the cache size under the limit when starting up."
                             l:Uids.Uid="Settings_CacheDescription" />
 
                         <StackPanel Orientation="Horizontal" Spacing="16">
@@ -452,16 +452,16 @@
                     <TextBlock
                         Margin="{StaticResource XSmallTopMargin}"
                         Style="{ThemeResource BodyTextBlockStyle}"
-                        Text="The goal of JASM is to make it easy to organize a larger amount of skin mods"
+                        Text="The goal of JASM+ is to make it easy to organize a larger amount of skin mods"
                         l:Uids.Uid="Settings_AboutDescription" />
                     <HyperlinkButton
                         Margin="{StaticResource SettingsPageHyperlinkButtonMargin}"
-                        Content="Just Another Skin Manager Github"
+                        Content="JASM+ Github"
                         l:Uids.Uid="Settings_GithubLink"
-                        NavigateUri="https://github.com/Jorixon/JASM" />
+                        NavigateUri="https://github.com/zurce/JASM" />
                     <HyperlinkButton
                         Margin="{StaticResource SettingsPageHyperlinkButtonMargin}"
-                        Content="Just Another Skin Manager GameBanana"
+                        Content="JASM+ GameBanana"
                         l:Uids.Uid="Settings_GameBananaLink"
                         NavigateUri="https://gamebanana.com/tools/14574" />
 
@@ -472,7 +472,7 @@
                             VerticalAlignment="Center"
                             Text="{x:Bind ViewModel.LatestVersion, Mode=OneWay}" />
 
-                        <controls:LinkButton Link="https://github.com/Jorixon/JASM/releases/latest" Text="See what's new in the latest release" l:Uids.Uid="Settings_SeeWhatsNew" />
+                        <controls:LinkButton Link="https://github.com/zurce/JASM/releases/latest" Text="See what's new in the latest release" l:Uids.Uid="Settings_SeeWhatsNew" />
 
                     </StackPanel>
 
@@ -486,14 +486,14 @@
                             <Button.Flyout>
                                 <Flyout ShouldConstrainToRootBounds="False">
                                     <StackPanel>
-                                        <TextBlock TextWrapping="WrapWholeWords" Text="JASM will exit and the update will start. Do you want to continue?" l:Uids.Uid="Settings_UpdateDialogText" />
-                                        <Button Command="{x:Bind ViewModel.UpdateJasmCommand}" Content="Yes, Update JASM 😎" l:Uids.Uid="Settings_UpdateJASMButton" />
+                                        <TextBlock TextWrapping="WrapWholeWords" Text="JASM+ will exit and the update will start. Do you want to continue?" l:Uids.Uid="Settings_UpdateDialogText" />
+                                        <Button Command="{x:Bind ViewModel.UpdateJasmCommand}" Content="Yes, Update JASM+ 😎" l:Uids.Uid="Settings_UpdateJASMButton" />
                                     </StackPanel>
                                 </Flyout>
                             </Button.Flyout>
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock VerticalAlignment="Center" Text="Update JASM to " l:Uids.Uid="Settings_UpdateJASMTo" />
+                                    <TextBlock VerticalAlignment="Center" Text="Update JASM+ to " l:Uids.Uid="Settings_UpdateJASMTo" />
                                     <TextBlock
                                         Margin="4,0"
                                         VerticalAlignment="Center"

@@ -62,12 +62,12 @@
 
   <data name="AppDisplayName" xml:space="preserve">
     <!-- Application display name in the window title bar -->
-    <value>JASM - Just Another Skin Manager</value>
+    <value>JASM+ - Just Another Skin Manager</value>
   </data>
 
   <data name="AppDescription" xml:space="preserve">
     <!-- Application description -->
-    <value>JASM - Um Gerenciador de Skins</value>
+    <value>JASM+ - Um Gerenciador de Skins</value>
   </data>
 
   <data name="Startup1.Text" xml:space="preserve">
@@ -77,7 +77,7 @@
 
   <data name="Startup2.Text" xml:space="preserve">
     <!-- Informational text on the first-time setup page (preserved for reference, may not be in use) -->
-    <value>Após salvar as configurações, o aplicativo criará uma pasta para cada personagem dentro da pasta 'Mods'. Pastas de mod fora dessas pastas de personagem são ignoradas. Este aplicativo ativa e desativa mods prefixando as pastas de mod com 'DISABLED_'. O JASM também suporta a exportação de mods gerenciados por ele, se você quiser usá-los com outros aplicativos.</value>
+    <value>Após salvar as configurações, o aplicativo criará uma pasta para cada personagem dentro da pasta 'Mods'. Pastas de mod fora dessas pastas de personagem são ignoradas. Este aplicativo ativa e desativa mods prefixando as pastas de mod com 'DISABLED_'. O JASM+ também suporta a exportação de mods gerenciados por ele, se você quiser usá-los com outros aplicativos.</value>
   </data>
 
   <data name="Startup3.Text" xml:space="preserve">
@@ -132,7 +132,7 @@
 
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>O objetivo do JASM é facilitar a organização de uma grande quantidade de mods de skin.</value>
+    <value>O objetivo do JASM+ é facilitar a organização de uma grande quantidade de mods de skin.</value>
   </data>
 
   <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
@@ -167,7 +167,7 @@
 
   <data name="Startup/Tooltip2.Text" xml:space="preserve">
     <!-- UI text on the first-time setup page -->
-    <value>Uma pasta de mod contendo nomes de vários personagens pode ser movida erroneamente para o diretório de um personagem. Isso pressupõe uma estrutura de mod plana, onde as pastas de skin são armazenadas soltas na pasta de mods. Se você tiver uma estrutura de pastas personalizada, há uma grande chance de o JASM identificar incorretamente suas skins. Isso também é o caso se você tiver pastas aninhadas com skins dentro delas.</value>
+    <value>Uma pasta de mod contendo nomes de vários personagens pode ser movida erroneamente para o diretório de um personagem. Isso pressupõe uma estrutura de mod plana, onde as pastas de skin são armazenadas soltas na pasta de mods. Se você tiver uma estrutura de pastas personalizada, há uma grande chance de o JASM+ identificar incorretamente suas skins. Isso também é o caso se você tiver pastas aninhadas com skins dentro delas.</value>
   </data>
 
   <data name="Startup/Tooltip3.Text" xml:space="preserve">
@@ -187,7 +187,7 @@
 
   <data name="Settings_ExportDialog.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>Isso exportará todos os mods que o JASM está gerenciando para uma pasta de exportação de sua escolha. Os mods serão copiados para a pasta de exportação e não serão removidos da pasta original.</value>
+    <value>Isso exportará todos os mods que o JASM+ está gerenciando para uma pasta de exportação de sua escolha. Os mods serão copiados para a pasta de exportação e não serão removidos da pasta original.</value>
   </data>
 
   <data name="Settings_ExportDialogButtons.CloseButtonText" xml:space="preserve">
@@ -212,7 +212,7 @@
 
   <data name="Settings_ExportDialog_RemoveJasm.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>Remove arquivos de configuração do JASM dos mods exportados</value>
+    <value>Remove arquivos de configuração do JASM+ dos mods exportados</value>
   </data>
 
   <data name="Settings_Export_Button.Text" xml:space="preserve">
@@ -1004,7 +1004,7 @@ Ou
 
   <data name="ModInstallerPage_ModCustomName.PlaceholderText" xml:space="preserve">
     <!-- Label for the custom display name input -->
-    <value>Nome personalizado exibido em todo o JASM</value>
+    <value>Nome personalizado exibido em todo o JASM+</value>
   </data>
 
   <data name="ModInstallerPage_Author.Header" xml:space="preserve">
@@ -1029,7 +1029,7 @@ Ou
 
   <data name="ModInstallerPage_RootFolderHint.Text" xml:space="preserve">
     <!-- Static label text on the ModInstallerPage component -->
-    <value>Esta é geralmente a pasta que contém o 'merged.ini/Script.ini' ou '.JASM_ModConfig.json'. O JASM detectará automaticamente a pasta de mods e o arquivo merged.ini. Se quiser selecionar manualmente a pasta de mods, você pode clicar com o botão direito na pasta na visão geral acima.</value>
+    <value>Esta é geralmente a pasta que contém o 'merged.ini/Script.ini' ou '.JASM_ModConfig.json'. O JASM+ detectará automaticamente a pasta de mods e o arquivo merged.ini. Se quiser selecionar manualmente a pasta de mods, você pode clicar com o botão direito na pasta na visão geral acima.</value>
   </data>
 
   <data name="ModInstallerPage_PreviewImageHint.Text" xml:space="preserve">
@@ -1069,7 +1069,7 @@ Ou
 
   <data name="ModInstallerPage_ModFolderDescription.Text" xml:space="preserve">
     <!-- Static label text on the ModInstallerPage component -->
-    <value>Esta é geralmente a pasta que contém o 'merged.ini/Script.ini' ou '.JASM_ModConfig.json'. O JASM detectará automaticamente a pasta do mod e o arquivo merged.ini. Se quiser selecionar manualmente a pasta do mod, clique com o botão direito na pasta na visão geral acima.</value>
+    <value>Esta é geralmente a pasta que contém o 'merged.ini/Script.ini' ou '.JASM_ModConfig.json'. O JASM+ detectará automaticamente a pasta do mod e o arquivo merged.ini. Se quiser selecionar manualmente a pasta do mod, clique com o botão direito na pasta na visão geral acima.</value>
   </data>
 
   <data name="ModInstallerPage_ManualImageSelectionHint.Text" xml:space="preserve">
@@ -1394,7 +1394,7 @@ Ou
 
   <data name="ErrorWindow_ExceptionDescription.Text" xml:space="preserve">
     <!-- Description text explaining the error -->
-    <value>Ocorreu uma exceção não tratada. O aplicativo encontrou um problema que não soube como lidar. O JASM pode estar em um estado instável, e é recomendado reiniciar o JASM.</value>
+    <value>Ocorreu uma exceção não tratada. O aplicativo encontrou um problema que não soube como lidar. O JASM+ pode estar em um estado instável, e é recomendado reiniciar o JASM+.</value>
   </data>
 
   <data name="ErrorWindow_StackTraceLabel.Text" xml:space="preserve">
@@ -1793,7 +1793,7 @@ Pastas vazias na raiz da pasta Mods também serão excluídas</value>
     <!-- Text on the Settings component -->
     <value>Sugiro criar um preset (ou um backup) dos seus mods antes de desabilitá-los se você tiver muitos mods habilitados.
 
-Apenas mods rastreados pelo JASM serão desabilitados nas categorias selecionadas</value>
+Apenas mods rastreados pelo JASM+ serão desabilitados nas categorias selecionadas</value>
   </data>
 
   <data name="Settings_DisableAllMods_NoCategoriesTitle" xml:space="preserve">
@@ -1858,17 +1858,17 @@ Apenas mods rastreados pelo JASM serão desabilitados nas categorias selecionada
 
   <data name="Settings_CacheDescription.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>Ao usar o JASM para baixar mods, ele armazena automaticamente em cache os arquivos zip. Você pode especificar um limite máximo em gigabytes para o diretório de cache, e o JASM manterá o tamanho do cache abaixo do limite ao iniciar.</value>
+    <value>Ao usar o JASM+ para baixar mods, ele armazena automaticamente em cache os arquivos zip. Você pode especificar um limite máximo em gigabytes para o diretório de cache, e o JASM+ manterá o tamanho do cache abaixo do limite ao iniciar.</value>
   </data>
 
   <data name="Settings_GithubLink.Content" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>JASM no Github</value>
+    <value>JASM+ no Github</value>
   </data>
 
   <data name="Settings_GameBananaLink.Content" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>JASM no GameBanana</value>
+    <value>JASM+ no GameBanana</value>
   </data>
 
   <data name="Settings_NewUpdateAvailable.Text" xml:space="preserve">
@@ -1883,17 +1883,17 @@ Apenas mods rastreados pelo JASM serão desabilitados nas categorias selecionada
 
   <data name="Settings_UpdateDialogText.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>O JASM será fechado e a atualização será iniciada. Deseja continuar?</value>
+    <value>O JASM+ será fechado e a atualização será iniciada. Deseja continuar?</value>
   </data>
 
   <data name="Settings_UpdateJASMButton.Content" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>Sim, Atualizar JASM</value>
+    <value>Sim, Atualizar JASM+</value>
   </data>
 
   <data name="Settings_UpdateJASMTo.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
-    <value>Atualizar JASM para</value>
+    <value>Atualizar JASM+ para</value>
   </data>
 
   <data name="Settings_IgnoreUpdate.Content" xml:space="preserve">
@@ -1923,7 +1923,7 @@ Apenas mods rastreados pelo JASM serão desabilitados nas categorias selecionada
 
   <data name="CommandsSettingsPage_WarningContent" xml:space="preserve">
     <!-- Text in the warning/confirmation dialog -->
-    <value>Tenha cuidado ao criar comandos. Comandos podem executar qualquer programa em seu sistema. Crie apenas comandos de fontes confiáveis. O JASM não é perfeito e não pode protegê-lo de scripts maliciosos ou falhas do JASM. Ao clicar em 'Entendo' você reconhece que compreende os riscos.</value>
+    <value>Tenha cuidado ao criar comandos. Comandos podem executar qualquer programa em seu sistema. Crie apenas comandos de fontes confiáveis. O JASM+ não é perfeito e não pode protegê-lo de scripts maliciosos ou falhas do JASM+. Ao clicar em 'Entendo' você reconhece que compreende os riscos.</value>
   </data>
 
   <data name="CommandsSettingsPage_WarningPrimary" xml:space="preserve">
@@ -1948,7 +1948,7 @@ Apenas mods rastreados pelo JASM serão desabilitados nas categorias selecionada
 
   <data name="CommandsSettingsPage_CreateCommand.Description" xml:space="preserve">
     <!-- Button/section to create a new command -->
-    <value>Aqui você pode definir comandos personalizados que o JASM pode executar. Atualmente, comandos que contêm {{TargetPath}} só podem ser executados na página de Visão Geral de Mods</value>
+    <value>Aqui você pode definir comandos personalizados que o JASM+ pode executar. Atualmente, comandos que contêm {{TargetPath}} só podem ser executados na página de Visão Geral de Mods</value>
   </data>
 
   <data name="CommandsSettingsPage_CreateNewCommandButton.Content" xml:space="preserve">
@@ -2033,7 +2033,7 @@ Apenas mods rastreados pelo JASM serão desabilitados nas categorias selecionada
 
   <data name="CommandsSettingsPage_RunningCommands.Description" xml:space="preserve">
     <!-- Section header -->
-    <value>Comandos iniciados pelo JASM para a instância atual em execução</value>
+    <value>Comandos iniciados pelo JASM+ para a instância atual em execução</value>
   </data>
 
   <data name="CommandsSettingsPage_RunningDisplayName.Text" xml:space="preserve">
@@ -2117,8 +2117,8 @@ Apenas mods rastreados pelo JASM serão desabilitados nas categorias selecionada
   </data>
 
   <data name="CreateCommandView_KillProcess.Content" xml:space="preserve">
-    <!-- Checkbox: kill the process when JASM exits -->
-    <value>Encerrar Processo ao sair do JASM</value>
+    <!-- Checkbox: kill the process when JASM+ exits -->
+    <value>Encerrar Processo ao sair do JASM+</value>
   </data>
 
   <data name="CreateCommandView_RunAsAdmin.Content" xml:space="preserve">
@@ -2158,17 +2158,17 @@ Apenas mods rastreados pelo JASM serão desabilitados nas categorias selecionada
 
   <data name="PresetPage_HowPresetsWorkDesc1" xml:space="preserve">
     <!-- Dialog explaining how presets work -->
-    <value>Um Preset é uma lista de Mods para habilitar e suas preferências. O JASM lê e armazena as preferências de mod nos próprios mods no arquivo .JASM_ModConfig.json</value>
+    <value>Um Preset é uma lista de Mods para habilitar e suas preferências. O JASM+ lê e armazena as preferências de mod nos próprios mods no arquivo .JASM_ModConfig.json</value>
   </data>
 
   <data name="PresetPage_HowPresetsWorkDesc2" xml:space="preserve">
     <!-- Dialog explaining how presets work -->
-    <value>Quando você cria um novo preset, o JASM cria uma lista de todos os mods habilitados e as preferências armazenadas neles. Quando você aplicar o preset mais tarde, ele habilitará apenas esses mods e aplicará as preferências armazenadas no preset</value>
+    <value>Quando você cria um novo preset, o JASM+ cria uma lista de todos os mods habilitados e as preferências armazenadas neles. Quando você aplicar o preset mais tarde, ele habilitará apenas esses mods e aplicará as preferências armazenadas no preset</value>
   </data>
 
   <data name="PresetPage_HowPresetsWorkDesc3" xml:space="preserve">
     <!-- Dialog explaining how presets work -->
-    <value>Você pode permitir que o JASM gerencie o recarregamento do 3Dmigoto marcando a caixa Sincronização Automática. Mas você também pode fazer isso manualmente marcando a caixa Mostrar Controles Manuais e salvando/carregando preferências manualmente.</value>
+    <value>Você pode permitir que o JASM+ gerencie o recarregamento do 3Dmigoto marcando a caixa Sincronização Automática. Mas você também pode fazer isso manualmente marcando a caixa Mostrar Controles Manuais e salvando/carregando preferências manualmente.</value>
   </data>
 
   <data name="PresetPage_HowPresetsWorkDesc4" xml:space="preserve">
@@ -2393,7 +2393,7 @@ Apenas mods rastreados pelo JASM serão desabilitados nas categorias selecionada
 
   <data name="Settings_Startup_AlphaTitle" xml:space="preserve">
     <!-- Text on the Settings component -->
-    <value>O JASM ainda está em alpha</value>
+    <value>O JASM+ ainda está em alpha</value>
   </data>
 
   <data name="Settings_Startup_AlphaMessage" xml:space="preserve">
@@ -2490,11 +2490,11 @@ Do you want to switch games?</value>
 
   <data name="Settings_CharacterSkins_EnableContent" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>Ativar isso fará com que o JASM trate as skins do jogo como personagens separados na visão geral de personagens.
-Isso pode se tornar a configuração padrão do JASM no futuro.
-O JASM não moverá nenhum dos seus mods nem os excluirá.
+    <value>Ativar isso fará com que o JASM+ trate as skins do jogo como personagens separados na visão geral de personagens.
+Isso pode se tornar a configuração padrão do JASM+ no futuro.
+O JASM+ não moverá nenhum dos seus mods nem os excluirá.
 
-Tem certeza de que deseja habilitar skins de personagem como personagens? O JASM reiniciará depois...</value>
+Tem certeza de que deseja habilitar skins de personagem como personagens? O JASM+ reiniciará depois...</value>
   </data>
 
   <data name="Settings_CharacterSkins_EnablePrimaryButton" xml:space="preserve">
@@ -2509,11 +2509,11 @@ Tem certeza de que deseja habilitar skins de personagem como personagens? O JASM
 
   <data name="Settings_CharacterSkins_DisableContent" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>Desativar isso fará com que o JASM trate as skins do jogo como skins do personagem base na visão geral de personagens.
-Esta é atualmente a configuração padrão do JASM.
-O JASM não moverá nenhum dos seus mods nem os excluirá.
+    <value>Desativar isso fará com que o JASM+ trate as skins do jogo como skins do personagem base na visão geral de personagens.
+Esta é atualmente a configuração padrão do JASM+.
+O JASM+ não moverá nenhum dos seus mods nem os excluirá.
 
-Tem certeza de que deseja desabilitar skins de personagem como personagens? O JASM reiniciará depois...</value>
+Tem certeza de que deseja desabilitar skins de personagem como personagens? O JASM+ reiniciará depois...</value>
   </data>
 
   <data name="Settings_CharacterSkins_DisablePrimaryButton" xml:space="preserve">
@@ -2558,7 +2558,7 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 
   <data name="Settings_GameSource_RestartContent" xml:space="preserve">
     <!-- Button/toggle label in Settings page -->
-    <value>Alterar a Fonte do Jogo requer reiniciar o aplicativo para carregar os novos jogos. O JASM será fechado agora.</value>
+    <value>Alterar a Fonte do Jogo requer reiniciar o aplicativo para carregar os novos jogos. O JASM+ será fechado agora.</value>
   </data>
 
   <data name="Settings_GameSource_RestartPrimary" xml:space="preserve">
@@ -2733,7 +2733,7 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 
   <data name="CreateCharacterPage_SearchKeysDescription.Text" xml:space="preserve">
     <!-- Section label or help: additional search keywords for this character -->
-    <value>O JASM usa chaves para ajudar a melhorar a funcionalidade de pesquisa. Alguns personagens podem ter vários nomes, então você pode adicionar nomes adicionais ou termos de pesquisa como Chaves.</value>
+    <value>O JASM+ usa chaves para ajudar a melhorar a funcionalidade de pesquisa. Alguns personagens podem ter vários nomes, então você pode adicionar nomes adicionais ou termos de pesquisa como Chaves.</value>
   </data>
 
   <data name="CreateCharacterPage_RemoveKey.Content" xml:space="preserve">
@@ -2798,7 +2798,7 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 
   <data name="EditCharacterPage_SearchKeysDescription.Text" xml:space="preserve">
     <!-- Section label or help: additional search keywords for this character -->
-    <value>O JASM usa chaves para ajudar a melhorar a funcionalidade de pesquisa. Alguns personagens podem ter vários nomes, então você pode adicionar nomes adicionais ou termos de pesquisa como Chaves.</value>
+    <value>O JASM+ usa chaves para ajudar a melhorar a funcionalidade de pesquisa. Alguns personagens podem ter vários nomes, então você pode adicionar nomes adicionais ou termos de pesquisa como Chaves.</value>
   </data>
 
   <data name="EditCharacterPage_RemoveKey.Content" xml:space="preserve">
@@ -2923,7 +2923,7 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 
   <data name="EditCharacter_DisableCharacterContent" xml:space="preserve">
     <!-- Button/dialog for disabling a character -->
-    <value>Tem certeza que deseja desabilitar este personagem? Isso não removerá o personagem, mas o JASM não o reconhecerá mais. O personagem pode ser reativado depois. Isso será executado imediatamente ao pressionar sim</value>
+    <value>Tem certeza que deseja desabilitar este personagem? Isso não removerá o personagem, mas o JASM+ não o reconhecerá mais. O personagem pode ser reativado depois. Isso será executado imediatamente ao pressionar sim</value>
   </data>
 
   <data name="EditCharacter_DisableCharacterPrimary" xml:space="preserve">
@@ -2943,7 +2943,7 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 
   <data name="EditCharacter_DeleteCharacterContent" xml:space="preserve">
     <!-- Button/dialog for deleting a custom character -->
-    <value>Tem certeza que deseja excluir este personagem personalizado? Isso removerá o personagem, e o JASM não o reconhecerá mais. Isso será executado imediatamente ao pressionar sim</value>
+    <value>Tem certeza que deseja excluir este personagem personalizado? Isso removerá o personagem, e o JASM+ não o reconhecerá mais. Isso será executado imediatamente ao pressionar sim</value>
   </data>
 
   <data name="EditCharacter_DeleteCharacterPrimary" xml:space="preserve">
@@ -2993,27 +2993,27 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 
   <data name="CreateCharacterPage_InternalNameHelp.Text" xml:space="preserve">
     <!-- Label/help for the internal name (used for mod folder naming, must be unique) -->
-    <value>O Nome Interno é usado pelo JASM para identificar personagens/Objetos de Mod. Também é usado como nome da pasta de mods. Deve ser único. Alterar isso após criar o personagem significa que o JASM identificará isso como um novo personagem.</value>
+    <value>O Nome Interno é usado pelo JASM+ para identificar personagens/Objetos de Mod. Também é usado como nome da pasta de mods. Deve ser único. Alterar isso após criar o personagem significa que o JASM+ identificará isso como um novo personagem.</value>
   </data>
 
   <data name="CreateCharacterPage_ModFilesNameHelp.Text" xml:space="preserve">
     <!-- Label/help for the mod files folder name -->
-    <value>O JASM pode em alguns casos tentar determinar para qual personagem um mod é. Ao fazer isso, ele usa o texto ModFilesName para tentar encontrar um arquivo de mod com o mesmo nome. Por exemplo, digamos que ModFilesName seja 'paimon', então ele corresponderá a um arquivo com nome: PaimonHeadLightMap.dds Deixe vazio se não quiser que o JASM tente corresponder arquivos de mod.</value>
+    <value>O JASM+ pode em alguns casos tentar determinar para qual personagem um mod é. Ao fazer isso, ele usa o texto ModFilesName para tentar encontrar um arquivo de mod com o mesmo nome. Por exemplo, digamos que ModFilesName seja 'paimon', então ele corresponderá a um arquivo com nome: PaimonHeadLightMap.dds Deixe vazio se não quiser que o JASM+ tente corresponder arquivos de mod.</value>
   </data>
 
   <data name="CreateCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
     <!-- Toggle/help: whether this character supports multiple mods enabled at once -->
-    <value>Se marcado, o JASM não mostrará um aviso quando vários mods estiverem habilitados para este objeto de mod.</value>
+    <value>Se marcado, o JASM+ não mostrará um aviso quando vários mods estiverem habilitados para este objeto de mod.</value>
   </data>
 
   <data name="EditCharacterPage_InternalNameHelp.Text" xml:space="preserve">
     <!-- Label/help for the internal name (used for mod folder naming, must be unique) -->
-    <value>O Nome Interno é usado pelo JASM para identificar personagens/Objetos de Mod. Também é usado como nome da pasta de mods. Deve ser único. Alterar isso após criar o personagem significa que o JASM identificará isso como um novo personagem.</value>
+    <value>O Nome Interno é usado pelo JASM+ para identificar personagens/Objetos de Mod. Também é usado como nome da pasta de mods. Deve ser único. Alterar isso após criar o personagem significa que o JASM+ identificará isso como um novo personagem.</value>
   </data>
 
   <data name="EditCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
     <!-- Toggle/help: whether this character supports multiple mods enabled at once -->
-    <value>Se marcado, o JASM não mostrará um aviso quando vários mods estiverem habilitados para este objeto de mod.</value>
+    <value>Se marcado, o JASM+ não mostrará um aviso quando vários mods estiverem habilitados para este objeto de mod.</value>
   </data>
 
   <data name="EditCharacterPage_ResetCharacterSettings.Content" xml:space="preserve">
@@ -3453,7 +3453,7 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 
   <data name="Notification_UnstableState" xml:space="preserve">
     <!-- Notification title or message. Related to: unstablestate -->
-    <value>JASM may be in an unstable state could crash at any moment. It is suggested to restart the app.</value>
+    <value>JASM+ may be in an unstable state could crash at any moment. It is suggested to restart the app.</value>
   </data>
 
   <data name="Notification_CommandError" xml:space="preserve">
@@ -3553,7 +3553,7 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 
   <data name="Notification_NoMultipleInstalls" xml:space="preserve">
     <!-- Notification title or message. Related to: nomultipleinstalls -->
-    <value>O JASM não suporta múltiplas instalações de mods para o mesmo personagem</value>
+    <value>O JASM+ não suporta múltiplas instalações de mods para o mesmo personagem</value>
   </data>
 
   <data name="Notification_PresetApplyFailed" xml:space="preserve">
@@ -3672,8 +3672,8 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
   </data>
 
   <data name="Notification_CouldNotFindModMsg" xml:space="preserve">
-    <!-- Notification body message: An error occured trying to set Mod ini, restarting JASM may ... Shown when couldnotfindmodmsg -->
-    <value>Ocorreu um erro ao tentar definir o ini do mod, reiniciar o JASM pode ajudar</value>
+    <!-- Notification body message: An error occured trying to set Mod ini, restarting JASM+ may ... Shown when couldnotfindmodmsg -->
+    <value>Ocorreu um erro ao tentar definir o ini do mod, reiniciar o JASM+ pode ajudar</value>
   </data>
 
   <data name="Notification_CouldNotFindModSettings" xml:space="preserve">
@@ -3723,7 +3723,7 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 
   <data name="Notification_BgCheckerFatal" xml:space="preserve">
     <!-- Notification title or message. Related to: bgcheckerfatal -->
-    <value>Ocorreu um erro fatal no verificador em segundo plano ({0} : {1}). Isso significa que o JASM não pode mais verificar atualizações de mods em segundo plano ou manualmente. Erro: {2}</value>
+    <value>Ocorreu um erro fatal no verificador em segundo plano ({0} : {1}). Isso significa que o JASM+ não pode mais verificar atualizações de mods em segundo plano ou manualmente. Erro: {2}</value>
   </data>
 
   <data name="Notification_UpdateCheckError" xml:space="preserve">
@@ -3847,8 +3847,8 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
   </data>
 
   <data name="Notification_CouldNotDetermineSkinMsg" xml:space="preserve">
-    <!-- Notification body message: JASM could not determine what ingame skin this mod is for, t... Shown when couldnotdetermineskinmsg -->
-    <value>O JASM não pôde determinar para qual skin do jogo este mod é, portanto não pode determinar quais mods desabilitar.</value>
+    <!-- Notification body message: JASM+ could not determine what ingame skin this mod is for, t... Shown when couldnotdetermineskinmsg -->
+    <value>O JASM+ não pôde determinar para qual skin do jogo este mod é, portanto não pode determinar quais mods desabilitar.</value>
   </data>
 
   <data name="Notification_SystemError" xml:space="preserve">
@@ -3923,12 +3923,12 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 
   <data name="ModPane_SetModIni.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Button/checkbox for managing the mod .ini file -->
-    <value>Definir o arquivo .ini do mod para ser lido pelo JASM</value>
+    <value>Definir o arquivo .ini do mod para ser lido pelo JASM+</value>
   </data>
 
   <data name="ModPane_IgnoreIni.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Button/checkbox for managing the mod .ini file -->
-    <value>O JASM não procurará o arquivo merged.ini/Script.ini e ignorará key swaps para este mod</value>
+    <value>O JASM+ não procurará o arquivo merged.ini/Script.ini e ignorará key swaps para este mod</value>
   </data>
 
   <data name="CharDetails_DeleteDialog_Content" xml:space="preserve">
