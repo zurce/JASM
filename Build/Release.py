@@ -53,12 +53,11 @@ shutil.copy("CHANGELOG.md", RELEASE_DIR + "\\CHANGELOG.txt")
 print("Finished copying text files to release directory")
 
 print("Zipping release directory...")
-print("7z a -t7z -xm4 JASM.7z " + RELEASE_DIR)
-releaseArchiveName = "JASM_v" + versionNumber + ".7z"
+releaseArchiveName = "JASM_v" + versionNumber + ".zip"
 if (SelfContained):
 	releaseArchiveName = "SelfContained_" + releaseArchiveName
 
-checkSuccessfulExitCode(os.system(f"7z a -mx4 {releaseArchiveName} .\\{RELEASE_DIR}\\*"))
+checkSuccessfulExitCode(os.system(f"7z a -tzip -mx4 {releaseArchiveName} .\\{RELEASE_DIR}\\*"))
 print()
 print("Finished zipping release directory")
 

@@ -701,7 +701,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             }
 
             var tempDir = Path.Combine(Path.GetTempPath(), "JASM_Update");
-            var archivePath = Path.Combine(tempDir, "update.7z");
+            var archivePath = Path.Combine(tempDir, "update.zip");
 
             Directory.CreateDirectory(tempDir);
 
@@ -745,6 +745,17 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             await Task.Run(() =>
             {
                 System.IO.Compression.ZipFile.ExtractToDirectory(archivePath, stagingPath);
+
+                // The zip contains a single JASM/ folder — move its contents up
+                var innerDir = new DirectoryInfo(stagingPath).EnumerateDirectories()
+                    .FirstOrDefault(d => d.Name.StartsWith("JASM", StringComparison.OrdinalIgnoreCase));
+                if (innerDir is not null)
+                {
+                    var tempStaging = stagingPath + "_tmp";
+                    Directory.Move(innerDir.FullName, tempStaging);
+                    Directory.Delete(stagingPath, true);
+                    Directory.Move(tempStaging, stagingPath);
+                }
             });
 
             // Clean up temp
@@ -811,7 +822,7 @@ del ""%~f0""
             .FirstOrDefault();
 
         var asset = latest?.assets?.FirstOrDefault(a =>
-            a.name?.StartsWith("JASM_", StringComparison.OrdinalIgnoreCase) ?? false);
+            a.name?.EndsWith(".zip", StringComparison.OrdinalIgnoreCase) ?? false);
 
         return asset?.browser_download_url is not null ? new Uri(asset.browser_download_url) : null;
     }
