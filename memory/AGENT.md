@@ -1,14 +1,14 @@
-# AGENT.md - JASM Guide for AI Agents
+# AGENT.md - JASM+ Guide for AI Agents
 
-**Last Updated:** 2026-07-26
-**Project:** JASM - Custom Features & Stability
+**Last Updated:** 2026-07-28
+**Project:** JASM+ - Community Fork
 **Status:** In Progress (localization iteration ongoing)
 
 ---
 
 ## Project Goal
 
-JASM is a custom WinUI 3 skin manager for game mods. The goal is to safely extend features (like batch operations, custom commands, and new games support) while maintaining high codebase stability and avoiding unnecessary refactorings of the core file structure.
+JASM+ is a community-maintained fork of JASM (by Jorixon) — a WinUI 3 skin manager for game mods. The goal is to safely extend features (like batch operations, custom commands, and new games support) while maintaining high codebase stability and avoiding unnecessary refactorings of the core file structure.
 
 ---
 

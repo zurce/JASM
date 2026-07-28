@@ -1,15 +1,15 @@
-# Knowledge: JASM - Just Another Skin Manager
+# Knowledge: JASM+ - Just Another Skin Manager Plus
 
 **Status:** In Progress
 **Start Date:** 2026-02-25
 **Owner:** zurce
-**Epic:** Custom Feature Enhancements and Release Stability
+**Epic:** Custom Feature Enhancements and Release Support
 
 ---
 
 ## Overview
 
-JASM (Just Another Skin Manager) is a skin manager for games like Genshin Impact, Honkai Star Rail, Wuthering Waves, Zenless Zone Zero, and Arknights: Endfield. It is built as a Windows desktop application using **WinUI 3** and the **Windows App SDK** in .NET 9.
+JASM+ (Just Another Skin Manager Plus) is a community-maintained fork of [JASM](https://github.com/Jorixon/JASM) by Jorixon — a skin manager for games like Genshin Impact, Honkai Star Rail, Wuthering Waves, Zenless Zone Zero, and Arknights: Endfield. It is built as a Windows desktop application using **WinUI 3** and the **Windows App SDK** in .NET 9.
 
 **Module:** `GIMI-ModManager`
 **Scope:** Includes mod management (enabling, disabling, sorting, and cleaning up), preset configurations, process execution for 3DMigoto and games, and custom command execution.
@@ -23,6 +23,7 @@ JASM (Just Another Skin Manager) is a skin manager for games like Genshin Impact
 - Watch folder structures and react to filesystem events instantly (auto-detection of mods).
 - Support advanced batch operations (enable all, disable all, and clean up inactive folders).
 - Allow users to run customizable command-line utilities (like texture upscalers) directly against mod folders.
+- Maintain and extend the project as a community fork with ongoing fixes and features.
 
 ---
 
@@ -62,6 +63,7 @@ JASM (Just Another Skin Manager) is a skin manager for games like Genshin Impact
 
 | Task | Description | Status | Date |
 |------|-------------|--------|------|
+| `JASM-REBRAND` | Rebrand project to JASM+ with updated user-facing copy and reference to original JASM | Merged | 2026-07-28 |
 | `JASM-JA-LOCALIZE` | Add Japanese locale — full translation of 853+24+13 entries | Merged | 2026-07-26 |
 | `JASM-RU-LOCALIZE` | Populated Russian locale — 853+24+13 entries translated to Russian | Merged | 2026-07-26 |
 | `JASM-ZH-LOCALIZE` | Populated Chinese locale — Resources.resw from 47 to 853 entries | Merged | 2026-07-26 |
@@ -129,4 +131,4 @@ The Elevator was a separate elevated (admin) process that communicated with JASM
 
 ---
 
-**Last Updated:** 2026-07-26
+**Last Updated:** 2026-07-28

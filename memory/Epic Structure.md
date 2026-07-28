@@ -1,4 +1,4 @@
-# EPIC: Custom JASM Features & Release Support
+# EPIC: Custom JASM+ Features & Release Support
 
 This file mirrors active tasks and development phases.
 
@@ -6,6 +6,7 @@ This file mirrors active tasks and development phases.
 
 ## Completed
 
+- **`JASM-REBRAND`** — Rebrand project to JASM+: updated all user-facing copy to reflect JASM+ name, updated README with reference to original JASM by Jorixon, pointed GitHub links to zurce/JASM (branch: `release`, merged)
 - **`JASM-JA-LOCALIZE`** — Add Japanese language locale: created ja/Resources.resw (853), Settings.resw (24), Startup.resw (13) with full Japanese translations (branch: `zurce/JASM-JA-LOCALIZE-japanese-localization`, merged)
 - **`JASM-RU-LOCALIZE`** — Populated Russian (ru-ru) locale: translated Resources.resw (853), Settings.resw (24), Startup.resw (13) to Russian (branch: `zurce/JASM-RU-LOCALIZE-russian-localization`, merged)
 - **`JASM-ZH-LOCALIZE`** — Populated Chinese (zh-cn) locale: translated Resources.resw from 47 to 853 entries (branch: `zurce/JASM-ZH-LOCALIZE-chinese-localization`, merged)
