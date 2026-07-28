@@ -4209,4 +4209,25 @@ JASM+ не будет перемещать ваши моды и не будет 
     <value>Переопределить</value>
   </data>
 
+  <data name="Settings_Update_Downloading" xml:space="preserve">
+    <value>Загрузка обновления…</value>
+  </data>
+  <data name="Settings_Update_DownloadingProgress" xml:space="preserve">
+    <value>Загрузка… {0}%</value>
+  </data>
+  <data name="Settings_Update_Extracting" xml:space="preserve">
+    <value>Распаковка обновления…</value>
+  </data>
+  <data name="Settings_Update_Restarting" xml:space="preserve">
+    <value>Перезапуск для применения обновления…</value>
+  </data>
+  <data name="Settings_Update_DownloadFailed" xml:space="preserve">
+    <value>Не удалось найти URL для загрузки</value>
+  </data>
+  <data name="Settings_Update_ErrorStarting" xml:space="preserve">
+    <value>Ошибка при обновлении</value>
+  </data>
+  <data name="Settings_Update_ButtonText" xml:space="preserve">
+    <value>Обновить до</value>
+  </data>
 </root>

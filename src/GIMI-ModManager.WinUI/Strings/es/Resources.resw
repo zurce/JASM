@@ -3497,4 +3497,25 @@ JASM+ no moverá ninguno de tus mods ni los eliminará.
     <!-- Button label to override a skin for this mod -->
     <value>Sobrescribir</value>
   </data>
+  <data name="Settings_Update_Downloading" xml:space="preserve">
+    <value>Descargando actualización…</value>
+  </data>
+  <data name="Settings_Update_DownloadingProgress" xml:space="preserve">
+    <value>Descargando… {0}%</value>
+  </data>
+  <data name="Settings_Update_Extracting" xml:space="preserve">
+    <value>Extrayendo actualización…</value>
+  </data>
+  <data name="Settings_Update_Restarting" xml:space="preserve">
+    <value>Reiniciando para aplicar la actualización…</value>
+  </data>
+  <data name="Settings_Update_DownloadFailed" xml:space="preserve">
+    <value>No se pudo encontrar la URL de descarga</value>
+  </data>
+  <data name="Settings_Update_ErrorStarting" xml:space="preserve">
+    <value>Error durante la actualización</value>
+  </data>
+  <data name="Settings_Update_ButtonText" xml:space="preserve">
+    <value>Actualizar a</value>
+  </data>
 </root>

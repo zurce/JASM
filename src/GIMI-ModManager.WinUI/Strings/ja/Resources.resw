@@ -4208,4 +4208,25 @@ JASMはModを移動したり削除したりしません。
     <value>オーバーライド</value>
   </data>
 
+  <data name="Settings_Update_Downloading" xml:space="preserve">
+    <value>アップデートをダウンロード中…</value>
+  </data>
+  <data name="Settings_Update_DownloadingProgress" xml:space="preserve">
+    <value>ダウンロード中… {0}%</value>
+  </data>
+  <data name="Settings_Update_Extracting" xml:space="preserve">
+    <value>アップデートを展開中…</value>
+  </data>
+  <data name="Settings_Update_Restarting" xml:space="preserve">
+    <value>再起動してアップデートを適用中…</value>
+  </data>
+  <data name="Settings_Update_DownloadFailed" xml:space="preserve">
+    <value>ダウンロードURLが見つかりません</value>
+  </data>
+  <data name="Settings_Update_ErrorStarting" xml:space="preserve">
+    <value>アップデート中にエラーが発生しました</value>
+  </data>
+  <data name="Settings_Update_ButtonText" xml:space="preserve">
+    <value>アップデート:</value>
+  </data>
 </root>

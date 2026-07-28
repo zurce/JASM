@@ -527,11 +527,17 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         {
             if (e.Version == new Version())
             {
+                // User clicked Ignore — hide the update badge
+                ShowNewVersionAvailable = false;
                 CanIgnoreUpdate = _updateChecker.LatestRetrievedVersion != _updateChecker.IgnoredVersion;
                 return;
             }
 
+            ShowNewVersionAvailable = true;
             LatestVersion = VersionFormatter(e.Version);
+
+            if (_updateChecker.LatestRetrievedVersion != _updateChecker.IgnoredVersion)
+                CanIgnoreUpdate = true;
         });
     }
 

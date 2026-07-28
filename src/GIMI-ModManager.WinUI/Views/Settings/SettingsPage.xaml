@@ -500,7 +500,7 @@
                             Visibility="{x:Bind ViewModel.ShowNewVersionAvailable, Mode=OneWay, Converter={StaticResource BoolToVisibleConverter}}">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock VerticalAlignment="Center" Text="Update to " />
+                                    <TextBlock VerticalAlignment="Center" Text="Update to " l:Uids.Uid="Settings_Update_ButtonText" />
                                     <TextBlock
                                         Margin="4,0"
                                         VerticalAlignment="Center"
@@ -514,6 +514,7 @@
                             VerticalAlignment="Center"
                             Command="{x:Bind ViewModel.IgnoreNewVersionCommand}"
                             Content="Ignore"
+                            l:Uids.Uid="Settings_IgnoreUpdate"
                             Visibility="{x:Bind ViewModel.ShowNewVersionAvailable, Mode=OneWay, Converter={StaticResource BoolToVisibleConverter}}" />
                     </StackPanel>
                 </StackPanel>
