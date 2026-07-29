@@ -1,8 +1,8 @@
 # AGENT.md - JASM+ Guide for AI Agents
 
-**Last Updated:** 2026-07-28
+**Last Updated:** 2026-07-29
 **Project:** JASM+ - Community Fork
-**Status:** In Progress (localization iteration ongoing)
+**Status:** In Progress (update mechanism complete, localization iteration ongoing)
 
 ---
 

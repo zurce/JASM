@@ -6,6 +6,7 @@ This file mirrors active tasks and development phases.
 
 ## Completed
 
+- **`JASM-REPLACE-UPDATER`** — Replace JASM.AutoUpdater (separate exe + 7z.exe, triggered AV false positives) with in-app download + atomic directory swap via batch script. Removed entire JASM.AutoUpdater project, AutoUpdaterService, 7z.exe assets. New flow: UpdateChecker detects release → user clicks Update → downloads .7z/.zip → extracts with bundled 7z.exe/ZipFile → writes batch → exits → batch swaps folders → launches new version. Old version backed up as JASM_Old, cleaned up on next startup. Robust retry + taskkill + log file. (branch: `zurce/JASM-REPLACE-UPDATER-directory-swap`, merged)
 - **`JASM-REBRAND`** — Rebrand project to JASM+: updated all user-facing copy to reflect JASM+ name, updated README with reference to original JASM by Jorixon, pointed GitHub links to zurce/JASM (branch: `release`, merged)
 - **`JASM-JA-LOCALIZE`** — Add Japanese language locale: created ja/Resources.resw (853), Settings.resw (24), Startup.resw (13) with full Japanese translations (branch: `zurce/JASM-JA-LOCALIZE-japanese-localization`, merged)
 - **`JASM-RU-LOCALIZE`** — Populated Russian (ru-ru) locale: translated Resources.resw (853), Settings.resw (24), Startup.resw (13) to Russian (branch: `zurce/JASM-RU-LOCALIZE-russian-localization`, merged)

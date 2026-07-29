@@ -57,12 +57,13 @@ JASM+ (Just Another Skin Manager Plus) is a community-maintained fork of [JASM](
 
 ## Progress Summary
 
-**Completed: 13 Custom Tasks**
+**Completed: 14 Custom Tasks**
 
 ### Completed Tasks
 
 | Task | Description | Status | Date |
 |------|-------------|--------|------|
+| `JASM-REPLACE-UPDATER` | Replace auto-updater with in-app download + directory swap | Merged | 2026-07-29 |
 | `JASM-REBRAND` | Rebrand project to JASM+ with updated user-facing copy and reference to original JASM | Merged | 2026-07-28 |
 | `JASM-JA-LOCALIZE` | Add Japanese locale — full translation of 853+24+13 entries | Merged | 2026-07-26 |
 | `JASM-RU-LOCALIZE` | Populated Russian locale — 853+24+13 entries translated to Russian | Merged | 2026-07-26 |
@@ -139,4 +140,4 @@ The Elevator was a separate elevated (admin) process that communicated with JASM
 
 ---
 
-**Last Updated:** 2026-07-28
+**Last Updated:** 2026-07-29
