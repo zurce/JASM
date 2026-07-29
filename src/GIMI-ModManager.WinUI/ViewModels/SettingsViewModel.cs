@@ -817,14 +817,50 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             var exeName = stagingExe is not null ? Path.GetFileName(stagingExe) : "JASM - Just Another Skin Manager.exe";
 
             var scriptPath = Path.Combine(parentDir, "JASM_Update.cmd");
+            var logPath = Path.Combine(parentDir, "JASM_Update.log");
             var script = $@"@echo off
+set log=""{logPath}""
+echo %date% %time% Starting update... > %log%
+echo installDir={installFolderName} >> %log%
+echo stagingDir={UpdateStagingFolder} >> %log%
+echo exeName={exeName} >> %log%
 timeout /t 8 /nobreak > nul
-cd /d ""{parentDir}""
-if exist ""{UpdateOldFolder}"" rmdir /s /q ""{UpdateOldFolder}""
-move ""{installFolderName}"" ""{UpdateOldFolder}""
-move ""{UpdateStagingFolder}"" ""{installFolderName}""
-start """" ""{installFolderName}\{exeName}""
+cd /d ""{parentDir}"" 2>> %log%
+
+echo Deleting old backup... >> %log%
+if exist ""{UpdateOldFolder}"" (
+  rmdir /s /q ""{UpdateOldFolder}"" 2>> %log%
+  echo Old backup deleted >> %log%
+)
+
+echo Stopping any remaining JASM processes... >> %log%
+taskkill /f /im ""{exeName}"" > nul 2>&1
+timeout /t 2 /nobreak > nul
+
+echo Moving current install to backup... >> %log%
+move ""{installFolderName}"" ""{UpdateOldFolder}"" >> %log% 2>&1
+if %errorlevel% neq 0 (
+  echo Move failed, retrying after delay... >> %log%
+  timeout /t 5 /nobreak > nul
+  move ""{installFolderName}"" ""{UpdateOldFolder}"" >> %log% 2>&1
+  if %errorlevel% neq 0 goto :failed
+)
+
+echo Moving staging to install... >> %log%
+move ""{UpdateStagingFolder}"" ""{installFolderName}"" >> %log% 2>&1
+if %errorlevel% neq 0 goto :failed
+
+echo Starting new version... >> %log%
+start """" ""{installFolderName}\{exeName}"" >> %log% 2>&1
+echo Update complete >> %log%
 del ""%~f0""
+exit /b 0
+
+:failed
+echo Update FAILED - check %log% for details >> %log%
+pause
+del ""%~f0""
+exit /b 1
 ";
 
             _logger.Information("Update: installDir={InstallDir}", installDir);

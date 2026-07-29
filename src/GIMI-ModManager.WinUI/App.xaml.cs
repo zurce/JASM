@@ -354,22 +354,29 @@ public partial class App : Application
         if (parentDir is null) return;
 
         var oldDir = Path.Combine(parentDir, "JASM_Old");
-        var updateMarker = Path.Combine(parentDir, "JASM_Update.cmd");
+        var stagingDir = Path.Combine(parentDir, "JASM_Update");
+        var updateScript = Path.Combine(parentDir, "JASM_Update.cmd");
+        var updateLog = Path.Combine(parentDir, "JASM_Update.log");
 
-        // Clean up leftover batch script from previous update
-        if (File.Exists(updateMarker))
+        foreach (var path in new[] { oldDir, stagingDir })
         {
-            try { File.Delete(updateMarker); } catch { /* ignore */ }
+            if (Directory.Exists(path))
+            {
+                Task.Run(() =>
+                {
+                    try { Directory.Delete(path, true); }
+                    catch { /* best effort */ }
+                });
+            }
         }
 
-        // Clean up old version backup
-        if (Directory.Exists(oldDir))
+        foreach (var path in new[] { updateScript, updateLog })
         {
-            Task.Run(() =>
+            if (File.Exists(path))
             {
-                try { Directory.Delete(oldDir, true); }
-                catch { /* best effort */ }
-            });
+                try { File.Delete(path); }
+                catch { /* ignore */ }
+            }
         }
     }
 }
