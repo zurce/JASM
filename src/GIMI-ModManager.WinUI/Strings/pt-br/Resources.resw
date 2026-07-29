@@ -4187,7 +4187,7 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
   <data name="Settings_Update_ErrorStarting" xml:space="preserve">
     <value>Erro durante a atualização</value>
   </data>
-  <data name="Settings_Update_ButtonText" xml:space="preserve">
+  <data name="Settings_Update_ButtonText.Text" xml:space="preserve">
     <value>Atualizar para</value>
   </data>
 </root>

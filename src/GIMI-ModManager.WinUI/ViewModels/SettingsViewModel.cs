@@ -5,6 +5,9 @@ using System.Globalization;
 using System.IO.Compression;
 using System.Net.Http;
 using System.Reflection;
+using SharpCompress.Archives;
+using SharpCompress.Archives.SevenZip;
+using SharpCompress.Common;
 using Windows.Storage.Pickers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -698,8 +701,8 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
         try
         {
-            var downloadUrl = await GetLatestReleaseDownloadUrlAsync();
-            if (downloadUrl is null)
+            var (downloadUrl, assetName) = await GetLatestReleaseDownloadUrlAsync();
+            if (downloadUrl is null || assetName is null)
             {
                 UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_DownloadFailed") ?? "Could not find download URL";
                 UpdateDownloading = false;
@@ -707,38 +710,41 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             }
 
             var tempDir = Path.Combine(Path.GetTempPath(), "JASM_Update");
-            var archivePath = Path.Combine(tempDir, "update.zip");
+            var archivePath = Path.Combine(tempDir, assetName);
 
             Directory.CreateDirectory(tempDir);
 
-            using var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("User-Agent", "JASM-Update-Downloader");
-
-            using var response = await client.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead);
-            var totalBytes = response.Content.Headers.ContentLength ?? -1;
-
-            await using var stream = await response.Content.ReadAsStreamAsync();
-            await using var fileStream = File.Create(archivePath);
-
-            var buffer = new byte[8192];
-            long totalRead = 0;
-            int bytesRead;
-            var lastProgressUpdate = DateTime.UtcNow;
-
-            while ((bytesRead = await stream.ReadAsync(buffer)) > 0)
+            // Download in own scope so file handle is released before extraction
             {
-                await fileStream.WriteAsync(buffer.AsMemory(0, bytesRead));
-                totalRead += bytesRead;
+                using var client = new HttpClient();
+                client.DefaultRequestHeaders.Add("User-Agent", "JASM-Update-Downloader");
 
-                if (totalBytes > 0 && (DateTime.UtcNow - lastProgressUpdate).TotalMilliseconds > 200)
+                using var response = await client.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead);
+                var totalBytes = response.Content.Headers.ContentLength ?? -1;
+
+                await using var stream = await response.Content.ReadAsStreamAsync();
+                await using var fileStream = File.Create(archivePath);
+
+                var buffer = new byte[8192];
+                long totalRead = 0;
+                int bytesRead;
+                var lastProgressUpdate = DateTime.UtcNow;
+
+                while ((bytesRead = await stream.ReadAsync(buffer)) > 0)
                 {
-                    UpdateDownloadProgress = (int)(totalRead * 100 / totalBytes);
-                    UpdateStatusText = string.Format(
-                        _localizer.GetLocalizedStringOrDefault("Settings_Update_DownloadingProgress") ?? "Downloading... {0}%",
-                        UpdateDownloadProgress);
-                    lastProgressUpdate = DateTime.UtcNow;
+                    await fileStream.WriteAsync(buffer.AsMemory(0, bytesRead));
+                    totalRead += bytesRead;
+
+                    if (totalBytes > 0 && (DateTime.UtcNow - lastProgressUpdate).TotalMilliseconds > 200)
+                    {
+                        UpdateDownloadProgress = (int)(totalRead * 100 / totalBytes);
+                        UpdateStatusText = string.Format(
+                            _localizer.GetLocalizedStringOrDefault("Settings_Update_DownloadingProgress") ?? "Downloading... {0}%",
+                            UpdateDownloadProgress);
+                        lastProgressUpdate = DateTime.UtcNow;
+                    }
                 }
-            }
+            } // file handle released here
 
             UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_Extracting") ?? "Extracting update...";
 
@@ -750,17 +756,48 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
             await Task.Run(() =>
             {
-                System.IO.Compression.ZipFile.ExtractToDirectory(archivePath, stagingPath);
+                if (assetName.EndsWith(".7z", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Use bundled 7z.exe — reliable and already shipped with the app
+                    var sevenZip = Path.Combine(App.ASSET_DIR, "7z", "7z.exe");
+                    if (!File.Exists(sevenZip))
+                        throw new FileNotFoundException("7z.exe not found at " + sevenZip);
 
-                // The zip contains a single JASM/ folder — move its contents up
+                    var process = Process.Start(new ProcessStartInfo
+                    {
+                        FileName = sevenZip,
+                        Arguments = $"x \"{archivePath}\" -o\"{stagingPath}\" -y",
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true
+                    })!;
+                    process.WaitForExit();
+                    if (process.ExitCode != 0)
+                    {
+                        var err = process.StandardError.ReadToEnd();
+                        throw new Exception($"7z extraction failed (code {process.ExitCode}): {err}");
+                    }
+                }
+                else
+                {
+                    System.IO.Compression.ZipFile.ExtractToDirectory(archivePath, stagingPath);
+                }
+
+                // Flatten: if there's a single inner JASM/ folder, move its contents up
                 var innerDir = new DirectoryInfo(stagingPath).EnumerateDirectories()
                     .FirstOrDefault(d => d.Name.StartsWith("JASM", StringComparison.OrdinalIgnoreCase));
                 if (innerDir is not null)
                 {
-                    var tempStaging = stagingPath + "_tmp";
-                    Directory.Move(innerDir.FullName, tempStaging);
-                    Directory.Delete(stagingPath, true);
-                    Directory.Move(tempStaging, stagingPath);
+                    foreach (var fsInfo in innerDir.EnumerateFileSystemInfos())
+                    {
+                        var dest = Path.Combine(stagingPath, fsInfo.Name);
+                        if (fsInfo is DirectoryInfo dir)
+                            dir.MoveTo(dest);
+                        else
+                            File.Move(fsInfo.FullName, dest);
+                    }
+                    innerDir.Delete(true);
                 }
             });
 
@@ -770,29 +807,45 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             // Write and launch the swap script
             UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_Restarting") ?? "Restarting to apply update...";
 
-            var installDir = App.ROOT_DIR;
+            var installDir = App.ROOT_DIR.TrimEnd(Path.DirectorySeparatorChar);
             var parentDir = new DirectoryInfo(installDir).Parent!.FullName;
-            var exeName = Path.GetFileName(Process.GetCurrentProcess().MainModule?.FileName ?? "JASM - Just Another Skin Manager.exe");
+            var installFolderName = Path.GetFileName(installDir);
+
+            // Find the actual exe name from the staging folder (more reliable than process name)
+            var stagingExe = Directory.EnumerateFiles(stagingPath, "*.exe", SearchOption.TopDirectoryOnly)
+                .FirstOrDefault(f => Path.GetFileName(f).StartsWith("JASM", StringComparison.OrdinalIgnoreCase));
+            var exeName = stagingExe is not null ? Path.GetFileName(stagingExe) : "JASM - Just Another Skin Manager.exe";
 
             var scriptPath = Path.Combine(parentDir, "JASM_Update.cmd");
             var script = $@"@echo off
-timeout /t 3 /nobreak > nul
+timeout /t 8 /nobreak > nul
 cd /d ""{parentDir}""
 if exist ""{UpdateOldFolder}"" rmdir /s /q ""{UpdateOldFolder}""
-move ""{Path.GetFileName(installDir)}"" ""{UpdateOldFolder}""
-move ""{UpdateStagingFolder}"" ""{Path.GetFileName(installDir)}""
-start """" ""{Path.GetFileName(installDir)}\{exeName}""
+move ""{installFolderName}"" ""{UpdateOldFolder}""
+move ""{UpdateStagingFolder}"" ""{installFolderName}""
+start """" ""{installFolderName}\{exeName}""
 del ""%~f0""
 ";
 
-            File.WriteAllText(scriptPath, script);
+            _logger.Information("Update: installDir={InstallDir}", installDir);
+            _logger.Information("Update: parentDir={ParentDir}", parentDir);
+            _logger.Information("Update: installFolderName={FolderName}", installFolderName);
+            _logger.Information("Update: exeName={ExeName}", exeName);
+            _logger.Information("Update: stagingPath={StagingPath}", stagingPath);
+            _logger.Information("Update: scriptPath={ScriptPath}", scriptPath);
+            _logger.Information("Update: batch script content:\n{Script}", script);
 
-            Process.Start(new ProcessStartInfo
+            File.WriteAllText(scriptPath, script);
+            _logger.Information("Update: batch file written, exists={Exists}", File.Exists(scriptPath));
+
+            var psi = new ProcessStartInfo
             {
                 FileName = scriptPath,
                 UseShellExecute = true,
-                WindowStyle = ProcessWindowStyle.Hidden
-            });
+                WindowStyle = ProcessWindowStyle.Minimized
+            };
+            var startedProcess = Process.Start(psi);
+            _logger.Information("Update: Process.Start returned: {Process}", startedProcess?.Id.ToString() ?? "null");
 
             Application.Current.Exit();
         }
@@ -801,13 +854,10 @@ del ""%~f0""
             _logger.Error(e, "Error during update process");
             UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_ErrorStarting") ?? "Error during update";
             UpdateDownloading = false;
-            _notificationManager.ShowNotification(
-                _localizer.GetLocalizedStringOrDefault("Settings_Update_ErrorStarting") ?? "Update failed",
-                e.Message, TimeSpan.FromSeconds(10));
         }
     }
 
-    private async Task<Uri?> GetLatestReleaseDownloadUrlAsync()
+    private async Task<(Uri? url, string? fileName)> GetLatestReleaseDownloadUrlAsync()
     {
         const string releasesApiUrl = "https://api.github.com/repos/zurce/JASM/releases?per_page=2";
 
@@ -817,20 +867,35 @@ del ""%~f0""
 
         var result = await client.GetAsync(releasesApiUrl);
         if (!result.IsSuccessStatusCode)
-            return null;
+            return (null, null);
 
         var text = await result.Content.ReadAsStringAsync();
         var releases = Newtonsoft.Json.JsonConvert.DeserializeObject<GitHubRelease[]>(text) ?? Array.Empty<GitHubRelease>();
 
         var latest = releases
             .Where(r => !r.prerelease)
-            .OrderByDescending(r => new Version(r.tag_name?.Trim('v') ?? ""))
+            .Where(r => TryParseVersion(r.tag_name) is not null)
+            .OrderByDescending(r => TryParseVersion(r.tag_name))
             .FirstOrDefault();
 
         var asset = latest?.assets?.FirstOrDefault(a =>
-            a.name?.EndsWith(".zip", StringComparison.OrdinalIgnoreCase) ?? false);
+        {
+            var name = a.name ?? "";
+            return name.EndsWith(".zip", StringComparison.OrdinalIgnoreCase) ||
+                   name.EndsWith(".7z", StringComparison.OrdinalIgnoreCase);
+        });
 
-        return asset?.browser_download_url is not null ? new Uri(asset.browser_download_url) : null;
+        return asset?.browser_download_url is not null
+            ? (new Uri(asset.browser_download_url), asset.name)
+            : (null, null);
+    }
+
+    private static Version? TryParseVersion(string? tagName)
+    {
+        if (string.IsNullOrWhiteSpace(tagName))
+            return null;
+        var versionString = tagName.StartsWith('v') ? tagName[1..] : tagName;
+        return Version.TryParse(versionString, out var version) ? version : null;
     }
 
     private class GitHubRelease

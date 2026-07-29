@@ -4227,7 +4227,7 @@ JASM+ не будет перемещать ваши моды и не будет 
   <data name="Settings_Update_ErrorStarting" xml:space="preserve">
     <value>Ошибка при обновлении</value>
   </data>
-  <data name="Settings_Update_ButtonText" xml:space="preserve">
+  <data name="Settings_Update_ButtonText.Text" xml:space="preserve">
     <value>Обновить до</value>
   </data>
 </root>

@@ -3515,7 +3515,7 @@ JASM+ no moverá ninguno de tus mods ni los eliminará.
   <data name="Settings_Update_ErrorStarting" xml:space="preserve">
     <value>Error durante la actualización</value>
   </data>
-  <data name="Settings_Update_ButtonText" xml:space="preserve">
+  <data name="Settings_Update_ButtonText.Text" xml:space="preserve">
     <value>Actualizar a</value>
   </data>
 </root>
