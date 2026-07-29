@@ -1,113 +1,102 @@
-# JASM+ (Community Fork) - Just Another Skin Manager Plus
+<p align="center">
+  <img src="src/Icon-Full-Art.png" alt="JASM+" width="200">
+</p>
 
-JASM+ is a community-maintained fork of [JASM](https://github.com/Jorixon/JASM) by Jorixon — a skin manager for a certain game, made using WinUI 3 with WinAppSDK.
+# JASM+ — Just Another Skin Manager Plus
 
-This fork builds on the original project with additional features, fixes, and ongoing maintenance. See the [reference section](#reference) below for details on the original project.
+**JASM+** is a community-driven continuation of [JASM](https://github.com/Jorixon/JASM) by Jorixon — a mod manager for games like Genshin Impact, Honkai Star Rail, Wuthering Waves, Zenless Zone Zero, and Arknights: Endfield (added by JASM+). Built with WinUI 3 and the Windows App SDK.
 
-Download link and images are also available over at [GameBanana](https://gamebanana.com/tools/14574)
+The original JASM is no longer actively maintained. JASM+ picks up where it left off: supporting new games, fixing bugs, and building features the community finds useful — while keeping the tool safe, transparent, and free of anything that could raise false alarms.
 
-**Remember to Make backups ⚠️** 
+> **JASM has never contained malware.** That said, some of the original mechanisms — an admin-elevated side process and a separate auto-updater executable — can trigger overzealous antivirus heuristics. We've removed those entirely.
 
-Unhandled exceptions are written to the Logs file within the JASM app directory.
+---
+
+## Key Changes from Original JASM
+
+### 🛡️ Elevator Service — Removed
+The original "Elevator" was a separate process running with admin privileges that sent F10 keystrokes to games via Named Pipes. Harmless in intent, but an admin process injecting keystrokes is exactly what antivirus heuristics look for. **The cost-benefit was too low to justify keeping it.** Fully removed — project, service, UI, and all related code.
+
+### 🔄 Auto-Updater — Replaced
+The old updater was a standalone `.exe` that downloaded an archive, deleted files one by one, and copied new ones in place — another pattern that can look suspicious. JASM+ replaces it with an **in-app download + atomic directory swap**: download the release, extract alongside the current install, write a batch script, exit. The script swaps the folders and launches the new version. No separate binary, no file-deletion dance.
+
+### 🌐 Community-Driven Game Resources
+Instead of bundling character data and images inside the app, JASM+ loads game resources from a separate repository where anyone can open a pull request to add new characters, update assets, or contribute support for new games. New characters and fixes can arrive quickly — reviewed and merged by the community — without waiting for a full app release.
+
+---
 
 ## Features
-- Pretty UI 👀
-- Drag And Drop files directly into the app
-- Automatically sort unsorted mods into respective character's folders
-- Move Mods between characters
-- Start a 3Dmigoto launcher and/or a certain game straight from the app
-- The app watches character folders and automatically updates if skins are added or removed from folders.
-- Edit merged.ini keys
-- Export (copy) all mods managed by JASM to a user specified folder
-- Refresh mods using F10 or the refresh button in app. (Requires an elevated side process, see description bellow)
 
+- Drag and drop mods directly into the app
+- Auto-sort unsorted mods into their character folders
+- Move mods between characters
+- Launch 3DMigoto and/or your game from the app
+- Real-time folder watching — mods appear instantly when added or removed
+- Edit `merged.ini` keys
+- Export all managed mods to a folder of your choice
+- Batch operations: Enable All, Disable All, Clean Up disabled mod folders
+- Custom commands: run your own scripts against mod folders from the context menu
+- Multi-game support: Genshin Impact, Honkai Star Rail, Wuthering Waves, Zenless Zone Zero, Arknights: Endfield
+- Localized in English & Español (fully validated), 中文, 日本語, Русский, and Português (Brasil) (experimental)
 
-## Hotkeys
-- "SPACE" - In character view, toggles selected mods on/off
-- "F10" - No longer available (elevator process removed)
-- "F5" - In character view, refresh the character's mods from disk
-- "CTRL + F" - In character overview, focus on the search bar
-- "ESCAPE" - In character view, Go back to character overview
-- "F1" - In character view, opens selectable in-game skins
+---
+
+## New Features (Since Original JASM)
+
+- **Arknights: Endfield support** — added from scratch; not available in the original JASM
+- **Multi-game support** — Genshin Impact, Honkai Star Rail, Wuthering Waves, Zenless Zone Zero, Arknights: Endfield
+- **Community-driven game resources** — characters and assets loaded from a separate repository; anyone can submit a PR to add or update them
+- **Batch operations** — Enable All, Disable All, and Clean Up disabled mod folders from the character overview
+- **Custom commands** — run your own scripts or tools against mod folders directly from the character context menu
+- **Override folder settings** — per-mod control over folder behavior
+- **Auto-close mod installer** — installer page closes automatically after a successful install
+- **In-app updates** — download and install new releases without a separate updater binary
+- **Localization** — English and Español (fully complete & validated); 中文, 日本語, Русский, and Português (Brasil) (experimental — may have gaps)
+
+## Bug Fixes
+
+- Custom commands with spaces in file paths now work correctly
+- Settings and command configurations no longer lose data after updates
+- Various popup and dialog crashes resolved
+
+## What's Next
+
+- Fixing open bugs — both ones I've found and ones you report
+- More translations — Italian and Korean are next
+- Bundled mods — link mods together so enabling one enables them all
+- Random mod selection on launch — shuffle things up every time you start
+- Full XXMI compatibility
 
 ## Download
-Latest release can be downloaded either from GameBanana or from the [Releases](https://github.com/zurce/JASM/releases) page. To start the app run ```JASM - Just Another Skin Manager.exe``` in ```JASM/``` folder, I suggest creating a shortcut to it.
 
-Latest development release can be downloaded from [Actions Tab](https://github.com/zurce/JASM/actions/workflows/dotnet-desktop.yml?query=branch%3Amain+is%3Asuccess) these are automatically built from the main branch and are '''usually stable''' but not necessarily ⚠️
-1. Link to the latest successful [build](https://github.com/zurce/JASM/actions/workflows/dotnet-desktop.yml?query=branch%3Amain+is%3Asuccess)
-2. Select the latest build (top of the list)
-3. Scroll down to the "Artifacts" section and click the "Upload JASM" link to download.
+**[Latest release](https://github.com/zurce/JASM/releases)** — also available on [GameBanana](https://gamebanana.com/tools/14574).
+
+Run `JASM - Just Another Skin Manager.exe` from the `JASM/` folder. A shortcut is recommended.
+
+---
 
 ## Requirements
-- Windows 10, version 1809 or higher ([supposedly](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/))
-- [NET Desktop Runtime](https://aka.ms/dotnet-core-applaunch?missing_runtime=true&arch=x64&rid=win10-x64&apphost_version=9.0.0&gui=true)
+
+- Windows 10 version 1809 or higher
+- [.NET Desktop Runtime](https://aka.ms/dotnet-core-applaunch?missing_runtime=true&arch=x64&rid=win10-x64&apphost_version=9.0.0&gui=true)
 - [Windows App SDK](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads)
 - [Webp Image Extension](https://apps.microsoft.com/detail/9pg2dk419drg?hl=en-US&gl=US) (Windows 10 only)
 
-If you don't have these downloaded the application will prompt you to download necessary dependencies and provide links.
- 
+The app will prompt you and provide links if any dependencies are missing.
 
-### Reference
+---
 
-JASM+ is a community fork based on the original **JASM - Just Another Skin Manager** by [Jorixon](https://github.com/Jorixon). The original project can be found at:
+## Was AI used for this project?
+
+Yes. Several AI coding agents were used to help continue development. I'm a professional software developer and understand coding heuristics, patterns, and best practices — but .NET and WinUI 3 aren't my usual stack. The AI served as a bridge for the technology gap: generating code in a language and framework outside my day-to-day, while I provided the architectural direction and reviewed every line. It was used purely as a coding tool, not for any artistic or generative concept work. No human work was replaced by AI, because no human was working on this to begin with.
+
+---
+
+## Original Project
+
+JASM+ continues the work of **JASM - Just Another Skin Manager** by [Jorixon](https://github.com/Jorixon).
+
 - GitHub: [https://github.com/Jorixon/JASM](https://github.com/Jorixon/JASM)
 - GameBanana: [https://gamebanana.com/tools/14574](https://gamebanana.com/tools/14574)
 
-### Limitations and Acknowledgements
-- The Json file that stores the the game characters is a modified and stripped down version of this [genshin-impact-tools ](https://github.com/tokafew420/genshin-impact-tools/blob/3d10e411a411b8ed532356ccb45fcd80b6b2383b/data/characters.json) and some of the images are also from the same repository.
-- The Json file that stores the weapons is a modified and stripped down version of this [genshin-impact-tools ](https://github.com/tokafew420/genshin-impact-tools/blob/94d55e8b88d5580d84e6b0991ce82e2798220d44/data/weapons.json) and the weapon images are also from the same repository.
-- 7-Zip is bundled with the app, 7-Zip is licensed under the GNU Lesser General Public License (LGPL). You can find the full license details and source code at [www.7-zip.org](https://www.7-zip.org/).
-- SharpCompress is used if the bundled 7-zip is not found. SharpCompress is licensed under the MIT license. You can find the full license details and source code at [SharpCompress's GitHub Page](https://github.com/adamhathcock/sharpcompress)
-- WinUI3Localizer is used for localization. WinUI3Localizer is licensed under the MIT license. You can find the full license details and source code at [WinUI3Localizer's GitHub Page](https://github.com/AndrewKeepCoding/WinUI3Localizer)
-- I have tested this app mostly on two machines running Windows 11. I have tested it on Windows 10 in a virtual machine.
-- There are definitely bugs. I have not tested this app enough and there are not tests written for it.
-- Drag and drop is really finicky for some reason. It works but it's not perfect. So the code for it is still quite messy and it involved time consuming trial and error until it worked.
-- Changing the app's theme causes instability and usually it crashes when navigating to another page. This means it needs to restart after changing the theme
-- I made everything in dark mode theme, so light mode does not look good.
-- App settings are stored here ```C:\Users\<username>\AppData\Local\JASM\ApplicationData```
-- Mod specific settings are stored within the mod folder themselves and are prefixed with ```.JASM_```. When exporting mods, these files can be ignored.
-
-
-### Building from source
-- I suggest following the [Install tools for the Windows App SDK](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment?tabs=cs-vs-community%2Ccpp-vs-community%2Cvs-2022-17-1-a%2Cvs-2022-17-1-b) tutorial.
-- From then on it should be a simple git clone https://github.com/zurce/JASM
-- Then inside the cloned folder, click on JASM\src\GIMI-ModManager.sln or open it trough Visual Studio.
-- Then right click GIMI-ModManager.WinUI project in the sidebar and then click publish and click publish again.
-- In the target location the application should have been built.
-
-## FAQ
-
-### JASM does not start anymore
-
-I believe this is due to some oddity with WinAppSdk not installing correctly. I do not know what causes this. A temporary (permanent?) solution is to use the self contained version of JASM that does not require WinAppSdk or .NET. See the releases page [SelfContained_JASM_vx.x.x.7z](https://github.com/zurce/JASM/releases). Ref [#72](https://github.com/Jorixon/JASM/issues/72) and [#171](https://github.com/Jorixon/JASM/issues/171)
-
-Another potential fix if JASM used to work, is to delete the JASM user settings folder. This will wipe your settings i.e. presets, folder paths etc. However, your mods will be untouched as well as the mod settings like custom display name and images. JASM settings are stored here: `%localappdata%\JASM` / `C:\Users\<username>\AppData\Local\JASM`. You can start by deleting each game settings folder to see if it helps, alternativly just delete the entire folder. Presets are stored inside the preset folder. Might be a good idea make a backup first.
-
-### XXMI compatbility
-As of right now JASM isn't fully compatible, until then make a blank file named 3dmigoto loader.exe in the folder you have have set for the MI in XXMI
-
-Or if you know what your doing, and want to be able to launch the game with XXMI through JASM, make a symlink to a shortcut. (drop menu next to start in XXMI to make the shortcut for a specific game)
-
-
-### Missing Images
-You are most likely using windows 10 and missing the [Webp Image Extension](https://apps.microsoft.com/detail/9pg2dk419drg?hl=en-US&gl=US)
-
-
-### Command line support
-
-JASM has basic command line support. As of now the only supported functionality is to start directly into a selected game. If you would like to see more command line options, feel free to open an issue with your suggested use case.
-
-See --help for more information.
-
-Powershell:
-```powershell
-.\'JASM - Just Another Skin Manager.exe' --help
-# Example: Close the current instance if it is running and start JASM with the selected game
-.\'JASM - Just Another Skin Manager.exe' --switch --game genshin
-```
-
-### Memory usage is high
-
-For each page navigated a lot of memory is allocated and not released. This causes the app to quickly use more than 1GB of memory by quickly navigating between pages. This isn't a quick fix. I suggest restarting the app if you notice it getting slow.
-
-From my research WinUI seems to maybe have a memory leak when navigating pages. I am not sure if this is the case or if I am doing something wrong. Most of the memory is unmanaged memory which means a memory profiler won't help much.
+All credit for the foundation of this tool goes to Jorixon and the original contributors.
