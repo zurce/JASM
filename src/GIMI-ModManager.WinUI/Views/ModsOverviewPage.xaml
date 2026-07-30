@@ -6,6 +6,7 @@
     xmlns:controls="using:GIMI_ModManager.WinUI.Views.Controls"
     xmlns:converters="using:CommunityToolkit.WinUI.UI.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:local="using:GIMI_ModManager.WinUI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:GIMI_ModManager.WinUI.Models"
@@ -35,7 +36,8 @@
                     <TextBlock
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
-                        Text="Run Command on this folder:" />
+                        Text="Run Command on this folder:"
+                        l:Uids.Uid="ModsOverviewPage_RunCommandOnThisFolder" />
                     <Button
                         Grid.Column="1"
                         HorizontalAlignment="Right"
@@ -70,7 +72,7 @@
 
 
                                     <StackPanel>
-                                        <TextBlock IsTextSelectionEnabled="True" Text="Full Command:" />
+                                        <TextBlock IsTextSelectionEnabled="True" Text="Full Command:" l:Uids.Uid="ModsOverviewPage_FullCommand" />
                                         <TextBlock
                                             Padding="6,0,0,0"
                                             IsTextSelectionEnabled="True"
@@ -80,7 +82,7 @@
                                     </StackPanel>
 
                                     <StackPanel>
-                                        <TextBlock IsTextSelectionEnabled="True" Text="Working Directory:" />
+                                        <TextBlock IsTextSelectionEnabled="True" Text="Working Directory:" l:Uids.Uid="ModsOverviewPage_WorkingDirectory" />
                                         <TextBlock
                                             Padding="6,0,0,0"
                                             IsTextSelectionEnabled="True"
@@ -90,7 +92,7 @@
                                     </StackPanel>
 
                                     <StackPanel>
-                                        <TextBlock IsTextSelectionEnabled="True" Text="'{{TargetPath}}:" />
+                                        <TextBlock IsTextSelectionEnabled="True" Text="'{{TargetPath}}:" l:Uids.Uid="ModsOverviewPage_TargetPath" />
                                         <TextBlock
                                             Padding="6,0,0,0"
                                             IsTextSelectionEnabled="True"
@@ -109,6 +111,7 @@
                                     Command="{x:Bind RunCommand}"
                                     CommandParameter="{x:Bind}"
                                     Content="Run"
+                                    l:Uids.Uid="ModsOverviewPage_RunButton"
                                     Style="{ThemeResource AccentButtonStyle}" />
                             </Grid>
 
@@ -163,7 +166,8 @@
                         x:Name="GoToCharacterButton"
                         Grid.Column="1"
                         Click="GoToCharacterButton_OnClick"
-                        Content="Go to Character" />
+                        Content="Go to Character"
+                        l:Uids.Uid="ModsOverviewPage_GoToCharacter" />
 
                 </Grid>
 
@@ -189,7 +193,7 @@
                         Text="{x:Bind Mod.FolderName}" />
 
                     <StackPanel Grid.Column="2" Orientation="Horizontal">
-                        <TextBlock Margin="0,0,4,0" Text="Added:" />
+                        <TextBlock Margin="0,0,4,0" Text="Added:" l:Uids.Uid="ModsOverviewPage_AddedLabel" />
                         <TextBlock Text="{x:Bind Mod.DateAdded}" />
                     </StackPanel>
 
@@ -226,7 +230,8 @@
                     FontSize="28"
                     Style="{StaticResource TitleTextBlockStyle}"
                     TextTrimming="CharacterEllipsis"
-                    Text="Mods Overview" />
+                    Text="Mods Overview"
+                    l:Uids.Uid="ModsOverviewPage_Title" />
 
 
                 <StackPanel
@@ -237,7 +242,8 @@
                     <Button
                         Command="{x:Bind ViewModel.CloseOpenAllCommand}"
                         CommandParameter="Close"
-                        Content="Close All" />
+                        Content="Close All"
+                        l:Uids.Uid="ModsOverviewPage_CloseAll" />
                 </StackPanel>
             </StackPanel>
 
@@ -253,6 +259,7 @@
                     MinWidth="200"
                     VerticalAlignment="Center"
                     PlaceholderText="Press Enter to search..."
+                    l:Uids.Uid="ModsOverviewPage_SearchBox"
                     QuerySubmitted="SearchBox_OnQuerySubmitted" />
             </StackPanel>
 

@@ -1,6 +1,7 @@
 using Windows.Storage;
 using Windows.System;
 using GIMI_ModManager.Core.Contracts.Entities;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.GamesService.Interfaces;
 using GIMI_ModManager.WinUI.Services.ModHandling;
 using GIMI_ModManager.WinUI.ViewModels;
@@ -20,6 +21,7 @@ public sealed partial class ModInstallerPage : Page, IDisposable
     {
         InitializeComponent();
         ViewModel.DuplicateModDialog += OnDuplicateModFound;
+        LocalizeTooltips();
         ViewModel.InstallerFinished += (_, _) => { DispatcherQueue.TryEnqueue(() => { IsEnabled = false; }); };
         Loading += (_, _) =>
         {
@@ -78,6 +80,14 @@ public sealed partial class ModInstallerPage : Page, IDisposable
     public void Dispose()
     {
         ViewModel.Dispose();
+    }
+
+    private void LocalizeTooltips()
+    {
+        var l = App.GetService<ILanguageLocalizer>();
+        ToolTipService.SetToolTip(AlwaysOnTopToggle, l.GetLocalizedStringOrDefault("ModInstallerPage_AlwaysOnTopToggle_ToolTip") ?? "Keep window always on top");
+        ToolTipService.SetToolTip(RetrieveModInfoButton, l.GetLocalizedStringOrDefault("ModInstallerPage_RetrieveModInfoButton_ToolTip") ?? "Retrieve mod info from the mod page");
+        NoteTextBox.PlaceholderText = l.GetLocalizedStringOrDefault("ModInstallerPage_Note_PlaceholderText") ?? "Custom free text note, shown in grid on character details page";
     }
 }
 

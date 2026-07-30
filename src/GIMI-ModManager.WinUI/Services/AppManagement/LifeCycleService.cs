@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
 using CommunityToolkitWrapper;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Helpers;
 using GIMI_ModManager.Core.Services.CommandService;
 using GIMI_ModManager.WinUI.Contracts.Services;
@@ -54,10 +55,10 @@ public class LifeCycleService(
 
         if (notifyOnError)
         {
-            _notificationManager.ShowNotification("Error restarting app",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_ErrorRestartingApp") ?? "Error restarting app",
                 useLegacyRestartOnError
-                    ? $"Trying legacy restart method. Reason: {error}"
-                    : $"Please restart manually. Reason: {error}",
+                    ? string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_TryingLegacyRestart") ?? "Trying legacy restart method. Reason: {0}", error)
+                    : string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_PleaseRestartManuallyReason") ?? "Please restart manually. Reason: {0}", error),
                 TimeSpan.FromSeconds(4));
         }
 
@@ -110,7 +111,7 @@ public class LifeCycleService(
         catch (Exception e)
         {
             _logger.Error(e, "Error restarting app");
-            _notificationManager.ShowNotification("Error restarting app", "Please restart manually",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_ErrorRestartingApp") ?? "Error restarting app", App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_RestartManually") ?? "Please restart manually",
                 TimeSpan.FromSeconds(4));
             await Task.Delay(TimeSpan.FromSeconds(3));
             await StartShutdownAsync();

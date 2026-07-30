@@ -90,7 +90,7 @@ public sealed class CommandService(ILogger logger)
             FileName = SpecialVariables.ReplaceVariables(options.ExecutionOptions.Command,
                 options.SpecialVariablesInput),
             Arguments = SpecialVariables.ReplaceVariables(options.ExecutionOptions.Arguments,
-                options.SpecialVariablesInput),
+                options.SpecialVariablesInput, quoteValuesWithSpaces: true),
             WorkingDirectory = SpecialVariables.ReplaceVariables(options.ExecutionOptions.WorkingDirectory,
                 options.SpecialVariablesInput),
             UseShellExecute = options.ExecutionOptions.UseShellExecute,

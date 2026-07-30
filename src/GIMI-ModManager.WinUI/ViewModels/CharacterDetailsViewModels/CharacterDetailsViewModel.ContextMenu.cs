@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using GIMI_ModManager.Core.Contracts.Services;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 
@@ -40,15 +41,16 @@ public partial class CharacterDetailsViewModel
 
         var modsDeleted = new List<ModToDelete>(selectedModsCount);
 
+        var localizer = App.GetService<ILanguageLocalizer>();
         var moveToRecycleBinCheckBox = new CheckBox()
         {
-            Content = "Move to Recycle Bin?",
+            Content = localizer.GetLocalizedStringOrDefault("CharDetails_DeleteDialog_Content") ?? "Move to Recycle Bin?",
             IsChecked = _moveToRecycleBinCheckBox
         };
 
         var removeFromPresetsCheckBox = new CheckBox()
         {
-            Content = "Remove from Presets?",
+            Content = localizer.GetLocalizedStringOrDefault("CharDetails_RemovePresetsDialog_Content") ?? "Remove from Presets?",
             IsChecked = _removeFromPresetCheckBox
         };
 
@@ -87,10 +89,10 @@ public partial class CharacterDetailsViewModel
 
         var dialog = new ContentDialog()
         {
-            Title = $"Delete These {selectedModsCount} Mods?",
+            Title = string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DeleteModsDialog_Title") ?? "Delete These {0} Mods?", selectedModsCount),
             Content = contentWrapper,
-            PrimaryButtonText = "Delete",
-            SecondaryButtonText = "Cancel",
+            PrimaryButtonText = localizer.GetLocalizedStringOrDefault("CharDetails_DeleteButton_Text") ?? "Delete",
+            SecondaryButtonText = localizer.GetLocalizedStringOrDefault("CharDetails_CancelButton_Text") ?? "Cancel",
             DefaultButton = ContentDialogButton.Primary
         };
 
@@ -160,12 +162,12 @@ public partial class CharacterDetailsViewModel
             {
                 var content = new StringBuilder();
 
-                content.AppendLine("Error deleting mods:");
+                content.AppendLine(localizer.GetLocalizedStringOrDefault("CharDetails_ErrorDeletingMods_Text") ?? "Error deleting mods:");
 
 
                 if (modsToDeletePresetError.Count > 0)
                 {
-                    content.AppendLine("Preset error Mods:");
+                    content.AppendLine(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_PresetErrorMods") ?? "Preset error Mods:");
                     foreach (var mod in modsToDeletePresetError)
                     {
                         content.AppendLine($"- {mod.DisplayName}");
@@ -176,7 +178,7 @@ public partial class CharacterDetailsViewModel
 
                 if (modsToDeleteErrored.Count > 0)
                 {
-                    content.AppendLine("Delete error Mods:");
+                    content.AppendLine(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DeleteErrorMods") ?? "Delete error Mods:");
                     foreach (var mod in modsToDeleteErrored)
                     {
                         content.AppendLine($"- {mod.DisplayName}");
@@ -184,13 +186,13 @@ public partial class CharacterDetailsViewModel
                     }
                 }
 
-                _notificationService.ShowNotification("Error Deleting Mods", content.ToString(), TimeSpan.FromSeconds(10));
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorDeleteMods") ?? "Error Deleting Mods", content.ToString(), TimeSpan.FromSeconds(10));
                 return;
             }
 
 
-            _notificationService.ShowNotification($"{modsDeleted.Count} Mods Deleted",
-                $"Successfully deleted {string.Join(", ", selectedMods.Select(m => m.DisplayName))} in {shownCharacterName} Mods Folder",
+            _notificationService.ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ModsDeleted") ?? "{0} Mods Deleted", modsDeleted.Count),
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_DeletedSuccessMsg") ?? "Successfully deleted {0} in {1} Mods Folder", string.Join(", ", selectedMods.Select(m => m.DisplayName)), shownCharacterName),
                 TimeSpan.FromSeconds(5));
         }).ConfigureAwait(false);
     }

@@ -1,5 +1,6 @@
 using Windows.System;
 using CommunityToolkitWrapper;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.GamesService;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Helpers;
@@ -52,12 +53,15 @@ public sealed partial class ShellPage : Page
                 Mode = BindingMode.OneWay
             };
 
-            var settingsItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
             var infoBadge = new InfoBadge() { Opacity = 0, Value = 1 };
-            settingsItem.InfoBadge = infoBadge;
+            NavSettingsItem.InfoBadge = infoBadge;
+            BindingOperations.SetBinding(NavSettingsItem.InfoBadge, OpacityProperty, bindings);
+            NavSettingsItem.Tapped += (s, e) =>
+                ViewModel.NavigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
 
-
-            BindingOperations.SetBinding(settingsItem.InfoBadge, OpacityProperty, bindings);
+            LocalizeNavItems();
+            var localizer = App.GetService<ILanguageLocalizer>();
+            localizer.LanguageChanged += (_, _) => LocalizeNavItems();
 
             Bindings.Update();
         };
@@ -81,7 +85,7 @@ public sealed partial class ShellPage : Page
             {
                 var categoryViewItem = new NavigationViewItem()
                 {
-                    Content = category.DisplayNamePlural,
+                    Content = LocalizeCategoryName(category.DisplayNamePlural),
                     Tag = category.InternalName.Id
                 };
                 NavigationHelper.SetNavigateToParameter(categoryViewItem, category);
@@ -304,12 +308,6 @@ public sealed partial class ShellPage : Page
         if (!IsEnabled)
             return;
 
-        if (e.Key == VirtualKey.F10)
-        {
-            await ViewModel.RefreshGenshinMods();
-            return;
-        }
-
 
         if (_code.Contains(e.Key))
         {
@@ -350,5 +348,33 @@ public sealed partial class ShellPage : Page
                     postShutdownLogic: () => ViewModel.SelectedGameService.SetSelectedGame(gameName))
                     .ConfigureAwait(false);
         }
+    }
+
+    private static string LocalizeCategoryName(string name)
+    {
+        try
+        {
+            var localizer = App.GetService<ILanguageLocalizer>();
+            return localizer.GetLocalizedStringOrDefault("Category_" + name.Replace(" ", "")) ?? name;
+        }
+        catch
+        {
+            return name;
+        }
+    }
+
+    private void LocalizeNavItems()
+    {
+        try
+        {
+            var localizer = App.GetService<ILanguageLocalizer>();
+            NavSettingsItem.Content = localizer.GetLocalizedStringOrDefault("ShellPage_NavItem_Settings") ?? "Settings";
+            NavCharManagement.Content = localizer.GetLocalizedStringOrDefault("ShellPage_NavItem_CharacterManagement") ?? "Character Management";
+            NavModsOverview.Content = localizer.GetLocalizedStringOrDefault("ShellPage_NavItem_ModsOverview") ?? "Mods Overview";
+            NavModPresets.Content = localizer.GetLocalizedStringOrDefault("ShellPage_NavItem_ModPresets") ?? "Mod Presets";
+            DebugItem.Content = localizer.GetLocalizedStringOrDefault("ShellPage_NavItem_Debug") ?? "Debug";
+            NavNotifications.Content = localizer.GetLocalizedStringOrDefault("ShellPage_NavItem_Notifications") ?? "Notifications";
+        }
+        catch { }
     }
 }

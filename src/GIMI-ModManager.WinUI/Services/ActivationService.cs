@@ -35,12 +35,10 @@ public class ActivationService : IActivationService
     private readonly ILocalSettingsService _localSettingsService;
     private readonly IGameService _gameService;
     private readonly ILanguageLocalizer _languageLocalizer;
-    private readonly ElevatorService _elevatorService;
     private readonly GenshinProcessManager _genshinProcessManager;
     private readonly ThreeDMigtoProcessManager _threeDMigtoProcessManager;
     private readonly UpdateChecker _updateChecker;
     private readonly IWindowManagerService _windowManagerService;
-    private readonly AutoUpdaterService _autoUpdaterService;
     private readonly SelectedGameService _selectedGameService;
     private readonly ModUpdateAvailableChecker _modUpdateAvailableChecker;
     private readonly ModNotificationManager _modNotificationManager;
@@ -52,9 +50,9 @@ public class ActivationService : IActivationService
     public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler,
         IEnumerable<IActivationHandler> activationHandlers, IThemeSelectorService themeSelectorService,
         ILocalSettingsService localSettingsService,
-        ElevatorService elevatorService, GenshinProcessManager genshinProcessManager,
+        GenshinProcessManager genshinProcessManager,
         ThreeDMigtoProcessManager threeDMigtoProcessManager, UpdateChecker updateChecker,
-        IWindowManagerService windowManagerService, AutoUpdaterService autoUpdaterService, IGameService gameService,
+        IWindowManagerService windowManagerService, IGameService gameService,
         ILanguageLocalizer languageLocalizer, SelectedGameService selectedGameService,
         ModUpdateAvailableChecker modUpdateAvailableChecker, ILogger logger,
         ModNotificationManager modNotificationManager, INavigationViewService navigationViewService,
@@ -65,12 +63,10 @@ public class ActivationService : IActivationService
         _activationHandlers = activationHandlers;
         _themeSelectorService = themeSelectorService;
         _localSettingsService = localSettingsService;
-        _elevatorService = elevatorService;
         _genshinProcessManager = genshinProcessManager;
         _threeDMigtoProcessManager = threeDMigtoProcessManager;
         _updateChecker = updateChecker;
         _windowManagerService = windowManagerService;
-        _autoUpdaterService = autoUpdaterService;
         _gameService = gameService;
         _languageLocalizer = languageLocalizer;
         _selectedGameService = selectedGameService;
@@ -204,8 +200,6 @@ public class ActivationService : IActivationService
         await _threeDMigtoProcessManager.TryInitialize();
         await _updateChecker.InitializeAsync();
         await _modUpdateAvailableChecker.InitializeAsync().ConfigureAwait(false);
-        await Task.Run(() => _autoUpdaterService.UpdateAutoUpdater()).ConfigureAwait(false);
-        await Task.Run(() => _elevatorService.Initialize()).ConfigureAwait(false);
     }
 
     const int MinimizedPosition = -32000;
@@ -528,12 +522,12 @@ public class ActivationService : IActivationService
                 await _skinManagerService.RefreshModsAsync();
 
                 if (movedModsCount == -1)
-                    _notificationManager.ShowNotification("Mods reorganization failed.",
-                        "See logs for more details.", TimeSpan.FromSeconds(5));
+                    _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Settings_Mods_ReorganizeFailed") ?? "Mods reorganization failed.",
+                        App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_SeeLogs") ?? "See logs for more details.", TimeSpan.FromSeconds(5));
 
                 else
-                    _notificationManager.ShowNotification("Mods reorganized.",
-                        $"Moved {movedModsCount} mods to new character folders", TimeSpan.FromSeconds(5));
+                    _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Settings_Mods_Reorganized") ?? "Mods reorganized.",
+                        string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_MovedMods") ?? "Moved {0} mods to new character folders", movedModsCount), TimeSpan.FromSeconds(5));
             }
             finally
             {

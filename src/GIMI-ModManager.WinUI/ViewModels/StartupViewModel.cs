@@ -34,7 +34,7 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
     private readonly SelectedGameService _selectedGameService;
     private readonly ModArchiveRepository _modArchiveRepository;
     private readonly CommandService _commandService;
-
+    private readonly ICommunityGamesService _communityGamesService;
 
     public PathPicker PathToGIMIFolderPicker { get; }
 
@@ -62,7 +62,7 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         IWindowManagerService windowManagerService, ISkinManagerService skinManagerService,
         SelectedGameService selectedGameService, IGameService gameService, ModPresetService modPresetService,
         UserPreferencesService userPreferencesService, ModArchiveRepository modArchiveRepository,
-        CommandService commandService)
+        CommandService commandService, ICommunityGamesService communityGamesService)
     {
         _navigationService = navigationService;
         _localSettingsService = localSettingsService;
@@ -74,6 +74,7 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         _userPreferencesService = userPreferencesService;
         _modArchiveRepository = modArchiveRepository;
         _commandService = commandService;
+        _communityGamesService = communityGamesService;
 
         PathToGIMIFolderPicker = new PathPicker([]);
 
@@ -100,10 +101,23 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
             UnloadedModsFolderPath = null
         };
 
-        await _selectedGameService.SetSelectedGame(SelectedGame.Value.ToString());
+        var selectedGameStr = SelectedGame.Value.ToString();
+        await _selectedGameService.SetSelectedGame(selectedGameStr);
+
+        var gameDir = Path.Combine(App.ASSET_DIR, "Games", selectedGameStr);
+        if (modManagerOptions.GameSource == GameSource.Community)
+        {
+            var communityDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "JASM", "CommunityGames");
+            if (_communityGamesService.VerifyIntegrity(communityDir, new[] { selectedGameStr }))
+            {
+                gameDir = Path.Combine(communityDir, "Games", selectedGameStr);
+                if (!Directory.Exists(gameDir))
+                    gameDir = Path.Combine(communityDir, selectedGameStr);
+            }
+        }
 
         await _gameService.InitializeAsync(
-            Path.Combine(App.ASSET_DIR, "Games", await _selectedGameService.GetSelectedGameAsync()),
+            gameDir,
             _localSettingsService.ApplicationDataFolder);
 
         await _localSettingsService.SaveSettingAsync(ModManagerOptions.Section,
@@ -138,16 +152,17 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         _navigationService.NavigateTo(typeof(CharactersViewModel).FullName!, null, true);
         _windowManagerService.ResizeWindowPercent(_windowManagerService.MainWindow, 80, 80);
         _windowManagerService.MainWindow.CenterOnScreen();
-        App.GetService<NotificationManager>().ShowNotification("Startup settings saved",
-            $"Startup settings saved successfully to '{_localSettingsService.GameScopedSettingsLocation}'",
+        var localizer = App.GetService<ILanguageLocalizer>();
+        App.GetService<NotificationManager>().ShowNotification(localizer.GetLocalizedStringOrDefault("Settings_Startup_SettingsSavedTitle") ?? "Startup settings saved",
+            string.Format(localizer.GetLocalizedStringOrDefault("Settings_Startup_SettingsSavedMessage") ?? "Startup settings saved successfully to '{0}'", _localSettingsService.GameScopedSettingsLocation),
             TimeSpan.FromSeconds(7));
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         Task.Run(async () =>
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         {
             await Task.Delay(TimeSpan.FromSeconds(7));
-            App.GetService<NotificationManager>().ShowNotification("JASM is still in alpha",
-                "There will be bugs and things will most likely break. Anyway, hope you enjoy using Just Another Skin Manager!",
+            App.GetService<NotificationManager>().ShowNotification(localizer.GetLocalizedStringOrDefault("Settings_Startup_AlphaTitle") ?? "JASM is still in alpha",
+                localizer.GetLocalizedStringOrDefault("Settings_Startup_AlphaMessage") ?? "There will be bugs and things will most likely break. Anyway, hope you enjoy using JASM+!",
                 TimeSpan.FromSeconds(20));
         });
     }
@@ -214,7 +229,8 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         ModelImporterShortName = gameInfo.GameModelImporterShortName;
         GameBananaUrl = gameInfo.GameBananaUrl;
         ModelImporterUrl = gameInfo.GameModelImporterUrl;
-        PathToGIMIFolderPicker.SetValidators(GimiFolderRootValidators.Validators(gameInfo.GameModelImporterExeNames));
+        var folderWarning = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Settings_FolderWarning_No3DMigotoEntry") ?? "Folder does not contain any entry with the specified names:";
+        PathToGIMIFolderPicker.SetValidators(GimiFolderRootValidators.Validators(gameInfo.GameModelImporterExeNames, folderWarning));
     }
 
     private async Task SetGameComboBoxValues()

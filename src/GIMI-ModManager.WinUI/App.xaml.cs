@@ -128,12 +128,10 @@ public partial class App : Application
                 services.AddTransient<ModDragAndDropService>();
                 services.AddSingleton<CharacterSkinService>();
 
-                services.AddSingleton<ElevatorService>();
                 services.AddSingleton<GenshinProcessManager>();
                 services.AddSingleton<ThreeDMigtoProcessManager>();
 
                 services.AddSingleton<UpdateChecker>();
-                services.AddSingleton<AutoUpdaterService>();
 
                 services.AddSingleton<ImageHandlerService>();
                 services.AddSingleton<SelectedGameService>();
@@ -158,6 +156,7 @@ public partial class App : Application
                 services.AddSingleton<GameBananaCoreService>();
                 services.AddSingleton<CommandService>();
                 services.AddSingleton<CommandHandlerService>();
+                services.AddSingleton<ICommunityGamesService, CommunityGamesService>();
 
                 services.AddTransient<HttpLoggerHandler>();
                 services.AddSingleton<GameBananaService>();
@@ -326,8 +325,8 @@ public partial class App : Application
         window.CenterOnScreen();
 
         GetService<NotificationManager>()
-            .ShowNotification("An error occured!",
-                "JASM may be in an unstable state could crash at any moment. It is suggested to restart the app.",
+            .ShowNotification(GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_ErrorOccurred") ?? "An error occured!",
+                GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_UnstableState") ?? "JASM may be in an unstable state could crash at any moment. It is suggested to restart the app.",
                 TimeSpan.FromMinutes(60));
 
         if (_ErrorWindowsOpen > 4)
@@ -342,9 +341,42 @@ public partial class App : Application
     protected override async void OnLaunched(LaunchActivatedEventArgs args)
     {
         Environment.SetEnvironmentVariable("WEBVIEW2_USE_VISUAL_HOSTING_FOR_OWNED_WINDOWS", "1");
+        ScheduleOldVersionCleanup();
         await GetService<ILanguageLocalizer>().InitializeAsync();
         NotImplemented.NotificationManager = GetService<NotificationManager>();
         base.OnLaunched(args);
         await GetService<IActivationService>().ActivateAsync(args).ConfigureAwait(false);
+    }
+
+    private static void ScheduleOldVersionCleanup()
+    {
+        var parentDir = new DirectoryInfo(ROOT_DIR).Parent?.FullName;
+        if (parentDir is null) return;
+
+        var oldDir = Path.Combine(parentDir, "JASM_Old");
+        var stagingDir = Path.Combine(parentDir, "JASM_Update");
+        var updateScript = Path.Combine(parentDir, "JASM_Update.cmd");
+        var updateLog = Path.Combine(parentDir, "JASM_Update.log");
+
+        foreach (var path in new[] { oldDir, stagingDir })
+        {
+            if (Directory.Exists(path))
+            {
+                Task.Run(() =>
+                {
+                    try { Directory.Delete(path, true); }
+                    catch { /* best effort */ }
+                });
+            }
+        }
+
+        foreach (var path in new[] { updateScript, updateLog })
+        {
+            if (File.Exists(path))
+            {
+                try { File.Delete(path); }
+                catch { /* ignore */ }
+            }
+        }
     }
 }

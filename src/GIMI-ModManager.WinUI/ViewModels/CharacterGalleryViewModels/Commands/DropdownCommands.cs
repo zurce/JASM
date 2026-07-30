@@ -1,5 +1,7 @@
 ﻿using Windows.System;
+using GIMI_ModManager.Core.Contracts.Services;
 using CommunityToolkit.Mvvm.Input;
+using GIMI_ModManager.WinUI.Services;
 using GIMI_ModManager.Core.Helpers;
 using Microsoft.UI.Xaml.Controls;
 using GIMI_ModManager.WinUI.Services.Notifications;
@@ -38,9 +40,10 @@ public partial class CharacterGalleryViewModel
     {
         var windowManager = App.GetService<IWindowManagerService>();
 
+        var localizer = App.GetService<ILanguageLocalizer>();
         var doNotAskAgainCheckBox = new CheckBox()
         {
-            Content = "Do not ask again",
+            Content = localizer.GetLocalizedStringOrDefault("CharacterGallery_DoNotAskAgain") ?? "Do not ask again",
             IsChecked = false,
         };
         var stackPanel = new StackPanel()
@@ -49,7 +52,7 @@ public partial class CharacterGalleryViewModel
             {
                 new TextBlock()
                 {
-                    Text = $"Are you sure you want to delete {vm.Name}?",
+                    Text = string.Format(localizer.GetLocalizedStringOrDefault("CharacterGallery_DeleteConfirmText") ?? "Are you sure you want to delete {0}?", vm.Name),
                     TextWrapping = Microsoft.UI.Xaml.TextWrapping.WrapWholeWords,
                 },
                 doNotAskAgainCheckBox
@@ -58,10 +61,10 @@ public partial class CharacterGalleryViewModel
 
         var dialog = new ContentDialog()
         {
-            Title = "Delete mod",
+            Title = localizer.GetLocalizedStringOrDefault("CharacterGallery_DeleteTitle") ?? "Delete mod",
             Content = stackPanel,
-            PrimaryButtonText = "Delete",
-            CloseButtonText = "Cancel",
+            PrimaryButtonText = localizer.GetLocalizedStringOrDefault("CharacterGallery_DeletePrimaryButton") ?? "Delete",
+            CloseButtonText = localizer.GetLocalizedStringOrDefault("CharacterGallery_DeleteCloseButton") ?? "Cancel",
             DefaultButton = ContentDialogButton.Primary,
         };
 
@@ -105,10 +108,10 @@ public partial class CharacterGalleryViewModel
         catch (Exception e)
         {
             _logger.Error(e, "Failed to delete mod");
-            notificationManager.ShowNotification("Failed to delete mod", e.Message, TimeSpan.FromSeconds(10));
+            notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Gallery_FailedDeleteMod") ?? "Failed to delete mod", e.Message, TimeSpan.FromSeconds(10));
             return;
         }
 
-        notificationManager.ShowNotification("Mod deleted", $"{vm.Name} has been deleted", TimeSpan.FromSeconds(5));
+        notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Gallery_ModDeleted") ?? "Mod deleted", string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Gallery_ModDeletedMessage") ?? "{0} has been deleted", vm.Name), TimeSpan.FromSeconds(5));
     }
 }

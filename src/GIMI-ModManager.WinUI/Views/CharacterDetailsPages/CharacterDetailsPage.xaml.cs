@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using Windows.ApplicationModel.DataTransfer;
 using CommunityToolkit.WinUI.UI.Animations;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Helpers.Xaml;
 using GIMI_ModManager.WinUI.ViewModels.CharacterDetailsViewModels;
@@ -27,6 +28,12 @@ public sealed partial class CharacterDetailsPage : Page
         ModPane.ViewModel = ViewModel.ModPaneVM;
         ModGrid.ViewModel = ViewModel.ModGridVM;
         ModGrid.ViewModel.OnModsReloaded += OnModsReloaded;
+        MultipleModsInfoBar.Message = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharacterDetails_MultipleModsActiveMessage") ?? "Multiple Mods active";
+
+        var localizer = App.GetService<ILanguageLocalizer>();
+        SavePreferencesMenuItem.Text = localizer.GetLocalizedStringOrDefault("CharacterDetails_SavePreferences.Text") ?? "Save preferences for selected mod";
+        ReadPreferencesMenuItem.Text = localizer.GetLocalizedStringOrDefault("CharacterDetails_ReadPreferences.Text") ?? "Read preferences for selected mod";
+        MoveModSearchBox.PlaceholderText = localizer.GetLocalizedStringOrDefault("CharacterDetails_SearchMoveMod_PlaceholderText") ?? "Search...";
 
         ViewModel.OnModObjectLoaded += OnModObjectLoaded;
         ViewModel.OnModsLoaded += OnModsLoaded;
@@ -48,7 +55,7 @@ public sealed partial class CharacterDetailsPage : Page
         if (tooltip is ToolTip) return;
         var toolTip = new ToolTip
         {
-            Content = "This character only has one default in-game skin, so you can't change it.",
+            Content = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharacterDetails_OnlyOneSkin.ToolTip") ?? "This character only has one default in-game skin, so you can't change it.",
             Placement = PlacementMode.Bottom
         };
 
@@ -153,9 +160,10 @@ public sealed partial class CharacterDetailsPage : Page
             AllowDrop = false
         };
 
+        var localizer = App.GetService<ILanguageLocalizer>();
         var title = new TextBlock()
         {
-            Text = "No mods found for this character 😖",
+            Text = localizer.GetLocalizedStringOrDefault("CharacterDetails_NoModsFound") ?? "No mods found for this character 😖",
             FontSize = 28,
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
@@ -192,7 +200,7 @@ public sealed partial class CharacterDetailsPage : Page
         // Create the TextBlock for "Drop Mods Here"
         var dropText = new TextBlock
         {
-            Text = "Drop Mods Here",
+            Text = localizer.GetLocalizedStringOrDefault("CharacterDetails_DropModsHere") ?? "Drop Mods Here",
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
             FontSize = 20,
@@ -313,6 +321,13 @@ public sealed partial class CharacterDetailsPage : Page
     {
         ViewModel.ContextMenuVM.OnSuggestionChosen((SuggestedModObject)args.ChosenSuggestion);
         MoveModsButton.Focus(FocusState.Programmatic);
+    }
+
+    private void ViewToggleSwitch_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        var localizer = App.GetService<ILanguageLocalizer>();
+        ViewToggleSwitch.OffContent = localizer.GetLocalizedStringOrDefault("CharacterDetails_ViewToggle_OffContent") ?? "Detailed View";
+        ViewToggleSwitch.OnContent = localizer.GetLocalizedStringOrDefault("CharacterDetails_ViewToggle_OnContent") ?? "Gallery View";
     }
 
     #endregion

@@ -164,12 +164,12 @@ public partial class EditCharacterViewModel : ObservableRecipient, INavigationAw
             if (image is not null)
                 Form.Image.Value = image;
             else
-                _notificationManager.ShowNotification("Failed to paste image", "No image found in clipboard", null);
+                _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("EditCharacter_PasteImageFailedTitle") ?? "Failed to paste image", App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("EditCharacter_NoImageInClipboard") ?? "No image found in clipboard", null);
         }
         catch (Exception ex)
         {
             _logger.Error(ex, "Failed to paste image");
-            _notificationManager.ShowNotification("Failed to paste image", ex.Message, null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("EditCharacter_PasteImageFailedTitle") ?? "Failed to paste image", ex.Message, null);
         }
     }
 
@@ -198,13 +198,14 @@ public partial class EditCharacterViewModel : ObservableRecipient, INavigationAw
             IsChecked = false
         };
 
+        var localizer = App.GetService<ILanguageLocalizer>();
         var dialogContent = new StackPanel()
         {
             Children =
             {
                 new TextBlock()
                 {
-                    Text =
+                    Text = localizer.GetLocalizedStringOrDefault("EditCharacter_DisableCharacterContent") ??
                         "Are you sure you want to disable this character? " +
                         "This will not remove the character, but JASM will no longer recognize the character. " +
                         "Character can be reactivated later. " +
@@ -219,10 +220,10 @@ public partial class EditCharacterViewModel : ObservableRecipient, INavigationAw
 
         var disableDialog = new ContentDialog
         {
-            Title = "Disable Character",
+            Title = localizer.GetLocalizedStringOrDefault("EditCharacter_DisableCharacterTitle") ?? "Disable Character",
             Content = dialogContent,
-            PrimaryButtonText = "Yes, disable this character",
-            CloseButtonText = "No",
+            PrimaryButtonText = localizer.GetLocalizedStringOrDefault("EditCharacter_DisableCharacterPrimary") ?? "Yes, disable this character",
+            CloseButtonText = localizer.GetLocalizedStringOrDefault("EditCharacter_DisableCharacterClose") ?? "No",
             DefaultButton = ContentDialogButton.Primary,
             XamlRoot = App.MainWindow.Content.XamlRoot
         };
@@ -256,13 +257,14 @@ public partial class EditCharacterViewModel : ObservableRecipient, INavigationAw
             IsChecked = false
         };
 
+        var localizer = App.GetService<ILanguageLocalizer>();
         var dialogContent = new StackPanel()
         {
             Children =
             {
                 new TextBlock()
                 {
-                    Text =
+                    Text = localizer.GetLocalizedStringOrDefault("EditCharacter_DeleteCharacterContent") ??
                         "Are you sure you want to delete this custom character? " +
                         "This will remove the character, and JASM will no longer recognize the character. " +
                         "This will be executed immediately on pressing yes",
@@ -276,10 +278,10 @@ public partial class EditCharacterViewModel : ObservableRecipient, INavigationAw
 
         var disableDialog = new ContentDialog
         {
-            Title = "Delete Custom Character",
+            Title = localizer.GetLocalizedStringOrDefault("EditCharacter_DeleteCharacterTitle") ?? "Delete Custom Character",
             Content = dialogContent,
-            PrimaryButtonText = "Yes, delete this custom character",
-            CloseButtonText = "No",
+            PrimaryButtonText = localizer.GetLocalizedStringOrDefault("EditCharacter_DeleteCharacterPrimary") ?? "Yes, delete this custom character",
+            CloseButtonText = localizer.GetLocalizedStringOrDefault("EditCharacter_DeleteCharacterClose") ?? "No",
             DefaultButton = ContentDialogButton.Primary,
             XamlRoot = App.MainWindow.Content.XamlRoot
         };
@@ -299,7 +301,7 @@ public partial class EditCharacterViewModel : ObservableRecipient, INavigationAw
         });
 
         _navigationService.NavigateTo(typeof(CharacterManagerViewModel).FullName!, new object(), clearNavigation: true);
-        _notificationManager.ShowNotification("Custom Character Deleted", $"Custom Character '{_character.DisplayName}' was deleted successfully", null);
+        _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("EditCharacter_DeletedTitle") ?? "Custom Character Deleted", string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("EditCharacter_DeletedMessage") ?? "Custom Character '{0}' was deleted successfully", _character.DisplayName), null);
     }
 
     private bool CanEnableCharacter() => !_character.IsCustomModObject && CharacterStatus.IsDisabled && !AnyChanges();
@@ -307,9 +309,10 @@ public partial class EditCharacterViewModel : ObservableRecipient, INavigationAw
     [RelayCommand(CanExecute = nameof(CanEnableCharacter))]
     private async Task EnableCharacter()
     {
+        var localizer = App.GetService<ILanguageLocalizer>();
         var dialogContent = new TextBlock()
         {
-            Text =
+            Text = localizer.GetLocalizedStringOrDefault("EditCharacter_EnableCharacterContent") ??
                 "Are you sure you want to enable this character? " +
                 "This will be executed immediately on pressing yes",
             TextWrapping = TextWrapping.WrapWholeWords,
@@ -318,10 +321,10 @@ public partial class EditCharacterViewModel : ObservableRecipient, INavigationAw
 
         var enableDialog = new ContentDialog
         {
-            Title = "Enable Character",
+            Title = localizer.GetLocalizedStringOrDefault("EditCharacter_EnableCharacterTitle") ?? "Enable Character",
             Content = dialogContent,
-            PrimaryButtonText = "Yes, enable this character",
-            CloseButtonText = "No",
+            PrimaryButtonText = localizer.GetLocalizedStringOrDefault("EditCharacter_EnableCharacterPrimary") ?? "Yes, enable this character",
+            CloseButtonText = localizer.GetLocalizedStringOrDefault("EditCharacter_EnableCharacterClose") ?? "No",
             DefaultButton = ContentDialogButton.Primary,
             XamlRoot = App.MainWindow.Content.XamlRoot
         };
@@ -367,7 +370,7 @@ public partial class EditCharacterViewModel : ObservableRecipient, INavigationAw
         catch (Exception e)
         {
             _logger.Error(e, "Failed to save changes to character");
-            _notificationManager.ShowNotification("Failed to save changes to character", e.Message, null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("EditCharacter_SaveFailedTitle") ?? "Failed to save changes to character", e.Message, null);
             return;
         }
 
@@ -520,11 +523,12 @@ public partial class EditCharacterViewModel : ObservableRecipient, INavigationAw
             }
         };
 
+        var localizer = App.GetService<ILanguageLocalizer>();
         var characterModelDialog = new ContentDialog
         {
-            Title = "Character Model",
+            Title = localizer.GetLocalizedStringOrDefault("EditCharacter_ShowDataModelTitle") ?? "Character Model",
             Content = contentWrapper,
-            CloseButtonText = "Close",
+            CloseButtonText = localizer.GetLocalizedStringOrDefault("EditCharacter_ShowDataModelClose") ?? "Close",
             DefaultButton = ContentDialogButton.Close,
             XamlRoot = App.MainWindow.Content.XamlRoot,
             Resources =

@@ -62,7 +62,7 @@ public partial class ModPageVM : ObservableRecipient
         _moddableObject = moddableObject;
         ModPage = modPage;
         _window = window;
-        _window.Title = "Download Mod files";
+        _window.Title = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPage_DownloadTitle") ?? "Download Mod files";
         _ct = ctsToken;
         Initialize();
     }
@@ -115,7 +115,7 @@ public partial class ModPageVM : ObservableRecipient
             return;
         }
 
-        _window.Title = $"Downloads for: {_modPageInfo.ModName}";
+        _window.Title = string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPage_DownloadsForTitle") ?? "Downloads for: {0}", _modPageInfo.ModName);
         CharacterModListPath = new Uri(_characterModList.AbsModsFolderPath);
 
         _modFiles = _modPageInfo.Files.ToList();
@@ -138,7 +138,7 @@ public partial class ModPageVM : ObservableRecipient
         _logger.Error(e, "Failed to get mod update info");
         App.MainWindow.DispatcherQueue.TryEnqueue(() =>
         {
-            App.GetService<NotificationManager>().ShowNotification("Failed to get mod update info",
+            App.GetService<NotificationManager>().ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPage_FailedGetUpdateInfo") ?? "Failed to get mod update info",
                 e.Message, TimeSpan.FromSeconds(10));
         });
         _window.Close();
@@ -213,7 +213,7 @@ public partial class ModPageVM : ObservableRecipient
         {
             _logger.Error(e, "Failed to download mod file");
 
-            _notificationManager.ShowNotification("Failed to download mod file",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPage_FailedDownload") ?? "Failed to download mod file",
                 e.Message, TimeSpan.FromSeconds(10));
 
             Reset();
@@ -304,6 +304,7 @@ public partial class ModPageVM : ObservableRecipient
             }
 
             fileInfoVm.Status = ModFileInfoVm.InstallStatus.Installed;
+            _window.Close();
         }
         catch (TaskCanceledException)
         {
@@ -313,7 +314,7 @@ public partial class ModPageVM : ObservableRecipient
         {
             _logger.Error(e, "Failed to install mod file");
 
-            _notificationManager.ShowNotification("Failed to install mod file",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPage_FailedInstall") ?? "Failed to install mod file",
                 e.InnerException?.Message ?? e.Message, TimeSpan.FromSeconds(10));
 
             fileInfoVm.Status = ModFileInfoVm.InstallStatus.Downloaded;

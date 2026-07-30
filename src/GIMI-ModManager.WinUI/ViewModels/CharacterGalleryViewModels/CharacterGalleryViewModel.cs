@@ -25,7 +25,6 @@ public partial class CharacterGalleryViewModel : ObservableRecipient, INavigatio
     private readonly ISkinManagerService _skinManagerService;
     private readonly ILocalSettingsService _localSettingsService;
     private readonly CharacterSkinService _characterSkinService;
-    private readonly ElevatorService _elevatorService;
     private readonly INavigationService _navigationService;
     private readonly IGameService _gameService;
     private readonly ILogger _logger;
@@ -107,12 +106,11 @@ public partial class CharacterGalleryViewModel : ObservableRecipient, INavigatio
         ISkinManagerService skinManagerService,
         ILocalSettingsService localSettingsService,
         CharacterSkinService characterSkinService,
-        ElevatorService elevatorService, ILogger logger)
+        ILogger logger)
     {
         _skinManagerService = skinManagerService;
         _localSettingsService = localSettingsService;
         _characterSkinService = characterSkinService;
-        _elevatorService = elevatorService;
         _logger = logger.ForContext<CharacterGalleryViewModel>();
         _navigationService = navigationService;
         _gameService = gameService;

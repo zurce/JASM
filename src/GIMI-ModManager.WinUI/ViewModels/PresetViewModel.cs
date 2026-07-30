@@ -31,7 +31,6 @@ public partial class PresetViewModel(
     IWindowManagerService windowManagerService,
     CharacterSkinService characterSkinService,
     ILogger logger,
-    ElevatorService elevatorService,
     INavigationService navigationService,
     BusyService busyService,
     ModPresetHandlerService modPresetHandlerService,
@@ -39,7 +38,6 @@ public partial class PresetViewModel(
     ModRandomizationService modRandomizationService)
     : ObservableRecipient, INavigationAware
 {
-    public readonly ElevatorService ElevatorService = elevatorService;
     private readonly BusyService _busyService = busyService;
     private readonly CharacterSkinService _characterSkinService = characterSkinService;
     private readonly IWindowManagerService _windowManagerService = windowManagerService;
@@ -78,10 +76,6 @@ public partial class PresetViewModel(
     [ObservableProperty] private bool _showManualControls;
 
     [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(ToggleAutoSyncCommand))]
-    private bool _elevatorIsRunning;
-
-    [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(AutoSync3DMigotoConfigIsDisabled))]
     private bool _autoSync3DMigotoConfig;
 
@@ -103,12 +97,7 @@ public partial class PresetViewModel(
         IsBusy = true;
         try
         {
-            if (CanAutoSync())
-                await Task.Run(async () =>
-                {
-                    await ElevatorService.RefreshGenshinMods().ConfigureAwait(false);
-                    await Task.Delay(2000).ConfigureAwait(false);
-                });
+
 
 
             await Task.Run(() => _userPreferencesService.SaveModPreferencesAsync());
@@ -116,7 +105,7 @@ public partial class PresetViewModel(
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification("Failed to create preset", e.Message, TimeSpan.FromSeconds(5));
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_FailedCreate") ?? "Failed to create preset", e.Message, TimeSpan.FromSeconds(5));
         }
 
         ReloadPresets();
@@ -138,7 +127,7 @@ public partial class PresetViewModel(
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification("Failed to duplicate preset", e.Message, TimeSpan.FromSeconds(5));
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_FailedDuplicate") ?? "Failed to duplicate preset", e.Message, TimeSpan.FromSeconds(5));
         }
 
         ReloadPresets();
@@ -158,7 +147,7 @@ public partial class PresetViewModel(
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification("Failed to delete preset", e.Message, TimeSpan.FromSeconds(5));
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_FailedDelete") ?? "Failed to delete preset", e.Message, TimeSpan.FromSeconds(5));
         }
 
         ReloadPresets();
@@ -183,39 +172,15 @@ public partial class PresetViewModel(
                 await _userPreferencesService.SetModPreferencesAsync().ConfigureAwait(false);
 
 
-                if (CanAutoSync())
-                {
-                    await ElevatorService.RefreshGenshinMods().ConfigureAwait(false);
-                    if (preset.Mods.Count == 0)
-                        return;
-                    await Task.Delay(5000).ConfigureAwait(false);
-                    await _userPreferencesService.SetModPreferencesAsync().ConfigureAwait(false);
-                }
 
-
-                if (CanAutoSync())
-                {
-                    //await ElevatorService.RefreshGenshinMods().ConfigureAwait(false); // Wait and check for changes timout 5 seconds
-                    //await Task.Delay(5000).ConfigureAwait(false);
-                    await ElevatorService.RefreshAndWaitForUserIniChangesAsync().ConfigureAwait(false);
-                    await Task.Delay(1000).ConfigureAwait(false);
-                    await _userPreferencesService.SetModPreferencesAsync().ConfigureAwait(false);
-                }
-
-
-                if (CanAutoSync())
-                {
-                    await Task.Delay(2000).ConfigureAwait(false);
-                    await ElevatorService.RefreshGenshinMods().ConfigureAwait(false);
-                }
             });
 
-            _notificationManager.ShowNotification("Preset applied", $"Preset '{preset.Name}' has been applied",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_Applied") ?? "Preset applied", string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_AppliedMessage") ?? "Preset '{0}' has been applied", preset.Name),
                 TimeSpan.FromSeconds(5));
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification("Failed to apply preset", e.Message, TimeSpan.FromSeconds(5));
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_FailedApply") ?? "Failed to apply preset", e.Message, TimeSpan.FromSeconds(5));
         }
         finally
         {
@@ -240,7 +205,7 @@ public partial class PresetViewModel(
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification("Failed to rename preset", e.Message, TimeSpan.FromSeconds(5));
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_FailedRename") ?? "Failed to rename preset", e.Message, TimeSpan.FromSeconds(5));
         }
 
         ReloadPresets();
@@ -258,7 +223,7 @@ public partial class PresetViewModel(
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification("Failed to save preset order", e.Message, TimeSpan.FromSeconds(5));
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_FailedSaveOrder") ?? "Failed to save preset order", e.Message, TimeSpan.FromSeconds(5));
         }
 
         ReloadPresets();
@@ -301,7 +266,7 @@ public partial class PresetViewModel(
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification("Failed to toggle read only", e.Message, TimeSpan.FromSeconds(5));
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_FailedToggleReadOnly") ?? "Failed to toggle read only", e.Message, TimeSpan.FromSeconds(5));
         }
 
         ReloadPresets();
@@ -311,30 +276,14 @@ public partial class PresetViewModel(
     private Task RandomizeMods() => _modRandomizationService.ShowRandomizeModsDialog();
 
 
-    [RelayCommand]
-    private async Task StartElevator()
+    [RelayCommand(CanExecute = nameof(IsNotBusy))]
+    private async Task ToggleAutoSync()
     {
-        IsBusy = true;
+        AutoSync3DMigotoConfig = !AutoSync3DMigotoConfig;
 
-        try
-        {
-            var isStarted = await Task.Run(() => ElevatorService.StartElevator());
-
-            if (!isStarted)
-                _notificationManager.ShowNotification("Failed to start elevator",
-                    "Elevator failed to start",
-                    TimeSpan.FromSeconds(5));
-
-            AutoSync3DMigotoConfig = ElevatorService.ElevatorStatus == ElevatorStatus.Running &&
-                                     (await _localSettingsService.ReadOrCreateSettingAsync<ModPresetSettings>(
-                                         ModPresetSettings.Key)).AutoSyncMods;
-        }
-        catch (Exception e)
-        {
-            _notificationManager.ShowNotification("Failed to start elevator", e.Message, TimeSpan.FromSeconds(5));
-        }
-
-        IsBusy = false;
+        var settings = await _localSettingsService.ReadOrCreateSettingAsync<ModPresetSettings>(ModPresetSettings.Key);
+        settings.AutoSyncMods = AutoSync3DMigotoConfig;
+        await _localSettingsService.SaveSettingAsync(ModPresetSettings.Key, settings);
     }
 
     [RelayCommand]
@@ -352,14 +301,14 @@ public partial class PresetViewModel(
                     await _userPreferencesService.Clear3DMigotoModPreferencesAsync(ResetOnlyEnabledMods)
                         .ConfigureAwait(false);
 
-                _notificationManager.ShowNotification("Mod preferences reset",
-                    $"Mod preferences have been removed{(AlsoReset3DmigotoConfig ? $" and {Constants.UserIniFileName} have been cleared" : "")}",
+                _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_ModPrefsReset") ?? "Mod preferences reset",
+                    string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_ModPrefsRemovedMsg") ?? "Mod preferences have been removed{0}", AlsoReset3DmigotoConfig ? $" and {Constants.UserIniFileName} have been cleared" : ""),
                     TimeSpan.FromSeconds(5));
             });
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification("Failed to reset mod preferences", e.Message,
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Preset_FailedResetModPrefs") ?? "Failed to reset mod preferences", e.Message,
                 TimeSpan.FromSeconds(5));
         }
     }
@@ -376,42 +325,16 @@ public partial class PresetViewModel(
     }
 
 
-    private bool CanToggleAutoSync()
-    {
-        return ElevatorIsRunning && IsNotBusy;
-    }
-
-    [RelayCommand(CanExecute = nameof(CanToggleAutoSync))]
-    private async Task ToggleAutoSync()
-    {
-        AutoSync3DMigotoConfig = !AutoSync3DMigotoConfig;
-
-        var settings = await _localSettingsService.ReadOrCreateSettingAsync<ModPresetSettings>(ModPresetSettings.Key);
-        settings.AutoSyncMods = AutoSync3DMigotoConfig;
-        await _localSettingsService.SaveSettingAsync(ModPresetSettings.Key, settings);
-    }
-
     public async void OnNavigatedTo(object parameter)
     {
         ReloadPresets();
-        ElevatorService.PropertyChanged += ElevatorStatusChangedHandler;
-        ElevatorService.CheckStatus();
-        ElevatorIsRunning = ElevatorService.ElevatorStatus == ElevatorStatus.Running;
 
-        AutoSync3DMigotoConfig = ElevatorService.ElevatorStatus == ElevatorStatus.Running &&
-                                 (await _localSettingsService.ReadOrCreateSettingAsync<ModPresetSettings>(
+        AutoSync3DMigotoConfig = (await _localSettingsService.ReadOrCreateSettingAsync<ModPresetSettings>(
                                      ModPresetSettings.Key)).AutoSyncMods;
-    }
-
-    private void ElevatorStatusChangedHandler(object? o, PropertyChangedEventArgs propertyChangedEventArgs)
-    {
-        App.MainWindow.DispatcherQueue.TryEnqueue(() =>
-            ElevatorIsRunning = ElevatorService.ElevatorStatus == ElevatorStatus.Running);
     }
 
     public void OnNavigatedFrom()
     {
-        ElevatorService.PropertyChanged -= ElevatorStatusChangedHandler;
     }
 
     private void ReloadPresets()
@@ -448,7 +371,7 @@ public partial class PresetViewModel(
 
     private bool CanAutoSync()
     {
-        return ElevatorIsRunning && AutoSync3DMigotoConfig && ElevatorService.ElevatorStatus == ElevatorStatus.Running;
+        return AutoSync3DMigotoConfig;
     }
 }
 
@@ -479,7 +402,7 @@ public partial class ModPresetVm : ObservableObject
 
     [ObservableProperty] private bool _isEditingName;
 
-    [ObservableProperty] private string _renameButtonText = RenameText;
+    [ObservableProperty] private string _renameButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetPage_RenameText") ?? "Rename";
     [ObservableProperty] private bool _isReadOnly;
 
     [RelayCommand]
@@ -524,8 +447,8 @@ public partial class ModPresetVm : ObservableObject
     public required IAsyncRelayCommand ApplyPresetCommand { get; init; }
     public required IRelayCommand NavigateToPresetDetailsCommand { get; init; }
 
-    private const string RenameText = "Rename";
-    private const string ConfirmText = "Save New Name";
+    private string RenameText => App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetPage_RenameText") ?? "Rename";
+    private string ConfirmText => App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("PresetPage_ConfirmText") ?? "Save New Name";
 }
 
 public partial class ModPresetEntryVm : ObservableObject

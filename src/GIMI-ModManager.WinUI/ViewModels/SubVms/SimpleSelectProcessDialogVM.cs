@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using GIMI_ModManager.Core.GamesService;
 using GIMI_ModManager.Core.Services.CommandService;
 using GIMI_ModManager.Core.Services.CommandService.Models;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.WinUI.Services;
 using GIMI_ModManager.WinUI.Services.AppManagement;
 using GIMI_ModManager.WinUI.Validators;
@@ -43,12 +44,15 @@ public partial class SimpleSelectProcessDialogVM : ObservableObject
     {
         Type = type;
         await processManager.CheckStatus();
+        var localizer = App.GetService<ILanguageLocalizer>();
         PlaceHolderText = type switch
         {
-            StartType.Game => "Select the game executable",
-            StartType.ModelImporter => "Select the model importer executable",
+            StartType.Game => localizer.GetLocalizedStringOrDefault("CharactersPage_SelectProcessDialog_GamePlaceholderText") ?? "Select the game executable",
+            StartType.ModelImporter => localizer.GetLocalizedStringOrDefault("CharactersPage_SelectProcessDialog_ModelImporterPlaceholderText") ?? "Select the model importer executable",
             _ => throw new ArgumentOutOfRangeException()
         };
+        Dialog.PrimaryButtonText = localizer.GetLocalizedStringOrDefault("CharactersPage_SelectProcessDialog_PrimaryButtonText") ?? "Save";
+        Dialog.SecondaryButtonText = localizer.GetLocalizedStringOrDefault("CharactersPage_SelectProcessDialog_SecondaryButtonText") ?? "Cancel";
 
         if (processManager.ProcessStatus == ProcessStatus.NotInitialized)
         {
@@ -129,9 +133,11 @@ public partial class SimpleSelectProcessDialogVM : ObservableObject
             CreateWindow = true
         };
 
+        var localizer = App.GetService<ILanguageLocalizer>();
+        var startPrefix = localizer.GetLocalizedStringOrDefault("CharactersPage_StartGamePrefix") ?? "Start";
         var commandDefinition = new CommandDefinition()
         {
-            CommandDisplayName = $"Start {gameOptions.GameName}",
+            CommandDisplayName = $"{startPrefix} {gameOptions.GameName}",
             KillOnMainAppExit = false,
             ExecutionOptions = execOptions
         };
@@ -155,9 +161,11 @@ public partial class SimpleSelectProcessDialogVM : ObservableObject
             CreateWindow = true
         };
 
+        var localizer = App.GetService<ILanguageLocalizer>();
+        var startPrefix = localizer.GetLocalizedStringOrDefault("CharactersPage_StartGamePrefix") ?? "Start";
         var commandDefinition = new CommandDefinition()
         {
-            CommandDisplayName = $"Start {gameOptions.GameModelImporterName}",
+            CommandDisplayName = $"{startPrefix} {gameOptions.GameModelImporterName}",
             KillOnMainAppExit = false,
             ExecutionOptions = execOptions
         };

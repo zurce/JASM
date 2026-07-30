@@ -84,6 +84,7 @@
                     CanUserResize="False"
                     CanUserSort="True"
                     ClipboardContentBinding="{Binding IsEnabled, Mode=OneWay}"
+                    x:Name="EnabledColumn"
                     Header="Enabled"
                     Tag="IsEnabled">
 
@@ -151,6 +152,7 @@
                     Width="SizeToCells"
                     Binding="{Binding DisplayName, Mode=OneWay}"
                     CanUserSort="True"
+                    x:Name="ModNameColumn"
                     Header="Mod Name"
                     IsReadOnly="True"
                     Tag="DisplayName" />
@@ -159,6 +161,7 @@
                     Width="SizeToCells"
                     Binding="{Binding FolderName, Mode=OneWay}"
                     CanUserSort="True"
+                    x:Name="ModFolderNameColumn"
                     Header="Mod Folder Name"
                     IsReadOnly="True"
                     Tag="FolderName"
@@ -168,6 +171,7 @@
                     Width="SizeToCells"
                     Binding="{Binding Author, Mode=OneWay}"
                     CanUserSort="True"
+                    x:Name="AuthorColumn"
                     Header="Author"
                     Tag="Author" />
 
@@ -175,6 +179,7 @@
                     Width="SizeToCells"
                     CanUserSort="True"
                     ClipboardContentBinding="{Binding DateAddedFormated, Mode=OneTime}"
+                    x:Name="AddedColumn"
                     Header="Added"
                     IsReadOnly="True"
                     Tag="DateAdded">
@@ -197,6 +202,7 @@
                     Width="SizeToCells"
                     Binding="{Binding InPresets, Mode=OneWay}"
                     CanUserSort="True"
+                    x:Name="PresetsColumn"
                     Header="Presets"
                     IsReadOnly="True"
                     Tag="Presets" />

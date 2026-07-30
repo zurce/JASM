@@ -20,7 +20,7 @@ public sealed class UpdateChecker
     private bool DisableChecker;
     private CancellationTokenSource _cancellationTokenSource;
 
-    private const string ReleasesApiUrl = "https://api.github.com/repos/Jorixon/JASM/releases?per_page=2";
+    private const string ReleasesApiUrl = "https://api.github.com/repos/zurce/JASM/releases?per_page=2";
 
     public UpdateChecker(ILogger logger, ILocalSettingsService localSettingsService,
         Notifications.NotificationManager notificationManager, CancellationToken cancellationToken = default)
@@ -88,8 +88,8 @@ public sealed class UpdateChecker
                 }
                 catch (Exception e)
                 {
-                    _logger.Error(e, "Failed to check for updates. Stopping Update checker");
-                    break;
+                    _logger.Error(e, "Failed to check for updates. Retrying in 2 hours...");
+                    await Task.Delay(TimeSpan.FromHours(2), cancellationToken);
                 }
         }, CancellationToken.None, TaskCreationOptions.LongRunning, TaskScheduler.Default);
     }
@@ -141,8 +141,12 @@ public sealed class UpdateChecker
             JsonConvert.DeserializeObject<GitHubRelease[]>(text) ?? Array.Empty<GitHubRelease>();
 
         var latestReleases = gitHubReleases.Where(r => !r.prerelease);
-        var latestVersion = latestReleases.Select(r => new Version(r.tag_name?.Trim('v') ?? "")).Max();
-        return latestVersion;
+        var versions = latestReleases
+            .Select(r => TryParseVersion(r.tag_name))
+            .Where(v => v is not null)
+            .Cast<Version>()
+            .ToArray();
+        return versions.Length > 0 ? versions.Max() : null;
     }
 
     private HttpClient CreateHttpClient()
@@ -181,6 +185,17 @@ public sealed class UpdateChecker
         }
     }
 
+
+    private static Version? TryParseVersion(string? tagName)
+    {
+        if (string.IsNullOrWhiteSpace(tagName))
+            return null;
+
+        // Strip leading 'v' if present
+        var versionString = tagName.StartsWith('v') ? tagName[1..] : tagName;
+
+        return Version.TryParse(versionString, out var version) ? version : null;
+    }
 
     private class GitHubRelease
     {
