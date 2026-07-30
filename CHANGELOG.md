@@ -1,5 +1,46 @@
 # Changelog
 
+## [2.23.0](https://github.com/zurce/JASM/compare/v2.22.9...v2.23.0) (2026-07-30)
+
+
+### Features
+
+* add force overwrite different name mod functionality ([d354dda](https://github.com/zurce/JASM/commit/d354dda354217e9246b0254fa1232e12b72fec5c))
+* batch enable, disable, and cleanup disabled mods for character category list ([d66d049](https://github.com/zurce/JASM/commit/d66d0494f6f8140080d13359edfde0bfa36bcfdb))
+* **community-games:** Add support for loading game assets from a remote Git repository ([36abefc](https://github.com/zurce/JASM/commit/36abefcc91c4fce2a3485ad3a12ccc5cb41c94a7))
+* custom commands from character details context menu ([1920bf8](https://github.com/zurce/JASM/commit/1920bf8b119753d96c51c682475ba82a7b558b3f))
+* rebrand to JASM+ (community fork) ([f957285](https://github.com/zurce/JASM/commit/f957285cae7290f01cda1d1f1c091d74e180a8b9))
+* replace auto-updater with in-app download + directory swap ([02161d2](https://github.com/zurce/JASM/commit/02161d2d28e924eaaefa6db3c14022768856470f))
+* working in-app update with download + directory swap ([8bc2849](https://github.com/zurce/JASM/commit/8bc2849ee333e6614b474c1d0343b44231cf541d))
+
+
+### Bug Fixes
+
+* localize delete mod dialog, search placeholder, run/override buttons ([a552181](https://github.com/zurce/JASM/commit/a55218188606aaf3ae5d8b6d32f6ce9427343b3b))
+* localize update strings, robust version parsing, fix event handler ([df0f9d8](https://github.com/zurce/JASM/commit/df0f9d842ee126408fab5738ef920011817beeba))
+* Restore ToggleAutoSync command and using directive for BusyService ([ad46898](https://github.com/zurce/JASM/commit/ad4689892bbafc22f386909aa9b92addaddfbefe))
+* robust batch swap with taskkill, retry, and debug logging ([28fb2cd](https://github.com/zurce/JASM/commit/28fb2cda9ab001e93cffdf405c4a688c1dc4ab63))
+* use .zip format for releases, handle nested folder extraction ([5abcfe6](https://github.com/zurce/JASM/commit/5abcfe6a222350c66cf241c02b1ad63833ee4d00))
+* whitespace formatting (dotnet format) ([9c29c55](https://github.com/zurce/JASM/commit/9c29c5571250c234a51a5ff31c506572110489b4))
+
+
+### Miscellaneous
+
+* bump version to 2.99.0 for JASM+ fork ([b9316e9](https://github.com/zurce/JASM/commit/b9316e9e42ffb1086a7910cb844ec466b1193525))
+* remove AI agent and memory files from repo, add to .gitignore ([bb30b9b](https://github.com/zurce/JASM/commit/bb30b9b009887a6133d8eb84f7696aee45434a45))
+
+
+### Documentation
+
+* rework README for JASM+ community fork ([91825c0](https://github.com/zurce/JASM/commit/91825c0fd229b87191992c199665bf32a1e56b1a))
+* update memory with auto-updater replacement task ([e4a139c](https://github.com/zurce/JASM/commit/e4a139cdec8e035b8b1f47f09d76faff19182fbf))
+* update project memory with JASM+ rebrand ([048d76b](https://github.com/zurce/JASM/commit/048d76b4a1dd398067f58ea914796a241911cffb))
+
+
+### Code Refactoring
+
+* simplify SetSelectedMods logic for target path variables ([a0244dd](https://github.com/zurce/JASM/commit/a0244dd1fd4f48b10b8f62bde240873df263e69b))
+
 ## [2.22.9](https://github.com/Jorixon/JASM/compare/v2.22.8...v2.22.9) (2026-01-18)
 
 
