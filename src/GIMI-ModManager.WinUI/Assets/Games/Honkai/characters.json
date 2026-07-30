@@ -1311,5 +1311,166 @@
     "InGameSkins": [],
     "InternalName": "Dahlia",
     "DisplayName": "The Dahlia"
+  },
+  {
+    "Keys": [
+      "Sparxie"
+    ],
+    "ReleaseDate": "2026-03-03T00:00:00",
+    "Image": "Sparxie.webp",
+    "Rarity": 5,
+    "Element": "Fire",
+    "Class": "Elation",
+    "Region": [
+      "Planarcadia"
+    ],
+    "ModFilesName": "Sparxie",
+    "InGameSkins": [],
+    "InternalName": "Sparxie",
+    "DisplayName": "Sparxie"
+  },
+  {
+    "Keys": [
+      "Ashveil"
+    ],
+    "ReleaseDate": "2026-07-01T00:00:00",
+    "Image": "ashveil.webp",
+    "Rarity": 5,
+    "Element": "Lightning",
+    "Class": "Hunt",
+    "Region": [
+      "Planarcadia"
+    ],
+    "ModFilesName": "Ashveil",
+    "InGameSkins": [],
+    "InternalName": "Ashveil",
+    "DisplayName": "Ashveil"
+  },
+  {
+    "Keys": [
+      "Yao_Guang",
+      "Yao-Guang",
+      "Yaoguang"
+    ],
+    "ReleaseDate": "2026-02-13T00:00:00",
+    "Image": "yaoguang.webp",
+    "Rarity": 5,
+    "Element": "Physical",
+    "Class": "Hunt",
+    "Region": [
+      "The Xianzhou Yaoqing"
+    ],
+    "ModFilesName": "YaoGuang",
+    "InGameSkins": [],
+    "InternalName": "YaoGuang",
+    "DisplayName": "Yao Guang"
+  },
+  {
+    "Keys": [
+      "Evanescia"
+    ],
+    "ReleaseDate": "2026-05-12T00:00:00",
+    "Image": "evanescia.webp",
+    "Rarity": 5,
+    "Element": "Physical",
+    "Class": "Elation",
+    "Region": [
+      "Planarcadia"
+    ],
+    "ModFilesName": "Evanescia",
+    "InGameSkins": [],
+    "InternalName": "Evanescia",
+    "DisplayName": "Evanescia"
+  },
+  {
+    "Keys": [
+      "SilverWolf999",
+      "Silver_Wolf_Lv999"
+    ],
+    "ReleaseDate": "2026-05-12T00:00:00",
+    "Image": "silverwolf999.webp",
+    "Rarity": 5,
+    "Element": "Imaginary",
+    "Class": "Elation",
+    "Region": [
+      "Punklorde"
+    ],
+    "ModFilesName": "SilverWolf999",
+    "InGameSkins": [],
+    "InternalName": "SilverWolf999",
+    "DisplayName": "Silver Wolf Lv 999"
+  },
+  {
+    "Keys": [
+      "Mortenax_Blade",
+      "Mortenax-Blade",
+      "Mortenax",
+      "MortenaxBlade"
+    ],
+    "ReleaseDate": "2026-06-03T00:00:00",
+    "Image": "MortenaxBlade.webp",
+    "Rarity": 5,
+    "Element": "Fire",
+    "Class": "Nihility",
+    "Region": [
+      "The Xianzhou Luofu"
+    ],
+    "ModFilesName": "MortenaxBlade",
+    "InGameSkins": [],
+    "InternalName": "MortenaxBlade",
+    "DisplayName": "Mortenax Blade"
+  },
+  {
+    "Keys": [
+      "HimekoNova",
+      "Himeko Nova"
+    ],
+    "ReleaseDate": "2026-07-14T00:00:00",
+    "Image": "HimekoNova.webp",
+    "Rarity": 5,
+    "Element": "Fire",
+    "Class": "Erudition",
+    "Region": [
+      "Astral Express"
+    ],
+    "ModFilesName": "HimekoNova",
+    "InGameSkins": [],
+    "InternalName": "HimekoNova",
+    "DisplayName": "Himeko • Nova"
+  },
+  {
+    "Keys": [
+      "Gilgamesh"
+    ],
+    "ReleaseDate": "2026-07-24T00:00:00",
+    "Image": "Gilgamesh.webp",
+    "Rarity": 5,
+    "Element": "Lightning",
+    "Class": "Destruction",
+    "Region": [
+      "Another World"
+    ],
+    "ModFilesName": "Gilgamesh",
+    "InGameSkins": [],
+    "InternalName": "Gilgamesh",
+    "DisplayName": "Gilgamesh"
+  },
+  {
+    "Keys": [
+      "RinTohsaka",
+      "Rin Tohsaka"
+    ],
+    "ReleaseDate": "2026-07-24T00:00:00",
+    "Image": "RinTohsaka.webp",
+    "Rarity": 5,
+    "Element": "Quantum",
+    "Class": "Erudition",
+    "Region": [
+      "Another World"
+    ],
+    "ModFilesName": "RinTohsaka",
+    "InGameSkins": [],
+    "InternalName": "RinTohsaka",
+    "DisplayName": "Rin Tohsaka"
   }
 ]

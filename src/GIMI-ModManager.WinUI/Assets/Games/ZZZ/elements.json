@@ -23,5 +23,15 @@
 		"InternalName": "Ether",
 		"DisplayName": "Ether",
 		"Image": "Ether.svg"
+	},
+	{
+		"InternalName": "Wind",
+		"DisplayName": "Wind",
+		"Image": "Wind.svg"
+	},
+	{
+		"InternalName": "Lumiflux",
+		"DisplayName": "Lumiflux",
+		"Image": "Lumiflux.png"
 	}
 ]

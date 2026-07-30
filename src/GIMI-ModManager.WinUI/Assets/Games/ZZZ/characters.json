@@ -19,7 +19,7 @@
         "InternalName": "BelleDelicateSunlight",
         "DisplayName": "Belle Delicate Sunlight"
       },
-	  {
+      {
         "ModFilesName": "BelleSummerSkin",
         "Image": "BelleSummerSkies.png",
         "InternalName": "BelleSummerSkies",
@@ -49,7 +49,7 @@
         "InternalName": "WiseSoaringCrane",
         "DisplayName": "Wise Soaring Crane"
       },
-	  {
+      {
         "ModFilesName": "WiseSummerSkin",
         "Image": "WisePeacefulWaves.png",
         "InternalName": "WisePeacefulWaves",
@@ -778,7 +778,7 @@
   {
     "Keys": [
       "Orphie",
-	    "Magnusson"
+      "Magnusson"
     ],
     "ReleaseDate": "2026-01-01T00:00:00",
     "Image": "OrphieMagnusson.png",
@@ -812,7 +812,7 @@
   },
   {
     "Keys": [
-	    "Manato",
+      "Manato",
       "Komano"
     ],
     "ReleaseDate": "2025-11-05T00:00:00",
@@ -945,5 +945,218 @@
     "InGameSkins": [],
     "InternalName": "Zhao",
     "DisplayName": "Zhao"
+  },
+  {
+    "Keys": [
+      "Sunna"
+    ],
+    "ReleaseDate": "2026-02-06T00:00:00",
+    "Image": "Sunna.webp",
+    "Rarity": 5,
+    "Element": "Physical",
+    "Class": "Support",
+    "Region": [
+      "AOD"
+    ],
+    "ModFilesName": "Sunna",
+    "InGameSkins": [
+      {
+        "ModFilesName": "SunnaTeaBreak",
+        "Image": "SunnaAfternoonTeaBreak.png",
+        "InternalName": "Sunna Afternoon Tea Break",
+        "DisplayName": "Sunna Afternoon Tea Break"
+      }
+    ],
+    "InternalName": "Sunna",
+    "DisplayName": "Sunna"
+  },
+  {
+    "Keys": [
+      "Aria"
+    ],
+    "ReleaseDate": "2026-02-30T00:00:00",
+    "Image": "Aria.webp",
+    "Rarity": 5,
+    "Element": "Ether",
+    "Class": "Anomaly",
+    "Region": [
+      "AOD"
+    ],
+    "ModFilesName": "Aria",
+    "InGameSkins": [
+      {
+        "ModFilesName": "AriaDiscordantNote",
+        "Image": "AriaDiscordantNote.png",
+        "InternalName": "Aria Discordant Note",
+        "DisplayName": "Aria Discordant Note"
+      }
+    ],
+    "InternalName": "Aria",
+    "DisplayName": "Aria"
+  },
+  {
+    "Keys": [
+      "NangongYu",
+      "Nangong Yu"
+    ],
+    "ReleaseDate": "2026-03-23T00:00:00",
+    "Image": "NangongYu.webp",
+    "Rarity": 5,
+    "Element": "Ether",
+    "Class": "Stun",
+    "Region": [
+      "AOD"
+    ],
+    "ModFilesName": "NangongYu",
+    "InGameSkins": [],
+    "InternalName": "NangongYu",
+    "DisplayName": "Nangong Yu"
+  },
+  {
+    "Keys": [
+      "Cissia"
+    ],
+    "ReleaseDate": "2026-04-15T00:00:00",
+    "Image": "Cissia.webp",
+    "Rarity": 5,
+    "Element": "Electric",
+    "Class": "Attack",
+    "Region": [
+      "ResponseTeam"
+    ],
+    "ModFilesName": "Cissia",
+    "InGameSkins": [],
+    "InternalName": "Cissia",
+    "DisplayName": "Cissia"
+  },
+  {
+    "Keys": [
+      "Starlight - Billy Kid",
+      "Starlight Billy",
+      "Starlight"
+    ],
+    "ReleaseDate": "2026-05-14T00:00:00",
+    "Image": "StarlightBilly.webp",
+    "Rarity": 5,
+    "Element": "Physical",
+    "Class": "Rupture",
+    "Region": [
+      "CHares"
+    ],
+    "ModFilesName": "StarlightBilly",
+    "InGameSkins": [],
+    "InternalName": "StarlightBilly",
+    "DisplayName": "Starlight - Billy Kid"
+  },
+  {
+    "Keys": [
+      "Promeia"
+    ],
+    "ReleaseDate": "2026-05-14T00:00:00",
+    "Image": "Promeia.webp",
+    "Rarity": 5,
+    "Element": "Ice",
+    "Class": "Anomaly",
+    "Region": [
+      "Krampus"
+    ],
+    "ModFilesName": "Promeia",
+    "InGameSkins": [],
+    "InternalName": "Promeia",
+    "DisplayName": "Promeia"
+  },
+  {
+    "Keys": [
+      "pyrois"
+    ],
+    "ReleaseDate": "2026-06-17T00:00:00",
+    "Image": "Pyrois.webp",
+    "Rarity": 5,
+    "Element": "Ether",
+    "Class": "Attack",
+    "Region": [
+      "Phaethon"
+    ],
+    "ModFilesName": "Pyrois",
+    "InGameSkins": [],
+    "InternalName": "Pyrois",
+    "DisplayName": "Pyrois"
+  },
+  {
+    "Keys": [
+      "norma",
+      "norma hollowell",
+      "normahollowell"
+    ],
+    "ReleaseDate": "2026-06-17T00:00:00",
+    "Image": "Norma.webp",
+    "Rarity": 5,
+    "Element": "Fire",
+    "Class": "Stun",
+    "Region": [
+      "ESD"
+    ],
+    "ModFilesName": "Norma",
+    "InGameSkins": [],
+    "InternalName": "Norma",
+    "DisplayName": "Norma"
+  },
+  {
+    "Keys": [
+      "velina",
+      "velina airgid",
+      "velinaairgid"
+    ],
+    "ReleaseDate": "2026-06-17T00:00:00",
+    "Image": "Velina.webp",
+    "Rarity": 5,
+    "Element": "Wind",
+    "Class": "Anomaly",
+    "Region": [
+      "ESD"
+    ],
+    "ModFilesName": "Velina",
+    "InGameSkins": [],
+    "InternalName": "Velina",
+    "DisplayName": "Velina"
+  },
+  {
+    "Keys": [
+      "remielle",
+      "remielle dan",
+      "remielledan"
+    ],
+    "ReleaseDate": "2026-07-29T00:00:00",
+    "Image": "Remielle.webp",
+    "Rarity": 5,
+    "Element": "Lumiflux",
+    "Class": "Anomaly",
+    "Region": [
+      "CovenantOfDayat"
+    ],
+    "ModFilesName": "Remielle",
+    "InGameSkins": [],
+    "InternalName": "Remielle",
+    "DisplayName": "Remielle"
+  },
+  {
+    "Keys": [
+      "sigrid",
+      "sigrid de l'azur",
+      "sigriddelazur"
+    ],
+    "ReleaseDate": "2026-07-29T00:00:00",
+    "Image": "Sigrid.webp",
+    "Rarity": 5,
+    "Element": "Ice",
+    "Class": "Attack",
+    "Region": [
+      "APD"
+    ],
+    "ModFilesName": "Sigrid",
+    "InGameSkins": [],
+    "InternalName": "Sigrid",
+    "DisplayName": "Sigrid"
   }
 ]
+
