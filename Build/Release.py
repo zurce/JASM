@@ -46,11 +46,14 @@ print("Finished building JASM+")
 os.makedirs(RELEASE_DIR, exist_ok=True)
 os.makedirs(JASM_RELEASE_DIR, exist_ok=True)
 
+print("Copying published files to release directory...")
+shutil.copytree(JASM_OUTPUT, JASM_RELEASE_DIR, dirs_exist_ok=True)
+
 print("Copying text files to RELEASE_DIR...")
 shutil.copy("Build\\README.txt", RELEASE_DIR)
 shutil.copy("CHANGELOG.md", RELEASE_DIR + "\\CHANGELOG.txt")
 
-print("Finished copying text files to release directory")
+print("Finished copying files to release directory")
 
 print("Zipping release directory...")
 releaseArchiveName = "JASM_v" + versionNumber + ".zip"
