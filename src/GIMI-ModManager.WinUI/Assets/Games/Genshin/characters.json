@@ -1911,6 +1911,23 @@
   },
   {
     "Keys": [
+      "Ifa"
+    ],
+    "ReleaseDate": "2025-04-01T00:00:00",
+    "Image": "Ifa.webp",
+    "Rarity": 4,
+    "Element": "Anemo",
+    "Class": "Catalyst",
+    "Region": [
+      "Natlan"
+    ],
+    "ModFilesName": "Ifa",
+    "InGameSkins": [],
+    "InternalName": "Ifa",
+    "DisplayName": "Ifa"
+  },
+  {
+    "Keys": [
       "Skirk"
     ],
     "ReleaseDate": "2025-06-18T00:00:00",
@@ -2130,5 +2147,109 @@
     "InGameSkins": [],
     "InternalName": "Illuga",
     "DisplayName": "Illuga"
+  },
+  {
+    "Keys": [
+      "Varka"
+    ],
+    "ReleaseDate": "2026-02-25T00:00:00",
+    "Image": "varka.webp",
+    "Rarity": 5,
+    "Element": "Anemo",
+    "Class": "Claymore",
+    "Region": [
+      "Mondstadt"
+    ],
+    "ModFilesName": "Varka",
+    "InGameSkins": [],
+    "InternalName": "Varka",
+    "DisplayName": "Varka"
+  },
+  {
+    "Keys": [
+      "nicole",
+      "nicole reeyn",
+      "nicolereeyn"
+    ],
+    "ReleaseDate": "2026-05-20T00:00:00",
+    "Image": "Nicole.webp",
+    "Rarity": 5,
+    "Element": "Pyro",
+    "Class": "Catalyst",
+    "Region": [
+      "Nod-Krai"
+    ],
+    "ModFilesName": "Nicole",
+    "InGameSkins": [],
+    "InternalName": "Nicole",
+    "DisplayName": "Nicole"
+  },
+  {
+    "Keys": [
+      "prune"
+    ],
+    "ReleaseDate": "2026-05-20T00:00:00",
+    "Image": "Prune.webp",
+    "Rarity": 4,
+    "Element": "Anemo",
+    "Class": "Catalyst",
+    "Region": [
+      "Nod-Krai"
+    ],
+    "ModFilesName": "Prune",
+    "InGameSkins": [],
+    "InternalName": "Prune",
+    "DisplayName": "Prune"
+  },
+  {
+    "Keys": [
+      "lohen"
+    ],
+    "ReleaseDate": "2026-06-09T00:00:00",
+    "Image": "Lohen.webp",
+    "Rarity": 5,
+    "Element": "Cryo",
+    "Class": "Polearm",
+    "Region": [
+      "Mondstadt"
+    ],
+    "ModFilesName": "Lohen",
+    "InGameSkins": [],
+    "InternalName": "Lohen",
+    "DisplayName": "Lohen"
+  },
+  {
+    "Keys": [
+      "sandrone"
+    ],
+    "ReleaseDate": "2026-07-01T00:00:00",
+    "Image": "Sandrone.webp",
+    "Rarity": 5,
+    "Element": "Cryo",
+    "Class": "Claymore",
+    "Region": [
+      "Snezhnaya"
+    ],
+    "ModFilesName": "Sandrone",
+    "InGameSkins": [],
+    "InternalName": "Sandrone",
+    "DisplayName": "Sandrone"
+  },
+  {
+    "Keys": [
+      "linnea"
+    ],
+    "ReleaseDate": "2026-04-08T00:00:00",
+    "Image": "Linnea.webp",
+    "Rarity": 5,
+    "Element": "Geo",
+    "Class": "Bow",
+    "Region": [
+      "Nod-Krai"
+    ],
+    "ModFilesName": "Linnea",
+    "InGameSkins": [],
+    "InternalName": "Linnea",
+    "DisplayName": "Linnea"
   }
 ]

@@ -138,7 +138,7 @@
         "InternalName": "ExorcisticAdjuration",
         "DisplayName": "Exorcistic Adjuration"
       }
-	],
+    ],
     "InternalName": "Sanhua",
     "DisplayName": "Sanhua"
   },
@@ -315,7 +315,7 @@
         "InternalName": "LaurelNymph",
         "DisplayName": "Laurel Nymph"
       }
-	],
+    ],
     "InternalName": "Changli",
     "DisplayName": "Changli"
   },
@@ -339,7 +339,7 @@
         "InternalName": "PeachBlossom",
         "DisplayName": "Peach Blossom"
       }
-	],
+    ],
     "InternalName": "Jinhsi",
     "DisplayName": "Jinhsi"
   },
@@ -447,6 +447,23 @@
   },
   {
     "Keys": [
+      "Aemeath"
+    ],
+    "ReleaseDate": "2026-06-25T00:00:00",
+    "Image": "aemeath.webp",
+    "Rarity": 5,
+    "Element": "Fusion",
+    "Class": "Sword",
+    "Region": [
+      "Lahai"
+    ],
+    "ModFilesName": "Aemeath",
+    "InGameSkins": [],
+    "InternalName": "Aemeath",
+    "DisplayName": "Aemeath"
+  },
+  {
+    "Keys": [
       "Carlotta"
     ],
     "ReleaseDate": "2025-01-02T00:00:00",
@@ -465,7 +482,7 @@
         "InternalName": "SplashingSummer",
         "DisplayName": "Splashing Summer"
       }
-	],
+    ],
     "InternalName": "Carlotta",
     "DisplayName": "Carlotta"
   },
@@ -540,7 +557,7 @@
         "InternalName": "DowntownRepose",
         "DisplayName": "Downtown Repose"
       }
-	],
+    ],
     "InternalName": "Zani",
     "DisplayName": "Zani"
   },
@@ -816,5 +833,110 @@
     "InGameSkins": [],
     "InternalName": "Lucilla",
     "DisplayName": "Lucilla"
+  },
+  {
+    "Keys": [
+      "Hiyuki"
+    ],
+    "ReleaseDate": "2026-04-30T00:00:00",
+    "Image": "hiyuki.webp",
+    "Rarity": 5,
+    "Element": "Glacio",
+    "Class": "Sword",
+    "Region": [
+      "Ashinohara"
+    ],
+    "ModFilesName": "Hiyuki",
+    "InGameSkins": [],
+    "InternalName": "Hiyuki",
+    "DisplayName": "Hiyuki"
+  },
+  {
+    "Keys": [
+      "Denia"
+    ],
+    "ReleaseDate": "2026-05-21T00:00:00",
+    "Image": "denia.webp",
+    "Rarity": 5,
+    "Element": "Fusion",
+    "Class": "Rectifier",
+    "Region": [
+      "Rinascita"
+    ],
+    "ModFilesName": "Denia",
+    "InGameSkins": [],
+    "InternalName": "Denia",
+    "DisplayName": "Denia"
+  },
+  {
+    "Keys": [
+      "Lucy"
+    ],
+    "ReleaseDate": "2026-06-08T00:00:00",
+    "Image": "Lucy.webp",
+    "Rarity": 5,
+    "Element": "Spectro",
+    "Class": "Pistols",
+    "Region": [
+      "Lahai"
+    ],
+    "ModFilesName": "Lucy",
+    "InGameSkins": [],
+    "InternalName": "Lucy",
+    "DisplayName": "Lucy"
+  },
+  {
+    "Keys": [
+      "Rebecca"
+    ],
+    "ReleaseDate": "2026-06-08T00:00:00",
+    "Image": "Rebecca.webp",
+    "Rarity": 5,
+    "Element": "Electro",
+    "Class": "Pistols",
+    "Region": [
+      "Lahai"
+    ],
+    "ModFilesName": "Rebecca",
+    "InGameSkins": [],
+    "InternalName": "Rebecca",
+    "DisplayName": "Rebecca"
+  },
+  {
+    "Keys": [
+      "yangyang: xuanling",
+      "yangyang xuanling",
+      "xuanling",
+      "yangyang_xuanling"
+    ],
+    "ReleaseDate": "2026-07-10T00:00:00",
+    "Image": "YangyangXuanling.webp",
+    "Rarity": 5,
+    "Element": "Havoc",
+    "Class": "Sword",
+    "Region": [
+      "Huanglong"
+    ],
+    "ModFilesName": "YangyangXuanling",
+    "InGameSkins": [],
+    "InternalName": "Yangyang: Xuanling",
+    "DisplayName": "Yangyang: Xuanling"
+  },
+  {
+    "Keys": [
+      "Suisui"
+    ],
+    "ReleaseDate": "2026-07-30T00:00:00",
+    "Image": "Suisui.webp",
+    "Rarity": 5,
+    "Element": "Glacio",
+    "Class": "Rectifier",
+    "Region": [
+      "Huanglong"
+    ],
+    "ModFilesName": "Suisui",
+    "InGameSkins": [],
+    "InternalName": "Suisui",
+    "DisplayName": "Suisui"
   }
 ]
