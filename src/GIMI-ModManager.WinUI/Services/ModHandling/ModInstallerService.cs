@@ -317,7 +317,7 @@ public sealed class ModInstallation : IDisposable
     {
         ReleaseLockedFiles();
         var skinMod = await CreateSkinModWithOptionsAsync(options).ConfigureAwait(false);
-        
+
         try
         {
             _destinationModList.DeleteModBySkinEntryId(dupeMod.Id);

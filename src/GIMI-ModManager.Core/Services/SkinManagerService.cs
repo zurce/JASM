@@ -1059,11 +1059,11 @@ public sealed class SkinManagerService : ISkinManagerService
             {
                 int deleted = 0;
                 if (!Directory.Exists(modList.AbsModsFolderPath)) return 0;
-                
+
                 var disabledFolders = Directory.GetDirectories(modList.AbsModsFolderPath, "DISABLED_*", SearchOption.TopDirectoryOnly);
-                
+
                 using var watcher = modList.DisableWatcher();
-                
+
                 foreach (var folder in disabledFolders)
                 {
                     try

@@ -180,11 +180,12 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
 
         EnableThisMod = !_characterModList.Character.IsMultiMod && installerSettings.EnableModOnInstall;
         AlwaysOnTop = installerSettings.ModInstallerWindowOnTop;
-                ForceOverwriteDifferentNameMod = installerSettings.ForceOverwriteDifferentNameMod;
-                _existingModToOverwritePath = options?.ExistingModToOverwritePath;
-                OnPropertyChanged(nameof(HasExistingModToOverwrite));
-        
-                await Task.Run(async () =>        {
+        ForceOverwriteDifferentNameMod = installerSettings.ForceOverwriteDifferentNameMod;
+        _existingModToOverwritePath = options?.ExistingModToOverwritePath;
+        OnPropertyChanged(nameof(HasExistingModToOverwrite));
+
+        await Task.Run(async () =>
+        {
 
             var modDir = _modInstallation.AutoSetModRootFolder();
             if (modDir is not null)
