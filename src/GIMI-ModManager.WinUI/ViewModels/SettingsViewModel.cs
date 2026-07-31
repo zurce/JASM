@@ -696,6 +696,32 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     [RelayCommand]
     private async Task UpdateJasmAsync()
     {
+        // Pre-update data-safety check: if any game's mods folder points at the
+        // install root itself, the whole-folder swap would destroy it. Block and instruct.
+        var rootDataFolders = GetModsFoldersAtInstallRoot();
+        if (rootDataFolders.Count > 0)
+        {
+            var games = string.Join(", ", rootDataFolders);
+            UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_BlockedModsAtRoot") ??
+                               "Update blocked";
+            var dialog = new ContentDialog
+            {
+                Title = _localizer.GetLocalizedStringOrDefault("Settings_Update_BlockedModsAtRoot_Title") ??
+                        "Could not update",
+                Content = string.Format(
+                    _localizer.GetLocalizedStringOrDefault("Settings_Update_BlockedModsAtRoot_Message") ??
+                    "You need to move {0}'s mods location to another folder. " +
+                    "The current root folder is not compatible with auto-updating this release.",
+                    games),
+                CloseButtonText =
+                    _localizer.GetLocalizedStringOrDefault("Settings_Update_BlockedModsAtRoot_Close") ?? "OK"
+            };
+            dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;
+            await _windowManagerService.ShowDialogAsync(dialog);
+            UpdateDownloading = false;
+            return;
+        }
+
         UpdateDownloading = true;
         UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_Downloading") ?? "Downloading update...";
 
@@ -891,6 +917,79 @@ exit /b 1
             UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_ErrorStarting") ?? "Error during update";
             UpdateDownloading = false;
         }
+    }
+
+    /// <summary>
+    /// Collects the names of games whose configured mods/unloaded-mods folder
+    /// resolves to exactly the install root (<see cref="App.ROOT_DIR"/>). Those are
+    /// incompatible with the whole-folder swap update and must be moved by the user.
+    /// </summary>
+    private List<string> GetModsFoldersAtInstallRoot()
+    {
+        var offenders = new List<string>();
+        var installRoot = App.ROOT_DIR.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+        foreach (var game in Enum.GetValues<SupportedGames>())
+        {
+            var modsFolder = ReadGameModsFolderPath(game);
+            if (PathsEqual(modsFolder?.ModsFolderPath, installRoot) ||
+                PathsEqual(modsFolder?.UnloadedModsFolderPath, installRoot))
+            {
+                offenders.Add(game.ToString());
+            }
+        }
+
+        return offenders;
+    }
+
+    /// <summary>
+    /// Reads a single game's ModManagerOptions (mods/unloaded mods folder paths)
+    /// straight from its <c>ApplicationData_&lt;Game&gt;/LocalSettings.json</c>, so we can see
+    /// every game's data location regardless of which game is currently selected.
+    /// </summary>
+    private (string? ModsFolderPath, string? UnloadedModsFolderPath)? ReadGameModsFolderPath(SupportedGames game)
+    {
+        try
+        {
+            var jasmAppData = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "JASM");
+
+            var appDataFolder = Path.Combine(jasmAppData, "ApplicationData_" + game);
+#if DEBUG
+            appDataFolder += "_Debug";
+#endif
+
+            var settingsFile = Path.Combine(appDataFolder, "LocalSettings.json");
+            if (!File.Exists(settingsFile))
+                return null;
+
+            var raw = File.ReadAllText(settingsFile);
+            var settings = JsonConvert.DeserializeObject<Dictionary<string, object>>(raw);
+            if (settings is null || !settings.TryGetValue(ModManagerOptions.Section, out var modOptionsJson))
+                return null;
+
+            var options = JsonConvert.DeserializeObject<ModManagerOptions>((string)modOptionsJson);
+            if (options is null)
+                return null;
+
+            return (options.ModsFolderPath, options.UnloadedModsFolderPath);
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "Failed to read mods folder for game {Game}", game);
+            return null;
+        }
+    }
+
+    private static bool PathsEqual(string? a, string? b)
+    {
+        if (string.IsNullOrWhiteSpace(a) || string.IsNullOrWhiteSpace(b))
+            return false;
+
+        return string.Equals(
+            Path.GetFullPath(a).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar),
+            Path.GetFullPath(b).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar),
+            StringComparison.OrdinalIgnoreCase);
     }
 
     private async Task<(Uri? url, string? fileName)> GetLatestReleaseDownloadUrlAsync()

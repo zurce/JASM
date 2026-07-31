@@ -4230,4 +4230,16 @@ JASM+ не будет перемещать ваши моды и не будет 
   <data name="Settings_Update_ButtonText.Text" xml:space="preserve">
     <value>Обновить до</value>
   </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Title" xml:space="preserve">
+    <value>Не удалось обновить</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot" xml:space="preserve">
+    <value>Обновление заблокировано</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Message" xml:space="preserve">
+    <value>Вам нужно переместить расположение модов {0} в другую папку. Текущая корневая папка несовместима с автоматическим обновлением этого релиза.</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Close" xml:space="preserve">
+    <value>OK</value>
+  </data>
 </root>

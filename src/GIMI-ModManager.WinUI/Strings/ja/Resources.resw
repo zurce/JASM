@@ -4229,4 +4229,16 @@ JASMはModを移動したり削除したりしません。
   <data name="Settings_Update_ButtonText.Text" xml:space="preserve">
     <value>アップデート:</value>
   </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Title" xml:space="preserve">
+    <value>更新できませんでした</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot" xml:space="preserve">
+    <value>更新がブロックされました</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Message" xml:space="preserve">
+    <value>{0} のMODの場所を別のフォルダーに移動してください。現在のルートフォルダーは、このリリースの自動更新に対応していません。</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Close" xml:space="preserve">
+    <value>OK</value>
+  </data>
 </root>

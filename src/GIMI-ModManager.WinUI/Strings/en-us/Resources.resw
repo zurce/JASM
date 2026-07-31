@@ -3438,4 +3438,16 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   <data name="Settings_Update_ButtonText.Text" xml:space="preserve">
     <value>Update to</value>
   </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Title" xml:space="preserve">
+    <value>Could not update</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot" xml:space="preserve">
+    <value>Update blocked</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Message" xml:space="preserve">
+    <value>You need to move {0}'s mods location to another folder. The current root folder is not compatible with auto-updating this release.</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Close" xml:space="preserve">
+    <value>OK</value>
+  </data>
 </root>

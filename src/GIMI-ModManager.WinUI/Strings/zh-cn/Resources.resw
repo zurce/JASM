@@ -4230,4 +4230,16 @@ Ini路径：{1}</value>
   <data name="Settings_Update_ButtonText.Text" xml:space="preserve">
     <value>更新到</value>
   </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Title" xml:space="preserve">
+    <value>无法更新</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot" xml:space="preserve">
+    <value>更新已被阻止</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Message" xml:space="preserve">
+    <value>您需要将{0}的模组位置移动到另一个文件夹。当前根文件夹与此版本的自动更新不兼容。</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Close" xml:space="preserve">
+    <value>确定</value>
+  </data>
 </root>

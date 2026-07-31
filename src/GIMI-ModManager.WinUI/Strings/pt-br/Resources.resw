@@ -4190,4 +4190,16 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
   <data name="Settings_Update_ButtonText.Text" xml:space="preserve">
     <value>Atualizar para</value>
   </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Title" xml:space="preserve">
+    <value>Não foi possível atualizar</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot" xml:space="preserve">
+    <value>Atualização bloqueada</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Message" xml:space="preserve">
+    <value>Você precisa mover a localização dos mods de {0} para outra pasta. A pasta raiz atual não é compatível com a atualização automática desta versão.</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Close" xml:space="preserve">
+    <value>OK</value>
+  </data>
 </root>

@@ -3518,4 +3518,16 @@ JASM+ no moverá ninguno de tus mods ni los eliminará.
   <data name="Settings_Update_ButtonText.Text" xml:space="preserve">
     <value>Actualizar a</value>
   </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Title" xml:space="preserve">
+    <value>No se pudo actualizar</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot" xml:space="preserve">
+    <value>Actualización bloqueada</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Message" xml:space="preserve">
+    <value>Debes mover la ubicación de los mods de {0} a otra carpeta. La carpeta raíz actual no es compatible con la actualización automática de esta versión.</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Close" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
 </root>
