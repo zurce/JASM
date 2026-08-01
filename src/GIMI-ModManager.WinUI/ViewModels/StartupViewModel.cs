@@ -17,6 +17,8 @@ using GIMI_ModManager.WinUI.Services.AppManagement;
 using GIMI_ModManager.WinUI.Services.Notifications;
 using GIMI_ModManager.WinUI.Validators.PreConfigured;
 using GIMI_ModManager.WinUI.ViewModels.SubVms;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Serilog;
 
 namespace GIMI_ModManager.WinUI.ViewModels;
@@ -35,6 +37,9 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
     private readonly ModArchiveRepository _modArchiveRepository;
     private readonly CommandService _commandService;
     private readonly ICommunityGamesService _communityGamesService;
+    private readonly ILanguageLocalizer _localizer;
+    private readonly LifeCycleService _lifeCycleService;
+    private readonly Dictionary<string, string> _nameToLangCode = new();
 
     public PathPicker PathToGIMIFolderPicker { get; }
 
@@ -58,11 +63,15 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
 
     public ObservableCollection<GameComboBoxEntryVM> Games { get; } = new();
 
+    [ObservableProperty] private ObservableCollection<string> _languages = new();
+    [ObservableProperty] private string _selectedLanguage = string.Empty;
+
     public StartupViewModel(INavigationService navigationService, ILocalSettingsService localSettingsService,
         IWindowManagerService windowManagerService, ISkinManagerService skinManagerService,
         SelectedGameService selectedGameService, IGameService gameService, ModPresetService modPresetService,
         UserPreferencesService userPreferencesService, ModArchiveRepository modArchiveRepository,
-        CommandService commandService, ICommunityGamesService communityGamesService)
+        CommandService commandService, ICommunityGamesService communityGamesService,
+        ILanguageLocalizer localizer, LifeCycleService lifeCycleService)
     {
         _navigationService = navigationService;
         _localSettingsService = localSettingsService;
@@ -75,6 +84,8 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         _modArchiveRepository = modArchiveRepository;
         _commandService = commandService;
         _communityGamesService = communityGamesService;
+        _localizer = localizer;
+        _lifeCycleService = lifeCycleService;
 
         PathToGIMIFolderPicker = new PathPicker([]);
 
@@ -182,6 +193,71 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
     private async Task BrowseModsFolderAsync()
         => await PathToModsFolderPicker.BrowseFolderPathAsync(App.MainWindow);
 
+    [RelayCommand]
+    private async Task SelectLanguage(string? selectedLanguageName)
+    {
+        if (selectedLanguageName is null || !_nameToLangCode.TryGetValue(selectedLanguageName, out var langCode))
+            return;
+
+        if (langCode == _localizer.CurrentLanguage.LanguageCode)
+            return;
+
+        var localizerText = App.GetService<ILanguageLocalizer>();
+        var restartDialog = new ContentDialog()
+        {
+            Title = localizerText.GetLocalizedStringOrDefault("Settings_RestartRequired_LangTitle") ?? "Restart Required",
+            Content = new TextBlock()
+            {
+                Text = localizerText.GetLocalizedStringOrDefault("/Settings/ChangeLanguageDialogText",
+                    defaultValue:
+                    "Changing the language requires a restart of the application.\n" +
+                    "This is required to ensure that the application is configured correctly for the selected language.\n\n" +
+                    "Do you want to change the language?"),
+                TextWrapping = TextWrapping.WrapWholeWords,
+                IsTextSelectionEnabled = true
+            },
+            PrimaryButtonText = localizerText.GetLocalizedStringOrDefault("Settings_RestartRequired_LangPrimaryButton") ?? "Change Language and restart",
+            CloseButtonText = localizerText.GetLocalizedStringOrDefault("Settings_RestartRequired_LangCloseButton") ?? "Cancel",
+            DefaultButton = ContentDialogButton.Primary
+        };
+
+        var result = await _windowManagerService.ShowDialogAsync(restartDialog);
+
+        var currentLanguage = _localizer.CurrentLanguage.LanguageName;
+        if (result != ContentDialogResult.Primary)
+        {
+            SelectedLanguage = currentLanguage;
+            return;
+        }
+
+        await _localizer.SetLanguageAsync(langCode);
+
+        var appSettings = await _localSettingsService.ReadOrCreateSettingAsync<AppSettings>(AppSettings.Key);
+        appSettings.Language = langCode;
+        await _localSettingsService.SaveSettingAsync(AppSettings.Key, appSettings);
+        currentLanguage = _localizer.CurrentLanguage.LanguageName;
+        SelectedLanguage = currentLanguage;
+
+        await _lifeCycleService.RestartAsync(notifyOnError: true);
+    }
+
+    private void SetLanguageOptions()
+    {
+        Languages.Clear();
+        _nameToLangCode.Clear();
+
+        var supportedCultures = _localizer.AvailableLanguages.Select(l => l.LanguageCode).ToArray();
+        foreach (var language in _localizer.AvailableLanguages)
+        {
+            var languageName = language.LanguageName;
+            Languages.Add(languageName);
+            _nameToLangCode[languageName] = language.LanguageCode;
+        }
+
+        _ = supportedCultures;
+        SelectedLanguage = _localizer.CurrentLanguage.LanguageName;
+    }
+
     public async void OnNavigatedTo(object parameter)
     {
         _windowManagerService.ResizeWindowPercent(_windowManagerService.MainWindow, 50, 60);
@@ -189,6 +265,8 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
 
         var settings =
             await _localSettingsService.ReadOrCreateSettingAsync<ModManagerOptions>(ModManagerOptions.Section);
+
+        SetLanguageOptions();
 
         await SetGameComboBoxValues();
 

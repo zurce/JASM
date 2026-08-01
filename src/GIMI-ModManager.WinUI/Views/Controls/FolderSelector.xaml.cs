@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.Input;
 using GIMI_ModManager.Core.Helpers;
 using GIMI_ModManager.WinUI.ViewModels.SubVms;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -11,13 +12,45 @@ namespace GIMI_ModManager.WinUI.Views.Controls;
 
 public sealed partial class FolderSelector : UserControl
 {
+    /// <summary>
+    /// Milliseconds to wait after the user stops typing before the <see cref="PathChangedEvent"/>
+    /// is raised (and thus before the path is re-validated). Typing in a folder path currently
+    /// re-validates on every keystroke (clearing + repopulating the error InfoBar list), which is
+    /// a negligible but avoidable hot path. Debouncing avoids re-validating per keystroke.
+    /// </summary>
+    private const int ValidationDebounceMilliseconds = 300;
+
+    private readonly DispatcherQueueTimer _validationDebounceTimer;
+    private string? _pendingPathValue;
+
     public FolderSelector()
     {
+        // Create the debounce timer BEFORE InitializeComponent() (and thus before any
+        // initial Text binding that could raise TextChanged) so SelectedFolderTextBox_TextChanged
+        // never touches an uninitialized timer.
+        _validationDebounceTimer = DispatcherQueue.CreateTimer();
+        _validationDebounceTimer.Interval = TimeSpan.FromMilliseconds(ValidationDebounceMilliseconds);
+        _validationDebounceTimer.Tick += ValidationDebounceTimer_OnTick;
+
         InitializeComponent();
         BrowseCommand = new AsyncRelayCommand(() => Task.CompletedTask);
+        Unloaded += FolderSelector_OnUnloaded;
     }
 
     public event EventHandler<StringEventArgs>? PathChangedEvent;
+
+    private void FolderSelector_OnUnloaded(object sender, RoutedEventArgs e) => CancelPendingValidation();
+
+    /// <summary>
+    /// If a validation-debounce is pending, clears it so subsequent keystrokes
+    /// replace (rather than stack) the pending path change. Should be called on
+    /// navigation away to avoid a stale validation firing.
+    /// </summary>
+    private void CancelPendingValidation()
+    {
+        _validationDebounceTimer.Stop();
+        _pendingPathValue = null;
+    }
 
 
     #region ValidationErrorText
@@ -108,7 +141,20 @@ public sealed partial class FolderSelector : UserControl
     private void SelectedFolderTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         var text = (sender as TextBox)?.Text;
-        PathChangedEvent?.Invoke(this, new StringEventArgs(text));
+
+        // Debounce: store the latest value and restart the timer so PathChangedEvent
+        // fires once the user has stopped typing (~debouce ms), instead of on every keystroke.
+        _pendingPathValue = text;
+        _validationDebounceTimer.Stop();
+        _validationDebounceTimer.Start();
+    }
+
+    private void ValidationDebounceTimer_OnTick(DispatcherQueueTimer sender, object args)
+    {
+        _validationDebounceTimer.Stop();
+        var value = _pendingPathValue;
+        _pendingPathValue = null;
+        PathChangedEvent?.Invoke(this, new StringEventArgs(value));
     }
 
     public class StringEventArgs : EventArgs
