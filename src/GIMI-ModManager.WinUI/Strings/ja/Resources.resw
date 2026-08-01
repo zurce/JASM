@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   
   <xs:schema id="root">
@@ -4230,15 +4230,27 @@ JASMはModを移動したり削除したりしません。
     <value>アップデート:</value>
   </data>
   <data name="Settings_Update_BlockedModsAtRoot_Title" xml:space="preserve">
+    <!-- Title of the dialog shown when an auto-update is blocked because a game's mods folder is set to the JASM install root -->
     <value>更新できませんでした</value>
   </data>
   <data name="Settings_Update_BlockedModsAtRoot" xml:space="preserve">
+    <!-- Status text in Settings when the update is blocked due to a mods folder at the JASM install root -->
     <value>更新がブロックされました</value>
   </data>
   <data name="Settings_Update_BlockedModsAtRoot_Message" xml:space="preserve">
+    <!-- {0} is the name of the game whose mods folder is at the JASM install root. Instructs the user to move that game's mods to another folder before updating. -->
     <value>{0} のMODの場所を別のフォルダーに移動してください。現在のルートフォルダーは、このリリースの自動更新に対応していません。</value>
   </data>
   <data name="Settings_Update_BlockedModsAtRoot_Close" xml:space="preserve">
+    <!-- Close/dismiss button on the update-blocked dialog -->
     <value>OK</value>
+  </data>
+  <data name="Settings_ModsFolder_IsJasmRoot" xml:space="preserve">
+    <!-- Blocking validation error: the user tried to set the mods folder to the JASM install folder root, which is incompatible with auto-updating -->
+    <value>MODフォルダーをJASMインストールフォルダーのルートに設定することはできません。別のフォルダーを選択してください。</value>
+  </data>
+  <data name="Settings_ModsFolder_InsideJasmWarning" xml:space="preserve">
+    <!-- Non-blocking warning: the chosen mods folder is inside the JASM install folder; placing mods outside avoids them being affected by updates -->
+    <value>このMODフォルダーはJASMインストールフォルダー内にあります。更新の影響を受けないよう、JASMの外にMODを配置することをお勧めします。</value>
   </data>
 </root>
