@@ -338,6 +338,13 @@ public partial class ContextMenuVM(
 
     #region EventHandlers
 
+    /// <summary>
+    /// Requests that the mod-row context-menu flyout be closed.
+    /// Called from outside (e.g. the parent view-model) when a flyout-buttond action
+    /// opens a ContentDialog and the still-open flyout would overlap it.
+    /// </summary>
+    public void RequestCloseFlyout() => CloseFlyout?.Invoke(this, EventArgs.Empty);
+
     public void OnFlyoutClosing()
     {
         SuggestedModdableObjects.Clear();
