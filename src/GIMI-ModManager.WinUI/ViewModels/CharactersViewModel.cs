@@ -86,14 +86,44 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     /// </summary>
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ShowLegacyStartButtons))]
+    [NotifyPropertyChangedFor(nameof(CanOpenXxmi))]
+    [NotifyPropertyChangedFor(nameof(CanLaunchXxmi))]
+    [NotifyPropertyChangedFor(nameof(XxmiControlsVisibility))]
     private bool _isXxmiManaged;
+
+    /// <summary>Shows the XXMI launch controls when the game is XXMI-managed.</summary>
+    public bool XxmiControlsVisibility => IsXxmiManaged;
+
+    /// <summary>
+    /// Text for the XXMI "Launch &lt;Game&gt;" button. Uses the XXMI importer code so it's clear
+    /// we're launching through XXMI (e.g. "Launch GIMI", "Launch SRMI") rather than the game's
+    /// display name.
+    /// </summary>
+    public string XxmiLaunchButtonText => string.IsNullOrWhiteSpace(XxmiGameIdentifier)
+        ? $"Launch {_gameService.GameShortName}"
+        : $"Launch {XxmiGameIdentifier}";
 
     /// <summary>Resolved path to the XXMI Launcher executable, or null if unavailable.</summary>
     public string? XxmiLauncherExePath { get; private set; }
 
+    /// <summary>XXMI importer identifier for the current game (e.g. GIMI / SRMI / ZZMI).</summary>
+    public string? XxmiGameIdentifier { get; private set; }
+
+    /// <summary>Resource path to the per-game XXMI icon (e.g. ms-appx:///Assets/Xxmi/GIMI.ico).</summary>
+    public string? XxmiGameIcon { get; private set; }
+
+    /// <summary>Resource path to the generic XXMI window icon for the Open XXMI button.</summary>
+    public string XxmiLauncherIcon { get; } = "ms-appx:///Assets/Xxmi/window-icon.ico";
+
     /// <summary>True when the XXMI launcher is available to open.</summary>
     public bool CanOpenXxmi => IsXxmiManaged && !string.IsNullOrWhiteSpace(XxmiLauncherExePath) &&
                               File.Exists(XxmiLauncherExePath);
+
+    /// <summary>
+    /// True when the game can be launched through XXMI (XXMI-managed, launcher present, and
+    /// the game has a known XXMI identifier).
+    /// </summary>
+    public bool CanLaunchXxmi => CanOpenXxmi && !string.IsNullOrWhiteSpace(XxmiGameIdentifier);
 
     /// <summary>
     /// True when the legacy Start 3DMigoto / Start Game buttons should be shown (i.e. the
@@ -154,6 +184,15 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         var modManagerOptions = _localSettingsService.ReadSetting<ModManagerOptions>(ModManagerOptions.Section);
         IsXxmiManaged = modManagerOptions?.TreatAsXXMI ?? false;
         XxmiLauncherExePath = XxmiInstallationDetector.TryResolveLauncherExe();
+
+        // Resolve the current game's XXMI importer identifier + icon for the Launch button.
+        if (Enum.TryParse<SupportedGames>(_gameService.GameShortName, out var supportedGame))
+        {
+            XxmiGameIdentifier = XxmiInstallationDetector.GetXxmiGameIdentifier(supportedGame);
+            XxmiGameIcon = XxmiGameIdentifier is null
+                ? null
+                : $"ms-appx:///Assets/Xxmi/{XxmiGameIdentifier}.ico";
+        }
 
         CanCheckForUpdates = _modUpdateAvailableChecker.IsReady;
         _modUpdateAvailableChecker.OnUpdateCheckerEvent += (_, _) =>
@@ -936,8 +975,8 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
             SimpleSelectProcessDialogVM.StartType.Game);
 
     /// <summary>
-    /// For an XXMI-managed game, opens the XXMI Launcher GUI instead of starting the game or
-    /// 3DMigoto directly, so the user can manage launch/settings through XXMI.
+    /// For an XXMI-managed game, opens the XXMI Launcher GUI (no arguments) so the user can
+    /// change settings / manage launch through XXMI.
     /// </summary>
     [RelayCommand]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("", "SecurityNoSecurityBrowserCmd2")]
@@ -945,20 +984,46 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     {
         if (!CanOpenXxmi)
             return;
+        await LaunchXxmiProcessAsync(XxmiLauncherExePath!, arguments: null);
+    }
 
+    /// <summary>
+    /// For an XXMI-managed game, launches the game through XXMI the same way XXMI's Quick
+    /// Start shortcuts do: <c>XXMI Launcher.exe --nogui --xxmi &lt;GAME&gt;</c>.
+    /// </summary>
+    [RelayCommand]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("", "SecurityNoSecurityBrowserCmd2")]
+    private async Task LaunchXxmiAsync()
+    {
+        if (!CanLaunchXxmi)
+            return;
+        await LaunchXxmiProcessAsync(XxmiLauncherExePath!, $"--nogui --xxmi {XxmiGameIdentifier}");
+    }
+
+    private async Task LaunchXxmiProcessAsync(string exePath, string? arguments)
+    {
         try
         {
-            using var ps = System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            var startInfo = new System.Diagnostics.ProcessStartInfo
             {
-                FileName = XxmiLauncherExePath!,
-                WorkingDirectory = Path.GetDirectoryName(XxmiLauncherExePath),
-                UseShellExecute = false
-            });
+                FileName = exePath,
+                WorkingDirectory = Path.GetDirectoryName(exePath),
+                Arguments = arguments ?? string.Empty,
+                UseShellExecute = true
+            };
+            var started = System.Diagnostics.Process.Start(startInfo);
+            _logger.Information("Launched XXMI Launcher: {Path} {Arguments} (pid={Pid})", exePath, arguments, started?.Id);
         }
         catch (Exception ex)
         {
-            _logger.Error(ex, "Failed to open XXMI Launcher");
+            _logger.Error(ex, "Failed to launch XXMI Launcher ({Arguments})", arguments);
+            NotificationManager.ShowNotification(
+                _localizer.GetLocalizedStringOrDefault("Notification_CouldNotStartProcess") ?? "Could not start process",
+                ex.Message,
+                null);
         }
+
+        await Task.CompletedTask;
     }
 
     [RelayCommand]

@@ -238,11 +238,33 @@
                     </ToolTipService.ToolTip>
                 </Button>
                 <Button
-                    Margin="32,0,32,0"
-                    Command="{x:Bind ViewModel.OpenXxmiCommand}"
-                    Content="Open XXMI"
-                    l:Uids.Uid="CharactersPage_OpenXxmi"
+                    Margin="16,0,8,0"
+                    Command="{x:Bind ViewModel.LaunchXxmiCommand}"
                     Visibility="{x:Bind ViewModel.IsXxmiManaged, Mode=OneWay}">
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Image Width="16" Height="16">
+                            <Image.Source>
+                                <BitmapImage DecodePixelWidth="16" UriSource="{x:Bind ViewModel.XxmiGameIcon}" />
+                            </Image.Source>
+                        </Image>
+                        <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.XxmiLaunchButtonText}" />
+                    </StackPanel>
+                    <ToolTipService.ToolTip>
+                        <TextBlock TextWrapping="WrapWholeWords" Text="Launch the game through XXMI (same as the Quick Start shortcut)." />
+                    </ToolTipService.ToolTip>
+                </Button>
+                <Button
+                    Margin="8,0,32,0"
+                    Command="{x:Bind ViewModel.OpenXxmiCommand}"
+                    Visibility="{x:Bind ViewModel.IsXxmiManaged, Mode=OneWay}">
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Image Width="16" Height="16">
+                            <Image.Source>
+                                <BitmapImage DecodePixelWidth="16" UriSource="{x:Bind ViewModel.XxmiLauncherIcon}" />
+                            </Image.Source>
+                        </Image>
+                        <TextBlock VerticalAlignment="Center" Text="Open XXMI" />
+                    </StackPanel>
                     <ToolTipService.ToolTip>
                         <TextBlock TextWrapping="WrapWholeWords" Text="{x:Bind ViewModel.XxmiLauncherExePath, Mode=OneWay}" />
                     </ToolTipService.ToolTip>
