@@ -844,7 +844,68 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
             var scriptPath = Path.Combine(parentDir, "JASM_Update.cmd");
             var logPath = Path.Combine(parentDir, "JASM_Update.log");
-            var script = $@"@echo off
+
+            // If any game keeps its mods folder *inside* (but not at the root of) the
+            // install dir, we must NOT move the whole install folder away and nuke it
+            // (that deletes their mods). Instead use the safe path: delete only the
+            // enumerated app files, then drop the new release files in, leaving user
+            // data and any extraneous files untouched.
+            var useSafeUpdate = HasUserDataInsideInstallDir();
+
+            string script;
+            string? manifestPath = null;
+            if (useSafeUpdate)
+            {
+                // Build a relative-path manifest of the new release's app files.
+                manifestPath = Path.Combine(parentDir, "JASM_Update_files.txt");
+                var relPaths = Directory.EnumerateFiles(stagingPath, "*", SearchOption.AllDirectories)
+                    .Select(f => Path.GetRelativePath(stagingPath, f))
+                    .Distinct(StringComparer.OrdinalIgnoreCase)
+                    .OrderBy(r => r, StringComparer.OrdinalIgnoreCase)
+                    .ToList();
+                File.WriteAllLines(manifestPath, relPaths);
+                _logger.Information("Update: SAFE path selected; wrote {ManifestFile} with {Count} files",
+                    manifestPath, relPaths.Count);
+
+                script = $@"@echo off
+set log=""{logPath}""
+echo %date% %time% Starting SAFE update... > %log%
+echo installDir={installFolderName} >> %log%
+echo stagingDir={UpdateStagingFolder} >> %log%
+echo exeName={exeName} >> %log%
+timeout /t 8 /nobreak > nul
+cd /d ""{parentDir}"" 2>> %log%
+
+echo Stopping any remaining JASM processes... >> %log%
+taskkill /f /im ""{exeName}"" > nul 2>&1
+timeout /t 2 /nobreak > nul
+
+echo Deleting only old app files (user data untouched)... >> %log%
+if exist ""{manifestPath}"" (
+  for /f ""usebackq delims="" %%L in (""{manifestPath}"") do (
+    if exist ""{installDir}\%%L"" del /f /q ""{installDir}\%%L"" 2>> %log%
+  )
+)
+echo Dropping new app files in... >> %log%
+xcopy ""{stagingPath}\*"" ""{installDir}\"" /e /y /i /q > nul 2>> %log%
+
+del ""{manifestPath}"" > nul 2>&1
+echo Starting new version... >> %log%
+start """" ""{installDir}\{exeName}"" >> %log% 2>&1
+echo Update complete >> %log%
+del ""%~f0""
+exit /b 0
+
+:failed
+echo Update FAILED - check %log% for details >> %log%
+pause
+del ""%~f0""
+exit /b 1
+";
+            }
+            else
+            {
+                script = $@"@echo off
 set log=""{logPath}""
 echo %date% %time% Starting update... > %log%
 echo installDir={installFolderName} >> %log%
@@ -888,6 +949,8 @@ pause
 del ""%~f0""
 exit /b 1
 ";
+            }
+
 
             _logger.Information("Update: installDir={InstallDir}", installDir);
             _logger.Information("Update: parentDir={ParentDir}", parentDir);
@@ -940,6 +1003,42 @@ exit /b 1
         }
 
         return offenders;
+    }
+
+    /// <summary>
+    /// Returns true if any game's mods/unloaded-mods folder lives somewhere *inside*
+    /// (but not at the root of) the install dir. Those must use the safe/expanded update
+    /// path (delete only app files, drop new files in) so user data is never nuked.
+    /// </summary>
+    private bool HasUserDataInsideInstallDir()
+    {
+        var installRoot = App.ROOT_DIR.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+        foreach (var game in Enum.GetValues<SupportedGames>())
+        {
+            var modsFolder = ReadGameModsFolderPath(game);
+            if (IsInsideFolder(modsFolder?.ModsFolderPath, installRoot) ||
+                IsInsideFolder(modsFolder?.UnloadedModsFolderPath, installRoot))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// True when <paramref name="path"/> is a strict child of <paramref name="folder"/> (not equal).
+    /// </summary>
+    private static bool IsInsideFolder(string? path, string folder)
+    {
+        if (string.IsNullOrWhiteSpace(path))
+            return false;
+
+        var fullPath = Path.GetFullPath(path).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+        var root = folder.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+        return fullPath.StartsWith(root + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase);
     }
 
     /// <summary>
