@@ -1,5 +1,6 @@
 using CommunityToolkit.WinUI;
 using CommunityToolkit.WinUI.UI.Animations;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.WinUI.ViewModels.CharacterGalleryViewModels;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
@@ -154,5 +155,19 @@ public sealed partial class CharacterGalleryPage : Page
     private void SortByDescendingToggleButton_OnUnchecked(object sender, RoutedEventArgs e)
     {
         ViewModel.OnSortToggleButtonChanged(false);
+    }
+
+    private void ViewToggleSwitch_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        var localizer = App.GetService<ILanguageLocalizer>();
+        ViewToggleSwitch.OffContent = localizer.GetLocalizedStringOrDefault("CharacterGalleryPage_ViewToggleSwitch_OffContent") ?? "Detailed View";
+        ViewToggleSwitch.OnContent = localizer.GetLocalizedStringOrDefault("CharacterGalleryPage_ViewToggleSwitch_OnContent") ?? "Gallery View";
+    }
+
+    private void SingleSelectCheckBox_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        var localizer = App.GetService<ILanguageLocalizer>();
+        SingleSelectCheckBox.Content = localizer.GetLocalizedStringOrDefault("CharacterGalleryPage_SingleSelect_Content") ?? "Single Select";
+        ToolTipService.SetToolTip(SingleSelectCheckBox, localizer.GetLocalizedStringOrDefault("CharacterGalleryPage_SingleSelect_ToolTip") ?? "Selecting this will only allow one mod to be enabled at a time.");
     }
 }

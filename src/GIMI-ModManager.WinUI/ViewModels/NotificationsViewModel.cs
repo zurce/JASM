@@ -2,6 +2,7 @@
 using Windows.System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.WinUI.Services.Notifications;
 
 namespace GIMI_ModManager.WinUI.ViewModels;
@@ -23,12 +24,12 @@ public partial class NotificationsViewModel : ObservableRecipient
     {
         if (!File.Exists(LogFilePath))
         {
-            NotificationManager.ShowNotification("Log file not found", "", null);
+            NotificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notifications_LogFileNotFoundTitle") ?? "Log file not found", "", null);
             return;
         }
 
         var openResult = await Launcher.LaunchFileAsync(await StorageFile.GetFileFromPathAsync(LogFilePath));
         if (!openResult)
-            NotificationManager.ShowNotification("Log file could not be opened", "", null);
+            NotificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notifications_LogFileCouldNotOpenTitle") ?? "Log file could not be opened", "", null);
     }
 }

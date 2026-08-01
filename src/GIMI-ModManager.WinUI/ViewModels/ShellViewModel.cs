@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.GamesService;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Services;
@@ -26,17 +27,15 @@ public partial class ShellViewModel : ObservableRecipient
     public INavigationService NavigationService { get; }
     public INavigationViewService NavigationViewService { get; }
     public NotificationManager NotificationManager { get; }
-    public ElevatorService ElevatorService { get; }
 
     public ShellViewModel(INavigationService navigationService, INavigationViewService navigationViewService,
-        NotificationManager notificationManager, ElevatorService elevatorService, UpdateChecker updateChecker,
+        NotificationManager notificationManager, UpdateChecker updateChecker,
         IGameService gameService, SelectedGameService selectedGameService, BusyService busyService)
     {
         NavigationService = navigationService;
         NavigationService.Navigated += OnNavigated;
         NavigationViewService = navigationViewService;
         NotificationManager = notificationManager;
-        ElevatorService = elevatorService;
         _updateChecker = updateChecker;
         GameService = gameService;
         SelectedGameService = selectedGameService;
@@ -96,22 +95,5 @@ public partial class ShellViewModel : ObservableRecipient
         }
 
         NavigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
-    }
-
-    public async Task RefreshGenshinMods()
-    {
-        if (!IsNotFirstTimeStartupPage)
-        {
-            return;
-        }
-
-        if (ElevatorService.ElevatorStatus == ElevatorStatus.NotRunning)
-        {
-            NotificationManager.ShowNotification("Elevator is not running",
-                "Please start the Elevator first in the Settings page",
-                TimeSpan.FromSeconds(5));
-        }
-        else
-            await Task.Run(async () => await ElevatorService.RefreshGenshinMods());
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel;
 using Windows.Win32;
 using Windows.Win32.Foundation;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Helpers;
 using GIMI_ModManager.Core.Services.CommandService;
 using GIMI_ModManager.Core.Services.CommandService.Models;
+using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Services.ModHandling;
 using GIMI_ModManager.WinUI.Services.Notifications;
 using Serilog;
@@ -129,7 +131,7 @@ public class CommandHandlerService(CommandService commandService, ILogger logger
 #endif
 
             _logger.Error(e, "An error occured when starting command");
-            return Result<ProcessCommand>.Error(e, new SimpleNotification("An error occured when starting command",
+            return Result<ProcessCommand>.Error(e, new SimpleNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CommandStartError") ?? "An error occured when starting command",
                 e.Message, null));
         }
     }
@@ -143,16 +145,16 @@ public class CommandHandlerService(CommandService commandService, ILogger logger
 
         if (command is null)
         {
-            return Result<ProcessCommand>.Error(new SimpleNotification("Command not found",
-                $"Command with id '{commandId}' not found"));
+            return Result<ProcessCommand>.Error(new SimpleNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CommandNotFound") ?? "Command not found",
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CommandNotFoundMsg") ?? "Command with id '{0}' not found", commandId)));
         }
 
         var errors = await InternalCanRunCommandAsync(commandId, variablesInput, cancellationToken);
 
         if (errors.Count > 0)
         {
-            return Result<ProcessCommand>.Error(new SimpleNotification("Command cannot be started",
-                $"Command '{command.CommandDisplayName}' cannot be started due to the following errors: {string.Join(", ", errors)}"));
+            return Result<ProcessCommand>.Error(new SimpleNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CommandCannotStart") ?? "Command cannot be started",
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CommandCannotStartMsg") ?? "Command '{0}' cannot be started due to the following errors: {1}", command.CommandDisplayName, string.Join(", ", errors))));
         }
 
         var processCommand = _commandService.CreateCommand(command, variablesInput);
@@ -160,8 +162,8 @@ public class CommandHandlerService(CommandService commandService, ILogger logger
         processCommand.Start();
 
 
-        return Result<ProcessCommand>.Success(processCommand, new SimpleNotification("Command started",
-            $"Command '{command.CommandDisplayName}' started"));
+        return Result<ProcessCommand>.Success(processCommand, new SimpleNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CommandStarted") ?? "Command started",
+            string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CommandStartedMsg") ?? "Command '{0}' started", command.CommandDisplayName)));
     }
 
     public async Task<List<CommandDefinition>> GetCommandsThatContainSpecialVariablesAsync(

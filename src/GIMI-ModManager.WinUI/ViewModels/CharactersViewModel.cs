@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Windows.Storage;
 using Windows.System;
@@ -51,7 +51,6 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     public readonly string StartGameIcon;
     public readonly string ShortGameName;
     public NotificationManager NotificationManager { get; }
-    public ElevatorService ElevatorService { get; }
 
     public OverviewDockPanelVM DockPanelVM { get; }
 
@@ -96,7 +95,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
 
     public CharactersViewModel(IGameService gameService, ILogger logger, INavigationService navigationService,
         ISkinManagerService skinManagerService, ILocalSettingsService localSettingsService,
-        NotificationManager notificationManager, ElevatorService elevatorService,
+        NotificationManager notificationManager,
         GenshinProcessManager genshinProcessManager, ThreeDMigtoProcessManager threeDMigtoProcessManager,
         ModDragAndDropService modDragAndDropService, ModNotificationManager modNotificationManager,
         ModCrawlerService modCrawlerService, ModSettingsService modSettingsService,
@@ -109,7 +108,6 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         _skinManagerService = skinManagerService;
         _localSettingsService = localSettingsService;
         NotificationManager = notificationManager;
-        ElevatorService = elevatorService;
         GenshinProcessManager = genshinProcessManager;
         ThreeDMigtoProcessManager = threeDMigtoProcessManager;
         _modDragAndDropService = modDragAndDropService;
@@ -122,18 +120,12 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         _localizer = localizer;
         _modRandomizationService = modRandomizationService;
 
-        ElevatorService.PropertyChanged += (_, args) =>
-        {
-            if (args.PropertyName == nameof(ElevatorService.ElevatorStatus))
-                RefreshModsInGameCommand.NotifyCanExecuteChanged();
-        };
-
         _modNotificationManager.OnModNotification += (_, _) =>
             App.MainWindow.DispatcherQueue.EnqueueAsync(RefreshNotificationsAsync);
 
         DockPanelVM = new OverviewDockPanelVM();
         StartGameIcon = _gameService.GameIcon;
-        ShortGameName = "Start " + _gameService.GameShortName;
+        ShortGameName = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_StartGamePrefix") ?? "Start"} {_gameService.GameShortName}";
         GameBananaLink = _gameService.GameBananaUrl;
 
         CanCheckForUpdates = _modUpdateAvailableChecker.IsReady;
@@ -169,7 +161,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     }
 
     private CharacterGridItemModel NoCharacterFound =>
-        new(new Character("None", $"No {_category.DisplayNamePlural} Found..."));
+        new(new Character("None", string.Format(_localizer.GetLocalizedStringOrDefault("CharactersPage_NoCategoryFound") ?? "No {0} Found...", _localizer.GetLocalizedStringOrDefault("Category_" + _category.DisplayNamePlural.Replace(" ", "")) ?? _category.DisplayNamePlural)));
 
     public void AutoSuggestBox_TextChanged(string text)
     {
@@ -317,12 +309,14 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         _busyService.BusyChanged += OnBusyChangedHandler;
 
         _category = category;
-        CategoryPageTitle =
-            $"{category.DisplayName} {_localizer.GetLocalizedStringOrDefault("Overview", useUidAsDefaultValue: true)}";
-        ModToggleText = $"Show only {category.DisplayNamePlural} with Mods";
-        ModEnabledToggleText = $"Show only {category.DisplayNamePlural} with Enabled Mods";
-        ModNotificationsToggleText = $"Show only {category.DisplayNamePlural} with Mod Notifications";
-        SearchBoxPlaceHolder = $"Search {category.DisplayNamePlural}...";
+        var catName = _localizer.GetLocalizedStringOrDefault("Category_" + category.DisplayName.Replace(" ", "")) ?? category.DisplayName;
+        var catNamePlural = _localizer.GetLocalizedStringOrDefault("Category_" + category.DisplayNamePlural.Replace(" ", "")) ?? category.DisplayNamePlural;
+        var pageTitleFormat = _localizer.GetLocalizedStringOrDefault("CharactersPage_TitleFormat") ?? "{0} Overview";
+        CategoryPageTitle = string.Format(pageTitleFormat, catName);
+        ModToggleText = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_ModToggleText") ?? "Show only"} {catNamePlural} {_localizer.GetLocalizedStringOrDefault("CharactersPage_ModToggleSuffix") ?? "with Mods"}";
+        ModEnabledToggleText = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_ModEnabledToggleText") ?? "Show only"} {catNamePlural} {_localizer.GetLocalizedStringOrDefault("CharactersPage_ModEnabledToggleSuffix") ?? "with Enabled Mods"}";
+        ModNotificationsToggleText = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_ModNotificationsToggleText") ?? "Show only"} {catNamePlural} {_localizer.GetLocalizedStringOrDefault("CharactersPage_ModNotificationsToggleSuffix") ?? "with Mod Notifications"}";
+        SearchBoxPlaceHolder = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_SearchPrefix") ?? "Search"} {catNamePlural}...";
 
 
         var characters = _gameService.GetModdableObjects(_category);
@@ -749,18 +743,24 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     const string DefaultUnpinGlyph = "\uE77A";
     const string DefaultUnpinText = "Unpin Character";
 
+    private string GetLocalizedPinText() =>
+        _localizer.GetLocalizedStringOrDefault("Characters_PinToTopText") ?? DefaultPinText;
+
+    private string GetLocalizedUnpinText() =>
+        _localizer.GetLocalizedStringOrDefault("Characters_UnpinCharacterText") ?? DefaultUnpinText;
+
     public void OnRightClickContext(CharacterGridItemModel clickedCharacter)
     {
         ClearNotificationsCommand.NotifyCanExecuteChanged();
         DisableCharacterModsCommand.NotifyCanExecuteChanged();
         if (clickedCharacter.IsPinned)
         {
-            PinText = DefaultUnpinText;
+            PinText = GetLocalizedUnpinText();
             PinGlyph = DefaultUnpinGlyph;
         }
         else
         {
-            PinText = DefaultPinText;
+            PinText = GetLocalizedPinText();
             PinGlyph = DefaultPinGlyph;
         }
     }
@@ -843,13 +843,13 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         catch (Exception e)
         {
             _logger.Error(e, "Error disabling mods for character {Character}", character.Character.InternalName);
-            NotificationManager.ShowNotification("Error disabling mods", e.Message, TimeSpan.FromSeconds(6));
+            NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ErrorDisablingModsTitle") ?? "Error disabling mods", e.Message, TimeSpan.FromSeconds(6));
             return;
         }
 
         character.SetMods(updatedMods);
         await RefreshMultipleModsWarningAsync();
-        NotificationManager.ShowNotification("Mods Disabled", $"Alls mods for {character.Character.DisplayName} have been disabled", null);
+        NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ModsDisabledTitle") ?? "Mods Disabled", string.Format(_localizer.GetLocalizedStringOrDefault("Characters_ModsDisabledMessage") ?? "Alls mods for {0} have been disabled", character.Character.DisplayName), null);
     }
 
     [RelayCommand]
@@ -908,16 +908,106 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         await SimpleSelectProcessDialogVM.InternalStart(GenshinProcessManager,
             SimpleSelectProcessDialogVM.StartType.Game);
 
-    private bool CanRefreshModsInGame()
+    [RelayCommand]
+    private async Task EnableAllModsDialogAsync(Microsoft.UI.Xaml.Controls.ContentDialog dialog)
     {
-        return ElevatorService.ElevatorStatus == ElevatorStatus.Running;
+        dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;
+        dialog.Title = _localizer.GetLocalizedStringOrDefault("CharactersPage_EnableAllDialog_Title") ?? "Enable all mods?";
+        dialog.PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("CharactersPage_EnableAllDialog_PrimaryButtonText") ?? "Cancel";
+        dialog.SecondaryButtonText = _localizer.GetLocalizedStringOrDefault("CharactersPage_EnableAllDialog_SecondaryButtonText") ?? "Confirm";
+        var result = await dialog.ShowAsync();
+        if (result == Microsoft.UI.Xaml.Controls.ContentDialogResult.Secondary)
+        {
+            var activeCategories = _backendCharacters.Select(c => c.Character.ModCategory).DistinctBy(c => c.InternalName).ToList();
+            if (activeCategories.Count == 0) return;
+
+            var errors = await _skinManagerService.EnableAllModsAsync(activeCategories);
+
+            await RefreshBackendCharactersModsAsync();
+            ResetContent();
+
+            if (errors.Length == 0)
+            {
+                var categoryNames = string.Join(", ", activeCategories.Select(c => c.DisplayNamePlural));
+                NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ModsEnabledTitle") ?? "Mods enabled", string.Format(_localizer.GetLocalizedStringOrDefault("Characters_ModsEnabledMessage") ?? "All tracked mods have been enabled for {0}.", categoryNames), TimeSpan.FromSeconds(5));
+            }
+            else
+            {
+                NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ErrorsEnablingModsTitle") ?? "Errors while enabling mods", string.Format(_localizer.GetLocalizedStringOrDefault("Characters_ErrorsEnablingModsMessage") ?? "An error occurred for {0} mods. Check logs.", errors.Length), TimeSpan.FromSeconds(10));
+            }
+        }
     }
 
-    [RelayCommand(CanExecute = nameof(CanRefreshModsInGame))]
-    private async Task RefreshModsInGameAsync()
+    [RelayCommand]
+    private async Task DisableAllModsDialogAsync(Microsoft.UI.Xaml.Controls.ContentDialog dialog)
     {
-        _logger.Debug("Refreshing Mods In Game");
-        await ElevatorService.RefreshGenshinMods();
+        dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;
+        dialog.Title = _localizer.GetLocalizedStringOrDefault("CharactersPage_DisableAllDialog_Title") ?? "Disable all mods?";
+        dialog.PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("CharactersPage_DisableAllDialog_PrimaryButtonText") ?? "Cancel";
+        dialog.SecondaryButtonText = _localizer.GetLocalizedStringOrDefault("CharactersPage_DisableAllDialog_SecondaryButtonText") ?? "Confirm";
+        var result = await dialog.ShowAsync();
+        if (result == Microsoft.UI.Xaml.Controls.ContentDialogResult.Secondary)
+        {
+            var activeCategories = _backendCharacters.Select(c => c.Character.ModCategory).DistinctBy(c => c.InternalName).ToList();
+            if (activeCategories.Count == 0) return;
+
+            var errors = await _skinManagerService.DisableAllModsAsync(activeCategories);
+
+            await RefreshBackendCharactersModsAsync();
+            ResetContent();
+
+            if (errors.Length == 0)
+            {
+                var categoryNames = string.Join(", ", activeCategories.Select(c => c.DisplayNamePlural));
+                NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ModsDisabledSuccessTitle") ?? "Mods disabled", string.Format(_localizer.GetLocalizedStringOrDefault("Characters_ModsDisabledSuccessMessage") ?? "All tracked mods have been disabled for {0}.", categoryNames), TimeSpan.FromSeconds(5));
+            }
+            else
+            {
+                NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ErrorsDisablingModsTitle") ?? "Errors while disabling mods", string.Format(_localizer.GetLocalizedStringOrDefault("Characters_ErrorsDisablingModsMessage") ?? "An error occurred for {0} mods. Check logs.", errors.Length), TimeSpan.FromSeconds(10));
+            }
+        }
+    }
+
+    [RelayCommand]
+    private async Task CleanUpModsDialogAsync(Microsoft.UI.Xaml.Controls.ContentDialog dialog)
+    {
+        dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;
+        dialog.Title = _localizer.GetLocalizedStringOrDefault("CharactersPage_CleanUpDialog_Title") ?? "Clean up disable mods?";
+        dialog.PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("CharactersPage_CleanUpDialog_PrimaryButtonText") ?? "Cancel";
+        dialog.SecondaryButtonText = _localizer.GetLocalizedStringOrDefault("CharactersPage_CleanUpDialog_SecondaryButtonText") ?? "Yeah man i wanna do it";
+        var result = await dialog.ShowAsync();
+        if (result == Microsoft.UI.Xaml.Controls.ContentDialogResult.Secondary)
+        {
+            var activeCategories = _backendCharacters.Select(c => c.Character.ModCategory).DistinctBy(c => c.InternalName).ToList();
+            if (activeCategories.Count == 0) return;
+
+            var totalDeleted = await _skinManagerService.CleanUpDisabledModsAsync(activeCategories);
+            await _skinManagerService.RefreshModsAsync();
+
+            await RefreshBackendCharactersModsAsync();
+            ResetContent();
+
+            var categoryNames = string.Join(", ", activeCategories.Select(c => c.DisplayNamePlural));
+            NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_CleanupCompleteTitle") ?? "Cleanup complete", string.Format(_localizer.GetLocalizedStringOrDefault("Characters_CleanupCompleteMessage") ?? "Deleted {0} disabled mods for {1}.", totalDeleted, categoryNames), TimeSpan.FromSeconds(5));
+        }
+    }
+
+    private async Task RefreshBackendCharactersModsAsync()
+    {
+        foreach (var characterGridItemModel in _backendCharacters)
+        {
+            var modList = _skinManagerService.GetCharacterModList(characterGridItemModel.Character);
+
+            var characterModItems = new List<CharacterModItem>();
+            foreach (var skinModEntry in modList.Mods)
+            {
+                var modSettings = await skinModEntry.Mod.Settings.TryReadSettingsAsync(true);
+                characterModItems.Add(new CharacterModItem(skinModEntry.Mod.GetDisplayName(), skinModEntry.IsEnabled, modSettings?.DateAdded ?? default));
+            }
+
+            characterGridItemModel.SetMods(characterModItems);
+        }
+        await RefreshMultipleModsWarningAsync();
     }
 
     [ObservableProperty] private bool _isAddingMod = false;
@@ -949,7 +1039,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         catch (Exception e)
         {
             _logger.Error(e, "Error adding mod");
-            NotificationManager.ShowNotification("Error adding mod", e.Message, TimeSpan.FromSeconds(10));
+            NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ErrorAddingModTitle") ?? "Error adding mod", e.Message, TimeSpan.FromSeconds(10));
         }
         finally
         {
@@ -975,7 +1065,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
 
         if (!GameBananaUrlHelper.TryGetModIdFromUrl(uri, out _))
         {
-            NotificationManager.ShowNotification("Invalid GameBanana mod page link", "", null);
+            NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_InvalidGameBananaLinkTitle") ?? "Invalid GameBanana mod page link", "", null);
             return;
         }
 
@@ -987,7 +1077,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         catch (Exception e)
         {
             _logger.Error(e, "Error opening mod page window");
-            NotificationManager.ShowNotification("Error opening mod page window", e.Message, TimeSpan.FromSeconds(10));
+            NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_ErrorOpeningModPageTitle") ?? "Error opening mod page window", e.Message, TimeSpan.FromSeconds(10));
         }
         finally
         {
@@ -1057,25 +1147,25 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         var othersCharacter = _backendCharacters.FirstOrDefault(ch =>
             ch.Character.InternalName.Id.Contains("Others", StringComparison.OrdinalIgnoreCase));
 
-        var alphabetical = new GridItemSortingMethod(GridItemSorter.Alphabetical, othersCharacter, lastCharacters);
+        var alphabetical = new GridItemSortingMethod(GridItemSorter.Alphabetical, _localizer.GetLocalizedStringOrDefault("CharactersPage_SortAlphabetical_Name") ?? "Alphabetical", othersCharacter, lastCharacters);
         SortingMethods.Add(alphabetical);
 
-        var byModCount = new GridItemSortingMethod(GridItemSorter.ModCount, othersCharacter, lastCharacters);
+        var byModCount = new GridItemSortingMethod(GridItemSorter.ModCount, _localizer.GetLocalizedStringOrDefault("CharactersPage_SortModCount_Name") ?? "Mod Count", othersCharacter, lastCharacters);
         SortingMethods.Add(byModCount);
 
 
-        var byModRecentlyAdded = new GridItemSortingMethod(GridItemSorter.ModRecentlyAdded, othersCharacter, lastCharacters);
+        var byModRecentlyAdded = new GridItemSortingMethod(GridItemSorter.ModRecentlyAdded, _localizer.GetLocalizedStringOrDefault("CharactersPage_SortRecentlyAdded_Name") ?? "Recently Added", othersCharacter, lastCharacters);
         SortingMethods.Add(byModRecentlyAdded);
 
         if (_category.ModCategory == ModCategory.Character)
         {
-            SortingMethods.Add(new GridItemSortingMethod(GridItemSorter.ReleaseDate, othersCharacter, lastCharacters));
-            SortingMethods.Add(new GridItemSortingMethod(GridItemSorter.Rarity, othersCharacter, lastCharacters));
+            SortingMethods.Add(new GridItemSortingMethod(GridItemSorter.ReleaseDate, _localizer.GetLocalizedStringOrDefault("CharactersPage_SortReleaseDate_Name") ?? "Release Date", othersCharacter, lastCharacters));
+            SortingMethods.Add(new GridItemSortingMethod(GridItemSorter.Rarity, _localizer.GetLocalizedStringOrDefault("CharactersPage_SortRarity_Name") ?? "Rarity", othersCharacter, lastCharacters));
         }
 
         if (_category.ModCategory == ModCategory.Weapons)
         {
-            SortingMethods.Add(new GridItemSortingMethod(GridItemSorter.Rarity, othersCharacter, lastCharacters));
+            SortingMethods.Add(new GridItemSortingMethod(GridItemSorter.Rarity, _localizer.GetLocalizedStringOrDefault("CharactersPage_SortRarity_Name") ?? "Rarity", othersCharacter, lastCharacters));
         }
     }
 
@@ -1110,10 +1200,12 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
 
     public sealed class GridItemSortingMethod(
         Sorter<CharacterGridItemModel> sortingMethodType,
+        string localizedDisplayName,
         CharacterGridItemModel? firstItem = null,
         ICollection<CharacterGridItemModel>? lastItems = null)
         : SortingMethod<CharacterGridItemModel>(sortingMethodType, firstItem, lastItems)
     {
+        public override string ToString() => localizedDisplayName;
         protected override void PostSortAction(List<CharacterGridItemModel> sortedList)
         {
             var pinnedCharacters = sortedList.Where(x => x.IsPinned).ToArray();

@@ -1,11 +1,17 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
+using System.IO.Compression;
+using System.Net.Http;
 using System.Reflection;
+using SharpCompress.Archives;
+using SharpCompress.Archives.SevenZip;
+using SharpCompress.Common;
 using Windows.Storage.Pickers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ErrorOr;
+using Newtonsoft.Json;
 using GIMI_ModManager.Core.Contracts.Entities;
 using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.GamesService;
@@ -43,7 +49,6 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     private readonly ISkinManagerService _skinManagerService;
     private readonly IGameService _gameService;
     private readonly ILanguageLocalizer _localizer;
-    private readonly AutoUpdaterService _autoUpdaterService;
     private readonly SelectedGameService _selectedGameService;
     private readonly ModUpdateAvailableChecker _modUpdateAvailableChecker;
     private readonly LifeCycleService _lifeCycleService;
@@ -53,8 +58,6 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
     private readonly NotificationManager _notificationManager;
     private readonly UpdateChecker _updateChecker;
-    public ElevatorService ElevatorService;
-
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(ResetGenshinExePathCommand))]
     public GenshinProcessManager _genshinProcessManager;
@@ -84,7 +87,8 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         SupportedGames.Genshin.ToString(),
         SupportedGames.Honkai.ToString(),
         SupportedGames.WuWa.ToString(),
-        SupportedGames.ZZZ.ToString()
+        SupportedGames.ZZZ.ToString(),
+        SupportedGames.Endfield.ToString()
     };
 
     [ObservableProperty] private string _selectedGame = string.Empty;
@@ -112,8 +116,6 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
     [ObservableProperty] private bool _legacyCharacterDetails;
 
-
-    private static bool _showElevatorStartDialog = true;
 
     private ModManagerOptions? _modManagerOptions = null!;
 
@@ -148,14 +150,14 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
         var restartDialog = new ContentDialog()
         {
-            Title = "Restart Required",
+            Title = _localizer.GetLocalizedStringOrDefault("Settings_GameSource_RestartTitle") ?? "Restart Required",
             Content = new TextBlock()
             {
-                Text = "Changing the Game Source requires a restart of the application to load the new games. JASM will close now.",
+                Text = _localizer.GetLocalizedStringOrDefault("Settings_GameSource_RestartContent") ?? "Changing the Game Source requires a restart of the application to load the new games. JASM will close now.",
                 TextWrapping = TextWrapping.WrapWholeWords
             },
-            PrimaryButtonText = "Restart now",
-            CloseButtonText = "Restart later",
+            PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("Settings_GameSource_RestartPrimary") ?? "Restart now",
+            CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_GameSource_RestartClose") ?? "Restart later",
             DefaultButton = ContentDialogButton.Primary
         };
 
@@ -171,12 +173,12 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     {
         if (string.IsNullOrWhiteSpace(CommunityRepoUrl))
         {
-            _notificationManager.ShowNotification("Error", "Community Repo URL cannot be empty.", TimeSpan.FromSeconds(3));
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_ErrorTitle") ?? "Error", _localizer.GetLocalizedStringOrDefault("Settings_CommunityGames_EmptyUrl") ?? "Community Repo URL cannot be empty.", TimeSpan.FromSeconds(3));
             return;
         }
 
         var communityDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "JASM", "CommunityGames");
-        _notificationManager.ShowNotification("Updating...", "Pulling latest community games. This might take a moment.", null);
+        _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_UpdatingTitle") ?? "Updating...", _localizer.GetLocalizedStringOrDefault("Settings_CommunityGames_Pulling") ?? "Pulling latest community games. This might take a moment.", null);
 
         try
         {
@@ -187,47 +189,46 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
                 var games = new[] { await _selectedGameService.GetSelectedGameAsync() };
                 if (_communityGamesService.VerifyIntegrity(communityDir, games))
                 {
-                    _notificationManager.ShowNotification("Success", "Community games updated and verified successfully.", TimeSpan.FromSeconds(5));
+                    _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_SuccessTitle") ?? "Success", _localizer.GetLocalizedStringOrDefault("Settings_CommunityGames_Updated") ?? "Community games updated and verified successfully.", TimeSpan.FromSeconds(5));
                     await RestartAppAsync(2);
                 }
                 else
                 {
-                    _notificationManager.ShowNotification("Error", "Integrity check failed. Check if repo matches expected structure.", TimeSpan.FromSeconds(5));
+                    _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_ErrorTitle") ?? "Error", _localizer.GetLocalizedStringOrDefault("Settings_CommunityGames_IntegrityFailed") ?? "Integrity check failed. Check if repo matches expected structure.", TimeSpan.FromSeconds(5));
                 }
             }
             else
             {
-                _notificationManager.ShowNotification("Error", "Failed to update community games.", TimeSpan.FromSeconds(5));
+                _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_ErrorTitle") ?? "Error", _localizer.GetLocalizedStringOrDefault("Settings_CommunityGames_UpdateFailed") ?? "Failed to update community games.", TimeSpan.FromSeconds(5));
             }
         }
         catch (Exception ex)
         {
             _logger.Error(ex, "Failed to update community games");
-            _notificationManager.ShowNotification("Error", "Exception occurred while pulling repo. Check logs.", TimeSpan.FromSeconds(5));
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_ErrorTitle") ?? "Error", _localizer.GetLocalizedStringOrDefault("Settings_CommunityGames_ExceptionPulling") ?? "Exception occurred while pulling repo. Check logs.", TimeSpan.FromSeconds(5));
         }
     }
 
     public SettingsViewModel(
         IThemeSelectorService themeSelectorService, ILocalSettingsService localSettingsService,
-        ElevatorService elevatorService, ILogger logger, NotificationManager notificationManager,
+        ILogger logger, NotificationManager notificationManager,
         INavigationViewService navigationViewService, IWindowManagerService windowManagerService,
         ISkinManagerService skinManagerService, UpdateChecker updateChecker,
         GenshinProcessManager genshinProcessManager, ThreeDMigtoProcessManager threeDMigtoProcessManager,
-        IGameService gameService, AutoUpdaterService autoUpdaterService, ILanguageLocalizer localizer,
+        IGameService gameService, ILanguageLocalizer localizer,
         SelectedGameService selectedGameService, ModUpdateAvailableChecker modUpdateAvailableChecker,
         LifeCycleService lifeCycleService, INavigationService navigationService,
         ModArchiveRepository modArchiveRepository, ICommunityGamesService communityGamesService)
     {
         _themeSelectorService = themeSelectorService;
         _localSettingsService = localSettingsService;
-        ElevatorService = elevatorService;
         _notificationManager = notificationManager;
         _navigationViewService = navigationViewService;
         _windowManagerService = windowManagerService;
         _skinManagerService = skinManagerService;
         _updateChecker = updateChecker;
         _gameService = gameService;
-        _autoUpdaterService = autoUpdaterService;
+
         _localizer = localizer;
         _selectedGameService = selectedGameService;
         _modUpdateAvailableChecker = modUpdateAvailableChecker;
@@ -284,8 +285,6 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             if (args.PropertyName == nameof(PathPicker.Path))
                 SaveSettingsCommand.NotifyCanExecuteChanged();
         };
-        ElevatorService.CheckStatus();
-
         MaxCacheLimit = localSettingsService.ReadSetting<ModArchiveSettings>(ModArchiveSettings.Key)
             ?.MaxLocalArchiveCacheSizeGb ?? new ModArchiveSettings().MaxLocalArchiveCacheSizeGb;
         SetCacheString(MaxCacheLimit);
@@ -329,17 +328,17 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         {
             var result = await _windowManagerService.ShowDialogAsync(new ContentDialog()
             {
-                Title = "Restart required",
+                Title = _localizer.GetLocalizedStringOrDefault("Settings_RestartRequired_Title") ?? "Restart required",
                 Content = new TextBlock()
                 {
-                    Text =
+                    Text = _localizer.GetLocalizedStringOrDefault("Settings_RestartRequired_Content") ??
                         "You'll need to restart the application for the theme to take effect or else the application will become unstable. " +
                         "This is most likely me not configuring the theming correctly. Dark Mode is the recommended theme.\n\n" +
                         "Sorry for the inconvenience.",
                     TextWrapping = TextWrapping.Wrap
                 },
-                PrimaryButtonText = "Restart",
-                CloseButtonText = "Cancel",
+                PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("Settings_RestartRequired_PrimaryButton") ?? "Restart",
+                CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_RestartRequired_CloseButton") ?? "Cancel",
                 DefaultButton = ContentDialogButton.Primary
             });
 
@@ -347,7 +346,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
             ElementTheme = param;
             await _themeSelectorService.SetThemeAsync(param);
-            _notificationManager.ShowNotification("Restarting...", "The application will restart now.",
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_RestartingTitle") ?? "Restarting...", _localizer.GetLocalizedStringOrDefault("Settings_Restart_Restarting") ?? "The application will restart now.",
                 null);
             await RestartAppAsync();
         }
@@ -399,11 +398,11 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         var dialog = new ContentDialog();
         dialog.XamlRoot = App.MainWindow.Content.XamlRoot;
         dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-        dialog.Title = "Update Folder Paths?";
-        dialog.CloseButtonText = "Cancel";
-        dialog.PrimaryButtonText = "Save";
+        dialog.Title = _localizer.GetLocalizedStringOrDefault("Settings_UpdateFolderPaths_Title") ?? "Update Folder Paths?";
+        dialog.CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_UpdateFolderPaths_CloseButton") ?? "Cancel";
+        dialog.PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("Settings_UpdateFolderPaths_PrimaryButton") ?? "Save";
         dialog.DefaultButton = ContentDialogButton.Primary;
-        dialog.Content = "Do you want to save the new folder paths? The App will restart afterwards.";
+        dialog.Content = _localizer.GetLocalizedStringOrDefault("Settings_UpdateFolderPaths_Content") ?? "Do you want to save the new folder paths? The App will restart afterwards.";
 
         var result = await dialog.ShowAsync();
 
@@ -418,7 +417,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             await _localSettingsService.SaveSettingAsync(ModManagerOptions.Section,
                 modManagerOptions);
             _logger.Information("Saved startup settings: {@ModManagerOptions}", modManagerOptions);
-            _notificationManager.ShowNotification("Settings saved. Restarting App...", "", TimeSpan.FromSeconds(2));
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Restart_SettingsSaved") ?? "Settings saved. Restarting App...", "", TimeSpan.FromSeconds(2));
 
 
             await RestartAppAsync();
@@ -446,19 +445,19 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     {
         var result = await _windowManagerService.ShowDialogAsync(new ContentDialog()
         {
-            Title = "Reorganize Mods?",
+            Title = _localizer.GetLocalizedStringOrDefault("Settings_ReorganizeMods_Title") ?? "Reorganize Mods?",
             Content = new TextBlock()
             {
-                Text =
+                Text = _localizer.GetLocalizedStringOrDefault("Settings_ReorganizeMods_Content") ??
                     "Do you want to reorganize the Mods folder?\n" +
                     "This will prompt the application to sort existing mods that are directly in the Mods folder and Others folder, into folders assigned to their respective characters.\n\n" +
                     "Any mods that can't be reasonably matched will be placed in an 'Others' folder. While the mods already in 'Others' folder will remain there.",
                 TextWrapping = TextWrapping.WrapWholeWords,
                 IsTextSelectionEnabled = true
             },
-            PrimaryButtonText = "Yes",
+            PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("Settings_ReorganizeMods_PrimaryButton") ?? "Yes",
             DefaultButton = ContentDialogButton.Primary,
-            CloseButtonText = "Cancel",
+            CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_ReorganizeMods_CloseButton") ?? "Cancel",
             Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style
         });
 
@@ -479,12 +478,12 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
                 await _skinManagerService.RefreshModsAsync();
 
                 if (movedModsCount == -1)
-                    _notificationManager.ShowNotification("Mods reorganization failed.",
-                        "See logs for more details.", TimeSpan.FromSeconds(5));
+                    _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Mods_ReorganizeFailed") ?? "Mods reorganization failed.",
+                        App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Settings_SeeLogs") ?? "See logs for more details.", TimeSpan.FromSeconds(5));
 
                 else
-                    _notificationManager.ShowNotification("Mods reorganized.",
-                        $"Moved {movedModsCount} mods to character folders", TimeSpan.FromSeconds(5));
+                    _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Mods_Reorganized") ?? "Mods reorganized.",
+                        string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Settings_ModsMovedMsg") ?? "Moved {0} mods to character folders", movedModsCount), TimeSpan.FromSeconds(5));
             }
             finally
             {
@@ -501,80 +500,6 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         await Task.Delay(TimeSpan.FromSeconds(delay));
 
         await _lifeCycleService.RestartAsync(notifyOnError: true);
-    }
-
-    private bool CanStartElevator()
-    {
-        return ElevatorService.ElevatorStatus == ElevatorStatus.NotRunning;
-    }
-
-    [RelayCommand(CanExecute = nameof(CanStartElevator))]
-    private async Task StartElevator()
-    {
-        var text = new TextBlock
-        {
-            TextWrapping = TextWrapping.WrapWholeWords,
-            Text = _localizer.GetLocalizedStringOrDefault("/Settings/StartElevatorDialogText") ??
-                   "Press Start to launch the Elevator. The Elevator is an elevated (admin) process that is used for communication with the Genshin game process.\n\n" +
-                   "While the Elevator is active, you can press F10 within this App to refresh active mods in Genshin.\n\n" +
-                   "Enabling and disabling mods will also automatically refresh active mods in Genshin " +
-                   "The Elevator process should automatically close when this program is closed.\n\n" +
-                   "After pressing Start, a User Account Control (UAC) prompt will appear to confirm the elevation.\n\n" +
-                   "(This requires that Genshin and that 3Dmigoto is running, when pressing F10\n\n" +
-                   "Check the FAQ on the JASM github to download it separately as it gets flagged as malware.",
-            Margin = new Thickness(0, 0, 0, 12),
-            IsTextSelectionEnabled = true
-        };
-
-
-        var doNotShowAgainCheckBox = new CheckBox
-        {
-            Content = _localizer.GetLocalizedStringOrDefault("/Settings/StartElevatorDialogDontShowContent") ??
-                      "Don't Show this Again",
-            IsChecked = false
-        };
-
-        var stackPanel = new StackPanel
-        {
-            Children =
-            {
-                text,
-                doNotShowAgainCheckBox
-            }
-        };
-
-
-        var dialog = new ContentDialog
-        {
-            Title = _localizer.GetLocalizedStringOrDefault("/Settings/StartElevatorDialogTitle") ??
-                    "Start Elevator Process?",
-            Content = stackPanel,
-            DefaultButton = ContentDialogButton.Primary,
-            CloseButtonText = "Cancel",
-            PrimaryButtonText = "Start",
-            XamlRoot = App.MainWindow.Content.XamlRoot
-        };
-
-        var start = true;
-
-        if (_showElevatorStartDialog)
-        {
-            var result = await dialog.ShowAsync();
-            start = result == ContentDialogResult.Primary;
-            if (start)
-                _showElevatorStartDialog = !doNotShowAgainCheckBox.IsChecked == true;
-        }
-
-        if (start && ElevatorService.ElevatorStatus == ElevatorStatus.NotRunning)
-            try
-            {
-                ElevatorService.StartElevator();
-            }
-            catch (Win32Exception e)
-            {
-                _notificationManager.ShowNotification("Unable to start Elevator", e.Message, TimeSpan.FromSeconds(10));
-                _showElevatorStartDialog = true;
-            }
     }
 
     private bool CanResetGenshinExePath()
@@ -605,11 +530,17 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         {
             if (e.Version == new Version())
             {
+                // User clicked Ignore — hide the update badge
+                ShowNewVersionAvailable = false;
                 CanIgnoreUpdate = _updateChecker.LatestRetrievedVersion != _updateChecker.IgnoredVersion;
                 return;
             }
 
+            ShowNewVersionAvailable = true;
             LatestVersion = VersionFormatter(e.Version);
+
+            if (_updateChecker.LatestRetrievedVersion != _updateChecker.IgnoredVersion)
+                CanIgnoreUpdate = true;
         });
     }
 
@@ -640,7 +571,9 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             DefaultButton = ContentDialogButton.Primary
         };
 
-        dialog.Title = "Export Mods";
+        dialog.Title = _localizer.GetLocalizedStringOrDefault("Settings_Export_ButtonText") ?? "Export Mods";
+        dialog.PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("Settings_Export_PrimaryButton") ?? "Export";
+        dialog.CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_Export_CloseButton") ?? "Cancel";
 
         dialog.ContentTemplate = contentDialog.ContentTemplate;
 
@@ -675,15 +608,15 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             {
                 _skinManagerService.ExportMods(modsList, folder.Path,
                     removeLocalJasmSettings: model.RemoveJasmSettings, zip: false,
-                    keepCharacterFolderStructure: model.KeepFolderStructure, setModStatus: model.SetModStatus);
+                    keepCharacterFolderStructure: model.KeepFolderStructure, setModStatus: model.SetModStatus.Value);
             });
-            _notificationManager.ShowNotification("Mods exported", $"Mods exported to {folder.Path}",
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Export_ModsExported") ?? "Mods exported", string.Format(_localizer.GetLocalizedStringOrDefault("Settings_Export_ModsExportedToFormat") ?? "Mods exported to {0}", folder.Path),
                 TimeSpan.FromSeconds(5));
         }
         catch (Exception e)
         {
             _logger.Error(e, "Error exporting mods");
-            _notificationManager.ShowNotification("Error exporting mods", e.Message, TimeSpan.FromSeconds(10));
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Export_ErrorExporting") ?? "Error exporting mods", e.Message, TimeSpan.FromSeconds(10));
         }
         finally
         {
@@ -714,7 +647,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
             var restartDialog = new ContentDialog()
             {
-                Title = "Restart Required",
+                Title = _localizer.GetLocalizedStringOrDefault("Settings_RestartRequired_LangTitle") ?? "Restart Required",
                 Content = new TextBlock()
                 {
                     Text = _localizer.GetLocalizedStringOrDefault("/Settings/ChangeLanguageDialogText",
@@ -725,8 +658,8 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
                     TextWrapping = TextWrapping.WrapWholeWords,
                     IsTextSelectionEnabled = true
                 },
-                PrimaryButtonText = "Change Language and restart",
-                CloseButtonText = "Cancel",
+                PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("Settings_RestartRequired_LangPrimaryButton") ?? "Change Language and restart",
+                CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_RestartRequired_LangCloseButton") ?? "Cancel",
                 DefaultButton = ContentDialogButton.Primary
             };
 
@@ -751,26 +684,267 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         }
     }
 
+    [ObservableProperty] private bool _updateDownloading;
+    [ObservableProperty] private int _updateDownloadProgress;
+    [ObservableProperty] private string _updateStatusText = string.Empty;
+    public bool IsUpdateProgressIndeterminate => UpdateDownloading && UpdateDownloadProgress == 0;
+    public bool IsUpdateButtonEnabled => !UpdateDownloading;
+
+    private const string UpdateStagingFolder = "JASM_Update";
+    private const string UpdateOldFolder = "JASM_Old";
+
     [RelayCommand]
-    private void UpdateJasm()
+    private async Task UpdateJasmAsync()
     {
-        var errors = Array.Empty<Error>();
+        UpdateDownloading = true;
+        UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_Downloading") ?? "Downloading update...";
+
         try
         {
-            errors = _autoUpdaterService.StartSelfUpdateProcess();
+            var (downloadUrl, assetName) = await GetLatestReleaseDownloadUrlAsync();
+            if (downloadUrl is null || assetName is null)
+            {
+                UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_DownloadFailed") ?? "Could not find download URL";
+                UpdateDownloading = false;
+                return;
+            }
+
+            var tempDir = Path.Combine(Path.GetTempPath(), "JASM_Update");
+            var archivePath = Path.Combine(tempDir, assetName);
+
+            Directory.CreateDirectory(tempDir);
+
+            // Download in own scope so file handle is released before extraction
+            {
+                using var client = new HttpClient();
+                client.DefaultRequestHeaders.Add("User-Agent", "JASM-Update-Downloader");
+
+                using var response = await client.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead);
+                var totalBytes = response.Content.Headers.ContentLength ?? -1;
+
+                await using var stream = await response.Content.ReadAsStreamAsync();
+                await using var fileStream = File.Create(archivePath);
+
+                var buffer = new byte[8192];
+                long totalRead = 0;
+                int bytesRead;
+                var lastProgressUpdate = DateTime.UtcNow;
+
+                while ((bytesRead = await stream.ReadAsync(buffer)) > 0)
+                {
+                    await fileStream.WriteAsync(buffer.AsMemory(0, bytesRead));
+                    totalRead += bytesRead;
+
+                    if (totalBytes > 0 && (DateTime.UtcNow - lastProgressUpdate).TotalMilliseconds > 200)
+                    {
+                        UpdateDownloadProgress = (int)(totalRead * 100 / totalBytes);
+                        UpdateStatusText = string.Format(
+                            _localizer.GetLocalizedStringOrDefault("Settings_Update_DownloadingProgress") ?? "Downloading... {0}%",
+                            UpdateDownloadProgress);
+                        lastProgressUpdate = DateTime.UtcNow;
+                    }
+                }
+            } // file handle released here
+
+            UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_Extracting") ?? "Extracting update...";
+
+            var installParent = new DirectoryInfo(App.ROOT_DIR).Parent!.FullName;
+            var stagingPath = Path.Combine(installParent, UpdateStagingFolder);
+
+            if (Directory.Exists(stagingPath))
+                Directory.Delete(stagingPath, true);
+
+            await Task.Run(() =>
+            {
+                if (assetName.EndsWith(".7z", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Use bundled 7z.exe — reliable and already shipped with the app
+                    var sevenZip = Path.Combine(App.ASSET_DIR, "7z", "7z.exe");
+                    if (!File.Exists(sevenZip))
+                        throw new FileNotFoundException("7z.exe not found at " + sevenZip);
+
+                    var process = Process.Start(new ProcessStartInfo
+                    {
+                        FileName = sevenZip,
+                        Arguments = $"x \"{archivePath}\" -o\"{stagingPath}\" -y",
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true
+                    })!;
+                    process.WaitForExit();
+                    if (process.ExitCode != 0)
+                    {
+                        var err = process.StandardError.ReadToEnd();
+                        throw new Exception($"7z extraction failed (code {process.ExitCode}): {err}");
+                    }
+                }
+                else
+                {
+                    System.IO.Compression.ZipFile.ExtractToDirectory(archivePath, stagingPath);
+                }
+
+                // Flatten: if there's a single inner JASM/ folder, move its contents up
+                var innerDir = new DirectoryInfo(stagingPath).EnumerateDirectories()
+                    .FirstOrDefault(d => d.Name.StartsWith("JASM", StringComparison.OrdinalIgnoreCase));
+                if (innerDir is not null)
+                {
+                    foreach (var fsInfo in innerDir.EnumerateFileSystemInfos())
+                    {
+                        var dest = Path.Combine(stagingPath, fsInfo.Name);
+                        if (fsInfo is DirectoryInfo dir)
+                            dir.MoveTo(dest);
+                        else
+                            File.Move(fsInfo.FullName, dest);
+                    }
+                    innerDir.Delete(true);
+                }
+            });
+
+            // Clean up temp
+            try { Directory.Delete(tempDir, true); } catch { /* ignore */ }
+
+            // Write and launch the swap script
+            UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_Restarting") ?? "Restarting to apply update...";
+
+            var installDir = App.ROOT_DIR.TrimEnd(Path.DirectorySeparatorChar);
+            var parentDir = new DirectoryInfo(installDir).Parent!.FullName;
+            var installFolderName = Path.GetFileName(installDir);
+
+            // Find the actual exe name from the staging folder (more reliable than process name)
+            var stagingExe = Directory.EnumerateFiles(stagingPath, "*.exe", SearchOption.TopDirectoryOnly)
+                .FirstOrDefault(f => Path.GetFileName(f).StartsWith("JASM", StringComparison.OrdinalIgnoreCase));
+            var exeName = stagingExe is not null ? Path.GetFileName(stagingExe) : "JASM - Just Another Skin Manager.exe";
+
+            var scriptPath = Path.Combine(parentDir, "JASM_Update.cmd");
+            var logPath = Path.Combine(parentDir, "JASM_Update.log");
+            var script = $@"@echo off
+set log=""{logPath}""
+echo %date% %time% Starting update... > %log%
+echo installDir={installFolderName} >> %log%
+echo stagingDir={UpdateStagingFolder} >> %log%
+echo exeName={exeName} >> %log%
+timeout /t 8 /nobreak > nul
+cd /d ""{parentDir}"" 2>> %log%
+
+echo Deleting old backup... >> %log%
+if exist ""{UpdateOldFolder}"" (
+  rmdir /s /q ""{UpdateOldFolder}"" 2>> %log%
+  echo Old backup deleted >> %log%
+)
+
+echo Stopping any remaining JASM processes... >> %log%
+taskkill /f /im ""{exeName}"" > nul 2>&1
+timeout /t 2 /nobreak > nul
+
+echo Moving current install to backup... >> %log%
+move ""{installFolderName}"" ""{UpdateOldFolder}"" >> %log% 2>&1
+if %errorlevel% neq 0 (
+  echo Move failed, retrying after delay... >> %log%
+  timeout /t 5 /nobreak > nul
+  move ""{installFolderName}"" ""{UpdateOldFolder}"" >> %log% 2>&1
+  if %errorlevel% neq 0 goto :failed
+)
+
+echo Moving staging to install... >> %log%
+move ""{UpdateStagingFolder}"" ""{installFolderName}"" >> %log% 2>&1
+if %errorlevel% neq 0 goto :failed
+
+echo Starting new version... >> %log%
+start """" ""{installFolderName}\{exeName}"" >> %log% 2>&1
+echo Update complete >> %log%
+del ""%~f0""
+exit /b 0
+
+:failed
+echo Update FAILED - check %log% for details >> %log%
+pause
+del ""%~f0""
+exit /b 1
+";
+
+            _logger.Information("Update: installDir={InstallDir}", installDir);
+            _logger.Information("Update: parentDir={ParentDir}", parentDir);
+            _logger.Information("Update: installFolderName={FolderName}", installFolderName);
+            _logger.Information("Update: exeName={ExeName}", exeName);
+            _logger.Information("Update: stagingPath={StagingPath}", stagingPath);
+            _logger.Information("Update: scriptPath={ScriptPath}", scriptPath);
+            _logger.Information("Update: batch script content:\n{Script}", script);
+
+            File.WriteAllText(scriptPath, script);
+            _logger.Information("Update: batch file written, exists={Exists}", File.Exists(scriptPath));
+
+            var psi = new ProcessStartInfo
+            {
+                FileName = scriptPath,
+                UseShellExecute = true,
+                WindowStyle = ProcessWindowStyle.Minimized
+            };
+            var startedProcess = Process.Start(psi);
+            _logger.Information("Update: Process.Start returned: {Process}", startedProcess?.Id.ToString() ?? "null");
+
+            Application.Current.Exit();
         }
         catch (Exception e)
         {
-            _logger.Error(e, "Error starting update process");
-            _notificationManager.ShowNotification("Error starting update process", e.Message, TimeSpan.FromSeconds(10));
+            _logger.Error(e, "Error during update process");
+            UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_ErrorStarting") ?? "Error during update";
+            UpdateDownloading = false;
         }
+    }
 
-        if (errors is not null && errors.Any())
+    private async Task<(Uri? url, string? fileName)> GetLatestReleaseDownloadUrlAsync()
+    {
+        const string releasesApiUrl = "https://api.github.com/repos/zurce/JASM/releases?per_page=2";
+
+        using var client = new HttpClient();
+        client.DefaultRequestHeaders.Add("X-GitHub-Api-Version", "2022-11-28");
+        client.DefaultRequestHeaders.Add("User-Agent", "JASM-Update-Checker");
+
+        var result = await client.GetAsync(releasesApiUrl);
+        if (!result.IsSuccessStatusCode)
+            return (null, null);
+
+        var text = await result.Content.ReadAsStringAsync();
+        var releases = Newtonsoft.Json.JsonConvert.DeserializeObject<GitHubRelease[]>(text) ?? Array.Empty<GitHubRelease>();
+
+        var latest = releases
+            .Where(r => !r.prerelease)
+            .Where(r => TryParseVersion(r.tag_name) is not null)
+            .OrderByDescending(r => TryParseVersion(r.tag_name))
+            .FirstOrDefault();
+
+        var asset = latest?.assets?.FirstOrDefault(a =>
         {
-            var errorMessages = errors.Select(e => e.Description).ToArray();
-            _notificationManager.ShowNotification("Could not start update process", string.Join('\n', errorMessages),
-                TimeSpan.FromSeconds(10));
-        }
+            var name = a.name ?? "";
+            return name.EndsWith(".zip", StringComparison.OrdinalIgnoreCase) ||
+                   name.EndsWith(".7z", StringComparison.OrdinalIgnoreCase);
+        });
+
+        return asset?.browser_download_url is not null
+            ? (new Uri(asset.browser_download_url), asset.name)
+            : (null, null);
+    }
+
+    private static Version? TryParseVersion(string? tagName)
+    {
+        if (string.IsNullOrWhiteSpace(tagName))
+            return null;
+        var versionString = tagName.StartsWith('v') ? tagName[1..] : tagName;
+        return Version.TryParse(versionString, out var version) ? version : null;
+    }
+
+    private class GitHubRelease
+    {
+        public string? tag_name;
+        public bool prerelease;
+        public GitHubAsset[]? assets;
+    }
+
+    private class GitHubAsset
+    {
+        public string? name;
+        public string? browser_download_url;
     }
 
 
@@ -784,18 +958,18 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
         var switchGameDialog = new ContentDialog()
         {
-            Title = "Switch Game",
+            Title = _localizer.GetLocalizedStringOrDefault("Settings_SwitchGame_Title") ?? "Switch Game",
             Content = new TextBlock()
             {
-                Text =
+                Text = _localizer.GetLocalizedStringOrDefault("Settings_SwitchGame_Content") ??
                     "Switching games will restart the application. " +
                     "This is required to ensure that the application is configured correctly for the selected game.\n\n" +
                     "Do you want to switch games?",
                 TextWrapping = TextWrapping.WrapWholeWords
             },
 
-            PrimaryButtonText = $"Switch to {game}",
-            CloseButtonText = "Cancel",
+            PrimaryButtonText = string.Format(_localizer.GetLocalizedStringOrDefault("Settings_SwitchGame_PrimaryButton") ?? "Switch to {0}", game),
+            CloseButtonText = _localizer.GetLocalizedStringOrDefault("Settings_SwitchGame_CloseButton") ?? "Cancel",
             DefaultButton = ContentDialogButton.Primary
         };
 
@@ -878,7 +1052,8 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
         if (gameInfo is not null)
         {
-            PathToGIMIFolderPicker.SetValidators(GimiFolderRootValidators.Validators(gameInfo.GameModelImporterExeNames));
+            var folderWarning = _localizer.GetLocalizedStringOrDefault("Settings_FolderWarning_No3DMigotoEntry") ?? "Folder does not contain any entry with the specified names:";
+            PathToGIMIFolderPicker.SetValidators(GimiFolderRootValidators.Validators(gameInfo.GameModelImporterExeNames, folderWarning));
         }
 
         var windowSettings =
@@ -944,19 +1119,34 @@ public partial class ExportModsDialogModel : ObservableObject
 
     public ObservableCollection<CharacterCheckboxModel> CharacterModsToBackup { get; set; } = new();
 
-    public ObservableCollection<SetModStatus> SetModStatuses { get; set; } = new()
+    public ObservableCollection<ModStatusOption> SetModStatuses { get; set; } = new()
     {
-        SetModStatus.KeepCurrent,
-        SetModStatus.EnableAllMods,
-        SetModStatus.DisableAllMods
+        new(GIMI_ModManager.Core.Contracts.Services.SetModStatus.KeepCurrent, "Settings_Export_Status_KeepCurrent"),
+        new(GIMI_ModManager.Core.Contracts.Services.SetModStatus.EnableAllMods, "Settings_Export_Status_EnableAll"),
+        new(GIMI_ModManager.Core.Contracts.Services.SetModStatus.DisableAllMods, "Settings_Export_Status_DisableAll")
     };
 
-    [ObservableProperty] private SetModStatus _setModStatus = SetModStatus.KeepCurrent;
+    [ObservableProperty] private ModStatusOption _setModStatus = null!;
 
     public ExportModsDialogModel(IEnumerable<IModdableObject> characters)
     {
-        SetModStatus = SetModStatus.KeepCurrent;
+        SetModStatus = SetModStatuses[0];
         foreach (var character in characters) CharacterModsToBackup.Add(new CharacterCheckboxModel(character));
+    }
+
+    public class ModStatusOption
+    {
+        public SetModStatus Value { get; }
+        public string DisplayName { get; }
+
+        public ModStatusOption(SetModStatus value, string resourceKey)
+        {
+            Value = value;
+            var localizer = App.GetService<ILanguageLocalizer>();
+            DisplayName = localizer.GetLocalizedStringOrDefault(resourceKey) ?? value.ToString();
+        }
+
+        public override string ToString() => DisplayName;
     }
 }
 

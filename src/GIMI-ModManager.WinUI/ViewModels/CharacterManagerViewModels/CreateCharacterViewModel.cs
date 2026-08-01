@@ -113,7 +113,7 @@ public partial class CreateCharacterViewModel : ObservableObject
         catch (Exception e)
         {
             _logger.Error(e, "Failed to create character");
-            _notificationManager.ShowNotification("Failed to create character", e.Message, null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CreateCharacter_FailedTitle") ?? "Failed to create character", e.Message, null);
             return;
         }
 
@@ -124,13 +124,13 @@ public partial class CreateCharacterViewModel : ObservableObject
         catch (Exception e)
         {
             _logger.Error(e, "Failed to enable mod list for character");
-            _notificationManager.ShowNotification("Character created, but failed to enable mod list for character", e.Message, null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CreateCharacter_EnableFailedTitle") ?? "Character created, but failed to enable mod list for character", e.Message, null);
             return;
         }
 
         IsFinished = true;
         _navigationService.NavigateTo(typeof(CharacterManagerViewModel).FullName!, character.InternalName);
-        _notificationManager.ShowNotification("Character created", $"Character '{character.DisplayName}' was created successfully", null);
+        _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CreateCharacter_SuccessTitle") ?? "Character created", string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CreateCharacter_SuccessMessage") ?? "Character '{0}' was created successfully", character.DisplayName), null);
     }
 
     #region ImageCommands
@@ -144,12 +144,12 @@ public partial class CreateCharacterViewModel : ObservableObject
             if (image is not null)
                 Form.Image.Value = image;
             else
-                _notificationManager.ShowNotification("Failed to paste image", "No image found in clipboard", null);
+                _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CreateCharacter_PasteImageFailedTitle") ?? "Failed to paste image", App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CreateCharacter_NoImageInClipboard") ?? "No image found in clipboard", null);
         }
         catch (Exception ex)
         {
             _logger.Error(ex, "Failed to paste image");
-            _notificationManager.ShowNotification("Failed to paste image", ex.Message, null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CreateCharacter_PasteImageFailedTitle") ?? "Failed to paste image", ex.Message, null);
         }
     }
 
@@ -212,7 +212,7 @@ public partial class CreateCharacterViewModel : ObservableObject
         catch (Exception e)
         {
             _logger.Error(e, "Failed to create json export");
-            _notificationManager.ShowNotification("Failed to create json export", e.Message, null);
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CreateCharacter_JsonExportFailedTitle") ?? "Failed to create json export", e.Message, null);
             return;
         }
 
@@ -241,12 +241,13 @@ public partial class CreateCharacterViewModel : ObservableObject
         };
 
 
+        var localizer = App.GetService<ILanguageLocalizer>();
         var characterModelDialog = new ContentDialog
         {
-            Title = "Character Model Json Export",
+            Title = localizer.GetLocalizedStringOrDefault("CreateCharacter_JsonExportTitle") ?? "Character Model Json Export",
             Content = contentWrapper,
-            PrimaryButtonText = "Copy to clipboard and Close",
-            CloseButtonText = "Close",
+            PrimaryButtonText = localizer.GetLocalizedStringOrDefault("CreateCharacter_JsonExportPrimary") ?? "Copy to clipboard and Close",
+            CloseButtonText = localizer.GetLocalizedStringOrDefault("CreateCharacter_JsonExportClose") ?? "Close",
             DefaultButton = ContentDialogButton.Primary,
             XamlRoot = App.MainWindow.Content.XamlRoot,
             Resources =
@@ -265,7 +266,7 @@ public partial class CreateCharacterViewModel : ObservableObject
         package.SetText(json);
         Clipboard.SetContent(package);
 
-        _notificationManager.ShowNotification("Character json copied to clipboard", "", null);
+        _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CreateCharacter_JsonCopiedTitle") ?? "Character json copied to clipboard", "", null);
 
         if (createCharacterRequest.Image is null || !File.Exists(createCharacterRequest.Image.LocalPath))
             return;

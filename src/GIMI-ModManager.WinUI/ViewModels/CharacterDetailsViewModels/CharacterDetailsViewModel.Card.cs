@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.GamesService.Interfaces;
 using GIMI_ModManager.WinUI.Models.CustomControlTemplates;
 using GIMI_ModManager.WinUI.Services;
@@ -107,7 +108,7 @@ public partial class CharacterDetailsViewModel
             {
                 _logger.Error("Could not find character skin {SkinName} for character {CharacterName}",
                     characterTemplate.DisplayName, ShownModObject.DisplayName);
-                _notificationService.ShowNotification("Error while switching character skin.", "",
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorSwitchSkin") ?? "Error while switching character skin.", "",
                     TimeSpan.FromSeconds(5));
                 return;
             }
@@ -171,7 +172,7 @@ public partial class CharacterDetailsViewModel
 
         if (!canDisableAllMods)
         {
-            _notificationService.ShowNotification("Error while disabling mods", "Could not disable all mods.",
+            _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorDisableMods") ?? "Error while disabling mods", App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_CouldNotDisableAllMods") ?? "Could not disable all mods.",
                 TimeSpan.FromSeconds(5));
             return;
         }

@@ -5,13 +5,13 @@ namespace GIMI_ModManager.WinUI.Validators.PreConfigured;
 
 public static class GimiFolderRootValidators
 {
-    public static ICollection<AbstractValidator<PathPicker>> Validators(IEnumerable<string> validMiExeFilenames)
+    public static ICollection<AbstractValidator<PathPicker>> Validators(IEnumerable<string> validMiExeFilenames, string? customMessage = null)
     {
         return new AbstractValidator<PathPicker>[]
         {
             new IsValidPathFormat(),
             new FolderExists(),
-            new ContainsAnyFileSystemEntryWithNames(validMiExeFilenames, warning: true)
+            new ContainsAnyFileSystemEntryWithNames(validMiExeFilenames, customMessage: customMessage, warning: true)
         };
     }
 }

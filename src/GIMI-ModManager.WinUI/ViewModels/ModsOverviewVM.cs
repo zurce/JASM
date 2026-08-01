@@ -368,7 +368,8 @@ public partial class CategoryNode : BaseNode, IHasChildItems<ModdableObjectNode>
 
     public CategoryNode(ICategory category, string folderPath) : base(category.InternalName)
     {
-        DisplayName = category.DisplayNamePlural;
+        var localizer = App.GetService<ILanguageLocalizer>();
+        DisplayName = localizer.GetLocalizedStringOrDefault("Category_" + category.DisplayNamePlural.Replace(" ", "")) ?? category.DisplayNamePlural;
         FolderPath = folderPath;
     }
 }

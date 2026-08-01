@@ -1,4 +1,5 @@
 ﻿using CommunityToolkitWrapper;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Models.Settings;
 using Microsoft.Graphics.Display;
@@ -13,6 +14,7 @@ public class WindowManagerService : IWindowManagerService
 {
     private readonly ILogger _logger;
     private readonly IThemeSelectorService _themeSelectorService;
+    private readonly ILanguageLocalizer _localizer;
     private readonly List<Tuple<WindowEx, object>> _windows = new();
     private readonly List<WindowEx> _windowDialogOpen = new();
 
@@ -45,9 +47,10 @@ public class WindowManagerService : IWindowManagerService
         }
     }
 
-    public WindowManagerService(ILogger logger, IThemeSelectorService themeSelectorService)
+    public WindowManagerService(ILogger logger, IThemeSelectorService themeSelectorService, ILanguageLocalizer localizer)
     {
         _themeSelectorService = themeSelectorService;
+        _localizer = localizer;
         _logger = logger.ForContext<WindowManagerService>();
     }
 
@@ -174,7 +177,7 @@ public class WindowManagerService : IWindowManagerService
                 ["ContentDialogMaxWidth"] = 8000,
                 ["ContentDialogMaxHeight"] = 4000
             },
-            CloseButtonText = "Close"
+            CloseButtonText = _localizer.GetLocalizedStringOrDefault("WindowManagerService_Close") ?? "Close"
         };
 
         dialog.SizeChanged += (s, e) =>

@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:GIMI_ModManager.WinUI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:winUiEx="using:WinUIEx"
     mc:Ignorable="d">
 
@@ -41,7 +42,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Style="{ThemeResource TitleTextBlockStyle}"
-                    Text="An error has occurred: " />
+                    Text="An error has occurred: " l:Uids.Uid="ErrorWindow_ErrorHeaderText" />
 
             </StackPanel>
 
@@ -62,13 +63,13 @@
                     Margin="0,0,0,8"
                     FontSize="18"
                     Style="{ThemeResource BodyStrongTextBlockStyle}"
-                    Text="An unhanded exception has occurred. The application ran into a problem that it didn't know how to handle. JASM may be in an unstable state, and it is recommended to restart JASM." />
+                    Text="An unhanded exception has occurred. The application ran into a problem that it didn't know how to handle. JASM may be in an unstable state, and it is recommended to restart JASM." l:Uids.Uid="ErrorWindow_ExceptionDescription" />
 
                 <TextBlock
                     Margin="0,4"
                     IsTextSelectionEnabled="True"
                     Style="{ThemeResource BodyStrongTextBlockStyle}"
-                    Text="Stack trace:" />
+                    Text="Stack trace:" l:Uids.Uid="ErrorWindow_StackTraceLabel" />
 
                 <StackPanel
                     Padding="12"
@@ -85,14 +86,14 @@
                     <TextBlock
                         Margin="4,0"
                         Style="{ThemeResource SubtitleTextBlockStyle}"
-                        Text="An inner exception" />
+                        Text="An inner exception" l:Uids.Uid="ErrorWindow_InnerExceptionLabel" />
                     <TextBlock Style="{ThemeResource BodyStrongTextBlockStyle}" Text="{x:Bind ViewModel.InnerExceptionMessage, Mode=OneWay}" />
 
                     <TextBlock
                         Margin="0,4"
                         IsTextSelectionEnabled="True"
                         Style="{ThemeResource BodyStrongTextBlockStyle}"
-                        Text="Stack trace:" />
+                        Text="Stack trace:" l:Uids.Uid="ErrorWindow_InnerStackTraceLabel" />
 
                     <StackPanel
                         Padding="12"

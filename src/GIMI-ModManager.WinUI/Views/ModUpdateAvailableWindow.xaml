@@ -11,6 +11,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:services="using:GIMI_ModManager.Core.Services"
     xmlns:viewModels="using:GIMI_ModManager.WinUI.ViewModels"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:winUiEx="using:WinUIEx"
     xmlns:modPageViewModels="using:GIMI_ModManager.WinUI.ViewModels.ModPageViewModels"
     x:Name="RootWindow"
@@ -135,6 +136,7 @@
                                                             Command="{x:Bind InstallCommand}"
                                                             CommandParameter="{Binding Mode=OneWay}"
                                                             Content="Install"
+                                                            l:Uids.Uid="ModUpdateAvailableWindow_InstallButton"
                                                             Visibility="{Binding Path=ShowInstallButton, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
                                                     </Grid>
 

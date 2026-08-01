@@ -106,11 +106,29 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
     [ObservableProperty] private bool _enableThisMod;
     [ObservableProperty] private bool _alwaysOnTop;
 
+    [ObservableProperty]
+    private bool _forceOverwriteDifferentNameMod;
+
+    partial void OnForceOverwriteDifferentNameModChanged(bool value)
+    {
+        _ = Task.Run(async () =>
+        {
+            var settings = await _localSettingsService
+                .ReadOrCreateSettingAsync<ModInstallerSettings>(ModInstallerSettings.Key)
+                .ConfigureAwait(false);
+            settings.ForceOverwriteDifferentNameMod = value;
+            await _localSettingsService.SaveSettingAsync(ModInstallerSettings.Key, settings)
+                .ConfigureAwait(false);
+        });
+    }
+
     [ObservableProperty] private bool _replaceModToUpdateInPreset;
     [ObservableProperty] private bool _replaceDuplicateModInPreset;
 
-    public bool IsUpdatingMod => _installOptions?.ExistingModIdToUpdate is not null;
     private ISkinMod? _existingModToUpdate;
+    private string? _existingModToOverwritePath;
+
+    public bool HasExistingModToOverwrite => !string.IsNullOrEmpty(_existingModToOverwritePath);
 
     public readonly string RootFolderIcon = "\uF89A";
     public readonly string ShaderFixesFolderIcon = "\uE710";
@@ -152,7 +170,6 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         _modInstallation = ModInstallation.Start(modToInstall, _characterModList);
         _dispatcherQueue = dispatcherQueue;
         _installOptions = options;
-        OnPropertyChanged(nameof(IsUpdatingMod));
 
         RootFolder.Clear();
         RootFolder.Add(new RootFolder(modToInstall));
@@ -163,12 +180,12 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
 
         EnableThisMod = !_characterModList.Character.IsMultiMod && installerSettings.EnableModOnInstall;
         AlwaysOnTop = installerSettings.ModInstallerWindowOnTop;
+        ForceOverwriteDifferentNameMod = installerSettings.ForceOverwriteDifferentNameMod;
+        _existingModToOverwritePath = options?.ExistingModToOverwritePath;
+        OnPropertyChanged(nameof(HasExistingModToOverwrite));
 
         await Task.Run(async () =>
         {
-            _existingModToUpdate = _installOptions?.ExistingModIdToUpdate is not null
-                ? _skinManagerService.GetModById(_installOptions.ExistingModIdToUpdate.Value)
-                : null;
 
             var modDir = _modInstallation.AutoSetModRootFolder();
             if (modDir is not null)
@@ -194,41 +211,45 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
                     dispatcherQueue.TryEnqueue(() => { SetShaderFixesFolder(fileSystemItem); });
             }
 
-
-            if (_installOptions?.ExistingModIdToUpdate is not null &&
-                _skinManagerService.GetModById(_installOptions.ExistingModIdToUpdate.Value) is { } oldModToUpdate)
+            if (_existingModToOverwritePath is not null)
             {
-                var oldModSettings = await oldModToUpdate.Settings.TryReadSettingsAsync(true).ConfigureAwait(false);
+                var oldModToUpdate = _characterModList.Mods
+                    .FirstOrDefault(m => m.Mod.FullPath == _existingModToOverwritePath)?.Mod;
 
-                if (oldModSettings is not null)
+                if (oldModToUpdate is not null)
                 {
-                    var oldImage = oldModSettings.ImagePath;
-                    StorageFile? imageFile;
-                    try
-                    {
-                        imageFile = await _imageHandlerService.CopyImageToTmpFolder(oldImage).ConfigureAwait(false);
-                    }
-                    catch (Exception e)
-                    {
-                        _logger.Error(e, "Failed to copy image from old mod");
-                        imageFile = null;
-                    }
+                    var oldModSettings = await oldModToUpdate.Settings.TryReadSettingsAsync(true).ConfigureAwait(false);
 
-                    dispatcherQueue.TryEnqueue(() =>
+                    if (oldModSettings is not null)
                     {
-                        if (imageFile is not null)
+                        var oldImage = oldModSettings.ImagePath;
+                        StorageFile? imageFile;
+                        try
                         {
-                            ClearModPreviewImage();
-                            ModPreviewImagePath = new Uri(imageFile.Path);
-                            ImageSource = "Image from existing Mod";
+                            imageFile = await _imageHandlerService.CopyImageToTmpFolder(oldImage).ConfigureAwait(false);
+                        }
+                        catch (Exception e)
+                        {
+                            _logger.Error(e, "Failed to copy image from old mod");
+                            imageFile = null;
                         }
 
-                        CustomName = oldModSettings.CustomName ?? string.Empty;
-                        Author = oldModSettings.Author ?? string.Empty;
-                        Description = oldModSettings.Description ?? string.Empty;
-                        ModUrl = oldModSettings.ModUrl?.ToString() ?? string.Empty;
-                    });
-                    return;
+                        dispatcherQueue.TryEnqueue(() =>
+                        {
+                            if (imageFile is not null)
+                            {
+                                ClearModPreviewImage();
+                                ModPreviewImagePath = new Uri(imageFile.Path);
+                                ImageSource = "Image from existing Mod";
+                            }
+
+                            CustomName = oldModSettings.CustomName ?? string.Empty;
+                            Author = oldModSettings.Author ?? string.Empty;
+                            Description = oldModSettings.Description ?? string.Empty;
+                            ModUrl = oldModSettings.ModUrl?.ToString() ?? string.Empty;
+                        });
+                        return;
+                    }
                 }
             }
 
@@ -291,8 +312,8 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         InstallerFinished?.Invoke(this, EventArgs.Empty);
         _logger.Debug("Mod {newModPath} was added to {modListPath}", newMod.FullPath,
             _characterModList.AbsModsFolderPath);
-        _notificationManager.ShowNotification($"Mod '{modName}' installed",
-            $"Mod '{modName}' ({newMod.Name}), was successfully added to {_characterModList.Character.DisplayName} ModList",
+        _notificationManager.ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_ModInstalled") ?? "Mod '{0}' installed", modName),
+            string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_AddedToModList") ?? "Mod '{0}' ({1}), was successfully added to {2} ModList", modName, newMod.Name, _characterModList.Character.DisplayName),
             TimeSpan.FromSeconds(5));
 
         if (EnableThisMod)
@@ -510,7 +531,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         catch (Exception e)
         {
             _logger.Error(e, "Failed retrieve image from clipboard");
-            _notificationManager.ShowNotification("Failed retrieve image from clipboard", e.Message,
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_FailedClipboardImage") ?? "Failed retrieve image from clipboard", e.Message,
                 TimeSpan.FromSeconds(5));
             return;
         }
@@ -559,6 +580,19 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
     {
         if (!canAddMod())
             return;
+
+        if (ForceOverwriteDifferentNameMod && _existingModToOverwritePath is not null)
+        {
+            var existingModToOverwrite =
+                _characterModList.Mods.FirstOrDefault(mod => mod.Mod.FullPath == _existingModToOverwritePath)?.Mod;
+
+            if (existingModToOverwrite is not null)
+            {
+                _duplicateMod = existingModToOverwrite;
+                await AddModAndReplaceAsync();
+                return;
+            }
+        }
 
         var skinModDupe = _modInstallation.AnyDuplicateName();
 
@@ -642,9 +676,10 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         {
             oldMod = _duplicateMod;
         }
-        else if (ReplaceModToUpdateInPreset && _installOptions?.ExistingModIdToUpdate != null && _existingModToUpdate?.Id == _installOptions.ExistingModIdToUpdate.Value)
+        else if (ReplaceModToUpdateInPreset && _existingModToOverwritePath is not null)
         {
-            oldMod = _existingModToUpdate;
+            oldMod = _characterModList.Mods
+                .FirstOrDefault(mod => mod.Mod.FullPath == _existingModToOverwritePath)?.Mod;
         }
 
         try
@@ -686,7 +721,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
             _logger.Error(e, "Failed to get presets");
 
             _notificationManager.ShowNotification(
-                "Failed to get presets, could not automatically update mod entries in presets", e.Message,
+                App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_GetPresetsFailed") ?? "Failed to get presets, could not automatically update mod entries in presets", e.Message,
                 TimeSpan.FromSeconds(5));
 
             return;
@@ -713,7 +748,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
                 _logger.Error(e, "Failed to update preset {presetName}", modPreset.Name);
 
                 _notificationManager.ShowNotification(
-                    $"Failed to update preset {modPreset.Name}, could not automatically update mod entries in preset. Please check your presets manually",
+                    string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_UpdatePresetFailed") ?? "Failed to update preset {0}, could not automatically update mod entries in preset. Please check your presets manually", modPreset.Name),
                     e.Message, TimeSpan.FromSeconds(5));
                 return;
             }
@@ -727,21 +762,22 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         if (readOnlyPresetsWithMod.Length == 0 && presetsUpdated.Count == 0)
             return;
 
+        var localizer = App.GetService<ILanguageLocalizer>();
         var readOnlyPresetsMessage = readOnlyPresetsWithMod.Length == 0
             ? ""
-            : "The following presets were not updated due to being read-only: " +
-              string.Join(", ", readOnlyPresets.Select(p => p.Name));
+            : string.Format(localizer.GetLocalizedStringOrDefault("Notification_ReadOnlyPresetsNotUpdated") ?? "The following presets were not updated due to being read-only: {0}",
+              string.Join(", ", readOnlyPresets.Select(p => p.Name)));
 
         TimeSpan? notificationDuration = readOnlyPresetsMessage.Any() ? null : TimeSpan.FromSeconds(6);
 
         var presetsUpdatedMessage = presetsUpdated.Count == 0
             ? ""
-            : "The mod was updated in the following presets: " +
-              string.Join(", ", presets.Select(p => p.Name)) + "\n" +
+            : string.Format(localizer.GetLocalizedStringOrDefault("Notification_ModUpdatedInPresets") ?? "The mod was updated in the following presets: {0}",
+              string.Join(", ", presets.Select(p => p.Name))) + "\n" +
               readOnlyPresetsMessage;
 
         var notification = new SimpleNotification(
-            title: presetsUpdated.Count == 0 ? "Mod was not updated for any presets" : "Mod was updated for presets",
+            title: presetsUpdated.Count == 0 ? App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_ModNotUpdatedForPresets") ?? "Mod was not updated for any presets" : App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_ModUpdatedForPresets") ?? "Mod was updated for presets",
             message: presetsUpdatedMessage,
             notificationDuration);
 
@@ -875,7 +911,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
                 catch (Exception e)
                 {
                     _logger.Error(e, "Failed to download image");
-                    _notificationManager.ShowNotification("Failed to download image from modUrl", e.Message,
+                    _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_FailedDownloadImage") ?? "Failed to download image from modUrl", e.Message,
                         TimeSpan.FromSeconds(5));
                 }
             }
@@ -935,8 +971,8 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         PInvoke.PlaySound("SystemAsterisk", null,
             SND_FLAGS.SND_ASYNC | SND_FLAGS.SND_ALIAS | SND_FLAGS.SND_NODEFAULT);
 
-        _notificationManager.ShowNotification("An error occurred",
-            "An error occurred while adding the mod. See logs for more details",
+        _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_AnErrorOccurred") ?? "An error occurred",
+            App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_ErrorAddingMod") ?? "An error occurred while adding the mod. See logs for more details",
             TimeSpan.FromSeconds(10));
 
         CloseRequested?.Invoke(this, new CloseRequestedArgs(CloseReasons.Error, e));
@@ -971,6 +1007,10 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         _dispatcherQueue?.TryEnqueue(() => window?.SetIsAlwaysOnTop(AlwaysOnTop));
     }
 
+
+
+
+
     private async Task EnableOnlyMod(ISkinMod installedMod)
     {
         if (_characterModList.Character is ICharacter { Skins.Count: <= 1 } ||
@@ -1002,8 +1042,8 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
             }
             else
             {
-                _notificationManager.QueueNotification("Could not determine skin for new mod",
-                    "JASM could not determine what ingame skin this mod is for, therefore it can't determine what mods to disable.");
+                _notificationManager.QueueNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CouldNotDetermineSkin") ?? "Could not determine skin for new mod",
+                    App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_CouldNotDetermineSkinMsg") ?? "JASM could not determine what ingame skin this mod is for, therefore it can't determine what mods to disable.");
                 return;
             }
         }

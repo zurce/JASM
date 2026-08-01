@@ -1,10 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Services.CommandService;
 using GIMI_ModManager.Core.Services.CommandService.Models;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Contracts.ViewModels;
+
 using GIMI_ModManager.WinUI.Services;
 using GIMI_ModManager.WinUI.Services.AppManagement;
 using GIMI_ModManager.WinUI.Services.Notifications;
@@ -19,7 +21,8 @@ public sealed partial class CommandsSettingsViewModel(
     IWindowManagerService windowManagerService,
     NotificationManager notificationManager,
     ILocalSettingsService localSettingsService,
-    CommandHandlerService commandHandlerService)
+    CommandHandlerService commandHandlerService,
+    ILanguageLocalizer localizer)
     : ObservableRecipient, INavigationAware
 {
     private readonly CommandService _commandService = commandService;
@@ -27,6 +30,7 @@ public sealed partial class CommandsSettingsViewModel(
     private readonly NotificationManager _notificationManager = notificationManager;
     private readonly ILocalSettingsService _localSettingsService = localSettingsService;
     private readonly CommandHandlerService _commandHandlerService = commandHandlerService;
+    private readonly ILanguageLocalizer _localizer = localizer;
 
     public ObservableCollection<CommandDefinitionVM> CommandDefinitions { get; } = new();
 
@@ -44,11 +48,12 @@ public sealed partial class CommandsSettingsViewModel(
         {
             var commandWarningDialog = new ContentDialog
             {
-                Title = "Friendly Warning",
+                Title = _localizer.GetLocalizedStringOrDefault("CommandsSettingsPage_WarningTitle") ?? "Friendly Warning",
 
                 Content = new TextBlock()
                 {
-                    Text = "Please be careful when creating commands. " +
+                    Text = _localizer.GetLocalizedStringOrDefault("CommandsSettingsPage_WarningContent") ??
+                           "Please be careful when creating commands. " +
                            "Commands can be used to run any executable on your system. " +
                            "Only create commands from trusted sources.\n" +
                            "JASM isn't perfect and can't protect you from malicious scripts or JASM bugs/glitches.\n\n" +
@@ -56,8 +61,8 @@ public sealed partial class CommandsSettingsViewModel(
                     IsTextSelectionEnabled = true,
                     TextWrapping = TextWrapping.WrapWholeWords
                 },
-                PrimaryButtonText = "I understand",
-                CloseButtonText = "Cancel"
+                PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("CommandsSettingsPage_WarningPrimary") ?? "I understand",
+                CloseButtonText = _localizer.GetLocalizedStringOrDefault("CommandsSettingsPage_WarningClose") ?? "Close"
             };
 
             var result = await _windowManagerService.ShowDialogAsync(commandWarningDialog);
@@ -97,18 +102,18 @@ public sealed partial class CommandsSettingsViewModel(
             }
             catch (Exception e)
             {
-                _notificationManager.ShowNotification("Failed to kill process", e.Message, TimeSpan.FromSeconds(5));
+                _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Commands_Notification_FailedKillTitle") ?? "Failed to kill process", e.Message, TimeSpan.FromSeconds(5));
                 return;
             }
         }
         else
         {
-            _notificationManager.ShowNotification("Process is not running", string.Empty, TimeSpan.FromSeconds(2));
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Commands_Notification_NotRunningTitle") ?? "Process is not running", string.Empty, TimeSpan.FromSeconds(2));
             await RefreshRunningCommandsAsync();
             return;
         }
 
-        _notificationManager.ShowNotification("Process killed successfully", string.Empty, TimeSpan.FromSeconds(2));
+        _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Commands_Notification_KilledTitle") ?? "Process killed successfully", string.Empty, TimeSpan.FromSeconds(2));
     }
 
     private bool CanEditCommand(CommandDefinitionVM? commandVM)
@@ -129,7 +134,7 @@ public sealed partial class CommandsSettingsViewModel(
 
         if (existingCommand is null)
         {
-            _notificationManager.ShowNotification("Failed to get command", "Command not found",
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Commands_Notification_NotFoundTitle") ?? "Failed to get command", _localizer.GetLocalizedStringOrDefault("Commands_Notification_NotFoundMessage") ?? "Command not found",
                 TimeSpan.FromSeconds(5));
             return;
         }
@@ -154,7 +159,7 @@ public sealed partial class CommandsSettingsViewModel(
         }
         catch (Exception e)
         {
-            _notificationManager.ShowNotification("Failed to delete command", e.Message, TimeSpan.FromSeconds(5));
+            _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Commands_Notification_FailedDeleteTitle") ?? "Failed to delete command", e.Message, TimeSpan.FromSeconds(5));
             return;
         }
         finally
@@ -162,7 +167,7 @@ public sealed partial class CommandsSettingsViewModel(
             await RefreshCommandDefinitionsAsync();
         }
 
-        _notificationManager.ShowNotification($"Command '{commandDefinition.CommandDisplayName}' deleted successfully",
+        _notificationManager.ShowNotification(string.Format(_localizer.GetLocalizedStringOrDefault("Commands_Notification_DeletedTitle") ?? "Command '{0}' deleted successfully", commandDefinition.CommandDisplayName),
             string.Empty, TimeSpan.FromSeconds(2));
     }
 

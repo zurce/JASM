@@ -50,7 +50,6 @@ public partial class CharacterGalleryViewModel
 
 
             await ToggleOnlyMod(mods, thisSkinMod);
-            await _elevatorService.RefreshGenshinMods();
         }
         catch (Exception e)
         {

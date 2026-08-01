@@ -34,6 +34,7 @@ public partial class ModUpdateVM : ObservableRecipient
     private readonly CancellationToken _ct;
 
     private ModPageInfo? _modPageInfo;
+    private ISkinMod? _existingModToUpdate;
 
     [ObservableProperty] private string _initializing = "true";
 
@@ -106,6 +107,8 @@ public partial class ModUpdateVM : ObservableRecipient
             return;
         }
 
+        _existingModToUpdate = characterSkinEntry.Mod;
+
         _characterModList = characterSkinEntry.ModList;
         var mod = characterSkinEntry.Mod;
 
@@ -165,7 +168,7 @@ public partial class ModUpdateVM : ObservableRecipient
         _logger.Error(e, "Failed to get mod update info");
         App.MainWindow.DispatcherQueue.TryEnqueue(() =>
         {
-            App.GetService<NotificationManager>().ShowNotification("Failed to get mod update info",
+            App.GetService<NotificationManager>().ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModUpdate_FailedGetInfo") ?? "Failed to get mod update info",
                 e.Message, TimeSpan.FromSeconds(10));
         });
         _window.Close();
@@ -256,7 +259,7 @@ public partial class ModUpdateVM : ObservableRecipient
         {
             _logger.Error(e, "Failed to download mod file");
 
-            _notificationManager.ShowNotification("Failed to download mod file",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModUpdate_FailedDownload") ?? "Failed to download mod file",
                 e.Message, TimeSpan.FromSeconds(10));
 
             Reset();
@@ -324,7 +327,7 @@ public partial class ModUpdateVM : ObservableRecipient
                     setup: options =>
                     {
                         options.ModUrl = modUrl;
-                        options.ExistingModIdToUpdate = _notification?.ModId;
+                        options.ExistingModToOverwritePath = _existingModToUpdate?.FullPath;
                     }).ConfigureAwait(false);
 
                 return await task.WaitForCloseAsync(_ct).ConfigureAwait(false);
@@ -357,7 +360,7 @@ public partial class ModUpdateVM : ObservableRecipient
         {
             _logger.Error(e, "Failed to install mod file");
 
-            _notificationManager.ShowNotification("Failed to install mod file",
+            _notificationManager.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModUpdate_FailedInstall") ?? "Failed to install mod file",
                 e.InnerException?.Message ?? e.Message, TimeSpan.FromSeconds(10));
 
             fileInfoVm.Status = ModFileInfoVm.InstallStatus.Downloaded;

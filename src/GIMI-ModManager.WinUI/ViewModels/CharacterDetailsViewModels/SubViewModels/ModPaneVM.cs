@@ -102,7 +102,7 @@ public sealed partial class ModPaneVM(
             }
             catch (Exception e)
             {
-                _notificationService.ShowNotification("Error loading mod", e.Message, null);
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorLoadingMod") ?? "Error loading mod", e.Message, null);
             }
         }
     }
@@ -138,7 +138,7 @@ public sealed partial class ModPaneVM(
             }
             catch (Exception e)
             {
-                _notificationService.ShowNotification($"Failed to load keyswaps for mod {mod.GetDisplayName()}", e.Message, null);
+                _notificationService.ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_FailedLoadKeySwaps") ?? "Failed to load keyswaps for mod {0}", mod.GetDisplayName()), e.Message, null);
             }
 
             return new { modEntry, modSettings, keySwaps };
@@ -232,7 +232,7 @@ public sealed partial class ModPaneVM(
             dataPackage.SetText(modFolderPath);
             Clipboard.SetContent(dataPackage);
 
-            _notificationService.ShowNotification("Mod folder path copied to clipboard", "", TimeSpan.FromSeconds(3));
+            _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ModFolderCopied") ?? "Mod folder path copied to clipboard", "", TimeSpan.FromSeconds(3));
         }
         catch (Exception e)
         {
@@ -243,7 +243,7 @@ public sealed partial class ModPaneVM(
         var filePicker = new FileOpenPicker();
         filePicker.SettingsIdentifier = "IniFilerPicker";
         filePicker.FileTypeFilter.Add(".ini");
-        filePicker.CommitButtonText = "Set";
+        filePicker.CommitButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_SetButton.Text") ?? "Set";
         var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
         WinRT.Interop.InitializeWithWindow.Initialize(filePicker, hwnd);
         var file = await filePicker.PickSingleFileAsync();
@@ -297,7 +297,7 @@ public sealed partial class ModPaneVM(
     {
         if (!IsModLoaded) return;
         var filePicker = new FileOpenPicker();
-        filePicker.CommitButtonText = "Set Image";
+        filePicker.CommitButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_SetImageButton.Text") ?? "Set Image";
         filePicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
         filePicker.SettingsIdentifier = "ImagePicker";
         foreach (var supportedImageExtension in Constants.SupportedImageExtensions)
@@ -327,7 +327,7 @@ public sealed partial class ModPaneVM(
 
             if (!clipboardHasValidImageResult.Result)
             {
-                _notificationService.ShowNotification("Clipboard does not contain a valid image", "", null);
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ClipboardNoImage") ?? "Clipboard does not contain a valid image", "", null);
                 return;
             }
 
@@ -335,7 +335,7 @@ public sealed partial class ModPaneVM(
 
             if (imagePath == null)
             {
-                _notificationService.ShowNotification("Could not retrieve image from clipboard", "", null);
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_CouldNotGetClipboardImage") ?? "Could not retrieve image from clipboard", "", null);
                 return;
             }
 
@@ -425,7 +425,7 @@ public sealed partial class ModPaneVM(
                         ForwardKey = modModelSkinModKeySwap.ForwardHotkey,
                         BackwardKey = modModelSkinModKeySwap.BackwardHotkey,
                         Variants = variants == -1 ? null : variants,
-                        Type = modModelSkinModKeySwap.Type ?? "Unknown"
+                        Type = modModelSkinModKeySwap.Type ?? App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_Unknown") ?? "Unknown"
                     };
 
                     keySwapSections.Add(keySwapSection);
@@ -446,7 +446,7 @@ public sealed partial class ModPaneVM(
                 _notificationService.ShowNotification(result.Notification);
 
             if (savingKeySwapException is not null)
-                _notificationService.ShowNotification("Failed to save key swaps", savingKeySwapException.Message, null);
+                _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_FailedSaveKeySwaps") ?? "Failed to save key swaps", savingKeySwapException.Message, null);
 
             _cancellationToken.ThrowIfCancellationRequested();
 
@@ -554,7 +554,7 @@ public sealed partial class ModPaneVM(
             if (useDefaultExceptionHandler)
             {
                 _logger.Error(e, "An error occured while executing command {CommandName}", commandName);
-                _notificationService.ShowNotification($"An error occured running command {commandName}", e.Message, null);
+                _notificationService.ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorRunCommand") ?? "An error occured running command {0}", commandName), e.Message, null);
                 return;
             }
 
@@ -647,7 +647,7 @@ public partial class ModPaneFieldsVm : ObservableObject
                 BackwardHotkey = keySwap.BackwardKey,
                 SectionKey = keySwap.SectionName,
                 Type = keySwap.Type,
-                VariationsCount = keySwap.Variants?.ToString() ?? "Unknown"
+                VariationsCount = keySwap.Variants?.ToString() ?? App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_Unknown") ?? "Unknown"
             });
 
             KeySwaps.Last().PropertyChanged += (_, e) => { OnPropertyChanged(nameof(KeySwaps)); };
@@ -736,5 +736,5 @@ public partial class ModPaneFieldsKeySwapVm : ObservableObject
     [ObservableProperty] private string? _forwardHotkey;
     [ObservableProperty] private string? _backwardHotkey;
     [ObservableProperty] private string? _type;
-    [ObservableProperty] private string _variationsCount = "Unknown";
+    [ObservableProperty] private string _variationsCount = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_Unknown") ?? "Unknown";
 }

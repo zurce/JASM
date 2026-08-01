@@ -9,6 +9,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Serilog;
+using GIMI_ModManager.Core.Contracts.Services;
 
 namespace GIMI_ModManager.WinUI.Views;
 
@@ -149,5 +150,11 @@ public sealed partial class CharactersPage : Page
     private void SortingComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         ViewModel.SortByCommand.Execute(e.AddedItems.OfType<CharactersViewModel.GridItemSortingMethod>());
+    }
+
+    private void ApplyPresetConfirmText_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        if (sender is TextBlock tb)
+            tb.Text = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharactersPage_ApplyPresetConfirmText") ?? "Confirm";
     }
 }

@@ -1,0 +1,4193 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="AppDisplayName" xml:space="preserve">
+    <!-- Application display name in the window title bar -->
+    <value>JASM+ - Just Another Skin Manager</value>
+  </data>
+
+  <data name="AppDescription" xml:space="preserve">
+    <!-- Application description -->
+    <value>JASM+ - Um Gerenciador de Skins</value>
+  </data>
+
+  <data name="Startup1.Text" xml:space="preserve">
+    <!-- Informational text on the first-time setup page (preserved for reference, may not be in use) -->
+    <value>Como parte da configuração inicial, você precisará selecionar uma pasta do Model-Importer (3dmigoto) e sua pasta de Mods conectada. A pasta 3dmigoto contém 3DMigoto Loader.exe/3DMigotoLoader.exe e uma pasta Mods. Se você ainda não configurou o model importer, faça isso agora, veja o link abaixo. Encontro a maioria dos mods no Gamebanana, mas o Nexusmods também tem alguns.</value>
+  </data>
+
+  <data name="Startup2.Text" xml:space="preserve">
+    <!-- Informational text on the first-time setup page (preserved for reference, may not be in use) -->
+    <value>Após salvar as configurações, o aplicativo criará uma pasta para cada personagem dentro da pasta 'Mods'. Pastas de mod fora dessas pastas de personagem são ignoradas. Este aplicativo ativa e desativa mods prefixando as pastas de mod com 'DISABLED_'. O JASM+ também suporta a exportação de mods gerenciados por ele, se você quiser usá-los com outros aplicativos.</value>
+  </data>
+
+  <data name="Startup3.Text" xml:space="preserve">
+    <!-- Informational text on the first-time setup page (preserved for reference, may not be in use) -->
+    <value>É sempre uma boa ideia fazer backup de seus arquivos/mods antes de usar aplicativos que interagem com seus arquivos.</value>
+  </data>
+
+  <data name="ShellMenuItem_Views_Main.Text" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Main.Text page -->
+    <value>Principal</value>
+  </data>
+
+  <data name="Main_Title.Text" xml:space="preserve">
+    <!-- Page title for the main view -->
+    <value>Principal</value>
+  </data>
+
+  <data name="ShellMenuItem_Views_Startup.Text" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Startup.Text page -->
+    <value>Inicial</value>
+  </data>
+
+  <data name="Startup_Title.Text" xml:space="preserve">
+    <!-- UI text on the first-time setup page -->
+    <value>Primeira inicialização</value>
+  </data>
+
+  <data name="Settings_Personalization.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Personalização</value>
+  </data>
+
+  <data name="Settings_Theme.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Tema</value>
+  </data>
+
+  <data name="Settings_Theme_Light.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Claro</value>
+  </data>
+
+  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Escuro</value>
+  </data>
+
+  <data name="Settings_Theme_Default.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Padrão</value>
+  </data>
+
+  <data name="Settings_AboutDescription.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>O objetivo do JASM+ é facilitar a organização de uma grande quantidade de mods de skin.</value>
+  </data>
+
+  <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
+    <!-- Privacy statement hyperlink text -->
+    <value>Declaração de Privacidade</value>
+  </data>
+
+  <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
+    <!-- URL for the privacy statement -->
+    <value>https://YourPrivacyUrlGoesHere/</value>
+  </data>
+
+  <data name="ShellMenuBarSettingsButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <!-- UI element in the main navigation shell -->
+    <value>Configurações</value>
+  </data>
+
+  <data name="SettingsPage_Description.Text" xml:space="preserve">
+    <!-- Description text on the settings page -->
+    <value>As configurações são salvas independentemente para cada jogo selecionado.</value>
+  </data>
+
+  <data name="Settings_Title.Text" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Configurações</value>
+  </data>
+
+  <data name="Startup/Tooltip1.Text" xml:space="preserve">
+    <!-- UI text on the first-time setup page -->
+    <value>Ativar esta opção fará com que o aplicativo organize os mods existentes em pastas atribuídas aos seus respectivos personagens. Quaisquer mods que não puderem ser razoavelmente correspondidos serão colocados em uma pasta 'Outros'.</value>
+  </data>
+
+  <data name="Startup/Tooltip2.Text" xml:space="preserve">
+    <!-- UI text on the first-time setup page -->
+    <value>Uma pasta de mod contendo nomes de vários personagens pode ser movida erroneamente para o diretório de um personagem. Isso pressupõe uma estrutura de mod plana, onde as pastas de skin são armazenadas soltas na pasta de mods. Se você tiver uma estrutura de pastas personalizada, há uma grande chance de o JASM+ identificar incorretamente suas skins. Isso também é o caso se você tiver pastas aninhadas com skins dentro delas.</value>
+  </data>
+
+  <data name="Startup/Tooltip3.Text" xml:space="preserve">
+    <!-- UI text on the first-time setup page -->
+    <value>Isso pode ser ativado mais tarde na página de configurações.</value>
+  </data>
+
+  <data name="Settings_About.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Sobre este aplicativo</value>
+  </data>
+
+  <data name="Settings_ComboBox_Header.Text" xml:space="preserve">
+    <!-- Form field label in Settings page -->
+    <value>Selecionar Idioma de Exibição:</value>
+  </data>
+
+  <data name="Settings_ExportDialog.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Isso exportará todos os mods que o JASM+ está gerenciando para uma pasta de exportação de sua escolha. Os mods serão copiados para a pasta de exportação e não serão removidos da pasta original.</value>
+  </data>
+
+  <data name="Settings_ExportDialogButtons.CloseButtonText" xml:space="preserve">
+    <!-- Cancel/dismiss button in a dialog -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="Settings_ExportDialogButtons.PrimaryButtonText" xml:space="preserve">
+    <!-- Button label in the mod export dialog -->
+    <value>Exportar</value>
+  </data>
+
+  <data name="Settings_ExportDialog_ChangeStatus.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Alterar status dos mods exportados</value>
+  </data>
+
+  <data name="Settings_ExportDialog_KeepStructure.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Manter estrutura de pastas NomePersonagem/Mods na pasta de exportação</value>
+  </data>
+
+  <data name="Settings_ExportDialog_RemoveJasm.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Remove arquivos de configuração do JASM+ dos mods exportados</value>
+  </data>
+
+  <data name="Settings_Export_Button.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Exportar Mods</value>
+  </data>
+
+  <data name="Settings_Export_Title.Text" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Exportar/Fazer Backup de Mods</value>
+  </data>
+
+  <data name="Settings_Language.Text" xml:space="preserve">
+    <!-- Language selection UI in Settings -->
+    <value>Idioma</value>
+  </data>
+
+  <data name="Settings_Language_TexBlock.Text" xml:space="preserve">
+    <!-- Language selection UI in Settings -->
+    <value>As opções de idioma são atualmente limitadas. É um trabalho em andamento.</value>
+  </data>
+
+  <data name="ShellPage_NavItem_CharacterManagement" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the CharacterManagement page -->
+    <value>Gerenciamento de Personagens</value>
+  </data>
+
+  <data name="ShellPage_NavItem_ModsOverview" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the ModsOverview page -->
+    <value>Visão Geral de Mods</value>
+  </data>
+
+  <data name="ShellPage_NavItem_ModPresets" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the ModPresets page -->
+    <value>Presets de Mods</value>
+  </data>
+
+  <data name="ShellPage_NavItem_Debug" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Debug page -->
+    <value>Depuração</value>
+  </data>
+
+  <data name="ShellPage_NavItem_Settings" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Settings page -->
+    <value>Configurações</value>
+  </data>
+
+  <data name="ShellPage_NavItem_Notifications" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the Notifications page -->
+    <value>Notificações</value>
+  </data>
+
+  <data name="ShellPage_SettingsItem" xml:space="preserve">
+    <!-- Navigation menu item label. Takes user to the SettingsItem page -->
+    <value>Configurações</value>
+  </data>
+
+  <data name="CharactersPage_CheckForUpdates.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>Verificar atualizações</value>
+  </data>
+
+  <data name="CharactersPage_OpenFolder.Text" xml:space="preserve">
+    <!-- Button label to open the mods folder in file explorer -->
+    <value>Abrir pasta...</value>
+  </data>
+
+  <data name="CharactersPage_ModsSubMenu.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>Mods</value>
+  </data>
+
+  <data name="CharactersPage_ClearNotifications.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>Limpar Notificações</value>
+  </data>
+
+  <data name="CharactersPage_DisableAllModsMenuItem.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>Desabilitar todos os mods</value>
+  </data>
+
+  <data name="CharactersPage_SelectProcessDialog.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharactersPage component -->
+    <value>Selecionar Caminho do Processo</value>
+  </data>
+
+  <data name="CharactersPage_SelectProcessDialog_Description.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>Selecione o caminho do processo que deseja iniciar. Uma vez salvo, ele será iniciado ao pressionar o botão iniciar. Isso pode ser redefinido na página de configurações.</value>
+  </data>
+
+  <data name="CharactersPage_SelectProcessDialog_PrimaryButtonText" xml:space="preserve">
+    <!-- Button label in the process path selection dialog -->
+    <value>Salvar</value>
+  </data>
+
+  <data name="CharactersPage_SelectProcessDialog_SecondaryButtonText" xml:space="preserve">
+    <!-- Button label in the process path selection dialog -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="CharactersPage_SelectProcessDialog_GamePlaceholderText" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>Selecione o executável do jogo</value>
+  </data>
+
+  <data name="CharactersPage_SelectProcessDialog_ModelImporterPlaceholderText" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>Selecione o executável do importador de modelos</value>
+  </data>
+
+  <data name="CharactersPage_CreateAdvancedCommand.Content" xml:space="preserve">
+    <!-- Button or toggle label on the CharactersPage component -->
+    <value>Criar Comando Avançado</value>
+  </data>
+
+  <data name="CharactersPage_EnableAllDialog.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharactersPage component -->
+    <value>Habilitar todos os mods?</value>
+  </data>
+
+  <data name="CharactersPage_EnableAllDialog_Description.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>Isso habilitará todos os mods rastreados nas categorias ativas.</value>
+  </data>
+
+  <data name="CharactersPage_DisableAllDialog.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharactersPage component -->
+    <value>Desabilitar todos os mods?</value>
+  </data>
+
+  <data name="CharactersPage_DisableAllDialog_Description.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>É recomendado salvar sua configuração atual como um preset para facilitar a restauração</value>
+  </data>
+
+  <data name="CharactersPage_CleanUpDialog.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharactersPage component -->
+    <value>Limpar mods desabilitados?</value>
+  </data>
+
+  <data name="CharactersPage_CleanUpDialog_Description.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>Esta operação é irreversível</value>
+  </data>
+
+  <data name="CharactersPage_GameBananaLink.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>GameBanana</value>
+  </data>
+
+  <data name="CharactersPage_SortByLabel.Text" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Ordenar por:</value>
+  </data>
+
+  <data name="CharactersPage_SortCharacters_Placeholder.PlaceholderText" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Ordenar Personagens...</value>
+  </data>
+
+  <data name="CharactersPage_RefreshMods.Content" xml:space="preserve">
+    <!-- Button label to refresh/scand mod files -->
+    <value>Atualizar Mods</value>
+  </data>
+
+  <data name="CharactersPage_Start3Dmigoto.Content" xml:space="preserve">
+    <!-- Button label to launch the 3DMigoto model importer process -->
+    <value>Iniciar 3Dmigoto</value>
+  </data>
+
+  <data name="CharactersPage_BatchConfigurations.Label" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Configurações em Lote</value>
+  </data>
+
+  <data name="CharactersPage_EnableAll.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>Habilitar todos</value>
+  </data>
+
+  <data name="CharactersPage_DisableAll.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>Desabilitar todos</value>
+  </data>
+
+  <data name="CharactersPage_CleanUp.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>Limpar</value>
+  </data>
+
+  <data name="CharactersPage_ApplyPresetLabel.Text" xml:space="preserve">
+    <!-- Label for preset application status -->
+    <value>Aplicar Preset:</value>
+  </data>
+
+  <data name="CharactersPage_ApplyPresetConfirmText" xml:space="preserve">
+    <!-- Label for preset application status -->
+    <value>Confirmar</value>
+  </data>
+
+  <data name="CharactersPage_StartGamePrefix" xml:space="preserve">
+    <!-- Prefix for the Start Game button. The game name is appended (e.g. "Start Genshin Impact") -->
+    <value>Iniciar</value>
+  </data>
+
+  <data name="CharactersPage_TitleFormat" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>Visão Geral de {0}</value>
+  </data>
+
+  <data name="CharactersPage_EnableAllDialog_Title" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>Habilitar todos os mods?</value>
+  </data>
+
+  <data name="CharactersPage_EnableAllDialog_PrimaryButtonText" xml:space="preserve">
+    <!-- Button label in the "Enable All Mods" dialog -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="CharactersPage_EnableAllDialog_SecondaryButtonText" xml:space="preserve">
+    <!-- Button label in the "Enable All Mods" dialog -->
+    <value>Confirmar</value>
+  </data>
+
+  <data name="CharactersPage_DisableAllDialog_Title" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>Desabilitar todos os mods?</value>
+  </data>
+
+  <data name="CharactersPage_DisableAllDialog_PrimaryButtonText" xml:space="preserve">
+    <!-- Button label in the "Disable All Mods" dialog -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="CharactersPage_DisableAllDialog_SecondaryButtonText" xml:space="preserve">
+    <!-- Button label in the "Disable All Mods" dialog -->
+    <value>Confirmar</value>
+  </data>
+
+  <data name="CharactersPage_CleanUpDialog_Title" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>Limpar mods desabilitados?</value>
+  </data>
+
+  <data name="CharactersPage_CleanUpDialog_PrimaryButtonText" xml:space="preserve">
+    <!-- Button label in the "Clean Up Disabled Mods" dialog -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="CharactersPage_CleanUpDialog_SecondaryButtonText" xml:space="preserve">
+    <!-- Button label in the "Clean Up Disabled Mods" dialog -->
+    <value>Sim</value>
+  </data>
+
+  <data name="CharactersPage_ModToggleSuffix" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>com Mods</value>
+  </data>
+
+  <data name="CharactersPage_ModEnabledToggleSuffix" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>com Mods Habilitados</value>
+  </data>
+
+  <data name="CharactersPage_ModNotificationsToggleSuffix" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>com Notificações de Mods</value>
+  </data>
+
+  <data name="CharactersPage_SortAlphabetical_Name" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Alfabético</value>
+  </data>
+
+  <data name="CharactersPage_SortModCount_Name" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Qtd. de Mods</value>
+  </data>
+
+  <data name="CharactersPage_SortRecentlyAdded_Name" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Adicionado Recentemente</value>
+  </data>
+
+  <data name="CharactersPage_SortReleaseDate_Name" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Data de Lançamento</value>
+  </data>
+
+  <data name="CharactersPage_SortRarity_Name" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Raridade</value>
+  </data>
+
+  <data name="CharactersPage_ConfirmPreset.Text" xml:space="preserve">
+    <!-- Confirmation text when applying a preset -->
+    <value>Confirmar</value>
+  </data>
+
+  <data name="CharactersPage_RandomizeMods.Text" xml:space="preserve">
+    <!-- Static label text on the CharactersPage component -->
+    <value>Aleatorizar Mods</value>
+  </data>
+
+  <data name="CharactersPage_Filters.Label" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Filtros</value>
+  </data>
+
+  <data name="CharactersPage_DropHereText.Text" xml:space="preserve">
+    <!-- Drag-and-drop hint text shown on character cards -->
+    <value>Solte Aqui para Detectar Mod Automaticamente...</value>
+  </data>
+
+  <data name="CharactersPage_SortAlphabetical.Text" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Alfabético</value>
+  </data>
+
+  <data name="CharactersPage_SortModCount.Text" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Quantidade de Mods</value>
+  </data>
+
+  <data name="CharactersPage_SortRecentlyAdded.Text" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Mods Adicionados Recentemente</value>
+  </data>
+
+  <data name="CharactersPage_SortReleaseDate.Text" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Data de Lançamento</value>
+  </data>
+
+  <data name="CharactersPage_SortRarity.Text" xml:space="preserve">
+    <!-- Section label for character filters or batch operations -->
+    <value>Raridade</value>
+  </data>
+
+  <data name="CharactersPage_SearchPrefix" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>Pesquisar</value>
+  </data>
+
+  <data name="CharactersPage_ModToggleText" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>Mostrar apenas</value>
+  </data>
+
+  <data name="CharactersPage_ModEnabledToggleText" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>Mostrar apenas</value>
+  </data>
+
+  <data name="CharactersPage_ModNotificationsToggleText" xml:space="preserve">
+    <!-- Text on the CharactersPage component -->
+    <value>Mostrar apenas</value>
+  </data>
+
+  <data name="CharacterDetails_ModsSelected.Text" xml:space="preserve">
+    <!-- Shows how many mods are currently selected -->
+    <value>Mods Selecionados:</value>
+  </data>
+
+  <data name="CharacterDetails_MoveModsButton.Content" xml:space="preserve">
+    <!-- UI for moving mods between characters -->
+    <value>Mover</value>
+  </data>
+
+  <data name="CharacterDetails_MoveModsToAnother.Text" xml:space="preserve">
+    <!-- UI for moving mods between characters -->
+    <value>Mover Mods para Outro Personagem:</value>
+  </data>
+
+  <data name="CharacterDetails_MoveModSearch.PlaceholderText" xml:space="preserve">
+    <!-- UI for moving mods between characters -->
+    <value>Pesquisar...</value>
+  </data>
+
+  <data name="CharacterDetails_MoveModsSkinExpander.Header" xml:space="preserve">
+    <!-- UI for moving mods between characters -->
+    <value>Mover Mods para outra Skin</value>
+  </data>
+
+  <data name="CharacterDetails_OverrideButtonText.Text" xml:space="preserve">
+    <!-- UI for managing skin overrides on this character -->
+    <value>Sobrescrever</value>
+  </data>
+
+  <data name="CharacterDetails_OverrideSkinSetTo.Text" xml:space="preserve">
+    <!-- UI for managing skin overrides on this character -->
+    <value>Skin de Sobrescrita Definida Para:</value>
+  </data>
+
+  <data name="CharacterDetails_RunCommandExpander.Header" xml:space="preserve">
+    <!-- Button or section for running custom commands on a mod -->
+    <value>Executar Comando nesta pasta</value>
+  </data>
+
+  <data name="CharacterDetails_FullCommand.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>Comando Completo:</value>
+  </data>
+
+  <data name="CharacterDetails_WorkingDirectory.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>Diretório de Trabalho:</value>
+  </data>
+
+  <data name="CharacterDetails_TargetPath.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>'{{TargetPath}}:</value>
+  </data>
+
+  <data name="CharacterDetails_RunCommand.Content" xml:space="preserve">
+    <!-- Button or section for running custom commands on a mod -->
+    <value>Executar</value>
+  </data>
+
+  <data name="CharacterDetails_Loading.Text" xml:space="preserve">
+    <!-- Loading text -->
+    <value>Carregando</value>
+  </data>
+
+  <data name="CharacterDetails_LoadingEllipsis.Text" xml:space="preserve">
+    <!-- Loading text -->
+    <value>...</value>
+  </data>
+
+  <data name="CharacterDetails_MenuBar_Mods.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharacterDetails component -->
+    <value>Mods</value>
+  </data>
+
+  <data name="CharacterDetails_AddModMenuItem.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>Adicionar Mod...</value>
+  </data>
+
+  <data name="CharacterDetails_AddArchiveMenuItem.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>Adicionar Arquivo...</value>
+  </data>
+
+  <data name="CharacterDetails_RefreshModsMenuItem.Text" xml:space="preserve">
+    <!-- Menu item or button to refresh mods -->
+    <value>Atualizar Mods</value>
+  </data>
+
+  <data name="CharacterDetails_MenuBar_Folders.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharacterDetails component -->
+    <value>Pastas</value>
+  </data>
+
+  <data name="CharacterDetails_OpenRootFolder.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>Abrir pasta raiz do 3Dmigoto...</value>
+  </data>
+
+  <data name="CharacterDetails_OpenCharacterModFolder.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>Abrir pasta de Mods do Personagem...</value>
+  </data>
+
+  <data name="CharacterDetails_OpenSelectedModFolder.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>Abrir pasta do Mod selecionado...</value>
+  </data>
+
+  <data name="CharacterDetails_MenuBar_View.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharacterDetails component -->
+    <value>Visualizar</value>
+  </data>
+
+  <data name="CharacterDetails_SingleSelectToggle.Text" xml:space="preserve">
+    <!-- Toggle: when enabled, only one mod can be active at a time -->
+    <value>Seleção Única</value>
+  </data>
+
+  <data name="CharacterDetails_ShowModFolderNames.Text" xml:space="preserve">
+    <!-- Toggle: shows/hides the mod folder name column -->
+    <value>Mostrar coluna 'Nomes da Pasta de Mods'</value>
+  </data>
+
+  <data name="CharacterDetails_MenuBar_ModPreferences.Title" xml:space="preserve">
+    <!-- Section or dialog title on the CharacterDetails component -->
+    <value>Preferências de Mod</value>
+  </data>
+
+  <data name="CharacterDetails_SavePreferencesToggle.Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Salvar preferências para o mod selecionado</value>
+  </data>
+
+  <data name="CharacterDetails_ReadPreferencesToggle.Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Ler preferências para o mod selecionado</value>
+  </data>
+
+  <data name="CharacterDetails_MultipleModsActive.Message" xml:space="preserve">
+    <!-- Warning message shown when multiple mods are enabled simultaneously -->
+    <value>Múltiplos Mods ativos</value>
+  </data>
+
+  <data name="CharacterDetails_SearchModsTextBox.PlaceholderText" xml:space="preserve">
+    <!-- Placeholder text in the mod search box -->
+    <value>Pesquisar Mods...</value>
+  </data>
+
+  <data name="CharacterDetails_ViewToggle.OffContent" xml:space="preserve">
+    <!-- Toggle switch to switch between Gallery View or Detailed View -->
+    <value>Visualização Detalhada</value>
+  </data>
+
+  <data name="ModPane_SetModIniFile.Text" xml:space="preserve">
+    <!-- Button/checkbox for managing the mod .ini file -->
+    <value>Definir arquivo .ini do mod</value>
+  </data>
+
+  <data name="ModPane_IgnoreIniFile.Text" xml:space="preserve">
+    <!-- Button/checkbox for managing the mod .ini file -->
+    <value>Ignorar arquivo .ini para este mod</value>
+  </data>
+
+  <data name="ModPane_ModUrl.Header" xml:space="preserve">
+    <!-- Label for the mod page URL field -->
+    <value>URL do Mod:</value>
+  </data>
+
+  <data name="ModPane_ForwardKey.Header" xml:space="preserve">
+    <!-- Label for key swap configuration fields -->
+    <value>Tecla Avançar</value>
+  </data>
+
+  <data name="ModPane_Variations.Text" xml:space="preserve">
+    <!-- Section for mod variation options -->
+    <value>Variações:</value>
+  </data>
+
+  <data name="ModPane_BackwardKey.Header" xml:space="preserve">
+    <!-- Label for key swap configuration fields -->
+    <value>Tecla Voltar</value>
+  </data>
+
+  <data name="ModPane_KeySwapDisabled.Text" xml:space="preserve">
+    <!-- Label: key swaps disabled for this mod -->
+    <value>O gerenciamento de troca de teclas está desabilitado para este mod</value>
+  </data>
+
+  <data name="ModPane_SaveButtonText.Text" xml:space="preserve">
+    <!-- Button to save mod settings -->
+    <value>Salvar</value>
+  </data>
+
+  <data name="ModPane_ModEnabled.Text" xml:space="preserve">
+    <!-- Toggle: enable/disable this mod -->
+    <value>Mod Habilitado</value>
+  </data>
+
+  <data name="ModPane_OpenModFolder.Content" xml:space="preserve">
+    <!-- Button to open the mod folder -->
+    <value>Abrir Pasta do Mod...</value>
+  </data>
+
+  <data name="PresetPage_AutoSyncWarning.Text" xml:space="preserve">
+    <!-- Toggle: auto-sync mod preferences -->
+    <value>Sincronização automática não habilitada! Lembre-se de recarregar manualmente a configuração do 3Dmigoto ao fazer alterações</value>
+  </data>
+
+  <data name="PresetPage_ApplyPresetButton.Content" xml:space="preserve">
+    <!-- Button to apply or confirm a preset -->
+    <value>Aplicar Preset</value>
+  </data>
+
+  <data name="PresetPage_ApplyConfirm.Content" xml:space="preserve">
+    <!-- Button to apply or confirm a preset -->
+    <value>Confirmar</value>
+  </data>
+
+  <data name="PresetPage_ResetConfirm.Content" xml:space="preserve">
+    <!-- Button to apply or confirm a preset -->
+    <value>Confirmar</value>
+  </data>
+
+  <data name="PresetPage_PageTitle.Text" xml:space="preserve">
+    <!-- Static label text on the PresetPage component -->
+    <value>Presets de Mod e Preferências de Mod</value>
+  </data>
+
+  <data name="PresetPage_NewPresetName.Header" xml:space="preserve">
+    <!-- Placeholder/label for new preset name -->
+    <value>Novo Nome do Preset</value>
+  </data>
+
+  <data name="PresetPage_CreatePresetButton.Content" xml:space="preserve">
+    <!-- Button to create a new preset -->
+    <value>Salvar preferências ativas de mod e criar novo preset</value>
+  </data>
+
+  <data name="PresetPage_CreateEmptyPreset.Content" xml:space="preserve">
+    <!-- Button to create a new preset -->
+    <value>Criar como um preset vazio</value>
+  </data>
+
+  <data name="PresetPage_AutoSyncPreferences.Content" xml:space="preserve">
+    <!-- Toggle: auto-sync mod preferences -->
+    <value>Sincronizar automaticamente Preferências de Mod ao trocar de preset</value>
+  </data>
+
+  <data name="PresetPage_SaveActivePreferencesButton.Content" xml:space="preserve">
+    <!-- Button to save current mod states as preferences -->
+    <value>Salvar preferências ativas de mod (KeySwaps) nos mods</value>
+  </data>
+
+  <data name="PresetPage_ApplySavedPreferencesButton.Content" xml:space="preserve">
+    <!-- Button to apply or confirm a preset -->
+    <value>Aplicar preferências salvas de mod (KeySwaps)</value>
+  </data>
+
+  <data name="PresetPage_ShowManualControls.Content" xml:space="preserve">
+    <!-- Button to show manual controls -->
+    <value>Mostrar controles manuais</value>
+  </data>
+
+  <data name="PresetPage_EnabledModsCount.Text" xml:space="preserve">
+    <!-- Static label text on the PresetPage component -->
+    <value>Contagem de Mods Habilitados do Preset:</value>
+  </data>
+
+  <data name="PresetPage_CreatedAt.Text" xml:space="preserve">
+    <!-- Button to create a new preset -->
+    <value>Criado em:</value>
+  </data>
+
+  <data name="PresetPage_GoToPresetDetails.Content" xml:space="preserve">
+    <!-- Button or toggle label on the PresetPage component -->
+    <value>Ir para Detalhes do Preset</value>
+  </data>
+
+  <data name="PresetPage_ReadOnlyMenuItem.Text" xml:space="preserve">
+    <!-- Toggle: mark preset as read-only -->
+    <value>Somente Leitura</value>
+  </data>
+
+  <data name="PresetPage_DuplicateMenuItem.Text" xml:space="preserve">
+    <!-- Context menu: duplicate preset -->
+    <value>Duplicar</value>
+  </data>
+
+  <data name="PresetPage_DeleteMenuItem.Text" xml:space="preserve">
+    <!-- Context menu: delete preset -->
+    <value>Excluir</value>
+  </data>
+
+  <data name="PresetPage_RandomizeModsButton.Content" xml:space="preserve">
+    <!-- Button to open the randomize mods dialog -->
+    <value>Aleatorizar Mods</value>
+  </data>
+
+  <data name="PresetPage_ResetModPreferencesButton.Content" xml:space="preserve">
+    <!-- Button to reset mod preferences -->
+    <value>Redefinir Preferências de Mod</value>
+  </data>
+
+  <data name="PresetPage_ResetPreferencesDialogText.Text" xml:space="preserve">
+    <!-- Static label text on the PresetPage component -->
+    <value>Redefinir preferências de mod persistidas</value>
+  </data>
+
+  <data name="PresetPage_ResetOnlyEnabledMods.Content" xml:space="preserve">
+    <!-- Button to reset mod preferences -->
+    <value>Redefinir apenas para Mods habilitados</value>
+  </data>
+
+  <data name="PresetPage_AlsoReset3DMigoto.Content" xml:space="preserve">
+    <!-- Button to reset mod preferences -->
+    <value>Também limpar preferências no ini de usuário do 3Dmigoto</value>
+  </data>
+
+  <data name="PresetPage_RenameText" xml:space="preserve">
+    <!-- Button/dialog for renaming a preset -->
+    <value>Renomear</value>
+  </data>
+
+  <data name="PresetPage_ConfirmText" xml:space="preserve">
+    <!-- Button to apply or confirm a preset -->
+    <value>Salvar Novo Nome</value>
+  </data>
+
+  <data name="ModInstallerPage_SetModPreviewImage.Text" xml:space="preserve">
+    <!-- UI for setting a custom preview image -->
+    <value>Definir imagem de prévia do mod</value>
+  </data>
+
+  <data name="ModInstallerPage_SetRootModFolder.Text" xml:space="preserve">
+    <!-- Button to select a folder path -->
+    <value>Definir Pasta Raiz do Mod</value>
+  </data>
+
+  <data name="ModInstallerPage_SetShaderFixesFolder.Text" xml:space="preserve">
+    <!-- Radio button: shader fixes folder mode (Auto/Ignore/Manual) -->
+    <value>Definir Pasta de ShaderFixes</value>
+  </data>
+
+  <data name="ModInstallerPage_DuplicateModDialog.Title" xml:space="preserve">
+    <!-- Warning dialog about already-installed mod -->
+    <value>Já existe uma pasta com o mesmo nome</value>
+  </data>
+
+  <data name="ModInstallerPage_DuplicateModDialog.CloseButtonText" xml:space="preserve">
+    <!-- Cancel/dismiss button in a dialog -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="ModInstallerPage_DuplicateInfoBar.Message" xml:space="preserve">
+    <!-- Informational message on the ModInstallerPage component -->
+    <value>1. Você pode optar por sobrescrever o mod antigo, excluindo-o.
+Ou
+2. Você pode renomear o mod novo ou o antigo</value>
+  </data>
+
+  <data name="ModInstallerPage_NewModLabel.Text" xml:space="preserve">
+    <!-- Section heading text -->
+    <value>Novo Mod:</value>
+  </data>
+
+  <data name="ModInstallerPage_NewModCustomName.Header" xml:space="preserve">
+    <!-- Label for the custom display name input -->
+    <value>Nome personalizado</value>
+  </data>
+
+  <data name="ModInstallerPage_NewModFolderName.Header" xml:space="preserve">
+    <!-- Label for the mod folder name input -->
+    <value>Nome da pasta</value>
+  </data>
+
+  <data name="ModInstallerPage_OtherModLabel.Text" xml:space="preserve">
+    <!-- Section heading text -->
+    <value>Outro Mod:</value>
+  </data>
+
+  <data name="ModInstallerPage_OtherModCustomName.Header" xml:space="preserve">
+    <!-- Label for the custom display name input -->
+    <value>Nome personalizado</value>
+  </data>
+
+  <data name="ModInstallerPage_OtherModFolderName.Header" xml:space="preserve">
+    <!-- Label for the mod folder name input -->
+    <value>Nome da pasta</value>
+  </data>
+
+  <data name="ModInstallerPage_OpenExistingModFolder.Text" xml:space="preserve">
+    <!-- Static label text on the ModInstallerPage component -->
+    <value>Abrir pasta de mod existente...</value>
+  </data>
+
+  <data name="ModInstallerPage_OverwriteExistingMod.Content" xml:space="preserve">
+    <!-- Checkbox: overwrite if a mod with this name already exists -->
+    <value>Sobrescrever mod existente</value>
+  </data>
+
+  <data name="ModInstallerPage_ReplaceInPresets.Text" xml:space="preserve">
+    <!-- Checkbox: replace old mod in presets with this new version -->
+    <value>Substituir mod duplicado nos presets pelo novo mod</value>
+  </data>
+
+  <data name="ModInstallerPage_RetrieveModInfo.Text" xml:space="preserve">
+    <!-- Static label text on the ModInstallerPage component -->
+    <value>Obter informações do mod na página do mod</value>
+  </data>
+
+  <data name="ModInstallerPage_ModPageUrl.Header" xml:space="preserve">
+    <!-- Label/placeholder for the GameBanana mod page URL -->
+    <value>URL da página do mod</value>
+  </data>
+
+  <data name="ModInstallerPage_ModPageUrl.PlaceholderText" xml:space="preserve">
+    <!-- Label/placeholder for the GameBanana mod page URL -->
+    <value>Cole a URL para preencher campos automaticamente (apenas GameBanana)</value>
+  </data>
+
+  <data name="ModInstallerPage_ModCustomName.Header" xml:space="preserve">
+    <!-- Label for the custom display name input -->
+    <value>Nome Personalizado do Mod</value>
+  </data>
+
+  <data name="ModInstallerPage_ModCustomName.PlaceholderText" xml:space="preserve">
+    <!-- Label for the custom display name input -->
+    <value>Nome personalizado exibido em todo o JASM+</value>
+  </data>
+
+  <data name="ModInstallerPage_Author.Header" xml:space="preserve">
+    <!-- Label for the mod author field -->
+    <value>Autor</value>
+  </data>
+
+  <data name="ModInstallerPage_Note.Header" xml:space="preserve">
+    <!-- Label/placeholder for a free-text note about this mod -->
+    <value>Anotação</value>
+  </data>
+
+  <data name="ModInstallerPage_Note.PlaceholderText" xml:space="preserve">
+    <!-- Label/placeholder for a free-text note about this mod -->
+    <value>Nota de texto livre personalizada, exibida na grade na página de detalhes do personagem</value>
+  </data>
+
+  <data name="ModInstallerPage_ModFolderLabel.Text" xml:space="preserve">
+    <!-- Section heading text -->
+    <value>PastaMod:</value>
+  </data>
+
+  <data name="ModInstallerPage_RootFolderHint.Text" xml:space="preserve">
+    <!-- Static label text on the ModInstallerPage component -->
+    <value>Esta é geralmente a pasta que contém o 'merged.ini/Script.ini' ou '.JASM_ModConfig.json'. O JASM+ detectará automaticamente a pasta de mods e o arquivo merged.ini. Se quiser selecionar manualmente a pasta de mods, você pode clicar com o botão direito na pasta na visão geral acima.</value>
+  </data>
+
+  <data name="ModInstallerPage_PreviewImageHint.Text" xml:space="preserve">
+    <!-- UI for setting a custom preview image -->
+    <value>Você também pode selecionar manualmente um arquivo de imagem para a prévia do mod. Geralmente é suficiente apenas pressionar 'Adicionar Mod'</value>
+  </data>
+
+  <data name="ModInstallerPage_PreviewImageSourceLabel.Text" xml:space="preserve">
+    <!-- Section heading text -->
+    <value>Fonte da Imagem de Prévia:</value>
+  </data>
+
+  <data name="ModInstallerPage_ImageSourceAuto.Content" xml:space="preserve">
+    <!-- Radio button: preview image source (Auto/URL/ModFiles/Ignore) -->
+    <value>Automático</value>
+  </data>
+
+  <data name="ModInstallerPage_ImageSourceUrl.Content" xml:space="preserve">
+    <!-- Radio button: preview image source (Auto/URL/ModFiles/Ignore) -->
+    <value>URL</value>
+  </data>
+
+  <data name="ModInstallerPage_ImageSourceModFiles.Content" xml:space="preserve">
+    <!-- Radio button: preview image source (Auto/URL/ModFiles/Ignore) -->
+    <value>Arquivos do Mod</value>
+  </data>
+
+  <data name="ModInstallerPage_ImageSourceIgnore.Content" xml:space="preserve">
+    <!-- Radio button: preview image source (Auto/URL/ModFiles/Ignore) -->
+    <value>Ignorar</value>
+  </data>
+
+  <data name="ModInstallerPage_SelectRootFolderHint.Text" xml:space="preserve">
+    <!-- Static label text on the ModInstallerPage component -->
+    <value>Aqui você pode selecionar a raiz da pasta do mod.</value>
+  </data>
+
+  <data name="ModInstallerPage_ModFolderDescription.Text" xml:space="preserve">
+    <!-- Static label text on the ModInstallerPage component -->
+    <value>Esta é geralmente a pasta que contém o 'merged.ini/Script.ini' ou '.JASM_ModConfig.json'. O JASM+ detectará automaticamente a pasta do mod e o arquivo merged.ini. Se quiser selecionar manualmente a pasta do mod, clique com o botão direito na pasta na visão geral acima.</value>
+  </data>
+
+  <data name="ModInstallerPage_ManualImageSelectionHint.Text" xml:space="preserve">
+    <!-- Instruction for manual image selection -->
+    <value>Você também pode selecionar manualmente um arquivo de imagem para a prévia do mod. Geralmente é suficiente apenas pressionar 'Adicionar Mod'.</value>
+  </data>
+
+  <data name="ModInstallerPage_ForceOverwriteDifferentNameMod.Content" xml:space="preserve">
+    <!-- Checkbox: overwrite old mod even if folder names differ -->
+    <value>Forçar Sobrescrita de Mod com Nome Diferente?</value>
+  </data>
+
+  <data name="ModInstallerPage_ReplaceInPresetsMain.Text" xml:space="preserve">
+    <!-- Checkbox: replace old mod in presets with this new version -->
+    <value>Substituir mod duplicado nos presets pelo novo mod</value>
+  </data>
+
+  <data name="ModInstallerPage_MergedIniFileFolderLabel.Text" xml:space="preserve">
+    <!-- Section heading text -->
+    <value>Pasta MergedIniFile:</value>
+  </data>
+
+  <data name="ModInstallerPage_ShaderFixesFolderLabel.Text" xml:space="preserve">
+    <!-- Section heading text -->
+    <value>Pasta ShaderFixes:</value>
+  </data>
+
+  <data name="ModInstallerPage_ShaderFixesAuto.Content" xml:space="preserve">
+    <!-- Radio button: shader fixes folder mode (Auto/Ignore/Manual) -->
+    <value>Automático</value>
+  </data>
+
+  <data name="ModInstallerPage_ShaderFixesManualSelect.Content" xml:space="preserve">
+    <!-- Radio button: shader fixes folder mode (Auto/Ignore/Manual) -->
+    <value>Seleção Manual</value>
+  </data>
+
+  <data name="ModInstallerPage_ShaderFixesIgnore.Content" xml:space="preserve">
+    <!-- Radio button: shader fixes folder mode (Auto/Ignore/Manual) -->
+    <value>Ignorar</value>
+  </data>
+
+  <data name="ModInstallerPage_EnableOnlyMod.Content" xml:space="preserve">
+    <!-- Checkbox: disable all other mods, only enable this one -->
+    <value>Habilitar este mod e desabilitar outros?</value>
+  </data>
+
+  <data name="ModInstallerPage_AddModButton.Content" xml:space="preserve">
+    <!-- Button to finish installing the mod -->
+    <value>Adicionar Mod</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SelectSkin.Content" xml:space="preserve">
+    <!-- Menu item to select a character skin -->
+    <value>Selecionar Skin</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SortBy.Text" xml:space="preserve">
+    <!-- Sort option label -->
+    <value>Ordenar por:</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SortMods.PlaceholderText" xml:space="preserve">
+    <!-- Sort option label -->
+    <value>Ordenar Mods...</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SortDateAdded.Content" xml:space="preserve">
+    <!-- Sort option label -->
+    <value>Data de Adição</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SortFolderName.Content" xml:space="preserve">
+    <!-- Sort option label -->
+    <value>Nome da Pasta</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SortName.Content" xml:space="preserve">
+    <!-- Sort option label -->
+    <value>Nome</value>
+  </data>
+
+  <data name="CharacterGalleryPage_ViewButton.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterGalleryPage component -->
+    <value>Visualizar</value>
+  </data>
+
+  <data name="CharacterGalleryPage_AdjustHeight.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterGalleryPage component -->
+    <value>Ajustar Altura:</value>
+  </data>
+
+  <data name="CharacterGalleryPage_AdjustDesiredWidth.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterGalleryPage component -->
+    <value>Ajustar Largura Desejada:</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SingleSelect.ToolTip" xml:space="preserve">
+    <!-- Toggle/tooltip: restrict to one active mod per character -->
+    <value>Selecionar isso permitirá que apenas um mod seja habilitado por vez.</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SearchMods.PlaceholderText" xml:space="preserve">
+    <!-- Placeholder text in the mod search box -->
+    <value>Pesquisar Mods...</value>
+  </data>
+
+  <data name="CharacterGalleryPage_ViewToggleSwitch.OnContent" xml:space="preserve">
+    <!-- Toggle switch for Gallery View / Detailed View -->
+    <value>Visualização em Galeria</value>
+  </data>
+
+  <data name="CharacterGalleryPage_ViewToggleSwitch.OffContent" xml:space="preserve">
+    <!-- Toggle switch for Gallery View / Detailed View -->
+    <value>Visualização Detalhada</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SingleSelect.Content" xml:space="preserve">
+    <!-- Toggle/tooltip: restrict to one active mod per character -->
+    <value>Seleção Única</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SaveImage.Text" xml:space="preserve">
+    <!-- Context menu item for mod operations -->
+    <value>Salvar Imagem</value>
+  </data>
+
+  <data name="CharacterGalleryPage_OpenModFolder.Text" xml:space="preserve">
+    <!-- Context menu item for mod operations -->
+    <value>Abrir Pasta do Mod...</value>
+  </data>
+
+  <data name="CharacterGalleryPage_OpenModPage.Text" xml:space="preserve">
+    <!-- Context menu item for mod operations -->
+    <value>Abrir Página do Mod...</value>
+  </data>
+
+  <data name="CharacterGalleryPage_DeleteMod.Text" xml:space="preserve">
+    <!-- Context menu item for mod operations -->
+    <value>Excluir Mod</value>
+  </data>
+
+  <data name="CharacterGalleryPage_Author.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterGalleryPage component -->
+    <value>Autor:</value>
+  </data>
+
+  <data name="CharacterGalleryPage_Added.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterGalleryPage component -->
+    <value>Adicionado:</value>
+  </data>
+
+  <data name="CharacterGalleryPage_LoadingMods.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterGalleryPage component -->
+    <value>Carregando Mods...</value>
+  </data>
+
+  <data name="ModsOverviewPage_Title.Text" xml:space="preserve">
+    <!-- Static label text on the ModsOverviewPage component -->
+    <value>Visão Geral de Mods</value>
+  </data>
+
+  <data name="ModsOverviewPage_RunCommandOnThisFolder.Text" xml:space="preserve">
+    <!-- Static label text on the ModsOverviewPage component -->
+    <value>Executar Comando nesta pasta:</value>
+  </data>
+
+  <data name="ModsOverviewPage_FullCommand.Text" xml:space="preserve">
+    <!-- Label showing command path/directory details -->
+    <value>Comando Completo:</value>
+  </data>
+
+  <data name="ModsOverviewPage_WorkingDirectory.Text" xml:space="preserve">
+    <!-- Label showing command path/directory details -->
+    <value>Diretório de Trabalho:</value>
+  </data>
+
+  <data name="ModsOverviewPage_TargetPath.Text" xml:space="preserve">
+    <!-- Label showing command path/directory details -->
+    <value>'{{TargetPath}}:</value>
+  </data>
+
+  <data name="ModsOverviewPage_GoToCharacter.Content" xml:space="preserve">
+    <!-- Button to navigate to this character -->
+    <value>Ir para o Personagem</value>
+  </data>
+
+  <data name="ModsOverviewPage_AddedLabel.Text" xml:space="preserve">
+    <!-- Label showing when the mod was added -->
+    <value>Adicionado:</value>
+  </data>
+
+  <data name="ModsOverviewPage_RunButton.Content" xml:space="preserve">
+    <!-- Button to run a command on this mod folder -->
+    <value>Executar</value>
+  </data>
+
+  <data name="ModsOverviewPage_SearchBox.PlaceholderText" xml:space="preserve">
+    <!-- Placeholder text in the mod search box -->
+    <value>Pressione Enter para pesquisar...</value>
+  </data>
+
+  <data name="ModsOverviewPage_CloseAll.Content" xml:space="preserve">
+    <!-- Button to close all expanded mod panels -->
+    <value>Fechar Todos</value>
+  </data>
+
+  <data name="PresetDetailsPage_AddMod.Label" xml:space="preserve">
+    <!-- Button to add a mod to this preset -->
+    <value>Adicionar Mod</value>
+  </data>
+
+  <data name="PresetDetailsPage_FindReplacementMod.Text" xml:space="preserve">
+    <!-- Button to find a replacement for a missing mod -->
+    <value>Encontrar Mod de Substituição</value>
+  </data>
+
+  <data name="PresetDetailsPage_SearchBox.PlaceholderText" xml:space="preserve">
+    <!-- Placeholder text in mod search box -->
+    <value>Pesquisar Mods...</value>
+  </data>
+
+  <data name="PresetDetailsPage_ReadAndSavePreferences.Text" xml:space="preserve">
+    <!-- Description text for the read/save preferences UI -->
+    <value>Ler e Salvar Preferências</value>
+  </data>
+
+  <data name="PresetDetailsPage_RemoveModFromPreset.Text" xml:space="preserve">
+    <!-- Button to remove mod from preset -->
+    <value>Remover Mod do Preset</value>
+  </data>
+
+  <data name="PresetDetailsPage_AddedToPresetAt.Text" xml:space="preserve">
+    <!-- Static label text on the PresetDetailsPage component -->
+    <value>Adicionado ao Preset em:</value>
+  </data>
+
+  <data name="PresetDetailsPage_ModNotFound.Text" xml:space="preserve">
+    <!-- Warning: mod in preset not found -->
+    <value>Este mod não foi encontrado no disco!</value>
+  </data>
+
+  <data name="PresetDetailsPage_OriginalPath.Text" xml:space="preserve">
+    <!-- Static label text on the PresetDetailsPage component -->
+    <value>Caminho Original:</value>
+  </data>
+
+  <data name="CharacterCard_TrackedMods.Text" xml:space="preserve">
+    <!-- Displays mod count or selected skin info on the character card -->
+    <value>Mods Rastreados:</value>
+  </data>
+
+  <data name="CharacterCard_SelectedInGameSkin.Text" xml:space="preserve">
+    <!-- Displays mod count or selected skin info on the character card -->
+    <value>Skin Selecionada no Jogo:</value>
+  </data>
+
+  <data name="CharacterCard_SelectSkin.Content" xml:space="preserve">
+    <!-- Menu item to select a character skin -->
+    <value>Selecionar Skin</value>
+  </data>
+
+  <data name="CharacterCard_DisableAllMods.Content" xml:space="preserve">
+    <!-- Button title to disable all mods for this character -->
+    <value>Desabilitar Todos os Mods</value>
+  </data>
+
+  <data name="ModListOverview_ModsMenu.Title" xml:space="preserve">
+    <!-- Section or dialog title on the ModListOverview component -->
+    <value>Mods</value>
+  </data>
+
+  <data name="ModListOverview_AddMod.Text" xml:space="preserve">
+    <!-- Button to add a mod -->
+    <value>Adicionar Mod...</value>
+  </data>
+
+  <data name="ModListOverview_MultipleSkinWarning.Message" xml:space="preserve">
+    <!-- Warning: multiple mods enabled for this character -->
+    <value>Mais de uma skin selecionada</value>
+  </data>
+
+  <data name="ModListOverview_ModEnabledHeader.Header" xml:space="preserve">
+    <!-- Table column header for enabled/disabled status -->
+    <value>ModHabilitado</value>
+  </data>
+
+  <data name="ModListOverview_ModNameHeader.Header" xml:space="preserve">
+    <!-- Table column header for mod name -->
+    <value>Nome do Mod</value>
+  </data>
+
+  <data name="DebugPage_CreateButton.Content" xml:space="preserve">
+    <!-- Button label on the Debug page -->
+    <value>Criar</value>
+  </data>
+
+  <data name="DebugPage_EditButton.Content" xml:space="preserve">
+    <!-- Button label on the Debug page -->
+    <value>Editar</value>
+  </data>
+
+  <data name="DebugPage_DeleteButton.Content" xml:space="preserve">
+    <!-- Button label on the Debug page -->
+    <value>Excluir</value>
+  </data>
+
+  <data name="NotificationsPage_HeaderText.Text" xml:space="preserve">
+    <!-- Page title for the notifications page -->
+    <value>Todas as Notificações exibidas durante a execução atual do aplicativo</value>
+  </data>
+
+  <data name="NotificationsPage_LogPathLabel.Text" xml:space="preserve">
+    <!-- Label showing the log file path -->
+    <value>Notificações e Logs são gravados em:</value>
+  </data>
+
+  <data name="ErrorWindow_ErrorHeaderText.Text" xml:space="preserve">
+    <!-- Main heading in the error window -->
+    <value>Ocorreu um erro:</value>
+  </data>
+
+  <data name="ErrorWindow_ExceptionDescription.Text" xml:space="preserve">
+    <!-- Description text explaining the error -->
+    <value>Ocorreu uma exceção não tratada. O aplicativo encontrou um problema que não soube como lidar. O JASM+ pode estar em um estado instável, e é recomendado reiniciar o JASM+.</value>
+  </data>
+
+  <data name="ErrorWindow_StackTraceLabel.Text" xml:space="preserve">
+    <!-- Label for the stack trace section in the error window -->
+    <value>Trace de pilha:</value>
+  </data>
+
+  <data name="ErrorWindow_InnerExceptionLabel.Text" xml:space="preserve">
+    <!-- Label for the inner exception stack trace -->
+    <value>Uma exceção interna</value>
+  </data>
+
+  <data name="ErrorWindow_InnerStackTraceLabel.Text" xml:space="preserve">
+    <!-- Label for the stack trace section in the error window -->
+    <value>Trace de pilha:</value>
+  </data>
+
+  <data name="GbModPageWindow_TitleText.Text" xml:space="preserve">
+    <!-- Window title -->
+    <value>Baixar Mods do GameBanana</value>
+  </data>
+
+  <data name="GbModPageWindow_LoadingText.Text" xml:space="preserve">
+    <!-- Loading indicator text -->
+    <value>Carregando Informações do Mod do GameBanana...</value>
+  </data>
+
+  <data name="GbModPageWindow_DownloadButton.Content" xml:space="preserve">
+    <!-- Button to download the mod file -->
+    <value>Baixar</value>
+  </data>
+
+  <data name="GbModPageWindow_InstallButton.Content" xml:space="preserve">
+    <!-- Button to install the mod -->
+    <value>Instalar</value>
+  </data>
+
+  <data name="GbModPageWindow_CloseButton.Content" xml:space="preserve">
+    <!-- Button to close the window -->
+    <value>Fechar</value>
+  </data>
+
+  <data name="GbModPageWindow_ModPageLabel.Text" xml:space="preserve">
+    <!-- Label showing the mod page URL -->
+    <value>Página do Mod:</value>
+  </data>
+
+  <data name="GbModPageWindow_DownloadsButton.Content" xml:space="preserve">
+    <!-- Button to download the mod file -->
+    <value>Downloads</value>
+  </data>
+
+  <data name="CharacterManagerPage_Title.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterManagerPage component -->
+    <value>Gerenciador de Personagens</value>
+  </data>
+
+  <data name="CharacterManagerPage_SearchBox.Header" xml:space="preserve">
+    <!-- Placeholder or label for the character search box -->
+    <value>Pesquise um personagem para editar ou adicionar um novo</value>
+  </data>
+
+  <data name="CharacterManagerPage_SearchBox.PlaceholderText" xml:space="preserve">
+    <!-- Placeholder or label for the character search box -->
+    <value>Comece a digitar para pesquisar...</value>
+  </data>
+
+  <data name="CharacterManagerPage_SearchBox_Placeholder" xml:space="preserve">
+    <!-- Placeholder or label for the character search box -->
+    <value>Comece a digitar para pesquisar...</value>
+  </data>
+
+  <data name="CharacterManagerPage_AddCharacterButton.ToolTip" xml:space="preserve">
+    <!-- Tooltip explanation on the CharacterManagerPage component -->
+    <value>Adicionar novo personagem</value>
+  </data>
+
+  <data name="ModSelector_Title.Text" xml:space="preserve">
+    <!-- Title of the mod selector window -->
+    <value>Selecionar Mods</value>
+  </data>
+
+  <data name="ModSelector_SearchBox.PlaceholderText" xml:space="preserve">
+    <!-- Placeholder text in the search box -->
+    <value>Pesquisar Mods...</value>
+  </data>
+
+  <data name="ModSelector_DateAdded.Text" xml:space="preserve">
+    <!-- Static label text on the ModSelector component -->
+    <value>Data de Adição:</value>
+  </data>
+
+  <data name="ModSelector_SelectModButton.Content" xml:space="preserve">
+    <!-- Button to confirm mod selection -->
+    <value>Selecionar Mod</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_Title.Text" xml:space="preserve">
+    <!-- Window title -->
+    <value>Novos Arquivos para Download Encontrados</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_LoadingText.Text" xml:space="preserve">
+    <!-- Loading indicator text -->
+    <value>Carregando Informações do Mod do GameBanana...</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_NewSinceLastCheck.Text" xml:space="preserve">
+    <!-- Text showing update check time -->
+    <value>Novo desde a última verificação</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_DownloadButton.Content" xml:space="preserve">
+    <!-- Button to download the mod file -->
+    <value>Baixar</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_InstallButton.Content" xml:space="preserve">
+    <!-- Button to install the mod -->
+    <value>Instalar</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_IgnoreCloseButton.Content" xml:space="preserve">
+    <!-- Button to close the window -->
+    <value>Ignorar e Fechar</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_LastCheck.Text" xml:space="preserve">
+    <!-- Text showing update check time -->
+    <value>Última Verificação:</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_ModPageLabel.Text" xml:space="preserve">
+    <!-- Label showing the mod page URL -->
+    <value>Página do Mod:</value>
+  </data>
+
+  <data name="ModUpdateAvailableWindow_DownloadsButton.Content" xml:space="preserve">
+    <!-- Button to download the mod file -->
+    <value>Downloads</value>
+  </data>
+
+  <data name="Settings_Window.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Janela</value>
+  </data>
+
+  <data name="Settings_WindowSize.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Lembrar tamanho da janela</value>
+  </data>
+
+  <data name="Settings_WindowPosition.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Lembrar posição da janela</value>
+  </data>
+
+  <data name="Settings_Commands.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Comandos</value>
+  </data>
+
+  <data name="Settings_CreateCustomCommands.Header" xml:space="preserve">
+    <!-- Form field label in Settings page -->
+    <value>Criar Comandos Personalizados</value>
+  </data>
+
+  <data name="Settings_CreateCustomCommands.Description" xml:space="preserve">
+    <!-- Descriptive text on the Settings component -->
+    <value>Comandos (scripts) podem ser definidos e executados em mods específicos</value>
+  </data>
+
+  <data name="Settings_FolderWarning_No3DMigotoEntry" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>A pasta não contém nenhuma entrada com os nomes especificados:</value>
+  </data>
+
+  <data name="Settings_Notification_ErrorTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Erro</value>
+  </data>
+
+  <data name="Settings_Notification_SuccessTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Sucesso</value>
+  </data>
+
+  <data name="Settings_Notification_UpdatingTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Atualizando...</value>
+  </data>
+
+  <data name="Settings_Notification_RestartingTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Reiniciando...</value>
+  </data>
+
+  <data name="Settings_CommunityGames_EmptyUrl" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>A URL do repositório comunitário não pode estar vazia.</value>
+  </data>
+
+  <data name="Settings_CommunityGames_Pulling" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Obtendo jogos comunitários mais recentes. Isso pode levar um momento.</value>
+  </data>
+
+  <data name="Settings_CommunityGames_Updated" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Jogos comunitários atualizados e verificados com sucesso.</value>
+  </data>
+
+  <data name="Settings_CommunityGames_IntegrityFailed" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Falha na verificação de integridade. Verifique se o repositório corresponde à estrutura esperada.</value>
+  </data>
+
+  <data name="Settings_CommunityGames_UpdateFailed" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Falha ao atualizar jogos comunitários.</value>
+  </data>
+
+  <data name="Settings_CommunityGames_ExceptionPulling" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Ocorreu uma exceção ao obter o repositório. Verifique os logs.</value>
+  </data>
+
+  <data name="Settings_Restart_Restarting" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>O aplicativo será reiniciado agora.</value>
+  </data>
+
+  <data name="Settings_Restart_SettingsSaved" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Configurações salvas. Reiniciando o aplicativo...</value>
+  </data>
+
+  <data name="Settings_Mods_ReorganizeFailed" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Falha ao reorganizar os mods.</value>
+  </data>
+
+  <data name="Settings_Mods_Reorganized" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Mods reorganizados.</value>
+  </data>
+
+  <data name="Settings_SeeLogs" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Consulte os logs para mais detalhes.</value>
+  </data>
+
+  <data name="Settings_ModsMovedMsg" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>{0} mods movidos para pastas de personagens</value>
+  </data>
+
+  <data name="Settings_Export_ModsExported" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Mods exportados</value>
+  </data>
+
+  <data name="Settings_Export_ModsExportedTo" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Mods exportados para {0}</value>
+  </data>
+
+  <data name="Settings_Export_ErrorExporting" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Erro ao exportar mods</value>
+  </data>
+
+  <data name="Commands_Notification_FailedKillTitle" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>Falha ao encerrar processo</value>
+  </data>
+
+  <data name="Commands_Notification_NotRunningTitle" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>O processo não está em execução</value>
+  </data>
+
+  <data name="Commands_Notification_KilledTitle" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>Processo encerrado com sucesso</value>
+  </data>
+
+  <data name="Commands_Notification_NotFoundTitle" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>Falha ao obter comando</value>
+  </data>
+
+  <data name="Commands_Notification_NotFoundMessage" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>Comando não encontrado</value>
+  </data>
+
+  <data name="Commands_Notification_FailedDeleteTitle" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>Falha ao excluir comando</value>
+  </data>
+
+  <data name="Commands_Notification_DeletedTitle" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the command name -->
+    <value>Comando '{0}' excluído com sucesso</value>
+  </data>
+
+  <data name="CreateCommand_Notification_UpdatedTitle" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the command name -->
+    <value>Comando '{0}' atualizado com sucesso.</value>
+  </data>
+
+  <data name="CreateCommand_Notification_CreatedTitle" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the command name -->
+    <value>Comando '{0}' criado com sucesso.</value>
+  </data>
+
+  <data name="CreateCommand_Notification_UpdateFailed" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>Falha ao atualizar comando.</value>
+  </data>
+
+  <data name="CreateCommand_Notification_CreateFailed" xml:space="preserve">
+    <!-- Notification about command creation/update/deletion -->
+    <value>Falha ao criar comando.</value>
+  </data>
+
+  <data name="Settings_Notification_ModsExportedToFormat" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Mods exportados para {0}</value>
+  </data>
+
+  <data name="Settings_Export_ModsExportedToFormat" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Mods exportados para {0}</value>
+  </data>
+
+  <data name="Settings_ClearEmptyFolders_Title" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Limpar Pastas Vazias</value>
+  </data>
+
+  <data name="Settings_ClearEmptyFolders_Content" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Isso excluirá todas as pastas vazias na lista de mods de um personagem se a pasta estiver vazia ou contiver apenas arquivos/pastas .JASM_
+Se uma pasta de personagem estiver vazia, ela também será excluída.
+Pastas vazias na raiz da pasta Mods também serão excluídas</value>
+  </data>
+
+  <data name="Settings_ClearEmptyFolders_PrimaryButton" xml:space="preserve">
+    <!-- Button label in the "Clear Empty Folders" dialog -->
+    <value>Excluir</value>
+  </data>
+
+  <data name="Settings_ClearEmptyFolders_CloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="Settings_ClearEmptyFolders_NotificationTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Pastas vazias excluídas</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_Title" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Desabilitar Mods</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_PrimaryButton" xml:space="preserve">
+    <!-- Button label in the "Disable All Mods" dialog -->
+    <value>Desabilitar Mods em Categorias</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_CloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_SelectText" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Selecione as categorias para desabilitar mods:</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_SuggestionText" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Sugiro criar um preset (ou um backup) dos seus mods antes de desabilitá-los se você tiver muitos mods habilitados.
+
+Apenas mods rastreados pelo JASM+ serão desabilitados nas categorias selecionadas</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_NoCategoriesTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Nenhuma categoria selecionada</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_NoCategoriesMessage" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Nenhuma categoria foi selecionada para desabilitar mods.</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_SuccessTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Mods desabilitados</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_SuccessMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Todos os mods rastreados foram desabilitados para as categorias selecionadas: {0}</value>
+  </data>
+
+  <data name="Settings_DisableAllMods_ErrorsTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Erros ao desabilitar mods</value>
+  </data>
+
+  <data name="Settings_UpdateButton.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Atualizar</value>
+  </data>
+
+  <data name="Settings_ReorganizeMods.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Reorganizar Mods</value>
+  </data>
+
+  <data name="Settings_CleanMods.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Limpar pasta de Mods</value>
+  </data>
+
+  <data name="Settings_DisableAllMods.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Desabilitar Todos os Mods</value>
+  </data>
+
+  <data name="Settings_Reset3DmigotoPath.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Redefinir Caminho do 3Dmigoto</value>
+  </data>
+
+  <data name="Settings_ResetGenshinPath.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Redefinir Caminho do Genshin</value>
+  </data>
+
+  <data name="Settings_SkinsAsCharacters.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Tratar Skins de Personagens como personagens separados</value>
+  </data>
+
+  <data name="Settings_CacheDescription.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Ao usar o JASM+ para baixar mods, ele armazena automaticamente em cache os arquivos zip. Você pode especificar um limite máximo em gigabytes para o diretório de cache, e o JASM+ manterá o tamanho do cache abaixo do limite ao iniciar.</value>
+  </data>
+
+  <data name="Settings_GithubLink.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>JASM+ no Github</value>
+  </data>
+
+  <data name="Settings_GameBananaLink.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>JASM+ no GameBanana</value>
+  </data>
+
+  <data name="Settings_NewUpdateAvailable.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Nova Atualização Disponível no GitHub:</value>
+  </data>
+
+  <data name="Settings_SeeWhatsNew.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Veja as novidades da última versão</value>
+  </data>
+
+  <data name="Settings_IgnoreUpdate.Content" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Ignorar Atualização Atual?</value>
+  </data>
+
+  <data name="Settings_OpenCacheFolder.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Abrir pasta de cache...</value>
+  </data>
+
+  <data name="Settings_CurrentCacheSize.Text" xml:space="preserve">
+    <!-- Static label text on the Settings component -->
+    <value>Tamanho Atual do Cache de Mods para</value>
+  </data>
+
+  <data name="FolderSelector_Browse.Content" xml:space="preserve">
+    <!-- Button in the folder picker control -->
+    <value>Procurar</value>
+  </data>
+
+  <data name="CommandsSettingsPage_WarningTitle" xml:space="preserve">
+    <!-- Page title for the command settings page -->
+    <value>Aviso Amigável</value>
+  </data>
+
+  <data name="CommandsSettingsPage_WarningContent" xml:space="preserve">
+    <!-- Text in the warning/confirmation dialog -->
+    <value>Tenha cuidado ao criar comandos. Comandos podem executar qualquer programa em seu sistema. Crie apenas comandos de fontes confiáveis. O JASM+ não é perfeito e não pode protegê-lo de scripts maliciosos ou falhas do JASM+. Ao clicar em 'Entendo' você reconhece que compreende os riscos.</value>
+  </data>
+
+  <data name="CommandsSettingsPage_WarningPrimary" xml:space="preserve">
+    <!-- Text in the warning/confirmation dialog -->
+    <value>Entendo</value>
+  </data>
+
+  <data name="CommandsSettingsPage_WarningClose" xml:space="preserve">
+    <!-- Text in the warning/confirmation dialog -->
+    <value>Fechar</value>
+  </data>
+
+  <data name="CommandsSettingsPage_Title.Text" xml:space="preserve">
+    <!-- Page title for the command settings page -->
+    <value>Configurações de Comandos</value>
+  </data>
+
+  <data name="CommandsSettingsPage_CreateCommand.Header" xml:space="preserve">
+    <!-- Button/section to create a new command -->
+    <value>Criar novo comando</value>
+  </data>
+
+  <data name="CommandsSettingsPage_CreateCommand.Description" xml:space="preserve">
+    <!-- Button/section to create a new command -->
+    <value>Aqui você pode definir comandos personalizados que o JASM+ pode executar. Atualmente, comandos que contêm {{TargetPath}} só podem ser executados na página de Visão Geral de Mods</value>
+  </data>
+
+  <data name="CommandsSettingsPage_CreateNewCommandButton.Content" xml:space="preserve">
+    <!-- Button/section to create a new command -->
+    <value>Criar Novo Comando</value>
+  </data>
+
+  <data name="CommandsSettingsPage_CommandDefinitions.Header" xml:space="preserve">
+    <!-- Section header -->
+    <value>Definições de Comandos</value>
+  </data>
+
+  <data name="CommandsSettingsPage_CommandDefinitions.Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>Aqui você pode visualizar e excluir definições de comandos criadas</value>
+  </data>
+
+  <data name="CommandsSettingsPage_DisplayName.Text" xml:space="preserve">
+    <!-- Label showing command details -->
+    <value>Nome de Exibição:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_CommandDefinitionId.Text" xml:space="preserve">
+    <!-- Label showing command details -->
+    <value>ID da Definição de Comando:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunButton.Content" xml:space="preserve">
+    <!-- Button to run or kill a command -->
+    <value>Executar</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunConfirmText.Text" xml:space="preserve">
+    <!-- Text in the confirmation dialog -->
+    <value>Tem certeza que deseja executar este comando?</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunConfirmButton.Content" xml:space="preserve">
+    <!-- Text in the confirmation dialog -->
+    <value>Executar</value>
+  </data>
+
+  <data name="CommandsSettingsPage_EditButton.Content" xml:space="preserve">
+    <!-- Button to edit or delete a command definition -->
+    <value>Editar</value>
+  </data>
+
+  <data name="CommandsSettingsPage_DeleteButton.Content" xml:space="preserve">
+    <!-- Button to edit or delete a command definition -->
+    <value>Excluir</value>
+  </data>
+
+  <data name="CommandsSettingsPage_DeleteConfirmText.Text" xml:space="preserve">
+    <!-- Text in the confirmation dialog -->
+    <value>Tem certeza que deseja excluir este comando?</value>
+  </data>
+
+  <data name="CommandsSettingsPage_DeleteConfirmButton.Content" xml:space="preserve">
+    <!-- Text in the confirmation dialog -->
+    <value>Excluir</value>
+  </data>
+
+  <data name="CommandsSettingsPage_Executable.Text" xml:space="preserve">
+    <!-- Label showing command details -->
+    <value>Executável:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_WorkingDirectory.Text" xml:space="preserve">
+    <!-- Label showing command details -->
+    <value>Diretório de Trabalho:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_Arguments.Text" xml:space="preserve">
+    <!-- Label showing command details -->
+    <value>Argumentos:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunningCommands.Header" xml:space="preserve">
+    <!-- Section header -->
+    <value>Comandos em Execução</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunningCommands.Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>Comandos iniciados pelo JASM+ para a instância atual em execução</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunningDisplayName.Text" xml:space="preserve">
+    <!-- Label showing command details -->
+    <value>Nome de Exibição:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunningFullCommand.Text" xml:space="preserve">
+    <!-- Label showing command details -->
+    <value>Comando Completo:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_RunningCommandDefId.Text" xml:space="preserve">
+    <!-- Static label text on the CommandsSettingsPage component -->
+    <value>ID da Definição de Comando:</value>
+  </data>
+
+  <data name="CommandsSettingsPage_KillButton.Content" xml:space="preserve">
+    <!-- Button to run or kill a command -->
+    <value>Encerrar</value>
+  </data>
+
+  <data name="CreateCommandView_Title.Text" xml:space="preserve">
+    <!-- Window title for the command creator -->
+    <value>Criar Comando</value>
+  </data>
+
+  <data name="CreateCommandView_CommandName.Header" xml:space="preserve">
+    <!-- Label/placeholder for the command display name (Required field) -->
+    <value>* Nome do Comando:</value>
+  </data>
+
+  <data name="CreateCommandView_CommandName.PlaceholderText" xml:space="preserve">
+    <!-- Label/placeholder for the command display name (Required field) -->
+    <value>Nome de Exibição do Comando (Obrigatório)</value>
+  </data>
+
+  <data name="CreateCommandView_CustomCommand.Content" xml:space="preserve">
+    <!-- Radio button: create a fully custom command -->
+    <value>Comando Personalizado</value>
+  </data>
+
+  <data name="CreateCommandView_ChainedCommand.Content" xml:space="preserve">
+    <!-- Radio button: use a game start command as base -->
+    <value>Comando Encadeado Personalizado</value>
+  </data>
+
+  <data name="CreateCommandView_Executable.Title" xml:space="preserve">
+    <!-- Label/placeholder/title for the executable path (Required field) -->
+    <value>* Executável</value>
+  </data>
+
+  <data name="CreateCommandView_Executable.PlaceHolderText" xml:space="preserve">
+    <!-- Label/placeholder/title for the executable path (Required field) -->
+    <value>Deve estar no $PATH ou ser um caminho absoluto para o executável (Obrigatório)</value>
+  </data>
+
+  <data name="CreateCommandView_WorkingDirectory.Title" xml:space="preserve">
+    <!-- Label/placeholder for the working directory -->
+    <value>Diretório de Trabalho</value>
+  </data>
+
+  <data name="CreateCommandView_WorkingDirectory.PlaceHolderText" xml:space="preserve">
+    <!-- Label/placeholder for the working directory -->
+    <value>Ao especificar um caminho manualmente, a pasta deve existir</value>
+  </data>
+
+  <data name="CreateCommandView_Arguments.Header" xml:space="preserve">
+    <!-- Label/placeholder for command arguments -->
+    <value>Argumentos</value>
+  </data>
+
+  <data name="CreateCommandView_Arguments.PlaceholderText" xml:space="preserve">
+    <!-- Label/placeholder for command arguments -->
+    <value>Argumentos que serão passados para o executável</value>
+  </data>
+
+  <data name="CreateCommandView_TargetPathHelp.Text" xml:space="preserve">
+    <!-- Help text explaining the {{TargetPath}} variable -->
+    <value>Quando o comando é executado em um objeto do sistema de arquivos (ex: uma pasta de skin/mod), {{TargetPath}} será substituído pelo caminho real.</value>
+  </data>
+
+  <data name="CreateCommandView_KillProcess.Content" xml:space="preserve">
+    <!-- Checkbox: kill the process when JASM+ exits -->
+    <value>Encerrar Processo ao sair do JASM+</value>
+  </data>
+
+  <data name="CreateCommandView_RunAsAdmin.Content" xml:space="preserve">
+    <!-- Checkbox: launch command with admin privileges -->
+    <value>Executar como Administrador</value>
+  </data>
+
+  <data name="CreateCommandView_UseShellExecute.Content" xml:space="preserve">
+    <!-- Checkbox: use OS shell to launch the command -->
+    <value>Usar Execução do Shell</value>
+  </data>
+
+  <data name="CreateCommandView_CreateWindow.Content" xml:space="preserve">
+    <!-- Checkbox: show a visible window for the process -->
+    <value>Criar janela</value>
+  </data>
+
+  <data name="CreateCommandView_CommandPreview.Header" xml:space="preserve">
+    <!-- Label showing the full command string -->
+    <value>Comando que será executado:</value>
+  </data>
+
+  <data name="WindowManagerService_Close" xml:space="preserve">
+    <!-- Close button text for full-screen dialogs -->
+    <value>Fechar</value>
+  </data>
+
+  <data name="PresetPage_HowPresetsWorkTitle" xml:space="preserve">
+    <!-- Dialog explaining how presets work -->
+    <value>Como funcionam os Presets</value>
+  </data>
+
+  <data name="PresetPage_HowPresetsWorkClose" xml:space="preserve">
+    <!-- Dialog explaining how presets work -->
+    <value>Fechar</value>
+  </data>
+
+  <data name="PresetPage_HowPresetsWorkDesc1" xml:space="preserve">
+    <!-- Dialog explaining how presets work -->
+    <value>Um Preset é uma lista de Mods para habilitar e suas preferências. O JASM+ lê e armazena as preferências de mod nos próprios mods no arquivo .JASM_ModConfig.json</value>
+  </data>
+
+  <data name="PresetPage_HowPresetsWorkDesc2" xml:space="preserve">
+    <!-- Dialog explaining how presets work -->
+    <value>Quando você cria um novo preset, o JASM+ cria uma lista de todos os mods habilitados e as preferências armazenadas neles. Quando você aplicar o preset mais tarde, ele habilitará apenas esses mods e aplicará as preferências armazenadas no preset</value>
+  </data>
+
+  <data name="PresetPage_HowPresetsWorkDesc3" xml:space="preserve">
+    <!-- Dialog explaining how presets work -->
+    <value>Você pode permitir que o JASM+ gerencie o recarregamento do 3Dmigoto marcando a caixa Sincronização Automática. Mas você também pode fazer isso manualmente marcando a caixa Mostrar Controles Manuais e salvando/carregando preferências manualmente.</value>
+  </data>
+
+  <data name="PresetPage_HowPresetsWorkDesc4" xml:space="preserve">
+    <!-- Dialog explaining how presets work -->
+    <value>É possível simplesmente ignorar a parte de presets desta página e usar apenas os controles manuais para persistir as preferências de mod.</value>
+  </data>
+
+  <data name="RandomizeModsDialog_Title" xml:space="preserve">
+    <!-- Title of the randomize mods dialog -->
+    <value>Aleatorizar Mods</value>
+  </data>
+
+  <data name="RandomizeModsDialog_Primary" xml:space="preserve">
+    <!-- Confirm button -->
+    <value>Aleatorizar</value>
+  </data>
+
+  <data name="RandomizeModsDialog_Close" xml:space="preserve">
+    <!-- Close/cancel button -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="RandomizeModsDialog_DescPrefix" xml:space="preserve">
+    <!-- Description/suggestion text -->
+    <value>Selecione as categorias para aleatorizar mods:</value>
+  </data>
+
+  <data name="RandomizeModsDialog_DescNote" xml:space="preserve">
+    <!-- Description/suggestion text -->
+    <value>Nota: Isso só aleatorizará pastas de mods que devem ter apenas um mod ativo. Pastas 'Outros __' não serão aleatorizadas. Apenas um mod será habilitado por skin de personagem no jogo.</value>
+  </data>
+
+  <data name="RandomizeModsDialog_AllowNone" xml:space="preserve">
+    <!-- Toggle: allow all mods to be disabled -->
+    <value>Permitir nenhum mod como resultado. Isso significa que é possível que nenhum mod seja habilitado para uma pasta de mods</value>
+  </data>
+
+  <data name="RandomizeModsDialog_Suggestion" xml:space="preserve">
+    <!-- Description/suggestion text -->
+    <value>Sugiro criar um preset (ou um backup) dos seus mods antes de aleatorizar se você tiver muitos mods habilitados</value>
+  </data>
+
+  <data name="RandomizeModsDialog_NotifNoCategories" xml:space="preserve">
+    <!-- Notification about randomization -->
+    <value>Nenhuma categoria selecionada</value>
+  </data>
+
+  <data name="RandomizeModsDialog_NotifNoCategoriesDesc" xml:space="preserve">
+    <!-- Description/suggestion text -->
+    <value>Nenhuma categoria foi selecionada para aleatorizar.</value>
+  </data>
+
+  <data name="RandomizeModsDialog_NotifFailed" xml:space="preserve">
+    <!-- Notification about randomization -->
+    <value>Falha ao aleatorizar mods</value>
+  </data>
+
+  <data name="RandomizeModsDialog_NotifSuccess" xml:space="preserve">
+    <!-- Notification about randomization -->
+    <value>Mods aleatorizados</value>
+  </data>
+
+  <data name="RandomizeModsDialog_NotifSuccessDesc" xml:space="preserve">
+    <!-- Description/suggestion text -->
+    <value>Mods foram aleatorizados para as categorias:</value>
+  </data>
+
+  <data name="CreateCommandView_EffectiveWorkingDirPrefix" xml:space="preserve">
+    <!-- Text on the CreateCommandView component -->
+    <value>Diretório de trabalho efetivo:</value>
+  </data>
+
+  <data name="CreateCommandView_InvalidWorkingDir" xml:space="preserve">
+    <!-- Text on the CreateCommandView component -->
+    <value>Diretório de trabalho inválido</value>
+  </data>
+
+  <data name="CreateCommandView_SaveCommand.Content" xml:space="preserve">
+    <!-- Button to save the command definition -->
+    <value>Salvar Comando</value>
+  </data>
+
+  <data name="Category_Character" xml:space="preserve">
+    <!-- Filter category: Character -->
+    <value>Personagem</value>
+  </data>
+
+  <data name="Category_Characters" xml:space="preserve">
+    <!-- Filter category: Characters -->
+    <value>Personagens</value>
+  </data>
+
+  <data name="Category_NPC" xml:space="preserve">
+    <!-- Filter category: NPC -->
+    <value>PNJ</value>
+  </data>
+
+  <data name="Category_NPCs" xml:space="preserve">
+    <!-- Filter category: NPCs -->
+    <value>PNJs</value>
+  </data>
+
+  <data name="Category_Object" xml:space="preserve">
+    <!-- Filter category: Object -->
+    <value>Objeto</value>
+  </data>
+
+  <data name="Category_Objects" xml:space="preserve">
+    <!-- Filter category: Objects -->
+    <value>Objetos</value>
+  </data>
+
+  <data name="Category_Weapon" xml:space="preserve">
+    <!-- Filter category: Weapon -->
+    <value>Arma</value>
+  </data>
+
+  <data name="Category_Weapons" xml:space="preserve">
+    <!-- Filter category: Weapons -->
+    <value>Armas</value>
+  </data>
+
+  <data name="Category_Custom" xml:space="preserve">
+    <!-- Filter category: Custom -->
+    <value>Personalizado</value>
+  </data>
+
+  <data name="Category_Characters_Resumen" xml:space="preserve">
+    <!-- Filter category: Characters_Resumen -->
+    <value>Resumo de Personagens</value>
+  </data>
+
+  <data name="Characters_ErrorDisablingModsTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Erro ao desabilitar mods</value>
+  </data>
+
+  <data name="Characters_ModsDisabledTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Mods Desabilitados</value>
+  </data>
+
+  <data name="Characters_ModsDisabledMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>Todos os mods de {0} foram desabilitados</value>
+  </data>
+
+  <data name="Characters_ModsEnabledTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Mods habilitados</value>
+  </data>
+
+  <data name="Characters_ModsEnabledMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>Todos os mods rastreados foram habilitados para {0}.</value>
+  </data>
+
+  <data name="Characters_ErrorsEnablingModsTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Erros ao habilitar mods</value>
+  </data>
+
+  <data name="Characters_ErrorsEnablingModsMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>Ocorreu um erro para {0} mods. Verifique os logs.</value>
+  </data>
+
+  <data name="Characters_ModsDisabledSuccessTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Mods desabilitados</value>
+  </data>
+
+  <data name="Characters_ModsDisabledSuccessMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>Todos os mods rastreados foram desabilitados para {0}.</value>
+  </data>
+
+  <data name="Characters_ErrorsDisablingModsTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Erros ao desabilitar mods</value>
+  </data>
+
+  <data name="Characters_ErrorsDisablingModsMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>Ocorreu um erro para {0} mods. Verifique os logs.</value>
+  </data>
+
+  <data name="Characters_CleanupCompleteTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Limpeza concluída</value>
+  </data>
+
+  <data name="Characters_CleanupCompleteMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>{0} mods desabilitados excluídos para {1}.</value>
+  </data>
+
+  <data name="Characters_ErrorAddingModTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Erro ao adicionar mod</value>
+  </data>
+
+  <data name="Characters_InvalidGameBananaLinkTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Link de página de mod do GameBanana inválido</value>
+  </data>
+
+  <data name="Characters_ErrorOpeningModPageTitle" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Erro ao abrir janela de página do mod</value>
+  </data>
+
+  <data name="Settings_Startup_SettingsSavedTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Configurações iniciais salvas</value>
+  </data>
+
+  <data name="Settings_Startup_SettingsSavedMessage" xml:space="preserve">
+    <!-- Contains a dynamic value placeholder -->
+    <value>Configurações iniciais salvas com sucesso em '{0}'</value>
+  </data>
+
+  <data name="Settings_Startup_AlphaTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>O JASM+ ainda está em alpha</value>
+  </data>
+
+  <data name="Settings_Startup_AlphaMessage" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Haverá bugs e coisas provavelmente quebrarão. De qualquer forma, espero que você goste de usar o Just Another Skin Manager!</value>
+  </data>
+
+  <data name="Settings_RestartRequired_Title" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Reinicialização necessária</value>
+  </data>
+
+  <data name="Settings_RestartRequired_Content" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Você precisará reiniciar o aplicativo para que o tema faça efeito, caso contrário o aplicativo ficará instável. Isso provavelmente sou eu não configurando o tema corretamente. O Modo Escuro é o tema recomendado.
+
+Desculpe pelo inconveniente.</value>
+  </data>
+
+  <data name="Settings_RestartRequired_PrimaryButton" xml:space="preserve">
+    <!-- Button label in the "Restart Required" dialog -->
+    <value>Reiniciar</value>
+  </data>
+
+  <data name="Settings_RestartRequired_CloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="Settings_ReorganizeMods_Title" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Reorganizar Mods?</value>
+  </data>
+
+  <data name="Settings_ReorganizeMods_Content" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Deseja reorganizar a pasta Mods?
+Isso fará com que o aplicativo organize os mods existentes que estão diretamente na pasta Mods e na pasta Others, em pastas atribuídas aos seus respectivos personagens.
+
+Quaisquer mods que não puderem ser razoavelmente correspondidos serão colocados em uma pasta 'Others'. Os mods que já estão na pasta 'Others' permanecerão lá.</value>
+  </data>
+
+  <data name="Settings_ReorganizeMods_PrimaryButton" xml:space="preserve">
+    <!-- Button label in the "Reorganize Mods" dialog -->
+    <value>Sim</value>
+  </data>
+
+  <data name="Settings_ReorganizeMods_CloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="Settings_RestartRequired_LangTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Reinicialização Necessária</value>
+  </data>
+
+  <data name="Settings_RestartRequired_LangPrimaryButton" xml:space="preserve">
+    <!-- Button label in the "Restart Required" dialog -->
+    <value>Alterar Idioma e Reiniciar</value>
+  </data>
+
+  <data name="Settings_RestartRequired_LangCloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="Settings_SwitchGame_Title" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Switch Game</value>
+  </data>
+
+  <data name="Settings_SwitchGame_Content" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Switching games will restart the application. This is required to ensure that the application is configured correctly for the selected game.
+
+Do you want to switch games?</value>
+  </data>
+
+  <data name="Settings_SwitchGame_PrimaryButton" xml:space="preserve">
+    <!-- Contains a dynamic value placeholder -->
+    <value>Mudar para {0}</value>
+  </data>
+
+  <data name="Settings_SwitchGame_CloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="Settings_CharacterSkins_EnableTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Habilitar Skins de Personagem como Personagens?</value>
+  </data>
+
+  <data name="Settings_CharacterSkins_EnableContent" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Ativar isso fará com que o JASM+ trate as skins do jogo como personagens separados na visão geral de personagens.
+Isso pode se tornar a configuração padrão do JASM+ no futuro.
+O JASM+ não moverá nenhum dos seus mods nem os excluirá.
+
+Tem certeza de que deseja habilitar skins de personagem como personagens? O JASM+ reiniciará depois...</value>
+  </data>
+
+  <data name="Settings_CharacterSkins_EnablePrimaryButton" xml:space="preserve">
+    <!-- Button label in the character skins dialog -->
+    <value>Habilitar</value>
+  </data>
+
+  <data name="Settings_CharacterSkins_DisableTitle" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Desabilitar Skins de Personagem como Personagens?</value>
+  </data>
+
+  <data name="Settings_CharacterSkins_DisableContent" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Desativar isso fará com que o JASM+ trate as skins do jogo como skins do personagem base na visão geral de personagens.
+Esta é atualmente a configuração padrão do JASM+.
+O JASM+ não moverá nenhum dos seus mods nem os excluirá.
+
+Tem certeza de que deseja desabilitar skins de personagem como personagens? O JASM+ reiniciará depois...</value>
+  </data>
+
+  <data name="Settings_CharacterSkins_DisablePrimaryButton" xml:space="preserve">
+    <!-- Button label in the character skins dialog -->
+    <value>Disable</value>
+  </data>
+
+  <data name="Settings_CharacterSkins_CloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="Settings_UpdateFolderPaths_Title" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Update Folder Paths?</value>
+  </data>
+
+  <data name="Settings_UpdateFolderPaths_Content" xml:space="preserve">
+    <!-- Text in a settings confirmation dialog -->
+    <value>Do you want to save the new folder paths? The App will restart afterwards.</value>
+  </data>
+
+  <data name="Settings_UpdateFolderPaths_PrimaryButton" xml:space="preserve">
+    <!-- Button label in the "Update Folder Paths" dialog -->
+    <value>Save</value>
+  </data>
+
+  <data name="Settings_UpdateFolderPaths_CloseButton" xml:space="preserve">
+    <!-- Folder path selector label in Settings page -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="Settings_Export_ButtonText" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Export Mods</value>
+  </data>
+
+  <data name="Settings_GameSource_RestartTitle" xml:space="preserve">
+    <!-- Game source selection UI (Release vs Community) -->
+    <value>Reinicialização Necessária</value>
+  </data>
+
+  <data name="Settings_GameSource_RestartContent" xml:space="preserve">
+    <!-- Button/toggle label in Settings page -->
+    <value>Alterar a Fonte do Jogo requer reiniciar o aplicativo para carregar os novos jogos. O JASM+ será fechado agora.</value>
+  </data>
+
+  <data name="Settings_GameSource_RestartPrimary" xml:space="preserve">
+    <!-- Game source selection UI (Release vs Community) -->
+    <value>Reiniciar agora</value>
+  </data>
+
+  <data name="Settings_GameSource_RestartClose" xml:space="preserve">
+    <!-- Game source selection UI (Release vs Community) -->
+    <value>Reiniciar depois</value>
+  </data>
+
+  <data name="Settings_Export_PrimaryButton" xml:space="preserve">
+    <!-- Button label in the mod export dialog -->
+    <value>Exportar</value>
+  </data>
+
+  <data name="Settings_Export_CloseButton" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="Notifications_LogFileNotFoundTitle" xml:space="preserve">
+    <!-- Text on the Notifications component -->
+    <value>Arquivo de log não encontrado</value>
+  </data>
+
+  <data name="Notifications_LogFileCouldNotOpenTitle" xml:space="preserve">
+    <!-- Text on the Notifications component -->
+    <value>O arquivo de log não pôde ser aberto</value>
+  </data>
+
+  <data name="CreateCommand_FilePicker_CommitText" xml:space="preserve">
+    <!-- Text for the file/folder picker dialog -->
+    <value>Selecionar</value>
+  </data>
+
+  <data name="CreateCommand_FolderPicker_CommitText" xml:space="preserve">
+    <!-- Text for the file/folder picker dialog -->
+    <value>Selecionar Pasta</value>
+  </data>
+
+  <data name="Characters_PinToTopText" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Fixar no Topo</value>
+  </data>
+
+  <data name="Characters_UnpinCharacterText" xml:space="preserve">
+    <!-- Text on the Characters component -->
+    <value>Desafixar Personagem</value>
+  </data>
+
+  <data name="Settings_Export_Status_KeepCurrent" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Manter Atual</value>
+  </data>
+
+  <data name="Settings_Export_Status_EnableAll" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Habilitar Todos os Mods</value>
+  </data>
+
+  <data name="Settings_Export_Status_DisableAll" xml:space="preserve">
+    <!-- Text on the Settings component -->
+    <value>Desabilitar Todos os Mods</value>
+  </data>
+
+  <data name="CharacterDetails_ViewToggle.OnContent" xml:space="preserve">
+    <!-- Toggle switch to switch between Gallery View or Detailed View -->
+    <value>Visualização em Galeria</value>
+  </data>
+
+  <data name="ModGrid_EnabledColumn" xml:space="preserve">
+    <!-- Column header in the mod list: EnabledColumn -->
+    <value>Habilitado</value>
+  </data>
+
+  <data name="ModGrid_ModNameColumn" xml:space="preserve">
+    <!-- Column header in the mod list: ModNameColumn -->
+    <value>Nome do Mod</value>
+  </data>
+
+  <data name="ModGrid_ModFolderNameColumn" xml:space="preserve">
+    <!-- Column header in the mod list: ModFolderNameColumn -->
+    <value>Nome da Pasta do Mod</value>
+  </data>
+
+  <data name="ModGrid_AuthorColumn" xml:space="preserve">
+    <!-- Column header in the mod list: AuthorColumn -->
+    <value>Autor</value>
+  </data>
+
+  <data name="ModGrid_AddedColumn" xml:space="preserve">
+    <!-- Column header in the mod list: AddedColumn -->
+    <value>Adicionado</value>
+  </data>
+
+  <data name="ModGrid_PresetsColumn" xml:space="preserve">
+    <!-- Column header in the mod list: PresetsColumn -->
+    <value>Presets</value>
+  </data>
+
+  <data name="ModGrid_NotesColumn" xml:space="preserve">
+    <!-- Column header in the mod list: NotesColumn -->
+    <value>Anotações</value>
+  </data>
+
+  <data name="CharacterDetails_MultipleModsActiveMessage" xml:space="preserve">
+    <!-- Warning message shown when multiple mods are enabled simultaneously -->
+    <value>Múltiplos Mods ativos</value>
+  </data>
+
+  <data name="CharacterGallery_EnableButton" xml:space="preserve">
+    <!-- Text on the CharacterGallery component -->
+    <value>Habilitar</value>
+  </data>
+
+  <data name="CharacterGallery_DisableButton" xml:space="preserve">
+    <!-- Text on the CharacterGallery component -->
+    <value>Desabilitar</value>
+  </data>
+
+  <data name="CreateCharacterPage_Title.Text" xml:space="preserve">
+    <!-- Static label text on the CreateCharacterPage component -->
+    <value>Criar Personagem</value>
+  </data>
+
+  <data name="CreateCharacterPage_CharacterImage.Text" xml:space="preserve">
+    <!-- Static label text on the CreateCharacterPage component -->
+    <value>Imagem do Personagem</value>
+  </data>
+
+  <data name="CreateCharacterPage_InternalName.Header" xml:space="preserve">
+    <!-- Label/help for the internal name (used for mod folder naming, must be unique) -->
+    <value>Nome Interno (Obrigatório)</value>
+  </data>
+
+  <data name="CreateCharacterPage_DisplayName.Header" xml:space="preserve">
+    <!-- Label for the character display name field -->
+    <value>Nome de Exibição</value>
+  </data>
+
+  <data name="CreateCharacterPage_ModFilesName.Header" xml:space="preserve">
+    <!-- Label/help for the mod files folder name -->
+    <value>Nome dos Arquivos de Mods</value>
+  </data>
+
+  <data name="CreateCharacterPage_Rarity.Header" xml:space="preserve">
+    <!-- Label for the rarity selector -->
+    <value>Raridade</value>
+  </data>
+
+  <data name="CreateCharacterPage_Element.Header" xml:space="preserve">
+    <!-- Label for the element/type selector -->
+    <value>Elemento</value>
+  </data>
+
+  <data name="CreateCharacterPage_SearchKeys.Text" xml:space="preserve">
+    <!-- Section label or help: additional search keywords for this character -->
+    <value>Chaves de Pesquisa</value>
+  </data>
+
+  <data name="CreateCharacterPage_NewKeyName.PlaceholderText" xml:space="preserve">
+    <!-- Hint text inside an input field on the CreateCharacterPage component -->
+    <value>Novo Nome de Chave...</value>
+  </data>
+
+  <data name="CreateCharacterPage_AddSearchKey.Content" xml:space="preserve">
+    <!-- Button to add or remove search keywords -->
+    <value>Adicionar Chave de Pesquisa</value>
+  </data>
+
+  <data name="CreateCharacterPage_SearchKeysDescription.Text" xml:space="preserve">
+    <!-- Section label or help: additional search keywords for this character -->
+    <value>O JASM+ usa chaves para ajudar a melhorar a funcionalidade de pesquisa. Alguns personagens podem ter vários nomes, então você pode adicionar nomes adicionais ou termos de pesquisa como Chaves.</value>
+  </data>
+
+  <data name="CreateCharacterPage_RemoveKey.Content" xml:space="preserve">
+    <!-- Button to add or remove search keywords -->
+    <value>Remover</value>
+  </data>
+
+  <data name="CreateCharacterPage_SaveButton.Content" xml:space="preserve">
+    <!-- Button to save character changes -->
+    <value>Criar Personagem</value>
+  </data>
+
+  <data name="EditCharacterPage_ModFolderPath.Text" xml:space="preserve">
+    <!-- Static label text on the EditCharacterPage component -->
+    <value>Caminho da Pasta de Mods:</value>
+  </data>
+
+  <data name="EditCharacterPage_DisableCharacter.Content" xml:space="preserve">
+    <!-- Button/dialog for disabling a character -->
+    <value>Desabilitar Personagem</value>
+  </data>
+
+  <data name="EditCharacterPage_EnableCharacter.Content" xml:space="preserve">
+    <!-- Button/dialog for enabling a disabled character -->
+    <value>Habilitar Personagem</value>
+  </data>
+
+  <data name="EditCharacterPage_DeleteCharacter.Content" xml:space="preserve">
+    <!-- Button/dialog for deleting a custom character -->
+    <value>Excluir Personagem Personalizado</value>
+  </data>
+
+  <data name="EditCharacterPage_InternalNameId.Text" xml:space="preserve">
+    <!-- Label/help for the internal name (used for mod folder naming, must be unique) -->
+    <value>Nome Interno (Id):</value>
+  </data>
+
+  <data name="EditCharacterPage_DisplayName.Header" xml:space="preserve">
+    <!-- Label for the character display name field -->
+    <value>Nome de Exibição</value>
+  </data>
+
+  <data name="EditCharacterPage_TotalMods.Text" xml:space="preserve">
+    <!-- Static label text on the EditCharacterPage component -->
+    <value>Total de Mods:</value>
+  </data>
+
+  <data name="EditCharacterPage_SearchKeys.Text" xml:space="preserve">
+    <!-- Section label or help: additional search keywords for this character -->
+    <value>Chaves de Pesquisa de Personagens</value>
+  </data>
+
+  <data name="EditCharacterPage_NewKeyName.PlaceholderText" xml:space="preserve">
+    <!-- Hint text inside an input field on the EditCharacterPage component -->
+    <value>Novo Nome de Chave...</value>
+  </data>
+
+  <data name="EditCharacterPage_AddSearchKey.Content" xml:space="preserve">
+    <!-- Button to add or remove search keywords -->
+    <value>Adicionar Chave de Pesquisa</value>
+  </data>
+
+  <data name="EditCharacterPage_SearchKeysDescription.Text" xml:space="preserve">
+    <!-- Section label or help: additional search keywords for this character -->
+    <value>O JASM+ usa chaves para ajudar a melhorar a funcionalidade de pesquisa. Alguns personagens podem ter vários nomes, então você pode adicionar nomes adicionais ou termos de pesquisa como Chaves.</value>
+  </data>
+
+  <data name="EditCharacterPage_RemoveKey.Content" xml:space="preserve">
+    <!-- Button to add or remove search keywords -->
+    <value>Remover</value>
+  </data>
+
+  <data name="EditCharacterPage_UndoChanges.Content" xml:space="preserve">
+    <!-- Button to revert unsaved edits -->
+    <value>Desfazer alterações</value>
+  </data>
+
+  <data name="EditCharacterPage_SaveChanges.Content" xml:space="preserve">
+    <!-- Button to save character changes -->
+    <value>Salvar alterações</value>
+  </data>
+
+  <data name="EditCharacterPage_ShowDataModel.Text" xml:space="preserve">
+    <!-- Button to show the character JSON data model -->
+    <value>Mostrar Modelo de Dados do Personagem...</value>
+  </data>
+
+  <data name="EditCharacterPage_ResetCharacter.Content" xml:space="preserve">
+    <!-- Button/dialog for resetting a character -->
+    <value>Redefinir Personagem</value>
+  </data>
+
+  <data name="CreateCharacterPage_ExportJson.Content" xml:space="preserve">
+    <!-- Button to export character data as JSON -->
+    <value>Exportar json do personagem</value>
+  </data>
+
+  <data name="CreateCharacterPage_OpenCustomJson.Content" xml:space="preserve">
+    <!-- Button to import a custom JSON file -->
+    <value>Abrir arquivo json de personagem personalizado</value>
+  </data>
+
+  <data name="CreateCharacter_FailedTitle" xml:space="preserve">
+    <!-- Notification: an operation failed -->
+    <value>Falha ao criar personagem</value>
+  </data>
+
+  <data name="CreateCharacter_EnableFailedTitle" xml:space="preserve">
+    <!-- Notification: an operation failed -->
+    <value>Personagem criado, mas falha ao habilitar lista de mods</value>
+  </data>
+
+  <data name="CreateCharacter_SuccessTitle" xml:space="preserve">
+    <!-- Notification: operation succeeded -->
+    <value>Personagem criado</value>
+  </data>
+
+  <data name="CreateCharacter_SuccessMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>Personagem '{0}' foi criado com sucesso</value>
+  </data>
+
+  <data name="CreateCharacter_PasteImageFailedTitle" xml:space="preserve">
+    <!-- Notification: paste image operation result -->
+    <value>Falha ao colar imagem</value>
+  </data>
+
+  <data name="CreateCharacter_NoImageInClipboard" xml:space="preserve">
+    <!-- Notification: clipboard has no image -->
+    <value>Nenhuma imagem encontrada na área de transferência</value>
+  </data>
+
+  <data name="CreateCharacter_JsonExportFailedTitle" xml:space="preserve">
+    <!-- Dialog/notification for JSON export -->
+    <value>Falha ao criar exportação json</value>
+  </data>
+
+  <data name="CreateCharacter_JsonExportTitle" xml:space="preserve">
+    <!-- Dialog/notification for JSON export -->
+    <value>Exportação Json do Modelo do Personagem</value>
+  </data>
+
+  <data name="CreateCharacter_JsonExportPrimary" xml:space="preserve">
+    <!-- Dialog/notification for JSON export -->
+    <value>Copiar para área de transferência e Fechar</value>
+  </data>
+
+  <data name="CreateCharacter_JsonExportClose" xml:space="preserve">
+    <!-- Dialog/notification for JSON export -->
+    <value>Fechar</value>
+  </data>
+
+  <data name="CreateCharacter_JsonCopiedTitle" xml:space="preserve">
+    <!-- Notification: operation succeeded -->
+    <value>Json do personagem copiado para área de transferência</value>
+  </data>
+
+  <data name="EditCharacter_PasteImageFailedTitle" xml:space="preserve">
+    <!-- Notification: paste image operation result -->
+    <value>Falha ao colar imagem</value>
+  </data>
+
+  <data name="EditCharacter_NoImageInClipboard" xml:space="preserve">
+    <!-- Notification: clipboard has no image -->
+    <value>Nenhuma imagem encontrada na área de transferência</value>
+  </data>
+
+  <data name="EditCharacter_DeletedTitle" xml:space="preserve">
+    <!-- Text on the EditCharacter component -->
+    <value>Personagem Personalizado Excluído</value>
+  </data>
+
+  <data name="EditCharacter_DeletedMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>Personagem Personalizado '{0}' foi excluído com sucesso</value>
+  </data>
+
+  <data name="EditCharacter_SaveFailedTitle" xml:space="preserve">
+    <!-- Notification: an operation failed -->
+    <value>Falha ao salvar alterações do personagem</value>
+  </data>
+
+  <data name="EditCharacter_DisableCharacterTitle" xml:space="preserve">
+    <!-- Button/dialog for disabling a character -->
+    <value>Desabilitar Personagem</value>
+  </data>
+
+  <data name="EditCharacter_DisableCharacterContent" xml:space="preserve">
+    <!-- Button/dialog for disabling a character -->
+    <value>Tem certeza que deseja desabilitar este personagem? Isso não removerá o personagem, mas o JASM+ não o reconhecerá mais. O personagem pode ser reativado depois. Isso será executado imediatamente ao pressionar sim</value>
+  </data>
+
+  <data name="EditCharacter_DisableCharacterPrimary" xml:space="preserve">
+    <!-- Button/dialog for disabling a character -->
+    <value>Sim, desabilitar este personagem</value>
+  </data>
+
+  <data name="EditCharacter_DisableCharacterClose" xml:space="preserve">
+    <!-- Button/dialog for disabling a character -->
+    <value>Não</value>
+  </data>
+
+  <data name="EditCharacter_DeleteCharacterTitle" xml:space="preserve">
+    <!-- Button/dialog for deleting a custom character -->
+    <value>Excluir Personagem Personalizado</value>
+  </data>
+
+  <data name="EditCharacter_DeleteCharacterContent" xml:space="preserve">
+    <!-- Button/dialog for deleting a custom character -->
+    <value>Tem certeza que deseja excluir este personagem personalizado? Isso removerá o personagem, e o JASM+ não o reconhecerá mais. Isso será executado imediatamente ao pressionar sim</value>
+  </data>
+
+  <data name="EditCharacter_DeleteCharacterPrimary" xml:space="preserve">
+    <!-- Button/dialog for deleting a custom character -->
+    <value>Sim, excluir este personagem personalizado</value>
+  </data>
+
+  <data name="EditCharacter_DeleteCharacterClose" xml:space="preserve">
+    <!-- Button/dialog for deleting a custom character -->
+    <value>Não</value>
+  </data>
+
+  <data name="EditCharacter_EnableCharacterTitle" xml:space="preserve">
+    <!-- Button/dialog for enabling a disabled character -->
+    <value>Habilitar Personagem</value>
+  </data>
+
+  <data name="EditCharacter_EnableCharacterContent" xml:space="preserve">
+    <!-- Button/dialog for enabling a disabled character -->
+    <value>Tem certeza que deseja habilitar este personagem? Isso será executado imediatamente ao pressionar sim</value>
+  </data>
+
+  <data name="EditCharacter_EnableCharacterPrimary" xml:space="preserve">
+    <!-- Button/dialog for enabling a disabled character -->
+    <value>Sim, habilitar este personagem</value>
+  </data>
+
+  <data name="EditCharacter_EnableCharacterClose" xml:space="preserve">
+    <!-- Button/dialog for enabling a disabled character -->
+    <value>Não</value>
+  </data>
+
+  <data name="CreateCharacterPage_IsMultiMod.Content" xml:space="preserve">
+    <!-- Toggle/help: whether this character supports multiple mods enabled at once -->
+    <value>É Multi Mod</value>
+  </data>
+
+  <data name="EditCharacterPage_IsMultiMod.Content" xml:space="preserve">
+    <!-- Toggle/help: whether this character supports multiple mods enabled at once -->
+    <value>É Multi Mod</value>
+  </data>
+
+  <data name="EditCharacterPage_GoToCharacter.Content" xml:space="preserve">
+    <!-- Button to navigate to this character -->
+    <value>Ir para o personagem</value>
+  </data>
+
+  <data name="CreateCharacterPage_InternalNameHelp.Text" xml:space="preserve">
+    <!-- Label/help for the internal name (used for mod folder naming, must be unique) -->
+    <value>O Nome Interno é usado pelo JASM+ para identificar personagens/Objetos de Mod. Também é usado como nome da pasta de mods. Deve ser único. Alterar isso após criar o personagem significa que o JASM+ identificará isso como um novo personagem.</value>
+  </data>
+
+  <data name="CreateCharacterPage_ModFilesNameHelp.Text" xml:space="preserve">
+    <!-- Label/help for the mod files folder name -->
+    <value>O JASM+ pode em alguns casos tentar determinar para qual personagem um mod é. Ao fazer isso, ele usa o texto ModFilesName para tentar encontrar um arquivo de mod com o mesmo nome. Por exemplo, digamos que ModFilesName seja 'paimon', então ele corresponderá a um arquivo com nome: PaimonHeadLightMap.dds Deixe vazio se não quiser que o JASM+ tente corresponder arquivos de mod.</value>
+  </data>
+
+  <data name="CreateCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
+    <!-- Toggle/help: whether this character supports multiple mods enabled at once -->
+    <value>Se marcado, o JASM+ não mostrará um aviso quando vários mods estiverem habilitados para este objeto de mod.</value>
+  </data>
+
+  <data name="EditCharacterPage_InternalNameHelp.Text" xml:space="preserve">
+    <!-- Label/help for the internal name (used for mod folder naming, must be unique) -->
+    <value>O Nome Interno é usado pelo JASM+ para identificar personagens/Objetos de Mod. Também é usado como nome da pasta de mods. Deve ser único. Alterar isso após criar o personagem significa que o JASM+ identificará isso como um novo personagem.</value>
+  </data>
+
+  <data name="EditCharacterPage_IsMultiModHelp.Text" xml:space="preserve">
+    <!-- Toggle/help: whether this character supports multiple mods enabled at once -->
+    <value>Se marcado, o JASM+ não mostrará um aviso quando vários mods estiverem habilitados para este objeto de mod.</value>
+  </data>
+
+  <data name="EditCharacterPage_ResetCharacterSettings.Content" xml:space="preserve">
+    <!-- Button/dialog for resetting a character -->
+    <value>Redefinir Configurações do Personagem</value>
+  </data>
+
+  <data name="EditCharacter_ShowDataModelTitle" xml:space="preserve">
+    <!-- Button to show the character JSON data model -->
+    <value>Modelo do Personagem</value>
+  </data>
+
+  <data name="EditCharacter_ShowDataModelClose" xml:space="preserve">
+    <!-- Button to show the character JSON data model -->
+    <value>Fechar</value>
+  </data>
+
+  <data name="CharacterDetails_NoModsFound" xml:space="preserve">
+    <!-- Text on the CharacterDetails component -->
+    <value>Nenhum mod encontrado para este personagem 😖</value>
+  </data>
+
+  <data name="CharacterDetails_DropModsHere" xml:space="preserve">
+    <!-- Text on the CharacterDetails component -->
+    <value>Solte os Mods Aqui</value>
+  </data>
+
+  <data name="ModInstallerPage_ReplaceDuplicateMod.Text" xml:space="preserve">
+    <!-- Checkbox: replace old mod in presets with this new version -->
+    <value>Substituir mod duplicado nos presets pelo novo mod</value>
+  </data>
+
+  <data name="ModInstallerPage_ReplaceDuplicateMod2.Text" xml:space="preserve">
+    <!-- Checkbox: replace old mod in presets with this new version -->
+    <value>Substituir mod duplicado nos presets pelo novo mod</value>
+  </data>
+
+  <data name="ModPage_DownloadTitle" xml:space="preserve">
+    <!-- Text on the ModPage component -->
+    <value>Baixar arquivos de mod</value>
+  </data>
+
+  <data name="ModPage_DownloadsForTitle" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Downloads para: {0}</value>
+  </data>
+
+  <data name="ModInstaller_HelperWindowTitle" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Ajuda do Instalador de Mods: {0}</value>
+  </data>
+
+  <data name="ModInstallerPage_AlwaysOnTopToggle_ToolTip" xml:space="preserve">
+    <!-- Toggle tooltip: keep window always on top -->
+    <value>Manter janela sempre no topo</value>
+  </data>
+
+  <data name="ModInstallerPage_RetrieveModInfoButton_ToolTip" xml:space="preserve">
+    <!-- Button/tooltip: fetch mod info from GameBanana -->
+    <value>Obter informações do mod na página do mod</value>
+  </data>
+
+  <data name="CustomImage_PickImageButton_ToolTip" xml:space="preserve">
+    <!-- Context menu item to pickimagebutton_tooltip an image -->
+    <value>Escolher uma Imagem</value>
+  </data>
+
+  <data name="Preset_FailedCreate" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>Falha ao criar preset</value>
+  </data>
+
+  <data name="Preset_FailedDuplicate" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>Falha ao duplicar preset</value>
+  </data>
+
+  <data name="Preset_FailedDelete" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>Falha ao excluir preset</value>
+  </data>
+
+  <data name="Preset_Applied" xml:space="preserve">
+    <!-- Notification: preset operation succeeded -->
+    <value>Preset aplicado</value>
+  </data>
+
+  <data name="Preset_AppliedMessage" xml:space="preserve">
+    <!-- Contains a dynamic value placeholder -->
+    <value>Preset '{0}' foi aplicado</value>
+  </data>
+
+  <data name="Preset_FailedApply" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>Falha ao aplicar preset</value>
+  </data>
+
+  <data name="Preset_FailedRename" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>Falha ao renomear preset</value>
+  </data>
+
+  <data name="Preset_FailedSaveOrder" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>Falha ao salvar ordem do preset</value>
+  </data>
+
+  <data name="Preset_FailedToggleReadOnly" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>Falha ao alterar somente leitura</value>
+  </data>
+
+  <data name="Preset_ModPrefsReset" xml:space="preserve">
+    <!-- Notification: mod preferences updated -->
+    <value>Preferências de mod redefinidas</value>
+  </data>
+
+  <data name="Preset_FailedResetModPrefs" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>Falha ao redefinir preferências de mod</value>
+  </data>
+
+  <data name="PresetDetails_ModRemoved" xml:space="preserve">
+    <!-- Notification: preset operation succeeded -->
+    <value>Mod removido do preset</value>
+  </data>
+
+  <data name="PresetDetails_FailedRemoveMod" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>Falha ao remover mod do preset</value>
+  </data>
+
+  <data name="PresetDetails_ModAdded" xml:space="preserve">
+    <!-- Notification: preset operation succeeded -->
+    <value>Mod adicionado ao preset</value>
+  </data>
+
+  <data name="PresetDetails_ModAddedMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Mod '{0}' adicionado ao preset {1}</value>
+  </data>
+
+  <data name="PresetDetails_FailedAddMod" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>Falha ao adicionar mod ao preset</value>
+  </data>
+
+  <data name="PresetDetails_PrefsSaved" xml:space="preserve">
+    <!-- Text on the PresetDetails component -->
+    <value>Preferências salvas para o mod</value>
+  </data>
+
+  <data name="PresetDetails_FailedSavePrefs" xml:space="preserve">
+    <!-- Notification: preset operation failed -->
+    <value>Falha ao salvar preferências do mod</value>
+  </data>
+
+  <data name="ModInstaller_ModInstalled" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Mod '{0}' instalado</value>
+  </data>
+
+  <data name="ModInstaller_FailedClipboardImage" xml:space="preserve">
+    <!-- Text on the ModInstaller component -->
+    <value>Falha ao obter imagem da área de transferência</value>
+  </data>
+
+  <data name="ModInstaller_FailedDownloadImage" xml:space="preserve">
+    <!-- Notification: failed to download preview image -->
+    <value>Falha ao baixar imagem da modUrl</value>
+  </data>
+
+  <data name="ModInstaller_AnErrorOccurred" xml:space="preserve">
+    <!-- Notification: mod installation error -->
+    <value>Ocorreu um erro</value>
+  </data>
+
+  <data name="ModInstaller_ErrorAddingMod" xml:space="preserve">
+    <!-- Notification: mod installation error -->
+    <value>Ocorreu um erro ao adicionar o mod. Consulte os logs para mais detalhes</value>
+  </data>
+
+  <data name="CharDetails_InvalidModFile" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>A operação falhou porque o item selecionado não é um arquivo ou pasta de mod válido.</value>
+  </data>
+
+  <data name="CharDetails_InvalidModUrl" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>A operação falhou porque o item selecionado não é uma URL de mod do GameBanana válida.</value>
+  </data>
+
+  <data name="CharDetails_DestModListNotFoundMsg" xml:space="preserve">
+    <!-- Notification: destination character not found for mod move -->
+    <value>Lista de mods de destino não encontrada</value>
+  </data>
+
+  <data name="ModUpdate_FailedGetInfo" xml:space="preserve">
+    <!-- Text on the ModUpdate component -->
+    <value>Falha ao obter informações de atualização do mod</value>
+  </data>
+
+  <data name="ModUpdate_FailedDownload" xml:space="preserve">
+    <!-- Text on the ModUpdate component -->
+    <value>Falha ao baixar arquivo de mod</value>
+  </data>
+
+  <data name="ModUpdate_FailedInstall" xml:space="preserve">
+    <!-- Text on the ModUpdate component -->
+    <value>Falha ao instalar arquivo de mod</value>
+  </data>
+
+  <data name="ModPage_FailedGetUpdateInfo" xml:space="preserve">
+    <!-- Text on the ModPage component -->
+    <value>Falha ao obter informações de atualização do mod</value>
+  </data>
+
+  <data name="ModPage_FailedDownload" xml:space="preserve">
+    <!-- Text on the ModPage component -->
+    <value>Falha ao baixar arquivo de mod</value>
+  </data>
+
+  <data name="ModPage_FailedInstall" xml:space="preserve">
+    <!-- Text on the ModPage component -->
+    <value>Falha ao instalar arquivo de mod</value>
+  </data>
+
+  <data name="Gallery_FailedDeleteMod" xml:space="preserve">
+    <!-- Text on the Gallery component -->
+    <value>Falha ao excluir mod</value>
+  </data>
+
+  <data name="Gallery_ModDeleted" xml:space="preserve">
+    <!-- Text on the Gallery component -->
+    <value>Mod excluído</value>
+  </data>
+
+  <data name="Gallery_ModDeletedMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>{0} foi excluído</value>
+  </data>
+
+  <data name="Gallery_FailedSaveImage" xml:space="preserve">
+    <!-- Text on the Gallery component -->
+    <value>Falha ao salvar imagem</value>
+  </data>
+
+  <data name="CharDetails_ErrorSwitchSkin" xml:space="preserve">
+    <!-- Notification: error switching character skin -->
+    <value>Erro ao trocar a skin do personagem.</value>
+  </data>
+
+  <data name="CharDetails_ErrorDisableMods" xml:space="preserve">
+    <!-- Notification: error disabling mods -->
+    <value>Erro ao desabilitar mods</value>
+  </data>
+
+  <data name="CharDetails_ErrorDeleteMods" xml:space="preserve">
+    <!-- Notification title when mod deletion fails -->
+    <value>Erro ao Excluir Mods</value>
+  </data>
+
+  <data name="CharDetails_ModsDeleted" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>{0} Mods Excluídos</value>
+  </data>
+
+  <data name="CharDetails_ErrorLoading" xml:space="preserve">
+    <!-- Loading text -->
+    <value>Ocorreu um erro ao carregar a página de detalhes do personagem.</value>
+  </data>
+
+  <data name="CharDetails_UnknownError" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>Ocorreu um erro desconhecido ao executar o comando</value>
+  </data>
+
+  <data name="CharDetails_DragDropFailed" xml:space="preserve">
+    <!-- Notification: error during drag-and-drop -->
+    <value>A operação de arrastar e soltar falhou</value>
+  </data>
+
+  <data name="CharDetails_ErrorOpenModPage" xml:space="preserve">
+    <!-- Notification: error opening mod page -->
+    <value>Erro ao abrir janela de página do mod</value>
+  </data>
+
+  <data name="CharDetails_ErrorAddStorageItems" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>Erro ao adicionar itens de armazenamento.</value>
+  </data>
+
+  <data name="CharDetails_DestModListNotFound" xml:space="preserve">
+    <!-- Notification: destination character not found for mod move -->
+    <value>Lista de Mods de Destino Não Encontrada</value>
+  </data>
+
+  <data name="CharDetails_InvalidOpException" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>Exceção de Operação Inválida</value>
+  </data>
+
+  <data name="CharDetails_SkinOverrideChanged" xml:space="preserve">
+    <!-- UI for managing skin overrides on this character -->
+    <value>Sobrescrita de skin alterada para o mod</value>
+  </data>
+
+  <data name="CharDetails_ModsMoved" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>{0} Mods Movidos</value>
+  </data>
+
+  <data name="CharDetails_ErrorRefreshMods" xml:space="preserve">
+    <!-- Menu item or button to refresh mods -->
+    <value>Erro ao atualizar mods</value>
+  </data>
+
+  <data name="CharDetails_DuplicateModsDetected" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>Mods Duplicados Detectados</value>
+  </data>
+
+  <data name="CharDetails_ErrorDisablingMod" xml:space="preserve">
+    <!-- Notification: error disabling mods -->
+    <value>Ocorreu um erro ao desabilitar mod</value>
+  </data>
+
+  <data name="CharDetails_ErrorTogglingMod" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>Ocorreu um erro ao alternar mod</value>
+  </data>
+
+  <data name="CharDetails_ErrorSaveModSettings" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>Ocorreu um erro ao salvar configurações do mod</value>
+  </data>
+
+  <data name="CharDetails_ModSettingsSaved" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>Configurações do mod salvas</value>
+  </data>
+
+  <data name="CharDetails_ErrorLoadingMod" xml:space="preserve">
+    <!-- Loading text -->
+    <value>Erro ao carregar mod</value>
+  </data>
+
+  <data name="CharDetails_FailedLoadKeySwaps" xml:space="preserve">
+    <!-- Contains a dynamic value placeholder -->
+    <value>Falha ao carregar key swaps para o mod {0}</value>
+  </data>
+
+  <data name="CharDetails_ModFolderCopied" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>Caminho da pasta de mod copiado para área de transferência</value>
+  </data>
+
+  <data name="CharDetails_ClipboardNoImage" xml:space="preserve">
+    <!-- Notification: clipboard operation message -->
+    <value>A área de transferência não contém uma imagem válida</value>
+  </data>
+
+  <data name="CharDetails_CouldNotGetClipboardImage" xml:space="preserve">
+    <!-- Notification: clipboard operation message -->
+    <value>Não foi possível obter a imagem da área de transferência</value>
+  </data>
+
+  <data name="CharDetails_FailedSaveKeySwaps" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>Falha ao salvar key swaps</value>
+  </data>
+
+  <data name="CharDetails_ErrorRunCommand" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the error details -->
+    <value>Ocorreu um erro ao executar o comando {0}</value>
+  </data>
+
+  <data name="CharDetails_CouldNotDisableAllMods" xml:space="preserve">
+    <!-- Notification body: could not disable all mods -->
+    <value>Não foi possível desabilitar todos os mods.</value>
+  </data>
+
+  <data name="ModInstaller_AddedToModList" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Mod '{0}' ({1}) foi adicionado com sucesso à {2} ModList</value>
+  </data>
+
+  <data name="PresetDetails_RemovedModMsg" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>{0} mod '{1}' removido do preset {2}</value>
+  </data>
+
+  <data name="PresetDetails_PrefsSavedMsg" xml:space="preserve">
+    <!-- Contains a dynamic value placeholder -->
+    <value>Preferências salvas com sucesso para o mod {0}</value>
+  </data>
+
+  <data name="Preset_ModPrefsRemovedMsg" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Preferências de mod foram removidas{0}</value>
+  </data>
+
+  <data name="CharDetails_DeletedSuccessMsg" xml:space="preserve">
+    <!-- Contains multiple dynamic value placeholders -->
+    <value>{0} excluído(s) com sucesso na pasta de Mods de {1}</value>
+  </data>
+
+  <data name="CharDetails_ErrorAddStorageReason" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the error details -->
+    <value>Ocorreu um erro ao adicionar itens de armazenamento. Motivo:\n{0}</value>
+  </data>
+
+  <data name="CharDetails_ErrorAddStorageReason2" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the error details -->
+    <value>Ocorreu um erro ao adicionar itens de armazenamento.\n{0}</value>
+  </data>
+
+  <data name="CharDetails_CannotMoveModsMsg" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value> consulte logs para detalhes.</value>
+  </data>
+
+  <data name="CharDetails_MovedSuccessMsg" xml:space="preserve">
+    <!-- Contains multiple dynamic value placeholders -->
+    <value>{0} mods movidos com sucesso para {1}</value>
+  </data>
+
+  <data name="CharDetails_SkinOverrideSetMsg" xml:space="preserve">
+    <!-- Contains multiple dynamic value placeholders -->
+    <value>Sobrescrita de skin definida para o mod '{0}' como {1}</value>
+  </data>
+
+  <data name="Notification_ErrorOccurred" xml:space="preserve">
+    <!-- Notification title or message. Related to: erroroccurred -->
+    <value>An error occured!</value>
+  </data>
+
+  <data name="Notification_UnstableState" xml:space="preserve">
+    <!-- Notification title or message. Related to: unstablestate -->
+    <value>JASM+ may be in an unstable state could crash at any moment. It is suggested to restart the app.</value>
+  </data>
+
+  <data name="Notification_CommandError" xml:space="preserve">
+    <!-- Notification title or message. Related to: commanderror -->
+    <value>Ocorreu um erro ao executar o comando '{0}'</value>
+  </data>
+
+  <data name="Notification_ErrorTogglingMod" xml:space="preserve">
+    <!-- Notification title or message. Related to: errortogglingmod -->
+    <value>Ocorreu um erro ao {0} o mod: {1}</value>
+  </data>
+
+  <data name="Notification_SeeLogs" xml:space="preserve">
+    <!-- Notification title or message. Related to: seelogs -->
+    <value>Consulte os logs para mais detalhes.</value>
+  </data>
+
+  <data name="Notification_MovedMods" xml:space="preserve">
+    <!-- Notification title or message. Related to: movedmods -->
+    <value>{0} mods movidos para novas pastas de personagem</value>
+  </data>
+
+  <data name="Notification_ErrorRestartingApp" xml:space="preserve">
+    <!-- Notification title or message. Related to: errorrestartingapp -->
+    <value>Erro ao reiniciar o aplicativo</value>
+  </data>
+
+  <data name="Notification_RestartManually" xml:space="preserve">
+    <!-- Notification title or message. Related to: restartmanually -->
+    <value> reinicie manualmente</value>
+  </data>
+
+  <data name="Notification_TryingLegacyRestart" xml:space="preserve">
+    <!-- Notification title or message. Related to: tryinglegacyrestart -->
+    <value>Tentando método de reinicialização legado. Motivo: {0}</value>
+  </data>
+
+  <data name="Notification_PleaseRestartManuallyReason" xml:space="preserve">
+    <!-- Notification title or message. Related to: pleaserestartmanuallyreason -->
+    <value> reinicie manualmente. Motivo: {0}</value>
+  </data>
+
+  <data name="Notification_CommandStartError" xml:space="preserve">
+    <!-- Notification title or message. Related to: commandstarterror -->
+    <value>Ocorreu um erro ao iniciar o comando</value>
+  </data>
+
+  <data name="Notification_CommandNotFound" xml:space="preserve">
+    <!-- Notification title or message. Related to: commandnotfound -->
+    <value>Comando não encontrado</value>
+  </data>
+
+  <data name="Notification_CommandNotFoundMsg" xml:space="preserve">
+    <!-- Notification body message: Command with id '{0}' not found... Shown when commandnotfoundmsg -->
+    <value>Comando com id '{0}' não encontrado</value>
+  </data>
+
+  <data name="Notification_CommandCannotStart" xml:space="preserve">
+    <!-- Notification title or message. Related to: commandcannotstart -->
+    <value>O comando não pode ser iniciado</value>
+  </data>
+
+  <data name="Notification_CommandCannotStartMsg" xml:space="preserve">
+    <!-- Notification body message: Command '{0}' cannot be started due to the following errors:... Shown when commandcannotstartmsg -->
+    <value>O comando '{0}' não pode ser iniciado devido aos seguintes erros: {1}</value>
+  </data>
+
+  <data name="Notification_CommandStarted" xml:space="preserve">
+    <!-- Notification title or message. Related to: commandstarted -->
+    <value>Comando iniciado</value>
+  </data>
+
+  <data name="Notification_CommandStartedMsg" xml:space="preserve">
+    <!-- Notification body message: Command '{0}' started... Shown when commandstartedmsg -->
+    <value>Comando '{0}' iniciado</value>
+  </data>
+
+  <data name="Notification_KeySwapSaveFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: keyswapsavefailed -->
+    <value>Falha ao salvar configuração de key swap para o mod {0}</value>
+  </data>
+
+  <data name="Notification_KeySwapSaveError" xml:space="preserve">
+    <!-- Notification title or message. Related to: keyswapsaveerror -->
+    <value>Ocorreu um erro ao salvar. Motivo: {0}</value>
+  </data>
+
+  <data name="Notification_DragDropMultipleItems" xml:space="preserve">
+    <!-- Notification title or message. Related to: dragdropmultipleitems -->
+    <value>Arrastar e soltar chamado com mais de um item de armazenamento, isso não é suportado atualmente</value>
+  </data>
+
+  <data name="Notification_FinishAddingMod" xml:space="preserve">
+    <!-- Notification title or message. Related to: finishaddingmod -->
+    <value> termine de adicionar o mod para '{0}' primeiro</value>
+  </data>
+
+  <data name="Notification_NoMultipleInstalls" xml:space="preserve">
+    <!-- Notification title or message. Related to: nomultipleinstalls -->
+    <value>O JASM+ não suporta múltiplas instalações de mods para o mesmo personagem</value>
+  </data>
+
+  <data name="Notification_PresetApplyFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: presetapplyfailed -->
+    <value>Falha ao aplicar preset</value>
+  </data>
+
+  <data name="Notification_CannotWritePrefs" xml:space="preserve">
+    <!-- Notification title or message. Related to: cannotwriteprefs -->
+    <value>Não foi possível escrever preferências de mod no .ini de usuário do 3Dmigoto</value>
+  </data>
+
+  <data name="Notification_SeeLogsDetails" xml:space="preserve">
+    <!-- Notification title or message. Related to: seelogsdetails -->
+    <value>Consulte os logs para detalhes</value>
+  </data>
+
+  <data name="Notification_PresetApplied" xml:space="preserve">
+    <!-- Notification title or message. Related to: presetapplied -->
+    <value>Preset de mod aplicado</value>
+  </data>
+
+  <data name="Notification_PresetAppliedMsg" xml:space="preserve">
+    <!-- Notification body message: Mod preset {0} applied successfully... Shown when presetappliedmsg -->
+    <value>Preset de mod {0} aplicado com sucesso</value>
+  </data>
+
+  <data name="Notification_SavePrefsFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: saveprefsfailed -->
+    <value>Falha ao salvar preferências ativas</value>
+  </data>
+
+  <data name="Notification_PrefsSaved" xml:space="preserve">
+    <!-- Notification title or message. Related to: prefssaved -->
+    <value>Preferências ativas salvas</value>
+  </data>
+
+  <data name="Notification_PrefsSavedMsg" xml:space="preserve">
+    <!-- Notification body message: Preferences stored in {0} have been saved for enabled mods... Shown when prefssavedmsg -->
+    <value>Preferências armazenadas em {0} foram salvas para mods habilitados</value>
+  </data>
+
+  <data name="Notification_ApplyPrefsFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: applyprefsfailed -->
+    <value>Falha ao aplicar preferências salvas</value>
+  </data>
+
+  <data name="Notification_PrefsApplied" xml:space="preserve">
+    <!-- Notification title or message. Related to: prefsapplied -->
+    <value>Preferências salvas aplicadas</value>
+  </data>
+
+  <data name="Notification_PrefsAppliedMsg" xml:space="preserve">
+    <!-- Notification body message: Mod preferences written to 3DMigoto {0}... Shown when prefsappliedmsg -->
+    <value>Preferências de mod escritas no 3DMigoto {0}</value>
+  </data>
+
+  <data name="Notification_SettingsSaveFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: settingssavefailed -->
+    <value>Falha ao salvar configurações para o mod {0}</value>
+  </data>
+
+  <data name="Notification_SettingsErrorMsg" xml:space="preserve">
+    <!-- Notification body message: An Error Occurred. Reason: {0}... Shown when settingserrormsg -->
+    <value>Ocorreu um Erro. Motivo: {0}</value>
+  </data>
+
+  <data name="Notification_SettingsFileNotFound" xml:space="preserve">
+    <!-- Notification title or message. Related to: settingsfilenotfound -->
+    <value>Não foi possível encontrar arquivo de configuração para o mod {0}</value>
+  </data>
+
+  <data name="Notification_SettingsReadFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: settingsreadfailed -->
+    <value>Falha ao ler configurações para o mod {0}</value>
+  </data>
+
+  <data name="Notification_SettingsReadErrorMsg" xml:space="preserve">
+    <!-- Notification body message: An error occurred. Reason: {0}... Shown when settingsreaderrormsg -->
+    <value>Ocorreu um erro. Motivo: {0}</value>
+  </data>
+
+  <data name="Notification_NoChanges" xml:space="preserve">
+    <!-- Notification title or message. Related to: nochanges -->
+    <value>Nenhuma alteração detectada</value>
+  </data>
+
+  <data name="Notification_NoChangesMsg" xml:space="preserve">
+    <!-- Notification body message: Mod settings not updated... Shown when nochangesmsg -->
+    <value>Configurações do mod não atualizadas</value>
+  </data>
+
+  <data name="Notification_ImagePathNotFound" xml:space="preserve">
+    <!-- Notification title or message. Related to: imagepathnotfound -->
+    <value>Caminho da imagem não encontrado</value>
+  </data>
+
+  <data name="Notification_ImagePathNotFoundMsg" xml:space="preserve">
+    <!-- Notification body message: When saving mod settings the currently set image could not b... Shown when imagepathnotfoundmsg -->
+    <value> a imagem atualmente definida não pôde ser encontrada</value>
+  </data>
+
+  <data name="Notification_ModSettingsUpdated" xml:space="preserve">
+    <!-- Notification title or message. Related to: modsettingsupdated -->
+    <value>Configurações do mod atualizadas</value>
+  </data>
+
+  <data name="Notification_ModSettingsUpdatedMsg" xml:space="preserve">
+    <!-- Notification body message: Mod settings have been updated for {0}... Shown when modsettingsupdatedmsg -->
+    <value>As configurações do mod foram atualizadas para {0}</value>
+  </data>
+
+  <data name="Notification_CouldNotFindMod" xml:space="preserve">
+    <!-- Notification title or message. Related to: couldnotfindmod -->
+    <value>Não foi possível encontrar o mod</value>
+  </data>
+
+  <data name="Notification_CouldNotFindModMsg" xml:space="preserve">
+    <!-- Notification body message: An error occured trying to set Mod ini, restarting JASM+ may ... Shown when couldnotfindmodmsg -->
+    <value>Ocorreu um erro ao tentar definir o ini do mod, reiniciar o JASM+ pode ajudar</value>
+  </data>
+
+  <data name="Notification_CouldNotFindModSettings" xml:space="preserve">
+    <!-- Notification title or message. Related to: couldnotfindmodsettings -->
+    <value>Não foi possível encontrar as configurações do mod</value>
+  </data>
+
+  <data name="Notification_InvalidModIniPath" xml:space="preserve">
+    <!-- Notification title or message. Related to: invalidmodinipath -->
+    <value>Caminho do ini do mod inválido</value>
+  </data>
+
+  <data name="Notification_InvalidModIniPathMsg" xml:space="preserve">
+    <!-- Notification body message: An error occured trying to parse the path to the .ini... Shown when invalidmodinipathmsg -->
+    <value>Ocorreu um erro ao tentar analisar o caminho para o .ini</value>
+  </data>
+
+  <data name="Notification_ModIniNotExist" xml:space="preserve">
+    <!-- Notification title or message. Related to: modininotexist -->
+    <value>O arquivo ini do mod não existe</value>
+  </data>
+
+  <data name="Notification_ModIniNotExistMsg" xml:space="preserve">
+    <!-- Notification body message: Could not find file at {0}... Shown when modininotexistmsg -->
+    <value>Não foi possível encontrar o arquivo em {0}</value>
+  </data>
+
+  <data name="Notification_ModIniNotInModFolder" xml:space="preserve">
+    <!-- Notification title or message. Related to: modininotinmodfolder -->
+    <value>O arquivo ini do mod não está na pasta do mod</value>
+  </data>
+
+  <data name="Notification_ModIniNotInModFolderMsg" xml:space="preserve">
+    <!-- Notification body message: The mod ini file must be in the mod folder. Mod folder: {0}\... Shown when modininotinmodfoldermsg -->
+    <value>O arquivo ini do mod deve estar na pasta do mod. Pasta do mod: {0}\nCaminho do ini: {1}</value>
+  </data>
+
+  <data name="Notification_AnErrorOccurred" xml:space="preserve">
+    <!-- Notification title or message. Related to: anerroroccurred -->
+    <value>Ocorreu um Erro</value>
+  </data>
+
+  <data name="Notification_BgCheckerError" xml:space="preserve">
+    <!-- Notification title or message. Related to: bgcheckererror -->
+    <value>Ocorreu um erro no verificador de atualizações em segundo plano</value>
+  </data>
+
+  <data name="Notification_BgCheckerFatal" xml:space="preserve">
+    <!-- Notification title or message. Related to: bgcheckerfatal -->
+    <value>Ocorreu um erro fatal no verificador em segundo plano ({0} : {1}). Isso significa que o JASM+ não pode mais verificar atualizações de mods em segundo plano ou manualmente. Erro: {2}</value>
+  </data>
+
+  <data name="Notification_UpdateCheckError" xml:space="preserve">
+    <!-- Notification title or message. Related to: updatecheckerror -->
+    <value>Ocorreu um erro ao verificar atualizações de mods.</value>
+  </data>
+
+  <data name="Notification_StoppingBgChecker" xml:space="preserve">
+    <!-- Notification title or message. Related to: stoppingbgchecker -->
+    <value>Parando o verificador de atualizações em segundo plano...</value>
+  </data>
+
+  <data name="Notification_NoModsToCheck" xml:space="preserve">
+    <!-- Notification title or message. Related to: nomodstocheck -->
+    <value>Nenhum mod para verificar atualizações</value>
+  </data>
+
+  <data name="Notification_NoModsToCheckMsg" xml:space="preserve">
+    <!-- Notification body message: None of the mods were valid, therefore no check has been per... Shown when nomodstocheckmsg -->
+    <value>Nenhum dos mods era válido, portanto nenhuma verificação foi realizada</value>
+  </data>
+
+  <data name="Notification_FinishedChecking" xml:space="preserve">
+    <!-- Notification title or message. Related to: finishedchecking -->
+    <value>Verificação de atualizações de mods finalizada</value>
+  </data>
+
+  <data name="Notification_FinishedCheckingMsg" xml:space="preserve">
+    <!-- Notification body message: Finished checking {0} mods for updates for {1}... Shown when finishedcheckingmsg -->
+    <value>Verificação de {0} mods concluída para {1}</value>
+  </data>
+
+  <data name="Notification_NotImplemented" xml:space="preserve">
+    <!-- Notification title or message. Related to: notimplemented -->
+    <value>Não Implementado</value>
+  </data>
+
+  <data name="Notification_NotImplementedMsg" xml:space="preserve">
+    <!-- Notification body message: This feature is not implemented yet.... Shown when notimplementedmsg -->
+    <value>Esta função ainda não foi implementada.</value>
+  </data>
+
+  <data name="Notification_CouldNotStartProcess" xml:space="preserve">
+    <!-- Notification title or message. Related to: couldnotstartprocess -->
+    <value>Não foi possível iniciar o processo</value>
+  </data>
+
+  <data name="Notification_UnknownError" xml:space="preserve">
+    <!-- Notification title or message. Related to: unknownerror -->
+    <value>Ocorreu um erro desconhecido</value>
+  </data>
+
+  <data name="Notification_FailedToStartProcess" xml:space="preserve">
+    <!-- Notification title or message. Related to: failedtostartprocess -->
+    <value>Falha ao iniciar {0}</value>
+  </data>
+
+  <data name="Notification_FailedToStartUac" xml:space="preserve">
+    <!-- Notification title or message. Related to: failedtostartuac -->
+    <value>Falha ao iniciar {0}, isso pode ocorrer se o usuário cancelou o prompt UAC (admin)</value>
+  </data>
+
+  <data name="Notification_FailedToStartRunAsAdmin" xml:space="preserve">
+    <!-- Notification title or message. Related to: failedtostartrunasadmin -->
+    <value>Falha ao iniciar {0}, isso pode ocorrer se o executável tem a opção 'Executar como administrador' habilitada nas propriedades</value>
+  </data>
+
+  <data name="Notification_SkinOverrideFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: skinoverridefailed -->
+    <value>Falha ao sobrescrever skin do personagem para o mod {0}</value>
+  </data>
+
+  <data name="Notification_SkinOverrideErrorMsg" xml:space="preserve">
+    <!-- Notification body message: An Error Occurred. Reason: {0}... Shown when skinoverrideerrormsg -->
+    <value>Ocorreu um Erro. Motivo: {0}</value>
+  </data>
+
+  <data name="Notification_FolderActivityDetected" xml:space="preserve">
+    <!-- Notification title or message. Related to: folderactivitydetected -->
+    <value>Atividade de Pasta Detectada na Pasta de Mods de {0}</value>
+  </data>
+
+  <data name="Notification_FolderActivityMsg" xml:space="preserve">
+    <!-- Notification body message: Files/Folders were changed in the characters mod folder and ... Shown when folderactivitymsg -->
+    <value>Arquivos/pastas foram alterados na pasta de mods do personagem e os mods foram atualizados.</value>
+  </data>
+
+  <data name="Notification_GetPresetsFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: getpresetsfailed -->
+    <value>Falha ao obter presets, não foi possível atualizar automaticamente as entradas de mod nos presets</value>
+  </data>
+
+  <data name="Notification_UpdatePresetFailed" xml:space="preserve">
+    <!-- Notification title or message. Related to: updatepresetfailed -->
+    <value>Falha ao atualizar preset {0}, não foi possível atualizar automaticamente as entradas de mod no preset. Verifique seus presets manualmente</value>
+  </data>
+
+  <data name="Notification_ModUpdatedForPresets" xml:space="preserve">
+    <!-- Notification title or message. Related to: modupdatedforpresets -->
+    <value>O mod foi atualizado para os presets</value>
+  </data>
+
+  <data name="Notification_ModNotUpdatedForPresets" xml:space="preserve">
+    <!-- Notification title or message. Related to: modnotupdatedforpresets -->
+    <value>O mod não foi atualizado para nenhum preset</value>
+  </data>
+
+  <data name="Notification_ReadOnlyPresetsNotUpdated" xml:space="preserve">
+    <!-- Notification title or message. Related to: readonlypresetsnotupdated -->
+    <value>Os seguintes presets não foram atualizados por serem somente leitura: {0}</value>
+  </data>
+
+  <data name="Notification_ModUpdatedInPresets" xml:space="preserve">
+    <!-- Notification title or message. Related to: modupdatedinpresets -->
+    <value>O mod foi atualizado nos seguintes presets: {0}</value>
+  </data>
+
+  <data name="Notification_CouldNotDetermineSkin" xml:space="preserve">
+    <!-- Notification title or message. Related to: couldnotdetermineskin -->
+    <value>Não foi possível determinar a skin para o novo mod</value>
+  </data>
+
+  <data name="Notification_CouldNotDetermineSkinMsg" xml:space="preserve">
+    <!-- Notification body message: JASM+ could not determine what ingame skin this mod is for, t... Shown when couldnotdetermineskinmsg -->
+    <value>O JASM+ não pôde determinar para qual skin do jogo este mod é, portanto não pode determinar quais mods desabilitar.</value>
+  </data>
+
+  <data name="Notification_SystemError" xml:space="preserve">
+    <!-- Notification title or message. Related to: systemerror -->
+    <value>Erro do sistema: {0}</value>
+  </data>
+
+  <data name="CharacterCard_GoToModsOverview.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: navigate to this character in Mods Overview -->
+    <value>Ir para o personagem na Visão Geral de Mods</value>
+  </data>
+
+  <data name="CharacterCard_EditCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: open the character editor for this character -->
+    <value>Editar Personagem</value>
+  </data>
+
+  <data name="CharacterDetails_SearchMoveMod_PlaceholderText" xml:space="preserve">
+    <!-- UI for moving mods between characters -->
+    <value>Pesquisar...</value>
+  </data>
+
+  <data name="CharacterDetails_AddModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip explanation on the CharacterDetails component -->
+    <value>Adicionar uma pasta de mod</value>
+  </data>
+
+  <data name="CharacterDetails_AddArchive.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip explanation on the CharacterDetails component -->
+    <value>Adicionar um mod dentro de um arquivo compactado</value>
+  </data>
+
+  <data name="CharacterDetails_RefreshMods.Text" xml:space="preserve">
+    <!-- Menu item or button to refresh mods -->
+    <value>Atualizar Mods</value>
+  </data>
+
+  <data name="CharacterDetails_OpenGIMIRootFolder.Text" xml:space="preserve">
+    <!-- Static label text on the CharacterDetails component -->
+    <value>Abrir pasta raiz do 3Dmigoto...</value>
+  </data>
+
+  <data name="CharacterDetails_SingleSelect.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Toggle: when enabled, only one mod can be active at a time -->
+    <value>Selecionar isso permitirá que apenas um mod seja habilitado por vez.</value>
+  </data>
+
+  <data name="CharacterDetails_SavePreferences.Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Salvar preferências para o mod selecionado</value>
+  </data>
+
+  <data name="CharacterDetails_SavePreferences.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Lê as preferências de mod do 3Dmigoto (d3dx_user.ini) para o mod selecionado e armazena as configurações no arquivo .JASM_Config.json do Mod.</value>
+  </data>
+
+  <data name="CharacterDetails_ReadPreferences.Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Ler preferências para o mod selecionado</value>
+  </data>
+
+  <data name="CharacterDetails_ReadPreferences.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Lê as preferências do mod selecionado do .JASM_Config.json e as escreve no d3dx_user.ini para o 3Dmigoto ler</value>
+  </data>
+
+  <data name="ModPane_ChangeDisplayName.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: edit the mod display name -->
+    <value>Alterar nome de exibição do mod</value>
+  </data>
+
+  <data name="ModPane_SetModIni.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Button/checkbox for managing the mod .ini file -->
+    <value>Definir o arquivo .ini do mod para ser lido pelo JASM+</value>
+  </data>
+
+  <data name="ModPane_IgnoreIni.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Button/checkbox for managing the mod .ini file -->
+    <value>O JASM+ não procurará o arquivo merged.ini/Script.ini e ignorará key swaps para este mod</value>
+  </data>
+
+  <data name="CharDetails_DeleteDialog_Content" xml:space="preserve">
+    <!-- Checkbox label: whether to move deleted mods to Recycle Bin -->
+    <value>Mover para a Lixeira?</value>
+  </data>
+
+  <data name="CharDetails_RemovePresetsDialog_Content" xml:space="preserve">
+    <!-- Button or toggle label on the CharDetails component -->
+    <value>Remover dos Presets?</value>
+  </data>
+
+  <data name="CharDetails_DeleteButton_Text" xml:space="preserve">
+    <!-- Delete button label in the mod deletion dialog -->
+    <value>Excluir</value>
+  </data>
+
+  <data name="CharDetails_CancelButton_Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>Cancelar</value>
+  </data>
+
+  <data name="CharDetails_ErrorDeletingMods_Text" xml:space="preserve">
+    <!-- Notification: error deleting mods -->
+    <value>Erro ao excluir mods:</value>
+  </data>
+
+  <data name="CharDetails_DuplicateModsMessage" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Mods duplicados foram detectados na pasta de mods de {0}.</value>
+  </data>
+
+  <data name="CharDetails_DuplicateRenamedMessage" xml:space="preserve">
+    <!-- Contains multiple dynamic value placeholders -->
+    <value>Mod: '{0}' foi renomeado para '{1}' para evitar conflitos.</value>
+  </data>
+
+  <data name="CharDetails_NewModFilesAvailable" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Novos Arquivos de Mod Disponíveis: {0}</value>
+  </data>
+
+  <data name="CharDetails_SetButton.Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>Definir</value>
+  </data>
+
+  <data name="CharDetails_SetImageButton.Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>Definir Imagem</value>
+  </data>
+
+  <data name="CharacterDetails_OnlyOneSkin.ToolTip" xml:space="preserve">
+    <!-- Tooltip explanation on the CharacterDetails component -->
+    <value> então não é possível alterá-la.</value>
+  </data>
+
+  <data name="ModPane_Unknown" xml:space="preserve">
+    <!-- Fallback text when mod value is unknown -->
+    <value>Desconhecido</value>
+  </data>
+
+  <data name="CharDetails_DeleteModsDialog_Title" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the mod name or count -->
+    <value>Excluir Estes {0} Mods?</value>
+  </data>
+
+  <data name="CharDetails_PresetErrorMods" xml:space="preserve">
+    <!-- Text on the CharDetails component -->
+    <value>Mods com erro de preset:</value>
+  </data>
+
+  <data name="CharDetails_DeleteErrorMods" xml:space="preserve">
+    <!-- Notification title when mod deletion fails -->
+    <value>Mods com erro ao excluir:</value>
+  </data>
+
+  <data name="CharDetails_Loading_Mods" xml:space="preserve">
+    <!-- Loading text -->
+    <value>Mods</value>
+  </data>
+
+  <data name="CharDetails_Loading_ModPane" xml:space="preserve">
+    <!-- Loading text -->
+    <value>Painel de Mod</value>
+  </data>
+
+  <data name="CharDetails_Loading_Toolbar" xml:space="preserve">
+    <!-- Loading text -->
+    <value>Barra de Ferramentas</value>
+  </data>
+
+  <data name="CharDetails_Loading_ContextMenu" xml:space="preserve">
+    <!-- Loading text -->
+    <value>Menu de Contexto</value>
+  </data>
+
+  <data name="CharDetails_Loading_Grid" xml:space="preserve">
+    <!-- Loading text -->
+    <value>Grade</value>
+  </data>
+
+  <data name="CharDetails_Loading_Character" xml:space="preserve">
+    <!-- Loading text -->
+    <value>Personagem</value>
+  </data>
+
+  <data name="CustomImage_PasteImage.Text" xml:space="preserve">
+    <!-- Context menu item to pasteimage an image -->
+    <value>Colar Imagem</value>
+  </data>
+
+  <data name="CustomImage_CopyImage.Text" xml:space="preserve">
+    <!-- Context menu item to copyimage an image -->
+    <value>Copiar Imagem</value>
+  </data>
+
+  <data name="CustomImage_ClearImage.Text" xml:space="preserve">
+    <!-- Context menu item to clearimage an image -->
+    <value>Limpar imagem</value>
+  </data>
+
+  <data name="LinkButton_CopyLink.Text" xml:space="preserve">
+    <!-- Hyperlink button label -->
+    <value>Copiar Link</value>
+  </data>
+
+  <data name="CharacterDetails_ShowModFolderColumn.Text" xml:space="preserve">
+    <!-- Toggle: shows/hides the mod folder name column -->
+    <value>Mostrar coluna 'Nomes da Pasta de Mods'</value>
+  </data>
+
+  <data name="CharacterManager_NoResultsFound" xml:space="preserve">
+    <!-- Text on the CharacterManager component -->
+    <value>Nenhum resultado encontrado</value>
+  </data>
+
+  <data name="CharactersPage_NoCategoryFound" xml:space="preserve">
+    <!-- The {0} placeholder is replaced with the character name -->
+    <value>Nenhum {0} Encontrado...</value>
+  </data>
+
+  <data name="CharacterDetails_ViewToggle_OffContent" xml:space="preserve">
+    <!-- Toggle switch to switch between Gallery View or Detailed View -->
+    <value>Visualização Detalhada</value>
+  </data>
+
+  <data name="CharacterDetails_ViewToggle_OnContent" xml:space="preserve">
+    <!-- Toggle switch to switch between Gallery View or Detailed View -->
+    <value>Visualização em Galeria</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SingleSelect_Content" xml:space="preserve">
+    <!-- Toggle/tooltip: restrict to one active mod per character -->
+    <value>Seleção Única</value>
+  </data>
+
+  <data name="CharacterGalleryPage_SingleSelect_ToolTip" xml:space="preserve">
+    <!-- Toggle/tooltip: restrict to one active mod per character -->
+    <value>Selecionar isso permitirá que apenas um mod seja habilitado por vez.</value>
+  </data>
+
+  <data name="CharacterGalleryPage_ViewToggleSwitch_OffContent" xml:space="preserve">
+    <!-- Toggle switch for Gallery View / Detailed View -->
+    <value>Visualização Detalhada</value>
+  </data>
+
+  <data name="CharacterGalleryPage_ViewToggleSwitch_OnContent" xml:space="preserve">
+    <!-- Toggle switch for Gallery View / Detailed View -->
+    <value>Visualização em Galeria</value>
+  </data>
+
+  <data name="CharacterManagerPage_SearchBox_Header" xml:space="preserve">
+    <!-- Placeholder or label for the character search box -->
+    <value>Pesquise um personagem para editar ou adicionar um novo</value>
+  </data>
+
+  <data name="CreateCommandView_Arguments_PlaceholderText" xml:space="preserve">
+    <!-- Label/placeholder for command arguments -->
+    <value>Argumentos que serão passados para o executável</value>
+  </data>
+
+  <data name="CreateCommandView_CommandName_PlaceholderText" xml:space="preserve">
+    <!-- Label/placeholder for the command display name (Required field) -->
+    <value>Nome de Exibição do Comando (Obrigatório)</value>
+  </data>
+
+  <data name="CreateCommandView_Executable_PlaceHolderText" xml:space="preserve">
+    <!-- Label/placeholder/title for the executable path (Required field) -->
+    <value>Deve estar no $PATH ou ser um caminho absoluto para o executável (Obrigatório)</value>
+  </data>
+
+  <data name="CreateCommandView_WorkingDirectory_PlaceHolderText" xml:space="preserve">
+    <!-- Label/placeholder for the working directory -->
+    <value>Ao especificar um caminho manualmente, a pasta deve existir</value>
+  </data>
+
+  <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
+    <!-- Label/placeholder for a free-text note about this mod -->
+    <value>Nota de texto livre personalizada, exibida na grade na página de detalhes do personagem</value>
+  </data>
+
+  <data name="Error" xml:space="preserve">
+    <!-- Process status indicator: Error -->
+    <value>Erro</value>
+  </data>
+
+  <data name="Running" xml:space="preserve">
+    <!-- Process status indicator: Running -->
+    <value>Em execução</value>
+  </data>
+
+  <data name="Stopped" xml:space="preserve">
+    <!-- Process status indicator: Stopped -->
+    <value>Parado</value>
+  </data>
+
+  <data name="Waiting" xml:space="preserve">
+    <!-- Process status indicator: Waiting -->
+    <value>Aguardando</value>
+  </data>
+
+  <data name="Overview" xml:space="preserve">
+    <!-- Process status indicator: Overview -->
+    <value>Resumo</value>
+  </data>
+
+  <data name="ModInstallerPage_AlwaysOnTopToggle.ToolTip" xml:space="preserve">
+    <!-- Toggle tooltip: keep window always on top -->
+    <value>Manter janela sempre no topo</value>
+  </data>
+
+  <data name="ModInstallerPage_RetrieveModInfoButton.ToolTip" xml:space="preserve">
+    <!-- Button/tooltip: fetch mod info from GameBanana -->
+    <value>Obter informações do mod na página do mod</value>
+  </data>
+
+  <data name="CharacterGallery_DoNotAskAgain" xml:space="preserve">
+    <!-- Checkbox label in the delete mod confirmation dialog -->
+    <value>Não perguntar novamente</value>
+  </data>
+  <data name="CharacterGallery_DeleteConfirmText" xml:space="preserve">
+    <!-- Confirmation question when deleting a mod. {0} is the mod name -->
+    <value>Tem certeza que deseja excluir {0}?</value>
+  </data>
+  <data name="CharacterGallery_DeleteTitle" xml:space="preserve">
+    <!-- Title of the delete mod confirmation dialog -->
+    <value>Excluir mod</value>
+  </data>
+  <data name="CharacterGallery_DeletePrimaryButton" xml:space="preserve">
+    <!-- Confirm delete button in the delete mod dialog -->
+    <value>Excluir</value>
+  </data>
+  <data name="CharacterGallery_DeleteCloseButton" xml:space="preserve">
+    <!-- Cancel/close button in the delete mod dialog -->
+    <value>Cancelar</value>
+  </data>
+  <data name="CharacterDetails_RunCommandButton.Content" xml:space="preserve">
+    <!-- Button to run a custom command -->
+    <value>Executar</value>
+  </data>
+  <data name="CharacterDetails_OverrideText.Text" xml:space="preserve">
+    <!-- Button label to override a skin for this mod -->
+    <value>Sobrescrever</value>
+  </data>
+  <data name="Settings_Update_Downloading" xml:space="preserve">
+    <value>Baixando atualização…</value>
+  </data>
+  <data name="Settings_Update_DownloadingProgress" xml:space="preserve">
+    <value>Baixando… {0}%</value>
+  </data>
+  <data name="Settings_Update_Extracting" xml:space="preserve">
+    <value>Extraindo atualização…</value>
+  </data>
+  <data name="Settings_Update_Restarting" xml:space="preserve">
+    <value>Reiniciando para aplicar a atualização…</value>
+  </data>
+  <data name="Settings_Update_DownloadFailed" xml:space="preserve">
+    <value>Não foi possível encontrar a URL de download</value>
+  </data>
+  <data name="Settings_Update_ErrorStarting" xml:space="preserve">
+    <value>Erro durante a atualização</value>
+  </data>
+  <data name="Settings_Update_ButtonText.Text" xml:space="preserve">
+    <value>Atualizar para</value>
+  </data>
+</root>

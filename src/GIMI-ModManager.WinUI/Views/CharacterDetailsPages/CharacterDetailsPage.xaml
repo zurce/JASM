@@ -13,7 +13,9 @@
     xmlns:notifications="using:GIMI_ModManager.WinUI.Services.Notifications"
     xmlns:subViewModels="using:GIMI_ModManager.WinUI.ViewModels.CharacterDetailsViewModels.SubViewModels"
     xmlns:viewModels="using:GIMI_ModManager.WinUI.Models.ViewModels"
+    xmlns:appViewModels="using:GIMI_ModManager.WinUI.ViewModels"
     xmlns:xaml="using:GIMI_ModManager.WinUI.Helpers.Xaml"
+    xmlns:l="using:WinUI3Localizer"
     x:Name="CharacterDetailsRoot"
     mc:Ignorable="d">
 
@@ -26,9 +28,11 @@
                 Closing="ModRowFlyout_OnClosing"
                 Opened="ModRowFlyout_OnOpened"
                 Opening="ModRowFlyout_OnOpening"
-                Placement="RightEdgeAlignedBottom">
-                <Grid MinWidth="200">
+                Placement="RightEdgeAlignedBottom"
+                ShouldConstrainToRootBounds="False">
+                <Grid Width="400">
                     <Grid.RowDefinitions>
+                        <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
@@ -40,7 +44,7 @@
                                 <TextBlock
                                     Margin="0,0,4,0"
                                     HorizontalAlignment="Left"
-                                    Text="Mods Selected:" />
+                                    Text="Mods Selected:" l:Uids.Uid="CharacterDetails_ModsSelected" />
                                 <TextBlock HorizontalAlignment="Left" Text="{x:Bind ViewModel.ContextMenuVM.SelectedModsCount, Mode=OneWay}" />
                             </StackPanel>
                             <Button
@@ -54,22 +58,27 @@
                         </Grid>
                     </Grid>
 
-                    <StackPanel
+                    <Grid
                         Grid.Row="1"
-                        HorizontalAlignment="Center"
-                        Orientation="Horizontal">
+                        Margin="0,8,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
                         <Button
                             x:Name="MoveModsButton"
-                            Margin="0,8,16,0"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,16,0"
                             Command="{x:Bind ViewModel.ContextMenuVM.MoveModsCommand}"
-                            Content="Move" />
-                        <StackPanel>
-                            <TextBlock Text="Move Mods To Another Character: " />
+                            Content="Move" l:Uids.Uid="CharacterDetails_MoveModsButton" />
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="Move Mods To Another Character: " l:Uids.Uid="CharacterDetails_MoveModsToAnother" />
                             <AutoSuggestBox
                                 x:Name="MoveModSearchBox"
+                                HorizontalAlignment="Stretch"
                                 IsEnabled="{x:Bind ViewModel.IsNotHardBusy, Mode=OneWay}"
                                 ItemsSource="{x:Bind ViewModel.ContextMenuVM.SuggestedModdableObjects, Mode=OneWay}"
-                                PlaceholderText="Search..."
+                                PlaceholderText="Search..." l:Uids.Uid="CharacterDetails_MoveModSearch"
                                 QuerySubmitted="MoveModSearch_OnQuerySubmitted"
                                 TextChanged="MoveModSearch_OnTextChanged"
                                 Text="{x:Bind ViewModel.ContextMenuVM.MoveModsSearchText, Mode=TwoWay}">
@@ -81,7 +90,7 @@
                             </AutoSuggestBox>
                         </StackPanel>
 
-                    </StackPanel>
+                    </Grid>
 
                     <StackPanel
                         Grid.Row="2"
@@ -93,7 +102,7 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
                             ExpandDirection="Down"
-                            Header="Move Mods to another Skin"
+                            Header="Move Mods to another Skin" l:Uids.Uid="CharacterDetails_MoveModsSkinExpander"
                             IsEnabled="{x:Bind ViewModel.ContextMenuVM.MultipleSkins, Mode=OneWay}"
                             IsExpanded="False">
                             <Expander.Content>
@@ -105,17 +114,105 @@
                                             <Button.Content>
                                                 <StackPanel Orientation="Horizontal">
                                                     <FontIcon Margin="0,0,4,0" Glyph="&#xE74E;" />
-                                                    <TextBlock Text="Override" />
+                                                    <TextBlock Text="Override" l:Uids.Uid="CharacterDetails_OverrideText" />
                                                 </StackPanel>
                                             </Button.Content>
                                         </Button>
 
                                         <StackPanel Margin="4,0,0,0" Visibility="{x:Bind ViewModel.ContextMenuVM.ModHasCharacterSkinOverride, Mode=OneWay}">
-                                            <TextBlock Text="Override Skin Set To: " />
+                                            <TextBlock Text="Override Skin Set To: " l:Uids.Uid="CharacterDetails_OverrideSkinSetTo" />
                                             <TextBlock HorizontalAlignment="Center" Text="{x:Bind ViewModel.ContextMenuVM.ModCharacterSkinOverride.DisplayName, FallbackValue='', Mode=OneWay}" />
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
+                            </Expander.Content>
+                        </Expander>
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="3"
+                        Margin="0,4,0,4"
+                        Padding="0,4,0,0"
+                        BorderBrush="{ThemeResource ControlElevationBorderBrush}"
+                        BorderThickness="0,4,0,0">
+                        <Expander
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            ExpandDirection="Down"
+                            Header="Run Command on this folder" l:Uids.Uid="CharacterDetails_RunCommandExpander"
+                            IsEnabled="{x:Bind ViewModel.ContextMenuVM.IsSingleModSelected, Mode=OneWay}"
+                            IsExpanded="False">
+                            <Expander.Content>
+                                <ListView
+                                    MaxHeight="350"
+                                    ItemsSource="{x:Bind ViewModel.ContextMenuVM.CommandDefinitions}"
+                                    SelectionMode="None">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate x:DataType="appViewModels:ModOverviewCommandVM">
+                                            <Grid
+                                                Margin="0,4,0,4"
+                                                Padding="4"
+                                                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                                ColumnSpacing="4"
+                                                CornerRadius="4">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Spacing="4">
+                                                    <TextBlock
+                                                        TextTrimming="CharacterEllipsis"
+                                                        ToolTipService.ToolTip="{x:Bind DisplayName}"
+                                                        Text="{x:Bind DisplayName}" />
+
+                                                    <StackPanel>
+                                                        <TextBlock IsTextSelectionEnabled="True" Text="Full Command:" l:Uids.Uid="CharacterDetails_FullCommand" />
+                                                        <TextBlock
+                                                            Padding="6,0,0,0"
+                                                            IsTextSelectionEnabled="True"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            ToolTipService.ToolTip="{x:Bind FullCommand}"
+                                                            Text="{x:Bind FullCommand}" />
+                                                    </StackPanel>
+
+                                                    <StackPanel>
+                                                        <TextBlock IsTextSelectionEnabled="True" Text="Working Directory:" l:Uids.Uid="CharacterDetails_WorkingDirectory" />
+                                                        <TextBlock
+                                                            Padding="6,0,0,0"
+                                                            IsTextSelectionEnabled="True"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            ToolTipService.ToolTip="{x:Bind WorkingDirectory}"
+                                                            Text="{x:Bind WorkingDirectory}" />
+                                                    </StackPanel>
+
+                                                    <StackPanel>
+                                                        <TextBlock IsTextSelectionEnabled="True" Text="'{{TargetPath}}:" />
+                                                        <TextBlock
+                                                            Padding="6,0,0,0"
+                                                            IsTextSelectionEnabled="True"
+                                                            Tag="TargetPathText"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            ToolTipService.ToolTip="{x:Bind TargetPath, Mode=OneWay}"
+                                                            Text="{x:Bind TargetPath, Mode=OneWay}" />
+                                                    </StackPanel>
+                                                </StackPanel>
+
+                                                <Button
+                                                    Grid.Column="1"
+                                                    VerticalAlignment="Center"
+                                                    Command="{x:Bind RunCommand}"
+                                                    CommandParameter="{x:Bind}"
+                                                    Content="Run" l:Uids.Uid="CharacterDetails_RunCommandButton"
+                                                    Style="{ThemeResource AccentButtonStyle}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
                             </Expander.Content>
                         </Expander>
                     </StackPanel>
@@ -141,7 +238,7 @@
                     Visibility="Visible">
                     <ProgressRing />
                     <TextBlock>
-                        <Run Text="Loading" />
+                        <Run Text="Loading" l:Uids.Uid="CharacterDetails_LoadingText" />
                         <Run Text="{x:Bind ViewModel.LoadingItemText, Mode=OneWay}" />
                         <Run Text="..." />
 
@@ -174,24 +271,24 @@
 
                         <StackPanel Orientation="Horizontal">
                             <MenuBar IsEnabled="{x:Bind ViewModel.IsNotHardBusy, Mode=OneWay}">
-                                <MenuBarItem Title="Mods">
+                                <MenuBarItem Title="Mods" l:Uids.Uid="CharacterDetails_MenuBar_Mods">
                                     <MenuBarItem.Items>
                                         <MenuFlyoutItem
                                             Command="{x:Bind ViewModel.AddModFolderCommand}"
                                             ToolTipService.ToolTip="Add a mod folder"
-                                            Text="Add Mod..." />
+                                            Text="Add Mod..." l:Uids.Uid="CharacterDetails_AddModMenuItem" />
 
                                         <MenuFlyoutItem
                                             Command="{x:Bind ViewModel.AddModArchiveCommand}"
                                             ToolTipService.ToolTip="Add a mod inside a compressed archive"
-                                            Text="Add Archive...">
+                                            Text="Add Archive..." l:Uids.Uid="CharacterDetails_AddArchiveMenuItem">
                                             <MenuFlyoutItem.KeyboardAccelerators>
                                                 <KeyboardAccelerator Key="O" Modifiers="Control" />
                                             </MenuFlyoutItem.KeyboardAccelerators>
                                         </MenuFlyoutItem>
 
                                         <MenuFlyoutSeparator />
-                                        <MenuFlyoutItem Command="{x:Bind ViewModel.RefreshAllModsCommand}" Text="Refresh Mods">
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.RefreshAllModsCommand}" Text="Refresh Mods" l:Uids.Uid="CharacterDetails_RefreshMods">
                                             <MenuFlyoutItem.KeyboardAccelerators>
                                                 <KeyboardAccelerator Key="F5" />
                                             </MenuFlyoutItem.KeyboardAccelerators>
@@ -199,36 +296,36 @@
                                     </MenuBarItem.Items>
                                 </MenuBarItem>
 
-                                <MenuBarItem Title="Folders">
-                                    <MenuFlyoutItem Command="{x:Bind ViewModel.OpenGIMIRootFolderCommand}" Text="Open 3Dmigoto Root folder..." />
+                                <MenuBarItem Title="Folders" l:Uids.Uid="CharacterDetails_MenuBar_Folders">
+                                    <MenuFlyoutItem Command="{x:Bind ViewModel.OpenGIMIRootFolderCommand}" Text="Open 3Dmigoto Root folder..." l:Uids.Uid="CharacterDetails_OpenGIMIRootFolder" />
                                     <MenuFlyoutSeparator />
-                                    <MenuFlyoutItem Command="{x:Bind ViewModel.OpenCharacterFolderCommand}" Text="Open Character's Mod folder..." />
+                                    <MenuFlyoutItem Command="{x:Bind ViewModel.OpenCharacterFolderCommand}" Text="Open Character's Mod folder..." l:Uids.Uid="CharacterDetails_OpenCharacterModFolder" />
                                     <MenuFlyoutSeparator />
                                     <MenuFlyoutItem
                                         Command="{x:Bind ViewModel.OpenModFolderCommand}"
                                         IsEnabled="{x:Bind ViewModel.ModGridVM.IsSingleModSelected, Mode=OneWay}"
-                                        Text="Open Selected Mod folder..." />
+                                        Text="Open Selected Mod folder..." l:Uids.Uid="CharacterDetails_OpenSelectedModFolder" />
                                 </MenuBarItem>
 
-                                <MenuBarItem Title="View">
+                                <MenuBarItem Title="View" l:Uids.Uid="CharacterDetails_MenuBar_View">
                                     <ToggleMenuFlyoutItem
                                         Command="{x:Bind ViewModel.ToggleSingleSelectCommand}"
                                         IsChecked="{x:Bind ViewModel.IsSingleSelectEnabled, Mode=OneWay}"
                                         ToolTipService.ToolTip="Selecting this will only allow one mod to be enabled at a time."
-                                        Text="Single Select" />
+                                        Text="Single Select" l:Uids.Uid="CharacterDetails_SingleSelectToggle" />
                                     <ToggleMenuFlyoutItem
                                         Command="{x:Bind ViewModel.ToggleHideModFolderColumnCommand}"
                                         IsChecked="{x:Bind ViewModel.IsModFolderNameColumnVisible, Mode=OneWay}"
-                                        Text="Show 'Mod Folder Names' column" />
+                                        Text="Show 'Mod Folder Names' column" l:Uids.Uid="CharacterDetails_ShowModFolderColumn" />
                                 </MenuBarItem>
 
                                 <MenuBarItem
-                                    Title="Mod Preferences"
+                                    Title="Mod Preferences" l:Uids.Uid="CharacterDetails_MenuBar_ModPreferences"
                                     IsEnabled="{x:Bind ViewModel.IsSingleModSelected, Mode=OneWay}"
                                     Visibility="Collapsed">
-                                    <ToggleMenuFlyoutItem ToolTipService.ToolTip="Reads 3Dmigoto mod preferences (d3dx_user.ini) for the selected mod and stores the settings in the Mod's .JASM_Config.json file" Text="Save preferences for selected mod" />
+                                    <ToggleMenuFlyoutItem x:Name="SavePreferencesMenuItem" ToolTipService.ToolTip="Reads 3Dmigoto mod preferences (d3dx_user.ini) for the selected mod and stores the settings in the Mod's .JASM_Config.json file" Text="Save preferences for selected mod" />
                                     <MenuFlyoutSeparator />
-                                    <ToggleMenuFlyoutItem ToolTipService.ToolTip="Reads the currently selected mod's preferences from .JASM_Config.json and writes them to d3dx_user.ini for 3Dmigoto to read" Text="Read preferences for selected mod" />
+                                    <ToggleMenuFlyoutItem x:Name="ReadPreferencesMenuItem" ToolTipService.ToolTip="Reads the currently selected mod's preferences from .JASM_Config.json and writes them to d3dx_user.ini for 3Dmigoto to read" Text="Read preferences for selected mod" />
                                 </MenuBarItem>
                             </MenuBar>
 
@@ -236,6 +333,7 @@
 
 
                         <InfoBar
+                            x:Name="MultipleModsInfoBar"
                             Grid.Column="1"
                             Height="50"
                             HorizontalAlignment="Right"
@@ -269,7 +367,7 @@
                                 MinWidth="200"
                                 MaxWidth="500"
                                 IsEnabled="{x:Bind ViewModel.IsNotHardBusy, Mode=OneWay}"
-                                PlaceholderText="Search Mods..."
+                                PlaceholderText="Search Mods..." l:Uids.Uid="CharacterDetails_SearchModsTextBox"
                                 TextChanged="SearchModsTextBox_OnTextChanged"
                                 Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
@@ -289,6 +387,7 @@
                             IsOn="False"
                             OffContent="Detailed View"
                             OnContent="Gallery View"
+                            Loaded="ViewToggleSwitch_OnLoaded"
                             Toggled="ViewToggleSwitch_OnToggled" />
 
                         <Grid MinWidth="32">

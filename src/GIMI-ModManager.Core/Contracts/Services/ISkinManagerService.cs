@@ -1,4 +1,4 @@
-﻿using GIMI_ModManager.Core.Contracts.Entities;
+using GIMI_ModManager.Core.Contracts.Entities;
 using GIMI_ModManager.Core.Entities;
 using GIMI_ModManager.Core.GamesService;
 using GIMI_ModManager.Core.GamesService.Interfaces;
@@ -83,6 +83,12 @@ public interface ISkinManagerService : IDisposable
     public ISkinMod AddMod(ISkinMod mod, ICharacterModList modList, bool move = false);
 
     public ICollection<DirectoryInfo> CleanCharacterFolders();
+
+    public Task<string[]> EnableAllModsAsync(IEnumerable<ICategory> categories);
+
+    public Task<string[]> DisableAllModsAsync(IEnumerable<ICategory> categories);
+
+    public Task<int> CleanUpDisabledModsAsync(IEnumerable<ICategory> categories);
 
     public IList<CharacterSkinEntry> GetAllMods(GetOptions getOptions = GetOptions.All);
 }

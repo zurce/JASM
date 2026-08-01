@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -17,16 +17,7 @@
     <resheader name="version">2.0</resheader>
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
+                        
     There are any number of "resheader" rows that contain simple 
     name/value pairs.
     
@@ -117,94 +108,90 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+
   <data name="3dmigotoFolderSelector.Title" xml:space="preserve">
     <value>Папка 3dMigoto</value>
   </data>
+
   <data name="ChangeLanguageDialogText" xml:space="preserve">
     <value>Изменение языка требует перезапуска приложения.
-Это необходимо для корректной настройки приложения для выбранного языка.
+Это необходимо для правильной настройки приложения для выбранного языка.
 Хотите изменить язык?</value>
   </data>
-  <data name="ElevatorSectionHeader.Text" xml:space="preserve">
-    <value>Процесс Синхронизации</value>
-  </data>
-  <data name="ElevatorStatusTitle.Text" xml:space="preserve">
-    <value>Статус синхронизации</value>
-  </data>
+
   <data name="FolderSectionHeader.Text" xml:space="preserve">
     <value>Папки</value>
   </data>
+
   <data name="GameSelectorComboBox.Header" xml:space="preserve">
-    <value>Выберите Игру:</value>
+    <value>Выбрать игру:</value>
   </data>
+
   <data name="GameSelectorSectionHeader.Text" xml:space="preserve">
     <value>Игра</value>
   </data>
+
   <data name="GameSelectorTitle.Text" xml:space="preserve">
-    <value>JASM поддерживает Genshin Impact и Honkai Star Rail</value>
+    <value>JASM+ полностью поддерживает Genshin Impact и Honkai Star Rail.
+JASM+ частично поддерживает WUWA и ZZZ</value>
   </data>
+
   <data name="LanguageSelectionSectionHeader.Text" xml:space="preserve">
     <value>Язык</value>
   </data>
+
   <data name="LanguageSelectorComboBox.Header" xml:space="preserve">
     <value>Выберите язык отображения:</value>
   </data>
+
   <data name="LanguageSelectorTitle.Text" xml:space="preserve">
-    <value>Опции языка в данный момент ограничены. Работа над ними продолжается.</value>
+    <value>Возможности выбора языка в настоящее время ограничены. Работа в процессе.</value>
   </data>
+
   <data name="ModsFolderSelector.Title" xml:space="preserve">
     <value>Папка модов</value>
   </data>
+
   <data name="ModUpdateCheckerCheckBox.Content" xml:space="preserve">
     <value>Автоматическая проверка модов</value>
   </data>
+
   <data name="ModUpdateCheckerDescription.Text" xml:space="preserve">
     <value>Mod Update Checker проверяет наличие обновлений модов при запуске и периодически в фоновом режиме.
-При включении проверяет каждые 240 минут, однако проверяет только те моды, которые не проверялись по крайней мере 60 минут.
-Ручная проверка обновлений всегда проверяет GameBanana напрямую.</value>
+При включении проверка происходит каждые 240 минут, но только для модов, которые не проверялись как минимум 60 минут.
+Ручная проверка обновлений всегда напрямую обращается к GameBanana.</value>
   </data>
+
   <data name="ModUpdateCheckerNextText.Text" xml:space="preserve">
-    <value>Следующая проверка в:</value>
+    <value>Следующая проверка через:</value>
   </data>
+
   <data name="ModUpdateCheckerSectionHeader.Text" xml:space="preserve">
-    <value>Проверка обновлений у модов</value>
+    <value>Mod Update Checker</value>
   </data>
-  <data name="StartElevatorButton.Content" xml:space="preserve">
-    <value>Начать Процесс Синхронизации</value>
-  </data>
-  <data name="StartElevatorDialogDontShowContent" xml:space="preserve">
-    <value>Не показывайте это снова</value>
-  </data>
-  <data name="StartElevatorDialogText" xml:space="preserve">
-    <value>Нажмите кнопку Start, чтобы запустить процесс синхронизации. Синхронизация - это административный процесс, который используется для связи с 3DMigoto и игрой.
 
-Пока синхронизация активна, вы можете нажать F10 в приложении, чтобы обновить активные моды в игре.
-
-Включение и отключение модов также автоматически обновит работу 3DMigoto в игре. Процесс синхронизации должен автоматически завершиться после закрытия программы.
-
-После нажатия кнопки Start появится запрос User Account Control (UAC) для разрешения от имени администратора.
-
-(Для этого необходимо, чтобы игра и 3Dmigoto были запущены, при нажатии F10)</value>
-  </data>
-  <data name="StartElevatorDialogTitle" xml:space="preserve">
-    <value>Запустить синхронизацию?</value>
-  </data>
   <data name="GameSourceSectionHeader.Text" xml:space="preserve">
     <value>Источник игр</value>
   </data>
+
   <data name="GameSourceTitle.Text" xml:space="preserve">
-    <value>Выберите, загружать ли игры и категории персонажей из встроенного релиза или из репозитория сообщества.</value>
+    <value>Выберите, загружать игры и категории персонажей из встроенной (релизной) версии или из репозитория сообщества.</value>
   </data>
+
   <data name="GameSource_Release.Content" xml:space="preserve">
-    <value>Встроенный (Release)</value>
+    <value>Релиз</value>
   </data>
+
   <data name="GameSource_Community.Content" xml:space="preserve">
     <value>Сообщество (GitHub)</value>
   </data>
+
   <data name="CommunityRepoUrlTextBox.Header" xml:space="preserve">
     <value>URL репозитория сообщества:</value>
   </data>
+
   <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
     <value>Обновить игры сообщества</value>
   </data>
+
 </root>

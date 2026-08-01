@@ -1,11 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Contracts.Entities;
 using GIMI_ModManager.Core.Entities;
 using GIMI_ModManager.Core.Entities.Mods.Contract;
 using GIMI_ModManager.Core.GamesService.Interfaces;
 using GIMI_ModManager.Core.Helpers;
+using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Services.Notifications;
 using NotificationManager = GIMI_ModManager.WinUI.Services.Notifications.NotificationManager;
 
@@ -131,9 +133,9 @@ public partial class ModModel : ObservableObject, IEquatable<ModModel>
             }
             catch (Exception e)
             {
-                App.GetService<NotificationManager>().ShowNotification($"An error occurred " +
-                                                                       (IsEnabled ? "disabling" : "enabling") +
-                                                                       $" the mod: {Name}",
+                App.GetService<NotificationManager>().ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_ErrorTogglingMod") ?? "An error occurred {0} the mod: {1}",
+                                                                       (IsEnabled ? "disabling" : "enabling"),
+                                                                       Name),
                     e.ToString(), null);
             }
 

@@ -8,6 +8,7 @@
     xmlns:controls1="using:GIMI_ModManager.WinUI.Views.Controls"
     xmlns:converters="using:CommunityToolkit.WinUI.UI.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:local="using:GIMI_ModManager.WinUI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:GIMI_ModManager.WinUI.ViewModels"
@@ -59,7 +60,8 @@
                 <AppBarButton
                     Command="{x:Bind ViewModel.AddModsToPresetCommand}"
                     Icon="Add"
-                    Label="Add Mod" />
+                    Label="Add Mod"
+                    l:Uids.Uid="PresetDetailsPage_AddMod" />
             </CommandBar>
 
             <TextBox
@@ -70,6 +72,7 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 PlaceholderText="Search Mods..."
+                l:Uids.Uid="PresetDetailsPage_SearchBox"
                 TextChanged="SearchBox_OnTextChanged" />
         </Grid>
 
@@ -152,7 +155,8 @@
                                             Command="{x:Bind ReplaceMissingModCommand}"
                                             CommandParameter="{Binding Mode=OneWay}"
                                             Visibility="{x:Bind IsMissing, Converter={StaticResource BoolToVisibilityConverter}}"
-                                            Text="Find Replacement Mod">
+                                            Text="Find Replacement Mod"
+                                            l:Uids.Uid="PresetDetailsPage_FindReplacementMod">
                                             <MenuFlyoutItem.Icon>
                                                 <FontIcon Glyph="&#xE8DA;" />
                                             </MenuFlyoutItem.Icon>
@@ -162,7 +166,8 @@
                                             CommandParameter="{Binding Mode=OneWay}"
                                             ToolTipService.ToolTip="Read current 3Dmigoto user ini for his mod and save preference for this preset"
                                             Visibility="{x:Bind IsNotMissing, Converter={StaticResource BoolToVisibilityConverter}}"
-                                            Text="Read and Save Preferences">
+                                            Text="Read and Save Preferences"
+                                            l:Uids.Uid="PresetDetailsPage_ReadAndSavePreferences">
                                             <MenuFlyoutItem.Icon>
                                                 <FontIcon Glyph="&#xE74E;" />
                                             </MenuFlyoutItem.Icon>
@@ -171,7 +176,8 @@
                                         <MenuFlyoutItem
                                             Command="{x:Bind RemoveModFromPresetCommand}"
                                             CommandParameter="{Binding Mode=OneTime}"
-                                            Text="Remove Mod From Preset">
+                                            Text="Remove Mod From Preset"
+                                            l:Uids.Uid="PresetDetailsPage_RemoveModFromPreset">
                                             <MenuFlyoutItem.Icon>
                                                 <FontIcon Glyph="&#xE894;" />
                                             </MenuFlyoutItem.Icon>
@@ -216,7 +222,7 @@
                                     Text="{x:Bind ModUrlName}" />
 
                                 <StackPanel>
-                                    <TextBlock HorizontalAlignment="Center" Text="Added To Preset At:" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Added To Preset At:" l:Uids.Uid="PresetDetailsPage_AddedToPresetAt" />
                                     <TextBlock HorizontalAlignment="Center" Text="{x:Bind AddedAt}" />
                                 </StackPanel>
 
@@ -229,10 +235,11 @@
                                 <TextBlock
                                     HorizontalAlignment="Center"
                                     Foreground="Red"
-                                    Text="This mod could not be found on disk!" />
+                                    Text="This mod could not be found on disk!"
+                                    l:Uids.Uid="PresetDetailsPage_ModNotFound" />
 
                                 <StackPanel>
-                                    <TextBlock HorizontalAlignment="Center" Text="Original Path:" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Original Path:" l:Uids.Uid="PresetDetailsPage_OriginalPath" />
                                     <TextBlock
                                         HorizontalAlignment="Center"
                                         IsTextSelectionEnabled="True"

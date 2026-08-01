@@ -1,3 +1,4 @@
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.WinUI.ViewModels;
 using GIMI_ModManager.WinUI.Views.CharacterManager;
 using Microsoft.UI.Xaml;
@@ -15,7 +16,13 @@ public sealed partial class CharacterManagerPage : Page
         ViewModel = App.GetService<CharacterManagerViewModel>();
         InitializeComponent();
         ViewModel.SetSelection += CharacterSelected;
-        Loaded += (sender, args) => CharacterSearchBox.Focus(FocusState.Programmatic);
+        Loaded += (sender, args) =>
+        {
+            var localizer = App.GetService<ILanguageLocalizer>();
+            CharacterSearchBox.Header = localizer.GetLocalizedStringOrDefault("CharacterManagerPage_SearchBox_Header") ?? "Search for a character to edit or add a new character";
+            CharacterSearchBox.PlaceholderText = localizer.GetLocalizedStringOrDefault("CharacterManagerPage_SearchBox_Placeholder") ?? "Start typing to search...";
+            CharacterSearchBox.Focus(FocusState.Programmatic);
+        };
     }
 
     private void CharacterSelected(object? sender, CharacterManagerViewModel.SetSelectionArgs e)

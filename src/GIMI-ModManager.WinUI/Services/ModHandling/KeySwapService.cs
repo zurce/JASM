@@ -1,5 +1,6 @@
 ﻿using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Entities.Mods.Contract;
+using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Models;
 using OneOf;
 using OneOf.Types;
@@ -61,8 +62,8 @@ public class KeySwapService
         catch (Exception e)
         {
             _logger.Error(e, "Failed to save key swap configuration for mod {ModName}", skinMod.Name);
-            _notificationManager.ShowNotification($"Failed to save key swap configuration for mod {skinMod.Name}",
-                $"An error occurred when saving. Reason: {e.Message}", null);
+            _notificationManager.ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_KeySwapSaveFailed") ?? "Failed to save key swap configuration for mod {0}", skinMod.Name),
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_KeySwapSaveError") ?? "An error occurred when saving. Reason: {0}", e.Message), null);
             return new Error<Exception>(e);
         }
     }

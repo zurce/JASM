@@ -5,6 +5,7 @@ using GIMI_ModManager.Core.Entities.Mods.Contract;
 using GIMI_ModManager.Core.Entities.Mods.Exceptions;
 using GIMI_ModManager.Core.Entities.Mods.Helpers;
 using GIMI_ModManager.Core.Helpers;
+using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Services.Notifications;
 using OneOf;
 using OneOf.Types;
@@ -52,8 +53,8 @@ public class ModSettingsService
             {
                 _logger.Error(e, "Failed to save settings for mod {modName}", mod.Name);
 
-                _notificationManager.ShowNotification($"Failed to save settings for mod {mod.Name}",
-                    $"An Error Occurred. Reason: {e.Message}",
+                _notificationManager.ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_SettingsSaveFailed") ?? "Failed to save settings for mod {0}", mod.Name),
+                    string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_SettingsErrorMsg") ?? "An Error Occurred. Reason: {0}", e.Message),
                     TimeSpan.FromSeconds(5));
 
                 return new Error<Exception>(e);
@@ -88,7 +89,7 @@ public class ModSettingsService
         catch (ModSettingsNotFoundException e)
         {
             _logger.Error(e, "Could not find settings file for mod {ModName}", mod.Name);
-            _notificationManager.ShowNotification($"Could not find settings file for mod {mod.Name}", "",
+            _notificationManager.ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_SettingsFileNotFound") ?? "Could not find settings file for mod {0}", mod.Name), "",
                 TimeSpan.FromSeconds(5));
             return new NotFound();
         }
@@ -96,8 +97,8 @@ public class ModSettingsService
         {
             _logger.Error(e, "Failed to read settings for mod {modName}", mod.Name);
 
-            _notificationManager.ShowNotification($"Failed to read settings for mod {mod.Name}",
-                $"An error occurred. Reason: {e.Message}",
+            _notificationManager.ShowNotification(string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_SettingsReadFailed") ?? "Failed to read settings for mod {0}", mod.Name),
+                string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_SettingsReadErrorMsg") ?? "An error occurred. Reason: {0}", e.Message),
                 TimeSpan.FromSeconds(5));
 
             return new Error<Exception>(e);
@@ -110,7 +111,10 @@ public class ModSettingsService
         return await CommandWrapperAsync(async () =>
         {
             if (!change.AnyUpdates)
-                return Result<ModSettings>.Error(new SimpleNotification("No changes were detected", "Mod settings not updated"));
+            {
+                var localizer = App.GetService<ILanguageLocalizer>();
+                return Result<ModSettings>.Error(new SimpleNotification(localizer.GetLocalizedStringOrDefault("Notification_NoChanges") ?? "No changes were detected", localizer.GetLocalizedStringOrDefault("Notification_NoChangesMsg") ?? "Mod settings not updated"));
+            }
 
             var mod = _skinManagerService.GetModById(modId);
 
@@ -129,8 +133,9 @@ public class ModSettingsService
                )
             {
                 change.ImagePath = null;
-                _notificationManager.ShowNotification("Image path not found",
-                    "When saving mod settings the currently set image could not be found",
+                var localizer2 = App.GetService<ILanguageLocalizer>();
+                _notificationManager.ShowNotification(localizer2.GetLocalizedStringOrDefault("Notification_ImagePathNotFound") ?? "Image path not found",
+                    localizer2.GetLocalizedStringOrDefault("Notification_ImagePathNotFoundMsg") ?? "When saving mod settings the currently set image could not be found",
                     TimeSpan.FromSeconds(5));
             }
 
@@ -158,9 +163,10 @@ public class ModSettingsService
                 throw new ModSettingsNotFoundException(mod);
 
 
+            var localizer3 = App.GetService<ILanguageLocalizer>();
             return Result<ModSettings>.Success(newModSettings, new SimpleNotification(
-                title: "Mod settings updated",
-                message: $"Mod settings have been updated for {mod.GetDisplayName()}",
+                title: localizer3.GetLocalizedStringOrDefault("Notification_ModSettingsUpdated") ?? "Mod settings updated",
+                message: string.Format(localizer3.GetLocalizedStringOrDefault("Notification_ModSettingsUpdatedMsg") ?? "Mod settings have been updated for {0}", mod.GetDisplayName()),
                 null
             ));
         }).ConfigureAwait(false);
@@ -188,14 +194,20 @@ public class ModSettingsService
         var mod = _skinManagerService.GetModById(modId);
 
         if (mod is null)
-            return Result.Error(new SimpleNotification("Could not find mod",
-                "An error occured trying to set Mod ini, restarting JASM may help"));
+        {
+            var localizer4 = App.GetService<ILanguageLocalizer>();
+            return Result.Error(new SimpleNotification(localizer4.GetLocalizedStringOrDefault("Notification_CouldNotFindMod") ?? "Could not find mod",
+                localizer4.GetLocalizedStringOrDefault("Notification_CouldNotFindModMsg") ?? "An error occured trying to set Mod ini, restarting JASM may help"));
+        }
 
         var modSettings = await mod.Settings.TryReadSettingsAsync().ConfigureAwait(false);
 
         if (modSettings is null)
-            return Result.Error(new SimpleNotification("Could not find mod settings",
-                "An error occured trying to set Mod ini, restarting JASM may help"));
+        {
+            var localizer5 = App.GetService<ILanguageLocalizer>();
+            return Result.Error(new SimpleNotification(localizer5.GetLocalizedStringOrDefault("Notification_CouldNotFindModSettings") ?? "Could not find mod settings",
+                localizer5.GetLocalizedStringOrDefault("Notification_CouldNotFindModMsg") ?? "An error occured trying to set Mod ini, restarting JASM may help"));
+        }
 
         ModSettings? newSettings;
         if (modIni.IsNullOrEmpty() && autoDetect)
@@ -225,16 +237,25 @@ public class ModSettingsService
             : null;
 
         if (modIniUri is null)
-            return Result.Error(new SimpleNotification("Invalid Mod ini path",
-                "An error occured trying to parse the path to the .ini"));
+        {
+            var localizer6 = App.GetService<ILanguageLocalizer>();
+            return Result.Error(new SimpleNotification(localizer6.GetLocalizedStringOrDefault("Notification_InvalidModIniPath") ?? "Invalid Mod ini path",
+                localizer6.GetLocalizedStringOrDefault("Notification_InvalidModIniPathMsg") ?? "An error occured trying to parse the path to the .ini"));
+        }
 
         if (!File.Exists(modIniUri.LocalPath))
-            return Result.Error(new SimpleNotification("Mod ini file does not exist",
-                $"Could not find file at {modIniUri.LocalPath}"));
+        {
+            var localizer7 = App.GetService<ILanguageLocalizer>();
+            return Result.Error(new SimpleNotification(localizer7.GetLocalizedStringOrDefault("Notification_ModIniNotExist") ?? "Mod ini file does not exist",
+                string.Format(localizer7.GetLocalizedStringOrDefault("Notification_ModIniNotExistMsg") ?? "Could not find file at {0}", modIniUri.LocalPath)));
+        }
 
         if (!SkinModHelpers.IsInModFolder(mod, modIniUri))
-            return Result.Error(new SimpleNotification("Mod ini file is not in mod folder",
-                $"The mod ini file must be in the mod folder. Mod folder: {mod.FullPath}\nIni path: {modIniUri.LocalPath}"));
+        {
+            var localizer8 = App.GetService<ILanguageLocalizer>();
+            return Result.Error(new SimpleNotification(localizer8.GetLocalizedStringOrDefault("Notification_ModIniNotInModFolder") ?? "Mod ini file is not in mod folder",
+                string.Format(localizer8.GetLocalizedStringOrDefault("Notification_ModIniNotInModFolderMsg") ?? "The mod ini file must be in the mod folder. Mod folder: {0}\nIni path: {1}", mod.FullPath, modIniUri.LocalPath)));
+        }
 
         newSettings =
             modSettings.DeepCopyWithProperties(mergedIniPath: NewValue<Uri?>.Set(modIniUri),
@@ -420,14 +441,14 @@ public record Result<T> : IResult
     {
         IsError = true,
         Exception = exception,
-        Notification = new SimpleNotification("An Error Occurred", exception.Message, TimeSpan.FromSeconds(5))
+        Notification = new SimpleNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_AnErrorOccurred") ?? "An Error Occurred", exception.Message, TimeSpan.FromSeconds(5))
     };
 
     public static Result<T> Error(string errorMessage) => new()
     {
         IsError = true,
         ErrorMessage = errorMessage,
-        Notification = new SimpleNotification("An Error Occurred", errorMessage, TimeSpan.FromSeconds(5))
+        Notification = new SimpleNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Notification_AnErrorOccurred") ?? "An Error Occurred", errorMessage, TimeSpan.FromSeconds(5))
     };
 
     public static Result<T> Error(Exception exception, SimpleNotification? notification)

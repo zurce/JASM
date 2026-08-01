@@ -1,4 +1,5 @@
 using CommunityToolkit.WinUI.UI.Controls;
+using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Helpers;
 using GIMI_ModManager.WinUI.Services.ModHandling;
 using GIMI_ModManager.WinUI.Services.Notifications;
@@ -23,6 +24,19 @@ public sealed partial class ModGrid : UserControl
         InitializeComponent();
         Unloaded += OnUnloaded;
         DataGrid = ModListGrid;
+        LocalizeHeaders();
+    }
+
+    private void LocalizeHeaders()
+    {
+        var localizer = App.GetService<ILanguageLocalizer>();
+        EnabledColumn.Header = localizer.GetLocalizedStringOrDefault("ModGrid_EnabledColumn") ?? "Enabled";
+        ModNameColumn.Header = localizer.GetLocalizedStringOrDefault("ModGrid_ModNameColumn") ?? "Mod Name";
+        ModFolderNameColumn.Header = localizer.GetLocalizedStringOrDefault("ModGrid_ModFolderNameColumn") ?? "Mod Folder Name";
+        AuthorColumn.Header = localizer.GetLocalizedStringOrDefault("ModGrid_AuthorColumn") ?? "Author";
+        AddedColumn.Header = localizer.GetLocalizedStringOrDefault("ModGrid_AddedColumn") ?? "Added";
+        PresetsColumn.Header = localizer.GetLocalizedStringOrDefault("ModGrid_PresetsColumn") ?? "Presets";
+        NotesColumn.Header = localizer.GetLocalizedStringOrDefault("ModGrid_NotesColumn") ?? "Notes";
     }
 
 
