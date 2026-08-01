@@ -317,11 +317,22 @@
                         l:Uids.Uid="/Settings/3dmigotoFolderSelector" />
                     <controls:FolderSelector
                         Title="Mods Folder"
+                        IsReadOnly="{x:Bind ViewModel.IsModsFolderLocked, Mode=OneWay}"
                         BrowseCommand="{x:Bind ViewModel.BrowseModsFolderCommand}"
                         PathChangedEvent="ModsFolder_OnPathChangedEvent"
                         SelectedFolderValue="{x:Bind ViewModel.PathToModsFolderPicker.Path, Mode=TwoWay}"
                         ValidationErrorText="{x:Bind ViewModel.PathToModsFolderPicker.ValidationMessages, Mode=OneWay}"
                         l:Uids.Uid="/Settings/ModsFolderSelector" />
+
+                    <StackPanel Margin="4,8,4,8" Spacing="4" Visibility="{x:Bind ViewModel.ModTypeSectionVisibility, Mode=OneWay}">
+                        <CheckBox
+                            IsChecked="{x:Bind ViewModel.TreatAsXxmi, Mode=TwoWay}"
+                            Content="Treat this folder as an XXMI installation (locks the mods folder)" />
+                        <TextBlock
+                            Style="{ThemeResource CaptionTextBlockStyle}"
+                            TextWrapping="WrapWholeWords"
+                            Text="This game is managed by XXMI. The mods folder is locked to the XXMI Mods location and game launch is handled through XXMI." />
+                    </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
                         <Button Command="{x:Bind ViewModel.SaveSettingsCommand}" Content="Update" ToolTipService.ToolTip="Update folder path(s)?" l:Uids.Uid="Settings_UpdateButton" />

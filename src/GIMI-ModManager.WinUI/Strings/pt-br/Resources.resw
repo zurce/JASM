@@ -384,6 +384,10 @@
     <!-- Button label to launch the 3DMigoto model importer process -->
     <value>Iniciar 3Dmigoto</value>
   </data>
+  <data name="CharactersPage_OpenXxmi.Content" xml:space="preserve">
+    <!-- Button label to open the XXMI Launcher GUI for an XXMI-managed game -->
+    <value>Abrir XXMI</value>
+  </data>
 
   <data name="CharactersPage_BatchConfigurations.Label" xml:space="preserve">
     <!-- Section label for character filters or batch operations -->

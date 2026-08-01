@@ -125,11 +125,24 @@
                 <controls:FolderSelector
                     Title="Mods Folder "
                     Margin="4,8,4,8"
+                    IsReadOnly="{x:Bind ViewModel.IsModsFolderLocked, Mode=OneWay}"
                     BrowseCommand="{x:Bind ViewModel.BrowseModsFolderCommand}"
                     PathChangedEvent="ModsFolder_OnPathChangedEvent"
                     SelectedFolderValue="{x:Bind ViewModel.PathToModsFolderPicker.Path, Mode=TwoWay}"
                     ValidationErrorText="{x:Bind ViewModel.PathToModsFolderPicker.ValidationMessages, Mode=OneWay}"
                     l:Uids.Uid="/Settings/ModsFolderSelector" />
+                <StackPanel
+                    Margin="4,0,4,12"
+                    Spacing="4"
+                    Visibility="{x:Bind ViewModel.IsXxmiDetected, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <CheckBox
+                        IsChecked="{x:Bind ViewModel.TreatAsXxmi, Mode=TwoWay}"
+                        Content="Treat this folder as an XXMI installation (locks the mods folder)" />
+                    <TextBlock
+                        Style="{ThemeResource CaptionTextBlockStyle}"
+                        TextWrapping="WrapWholeWords"
+                        Text="Uncheck to use the legacy 3DMigoto setup instead of an XXMI-managed installation." />
+                </StackPanel>
 
                 <Grid Margin="{StaticResource SmallTopBottomMargin}" Visibility="Collapsed">
                     <TextBlock

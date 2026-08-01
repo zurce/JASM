@@ -44,6 +44,23 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
     public PathPicker PathToGIMIFolderPicker { get; }
 
     public PathPicker PathToModsFolderPicker { get; }
+
+    /// <summary>True when the chosen 3DMigoto root is detected as an XXMI folder.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsModsFolderLocked))]
+    private bool _isXxmiDetected;
+
+    /// <summary>
+    /// User-controlled "treat as XXMI" state on the first-time setup page. Defaults on when
+    /// an XXMI folder is auto-detected; unchecking reverts to legacy behavior.
+    /// </summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsModsFolderLocked))]
+    private bool _treatAsXxmi;
+
+    /// <summary>Locks the mods folder when XXMI is detected and the user hasn't opted out.</summary>
+    public bool IsModsFolderLocked => IsXxmiDetected && TreatAsXxmi;
+
     [ObservableProperty] private bool _reorganizeModsOnStartup;
     [ObservableProperty] private bool _disableMods;
 
@@ -105,11 +122,17 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
     [RelayCommand(CanExecute = nameof(ValidStartupSettings))]
     private async Task SaveStartupSettings()
     {
+        var xxmiInstallation = XxmiInstallationDetector.TryDetect(PathToGIMIFolderPicker.Path,
+            XxmiInstallationDetector.GetXxmiGameIdentifier(SelectedGame.Value));
+        var treatAsXxmi = TreatAsXxmi && xxmiInstallation is not null;
         var modManagerOptions = new ModManagerOptions()
         {
             GimiRootFolderPath = PathToGIMIFolderPicker.Path,
-            ModsFolderPath = PathToModsFolderPicker.Path,
-            UnloadedModsFolderPath = null
+            // When treating as XXMI, lock the mods folder to XXMI's Mods location;
+            // otherwise keep whatever the user chose (legacy behavior).
+            ModsFolderPath = treatAsXxmi ? xxmiInstallation!.ModsFolderPath : PathToModsFolderPicker.Path,
+            UnloadedModsFolderPath = null,
+            TreatAsXXMI = treatAsXxmi
         };
 
         var selectedGameStr = SelectedGame.Value.ToString();
@@ -186,6 +209,22 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         if (PathToGIMIFolderPicker.PathHasValue &&
             !PathToModsFolderPicker.PathHasValue)
             PathToModsFolderPicker.Path = Path.Combine(PathToGIMIFolderPicker.Path!, "Mods");
+
+        // Auto-detect XXMI (for the current game): lock the mods folder to XXMI's own Mods
+        // layout. Uses the expected game identifier so a wrong game/folder pairing is rejected
+        // (e.g. picking the GIMI folder while configuring Star Rail).
+        if (XxmiInstallationDetector.TryDetect(PathToGIMIFolderPicker.Path,
+                XxmiInstallationDetector.GetXxmiGameIdentifier(SelectedGame.Value)) is { } detected)
+        {
+            IsXxmiDetected = true;
+            TreatAsXxmi = true;
+            PathToModsFolderPicker.Path = detected.ModsFolderPath;
+        }
+        else
+        {
+            IsXxmiDetected = false;
+            TreatAsXxmi = false;
+        }
     }
 
 
@@ -308,7 +347,11 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         GameBananaUrl = gameInfo.GameBananaUrl;
         ModelImporterUrl = gameInfo.GameModelImporterUrl;
         var folderWarning = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Settings_FolderWarning_No3DMigotoEntry") ?? "Folder does not contain any entry with the specified names:";
-        PathToGIMIFolderPicker.SetValidators(GimiFolderRootValidators.Validators(gameInfo.GameModelImporterExeNames, folderWarning));
+        var expectedXxmiIdentifier = Enum.TryParse<SupportedGames>(game, out var supportedGame)
+            ? XxmiInstallationDetector.GetXxmiGameIdentifier(supportedGame)
+            : null;
+        PathToGIMIFolderPicker.SetValidators(GimiFolderRootValidators.Validators(gameInfo.GameModelImporterExeNames,
+            folderWarning, expectedXxmiIdentifier));
     }
 
     private async Task SetGameComboBoxValues()
@@ -343,10 +386,21 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         else
             PathToGIMIFolderPicker.Path = "";
 
+        // Detect whether the 3DMigoto root is an XXMI folder (identifier-agnostic on load,
+        // so an existing SRMI/GIMI/... setup is recognized regardless of the selected game).
+        // The checkbox is only shown when detected and is checked by default.
+        var xxmi = XxmiInstallationDetector.TryDetect(settings.GimiRootFolderPath);
+        IsXxmiDetected = xxmi is not null;
+        TreatAsXxmi = IsXxmiDetected;
+
         if (!string.IsNullOrWhiteSpace(settings.ModsFolderPath))
             PathToModsFolderPicker.Path = settings.ModsFolderPath;
         else
             PathToModsFolderPicker.Path = "";
+
+        // When treating as XXMI, always use XXMI's own Mods folder so it's never left empty.
+        if (IsXxmiDetected && TreatAsXxmi)
+            PathToModsFolderPicker.Path = xxmi!.ModsFolderPath;
     }
 
 

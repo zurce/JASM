@@ -205,14 +205,18 @@
                 <Button
                     Margin="32,0,32,0"
                     Command="{x:Bind ViewModel.Start3DmigotoCommand}"
-                    Content="Start 3Dmigoto" l:Uids.Uid="CharactersPage_Start3Dmigoto">
+                    Content="Start 3Dmigoto" l:Uids.Uid="CharactersPage_Start3Dmigoto"
+                    Visibility="{x:Bind ViewModel.ShowLegacyStartButtons, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                     <ToolTipService.ToolTip>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock TextWrapping="WrapWholeWords" Text="{x:Bind ViewModel.ThreeDMigtoProcessManager.ProcessPath, Mode=OneWay}" />
                         </StackPanel>
                     </ToolTipService.ToolTip>
                 </Button>
-                <Button Command="{x:Bind ViewModel.StartGenshinCommand}" CommandParameter="{x:Bind SelectProcessDialog}">
+                <Button
+                    Command="{x:Bind ViewModel.StartGenshinCommand}"
+                    CommandParameter="{x:Bind SelectProcessDialog}"
+                    Visibility="{x:Bind ViewModel.ShowLegacyStartButtons, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="0,0,4,0" Text="{x:Bind ViewModel.ShortGameName}" />
                         <Grid
@@ -231,6 +235,16 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock TextWrapping="WrapWholeWords" Text="{x:Bind ViewModel.GenshinProcessManager.ProcessPath, Mode=OneWay}" />
                         </StackPanel>
+                    </ToolTipService.ToolTip>
+                </Button>
+                <Button
+                    Margin="32,0,32,0"
+                    Command="{x:Bind ViewModel.OpenXxmiCommand}"
+                    Content="Open XXMI"
+                    l:Uids.Uid="CharactersPage_OpenXxmi"
+                    Visibility="{x:Bind ViewModel.IsXxmiManaged, Mode=OneWay}">
+                    <ToolTipService.ToolTip>
+                        <TextBlock TextWrapping="WrapWholeWords" Text="{x:Bind ViewModel.XxmiLauncherExePath, Mode=OneWay}" />
                     </ToolTipService.ToolTip>
                 </Button>
             </StackPanel>

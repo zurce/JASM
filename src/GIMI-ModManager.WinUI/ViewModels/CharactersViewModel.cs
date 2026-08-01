@@ -11,6 +11,7 @@ using GIMI_ModManager.Core.GamesService.Interfaces;
 using GIMI_ModManager.Core.GamesService.Models;
 using GIMI_ModManager.Core.Helpers;
 using GIMI_ModManager.Core.Services;
+using GIMI_ModManager.WinUI.Models.Options;
 using GIMI_ModManager.Core.Services.GameBanana;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Contracts.ViewModels;
@@ -78,6 +79,27 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
 
     [ObservableProperty] private Uri? _gameBananaLink;
 
+    /// <summary>
+    /// True when the active game is treated as an XXMI-managed installation, in which case
+    /// the legacy Start 3DMigoto / Start Game buttons are suppressed and an "Open XXMI"
+    /// button is shown in their place.
+    /// </summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowLegacyStartButtons))]
+    private bool _isXxmiManaged;
+
+    /// <summary>Resolved path to the XXMI Launcher executable, or null if unavailable.</summary>
+    public string? XxmiLauncherExePath { get; private set; }
+
+    /// <summary>True when the XXMI launcher is available to open.</summary>
+    public bool CanOpenXxmi => IsXxmiManaged && !string.IsNullOrWhiteSpace(XxmiLauncherExePath) &&
+                              File.Exists(XxmiLauncherExePath);
+
+    /// <summary>
+    /// True when the legacy Start 3DMigoto / Start Game buttons should be shown (i.e. the
+    /// game is NOT XXMI-managed).
+    /// </summary>
+    public bool ShowLegacyStartButtons => !IsXxmiManaged;
     [ObservableProperty] private string _categoryPageTitle = string.Empty;
     [ObservableProperty] private string _modToggleText = string.Empty;
     [ObservableProperty] private string _modEnabledToggleText = string.Empty;
@@ -127,6 +149,11 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         StartGameIcon = _gameService.GameIcon;
         ShortGameName = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_StartGamePrefix") ?? "Start"} {_gameService.GameShortName}";
         GameBananaLink = _gameService.GameBananaUrl;
+
+        // Determine whether the active game is managed as an XXMI installation.
+        var modManagerOptions = _localSettingsService.ReadSetting<ModManagerOptions>(ModManagerOptions.Section);
+        IsXxmiManaged = modManagerOptions?.TreatAsXXMI ?? false;
+        XxmiLauncherExePath = XxmiInstallationDetector.TryResolveLauncherExe();
 
         CanCheckForUpdates = _modUpdateAvailableChecker.IsReady;
         _modUpdateAvailableChecker.OnUpdateCheckerEvent += (_, _) =>
@@ -907,6 +934,32 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     private async Task StartGenshinAsync() =>
         await SimpleSelectProcessDialogVM.InternalStart(GenshinProcessManager,
             SimpleSelectProcessDialogVM.StartType.Game);
+
+    /// <summary>
+    /// For an XXMI-managed game, opens the XXMI Launcher GUI instead of starting the game or
+    /// 3DMigoto directly, so the user can manage launch/settings through XXMI.
+    /// </summary>
+    [RelayCommand]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("", "SecurityNoSecurityBrowserCmd2")]
+    private async Task OpenXxmiAsync()
+    {
+        if (!CanOpenXxmi)
+            return;
+
+        try
+        {
+            using var ps = System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = XxmiLauncherExePath!,
+                WorkingDirectory = Path.GetDirectoryName(XxmiLauncherExePath),
+                UseShellExecute = false
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.Error(ex, "Failed to open XXMI Launcher");
+        }
+    }
 
     [RelayCommand]
     private async Task EnableAllModsDialogAsync(Microsoft.UI.Xaml.Controls.ContentDialog dialog)

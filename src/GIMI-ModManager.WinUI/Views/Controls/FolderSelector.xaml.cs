@@ -80,6 +80,39 @@ public sealed partial class FolderSelector : UserControl
 
     #endregion
 
+    #region IsReadOnly
+
+    private static readonly DependencyProperty IsReadOnlyProperty = DependencyProperty.Register(
+        nameof(IsReadOnly), typeof(bool), typeof(FolderSelector),
+        new PropertyMetadata(false, OnIsReadOnlyChanged));
+
+    private static readonly DependencyProperty IsNotReadOnlyProperty = DependencyProperty.Register(
+        nameof(IsNotReadOnly), typeof(bool), typeof(FolderSelector), new PropertyMetadata(true));
+
+    /// <summary>
+    /// When true the folder text box and Browse button are disabled, making the folder
+    /// value read-only. Used to lock the mods folder for an XXMI-managed game.
+    /// </summary>
+    public bool IsReadOnly
+    {
+        get => (bool)GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
+    }
+
+    /// <summary>Inverse of <see cref="IsReadOnly"/> for x:Bind enabled state.</summary>
+    public bool IsNotReadOnly
+    {
+        get => (bool)GetValue(IsNotReadOnlyProperty);
+        set => SetValue(IsNotReadOnlyProperty, value);
+    }
+
+    private static void OnIsReadOnlyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        ((FolderSelector)d).IsNotReadOnly = !(bool)e.NewValue;
+    }
+
+    #endregion
+
     #region Footer
 
     private static readonly DependencyProperty FooterProperty = DependencyProperty.Register(

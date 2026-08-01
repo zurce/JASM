@@ -17,7 +17,10 @@ public sealed partial class SettingsPage : Page
     }
 
     private void GimiFolder_OnPathChangedEvent(object? sender, FolderSelector.StringEventArgs e)
-        => ViewModel.PathToGIMIFolderPicker.Validate(e.Value);
+    {
+        ViewModel.PathToGIMIFolderPicker.Validate(e.Value);
+        ViewModel.OnGimiPathTyped(e.Value);
+    }
 
 
     private void ModsFolder_OnPathChangedEvent(object? sender, FolderSelector.StringEventArgs e)
