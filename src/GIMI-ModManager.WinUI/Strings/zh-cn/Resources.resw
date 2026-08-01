@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   
   <xs:schema id="root">
@@ -4229,5 +4229,29 @@ Ini路径：{1}</value>
   </data>
   <data name="Settings_Update_ButtonText.Text" xml:space="preserve">
     <value>更新到</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Title" xml:space="preserve">
+    <!-- Title of the dialog shown when an auto-update is blocked because a game's mods folder is set to the JASM install root -->
+    <value>无法更新</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot" xml:space="preserve">
+    <!-- Status text in Settings when the update is blocked due to a mods folder at the JASM install root -->
+    <value>更新已被阻止</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Message" xml:space="preserve">
+    <!-- {0} is the name of the game whose mods folder is at the JASM install root. Instructs the user to move that game's mods to another folder before updating. -->
+    <value>您需要将{0}的模组位置移动到另一个文件夹。当前根文件夹与此版本的自动更新不兼容。</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Close" xml:space="preserve">
+    <!-- Close/dismiss button on the update-blocked dialog -->
+    <value>确定</value>
+  </data>
+  <data name="Settings_ModsFolder_IsJasmRoot" xml:space="preserve">
+    <!-- Blocking validation error: the user tried to set the mods folder to the JASM install folder root, which is incompatible with auto-updating -->
+    <value>模组文件夹不能是JASM安装文件夹的根目录。请选择其他文件夹。</value>
+  </data>
+  <data name="Settings_ModsFolder_InsideJasmWarning" xml:space="preserve">
+    <!-- Non-blocking warning: the chosen mods folder is inside the JASM install folder; placing mods outside avoids them being affected by updates -->
+    <value>此模组文件夹位于JASM安装文件夹内。建议将模组放置在JASM之外，以免受更新影响。</value>
   </data>
 </root>

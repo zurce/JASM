@@ -696,6 +696,32 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     [RelayCommand]
     private async Task UpdateJasmAsync()
     {
+        // Pre-update data-safety check: if any game's mods folder points at the
+        // install root itself, the whole-folder swap would destroy it. Block and instruct.
+        var rootDataFolders = GetModsFoldersAtInstallRoot();
+        if (rootDataFolders.Count > 0)
+        {
+            var games = string.Join(", ", rootDataFolders);
+            UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_BlockedModsAtRoot") ??
+                               "Update blocked";
+            var dialog = new ContentDialog
+            {
+                Title = _localizer.GetLocalizedStringOrDefault("Settings_Update_BlockedModsAtRoot_Title") ??
+                        "Could not update",
+                Content = string.Format(
+                    _localizer.GetLocalizedStringOrDefault("Settings_Update_BlockedModsAtRoot_Message") ??
+                    "You need to move {0}'s mods location to another folder. " +
+                    "The current root folder is not compatible with auto-updating this release.",
+                    games),
+                CloseButtonText =
+                    _localizer.GetLocalizedStringOrDefault("Settings_Update_BlockedModsAtRoot_Close") ?? "OK"
+            };
+            dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;
+            await _windowManagerService.ShowDialogAsync(dialog);
+            UpdateDownloading = false;
+            return;
+        }
+
         UpdateDownloading = true;
         UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_Downloading") ?? "Downloading update...";
 
@@ -818,7 +844,68 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
             var scriptPath = Path.Combine(parentDir, "JASM_Update.cmd");
             var logPath = Path.Combine(parentDir, "JASM_Update.log");
-            var script = $@"@echo off
+
+            // If any game keeps its mods folder *inside* (but not at the root of) the
+            // install dir, we must NOT move the whole install folder away and nuke it
+            // (that deletes their mods). Instead use the safe path: delete only the
+            // enumerated app files, then drop the new release files in, leaving user
+            // data and any extraneous files untouched.
+            var useSafeUpdate = HasUserDataInsideInstallDir();
+
+            string script;
+            string? manifestPath = null;
+            if (useSafeUpdate)
+            {
+                // Build a relative-path manifest of the new release's app files.
+                manifestPath = Path.Combine(parentDir, "JASM_Update_files.txt");
+                var relPaths = Directory.EnumerateFiles(stagingPath, "*", SearchOption.AllDirectories)
+                    .Select(f => Path.GetRelativePath(stagingPath, f))
+                    .Distinct(StringComparer.OrdinalIgnoreCase)
+                    .OrderBy(r => r, StringComparer.OrdinalIgnoreCase)
+                    .ToList();
+                File.WriteAllLines(manifestPath, relPaths);
+                _logger.Information("Update: SAFE path selected; wrote {ManifestFile} with {Count} files",
+                    manifestPath, relPaths.Count);
+
+                script = $@"@echo off
+set log=""{logPath}""
+echo %date% %time% Starting SAFE update... > %log%
+echo installDir={installFolderName} >> %log%
+echo stagingDir={UpdateStagingFolder} >> %log%
+echo exeName={exeName} >> %log%
+timeout /t 8 /nobreak > nul
+cd /d ""{parentDir}"" 2>> %log%
+
+echo Stopping any remaining JASM processes... >> %log%
+taskkill /f /im ""{exeName}"" > nul 2>&1
+timeout /t 2 /nobreak > nul
+
+echo Deleting only old app files (user data untouched)... >> %log%
+if exist ""{manifestPath}"" (
+  for /f ""usebackq delims="" %%L in (""{manifestPath}"") do (
+    if exist ""{installDir}\%%L"" del /f /q ""{installDir}\%%L"" 2>> %log%
+  )
+)
+echo Dropping new app files in... >> %log%
+xcopy ""{stagingPath}\*"" ""{installDir}\"" /e /y /i /q > nul 2>> %log%
+
+del ""{manifestPath}"" > nul 2>&1
+echo Starting new version... >> %log%
+start """" ""{installDir}\{exeName}"" >> %log% 2>&1
+echo Update complete >> %log%
+del ""%~f0""
+exit /b 0
+
+:failed
+echo Update FAILED - check %log% for details >> %log%
+pause
+del ""%~f0""
+exit /b 1
+";
+            }
+            else
+            {
+                script = $@"@echo off
 set log=""{logPath}""
 echo %date% %time% Starting update... > %log%
 echo installDir={installFolderName} >> %log%
@@ -862,6 +949,8 @@ pause
 del ""%~f0""
 exit /b 1
 ";
+            }
+
 
             _logger.Information("Update: installDir={InstallDir}", installDir);
             _logger.Information("Update: parentDir={ParentDir}", parentDir);
@@ -891,6 +980,115 @@ exit /b 1
             UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_ErrorStarting") ?? "Error during update";
             UpdateDownloading = false;
         }
+    }
+
+    /// <summary>
+    /// Collects the names of games whose configured mods/unloaded-mods folder
+    /// resolves to exactly the install root (<see cref="App.ROOT_DIR"/>). Those are
+    /// incompatible with the whole-folder swap update and must be moved by the user.
+    /// </summary>
+    private List<string> GetModsFoldersAtInstallRoot()
+    {
+        var offenders = new List<string>();
+        var installRoot = App.ROOT_DIR.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+        foreach (var game in Enum.GetValues<SupportedGames>())
+        {
+            var modsFolder = ReadGameModsFolderPath(game);
+            if (PathsEqual(modsFolder?.ModsFolderPath, installRoot) ||
+                PathsEqual(modsFolder?.UnloadedModsFolderPath, installRoot))
+            {
+                offenders.Add(game.ToString());
+            }
+        }
+
+        return offenders;
+    }
+
+    /// <summary>
+    /// Returns true if any game's mods/unloaded-mods folder lives somewhere *inside*
+    /// (but not at the root of) the install dir. Those must use the safe/expanded update
+    /// path (delete only app files, drop new files in) so user data is never nuked.
+    /// </summary>
+    private bool HasUserDataInsideInstallDir()
+    {
+        var installRoot = App.ROOT_DIR.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+        foreach (var game in Enum.GetValues<SupportedGames>())
+        {
+            var modsFolder = ReadGameModsFolderPath(game);
+            if (IsInsideFolder(modsFolder?.ModsFolderPath, installRoot) ||
+                IsInsideFolder(modsFolder?.UnloadedModsFolderPath, installRoot))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// True when <paramref name="path"/> is a strict child of <paramref name="folder"/> (not equal).
+    /// </summary>
+    private static bool IsInsideFolder(string? path, string folder)
+    {
+        if (string.IsNullOrWhiteSpace(path))
+            return false;
+
+        var fullPath = Path.GetFullPath(path).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+        var root = folder.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+        return fullPath.StartsWith(root + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase);
+    }
+
+    /// <summary>
+    /// Reads a single game's ModManagerOptions (mods/unloaded mods folder paths)
+    /// straight from its <c>ApplicationData_&lt;Game&gt;/LocalSettings.json</c>, so we can see
+    /// every game's data location regardless of which game is currently selected.
+    /// </summary>
+    private (string? ModsFolderPath, string? UnloadedModsFolderPath)? ReadGameModsFolderPath(SupportedGames game)
+    {
+        try
+        {
+            var jasmAppData = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "JASM");
+
+            var appDataFolder = Path.Combine(jasmAppData, "ApplicationData_" + game);
+#if DEBUG
+            appDataFolder += "_Debug";
+#endif
+
+            var settingsFile = Path.Combine(appDataFolder, "LocalSettings.json");
+            if (!File.Exists(settingsFile))
+                return null;
+
+            var raw = File.ReadAllText(settingsFile);
+            var settings = JsonConvert.DeserializeObject<Dictionary<string, object>>(raw);
+            if (settings is null || !settings.TryGetValue(ModManagerOptions.Section, out var modOptionsJson))
+                return null;
+
+            var options = JsonConvert.DeserializeObject<ModManagerOptions>((string)modOptionsJson);
+            if (options is null)
+                return null;
+
+            return (options.ModsFolderPath, options.UnloadedModsFolderPath);
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "Failed to read mods folder for game {Game}", game);
+            return null;
+        }
+    }
+
+    private static bool PathsEqual(string? a, string? b)
+    {
+        if (string.IsNullOrWhiteSpace(a) || string.IsNullOrWhiteSpace(b))
+            return false;
+
+        return string.Equals(
+            Path.GetFullPath(a).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar),
+            Path.GetFullPath(b).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar),
+            StringComparison.OrdinalIgnoreCase);
     }
 
     private async Task<(Uri? url, string? fileName)> GetLatestReleaseDownloadUrlAsync()
