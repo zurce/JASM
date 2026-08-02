@@ -998,7 +998,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     {
         if (!CanOpenXxmi)
             return;
-        await LaunchXxmiProcessAsync(XxmiLauncherExePath!, arguments: null);
+        await LaunchXxmiProcessAsync(XxmiLauncherExePath!, arguments: null, gameLaunch: false);
     }
 
     /// <summary>
@@ -1011,12 +1011,12 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     {
         if (!CanLaunchXxmi)
             return;
-        await LaunchXxmiProcessAsync(XxmiLauncherExePath!, $"--nogui --xxmi {XxmiGameIdentifier}");
+        await LaunchXxmiProcessAsync(XxmiLauncherExePath!, $"--nogui --xxmi {XxmiGameIdentifier}", gameLaunch: true);
     }
 
     private readonly SemaphoreSlim _xxmiLaunchLock = new(1, 1);
 
-    private async Task LaunchXxmiProcessAsync(string exePath, string? arguments)
+    private async Task LaunchXxmiProcessAsync(string exePath, string? arguments, bool gameLaunch)
     {
         // Re-entrancy guard: prevents a double-click from spawning a second XXMI instance while
         // the first is still starting (XXMI may fail when two instances race to init).
@@ -1032,17 +1032,44 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
             if (IsLaunchingXxmi)
                 return;
 
-            // If an XXMI Launcher process is already alive, don't spawn a duplicate; surface it.
+            // The game-launch path: after quitting a game, a stale XXMI Launcher host can linger
+            // for a moment. Relaunching into a half-dead instance repeats the previous failure, so
+            // we clear any remaining XXMI processes first (the user explicitly asked to launch).
+            // The Open-XXMI (settings) path never kills anything.
             var running = System.Diagnostics.Process.GetProcessesByName("XXMI Launcher");
             if (running.Length > 0)
             {
-                foreach (var r in running) r.Dispose();
-                _logger.Information("XXMI Launcher already running; skipping duplicate launch");
-                NotificationManager.ShowNotification(
-                    _localizer.GetLocalizedStringOrDefault("Notification_AlreadyRunningTitle") ?? "Already running",
-                    _localizer.GetLocalizedStringOrDefault("Notification_XxmiAlreadyRunning") ?? "XXMI Launcher is already open.",
-                    null);
-                return;
+                if (gameLaunch)
+                {
+                    _logger.Information("Clearing {Count} lingering XXMI Launcher process(es) before game launch", running.Length);
+                    foreach (var r in running)
+                    {
+                        try
+                        {
+                            if (!r.HasExited) r.Kill();
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.Warning(ex, "Could not close stale XXMI Launcher process {Pid}", r.Id);
+                        }
+                        finally
+                        {
+                            r.Dispose();
+                        }
+                    }
+                    // Give them a moment to fully exit before we start a fresh instance.
+                    await Task.Delay(800);
+                }
+                else
+                {
+                    foreach (var r in running) r.Dispose();
+                    _logger.Information("XXMI Launcher already running; skipping duplicate launch");
+                    NotificationManager.ShowNotification(
+                        _localizer.GetLocalizedStringOrDefault("Notification_AlreadyRunningTitle") ?? "Already running",
+                        _localizer.GetLocalizedStringOrDefault("Notification_XxmiAlreadyRunning") ?? "XXMI Launcher is already open.",
+                        null);
+                    return;
+                }
             }
 
             IsLaunchingXxmi = true;
