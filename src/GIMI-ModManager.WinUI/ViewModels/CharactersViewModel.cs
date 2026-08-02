@@ -95,13 +95,27 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     public bool XxmiControlsVisibility => IsXxmiManaged;
 
     /// <summary>
+    /// True while an XXMI launch is in progress, so the XXMI buttons are disabled and a second
+    /// click can't spawn a duplicate XXMI instance (which can break it).
+    /// </summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsNotLaunchingXxmi))]
+    [NotifyPropertyChangedFor(nameof(XxmiLaunchButtonText))]
+    private bool _isLaunchingXxmi;
+
+    /// <summary>True when an XXMI launch is not in progress, so the buttons are enabled.</summary>
+    public bool IsNotLaunchingXxmi => !IsLaunchingXxmi;
+
+    /// <summary>
     /// Text for the XXMI "Launch &lt;Game&gt;" button. Uses the XXMI importer code so it's clear
     /// we're launching through XXMI (e.g. "Launch GIMI", "Launch SRMI") rather than the game's
     /// display name.
     /// </summary>
-    public string XxmiLaunchButtonText => string.IsNullOrWhiteSpace(XxmiGameIdentifier)
-        ? $"Launch {_gameService.GameShortName}"
-        : $"Launch {XxmiGameIdentifier}";
+    public string XxmiLaunchButtonText => IsLaunchingXxmi
+        ? "Launching..."
+        : string.IsNullOrWhiteSpace(XxmiGameIdentifier)
+            ? $"Launch {_gameService.GameShortName}"
+            : $"Launch {XxmiGameIdentifier}";
 
     /// <summary>Resolved path to the XXMI Launcher executable, or null if unavailable.</summary>
     public string? XxmiLauncherExePath { get; private set; }
@@ -1000,19 +1014,60 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         await LaunchXxmiProcessAsync(XxmiLauncherExePath!, $"--nogui --xxmi {XxmiGameIdentifier}");
     }
 
+    private readonly SemaphoreSlim _xxmiLaunchLock = new(1, 1);
+
     private async Task LaunchXxmiProcessAsync(string exePath, string? arguments)
     {
+        // Re-entrancy guard: prevents a double-click from spawning a second XXMI instance while
+        // the first is still starting (XXMI may fail when two instances race to init).
+        if (IsLaunchingXxmi)
+        {
+            _logger.Debug("Ignoring XXMI launch, one already in progress");
+            return;
+        }
+
+        await _xxmiLaunchLock.WaitAsync();
         try
         {
-            var startInfo = new System.Diagnostics.ProcessStartInfo
+            if (IsLaunchingXxmi)
+                return;
+
+            // If an XXMI Launcher process is already alive, don't spawn a duplicate; surface it.
+            var running = System.Diagnostics.Process.GetProcessesByName("XXMI Launcher");
+            if (running.Length > 0)
             {
-                FileName = exePath,
-                WorkingDirectory = Path.GetDirectoryName(exePath),
-                Arguments = arguments ?? string.Empty,
-                UseShellExecute = true
-            };
-            var started = System.Diagnostics.Process.Start(startInfo);
-            _logger.Information("Launched XXMI Launcher: {Path} {Arguments} (pid={Pid})", exePath, arguments, started?.Id);
+                foreach (var r in running) r.Dispose();
+                _logger.Information("XXMI Launcher already running; skipping duplicate launch");
+                NotificationManager.ShowNotification(
+                    _localizer.GetLocalizedStringOrDefault("Notification_AlreadyRunningTitle") ?? "Already running",
+                    _localizer.GetLocalizedStringOrDefault("Notification_XxmiAlreadyRunning") ?? "XXMI Launcher is already open.",
+                    null);
+                return;
+            }
+
+            IsLaunchingXxmi = true;
+            try
+            {
+                var startInfo = new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = exePath,
+                    WorkingDirectory = Path.GetDirectoryName(exePath),
+                    Arguments = arguments ?? string.Empty,
+                    UseShellExecute = true
+                };
+
+                var started = System.Diagnostics.Process.Start(startInfo);
+                _logger.Information("Launched XXMI Launcher: {Path} {Arguments} (pid={Pid})", exePath, arguments, started?.Id);
+
+                // Keep the button disabled during the launch window so a second click can't race
+                // a duplicate instance. For the GUI (Open XXMI) the process stays alive; we only
+                // wait for the initial startup window (timeout) so the button isn't stuck disabled.
+                await WaitForLaunchWindowAsync(started, TimeSpan.FromSeconds(6));
+            }
+            finally
+            {
+                IsLaunchingXxmi = false;
+            }
         }
         catch (Exception ex)
         {
@@ -1022,8 +1077,23 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
                 ex.Message,
                 null);
         }
+        finally
+        {
+            _xxmiLaunchLock.Release();
+        }
+    }
 
-        await Task.CompletedTask;
+    private static async Task WaitForLaunchWindowAsync(System.Diagnostics.Process? process, TimeSpan maxWait)
+    {
+        if (process is null)
+            return;
+
+        // Wait until the process exits or the window elapses, whichever comes first.
+        var sw = System.Diagnostics.Stopwatch.StartNew();
+        while (sw.Elapsed < maxWait && !process.HasExited)
+        {
+            await Task.Delay(100);
+        }
     }
 
     [RelayCommand]
