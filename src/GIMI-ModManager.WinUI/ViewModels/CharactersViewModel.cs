@@ -29,6 +29,17 @@ using Serilog;
 
 namespace GIMI_ModManager.WinUI.ViewModels;
 
+/// <summary>State of the XXMI launch / running indicator for the current game.</summary>
+public enum XxmiProcessState
+{
+    /// <summary>No XXMI process is running; the buttons are ready to launch.</summary>
+    Idle,
+    /// <summary>A launch was just started; waiting for it to spin up.</summary>
+    Launching,
+    /// <summary>An XXMI Launcher process is currently alive.</summary>
+    Running
+}
+
 public partial class CharactersViewModel : ObservableRecipient, INavigationAware
 {
     private readonly IGameService _gameService;
@@ -98,24 +109,45 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     /// True while an XXMI launch is in progress, so the XXMI buttons are disabled and a second
     /// click can't spawn a duplicate XXMI instance (which can break it).
     /// </summary>
+    /// <summary>True while an XXMI launch is starting (short window during startup).</summary>
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsNotLaunchingXxmi))]
+    [NotifyPropertyChangedFor(nameof(XxmiProcessState))]
+    [NotifyPropertyChangedFor(nameof(IsXxmiControlsEnabled))]
     [NotifyPropertyChangedFor(nameof(XxmiLaunchButtonText))]
     private bool _isLaunchingXxmi;
 
-    /// <summary>True when an XXMI launch is not in progress, so the buttons are enabled.</summary>
-    public bool IsNotLaunchingXxmi => !IsLaunchingXxmi;
+    /// <summary>True while an XXMI Launcher process is detected as alive (polled).</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(XxmiProcessState))]
+    [NotifyPropertyChangedFor(nameof(IsXxmiControlsEnabled))]
+    [NotifyPropertyChangedFor(nameof(XxmiLaunchButtonText))]
+    private bool _xxmiIsProcessRunning;
 
     /// <summary>
-    /// Text for the XXMI "Launch &lt;Game&gt;" button. Uses the XXMI importer code so it's clear
-    /// we're launching through XXMI (e.g. "Launch GIMI", "Launch SRMI") rather than the game's
-    /// display name.
+    /// Drives the XXMI buttons: Launching during startup, Running while an XXMI process is alive,
+    /// Idle (ready) otherwise. Enabling the buttons only when Idle makes the state obvious.
     /// </summary>
-    public string XxmiLaunchButtonText => IsLaunchingXxmi
-        ? "Launching..."
-        : string.IsNullOrWhiteSpace(XxmiGameIdentifier)
+    public XxmiProcessState XxmiProcessState => IsLaunchingXxmi
+        ? XxmiProcessState.Launching
+        : _xxmiIsProcessRunning
+            ? XxmiProcessState.Running
+            : XxmiProcessState.Idle;
+
+    /// <summary>True when the XXMI buttons are enabled (only when idle and no process running).</summary>
+    public bool IsXxmiControlsEnabled => XxmiProcessState == XxmiProcessState.Idle;
+
+    /// <summary>
+    /// Text for the XXMI "Launch &lt;Game&gt;" button. Uses the XXMI importer code (e.g.
+    /// "Launch GIMI"), and shows "Running" / "Launching..." while the process is active.
+    /// </summary>
+    public string XxmiLaunchButtonText => XxmiProcessState switch
+    {
+        XxmiProcessState.Running => "Running",
+        XxmiProcessState.Launching => "Launching...",
+        _ => string.IsNullOrWhiteSpace(XxmiGameIdentifier)
             ? $"Launch {_gameService.GameShortName}"
-            : $"Launch {XxmiGameIdentifier}";
+            : $"Launch {XxmiGameIdentifier}"
+    };
 
     /// <summary>Resolved path to the XXMI Launcher executable, or null if unavailable.</summary>
     public string? XxmiLauncherExePath { get; private set; }
@@ -207,6 +239,8 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
                 ? null
                 : $"ms-appx:///Assets/Xxmi/{XxmiGameIdentifier}.ico";
         }
+
+        StartXxmiProcessPoller();
 
         CanCheckForUpdates = _modUpdateAvailableChecker.IsReady;
         _modUpdateAvailableChecker.OnUpdateCheckerEvent += (_, _) =>
@@ -1015,6 +1049,52 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     }
 
     private readonly SemaphoreSlim _xxmiLaunchLock = new(1, 1);
+    private readonly CancellationTokenSource _xxmiPollerCts = new();
+
+    /// <summary>
+    /// Starts a background poller that watches for a live 'XXMI Launcher' process so the buttons
+    /// reflect the Running state (and re-enable once it exits). Used only when the game is XXMI.
+    /// </summary>
+    private void StartXxmiProcessPoller()
+    {
+        if (!IsXxmiManaged)
+            return;
+
+        _ = Task.Run(async () =>
+        {
+            var token = _xxmiPollerCts.Token;
+            while (!token.IsCancellationRequested)
+            {
+                bool isRunning;
+                try
+                {
+                    isRunning = System.Diagnostics.Process.GetProcessesByName("XXMI Launcher").Length > 0;
+                }
+                catch
+                {
+                    isRunning = false;
+                }
+
+                if (XxmiIsProcessRunning != isRunning)
+                {
+                    await App.MainWindow.DispatcherQueue.EnqueueAsync(() =>
+                    {
+                        XxmiIsProcessRunning = isRunning;
+                        return Task.CompletedTask;
+                    });
+                }
+
+                try
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(2), token);
+                }
+                catch (OperationCanceledException)
+                {
+                    break;
+                }
+            }
+        }, _xxmiPollerCts.Token);
+    }
 
     private async Task LaunchXxmiProcessAsync(string exePath, string? arguments, bool gameLaunch)
     {
