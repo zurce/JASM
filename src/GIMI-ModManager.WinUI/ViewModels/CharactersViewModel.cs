@@ -1052,6 +1052,43 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     private readonly CancellationTokenSource _xxmiPollerCts = new();
 
     /// <summary>
+    /// Whether any relevant process for the current game's XXMI launch is alive. For a game
+    /// launched via <c>--nogui</c>, the XXMI Launcher host can exit after handing off to the game,
+    /// so we also watch the game's own process name(s) to reflect the true Running state.
+    /// </summary>
+    private bool IsXxmiOrGameProcessRunning()
+    {
+        try
+        {
+            if (System.Diagnostics.Process.GetProcessesByName("XXMI Launcher").Length > 0)
+                return true;
+
+            // Per-game process names observed when a game is running under XXMI.
+            var names = XxmiGameIdentifier switch
+            {
+                "GIMI" => new[] { "GenshinImpact", "YuanShen" },
+                "SRMI" => new[] { "StarRail" },
+                "WWMI" => new[] { "Client-Win64-Shipping" },
+                "ZZMI" => new[] { "ZenlessZoneZero" },
+                "EFMI" => new[] { "Endfield" },
+                _ => Array.Empty<string>()
+            };
+
+            foreach (var name in names)
+            {
+                if (System.Diagnostics.Process.GetProcessesByName(name).Length > 0)
+                    return true;
+            }
+        }
+        catch
+        {
+            return false;
+        }
+
+        return false;
+    }
+
+    /// <summary>
     /// Starts a background poller that watches for a live 'XXMI Launcher' process so the buttons
     /// reflect the Running state (and re-enable once it exits). Used only when the game is XXMI.
     /// </summary>
@@ -1068,7 +1105,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
                 bool isRunning;
                 try
                 {
-                    isRunning = System.Diagnostics.Process.GetProcessesByName("XXMI Launcher").Length > 0;
+                    isRunning = IsXxmiOrGameProcessRunning();
                 }
                 catch
                 {
