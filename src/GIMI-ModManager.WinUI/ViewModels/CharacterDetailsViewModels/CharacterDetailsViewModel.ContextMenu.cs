@@ -97,6 +97,11 @@ public partial class CharacterDetailsViewModel
         };
 
 
+        // Close the context-menu flyout before showing the delete dialog, otherwise the
+        // still-open flyout (this dialog is launched from the mod-row right-click menu)
+        // overlaps the ContentDialog.
+        ContextMenuVM.RequestCloseFlyout();
+
         var result = await _windowManagerService.ShowDialogAsync(dialog);
 
         var recycleMods = moveToRecycleBinCheckBox.IsChecked == true;

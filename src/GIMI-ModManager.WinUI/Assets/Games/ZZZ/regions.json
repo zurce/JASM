@@ -50,5 +50,21 @@
     {
       "InternalName": "Krampus",
       "DisplayName": "Krampus Compliance Authority"
+    },
+    {
+      "InternalName": "AOD",
+      "DisplayName": "Angels of Delusion"
+    },
+    {
+      "InternalName": "ESD",
+      "DisplayName": "External Strategy Department"
+    },
+    {
+      "InternalName": "CovenantOfDayat",
+      "DisplayName": "Covenant of Dayat"
+    },
+    {
+      "InternalName": "APD",
+      "DisplayName": "Airspace Patrol Department"
     }
 ]

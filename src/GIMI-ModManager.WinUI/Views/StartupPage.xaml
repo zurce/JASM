@@ -20,7 +20,7 @@
 
     <Grid x:Name="ContentArea">
         <Grid.RowDefinitions>
-            <RowDefinition Height="48" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -36,18 +36,28 @@
                 Text="First time startup"
                 l:Uids.Uid="/Startup/Startup_Header" />
 
-            <ComboBox
-                x:Name="GameSelectorBox"
+            <StackPanel
                 Grid.Column="1"
-                MinWidth="180"
                 HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                ItemTemplate="{StaticResource GameComboBoxEntryTemplate}"
-                ItemsSource="{x:Bind ViewModel.Games}"
-                SelectedItem="{x:Bind ViewModel.SelectedGame, Mode=TwoWay}"
-                SelectionChanged="GameSelector_OnSelectionChanged"
-                ToolTipService.ToolTip="Select the game you want to manage mods for. This can be changed at any time on the settings page"
-                l:Uids.Uid="/Startup/GameSelectorBox" />
+                VerticalAlignment="Bottom">
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <ComboBox
+                        x:Name="LanguageSelectorComboBox"
+                        MinWidth="140"
+                        ItemsSource="{x:Bind ViewModel.Languages, Mode=OneWay}"
+                        SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}"
+                        SelectionChanged="LanguageSelectorComboBox_OnSelectionChanged" />
+                    <ComboBox
+                        x:Name="GameSelectorBox"
+                        MinWidth="180"
+                        ItemTemplate="{StaticResource GameComboBoxEntryTemplate}"
+                        ItemsSource="{x:Bind ViewModel.Games}"
+                        SelectedItem="{x:Bind ViewModel.SelectedGame, Mode=TwoWay}"
+                        SelectionChanged="GameSelector_OnSelectionChanged"
+                        ToolTipService.ToolTip="Select the game you want to manage mods for. This can be changed at any time on the settings page"
+                        l:Uids.Uid="/Startup/GameSelectorBox" />
+                </StackPanel>
+            </StackPanel>
         </Grid>
 
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled">
@@ -115,11 +125,24 @@
                 <controls:FolderSelector
                     Title="Mods Folder "
                     Margin="4,8,4,8"
+                    IsReadOnly="{x:Bind ViewModel.IsModsFolderLocked, Mode=OneWay}"
                     BrowseCommand="{x:Bind ViewModel.BrowseModsFolderCommand}"
                     PathChangedEvent="ModsFolder_OnPathChangedEvent"
                     SelectedFolderValue="{x:Bind ViewModel.PathToModsFolderPicker.Path, Mode=TwoWay}"
                     ValidationErrorText="{x:Bind ViewModel.PathToModsFolderPicker.ValidationMessages, Mode=OneWay}"
                     l:Uids.Uid="/Settings/ModsFolderSelector" />
+                <StackPanel
+                    Margin="4,0,4,12"
+                    Spacing="4"
+                    Visibility="{x:Bind ViewModel.IsXxmiDetected, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <CheckBox
+                        IsChecked="{x:Bind ViewModel.TreatAsXxmi, Mode=TwoWay}"
+                        Content="Treat this folder as an XXMI installation (locks the mods folder)" />
+                    <TextBlock
+                        Style="{ThemeResource CaptionTextBlockStyle}"
+                        TextWrapping="WrapWholeWords"
+                        Text="Uncheck to use the legacy 3DMigoto setup instead of an XXMI-managed installation." />
+                </StackPanel>
 
                 <Grid Margin="{StaticResource SmallTopBottomMargin}" Visibility="Collapsed">
                     <TextBlock

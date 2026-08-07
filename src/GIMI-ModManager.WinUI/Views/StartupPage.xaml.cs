@@ -27,4 +27,12 @@ public sealed partial class StartupPage : Page
         if (e.AddedItems.Count == 0) return;
         await ViewModel.SetGameCommand.ExecuteAsync(((GameComboBoxEntryVM)e.AddedItems[0]!).Value.ToString()).ConfigureAwait(false);
     }
+
+    private void LanguageSelectorComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.AddedItems.Count == 0) return;
+        var item = (string)e.AddedItems[0];
+        if (ViewModel.SelectLanguageCommand.CanExecute(item))
+            ViewModel.SelectLanguageCommand.Execute(item);
+    }
 }

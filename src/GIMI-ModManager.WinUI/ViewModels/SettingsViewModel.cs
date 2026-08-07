@@ -116,6 +116,34 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
     [ObservableProperty] private bool _legacyCharacterDetails;
 
+    /// <summary>
+    /// When true the current game's model-importer root is treated as an XXMI-managed
+    /// installation: the mods folder is locked to &lt;root&gt;\Mods and an "Open XXMI"
+    /// launch button replaces the legacy Start Game / Start 3DMigoto buttons.
+    /// </summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsModsFolderLocked))]
+    [NotifyPropertyChangedFor(nameof(IsXxmiActive))]
+    [NotifyPropertyChangedFor(nameof(ModTypeSectionVisibility))]
+    private bool _treatAsXxmi;
+
+    /// <summary>True when the currently-validated 3DMigoto root is an XXMI folder.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ModTypeSectionVisibility))]
+    private bool _isXxmiDetected;
+
+    /// <summary>
+    /// True when the mods folder is locked to the XXMI location (i.e. the game is treated
+    /// as XXMI-managed). Used to disable the mods FolderSelector.
+    /// </summary>
+    public bool IsModsFolderLocked => TreatAsXxmi;
+
+    /// <summary>True when XXMI detection has matched and the checkbox is toggled on.</summary>
+    public bool IsXxmiActive => TreatAsXxmi && IsXxmiDetected;
+
+    /// <summary>Shows the XXMI checkbox only when the 3DMigoto root is XXMI.</summary>
+    public Visibility ModTypeSectionVisibility => IsXxmiDetected ? Visibility.Visible : Visibility.Collapsed;
+
 
     private ModManagerOptions? _modManagerOptions = null!;
 
@@ -131,6 +159,19 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     {
         IsCommunitySourceSelected = value == GameSource.Community;
         _ = SaveGameSourceSettingsAsync();
+    }
+
+    partial void OnTreatAsXxmiChanged(bool value)
+    {
+        // Re-check/save the mods folder. When enabling XXMI we lock to the detected Mods;
+        // when disabling we leave the mods path as-is (legacy editable behavior).
+        if (value && XxmiInstallationDetector.TryDetect(PathToGIMIFolderPicker.Path, GetCurrentXxmiIdentifier()) is { } detected)
+        {
+            IsXxmiDetected = true;
+            PathToModsFolderPicker.Path = detected.ModsFolderPath;
+        }
+
+        SaveSettingsCommand.NotifyCanExecuteChanged();
     }
 
     partial void OnCommunityRepoUrlChanged(string value)
@@ -264,6 +305,11 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         PathToGIMIFolderPicker.Path = _modManagerOptions?.GimiRootFolderPath;
         PathToModsFolderPicker.Path = _modManagerOptions?.ModsFolderPath;
 
+        // Reflect the stored XXMI flag, and re-detect if the current importer root is XXMI
+        // (so a folder chosen in a prior session is locked correctly even before the user
+        // edits anything).
+        RefreshXxmiDetection(_modManagerOptions?.GimiRootFolderPath, syncTreatAsXxmi: true);
+
         _selectedGameSource = _modManagerOptions?.GameSource ?? GameSource.Release;
         _communityRepoUrl = _modManagerOptions?.CommunityRepoUrl ?? "https://github.com/zurce/JASM-Community-Resources";
         _isCommunitySourceSelected = _selectedGameSource == GameSource.Community;
@@ -388,7 +434,8 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         return PathToGIMIFolderPicker.IsValid && PathToModsFolderPicker.IsValid &&
                PathToGIMIFolderPicker.Path != PathToModsFolderPicker.Path &&
                (PathToGIMIFolderPicker.Path != _modManagerOptions?.GimiRootFolderPath ||
-                PathToModsFolderPicker.Path != _modManagerOptions?.ModsFolderPath);
+                PathToModsFolderPicker.Path != _modManagerOptions?.ModsFolderPath ||
+                TreatAsXxmi != (_modManagerOptions?.TreatAsXXMI ?? false));
     }
 
 
@@ -414,6 +461,19 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
             modManagerOptions.GimiRootFolderPath = PathToGIMIFolderPicker.Path;
             modManagerOptions.ModsFolderPath = PathToModsFolderPicker.Path;
 
+            // If the importer root is detected as XXMI, keep the folder treated as XXMI and
+            // force the mods folder to the locked XXMI location. Unchecking the "do not treat
+            // as XXMI" box reverts to the legacy editable behavior.
+            if (TreatAsXxmi)
+            {
+                if (XxmiInstallationDetector.TryDetect(PathToGIMIFolderPicker.Path, GetCurrentXxmiIdentifier()) is { } xxmi)
+                {
+                    PathToModsFolderPicker.Path = xxmi.ModsFolderPath;
+                    modManagerOptions.ModsFolderPath = xxmi.ModsFolderPath;
+                }
+            }
+            modManagerOptions.TreatAsXXMI = TreatAsXxmi;
+
             await _localSettingsService.SaveSettingAsync(ModManagerOptions.Section,
                 modManagerOptions);
             _logger.Information("Saved startup settings: {@ModManagerOptions}", modManagerOptions);
@@ -424,6 +484,65 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         }
     }
 
+    /// <summary>
+    /// Re-runs XXMI detection for the given 3DMigoto root and updates the checkbox/mod lock.
+    /// When <paramref name="syncTreatAsXxmi"/> is true (saved settings present) the stored
+    /// XXMI flag is honoured; otherwise detection auto-enables the XXMI mode.
+    /// </summary>
+    /// <summary>
+    /// Returns the expected XXMI game identifier for the current selected game, or <c>null</c>
+    /// if the game has no XXMI counterpart. Used to reject wrong game/folder pairings.
+    /// </summary>
+    private string? GetCurrentXxmiIdentifier()
+    {
+        if (string.IsNullOrWhiteSpace(SelectedGame) || !Enum.TryParse<SupportedGames>(SelectedGame, out var game))
+            return null;
+        return XxmiInstallationDetector.GetXxmiGameIdentifier(game);
+    }
+
+    private void RefreshXxmiDetection(string? gimiRoot, bool syncTreatAsXxmi = false)
+    {
+        // On the load (sync) path use identifier-agnostic detection so an existing XXMI setup
+        // is recognized regardless of the selected game. On browse we enforce the expected
+        // game identifier so a wrong game/folder pairing is rejected.
+        var detected = syncTreatAsXxmi
+            ? XxmiInstallationDetector.TryDetect(gimiRoot)
+            : XxmiInstallationDetector.TryDetect(gimiRoot, GetCurrentXxmiIdentifier());
+        IsXxmiDetected = detected is not null;
+        if (detected is null || gimiRoot is null)
+            return;
+
+        if (syncTreatAsXxmi)
+        {
+            // Checked by default when an XXMI folder is detected, unless the user has
+            // previously opted out (stored TreatAsXXMI==false), which we honour.
+            TreatAsXxmi = _modManagerOptions?.TreatAsXXMI ?? true;
+            if (TreatAsXxmi)
+                PathToModsFolderPicker.Path = detected.ModsFolderPath;
+        }
+        else
+        {
+            TreatAsXxmi = true;
+            PathToModsFolderPicker.Path = detected.ModsFolderPath;
+        }
+    }
+
+    /// <summary>
+    /// Called when the user types a new 3DMigoto root path directly into the text box.
+    /// Updates only the detected state (showing/hiding the XXMI checkbox) so detection
+    /// proposes rather than silently forcing XXMI mode on a manually-entered folder.
+    /// </summary>
+    public void OnGimiPathTyped(string? gimiRoot)
+    {
+        var detected = XxmiInstallationDetector.TryDetect(gimiRoot, GetCurrentXxmiIdentifier());
+        IsXxmiDetected = detected is not null;
+
+        if (detected is not null && TreatAsXxmi)
+        {
+            PathToModsFolderPicker.Path = detected.ModsFolderPath;
+        }
+    }
+
     [RelayCommand]
     private async Task BrowseGimiFolderAsync()
     {
@@ -431,6 +550,10 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         if (PathToGIMIFolderPicker.PathHasValue &&
             !PathToModsFolderPicker.PathHasValue)
             PathToModsFolderPicker.Path = Path.Combine(PathToGIMIFolderPicker.Path!, "Mods");
+
+        // Auto-detect XXMI: when the importer root is an XXMI-managed folder, lock the mods
+        // folder to XXMI's own Mods layout and mark the game as XXMI-managed.
+        RefreshXxmiDetection(PathToGIMIFolderPicker.Path);
     }
 
 
@@ -696,6 +819,32 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     [RelayCommand]
     private async Task UpdateJasmAsync()
     {
+        // Pre-update data-safety check: if any game's mods folder points at the
+        // install root itself, the whole-folder swap would destroy it. Block and instruct.
+        var rootDataFolders = GetModsFoldersAtInstallRoot();
+        if (rootDataFolders.Count > 0)
+        {
+            var games = string.Join(", ", rootDataFolders);
+            UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_BlockedModsAtRoot") ??
+                               "Update blocked";
+            var dialog = new ContentDialog
+            {
+                Title = _localizer.GetLocalizedStringOrDefault("Settings_Update_BlockedModsAtRoot_Title") ??
+                        "Could not update",
+                Content = string.Format(
+                    _localizer.GetLocalizedStringOrDefault("Settings_Update_BlockedModsAtRoot_Message") ??
+                    "You need to move {0}'s mods location to another folder. " +
+                    "The current root folder is not compatible with auto-updating this release.",
+                    games),
+                CloseButtonText =
+                    _localizer.GetLocalizedStringOrDefault("Settings_Update_BlockedModsAtRoot_Close") ?? "OK"
+            };
+            dialog.XamlRoot ??= App.MainWindow.Content.XamlRoot;
+            await _windowManagerService.ShowDialogAsync(dialog);
+            UpdateDownloading = false;
+            return;
+        }
+
         UpdateDownloading = true;
         UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_Downloading") ?? "Downloading update...";
 
@@ -818,7 +967,68 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
 
             var scriptPath = Path.Combine(parentDir, "JASM_Update.cmd");
             var logPath = Path.Combine(parentDir, "JASM_Update.log");
-            var script = $@"@echo off
+
+            // If any game keeps its mods folder *inside* (but not at the root of) the
+            // install dir, we must NOT move the whole install folder away and nuke it
+            // (that deletes their mods). Instead use the safe path: delete only the
+            // enumerated app files, then drop the new release files in, leaving user
+            // data and any extraneous files untouched.
+            var useSafeUpdate = HasUserDataInsideInstallDir();
+
+            string script;
+            string? manifestPath = null;
+            if (useSafeUpdate)
+            {
+                // Build a relative-path manifest of the new release's app files.
+                manifestPath = Path.Combine(parentDir, "JASM_Update_files.txt");
+                var relPaths = Directory.EnumerateFiles(stagingPath, "*", SearchOption.AllDirectories)
+                    .Select(f => Path.GetRelativePath(stagingPath, f))
+                    .Distinct(StringComparer.OrdinalIgnoreCase)
+                    .OrderBy(r => r, StringComparer.OrdinalIgnoreCase)
+                    .ToList();
+                File.WriteAllLines(manifestPath, relPaths);
+                _logger.Information("Update: SAFE path selected; wrote {ManifestFile} with {Count} files",
+                    manifestPath, relPaths.Count);
+
+                script = $@"@echo off
+set log=""{logPath}""
+echo %date% %time% Starting SAFE update... > %log%
+echo installDir={installFolderName} >> %log%
+echo stagingDir={UpdateStagingFolder} >> %log%
+echo exeName={exeName} >> %log%
+timeout /t 8 /nobreak > nul
+cd /d ""{parentDir}"" 2>> %log%
+
+echo Stopping any remaining JASM processes... >> %log%
+taskkill /f /im ""{exeName}"" > nul 2>&1
+timeout /t 2 /nobreak > nul
+
+echo Deleting only old app files (user data untouched)... >> %log%
+if exist ""{manifestPath}"" (
+  for /f ""usebackq delims="" %%L in (""{manifestPath}"") do (
+    if exist ""{installDir}\%%L"" del /f /q ""{installDir}\%%L"" 2>> %log%
+  )
+)
+echo Dropping new app files in... >> %log%
+xcopy ""{stagingPath}\*"" ""{installDir}\"" /e /y /i /q > nul 2>> %log%
+
+del ""{manifestPath}"" > nul 2>&1
+echo Starting new version... >> %log%
+start """" ""{installDir}\{exeName}"" >> %log% 2>&1
+echo Update complete >> %log%
+del ""%~f0""
+exit /b 0
+
+:failed
+echo Update FAILED - check %log% for details >> %log%
+pause
+del ""%~f0""
+exit /b 1
+";
+            }
+            else
+            {
+                script = $@"@echo off
 set log=""{logPath}""
 echo %date% %time% Starting update... > %log%
 echo installDir={installFolderName} >> %log%
@@ -862,6 +1072,8 @@ pause
 del ""%~f0""
 exit /b 1
 ";
+            }
+
 
             _logger.Information("Update: installDir={InstallDir}", installDir);
             _logger.Information("Update: parentDir={ParentDir}", parentDir);
@@ -891,6 +1103,115 @@ exit /b 1
             UpdateStatusText = _localizer.GetLocalizedStringOrDefault("Settings_Update_ErrorStarting") ?? "Error during update";
             UpdateDownloading = false;
         }
+    }
+
+    /// <summary>
+    /// Collects the names of games whose configured mods/unloaded-mods folder
+    /// resolves to exactly the install root (<see cref="App.ROOT_DIR"/>). Those are
+    /// incompatible with the whole-folder swap update and must be moved by the user.
+    /// </summary>
+    private List<string> GetModsFoldersAtInstallRoot()
+    {
+        var offenders = new List<string>();
+        var installRoot = App.ROOT_DIR.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+        foreach (var game in Enum.GetValues<SupportedGames>())
+        {
+            var modsFolder = ReadGameModsFolderPath(game);
+            if (PathsEqual(modsFolder?.ModsFolderPath, installRoot) ||
+                PathsEqual(modsFolder?.UnloadedModsFolderPath, installRoot))
+            {
+                offenders.Add(game.ToString());
+            }
+        }
+
+        return offenders;
+    }
+
+    /// <summary>
+    /// Returns true if any game's mods/unloaded-mods folder lives somewhere *inside*
+    /// (but not at the root of) the install dir. Those must use the safe/expanded update
+    /// path (delete only app files, drop new files in) so user data is never nuked.
+    /// </summary>
+    private bool HasUserDataInsideInstallDir()
+    {
+        var installRoot = App.ROOT_DIR.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+        foreach (var game in Enum.GetValues<SupportedGames>())
+        {
+            var modsFolder = ReadGameModsFolderPath(game);
+            if (IsInsideFolder(modsFolder?.ModsFolderPath, installRoot) ||
+                IsInsideFolder(modsFolder?.UnloadedModsFolderPath, installRoot))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// True when <paramref name="path"/> is a strict child of <paramref name="folder"/> (not equal).
+    /// </summary>
+    private static bool IsInsideFolder(string? path, string folder)
+    {
+        if (string.IsNullOrWhiteSpace(path))
+            return false;
+
+        var fullPath = Path.GetFullPath(path).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+        var root = folder.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+        return fullPath.StartsWith(root + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase);
+    }
+
+    /// <summary>
+    /// Reads a single game's ModManagerOptions (mods/unloaded mods folder paths)
+    /// straight from its <c>ApplicationData_&lt;Game&gt;/LocalSettings.json</c>, so we can see
+    /// every game's data location regardless of which game is currently selected.
+    /// </summary>
+    private (string? ModsFolderPath, string? UnloadedModsFolderPath)? ReadGameModsFolderPath(SupportedGames game)
+    {
+        try
+        {
+            var jasmAppData = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "JASM");
+
+            var appDataFolder = Path.Combine(jasmAppData, "ApplicationData_" + game);
+#if DEBUG
+            appDataFolder += "_Debug";
+#endif
+
+            var settingsFile = Path.Combine(appDataFolder, "LocalSettings.json");
+            if (!File.Exists(settingsFile))
+                return null;
+
+            var raw = File.ReadAllText(settingsFile);
+            var settings = JsonConvert.DeserializeObject<Dictionary<string, object>>(raw);
+            if (settings is null || !settings.TryGetValue(ModManagerOptions.Section, out var modOptionsJson))
+                return null;
+
+            var options = JsonConvert.DeserializeObject<ModManagerOptions>((string)modOptionsJson);
+            if (options is null)
+                return null;
+
+            return (options.ModsFolderPath, options.UnloadedModsFolderPath);
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "Failed to read mods folder for game {Game}", game);
+            return null;
+        }
+    }
+
+    private static bool PathsEqual(string? a, string? b)
+    {
+        if (string.IsNullOrWhiteSpace(a) || string.IsNullOrWhiteSpace(b))
+            return false;
+
+        return string.Equals(
+            Path.GetFullPath(a).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar),
+            Path.GetFullPath(b).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar),
+            StringComparison.OrdinalIgnoreCase);
     }
 
     private async Task<(Uri? url, string? fileName)> GetLatestReleaseDownloadUrlAsync()
@@ -1053,7 +1374,8 @@ exit /b 1
         if (gameInfo is not null)
         {
             var folderWarning = _localizer.GetLocalizedStringOrDefault("Settings_FolderWarning_No3DMigotoEntry") ?? "Folder does not contain any entry with the specified names:";
-            PathToGIMIFolderPicker.SetValidators(GimiFolderRootValidators.Validators(gameInfo.GameModelImporterExeNames, folderWarning));
+            PathToGIMIFolderPicker.SetValidators(GimiFolderRootValidators.Validators(gameInfo.GameModelImporterExeNames,
+                folderWarning, GetCurrentXxmiIdentifier()));
         }
 
         var windowSettings =

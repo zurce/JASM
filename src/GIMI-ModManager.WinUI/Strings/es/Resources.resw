@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   
   <xs:schema id="root">
@@ -360,6 +360,22 @@
   <data name="CharactersPage_Start3Dmigoto.Content" xml:space="preserve">
     <!-- Button label to launch the 3DMigoto model importer process -->
     <value>Iniciar 3Dmigoto</value>
+  </data>
+  <data name="CharactersPage_OpenXxmi.Text" xml:space="preserve">
+    <!-- Button label to open the XXMI Launcher GUI for an XXMI-managed game -->
+    <value>Abrir XXMI</value>
+  </data>
+  <data name="CharactersPage_XxmiRunning" xml:space="preserve">
+    <!-- Button label shown while an XXMI-launched game is running -->
+    <value>En ejecución</value>
+  </data>
+  <data name="CharactersPage_XxmiLaunching" xml:space="preserve">
+    <!-- Button label shown while XXMI is launching a game -->
+    <value>Lanzando...</value>
+  </data>
+  <data name="CharactersPage_XxmiLaunch" xml:space="preserve">
+    <!-- Button label to launch the game through XXMI; {0} is the XXMI code (e.g. GIMI, SRMI) -->
+    <value>Lanzar {0}</value>
   </data>
   <data name="CharactersPage_BatchConfigurations.Label" xml:space="preserve">
     <!-- Section label for character filters or batch operations -->
@@ -3517,5 +3533,29 @@ JASM+ no moverá ninguno de tus mods ni los eliminará.
   </data>
   <data name="Settings_Update_ButtonText.Text" xml:space="preserve">
     <value>Actualizar a</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Title" xml:space="preserve">
+    <!-- Title of the dialog shown when an auto-update is blocked because a game's mods folder is set to the JASM install root -->
+    <value>No se pudo actualizar</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot" xml:space="preserve">
+    <!-- Status text in Settings when the update is blocked due to a mods folder at the JASM install root -->
+    <value>Actualización bloqueada</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Message" xml:space="preserve">
+    <!-- {0} is the name of the game whose mods folder is at the JASM install root. Instructs the user to move that game's mods to another folder before updating. -->
+    <value>Debes mover la ubicación de los mods de {0} a otra carpeta. La carpeta raíz actual no es compatible con la actualización automática de esta versión.</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Close" xml:space="preserve">
+    <!-- Close/dismiss button on the update-blocked dialog -->
+    <value>Aceptar</value>
+  </data>
+  <data name="Settings_ModsFolder_IsJasmRoot" xml:space="preserve">
+    <!-- Blocking validation error: the user tried to set the mods folder to the JASM install folder root, which is incompatible with auto-updating -->
+    <value>La carpeta de mods no puede ser la raíz de la carpeta de instalación de JASM. Elige otra carpeta.</value>
+  </data>
+  <data name="Settings_ModsFolder_InsideJasmWarning" xml:space="preserve">
+    <!-- Non-blocking warning: the chosen mods folder is inside the JASM install folder; placing mods outside avoids them being affected by updates -->
+    <value>Esta carpeta de mods está dentro de la carpeta de instalación de JASM. Se recomienda colocar los mods fuera de JASM para que no se vean afectados por las actualizaciones.</value>
   </data>
 </root>

@@ -17,6 +17,8 @@ using GIMI_ModManager.WinUI.Services.AppManagement;
 using GIMI_ModManager.WinUI.Services.Notifications;
 using GIMI_ModManager.WinUI.Validators.PreConfigured;
 using GIMI_ModManager.WinUI.ViewModels.SubVms;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Serilog;
 
 namespace GIMI_ModManager.WinUI.ViewModels;
@@ -35,10 +37,30 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
     private readonly ModArchiveRepository _modArchiveRepository;
     private readonly CommandService _commandService;
     private readonly ICommunityGamesService _communityGamesService;
+    private readonly ILanguageLocalizer _localizer;
+    private readonly LifeCycleService _lifeCycleService;
+    private readonly Dictionary<string, string> _nameToLangCode = new();
 
     public PathPicker PathToGIMIFolderPicker { get; }
 
     public PathPicker PathToModsFolderPicker { get; }
+
+    /// <summary>True when the chosen 3DMigoto root is detected as an XXMI folder.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsModsFolderLocked))]
+    private bool _isXxmiDetected;
+
+    /// <summary>
+    /// User-controlled "treat as XXMI" state on the first-time setup page. Defaults on when
+    /// an XXMI folder is auto-detected; unchecking reverts to legacy behavior.
+    /// </summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsModsFolderLocked))]
+    private bool _treatAsXxmi;
+
+    /// <summary>Locks the mods folder when XXMI is detected and the user hasn't opted out.</summary>
+    public bool IsModsFolderLocked => IsXxmiDetected && TreatAsXxmi;
+
     [ObservableProperty] private bool _reorganizeModsOnStartup;
     [ObservableProperty] private bool _disableMods;
 
@@ -58,11 +80,15 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
 
     public ObservableCollection<GameComboBoxEntryVM> Games { get; } = new();
 
+    [ObservableProperty] private ObservableCollection<string> _languages = new();
+    [ObservableProperty] private string _selectedLanguage = string.Empty;
+
     public StartupViewModel(INavigationService navigationService, ILocalSettingsService localSettingsService,
         IWindowManagerService windowManagerService, ISkinManagerService skinManagerService,
         SelectedGameService selectedGameService, IGameService gameService, ModPresetService modPresetService,
         UserPreferencesService userPreferencesService, ModArchiveRepository modArchiveRepository,
-        CommandService commandService, ICommunityGamesService communityGamesService)
+        CommandService commandService, ICommunityGamesService communityGamesService,
+        ILanguageLocalizer localizer, LifeCycleService lifeCycleService)
     {
         _navigationService = navigationService;
         _localSettingsService = localSettingsService;
@@ -75,6 +101,8 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         _modArchiveRepository = modArchiveRepository;
         _commandService = commandService;
         _communityGamesService = communityGamesService;
+        _localizer = localizer;
+        _lifeCycleService = lifeCycleService;
 
         PathToGIMIFolderPicker = new PathPicker([]);
 
@@ -94,11 +122,17 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
     [RelayCommand(CanExecute = nameof(ValidStartupSettings))]
     private async Task SaveStartupSettings()
     {
+        var xxmiInstallation = XxmiInstallationDetector.TryDetect(PathToGIMIFolderPicker.Path,
+            XxmiInstallationDetector.GetXxmiGameIdentifier(SelectedGame.Value));
+        var treatAsXxmi = TreatAsXxmi && xxmiInstallation is not null;
         var modManagerOptions = new ModManagerOptions()
         {
             GimiRootFolderPath = PathToGIMIFolderPicker.Path,
-            ModsFolderPath = PathToModsFolderPicker.Path,
-            UnloadedModsFolderPath = null
+            // When treating as XXMI, lock the mods folder to XXMI's Mods location;
+            // otherwise keep whatever the user chose (legacy behavior).
+            ModsFolderPath = treatAsXxmi ? xxmiInstallation!.ModsFolderPath : PathToModsFolderPicker.Path,
+            UnloadedModsFolderPath = null,
+            TreatAsXXMI = treatAsXxmi
         };
 
         var selectedGameStr = SelectedGame.Value.ToString();
@@ -175,12 +209,93 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         if (PathToGIMIFolderPicker.PathHasValue &&
             !PathToModsFolderPicker.PathHasValue)
             PathToModsFolderPicker.Path = Path.Combine(PathToGIMIFolderPicker.Path!, "Mods");
+
+        // Auto-detect XXMI (for the current game): lock the mods folder to XXMI's own Mods
+        // layout. Uses the expected game identifier so a wrong game/folder pairing is rejected
+        // (e.g. picking the GIMI folder while configuring Star Rail).
+        if (XxmiInstallationDetector.TryDetect(PathToGIMIFolderPicker.Path,
+                XxmiInstallationDetector.GetXxmiGameIdentifier(SelectedGame.Value)) is { } detected)
+        {
+            IsXxmiDetected = true;
+            TreatAsXxmi = true;
+            PathToModsFolderPicker.Path = detected.ModsFolderPath;
+        }
+        else
+        {
+            IsXxmiDetected = false;
+            TreatAsXxmi = false;
+        }
     }
 
 
     [RelayCommand]
     private async Task BrowseModsFolderAsync()
         => await PathToModsFolderPicker.BrowseFolderPathAsync(App.MainWindow);
+
+    [RelayCommand]
+    private async Task SelectLanguage(string? selectedLanguageName)
+    {
+        if (selectedLanguageName is null || !_nameToLangCode.TryGetValue(selectedLanguageName, out var langCode))
+            return;
+
+        if (langCode == _localizer.CurrentLanguage.LanguageCode)
+            return;
+
+        var localizerText = App.GetService<ILanguageLocalizer>();
+        var restartDialog = new ContentDialog()
+        {
+            Title = localizerText.GetLocalizedStringOrDefault("Settings_RestartRequired_LangTitle") ?? "Restart Required",
+            Content = new TextBlock()
+            {
+                Text = localizerText.GetLocalizedStringOrDefault("/Settings/ChangeLanguageDialogText",
+                    defaultValue:
+                    "Changing the language requires a restart of the application.\n" +
+                    "This is required to ensure that the application is configured correctly for the selected language.\n\n" +
+                    "Do you want to change the language?"),
+                TextWrapping = TextWrapping.WrapWholeWords,
+                IsTextSelectionEnabled = true
+            },
+            PrimaryButtonText = localizerText.GetLocalizedStringOrDefault("Settings_RestartRequired_LangPrimaryButton") ?? "Change Language and restart",
+            CloseButtonText = localizerText.GetLocalizedStringOrDefault("Settings_RestartRequired_LangCloseButton") ?? "Cancel",
+            DefaultButton = ContentDialogButton.Primary
+        };
+
+        var result = await _windowManagerService.ShowDialogAsync(restartDialog);
+
+        var currentLanguage = _localizer.CurrentLanguage.LanguageName;
+        if (result != ContentDialogResult.Primary)
+        {
+            SelectedLanguage = currentLanguage;
+            return;
+        }
+
+        await _localizer.SetLanguageAsync(langCode);
+
+        var appSettings = await _localSettingsService.ReadOrCreateSettingAsync<AppSettings>(AppSettings.Key);
+        appSettings.Language = langCode;
+        await _localSettingsService.SaveSettingAsync(AppSettings.Key, appSettings);
+        currentLanguage = _localizer.CurrentLanguage.LanguageName;
+        SelectedLanguage = currentLanguage;
+
+        await _lifeCycleService.RestartAsync(notifyOnError: true);
+    }
+
+    private void SetLanguageOptions()
+    {
+        Languages.Clear();
+        _nameToLangCode.Clear();
+
+        var supportedCultures = _localizer.AvailableLanguages.Select(l => l.LanguageCode).ToArray();
+        foreach (var language in _localizer.AvailableLanguages)
+        {
+            var languageName = language.LanguageName;
+            Languages.Add(languageName);
+            _nameToLangCode[languageName] = language.LanguageCode;
+        }
+
+        _ = supportedCultures;
+        SelectedLanguage = _localizer.CurrentLanguage.LanguageName;
+    }
 
     public async void OnNavigatedTo(object parameter)
     {
@@ -189,6 +304,8 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
 
         var settings =
             await _localSettingsService.ReadOrCreateSettingAsync<ModManagerOptions>(ModManagerOptions.Section);
+
+        SetLanguageOptions();
 
         await SetGameComboBoxValues();
 
@@ -230,7 +347,11 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         GameBananaUrl = gameInfo.GameBananaUrl;
         ModelImporterUrl = gameInfo.GameModelImporterUrl;
         var folderWarning = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Settings_FolderWarning_No3DMigotoEntry") ?? "Folder does not contain any entry with the specified names:";
-        PathToGIMIFolderPicker.SetValidators(GimiFolderRootValidators.Validators(gameInfo.GameModelImporterExeNames, folderWarning));
+        var expectedXxmiIdentifier = Enum.TryParse<SupportedGames>(game, out var supportedGame)
+            ? XxmiInstallationDetector.GetXxmiGameIdentifier(supportedGame)
+            : null;
+        PathToGIMIFolderPicker.SetValidators(GimiFolderRootValidators.Validators(gameInfo.GameModelImporterExeNames,
+            folderWarning, expectedXxmiIdentifier));
     }
 
     private async Task SetGameComboBoxValues()
@@ -265,10 +386,21 @@ public partial class StartupViewModel : ObservableRecipient, INavigationAware
         else
             PathToGIMIFolderPicker.Path = "";
 
+        // Detect whether the 3DMigoto root is an XXMI folder (identifier-agnostic on load,
+        // so an existing SRMI/GIMI/... setup is recognized regardless of the selected game).
+        // The checkbox is only shown when detected and is checked by default.
+        var xxmi = XxmiInstallationDetector.TryDetect(settings.GimiRootFolderPath);
+        IsXxmiDetected = xxmi is not null;
+        TreatAsXxmi = IsXxmiDetected;
+
         if (!string.IsNullOrWhiteSpace(settings.ModsFolderPath))
             PathToModsFolderPicker.Path = settings.ModsFolderPath;
         else
             PathToModsFolderPicker.Path = "";
+
+        // When treating as XXMI, always use XXMI's own Mods folder so it's never left empty.
+        if (IsXxmiDetected && TreatAsXxmi)
+            PathToModsFolderPicker.Path = xxmi!.ModsFolderPath;
     }
 
 

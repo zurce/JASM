@@ -341,6 +341,22 @@
     <!-- Button label to launch the 3DMigoto model importer process -->
     <value>Start 3Dmigoto</value>
   </data>
+  <data name="CharactersPage_OpenXxmi.Text" xml:space="preserve">
+    <!-- Button label to open the XXMI Launcher GUI for an XXMI-managed game -->
+    <value>Open XXMI</value>
+  </data>
+  <data name="CharactersPage_XxmiRunning" xml:space="preserve">
+    <!-- Button label shown while an XXMI-launched game is running -->
+    <value>Running</value>
+  </data>
+  <data name="CharactersPage_XxmiLaunching" xml:space="preserve">
+    <!-- Button label shown while XXMI is launching a game -->
+    <value>Launching...</value>
+  </data>
+  <data name="CharactersPage_XxmiLaunch" xml:space="preserve">
+    <!-- Button label to launch the game through XXMI; {0} is the XXMI code (e.g. GIMI, SRMI) -->
+    <value>Launch {0}</value>
+  </data>
   <data name="CharactersPage_BatchConfigurations.Label" xml:space="preserve">
     <!-- Section label for character filters or batch operations -->
     <value>Batch Configurations</value>
@@ -3437,5 +3453,29 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   </data>
   <data name="Settings_Update_ButtonText.Text" xml:space="preserve">
     <value>Update to</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Title" xml:space="preserve">
+    <!-- Title of the dialog shown when an auto-update is blocked because a game's mods folder is set to the JASM install root -->
+    <value>Could not update</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot" xml:space="preserve">
+    <!-- Status text in Settings when the update is blocked due to a mods folder at the JASM install root -->
+    <value>Update blocked</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Message" xml:space="preserve">
+    <!-- {0} is the name of the game whose mods folder is at the JASM install root. Instructs the user to move that game's mods to another folder before updating. -->
+    <value>You need to move {0}'s mods location to another folder. The current root folder is not compatible with auto-updating this release.</value>
+  </data>
+  <data name="Settings_Update_BlockedModsAtRoot_Close" xml:space="preserve">
+    <!-- Close/dismiss button on the update-blocked dialog -->
+    <value>OK</value>
+  </data>
+  <data name="Settings_ModsFolder_IsJasmRoot" xml:space="preserve">
+    <!-- Blocking validation error: the user tried to set the mods folder to the JASM install folder root, which is incompatible with auto-updating -->
+    <value>The mods folder cannot be the JASM install folder root. Choose a different folder.</value>
+  </data>
+  <data name="Settings_ModsFolder_InsideJasmWarning" xml:space="preserve">
+    <!-- Non-blocking warning: the chosen mods folder is inside the JASM install folder; placing mods outside avoids them being affected by updates -->
+    <value>This mods folder is inside the JASM install folder. It is recommended to place mods outside of JASM so they are not affected by updates.</value>
   </data>
 </root>

@@ -11,6 +11,7 @@ using GIMI_ModManager.Core.GamesService.Interfaces;
 using GIMI_ModManager.Core.GamesService.Models;
 using GIMI_ModManager.Core.Helpers;
 using GIMI_ModManager.Core.Services;
+using GIMI_ModManager.WinUI.Models.Options;
 using GIMI_ModManager.Core.Services.GameBanana;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Contracts.ViewModels;
@@ -27,6 +28,17 @@ using GIMI_ModManager.WinUI.Views.CharacterDetailsPages;
 using Serilog;
 
 namespace GIMI_ModManager.WinUI.ViewModels;
+
+/// <summary>State of the XXMI launch / running indicator for the current game.</summary>
+public enum XxmiProcessState
+{
+    /// <summary>No XXMI process is running; the buttons are ready to launch.</summary>
+    Idle,
+    /// <summary>A launch was just started; waiting for it to spin up.</summary>
+    Launching,
+    /// <summary>An XXMI Launcher process is currently alive.</summary>
+    Running
+}
 
 public partial class CharactersViewModel : ObservableRecipient, INavigationAware
 {
@@ -78,6 +90,90 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
 
     [ObservableProperty] private Uri? _gameBananaLink;
 
+    /// <summary>
+    /// True when the active game is treated as an XXMI-managed installation, in which case
+    /// the legacy Start 3DMigoto / Start Game buttons are suppressed and an "Open XXMI"
+    /// button is shown in their place.
+    /// </summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowLegacyStartButtons))]
+    [NotifyPropertyChangedFor(nameof(CanOpenXxmi))]
+    [NotifyPropertyChangedFor(nameof(CanLaunchXxmi))]
+    [NotifyPropertyChangedFor(nameof(XxmiControlsVisibility))]
+    private bool _isXxmiManaged;
+
+    /// <summary>Shows the XXMI launch controls when the game is XXMI-managed.</summary>
+    public bool XxmiControlsVisibility => IsXxmiManaged;
+
+    /// <summary>
+    /// True while an XXMI launch is in progress, so the XXMI buttons are disabled and a second
+    /// click can't spawn a duplicate XXMI instance (which can break it).
+    /// </summary>
+    /// <summary>True while an XXMI launch is starting (short window during startup).</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(XxmiProcessState))]
+    [NotifyPropertyChangedFor(nameof(IsXxmiControlsEnabled))]
+    [NotifyPropertyChangedFor(nameof(XxmiLaunchButtonText))]
+    private bool _isLaunchingXxmi;
+
+    /// <summary>True while an XXMI Launcher process is detected as alive (polled).</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(XxmiProcessState))]
+    [NotifyPropertyChangedFor(nameof(IsXxmiControlsEnabled))]
+    [NotifyPropertyChangedFor(nameof(XxmiLaunchButtonText))]
+    private bool _xxmiIsProcessRunning;
+
+    /// <summary>
+    /// Drives the XXMI buttons: Launching during startup, Running while an XXMI process is alive,
+    /// Idle (ready) otherwise. Enabling the buttons only when Idle makes the state obvious.
+    /// </summary>
+    public XxmiProcessState XxmiProcessState => IsLaunchingXxmi
+        ? XxmiProcessState.Launching
+        : XxmiIsProcessRunning ? XxmiProcessState.Running
+            : XxmiProcessState.Idle;
+
+    /// <summary>True when the XXMI buttons are enabled (only when idle and no process running).</summary>
+    public bool IsXxmiControlsEnabled => XxmiProcessState == XxmiProcessState.Idle;
+
+    /// <summary>
+    /// Text for the XXMI "Launch &lt;Game&gt;" button. Uses the XXMI importer code (e.g.
+    /// "Launch GIMI"), and shows "Running" / "Launching..." while the process is active.
+    /// </summary>
+    public string XxmiLaunchButtonText => XxmiProcessState switch
+    {
+        XxmiProcessState.Running => _localizer.GetLocalizedStringOrDefault("CharactersPage_XxmiRunning") ?? "Running",
+        XxmiProcessState.Launching => _localizer.GetLocalizedStringOrDefault("CharactersPage_XxmiLaunching") ?? "Launching...",
+        _ => string.Format(_localizer.GetLocalizedStringOrDefault("CharactersPage_XxmiLaunch") ?? "Launch {0}",
+                XxmiGameIdentifier ?? _gameService.GameShortName)
+    };
+
+    /// <summary>Resolved path to the XXMI Launcher executable, or null if unavailable.</summary>
+    public string? XxmiLauncherExePath { get; private set; }
+
+    /// <summary>XXMI importer identifier for the current game (e.g. GIMI / SRMI / ZZMI).</summary>
+    public string? XxmiGameIdentifier { get; private set; }
+
+    /// <summary>Resource path to the per-game XXMI icon (e.g. ms-appx:///Assets/Xxmi/GIMI.ico).</summary>
+    public string? XxmiGameIcon { get; private set; }
+
+    /// <summary>Resource path to the generic XXMI window icon for the Open XXMI button.</summary>
+    public string XxmiLauncherIcon { get; } = "ms-appx:///Assets/Xxmi/window-icon.ico";
+
+    /// <summary>True when the XXMI launcher is available to open.</summary>
+    public bool CanOpenXxmi => IsXxmiManaged && !string.IsNullOrWhiteSpace(XxmiLauncherExePath) &&
+                              File.Exists(XxmiLauncherExePath);
+
+    /// <summary>
+    /// True when the game can be launched through XXMI (XXMI-managed, launcher present, and
+    /// the game has a known XXMI identifier).
+    /// </summary>
+    public bool CanLaunchXxmi => CanOpenXxmi && !string.IsNullOrWhiteSpace(XxmiGameIdentifier);
+
+    /// <summary>
+    /// True when the legacy Start 3DMigoto / Start Game buttons should be shown (i.e. the
+    /// game is NOT XXMI-managed).
+    /// </summary>
+    public bool ShowLegacyStartButtons => !IsXxmiManaged;
     [ObservableProperty] private string _categoryPageTitle = string.Empty;
     [ObservableProperty] private string _modToggleText = string.Empty;
     [ObservableProperty] private string _modEnabledToggleText = string.Empty;
@@ -127,6 +223,22 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         StartGameIcon = _gameService.GameIcon;
         ShortGameName = $"{_localizer.GetLocalizedStringOrDefault("CharactersPage_StartGamePrefix") ?? "Start"} {_gameService.GameShortName}";
         GameBananaLink = _gameService.GameBananaUrl;
+
+        // Determine whether the active game is managed as an XXMI installation.
+        var modManagerOptions = _localSettingsService.ReadSetting<ModManagerOptions>(ModManagerOptions.Section);
+        IsXxmiManaged = modManagerOptions?.TreatAsXXMI ?? false;
+        XxmiLauncherExePath = XxmiInstallationDetector.TryResolveLauncherExe();
+
+        // Resolve the current game's XXMI importer identifier + icon for the Launch button.
+        if (Enum.TryParse<SupportedGames>(_gameService.GameShortName, out var supportedGame))
+        {
+            XxmiGameIdentifier = XxmiInstallationDetector.GetXxmiGameIdentifier(supportedGame);
+            XxmiGameIcon = XxmiGameIdentifier is null
+                ? null
+                : $"ms-appx:///Assets/Xxmi/{XxmiGameIdentifier}.ico";
+        }
+
+        StartXxmiProcessPoller();
 
         CanCheckForUpdates = _modUpdateAvailableChecker.IsReady;
         _modUpdateAvailableChecker.OnUpdateCheckerEvent += (_, _) =>
@@ -907,6 +1019,224 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     private async Task StartGenshinAsync() =>
         await SimpleSelectProcessDialogVM.InternalStart(GenshinProcessManager,
             SimpleSelectProcessDialogVM.StartType.Game);
+
+    /// <summary>
+    /// For an XXMI-managed game, opens the XXMI Launcher GUI (no arguments) so the user can
+    /// change settings / manage launch through XXMI.
+    /// </summary>
+    [RelayCommand]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("", "SecurityNoSecurityBrowserCmd2")]
+    private async Task OpenXxmiAsync()
+    {
+        if (!CanOpenXxmi)
+            return;
+        await LaunchXxmiProcessAsync(XxmiLauncherExePath!, arguments: null, gameLaunch: false);
+    }
+
+    /// <summary>
+    /// For an XXMI-managed game, launches the game through XXMI the same way XXMI's Quick
+    /// Start shortcuts do: <c>XXMI Launcher.exe --nogui --xxmi &lt;GAME&gt;</c>.
+    /// </summary>
+    [RelayCommand]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("", "SecurityNoSecurityBrowserCmd2")]
+    private async Task LaunchXxmiAsync()
+    {
+        if (!CanLaunchXxmi)
+            return;
+        await LaunchXxmiProcessAsync(XxmiLauncherExePath!, $"--nogui --xxmi {XxmiGameIdentifier}", gameLaunch: true);
+    }
+
+    private readonly SemaphoreSlim _xxmiLaunchLock = new(1, 1);
+    private readonly CancellationTokenSource _xxmiPollerCts = new();
+
+    /// <summary>
+    /// Whether any relevant process for the current game's XXMI launch is alive. For a game
+    /// launched via <c>--nogui</c>, the XXMI Launcher host can exit after handing off to the game,
+    /// so we also watch the game's own process name(s) to reflect the true Running state.
+    /// </summary>
+    private bool IsXxmiOrGameProcessRunning()
+    {
+        try
+        {
+            if (System.Diagnostics.Process.GetProcessesByName("XXMI Launcher").Length > 0)
+                return true;
+
+            // Per-game process names observed when a game is running under XXMI.
+            var names = XxmiGameIdentifier switch
+            {
+                "GIMI" => new[] { "GenshinImpact", "YuanShen" },
+                "SRMI" => new[] { "StarRail" },
+                "WWMI" => new[] { "Client-Win64-Shipping" },
+                "ZZMI" => new[] { "ZenlessZoneZero" },
+                "EFMI" => new[] { "Endfield" },
+                _ => Array.Empty<string>()
+            };
+
+            foreach (var name in names)
+            {
+                if (System.Diagnostics.Process.GetProcessesByName(name).Length > 0)
+                    return true;
+            }
+        }
+        catch
+        {
+            return false;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Starts a background poller that watches for a live 'XXMI Launcher' process so the buttons
+    /// reflect the Running state (and re-enable once it exits). Used only when the game is XXMI.
+    /// </summary>
+    private void StartXxmiProcessPoller()
+    {
+        if (!IsXxmiManaged)
+            return;
+
+        _logger.Debug("XXMI poller starting (game={XxmiGameIdentifier})", XxmiGameIdentifier);
+        _ = Task.Run(async () =>
+        {
+            var token = _xxmiPollerCts.Token;
+            while (!token.IsCancellationRequested)
+            {
+                try
+                {
+                    var isRunning = IsXxmiOrGameProcessRunning();
+                    if (XxmiIsProcessRunning != isRunning)
+                    {
+                        _logger.Debug("XXMI process state detected: running={Running}", isRunning);
+                        await App.MainWindow.DispatcherQueue.EnqueueAsync(() =>
+                        {
+                            XxmiIsProcessRunning = isRunning;
+                            return Task.CompletedTask;
+                        });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "XXMI process poller iteration failed");
+                }
+
+                try
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(2), token);
+                }
+                catch (OperationCanceledException)
+                {
+                    break;
+                }
+            }
+        }, _xxmiPollerCts.Token);
+    }
+
+    private async Task LaunchXxmiProcessAsync(string exePath, string? arguments, bool gameLaunch)
+    {
+        // Re-entrancy guard: prevents a double-click from spawning a second XXMI instance while
+        // the first is still starting (XXMI may fail when two instances race to init).
+        if (IsLaunchingXxmi)
+        {
+            _logger.Debug("Ignoring XXMI launch, one already in progress");
+            return;
+        }
+
+        await _xxmiLaunchLock.WaitAsync();
+        try
+        {
+            if (IsLaunchingXxmi)
+                return;
+
+            // The game-launch path: after quitting a game, a stale XXMI Launcher host can linger
+            // for a moment. Relaunching into a half-dead instance repeats the previous failure, so
+            // we clear any remaining XXMI processes first (the user explicitly asked to launch).
+            // The Open-XXMI (settings) path never kills anything.
+            var running = System.Diagnostics.Process.GetProcessesByName("XXMI Launcher");
+            if (running.Length > 0)
+            {
+                if (gameLaunch)
+                {
+                    _logger.Information("Clearing {Count} lingering XXMI Launcher process(es) before game launch", running.Length);
+                    foreach (var r in running)
+                    {
+                        try
+                        {
+                            if (!r.HasExited) r.Kill();
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.Warning(ex, "Could not close stale XXMI Launcher process {Pid}", r.Id);
+                        }
+                        finally
+                        {
+                            r.Dispose();
+                        }
+                    }
+                    // Give them a moment to fully exit before we start a fresh instance.
+                    await Task.Delay(800);
+                }
+                else
+                {
+                    foreach (var r in running) r.Dispose();
+                    _logger.Information("XXMI Launcher already running; skipping duplicate launch");
+                    NotificationManager.ShowNotification(
+                        _localizer.GetLocalizedStringOrDefault("Notification_AlreadyRunningTitle") ?? "Already running",
+                        _localizer.GetLocalizedStringOrDefault("Notification_XxmiAlreadyRunning") ?? "XXMI Launcher is already open.",
+                        null);
+                    return;
+                }
+            }
+
+            IsLaunchingXxmi = true;
+            try
+            {
+                var startInfo = new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = exePath,
+                    WorkingDirectory = Path.GetDirectoryName(exePath),
+                    Arguments = arguments ?? string.Empty,
+                    UseShellExecute = true
+                };
+
+                var started = System.Diagnostics.Process.Start(startInfo);
+                _logger.Information("Launched XXMI Launcher: {Path} {Arguments} (pid={Pid})", exePath, arguments, started?.Id);
+
+                // Keep the button disabled during the launch window so a second click can't race
+                // a duplicate instance. For the GUI (Open XXMI) the process stays alive; we only
+                // wait for the initial startup window (timeout) so the button isn't stuck disabled.
+                await WaitForLaunchWindowAsync(started, TimeSpan.FromSeconds(6));
+            }
+            finally
+            {
+                IsLaunchingXxmi = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.Error(ex, "Failed to launch XXMI Launcher ({Arguments})", arguments);
+            NotificationManager.ShowNotification(
+                _localizer.GetLocalizedStringOrDefault("Notification_CouldNotStartProcess") ?? "Could not start process",
+                ex.Message,
+                null);
+        }
+        finally
+        {
+            _xxmiLaunchLock.Release();
+        }
+    }
+
+    private static async Task WaitForLaunchWindowAsync(System.Diagnostics.Process? process, TimeSpan maxWait)
+    {
+        if (process is null)
+            return;
+
+        // Wait until the process exits or the window elapses, whichever comes first.
+        var sw = System.Diagnostics.Stopwatch.StartNew();
+        while (sw.Elapsed < maxWait && !process.HasExited)
+        {
+            await Task.Delay(100);
+        }
+    }
 
     [RelayCommand]
     private async Task EnableAllModsDialogAsync(Microsoft.UI.Xaml.Controls.ContentDialog dialog)

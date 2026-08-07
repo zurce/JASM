@@ -1081,6 +1081,7 @@ public class GameService : IGameService
             IsMultiMod = true
         };
         AddDefaultSkin(character);
+        character.DefaultCharacter = character.Clone();
         return character;
     }
 
@@ -1104,6 +1105,7 @@ public class GameService : IGameService
             IsMultiMod = true
         };
         AddDefaultSkin(character);
+        character.DefaultCharacter = character.Clone();
         return character;
     }
 
@@ -1128,6 +1130,7 @@ public class GameService : IGameService
         };
 
         AddDefaultSkin(character);
+        character.DefaultCharacter = character.Clone();
         return character;
     }
 

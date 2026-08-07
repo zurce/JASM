@@ -16,7 +16,7 @@
 		<WindowsPackageType>None</WindowsPackageType>
 		<BaseOutputPath></BaseOutputPath>
 		<!-- x-release-please-start-version -->
-		<VersionPrefix>2.99.0</VersionPrefix>
+		<VersionPrefix>3.0.0</VersionPrefix>
 		<!-- x-release-please-end -->
 		<Title>JASM+ - Just Another Skin Manager Plus</Title>
 		<AssemblyName>JASM - Just Another Skin Manager</AssemblyName>
@@ -100,6 +100,9 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Assets\WindowIcon.ico">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Xxmi\*.ico">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>

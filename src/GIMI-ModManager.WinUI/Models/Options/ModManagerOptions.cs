@@ -19,4 +19,12 @@ public class ModManagerOptions
     public string? ModsFolderPath { get; set; }
     public string? UnloadedModsFolderPath { get; set; }
     public bool CharacterSkinsAsCharacters { get; set; }
+
+    /// <summary>
+    /// When true, this game's model-importer root is treated as an XXMI-managed
+    /// installation: the mods folder is locked to <c>&lt;importer&gt;\Mods</c>, the legacy
+    /// Start Game / Start 3DMigoto buttons are suppressed, and an "Open XXMI" button is
+    /// shown instead. Per-user / per-environment (machine-specific); false by default.
+    /// </summary>
+    public bool TreatAsXXMI { get; set; }
 }

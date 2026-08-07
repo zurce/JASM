@@ -37,6 +37,7 @@
                 x:Name="SelectedFolderTextBox"
                 Grid.Column="0"
                 VerticalAlignment="Center"
+                IsEnabled="{x:Bind IsNotReadOnly, Mode=OneWay}"
                 PlaceholderText="{x:Bind PlaceHolderText, Mode=TwoWay}"
                 TextChanged="SelectedFolderTextBox_TextChanged"
                 Text="{x:Bind SelectedFolderValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -46,6 +47,7 @@
                 VerticalAlignment="Center"
                 Command="{x:Bind BrowseCommand}"
                 Content="Browse"
+                IsEnabled="{x:Bind IsNotReadOnly, Mode=OneWay}"
                 l:Uids.Uid="FolderSelector_Browse" />
         </Grid>
 

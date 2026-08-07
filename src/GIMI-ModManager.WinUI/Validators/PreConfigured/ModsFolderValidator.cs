@@ -8,6 +8,7 @@ public static class ModsFolderValidator
     public static IEnumerable<AbstractValidator<PathPicker>> Validators => new AbstractValidator<PathPicker>[]
     {
         new IsValidPathFormat(),
-        new FolderExists("Folder not found")
+        new FolderExists("Folder not found"),
+        new ModsFolderInsideJasm()
     };
 }
