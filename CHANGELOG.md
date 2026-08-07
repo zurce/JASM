@@ -1,5 +1,44 @@
 # Changelog
 
+## [2.100.0](https://github.com/zurce/JASM/compare/v2.99.1...v2.100.0) (2026-08-07)
+
+
+### Features
+
+* add language selector to first-time setup + debounce folder validation ([803b81e](https://github.com/zurce/JASM/commit/803b81e46ede6a0b8ed0d1fcc03531d5bd2ff576))
+* add XXMI support as an alternative mod injector backend ([d278ce0](https://github.com/zurce/JASM/commit/d278ce0a1eb6b642631cceeed1272732e86103e2))
+* block auto-update when a game's mods folder points at the install root ([b162a4a](https://github.com/zurce/JASM/commit/b162a4a63c1b00ba86384cf641f3dbfd1cac4655))
+* show XXMI process Running state on the launch button ([5f4d76e](https://github.com/zurce/JASM/commit/5f4d76e27f278f7be4ee62a095a48d3fa719e8c3))
+* two XXMI launch buttons (Launch &lt;code&gt; + Open XXMI) with icons ([f3e9e2a](https://github.com/zurce/JASM/commit/f3e9e2aa33a47acd9cdaa2d78410d5fb606e5e9b))
+* use in-place safe update path when mods folders live inside the install dir ([e751850](https://github.com/zurce/JASM/commit/e751850cd222f213eabcf71a935700284812e2dd))
+* warn/block mods folder placement inside JASM install dir in settings ([e690536](https://github.com/zurce/JASM/commit/e690536c5ce5699f3bacfe3a4847b6a1b66f3de3))
+
+
+### Bug Fixes
+
+* prevent crashes and dialog overlap in character views ([cf8c8aa](https://github.com/zurce/JASM/commit/cf8c8aac75da0a3ff85089dc3212d9d24aa18e56))
+* prevent duplicate XXMI launches with launch-window guard ([1e18f0a](https://github.com/zurce/JASM/commit/1e18f0a1ada83e38ed5a6ab11bad2dd7b4d7c26c))
+* relaunch game after quit by clearing lingering XXMI host ([e13986f](https://github.com/zurce/JASM/commit/e13986f53fb5e74ce71155221ecc7eb9b8935a40))
+* Running/Launch button refreshes (OneWay) + localize XXMI labels ([e13fd59](https://github.com/zurce/JASM/commit/e13fd594da79f0cd2beb8b73668a9f29a6ddaa98))
+* swap XXMI launch buttons so 'Launch &lt;code&gt;' is rightmost ([96a34df](https://github.com/zurce/JASM/commit/96a34dfbc4bdc0391671b77dbc6482a37f21ce4d))
+* track Running by the actual game process, not just XXMI host ([c5a7547](https://github.com/zurce/JASM/commit/c5a75476f87c237cbb003bd517c4f9870f8ab7b5))
+
+
+### Styling
+
+* fix dotnet-format CI failures (final newlines + MVVMTK0034) ([dad404d](https://github.com/zurce/JASM/commit/dad404d51cc1b9eb559e4a4b6d9a7bba7f02185e))
+
+
+### Miscellaneous
+
+* bump version to 3.0.0 for v3.0 release ([4e3a2ad](https://github.com/zurce/JASM/commit/4e3a2ada43555333387c330a480c29f15dbf38b5))
+* update game assets from community repo (v2.99.1) ([f8d0edc](https://github.com/zurce/JASM/commit/f8d0edce4e66b8acdd1e870fb700ba00ff9825be))
+
+
+### Build System
+
+* include XXMI icons as publish content ([46cf7da](https://github.com/zurce/JASM/commit/46cf7dabac5f831a675e5b23f24bdb4a5733be2c))
+
 ## [2.22.9](https://github.com/Jorixon/JASM/compare/v2.22.8...v2.22.9) (2026-01-18)
 
 
