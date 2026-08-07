@@ -129,8 +129,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     /// </summary>
     public XxmiProcessState XxmiProcessState => IsLaunchingXxmi
         ? XxmiProcessState.Launching
-        : _xxmiIsProcessRunning
-            ? XxmiProcessState.Running
+        : XxmiIsProcessRunning ? XxmiProcessState.Running
             : XxmiProcessState.Idle;
 
     /// <summary>True when the XXMI buttons are enabled (only when idle and no process running).</summary>
