@@ -142,11 +142,10 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     /// </summary>
     public string XxmiLaunchButtonText => XxmiProcessState switch
     {
-        XxmiProcessState.Running => "Running",
-        XxmiProcessState.Launching => "Launching...",
-        _ => string.IsNullOrWhiteSpace(XxmiGameIdentifier)
-            ? $"Launch {_gameService.GameShortName}"
-            : $"Launch {XxmiGameIdentifier}"
+        XxmiProcessState.Running => _localizer.GetLocalizedStringOrDefault("CharactersPage_XxmiRunning") ?? "Running",
+        XxmiProcessState.Launching => _localizer.GetLocalizedStringOrDefault("CharactersPage_XxmiLaunching") ?? "Launching...",
+        _ => string.Format(_localizer.GetLocalizedStringOrDefault("CharactersPage_XxmiLaunch") ?? "Launch {0}",
+                XxmiGameIdentifier ?? _gameService.GameShortName)
     };
 
     /// <summary>Resolved path to the XXMI Launcher executable, or null if unavailable.</summary>
@@ -1097,28 +1096,28 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         if (!IsXxmiManaged)
             return;
 
+        _logger.Debug("XXMI poller starting (game={XxmiGameIdentifier})", XxmiGameIdentifier);
         _ = Task.Run(async () =>
         {
             var token = _xxmiPollerCts.Token;
             while (!token.IsCancellationRequested)
             {
-                bool isRunning;
                 try
                 {
-                    isRunning = IsXxmiOrGameProcessRunning();
-                }
-                catch
-                {
-                    isRunning = false;
-                }
-
-                if (XxmiIsProcessRunning != isRunning)
-                {
-                    await App.MainWindow.DispatcherQueue.EnqueueAsync(() =>
+                    var isRunning = IsXxmiOrGameProcessRunning();
+                    if (XxmiIsProcessRunning != isRunning)
                     {
-                        XxmiIsProcessRunning = isRunning;
-                        return Task.CompletedTask;
-                    });
+                        _logger.Debug("XXMI process state detected: running={Running}", isRunning);
+                        await App.MainWindow.DispatcherQueue.EnqueueAsync(() =>
+                        {
+                            XxmiIsProcessRunning = isRunning;
+                            return Task.CompletedTask;
+                        });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "XXMI process poller iteration failed");
                 }
 
                 try

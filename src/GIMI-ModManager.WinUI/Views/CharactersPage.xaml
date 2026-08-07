@@ -248,7 +248,7 @@
                                 <BitmapImage DecodePixelWidth="16" UriSource="{x:Bind ViewModel.XxmiLauncherIcon}" />
                             </Image.Source>
                         </Image>
-                        <TextBlock VerticalAlignment="Center" Text="Open XXMI" />
+                        <TextBlock VerticalAlignment="Center" Text="Open XXMI" l:Uids.Uid="CharactersPage_OpenXxmi" />
                     </StackPanel>
                     <ToolTipService.ToolTip>
                         <TextBlock TextWrapping="WrapWholeWords" Text="{x:Bind ViewModel.XxmiLauncherExePath, Mode=OneWay}" />
@@ -265,7 +265,7 @@
                                 <BitmapImage DecodePixelWidth="16" UriSource="{x:Bind ViewModel.XxmiGameIcon}" />
                             </Image.Source>
                         </Image>
-                        <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.XxmiLaunchButtonText}" />
+                        <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.XxmiLaunchButtonText, Mode=OneWay}" />
                     </StackPanel>
                     <ToolTipService.ToolTip>
                         <TextBlock TextWrapping="WrapWholeWords" Text="Launch the game through XXMI (same as the Quick Start shortcut)." />

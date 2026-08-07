@@ -384,9 +384,21 @@
     <!-- Button label to launch the 3DMigoto model importer process -->
     <value>Iniciar 3Dmigoto</value>
   </data>
-  <data name="CharactersPage_OpenXxmi.Content" xml:space="preserve">
+  <data name="CharactersPage_OpenXxmi.Text" xml:space="preserve">
     <!-- Button label to open the XXMI Launcher GUI for an XXMI-managed game -->
     <value>Abrir XXMI</value>
+  </data>
+  <data name="CharactersPage_XxmiRunning" xml:space="preserve">
+    <!-- Button label shown while an XXMI-launched game is running -->
+    <value>Em execução</value>
+  </data>
+  <data name="CharactersPage_XxmiLaunching" xml:space="preserve">
+    <!-- Button label shown while XXMI is launching a game -->
+    <value>Iniciando...</value>
+  </data>
+  <data name="CharactersPage_XxmiLaunch" xml:space="preserve">
+    <!-- Button label to launch the game through XXMI; {0} is the XXMI code (e.g. GIMI, SRMI) -->
+    <value>Iniciar {0}</value>
   </data>
 
   <data name="CharactersPage_BatchConfigurations.Label" xml:space="preserve">
