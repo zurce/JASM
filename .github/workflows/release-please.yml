@@ -17,7 +17,9 @@ jobs:
         id: release
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          # Configuration is managed in release-please-config.json and the
-          # current released version in .release-please-manifest.json.
+          # release-type is required by the action; the rest of the config
+          # (packages, extra-files, current version) is in
+          # release-please-config.json + .release-please-manifest.json.
+          release-type: simple
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
