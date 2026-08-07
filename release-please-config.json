@@ -1,0 +1,12 @@
+{
+  "release-type": "simple",
+  "packages": {
+    ".": {
+      "package-name": "jasm",
+      "versioning-strategy": "default",
+      "extra-files": [
+        "src/GIMI-ModManager.WinUI/GIMI-ModManager.WinUI.csproj"
+      ]
+    }
+  }
+}
