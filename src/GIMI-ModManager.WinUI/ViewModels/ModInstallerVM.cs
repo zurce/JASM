@@ -183,6 +183,10 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         ForceOverwriteDifferentNameMod = installerSettings.ForceOverwriteDifferentNameMod;
         _existingModToOverwritePath = options?.ExistingModToOverwritePath;
         OnPropertyChanged(nameof(HasExistingModToOverwrite));
+        // Opening the installer to update/replace an existing mod should default to the
+        // overwrite flow so "Add Mod" is enabled (re-link/update the existing mod).
+        if (!string.IsNullOrEmpty(_existingModToOverwritePath))
+            OverwriteExistingMod = true;
 
         await Task.Run(async () =>
         {
