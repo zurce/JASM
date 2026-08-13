@@ -788,6 +788,18 @@
     <!-- Notification title when a GameBanana search fails -->
     <value>検索に失敗しました</value>
   </data>
+  <data name="ModPane_DownloadingMod" xml:space="preserve">
+    <!-- Notification title while downloading the mod from GameBanana to re-link it -->
+    <value>Modをダウンロード中</value>
+  </data>
+  <data name="ModPane_DownloadingModMsg" xml:space="preserve">
+    <!-- Notification body while downloading the mod from GameBanana to re-link it -->
+    <value>更新が利用可能です。GameBananaからModをダウンロードしています...</value>
+  </data>
+  <data name="ModInstaller_AssociateMod" xml:space="preserve">
+    <!-- Primary button label in the ModInstaller "associate" mode that only writes the mod's metadata to its settings -->
+    <value>このModを関連付ける</value>
+  </data>
 
   <data name="ModPane_ForwardKey.Header" xml:space="preserve">
     <!-- Label for key swap configuration fields -->

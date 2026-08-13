@@ -10,6 +10,7 @@ public class ModPageInfo
         ModPageUrl = Uri.TryCreate(apiModProfile.ModPageUrl, UriKind.Absolute, out var modPageUrl) ? modPageUrl : null;
         ModName = apiModProfile.ModName;
         AuthorName = apiModProfile.Author?.AuthorName;
+        Description = apiModProfile.Description;
         List<Uri> previewImageUrls = [];
         if (apiModProfile.PreviewMedia is not null)
         {
@@ -42,6 +43,7 @@ public class ModPageInfo
     public Uri? ModPageUrl { get; init; }
     public string? ModName { get; init; }
     public string? AuthorName { get; init; }
+    public string? Description { get; init; }
     public IReadOnlyList<Uri> PreviewImages { get; init; }
 
     public IReadOnlyList<ModFileInfo> Files { get; init; }

@@ -81,6 +81,13 @@ public class InstallOptions
 {
     public Uri? ModUrl { get; set; }
     public string? ExistingModToOverwritePath { get; set; }
+
+    /// <summary>
+    /// When true, the installer runs in "associate" mode: the primary button reads
+    /// "Associate this mod" and only writes the mod's metadata (URL, name, author, description,
+    /// image) to its settings file — no mod files are added/replaced.
+    /// </summary>
+    public bool AssociateOnly { get; set; }
 }
 
 public sealed class InstallMonitor : IDisposable
@@ -401,6 +408,12 @@ public sealed class ModInstallation : IDisposable
 
         Log.Debug("Released locked files, {time}", DateTime.Now);
     }
+
+    /// <summary>
+    /// Releases the file locks held on the mod folder. Used by "associate" mode, where the
+    /// installer must NOT keep the live mod's files locked (they need to be read/written).
+    /// </summary>
+    public void UnlockFiles() => ReleaseLockedFiles();
 
     public void Dispose()
     {

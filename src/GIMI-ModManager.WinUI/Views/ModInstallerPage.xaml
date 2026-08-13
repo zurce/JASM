@@ -413,7 +413,7 @@
                         Margin="4,0"
                         HorizontalAlignment="Right"
                         Command="{x:Bind ViewModel.AddModCommand}"
-                        Content="Add Mod" l:Uids.Uid="ModInstallerPage_AddModButton">
+                        Content="{x:Bind ViewModel.AddModButtonText, Mode=OneWay}" l:Uids.Uid="ModInstallerPage_AddModButton">
                         <Button.KeyboardAccelerators>
                             <KeyboardAccelerator Key="S" Modifiers="Control" />
                         </Button.KeyboardAccelerators>

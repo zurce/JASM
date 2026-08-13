@@ -32,7 +32,9 @@ public sealed partial class ModPaneVM(
     ImageHandlerService imageHandlerService,
     GIMI_ModManager.Core.GamesService.IGameService gameService,
     GameBananaService gameBananaService,
-    ModInstallerService modInstallerService)
+    ModInstallerService modInstallerService,
+    GIMI_ModManager.Core.Services.GameBanana.GameBananaCoreService gameBananaCoreService,
+    GIMI_ModManager.Core.Services.ArchiveService archiveService)
     : ObservableRecipient, IRecipient<ModChangedMessage>
 {
     private readonly ILogger _logger = Log.ForContext<ModPaneVM>();
@@ -43,6 +45,8 @@ public sealed partial class ModPaneVM(
     private readonly GIMI_ModManager.Core.GamesService.IGameService _gameService = gameService;
     private readonly GameBananaService _gameBananaService = gameBananaService;
     private readonly ModInstallerService _modInstallerService = modInstallerService;
+    private readonly GIMI_ModManager.Core.Services.GameBanana.GameBananaCoreService _gameBananaCoreService = gameBananaCoreService;
+    private readonly GIMI_ModManager.Core.Services.ArchiveService _archiveService = archiveService;
 
     private readonly AsyncLock _loadModLock = new();
     private CancellationToken _cancellationToken = new();
@@ -548,18 +552,61 @@ public sealed partial class ModPaneVM(
             var modFolder = new DirectoryInfo(_loadedMod!.Mod.FullPath);
             var modList = _loadedMod.ModList;
 
-            // Open the full ModInstaller page, preloaded with the selected GameBanana URL and set up
-            // to update/replace the existing mod, so the user goes through the whole install/re-link
-            // flow (details, files, image, author) and "Add Mod" is enabled.
-            var overwritePath = _loadedMod.Mod.FullPath;
-            var monitor = await _modInstallerService.StartModInstallationAsync(modFolder, modList, inGameSkin: null,
-                setup: options =>
-                {
-                    options.ModUrl = url;
-                    options.ExistingModToOverwritePath = overwritePath;
-                });
+            var modInfo = await _gameBananaService.GetModInfoAsync(url, _cancellationToken).ConfigureAwait(true);
 
-            // The installer reloads settings on install; refresh the mod pane when it closes.
+            // Decide the flow: if GameBanana has a newer file than what's on disk, run the regular
+            // download -> install flow (like adding a new mod). Otherwise just associate the URL.
+            var updateAvailable = IsGameBananaUpdateAvailable(modInfo, modFolder.FullName);
+
+            InstallMonitor monitor;
+            if (updateAvailable)
+            {
+                _notificationService.ShowNotification(
+                    App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_DownloadingMod") ?? "Downloading mod",
+                    App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_DownloadingModMsg") ?? "An update is available, downloading the mod from GameBanana...",
+                    TimeSpan.FromSeconds(5));
+
+                var file = modInfo.Files.OrderByDescending(f => f.DateAdded).FirstOrDefault();
+                if (file is null)
+                    throw new InvalidOperationException("The mod has no downloadable files.");
+
+                var identifier = new GIMI_ModManager.Core.Services.GameBanana.Models.GbModFileIdentifier(
+                    new GIMI_ModManager.Core.Services.GameBanana.Models.GbModId(modInfo.ModId),
+                    new GIMI_ModManager.Core.Services.GameBanana.Models.GbModFileId(file.FileId));
+
+                var archivePath = await Task.Run(
+                    () => _gameBananaCoreService.DownloadModAsync(identifier, ct: _cancellationToken), _cancellationToken);
+
+                var extractedRoot = _archiveService.ExtractArchive(archivePath, App.GetUniqueTmpFolder().FullName);
+                var archiveNameSections =
+                    Path.GetFileName(extractedRoot.Name).Split(GIMI_ModManager.Core.Services.GameBanana.ModArchiveRepository.Separator);
+                var modFolderName = archiveNameSections[0];
+                var modFolderExt = Path.GetExtension(extractedRoot.Name);
+                var zipRoot = Directory.CreateDirectory(Path.Combine(extractedRoot.Parent!.FullName, "ArchiveRoot"));
+                extractedRoot.MoveTo(Path.Combine(zipRoot.FullName, $"{modFolderName}{modFolderExt}"));
+
+                // Regular install flow, but tell the installer about the existing (old) mod so the
+                // user gets the overwrite/override option instead of a fresh install.
+                monitor = await _modInstallerService.StartModInstallationAsync(zipRoot, modList, inGameSkin: null,
+                    setup: options =>
+                    {
+                        options.ModUrl = url;
+                        options.ExistingModToOverwritePath = _loadedMod!.Mod.FullPath;
+                    });
+            }
+            else
+            {
+                // No update: associate mode — the installer only writes the metadata to the mod's
+                // settings file (URL, name, author, description, image); no file changes.
+                monitor = await _modInstallerService.StartModInstallationAsync(modFolder, modList, inGameSkin: null,
+                    setup: options =>
+                    {
+                        options.ModUrl = url;
+                        options.AssociateOnly = true;
+                    });
+            }
+
+            // Refresh the mod pane when the installer closes.
             _ = monitor.Task.ContinueWith(_ =>
                 App.MainWindow.DispatcherQueue.EnqueueAsync(() =>
                 {
@@ -571,11 +618,43 @@ public sealed partial class ModPaneVM(
         }
         catch (Exception e)
         {
-            _logger.Error(e, "Error opening ModInstaller for reassigned url");
+            _logger.Error(e, "Error re-linking mod from GameBanana");
             _notificationService.ShowNotification(
                 App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_SearchError") ?? "Search failed",
                 e.Message, null);
         }
+    }
+
+    /// <summary>
+    /// Compares the GameBanana mod's newest file <see cref="ModFileInfo.DateAdded"/> against the
+    /// newest on-disk file timestamp in the installed mod folder (the JSON DateAdded is not used;
+    /// it was poisoned by the bad update).
+    /// </summary>
+    private static bool IsGameBananaUpdateAvailable(GIMI_ModManager.Core.Services.GameBanana.Models.ModPageInfo modInfo,
+        string localModFolder)
+    {
+        var newestGbDate = modInfo.Files.Select(f => f.DateAdded).OrderByDescending(d => d).FirstOrDefault();
+        if (newestGbDate == default)
+            return false;
+
+        DateTime newestLocal;
+        try
+        {
+            newestLocal = Directory.EnumerateFiles(localModFolder, "*", SearchOption.AllDirectories)
+                .Select(File.GetLastWriteTime)
+                .OrderByDescending(d => d)
+                .FirstOrDefault();
+        }
+        catch (Exception e)
+        {
+            Log.ForContext<ModPaneVM>().Warning(e, "Failed to read local mod file timestamps for update check");
+            return false;
+        }
+
+        if (newestLocal == default)
+            return false;
+
+        return newestGbDate > newestLocal;
     }
 
     private string BuildSearchTerms()
@@ -618,7 +697,7 @@ public sealed partial class ModPaneVM(
             Title = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_SearchResultsTitle") ?? "Search GameBanana",
             PrimaryButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_UseThisMod") ?? "Use this mod",
             CloseButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Common_Cancel") ?? "Cancel",
-            DefaultButton = Microsoft.UI.Xaml.Controls.ContentDialogButton.Close
+            DefaultButton = Microsoft.UI.Xaml.Controls.ContentDialogButton.Primary
         };
 
         var list = new Microsoft.UI.Xaml.Controls.ListView

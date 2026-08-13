@@ -150,7 +150,11 @@ public sealed class ApiGameBananaClient(
             return Array.Empty<ApiSearchModResult>();
         }
 
-        return search?.Records?.Where(r => r is not null).ToArray() ?? Array.Empty<ApiSearchModResult>();
+        // Only actual mods — the search API also returns mod requests and other article types.
+        return search?.Records
+                   ?.Where(r => r is not null && string.Equals(r.ModelName, "Mod", StringComparison.OrdinalIgnoreCase))
+                   .ToArray()
+               ?? Array.Empty<ApiSearchModResult>();
     }
 
     private static Uri GetAltUrlForModInfo(GbModFileId modFileId)

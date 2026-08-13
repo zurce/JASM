@@ -788,6 +788,18 @@
     <!-- Notification title when a GameBanana search fails -->
     <value>Ошибка поиска</value>
   </data>
+  <data name="ModPane_DownloadingMod" xml:space="preserve">
+    <!-- Notification title while downloading the mod from GameBanana to re-link it -->
+    <value>Загрузка мода</value>
+  </data>
+  <data name="ModPane_DownloadingModMsg" xml:space="preserve">
+    <!-- Notification body while downloading the mod from GameBanana to re-link it -->
+    <value>Доступно обновление, загружаем мод с GameBanana...</value>
+  </data>
+  <data name="ModInstaller_AssociateMod" xml:space="preserve">
+    <!-- Primary button label in the ModInstaller "associate" mode that only writes the mod's metadata to its settings -->
+    <value>Связать этот мод</value>
+  </data>
 
   <data name="ModPane_ForwardKey.Header" xml:space="preserve">
     <!-- Label for key swap configuration fields -->

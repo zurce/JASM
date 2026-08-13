@@ -12,6 +12,8 @@ public class ApiModProfile
 
     [JsonPropertyName("_sProfileUrl")] public string? ModPageUrl { get; init; }
 
+    [JsonPropertyName("_sText")] public string? Description { get; init; }
+
     [JsonPropertyName("_aFiles")] public ICollection<ApiModFileInfo>? Files { get; init; }
 }
 
