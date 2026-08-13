@@ -127,10 +127,26 @@
                 IsEnabled="{x:Bind ViewModel.IsNotReadOnly, Mode=OneWay}"
                 Text="{x:Bind ViewModel.ModModel.ModUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
+            <!-- When the mod has no URL yet, offer to search GameBanana to re-link it. -->
+            <Button
+                Grid.Column="1"
+                Margin="4,0,0,0"
+                VerticalAlignment="Bottom"
+                Command="{x:Bind ViewModel.SearchModUrlCommand}"
+                Visibility="{x:Bind ViewModel.CanSearchModUrl, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
+                ToolTipService.ToolTip="{x:Bind ViewModel.SearchTooltip, Mode=OneWay}">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <FontIcon FontSize="16" Glyph="&#xE721;" />
+                    <TextBlock VerticalAlignment="Center" l:Uids.Uid="ModPane_SearchButton" Text="Search" />
+                </StackPanel>
+            </Button>
+
+            <!-- Shown only when a URL is set: opens the mod page. -->
             <HyperlinkButton
                 Grid.Column="1"
                 VerticalAlignment="Bottom"
                 IsEnabled="{x:Bind ViewModel.IsNotReadOnly, Mode=OneWay}"
+                Visibility="{x:Bind ViewModel.CanOpenModUrl, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
                 NavigateUri="{x:Bind ViewModel.ModModel.ModUrl, Mode=OneWay, Converter={StaticResource StringToUri}}">
                 <FontIcon FontSize="18" Glyph="&#xE8A7;" />
             </HyperlinkButton>

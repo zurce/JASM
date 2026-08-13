@@ -31,7 +31,11 @@ public class SkinModSettingsManager
     {
         ReadCommentHandling = JsonCommentHandling.Skip,
         AllowTrailingCommas = true,
-        WriteIndented = true
+        WriteIndented = true,
+        // Existing .JASM_ModConfig.json files are camelCase (a.JASM_ModConfig); without this the
+        // PascalCase properties on JsonModSettings fail to bind and fields are silently dropped
+        // on the next save — losing CustomName/Author/ModUrl/CharacterSkinOverride/etc.
+        PropertyNameCaseInsensitive = true
     };
 
 

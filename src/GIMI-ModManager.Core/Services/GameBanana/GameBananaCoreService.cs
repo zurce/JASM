@@ -37,6 +37,17 @@ public sealed class GameBananaCoreService(
     }
 
     /// <summary>
+    /// Searches GameBanana for mods by name/terms, optionally scoped to a game row id.
+    /// Use to let a user re-link a mod to its GameBanana page when the ModUrl was lost.
+    /// </summary>
+    public async Task<IReadOnlyList<ApiSearchModResult>> SearchModsAsync(string searchString, int? gameRowId = null,
+        CancellationToken ct = default)
+    {
+        var apiGameBananaClient = CreateApiGameBananaClient();
+        return await apiGameBananaClient.SearchModsAsync(searchString, gameRowId, ct).ConfigureAwait(false);
+    }
+
+    /// <summary>
     /// Gets the profile of a mod from GameBanana. Uses caching to reduce the number of API calls.
     /// The return type <see cref="ModPageInfo"/> also contains mod files info <see cref="ModFileInfo"/>
     /// </summary>

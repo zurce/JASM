@@ -15,6 +15,7 @@ using CommunityToolkitWrapper;
 using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Entities;
 using GIMI_ModManager.Core.Entities.Mods.Contract;
+using GIMI_ModManager.Core.GamesService;
 using GIMI_ModManager.Core.Helpers;
 using GIMI_ModManager.WinUI.Services;
 using GIMI_ModManager.WinUI.Services.ModHandling;
@@ -28,7 +29,9 @@ public sealed partial class ModPaneVM(
     ISkinManagerService skinManagerService,
     NotificationManager notificationService,
     ModSettingsService modSettingsService,
-    ImageHandlerService imageHandlerService)
+    ImageHandlerService imageHandlerService,
+    GIMI_ModManager.Core.GamesService.IGameService gameService,
+    GameBananaService gameBananaService)
     : ObservableRecipient, IRecipient<ModChangedMessage>
 {
     private readonly ILogger _logger = Log.ForContext<ModPaneVM>();
@@ -36,6 +39,8 @@ public sealed partial class ModPaneVM(
     private readonly NotificationManager _notificationService = notificationService;
     private readonly ModSettingsService _modSettingsService = modSettingsService;
     private readonly ImageHandlerService _imageHandlerService = imageHandlerService;
+    private readonly GIMI_ModManager.Core.GamesService.IGameService _gameService = gameService;
+    private readonly GameBananaService _gameBananaService = gameBananaService;
 
     private readonly AsyncLock _loadModLock = new();
     private CancellationToken _cancellationToken = new();
@@ -90,12 +95,16 @@ public sealed partial class ModPaneVM(
                     await UnloadModAsync();
                     NotifyAllCommands();
                     OnPropertyChanged(nameof(IsModLoaded));
+                    OnPropertyChanged(nameof(CanSearchModUrl));
+                    OnPropertyChanged(nameof(CanOpenModUrl));
                     continue;
                 }
 
                 await LoadModAsync(loadModMessage.ModId.Value, loadModMessage.Force);
                 NotifyAllCommands();
                 OnPropertyChanged(nameof(IsModLoaded));
+                OnPropertyChanged(nameof(CanSearchModUrl));
+                OnPropertyChanged(nameof(CanOpenModUrl));
             }
             catch (OperationCanceledException)
             {
@@ -155,7 +164,12 @@ public sealed partial class ModPaneVM(
         IsReadOnly = false;
     }
 
-    private void ModModel_PropertyChanged(object? sender, PropertyChangedEventArgs e) => SaveModSettingsCommand.NotifyCanExecuteChanged();
+    private void ModModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        SaveModSettingsCommand.NotifyCanExecuteChanged();
+        if (e.PropertyName is nameof(ModPaneFieldsVm.ModUrl))
+            NotifyModUrlChanged();
+    }
     private void BusySetter_HardBusyChanged(object? sender, EventArgs eventArgs) => NotifyAllCommands();
 
     private Task UnloadModAsync()
@@ -454,6 +468,138 @@ public sealed partial class ModPaneVM(
             Messenger.Send(new ModChangedMessage(this, _loadedMod, null));
             QueueLoadMod(_loadedModId, true);
         }).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Whether the mod-url field is empty and the loaded mod is editable, so the GameBanana
+    /// "search to re-link" button should be shown.
+    /// </summary>
+    public bool CanSearchModUrl => IsModLoaded && IsNotReadOnly && string.IsNullOrWhiteSpace(ModModel.ModUrl);
+
+    /// <summary>Inverse of <see cref="CanSearchModUrl"/>: true when a URL is set (show the open-link icon).</summary>
+    public bool CanOpenModUrl => IsModLoaded && !string.IsNullOrWhiteSpace(ModModel.ModUrl);
+
+    /// <summary>Tooltip for the GameBanana search button.</summary>
+    public string SearchTooltip =>
+        App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_SearchButtonTooltip") ??
+        "Search GameBanana for this mod to re-link its URL";
+
+    /// <summary>Notifies the URL-dependent commands when <see cref="ModPaneFieldsVm.ModUrl"/> changes.</summary>
+    private void NotifyModUrlChanged()
+    {
+        SearchModUrlCommand.NotifyCanExecuteChanged();
+        OnPropertyChanged(nameof(CanSearchModUrl));
+        OnPropertyChanged(nameof(CanOpenModUrl));
+    }
+
+    [RelayCommand(CanExecute = nameof(CanSearchModUrl))]
+    private async Task SearchModUrlAsync()
+    {
+        if (!IsModLoaded)
+            return;
+
+        try
+        {
+            // Likely search terms: the mod folder name (with separators/version noise removed), plus
+            // the current character name, scoped to the current game on GameBanana.
+            var terms = BuildSearchTerms();
+            var gameUrl = _gameService.GameBananaUrl;
+            var gameRowId = GetGameRowId(gameUrl);
+
+            var results = await _gameBananaService.SearchModsAsync(terms, gameRowId, _cancellationToken)
+                .ConfigureAwait(true);
+
+            if (results.Count == 0)
+            {
+                _notificationService.ShowNotification(
+                    App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_NoSearchResults") ?? "No results found",
+                    App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_NoSearchResultsMsg") ?? "Could not find any mods matching your search on GameBanana.",
+                    null);
+                return;
+            }
+
+            var selected = await ShowSearchDialogAsync(results);
+            if (selected is null)
+                return;
+
+            ModModel.ModUrl = selected;
+            SaveModSettingsCommand.NotifyCanExecuteChanged();
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "Error searching GameBanana for mod url");
+            _notificationService.ShowNotification(
+                App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_SearchError") ?? "Search failed",
+                e.Message, null);
+        }
+    }
+
+    private string BuildSearchTerms()
+    {
+        var folderName = _loadedMod!.Mod.Name;
+        if (string.IsNullOrWhiteSpace(folderName))
+            folderName = _loadedMod!.Mod.GetDisplayName();
+
+        // Strip a leading disabled prefix and normalize separators to spaces, drop a trailing
+        // version number (e.g. "_v11" / "_2") commonly appended to mod folder names.
+        folderName = ModFolderHelpers.GetFolderNameWithoutDisabledPrefix(folderName) ?? folderName;
+        folderName = folderName.Replace('_', ' ').Replace('-', ' ').Trim();
+        folderName = System.Text.RegularExpressions.Regex.Replace(folderName, @"\s+\d+$", "");
+
+        var terms = new List<string>();
+        if (!string.IsNullOrWhiteSpace(folderName)) terms.Add(folderName);
+
+        var character = _loadedMod!.ModList.Character;
+        var charName = (!string.IsNullOrWhiteSpace(character.DisplayName)
+            ? character.DisplayName
+            : character.InternalName.Id)?.Trim();
+        if (!string.IsNullOrWhiteSpace(charName)) terms.Add(charName);
+
+        return string.Join(" ", terms);
+    }
+
+    private static int? GetGameRowId(Uri gameBananaUrl)
+    {
+        if (gameBananaUrl is null || !gameBananaUrl.IsAbsoluteUri) return null;
+        if (!gameBananaUrl.Host.Equals("gamebanana.com", StringComparison.OrdinalIgnoreCase)) return null;
+        var segment = gameBananaUrl.Segments.LastOrDefault()?.TrimEnd('/');
+        return int.TryParse(segment, out var id) ? id : null;
+    }
+
+    private async Task<string?> ShowSearchDialogAsync(IReadOnlyList<GIMI_ModManager.Core.Services.GameBanana.ApiModels.ApiSearchModResult> results)
+    {
+        var dialog = new Microsoft.UI.Xaml.Controls.ContentDialog
+        {
+            XamlRoot = App.MainWindow.Content.XamlRoot,
+            Title = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_SearchResultsTitle") ?? "Search GameBanana",
+            PrimaryButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_UseThisMod") ?? "Use this mod",
+            CloseButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Common_Cancel") ?? "Cancel",
+            DefaultButton = Microsoft.UI.Xaml.Controls.ContentDialogButton.Close
+        };
+
+        var list = new Microsoft.UI.Xaml.Controls.ListView
+        {
+            Width = 420,
+            MaxHeight = 360,
+            SelectionMode = Microsoft.UI.Xaml.Controls.ListViewSelectionMode.Single,
+            DisplayMemberPath = nameof(GIMI_ModManager.Core.Services.GameBanana.ApiModels.ApiSearchModResult.Name),
+            ItemsSource = results
+        };
+        dialog.Content = list;
+
+        var result = await dialog.ShowAsync();
+
+        if (result != Microsoft.UI.Xaml.Controls.ContentDialogResult.Primary)
+            return null;
+
+        if (list.SelectedItem is GIMI_ModManager.Core.Services.GameBanana.ApiModels.ApiSearchModResult selected &&
+            selected.ModId > 0)
+            return GameBananaService.BuildModUrlFromId(selected.ModId).ToString();
+
+        return null;
     }
 
     private bool CanOpenModFolder() => DefaultCanExecute;

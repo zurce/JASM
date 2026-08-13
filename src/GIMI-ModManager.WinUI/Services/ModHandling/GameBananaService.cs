@@ -1,6 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Services.GameBanana;
+using GIMI_ModManager.Core.Services.GameBanana.ApiModels;
 using GIMI_ModManager.Core.Services.GameBanana.Models;
 using Serilog;
 
@@ -84,6 +85,25 @@ public class GameBananaService(
             SitePageUrl = modSettings.ModUrl
         };
     }
+
+    /// <summary>
+    /// Searches GameBanana for mods by name/terms, scoped to the given game row id.
+    /// Returns matches (name + mod id + profile url) so a user can re-link a lost mod url.
+    /// </summary>
+    /// <param name="searchTerms">The search query (e.g. a character name and/or mod folder terms).</param>
+    /// <param name="gameRowId">GameBanana game id; pass null to search across all games.</param>
+    public async Task<IReadOnlyList<ApiSearchModResult>> SearchModsAsync(string searchTerms, int? gameRowId,
+        CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(searchTerms))
+            return Array.Empty<ApiSearchModResult>();
+
+        return await _gameBananaCoreService.SearchModsAsync(searchTerms, gameRowId, cancellationToken)
+            .ConfigureAwait(false);
+    }
+
+    /// <summary>Builds <c>https://gamebanana.com/mods/&lt;id&gt;</c> from a mod row id.</summary>
+    public static Uri BuildModUrlFromId(int modId) => new($"https://gamebanana.com/mods/{modId}");
 
     private string? GetModIdFromUri(Uri modUrl)
     {
