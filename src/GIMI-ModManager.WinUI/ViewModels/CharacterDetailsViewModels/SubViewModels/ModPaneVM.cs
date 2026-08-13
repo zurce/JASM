@@ -515,20 +515,13 @@ public sealed partial class ModPaneVM(
             var results = await _gameBananaService.SearchModsAsync(terms, gameRowId, _cancellationToken)
                 .ConfigureAwait(true);
 
-            if (results.Count == 0)
-            {
-                _notificationService.ShowNotification(
-                    App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_NoSearchResults") ?? "No results found",
-                    App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_NoSearchResultsMsg") ?? "Could not find any mods matching your search on GameBanana.",
-                    null);
-                return;
-            }
-
-            var selected = await ShowSearchDialogAsync(results);
+            // Always open the dialog (even with no results) so the user can edit the search terms
+            // and re-run when the auto-detected terms missed the mod.
+            var selected = await ShowSearchDialogAsync(results, terms, gameRowId);
             if (selected is null)
                 return;
 
-            await SaveReassignedModUrlAsync(selected);
+            await SaveReassignedModUrlAsync(selected.Value.Url, selected.Value.AlwaysRedownload);
         }
         catch (OperationCanceledException)
         {
@@ -542,7 +535,7 @@ public sealed partial class ModPaneVM(
         }
     }
 
-    private async Task SaveReassignedModUrlAsync(string modUrl)
+    private async Task SaveReassignedModUrlAsync(string modUrl, bool alwaysRedownload = false)
     {
         try
         {
@@ -554,9 +547,10 @@ public sealed partial class ModPaneVM(
 
             var modInfo = await _gameBananaService.GetModInfoAsync(url, _cancellationToken).ConfigureAwait(true);
 
-            // Decide the flow: if GameBanana has a newer file than what's on disk, run the regular
-            // download -> install flow (like adding a new mod). Otherwise just associate the URL.
-            var updateAvailable = IsGameBananaUpdateAvailable(modInfo, modFolder.FullName);
+            // Decide the flow: if GameBanana has a newer file than what's on disk (or the user asked
+            // to always redownload), run the regular download -> install flow (like adding a new mod).
+            // Otherwise just associate the URL.
+            var updateAvailable = alwaysRedownload || IsGameBananaUpdateAvailable(modInfo, modFolder.FullName);
 
             InstallMonitor monitor;
             if (updateAvailable)
@@ -689,7 +683,9 @@ public sealed partial class ModPaneVM(
         return int.TryParse(segment, out var id) ? id : null;
     }
 
-    private async Task<string?> ShowSearchDialogAsync(IReadOnlyList<GIMI_ModManager.Core.Services.GameBanana.ApiModels.ApiSearchModResult> results)
+    private async Task<(string Url, bool AlwaysRedownload)?> ShowSearchDialogAsync(
+        IReadOnlyList<GIMI_ModManager.Core.Services.GameBanana.ApiModels.ApiSearchModResult> results,
+        string initialTerms, int? gameRowId)
     {
         var dialog = new Microsoft.UI.Xaml.Controls.ContentDialog
         {
@@ -700,26 +696,202 @@ public sealed partial class ModPaneVM(
             DefaultButton = Microsoft.UI.Xaml.Controls.ContentDialogButton.Primary
         };
 
+        var searchBox = new Microsoft.UI.Xaml.Controls.TextBox
+        {
+            Text = initialTerms,
+            PlaceholderText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_SearchBoxPlaceholder") ?? "Edit the search terms..."
+        };
+        var searchButton = new Microsoft.UI.Xaml.Controls.Button
+        {
+            Content = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_SearchButton.Text") ?? "Search",
+            VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment.Center
+        };
+        var alwaysRedownloadCheckbox = new Microsoft.UI.Xaml.Controls.CheckBox
+        {
+            Content = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_AlwaysRedownload") ?? "Always redownload the mod"
+        };
+
         var list = new Microsoft.UI.Xaml.Controls.ListView
         {
-            Width = 420,
+            MinHeight = 200,
             MaxHeight = 360,
             SelectionMode = Microsoft.UI.Xaml.Controls.ListViewSelectionMode.Single,
-            DisplayMemberPath = nameof(GIMI_ModManager.Core.Services.GameBanana.ApiModels.ApiSearchModResult.Name),
-            ItemsSource = results
+            ItemTemplate = BuildSearchResultTemplate()
         };
-        dialog.Content = list;
+
+        var noResultsText = new Microsoft.UI.Xaml.Controls.TextBlock
+        {
+            Text = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_SearchNoResultsInline") ?? "No mods found. Adjust the search terms above and search again.",
+            TextWrapping = Microsoft.UI.Xaml.TextWrapping.WrapWholeWords,
+            Visibility = Microsoft.UI.Xaml.Visibility.Collapsed,
+            Margin = new Microsoft.UI.Xaml.Thickness(0, 8, 0, 0)
+        };
+
+        var localFolder = _loadedMod?.Mod.FullPath;
+
+        void Populate(IReadOnlyList<GIMI_ModManager.Core.Services.GameBanana.ApiModels.ApiSearchModResult> newResults)
+        {
+            var rows = BuildSearchRows(newResults, localFolder);
+            list.ItemsSource = rows;
+            noResultsText.Visibility = rows.Count == 0
+                ? Microsoft.UI.Xaml.Visibility.Visible
+                : Microsoft.UI.Xaml.Visibility.Collapsed;
+            if (rows.Count > 0)
+                list.SelectedIndex = 0;
+        }
+
+        async void RunSearch()
+        {
+            try
+            {
+                searchButton.IsEnabled = false;
+                var newResults = await _gameBananaService.SearchModsAsync(searchBox.Text, gameRowId, _cancellationToken)
+                    .ConfigureAwait(true);
+                Populate(newResults);
+            }
+            catch (Exception e)
+            {
+                _logger.Error(e, "Re-search of GameBanana failed");
+                _notificationService.ShowNotification(
+                    App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_SearchError") ?? "Search failed",
+                    e.Message, null);
+            }
+            finally
+            {
+                searchButton.IsEnabled = true;
+            }
+        }
+
+        searchButton.Click += (_, _) => RunSearch();
+        searchBox.KeyDown += (_, e) =>
+        {
+            // Enter in the search box re-searches. Marking it handled stops the ContentDialog's
+            // default button from also firing (which would confirm/close the dialog).
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                e.Handled = true;
+                RunSearch();
+            }
+        };
+
+        var content = new Microsoft.UI.Xaml.Controls.Grid { Width = 460 };
+        content.RowDefinitions.Add(new Microsoft.UI.Xaml.Controls.RowDefinition { Height = Microsoft.UI.Xaml.GridLength.Auto });
+        content.RowDefinitions.Add(new Microsoft.UI.Xaml.Controls.RowDefinition { Height = Microsoft.UI.Xaml.GridLength.Auto });
+        content.RowDefinitions.Add(new Microsoft.UI.Xaml.Controls.RowDefinition { Height = new Microsoft.UI.Xaml.GridLength(1, Microsoft.UI.Xaml.GridUnitType.Star) });
+
+        // Row 0: search box + search button in the same row.
+        var searchRow = new Microsoft.UI.Xaml.Controls.Grid
+        {
+            ColumnSpacing = 8
+        };
+        searchRow.ColumnDefinitions.Add(new Microsoft.UI.Xaml.Controls.ColumnDefinition { Width = new Microsoft.UI.Xaml.GridLength(1, Microsoft.UI.Xaml.GridUnitType.Star) });
+        searchRow.ColumnDefinitions.Add(new Microsoft.UI.Xaml.Controls.ColumnDefinition { Width = Microsoft.UI.Xaml.GridLength.Auto });
+        Microsoft.UI.Xaml.Controls.Grid.SetColumn(searchBox, 0);
+        searchRow.Children.Add(searchBox);
+        Microsoft.UI.Xaml.Controls.Grid.SetColumn(searchButton, 1);
+        searchRow.Children.Add(searchButton);
+        Microsoft.UI.Xaml.Controls.Grid.SetRow(searchRow, 0);
+        content.Children.Add(searchRow);
+
+        // Row 1: always-redownload checkbox.
+        Microsoft.UI.Xaml.Controls.Grid.SetRow(alwaysRedownloadCheckbox, 1);
+        content.Children.Add(alwaysRedownloadCheckbox);
+
+        // Row 2: results list (+ inline no-results message).
+        Microsoft.UI.Xaml.Controls.Grid.SetRow(list, 2);
+        content.Children.Add(list);
+        Microsoft.UI.Xaml.Controls.Grid.SetRow(noResultsText, 2);
+        content.Children.Add(noResultsText);
+
+        dialog.Content = content;
+        Populate(results);
 
         var result = await dialog.ShowAsync();
 
         if (result != Microsoft.UI.Xaml.Controls.ContentDialogResult.Primary)
             return null;
 
-        if (list.SelectedItem is GIMI_ModManager.Core.Services.GameBanana.ApiModels.ApiSearchModResult selected &&
-            selected.ModId > 0)
-            return GameBananaService.BuildModUrlFromId(selected.ModId).ToString();
+        if (list.SelectedItem is SearchResultRowVM selected && selected.Result.ModId > 0)
+            return (GameBananaService.BuildModUrlFromId(selected.Result.ModId).ToString(),
+                alwaysRedownloadCheckbox.IsChecked == true);
 
         return null;
+    }
+
+    private static Microsoft.UI.Xaml.DataTemplate BuildSearchResultTemplate()
+    {
+        // Runtime {Binding} on SearchResultRowVM. E8F1 is the same update icon used for
+        // AttentionType.UpdateAvailable; the accent brush + tooltip come from the row VM.
+        return (Microsoft.UI.Xaml.DataTemplate)Microsoft.UI.Xaml.Markup.XamlReader.Load(
+            "<DataTemplate xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\">" +
+            "  <Grid ColumnSpacing=\"8\">" +
+            "    <Grid.ColumnDefinitions>" +
+            "      <ColumnDefinition Width=\"*\"/>" +
+            "      <ColumnDefinition Width=\"Auto\"/>" +
+            "    </Grid.ColumnDefinitions>" +
+            "    <TextBlock Grid.Column=\"0\" VerticalAlignment=\"Center\" Text=\"{Binding Name}\" TextTrimming=\"CharacterEllipsis\"/>" +
+            "    <FontIcon Grid.Column=\"1\" FontSize=\"14\" Glyph=\"&#xE8F1;\"" +
+            "              Foreground=\"{Binding UpdateIconBrush}\"" +
+            "              ToolTipService.ToolTip=\"{Binding UpdateTooltip}\"" +
+            "              Visibility=\"{Binding UpdateIconVisibility}\"/>" +
+            "  </Grid>" +
+            "</DataTemplate>");
+    }
+
+    private IReadOnlyList<SearchResultRowVM> BuildSearchRows(
+        IReadOnlyList<GIMI_ModManager.Core.Services.GameBanana.ApiModels.ApiSearchModResult> results, string? localModFolder)
+    {
+        // A result is shown with the update icon when it was modified on GameBanana after the newest
+        // file currently on disk for the installed mod (cheap heuristic, no extra API calls).
+        DateTime newestLocal = default;
+        if (localModFolder is not null)
+        {
+            try
+            {
+                newestLocal = Directory.EnumerateFiles(localModFolder, "*", SearchOption.AllDirectories)
+                    .Select(File.GetLastWriteTime)
+                    .OrderByDescending(d => d)
+                    .FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                _logger.Warning(e, "Failed to read local mod file timestamps for search rows");
+            }
+        }
+
+        return results
+            .Where(r => r is not null)
+            .Select(r => new SearchResultRowVM(r,
+                newestLocal != default && r.DateModified > newestLocal))
+            .ToArray();
+    }
+
+    /// <summary>A search result row shown in the GameBanana search dialog.</summary>
+    private sealed class SearchResultRowVM
+    {
+        public SearchResultRowVM(GIMI_ModManager.Core.Services.GameBanana.ApiModels.ApiSearchModResult result, bool isLikelyUpdate)
+        {
+            Result = result;
+            IsLikelyUpdate = isLikelyUpdate;
+        }
+
+        public GIMI_ModManager.Core.Services.GameBanana.ApiModels.ApiSearchModResult Result { get; }
+        public string Name => Result.Name ?? string.Empty;
+        public bool IsLikelyUpdate { get; }
+
+        /// <summary>Visibility for the update icon (no converter needed in the template).</summary>
+        public Microsoft.UI.Xaml.Visibility UpdateIconVisibility =>
+            IsLikelyUpdate ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
+
+        /// <summary>Accent-colored brush for the update icon (resolved from the app accent color).</summary>
+        public Microsoft.UI.Xaml.Media.Brush UpdateIconBrush =>
+            new Microsoft.UI.Xaml.Media.SolidColorBrush(
+                (Windows.UI.Color)Microsoft.UI.Xaml.Application.Current.Resources["SystemAccentColor"]);
+
+        /// <summary>Tooltip explaining the update icon.</summary>
+        public string UpdateTooltip =>
+            App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_LikelyUpdateTooltip") ??
+            "An update for this mod is available on GameBanana";
     }
 
     private bool CanOpenModFolder() => DefaultCanExecute;

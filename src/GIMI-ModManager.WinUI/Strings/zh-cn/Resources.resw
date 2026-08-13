@@ -796,6 +796,22 @@
     <!-- Notification body while downloading the mod from GameBanana to re-link it -->
     <value>有可用更新，正在从GameBanana下载Mod...</value>
   </data>
+  <data name="ModPane_SearchBoxPlaceholder" xml:space="preserve">
+    <!-- Placeholder for the editable search terms field in the GameBanana search dialog -->
+    <value>编辑搜索词...</value>
+  </data>
+  <data name="ModPane_SearchNoResultsInline" xml:space="preserve">
+    <!-- Inline message shown in the search dialog when the current search returns no mods -->
+    <value>未找到Mod。请调整上方搜索词并重新搜索。</value>
+  </data>
+  <data name="ModPane_AlwaysRedownload" xml:space="preserve">
+    <!-- Checkbox in the search dialog: always run the download/install flow for the selected mod -->
+    <value>始终重新下载Mod</value>
+  </data>
+  <data name="ModPane_LikelyUpdateTooltip" xml:space="preserve">
+    <!-- Tooltip on the update icon in search results (this result likely has a newer version) -->
+    <value>这是较新的文件版本，关联后您的Mod将被更新</value>
+  </data>
   <data name="ModInstaller_AssociateMod" xml:space="preserve">
     <!-- Primary button label in the ModInstaller "associate" mode that only writes the mod's metadata to its settings -->
     <value>关联此Mod</value>
