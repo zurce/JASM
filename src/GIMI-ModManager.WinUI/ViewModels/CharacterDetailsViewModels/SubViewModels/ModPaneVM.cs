@@ -522,8 +522,7 @@ public sealed partial class ModPaneVM(
             if (selected is null)
                 return;
 
-            ModModel.ModUrl = selected;
-            SaveModSettingsCommand.NotifyCanExecuteChanged();
+            await SaveReassignedModUrlAsync(selected);
         }
         catch (OperationCanceledException)
         {
@@ -531,6 +530,36 @@ public sealed partial class ModPaneVM(
         catch (Exception e)
         {
             _logger.Error(e, "Error searching GameBanana for mod url");
+            _notificationService.ShowNotification(
+                App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_SearchError") ?? "Search failed",
+                e.Message, null);
+        }
+    }
+
+    private async Task SaveReassignedModUrlAsync(string modUrl)
+    {
+        ModModel.ModUrl = modUrl;
+
+        try
+        {
+            if (!Uri.TryCreate(modUrl, UriKind.Absolute, out var url))
+                return;
+
+            var updateRequest = new UpdateSettingsRequest { SetModUrl = url };
+            var result = await Task.Run(() =>
+                _modSettingsService.SaveSettingsAsync(_loadedMod!.Id, updateRequest), _cancellationToken);
+
+            if (result.Notification is not null)
+                _notificationService.ShowNotification(result.Notification);
+
+            // Reload the mod so the stored settings (incl. the new URL) are reflected.
+            _loadedMod.Mod.ClearCache();
+            Messenger.Send(new ModChangedMessage(this, _loadedMod, null));
+            QueueLoadMod(_loadedModId, true);
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "Error saving reassigned GameBanana mod url");
             _notificationService.ShowNotification(
                 App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_SearchError") ?? "Search failed",
                 e.Message, null);
