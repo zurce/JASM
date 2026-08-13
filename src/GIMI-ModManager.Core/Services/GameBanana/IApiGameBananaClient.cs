@@ -44,6 +44,17 @@ public interface IApiGameBananaClient
     public Task<bool> ModFileExists(GbModFileId modFileId, CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// Searches GameBanana for mods matching <paramref name="searchString"/>, optionally scoped to
+    /// a game row id. Used to let a user re-link a mod to its GameBanana page.
+    /// </summary>
+    /// <param name="searchString">The search query (e.g. a mod folder name + character).</param>
+    /// <param name="gameRowId">Optional GameBanana game id to narrow results (e.g. Genshin = 8552).</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns>A list of matching mods (name + profile url).</returns>
+    public Task<IReadOnlyList<ApiSearchModResult>> SearchModsAsync(string searchString, int? gameRowId = null,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
     /// Download mod file from GameBanana.
     /// </summary>
     /// <param name="modFileId">The Game banana's mod files Id</param>

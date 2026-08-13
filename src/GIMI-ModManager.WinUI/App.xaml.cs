@@ -358,9 +358,12 @@ public partial class App : Application
         var updateScript = Path.Combine(parentDir, "JASM_Update.cmd");
         var updateLog = Path.Combine(parentDir, "JASM_Update.log");
 
+        // Only delete a JASM_Old / JASM_Update folder when it is clearly an internal update
+        // artifact (it contains a JASM executable). A user may keep their own backup (even if
+        // named JASM_BAK / JASM_Old); we must never auto-delete that on launch.
         foreach (var path in new[] { oldDir, stagingDir })
         {
-            if (Directory.Exists(path))
+            if (Directory.Exists(path) && LooksLikeJasmInstall(path))
             {
                 Task.Run(() =>
                 {
@@ -377,6 +380,20 @@ public partial class App : Application
                 try { File.Delete(path); }
                 catch { /* ignore */ }
             }
+        }
+    }
+
+    private static bool LooksLikeJasmInstall(string path)
+    {
+        try
+        {
+            return Directory.Exists(path) &&
+                   Directory.EnumerateFiles(path, "*.exe", SearchOption.TopDirectoryOnly)
+                       .Any(f => Path.GetFileName(f).StartsWith("JASM", StringComparison.OrdinalIgnoreCase));
+        }
+        catch
+        {
+            return false;
         }
     }
 }

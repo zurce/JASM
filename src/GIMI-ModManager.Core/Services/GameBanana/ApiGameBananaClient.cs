@@ -121,6 +121,38 @@ public sealed class ApiGameBananaClient(
         return !content.Contains("error:", StringComparison.OrdinalIgnoreCase);
     }
 
+    private const string SearchUrl = "https://gamebanana.com/apiv11/Util/Search/Results";
+
+    public async Task<IReadOnlyList<ApiSearchModResult>> SearchModsAsync(string searchString, int? gameRowId = null,
+        CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(searchString))
+            return Array.Empty<ApiSearchModResult>();
+
+        var query = $"_sSearchString={Uri.EscapeDataString(searchString)}";
+        if (gameRowId is > 0)
+            query += $"&_idGameRow={gameRowId.Value}";
+        var searchUri = new Uri(SearchUrl + "?" + query);
+
+        using var response = await SendRequest(searchUri, cancellationToken).ConfigureAwait(false);
+        await using var contentStream =
+            await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+
+        ApiSearchResponse? search;
+        try
+        {
+            search = await JsonSerializer.DeserializeAsync<ApiSearchResponse>(contentStream,
+                cancellationToken: cancellationToken).ConfigureAwait(false);
+        }
+        catch (JsonException e)
+        {
+            _logger.Warning(e, "Failed to deserialize GameBanana search response");
+            return Array.Empty<ApiSearchModResult>();
+        }
+
+        return search?.Records?.Where(r => r is not null).ToArray() ?? Array.Empty<ApiSearchModResult>();
+    }
+
     private static Uri GetAltUrlForModInfo(GbModFileId modFileId)
     {
         return new Uri(

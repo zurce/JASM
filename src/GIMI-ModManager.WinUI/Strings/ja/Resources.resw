@@ -760,6 +760,34 @@
     <!-- Label for the mod page URL field -->
     <value>Mod URL:</value>
   </data>
+  <data name="ModPane_SearchButton.Text" xml:space="preserve">
+    <!-- Button label shown on the mod URL field to search GameBanana when the URL is empty -->
+    <value>検索</value>
+  </data>
+  <data name="ModPane_SearchButtonTooltip" xml:space="preserve">
+    <!-- Tooltip for the GameBanana search button on the mod URL field -->
+    <value>このModのURLを再リンクするためGameBananaで検索</value>
+  </data>
+  <data name="ModPane_SearchResultsTitle" xml:space="preserve">
+    <!-- Title of the GameBanana search results dialog for re-linking a mod -->
+    <value>GameBananaで検索</value>
+  </data>
+  <data name="ModPane_UseThisMod" xml:space="preserve">
+    <!-- Primary button label to use the selected GameBanana search result as this mod's URL -->
+    <value>このModを使う</value>
+  </data>
+  <data name="ModPane_NoSearchResults" xml:space="preserve">
+    <!-- Notification title when a GameBanana search returns no results -->
+    <value>結果が見つかりません</value>
+  </data>
+  <data name="ModPane_NoSearchResultsMsg" xml:space="preserve">
+    <!-- Notification body when a GameBanana search returns no results -->
+    <value>GameBananaで検索に一致するModが見つかりませんでした。</value>
+  </data>
+  <data name="ModPane_SearchError" xml:space="preserve">
+    <!-- Notification title when a GameBanana search fails -->
+    <value>検索に失敗しました</value>
+  </data>
 
   <data name="ModPane_ForwardKey.Header" xml:space="preserve">
     <!-- Label for key swap configuration fields -->
