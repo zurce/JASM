@@ -548,10 +548,16 @@ public sealed partial class ModPaneVM(
             var modFolder = new DirectoryInfo(_loadedMod!.Mod.FullPath);
             var modList = _loadedMod.ModList;
 
-            // Open the full ModInstaller page, preloaded with the selected GameBanana URL, so the
-            // user goes through the whole install/re-link flow (details, files, image, author, etc.).
+            // Open the full ModInstaller page, preloaded with the selected GameBanana URL and set up
+            // to update/replace the existing mod, so the user goes through the whole install/re-link
+            // flow (details, files, image, author) and "Add Mod" is enabled.
+            var overwritePath = _loadedMod.Mod.FullPath;
             var monitor = await _modInstallerService.StartModInstallationAsync(modFolder, modList, inGameSkin: null,
-                setup: options => options.ModUrl = url);
+                setup: options =>
+                {
+                    options.ModUrl = url;
+                    options.ExistingModToOverwritePath = overwritePath;
+                });
 
             // The installer reloads settings on install; refresh the mod pane when it closes.
             _ = monitor.Task.ContinueWith(_ =>
