@@ -31,7 +31,8 @@ public sealed partial class ModPaneVM(
     ModSettingsService modSettingsService,
     ImageHandlerService imageHandlerService,
     GIMI_ModManager.Core.GamesService.IGameService gameService,
-    GameBananaService gameBananaService)
+    GameBananaService gameBananaService,
+    ModInstallerService modInstallerService)
     : ObservableRecipient, IRecipient<ModChangedMessage>
 {
     private readonly ILogger _logger = Log.ForContext<ModPaneVM>();
@@ -41,6 +42,7 @@ public sealed partial class ModPaneVM(
     private readonly ImageHandlerService _imageHandlerService = imageHandlerService;
     private readonly GIMI_ModManager.Core.GamesService.IGameService _gameService = gameService;
     private readonly GameBananaService _gameBananaService = gameBananaService;
+    private readonly ModInstallerService _modInstallerService = modInstallerService;
 
     private readonly AsyncLock _loadModLock = new();
     private CancellationToken _cancellationToken = new();
@@ -538,63 +540,32 @@ public sealed partial class ModPaneVM(
 
     private async Task SaveReassignedModUrlAsync(string modUrl)
     {
-        ModModel.ModUrl = modUrl;
-
         try
         {
-            if (!Uri.TryCreate(modUrl, UriKind.Absolute, out var url))
+            if (!IsModLoaded || !Uri.TryCreate(modUrl, UriKind.Absolute, out var url))
                 return;
 
-            // Fetch the full GameBanana profile so we can also enrich the mod with its author and
-            // a preview image (matching what the installer would populate), not just the URL.
-            GIMI_ModManager.Core.Services.GameBanana.Models.ModPageInfo? modInfo = null;
-            try
-            {
-                modInfo = await _gameBananaService.GetModInfoAsync(url, _cancellationToken).ConfigureAwait(true);
-            }
-            catch (Exception e)
-            {
-                _logger.Warning(e, "Could not fetch GameBanana details for reassigned url {Url}", url);
-            }
+            var modFolder = new DirectoryInfo(_loadedMod!.Mod.FullPath);
+            var modList = _loadedMod.ModList;
 
-            var updateRequest = new UpdateSettingsRequest { SetModUrl = url };
+            // Open the full ModInstaller page, preloaded with the selected GameBanana URL, so the
+            // user goes through the whole install/re-link flow (details, files, image, author, etc.).
+            var monitor = await _modInstallerService.StartModInstallationAsync(modFolder, modList, inGameSkin: null,
+                setup: options => options.ModUrl = url);
 
-            if (modInfo is not null && !string.IsNullOrWhiteSpace(modInfo.AuthorName))
-                updateRequest.SetAuthor = modInfo.AuthorName;
-
-            Uri? previewImage = null;
-            if (modInfo is not null && modInfo.PreviewImages.Count > 0)
-            {
-                try
+            // The installer reloads settings on install; refresh the mod pane when it closes.
+            _ = monitor.Task.ContinueWith(_ =>
+                App.MainWindow.DispatcherQueue.EnqueueAsync(() =>
                 {
-                    var downloaded = await _imageHandlerService.DownloadImageAsync(modInfo.PreviewImages[0],
-                        _cancellationToken);
-                    previewImage = new Uri(downloaded.Path);
-                    updateRequest.SetImagePath = previewImage;
-                }
-                catch (Exception e)
-                {
-                    _logger.Warning(e, "Failed to download GameBanana preview image for {Url}", url);
-                }
-            }
-
-            if (updateRequest.AnyUpdates)
-            {
-                var result = await Task.Run(() =>
-                    _modSettingsService.SaveSettingsAsync(_loadedMod!.Id, updateRequest), _cancellationToken);
-
-                if (result.Notification is not null)
-                    _notificationService.ShowNotification(result.Notification);
-            }
-
-            // Reload the mod so the stored settings (URL + author + image) are reflected.
-            _loadedMod.Mod.ClearCache();
-            Messenger.Send(new ModChangedMessage(this, _loadedMod, null));
-            QueueLoadMod(_loadedModId, true);
+                    _loadedMod?.Mod?.ClearCache();
+                    if (_loadedModId is not null)
+                        QueueLoadMod(_loadedModId.Value, true);
+                    return Task.CompletedTask;
+                }), TaskScheduler.Default);
         }
         catch (Exception e)
         {
-            _logger.Error(e, "Error saving reassigned GameBanana mod url");
+            _logger.Error(e, "Error opening ModInstaller for reassigned url");
             _notificationService.ShowNotification(
                 App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_SearchError") ?? "Search failed",
                 e.Message, null);
