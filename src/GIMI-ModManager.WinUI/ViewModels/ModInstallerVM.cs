@@ -168,8 +168,13 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         _characterModList = characterModList;
         ModCharacterName = characterModList.Character.DisplayName;
         _modInstallation = ModInstallation.Start(modToInstall, _characterModList);
+        // Associate mode must not hold the live mod's files locked (LockFiles opens every file);
+        // the settings file needs to be read/written during association.
+        if (options?.AssociateOnly == true)
+            _modInstallation.UnlockFiles();
         _dispatcherQueue = dispatcherQueue;
         _installOptions = options;
+        _modToInstallFolder = modToInstall.FullName;
 
         RootFolder.Clear();
         RootFolder.Add(new RootFolder(modToInstall));
@@ -183,10 +188,6 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         ForceOverwriteDifferentNameMod = installerSettings.ForceOverwriteDifferentNameMod;
         _existingModToOverwritePath = options?.ExistingModToOverwritePath;
         OnPropertyChanged(nameof(HasExistingModToOverwrite));
-        // Opening the installer to update/replace an existing mod should default to the
-        // overwrite flow so "Add Mod" is enabled (re-link/update the existing mod).
-        if (!string.IsNullOrEmpty(_existingModToOverwritePath))
-            OverwriteExistingMod = true;
 
         await Task.Run(async () =>
         {
@@ -250,7 +251,9 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
                             CustomName = oldModSettings.CustomName ?? string.Empty;
                             Author = oldModSettings.Author ?? string.Empty;
                             Description = oldModSettings.Description ?? string.Empty;
-                            ModUrl = oldModSettings.ModUrl?.ToString() ?? string.Empty;
+                            // Prefer the new (re-linked) URL when one was provided; the old mod's
+                            // stored URL may be lost (poisoned by the bad update).
+                            ModUrl = options?.ModUrl?.ToString() ?? oldModSettings.ModUrl?.ToString() ?? string.Empty;
                         });
                         return;
                     }
@@ -273,6 +276,76 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
             if (options?.ModUrl is not null)
                 dispatcherQueue.TryEnqueue(() => { ModUrl = options.ModUrl.ToString(); });
         }).ConfigureAwait(false);
+
+        if (options?.AssociateOnly == true)
+        {
+            // The continuation after ConfigureAwait(false) is NOT on the UI thread; the associate
+            // button touches UI-bound properties, so marshal it to the page's dispatcher.
+            dispatcherQueue.TryEnqueue(() =>
+            {
+                try
+                {
+                    SetupAssociateMode();
+                }
+                catch (Exception e)
+                {
+                    _logger.Error(e, "SetupAssociateMode failed");
+                }
+            });
+        }
+    }
+
+    /// <summary>
+    /// "Associate" mode: only writes the mod's metadata to its settings file (no files added or
+    /// replaced). The primary button becomes "Associate this mod" and is enabled.
+    /// </summary>
+    private bool _associateMode;
+
+    /// <summary>
+    /// Text for the main "Add Mod" footer button — becomes "Associate this mod" in associate mode.
+    /// </summary>
+    public string AddModButtonText => _associateMode
+        ? (App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_AssociateMod") ?? "Associate this mod")
+        : (App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstallerPage_AddModButton.Content") ?? "Add Mod");
+
+    private void SetupAssociateMode()
+    {
+        _associateMode = true;
+        // The main footer button uses AddModCommand (generated from AddModAsync); make sure it is
+        // re-evaluated (and thus enabled) now that _modInstallation is set, and its label updates.
+        AddModCommand.NotifyCanExecuteChanged();
+        OnPropertyChanged(nameof(AddModButtonText));
+    }
+
+    private async Task AssociateModAsync()
+    {
+        try
+        {
+            var existingMod = _characterModList.Mods
+                .FirstOrDefault(m => string.Equals(m.Mod.FullPath, _modToInstallFolder, StringComparison.OrdinalIgnoreCase))
+                ?.Mod;
+            if (existingMod is null)
+                throw new InvalidOperationException("Could not find the mod to associate.");
+
+            var request = new UpdateSettingsRequest
+            {
+                SetModUrl = Uri.TryCreate(ModUrl, UriKind.Absolute, out var url) ? url : null,
+                SetCustomName = CustomName.IsNullOrEmpty() ? null : CustomName,
+                SetAuthor = Author.IsNullOrEmpty() ? null : Author,
+                SetDescription = Description.IsNullOrEmpty() ? null : Description,
+                SetImagePath = ModPreviewImagePath == _placeholderImageUri ? null : ModPreviewImagePath
+            };
+
+            var result = await Task.Run(() => _modSettingsService.SaveSettingsAsync(existingMod.Id, request), _cts.Token);
+            if (result.Notification is not null)
+                _notificationManager.ShowNotification(result.Notification);
+
+            CloseRequested?.Invoke(this, new CloseRequestedArgs(CloseReasons.Success));
+        }
+        catch (Exception e)
+        {
+            ErrorOccurred(e);
+        }
     }
 
     private async void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -585,6 +658,13 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         if (!canAddMod())
             return;
 
+        // Associate mode only writes the mod's metadata to its settings; no file changes.
+        if (_associateMode)
+        {
+            await AssociateModAsync();
+            return;
+        }
+
         if (ForceOverwriteDifferentNameMod && _existingModToOverwritePath is not null)
         {
             var existingModToOverwrite =
@@ -863,6 +943,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
 
 
     private readonly Dictionary<Uri, ModPageInfo> _modPageDataCache = new();
+    private string _modToInstallFolder = string.Empty;
 
     private async Task GetModInfo(string url, bool overrideCurrent = false)
     {
@@ -892,6 +973,9 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
 
             if ((overrideCurrent || Author.IsNullOrEmpty()) && !modInfo.AuthorName.IsNullOrEmpty())
                 Author = modInfo.AuthorName;
+
+            if ((overrideCurrent || Description.IsNullOrEmpty()) && !modInfo.Description.IsNullOrEmpty())
+                Description = modInfo.Description;
 
             if (ModPreviewImagePath == _placeholderImageUri || overrideCurrent)
             {

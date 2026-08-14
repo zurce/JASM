@@ -788,6 +788,34 @@
     <!-- Notification title when a GameBanana search fails -->
     <value>Ошибка поиска</value>
   </data>
+  <data name="ModPane_DownloadingMod" xml:space="preserve">
+    <!-- Notification title while downloading the mod from GameBanana to re-link it -->
+    <value>Загрузка мода</value>
+  </data>
+  <data name="ModPane_DownloadingModMsg" xml:space="preserve">
+    <!-- Notification body while downloading the mod from GameBanana to re-link it -->
+    <value>Доступно обновление, загружаем мод с GameBanana...</value>
+  </data>
+  <data name="ModPane_SearchBoxPlaceholder" xml:space="preserve">
+    <!-- Placeholder for the editable search terms field in the GameBanana search dialog -->
+    <value>Измените условия поиска...</value>
+  </data>
+  <data name="ModPane_SearchNoResultsInline" xml:space="preserve">
+    <!-- Inline message shown in the search dialog when the current search returns no mods -->
+    <value>Моды не найдены. Измените условия поиска и повторите.</value>
+  </data>
+  <data name="ModPane_AlwaysRedownload" xml:space="preserve">
+    <!-- Checkbox in the search dialog: always run the download/install flow for the selected mod -->
+    <value>Всегда скачивать мод заново</value>
+  </data>
+  <data name="ModPane_LikelyUpdateTooltip" xml:space="preserve">
+    <!-- Tooltip on the update icon in search results (this result likely has a newer version) -->
+    <value>Это более новая версия файла; ваш мод будет обновлён при привязке</value>
+  </data>
+  <data name="ModInstaller_AssociateMod" xml:space="preserve">
+    <!-- Primary button label in the ModInstaller "associate" mode that only writes the mod's metadata to its settings -->
+    <value>Связать этот мод</value>
+  </data>
 
   <data name="ModPane_ForwardKey.Header" xml:space="preserve">
     <!-- Label for key swap configuration fields -->
