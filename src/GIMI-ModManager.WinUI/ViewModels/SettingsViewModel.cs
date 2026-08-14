@@ -48,6 +48,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     private readonly IWindowManagerService _windowManagerService;
     private readonly ISkinManagerService _skinManagerService;
     private readonly IGameService _gameService;
+    private readonly CommunityGamesUpdateChecker _communityGamesUpdateChecker;
     private readonly ILanguageLocalizer _localizer;
     private readonly SelectedGameService _selectedGameService;
     private readonly ModUpdateAvailableChecker _modUpdateAvailableChecker;
@@ -96,6 +97,8 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     [ObservableProperty] private string _modCheckerStatus = ModUpdateAvailableChecker.RunningState.Waiting.ToString();
 
     [ObservableProperty] private bool _isModUpdateCheckerEnabled = false;
+
+    [ObservableProperty] private bool _isCommunityUpdateAvailable = false;
 
     [ObservableProperty] private DateTime? _nextModCheckTime = null;
 
@@ -230,6 +233,8 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
                 var games = new[] { await _selectedGameService.GetSelectedGameAsync() };
                 if (_communityGamesService.VerifyIntegrity(communityDir, games))
                 {
+                    // Local clone now matches upstream; clear the pending badge immediately.
+                    await _communityGamesUpdateChecker.IgnoreCurrentUpdateAsync();
                     _notificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Settings_Notification_SuccessTitle") ?? "Success", _localizer.GetLocalizedStringOrDefault("Settings_CommunityGames_Updated") ?? "Community games updated and verified successfully.", TimeSpan.FromSeconds(5));
                     await RestartAppAsync(2);
                 }
@@ -250,11 +255,28 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         }
     }
 
+    private void CommunityUpdateCheckerOnNewCommitAvailable(object? sender, EventArgs e)
+    {
+        App.MainWindow.DispatcherQueue.TryEnqueue(() => IsCommunityUpdateAvailable = true);
+    }
+
+    private void CommunityUpdateCheckerOnNoNewCommitAvailable(object? sender, EventArgs e)
+    {
+        App.MainWindow.DispatcherQueue.TryEnqueue(() => IsCommunityUpdateAvailable = false);
+    }
+
+    [RelayCommand]
+    private async Task DismissCommunityUpdate()
+    {
+        await _communityGamesUpdateChecker.IgnoreCurrentUpdateAsync();
+    }
+
     public SettingsViewModel(
         IThemeSelectorService themeSelectorService, ILocalSettingsService localSettingsService,
         ILogger logger, NotificationManager notificationManager,
         INavigationViewService navigationViewService, IWindowManagerService windowManagerService,
         ISkinManagerService skinManagerService, UpdateChecker updateChecker,
+        CommunityGamesUpdateChecker communityGamesUpdateChecker,
         GenshinProcessManager genshinProcessManager, ThreeDMigtoProcessManager threeDMigtoProcessManager,
         IGameService gameService, ILanguageLocalizer localizer,
         SelectedGameService selectedGameService, ModUpdateAvailableChecker modUpdateAvailableChecker,
@@ -268,6 +290,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         _windowManagerService = windowManagerService;
         _skinManagerService = skinManagerService;
         _updateChecker = updateChecker;
+        _communityGamesUpdateChecker = communityGamesUpdateChecker;
         _gameService = gameService;
 
         _localizer = localizer;
@@ -284,6 +307,10 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         _versionDescription = GetVersionDescription();
 
         _updateChecker.NewVersionAvailable += UpdateCheckerOnNewVersionAvailable;
+        _communityGamesUpdateChecker.NewCommitAvailable += CommunityUpdateCheckerOnNewCommitAvailable;
+        _communityGamesUpdateChecker.NoNewCommitAvailable += CommunityUpdateCheckerOnNoNewCommitAvailable;
+        if (_communityGamesUpdateChecker.IsUpdateAvailable)
+            IsCommunityUpdateAvailable = true;
 
         if (_updateChecker.LatestRetrievedVersion is not null &&
             _updateChecker.LatestRetrievedVersion != _updateChecker.CurrentVersion)

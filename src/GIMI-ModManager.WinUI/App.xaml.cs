@@ -132,6 +132,7 @@ public partial class App : Application
                 services.AddSingleton<ThreeDMigtoProcessManager>();
 
                 services.AddSingleton<UpdateChecker>();
+                services.AddSingleton<CommunityGamesUpdateChecker>();
 
                 services.AddSingleton<ImageHandlerService>();
                 services.AddSingleton<SelectedGameService>();

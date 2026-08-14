@@ -173,4 +173,10 @@ Manually checking for updates always checks GameBanana directly</value>
   <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
     <value>Update Community Games</value>
   </data>
+  <data name="CommunityUpdateAvailableText.Text" xml:space="preserve">
+    <value>New community assets are available.</value>
+  </data>
+  <data name="Settings_CommunityUpdateIgnore.Content" xml:space="preserve">
+    <value>Ignore</value>
+  </data>
 </root>

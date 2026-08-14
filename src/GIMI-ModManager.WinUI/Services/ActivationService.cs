@@ -38,6 +38,7 @@ public class ActivationService : IActivationService
     private readonly GenshinProcessManager _genshinProcessManager;
     private readonly ThreeDMigtoProcessManager _threeDMigtoProcessManager;
     private readonly UpdateChecker _updateChecker;
+    private readonly CommunityGamesUpdateChecker _communityGamesUpdateChecker;
     private readonly IWindowManagerService _windowManagerService;
     private readonly SelectedGameService _selectedGameService;
     private readonly ModUpdateAvailableChecker _modUpdateAvailableChecker;
@@ -52,6 +53,7 @@ public class ActivationService : IActivationService
         ILocalSettingsService localSettingsService,
         GenshinProcessManager genshinProcessManager,
         ThreeDMigtoProcessManager threeDMigtoProcessManager, UpdateChecker updateChecker,
+        CommunityGamesUpdateChecker communityGamesUpdateChecker,
         IWindowManagerService windowManagerService, IGameService gameService,
         ILanguageLocalizer languageLocalizer, SelectedGameService selectedGameService,
         ModUpdateAvailableChecker modUpdateAvailableChecker, ILogger logger,
@@ -66,6 +68,7 @@ public class ActivationService : IActivationService
         _genshinProcessManager = genshinProcessManager;
         _threeDMigtoProcessManager = threeDMigtoProcessManager;
         _updateChecker = updateChecker;
+        _communityGamesUpdateChecker = communityGamesUpdateChecker;
         _windowManagerService = windowManagerService;
         _gameService = gameService;
         _languageLocalizer = languageLocalizer;
@@ -199,6 +202,7 @@ public class ActivationService : IActivationService
         await _genshinProcessManager.TryInitialize();
         await _threeDMigtoProcessManager.TryInitialize();
         await _updateChecker.InitializeAsync();
+        await _communityGamesUpdateChecker.InitializeAsync();
         await _modUpdateAvailableChecker.InitializeAsync().ConfigureAwait(false);
     }
 

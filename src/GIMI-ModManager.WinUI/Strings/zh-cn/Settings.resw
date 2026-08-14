@@ -193,5 +193,11 @@ JASM部分支持鸣潮和绝区零。</value>
   <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
     <value>更新社区游戏</value>
   </data>
+  <data name="CommunityUpdateAvailableText.Text" xml:space="preserve">
+    <value>新的社区资源可用。</value>
+  </data>
+  <data name="Settings_CommunityUpdateIgnore.Content" xml:space="preserve">
+    <value>忽略</value>
+  </data>
 
 </root>
