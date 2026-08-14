@@ -52,6 +52,10 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
     private readonly ModNotificationManager _modNotificationManager;
     private readonly ModCrawlerService _modCrawlerService;
     private readonly ModSettingsService _modSettingsService;
+    private readonly GIMI_ModManager.WinUI.Services.ModHandling.GameBananaService _gameBananaService;
+    private readonly GIMI_ModManager.WinUI.Services.ModHandling.ModInstallerService _modInstallerService;
+    private readonly GIMI_ModManager.Core.Services.GameBanana.GameBananaCoreService _gameBananaCoreService;
+    private readonly GIMI_ModManager.Core.Services.ArchiveService _archiveService;
     private readonly ModUpdateAvailableChecker _modUpdateAvailableChecker;
     private readonly ModPresetHandlerService _modPresetHandlerService;
     private readonly BusyService _busyService;
@@ -104,6 +108,23 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
 
     /// <summary>Shows the XXMI launch controls when the game is XXMI-managed.</summary>
     public bool XxmiControlsVisibility => IsXxmiManaged;
+
+    /// <summary>
+    /// True while the user is holding Alt, which switches "Batch Configurations" to
+    /// "Advanced Batch Configurations" (exposing the batch orphan repair option).
+    /// </summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(BatchConfigurationsLabel))]
+    [NotifyPropertyChangedFor(nameof(ShowAdvancedBatchItem))]
+    private bool _isAdvancedBatchActive;
+
+    /// <summary>Label of the batch configurations button (advanced when Alt is held).</summary>
+    public string BatchConfigurationsLabel => IsAdvancedBatchActive
+        ? (_localizer.GetLocalizedStringOrDefault("CharactersPage_AdvancedBatchConfigurations") ?? "Advanced Batch Configurations")
+        : (_localizer.GetLocalizedStringOrDefault("CharactersPage_BatchConfigurations") ?? "Batch Configurations");
+
+    /// <summary>Shows the advanced batch flyout items only while Alt is held.</summary>
+    public bool ShowAdvancedBatchItem => IsAdvancedBatchActive;
 
     /// <summary>
     /// True while an XXMI launch is in progress, so the XXMI buttons are disabled and a second
@@ -196,7 +217,11 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         ModDragAndDropService modDragAndDropService, ModNotificationManager modNotificationManager,
         ModCrawlerService modCrawlerService, ModSettingsService modSettingsService,
         ModUpdateAvailableChecker modUpdateAvailableChecker, ModPresetHandlerService modPresetHandlerService,
-        BusyService busyService, ILanguageLocalizer localizer, ModRandomizationService modRandomizationService)
+        BusyService busyService, ILanguageLocalizer localizer, ModRandomizationService modRandomizationService,
+        GIMI_ModManager.WinUI.Services.ModHandling.GameBananaService gameBananaService,
+        GIMI_ModManager.WinUI.Services.ModHandling.ModInstallerService modInstallerService,
+        GIMI_ModManager.Core.Services.GameBanana.GameBananaCoreService gameBananaCoreService,
+        GIMI_ModManager.Core.Services.ArchiveService archiveService)
     {
         _gameService = gameService;
         _logger = logger.ForContext<CharactersViewModel>();
@@ -210,6 +235,10 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         _modNotificationManager = modNotificationManager;
         _modCrawlerService = modCrawlerService;
         _modSettingsService = modSettingsService;
+        _gameBananaService = gameBananaService;
+        _modInstallerService = modInstallerService;
+        _gameBananaCoreService = gameBananaCoreService;
+        _archiveService = archiveService;
         _modUpdateAvailableChecker = modUpdateAvailableChecker;
         _modPresetHandlerService = modPresetHandlerService;
         _busyService = busyService;
@@ -251,6 +280,9 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         };
 
         IsBusy = _busyService.IsPageBusy(this);
+        GIMI_ModManager.WinUI.Helpers.AltKeyTracker.Changed += (_, _) =>
+            App.MainWindow.DispatcherQueue.TryEnqueue(() => IsAdvancedBatchActive = GIMI_ModManager.WinUI.Helpers.AltKeyTracker.IsActive);
+        IsAdvancedBatchActive = GIMI_ModManager.WinUI.Helpers.AltKeyTracker.IsActive;
     }
 
     public event EventHandler<ScrollToCharacterArgs>? OnScrollToCharacter;
@@ -1320,6 +1352,418 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
             var categoryNames = string.Join(", ", activeCategories.Select(c => c.DisplayNamePlural));
             NotificationManager.ShowNotification(_localizer.GetLocalizedStringOrDefault("Characters_CleanupCompleteTitle") ?? "Cleanup complete", string.Format(_localizer.GetLocalizedStringOrDefault("Characters_CleanupCompleteMessage") ?? "Deleted {0} disabled mods for {1}.", totalDeleted, categoryNames), TimeSpan.FromSeconds(5));
         }
+    }
+
+    /// <summary>
+    /// Advanced batch: walks every mod missing a GameBanana URL and lets the user pick the correct
+    /// GameBanana mod for each, then associates it (writes URL + metadata, no file changes).
+    /// Runs in a dedicated modal window so the app stays locked during the whole batch.
+    /// </summary>
+    /// <summary>
+    /// Advanced batch: queues the regular re-link flow for every mod missing a GameBanana URL.
+    /// Each orphan opens the normal search picker (with X/XX in the title); picking a result then
+    /// runs the same logic as the single-mod flow — download -> install via the ModInstaller when an
+    /// update is available (or "always redownload" is checked), otherwise just associate (write
+    /// URL + metadata, no file changes).
+    /// </summary>
+    [RelayCommand]
+    private async Task BatchRepairOrphanModsAsync()
+    {
+        try
+        {
+            await BatchRepairOrphanModsCoreAsync();
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "Batch orphan repair failed");
+            NotificationManager.ShowNotification(
+                _localizer.GetLocalizedStringOrDefault("BatchRepair_FailedTitle") ?? "Batch repair failed",
+                e.Message, TimeSpan.FromSeconds(10));
+        }
+        finally
+        {
+            // Re-sync from the tracker: Alt release can be missed while a modal dialog had focus.
+            IsAdvancedBatchActive = GIMI_ModManager.WinUI.Helpers.AltKeyTracker.IsActive;
+        }
+    }
+
+    private async Task BatchRepairOrphanModsCoreAsync()
+    {
+        try
+        {
+            var orphans = await GetOrphanModsAsync();
+            if (orphans.Count == 0)
+            {
+                NotificationManager.ShowNotification(
+                    _localizer.GetLocalizedStringOrDefault("BatchRepair_NoOrphansTitle") ?? "No orphan mods",
+                    _localizer.GetLocalizedStringOrDefault("BatchRepair_NoOrphansMessage") ?? "No mods are missing a GameBanana link.",
+                    TimeSpan.FromSeconds(5));
+                return;
+            }
+
+            var gameRowId = GetGameBananaGameRowId(_gameService.GameBananaUrl);
+
+            var repaired = 0;
+            var skipped = 0;
+            var failed = 0;
+            var canceled = false;
+
+            for (var i = 0; i < orphans.Count; i++)
+            {
+                var orphan = orphans[i];
+
+                // Regular flow per mod: search picker (X/XX + character in title) -> user picks/skips.
+                var pick = await ShowOrphanSearchDialogAsync(orphan, i + 1, orphans.Count, gameRowId);
+                if (pick.Skipped)
+                {
+                    skipped++;
+                    continue;
+                }
+                if (pick.Url is null)
+                {
+                    canceled = true;
+                    break;
+                }
+
+                try
+                {
+                    // Show a blocking busy indicator during the fetch/download phase so the app
+                    // does not appear frozen while the ModInstaller is being prepared.
+                    var plan = await RunWithBusyDialogAsync(
+                        $"{_localizer.GetLocalizedStringOrDefault("BatchRepair_Working") ?? "Working"}... ({i + 1}/{orphans.Count})",
+                        (setStatus, ct) => PrepareRepairAsync(orphan, pick.Url!, pick.AlwaysRedownload, setStatus, ct),
+                        CancellationToken.None);
+                    await RunInstallerAsync(plan, CancellationToken.None);
+                    repaired++;
+                }
+                catch (Exception e)
+                {
+                    _logger.Error(e, "Batch repair failed for orphan mod {Mod}", orphan.FolderName);
+                    failed++;
+                }
+            }
+
+            ShowBatchRepairSummary(new BatchRepairSummary
+            {
+                Total = orphans.Count,
+                Repaired = repaired,
+                Skipped = skipped,
+                Failed = failed,
+                Canceled = canceled
+            });
+        }
+        finally
+        {
+            // no-op: outer method resets advanced mode
+        }
+    }
+
+    private async Task<(bool Skipped, string? Url, bool AlwaysRedownload)> ShowOrphanSearchDialogAsync(OrphanMod orphan,
+        int index, int total, int? gameRowId)
+    {
+        var picker = new GIMI_ModManager.WinUI.Views.Controls.GameBananaSearchPicker();
+        picker.Initialize(orphan.SearchTerms, gameRowId, orphan.FolderPath,
+            (terms, ct) => _gameBananaService.SearchModsAsync(terms, gameRowId, orphan.IncludeTools, ct));
+        await picker.RunInitialSearchAsync();
+
+        // Title header: search + X/XX + the character being worked on (prominent).
+        var titlePanel = new Microsoft.UI.Xaml.Controls.StackPanel { Spacing = 4 };
+        titlePanel.Children.Add(new Microsoft.UI.Xaml.Controls.TextBlock
+        {
+            Text = $"{_localizer.GetLocalizedStringOrDefault("ModPane_SearchResultsTitle") ?? "Search GameBanana"} ({index}/{total})",
+            Style = (Microsoft.UI.Xaml.Style)App.Current.Resources["SubtitleTextBlockStyle"]
+        });
+        titlePanel.Children.Add(new Microsoft.UI.Xaml.Controls.TextBlock
+        {
+            Text = $"{_localizer.GetLocalizedStringOrDefault("BatchRepair_CharacterLabel") ?? "Character"}: {orphan.CharacterName}",
+            FontWeight = Microsoft.UI.Text.FontWeights.SemiBold,
+            TextWrapping = Microsoft.UI.Xaml.TextWrapping.WrapWholeWords
+        });
+        titlePanel.Children.Add(new Microsoft.UI.Xaml.Controls.TextBlock
+        {
+            Text = $"{_localizer.GetLocalizedStringOrDefault("BatchRepair_ModLabel") ?? "Mod"}: {orphan.FolderName}",
+            Style = (Microsoft.UI.Xaml.Style)App.Current.Resources["CaptionTextBlockStyle"],
+            TextWrapping = Microsoft.UI.Xaml.TextWrapping.WrapWholeWords
+        });
+
+        // Content: the search picker (context is in the title header).
+        var content = new Microsoft.UI.Xaml.Controls.StackPanel { Spacing = 8 };
+        content.Children.Add(picker);
+
+        var dialog = new Microsoft.UI.Xaml.Controls.ContentDialog
+        {
+            XamlRoot = App.MainWindow.Content.XamlRoot,
+            Title = titlePanel,
+            PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("ModPane_UseThisMod") ?? "Use this mod",
+            SecondaryButtonText = _localizer.GetLocalizedStringOrDefault("BatchRepair_Skip") ?? "Skip",
+            CloseButtonText = _localizer.GetLocalizedStringOrDefault("Common_Cancel") ?? "Cancel",
+            DefaultButton = Microsoft.UI.Xaml.Controls.ContentDialogButton.Primary,
+            Content = content
+        };
+
+        var result = await dialog.ShowAsync();
+
+        if (result == Microsoft.UI.Xaml.Controls.ContentDialogResult.Secondary)
+            return (true, null, false); // skip this mod, continue the batch
+        if (result != Microsoft.UI.Xaml.Controls.ContentDialogResult.Primary)
+            return (false, null, false); // cancel the whole batch
+
+        if (picker.SelectedResult?.ModId > 0)
+        {
+            // Use the API-provided profile URL — correct for both mods and tools.
+            var url = picker.SelectedResult.ProfileUrl ??
+                      $"https://gamebanana.com/mods/{picker.SelectedResult.ModId}";
+            return (false, url, picker.AlwaysRedownload);
+        }
+
+        return (false, null, false);
+    }
+
+    private async Task<IReadOnlyList<OrphanMod>> GetOrphanModsAsync()
+    {
+        var orphans = new List<OrphanMod>();
+        foreach (var modList in _skinManagerService.CharacterModLists)
+        {
+            var characterName = modList.Character.DisplayName;
+            foreach (var entry in modList.Mods)
+            {
+                var settings = await entry.Mod.Settings.TryReadSettingsAsync(useCache: true);
+                if (settings?.ModUrl is not null)
+                    continue; // already linked
+
+                var includeTools = GIMI_ModManager.WinUI.Services.ModHandling.GameBananaService.ShouldIncludeTools(modList.Character);
+                orphans.Add(new OrphanMod(
+                    entry.Mod.Id,
+                    entry.Mod.Name,
+                    characterName,
+                    BuildBatchSearchTerms(entry.Mod.Name, characterName),
+                    entry.Mod.FullPath,
+                    includeTools));
+            }
+        }
+
+        return orphans;
+    }
+
+
+    private static string BuildBatchSearchTerms(string folderName, string characterName)
+    {
+        var terms = GIMI_ModManager.Core.Helpers.ModFolderHelpers.GetFolderNameWithoutDisabledPrefix(folderName) ?? folderName;
+        terms = terms.Replace('_', ' ').Replace('-', ' ').Trim();
+        terms = System.Text.RegularExpressions.Regex.Replace(terms, @"\s+\d+$", "");
+
+        var parts = new List<string>();
+        if (!string.IsNullOrWhiteSpace(terms)) parts.Add(terms);
+        if (!string.IsNullOrWhiteSpace(characterName)) parts.Add(characterName);
+        return string.Join(" ", parts);
+    }
+
+    private static int? GetGameBananaGameRowId(Uri gameBananaUrl)
+    {
+        if (gameBananaUrl is null || !gameBananaUrl.IsAbsoluteUri) return null;
+        if (!gameBananaUrl.Host.Equals("gamebanana.com", StringComparison.OrdinalIgnoreCase)) return null;
+        var segment = gameBananaUrl.Segments.LastOrDefault()?.TrimEnd('/');
+        return int.TryParse(segment, out var id) ? id : null;
+    }
+
+    /// <summary>
+    /// Repairs one orphan mod: if an update is available (or the user asked to always redownload)
+    /// it runs the same download -> install flow as adding a new mod (opening the ModInstaller with
+    /// the old mod as the overwrite target); otherwise it just associates the mod (writes URL +
+    /// metadata, no file changes).
+    /// </summary>
+    /// <summary>Result of the "prepare" phase: either open the installer as a download/install or as an associate.</summary>
+    private sealed record RepairPlan(Guid ModId, string FolderPath, Uri Url, string? ZipRootPath);
+
+    /// <summary>
+    /// Phase 1 (network work): fetch the mod page, detect an update, and if needed download +
+    /// extract the newest file. Shown behind a blocking busy dialog. The ModInstaller window is
+    /// opened separately (phase 2) so the user sees progress during the download gap.
+    /// </summary>
+    private async Task<RepairPlan> PrepareRepairAsync(OrphanMod orphan, string modUrl, bool alwaysRedownload,
+        Action<string> setStatus, CancellationToken ct)
+    {
+        var url = new Uri(modUrl);
+        setStatus(string.Format(
+            _localizer.GetLocalizedStringOrDefault("BatchRepair_FetchingInfo") ?? "Fetching mod info for {0}...",
+            orphan.FolderName));
+        var modInfo = await _gameBananaService.GetModInfoAsync(url, ct).ConfigureAwait(true);
+
+        if (!alwaysRedownload && !IsBatchUpdateAvailable(modInfo, orphan.FolderPath))
+            return new RepairPlan(orphan.ModId, orphan.FolderPath, url, ZipRootPath: null);
+
+        setStatus(string.Format(
+            _localizer.GetLocalizedStringOrDefault("BatchRepair_Downloading") ?? "Downloading {0}...",
+            orphan.FolderName));
+
+        var modList = GetModListForMod(orphan.ModId);
+        if (modList is null)
+            throw new InvalidOperationException("Could not find the mod's character list.");
+
+        var file = modInfo.Files.OrderByDescending(f => f.DateAdded).FirstOrDefault();
+        if (file is null)
+            throw new InvalidOperationException("The mod has no downloadable files.");
+
+        var identifier = new GIMI_ModManager.Core.Services.GameBanana.Models.GbModFileIdentifier(
+            new GIMI_ModManager.Core.Services.GameBanana.Models.GbModId(modInfo.ModId),
+            new GIMI_ModManager.Core.Services.GameBanana.Models.GbModFileId(file.FileId));
+
+        var archivePath = await Task.Run(() => _gameBananaCoreService.DownloadModAsync(identifier, ct: ct), ct);
+        setStatus(string.Format(
+            _localizer.GetLocalizedStringOrDefault("BatchRepair_Extracting") ?? "Extracting {0}...",
+            orphan.FolderName));
+        var extractedRoot = _archiveService.ExtractArchive(archivePath, App.GetUniqueTmpFolder().FullName);
+        var archiveNameSections =
+            Path.GetFileName(extractedRoot.Name).Split(GIMI_ModManager.Core.Services.GameBanana.ModArchiveRepository.Separator);
+        var modFolderName = archiveNameSections[0];
+        var modFolderExt = Path.GetExtension(extractedRoot.Name);
+        var zipRoot = Directory.CreateDirectory(Path.Combine(extractedRoot.Parent!.FullName, "ArchiveRoot"));
+        extractedRoot.MoveTo(Path.Combine(zipRoot.FullName, $"{modFolderName}{modFolderExt}"));
+
+        return new RepairPlan(orphan.ModId, orphan.FolderPath, url, zipRoot.FullName);
+    }
+
+    /// <summary>Phase 2: open the ModInstaller window (download/install or associate mode) and wait for it to close.</summary>
+    private async Task RunInstallerAsync(RepairPlan plan, CancellationToken ct)
+    {
+        var modList = GetModListForMod(plan.ModId);
+        if (modList is null)
+            throw new InvalidOperationException("Could not find the mod's character list.");
+
+        if (plan.ZipRootPath is not null)
+        {
+            var monitor = await _modInstallerService.StartModInstallationAsync(
+                new DirectoryInfo(plan.ZipRootPath), modList, inGameSkin: null,
+                setup: options =>
+                {
+                    options.ModUrl = plan.Url;
+                    options.ExistingModToOverwritePath = plan.FolderPath;
+                });
+            await monitor.Task;
+            return;
+        }
+
+        var associateMonitor = await _modInstallerService.StartModInstallationAsync(
+            new DirectoryInfo(plan.FolderPath), modList, inGameSkin: null,
+            setup: options =>
+            {
+                options.ModUrl = plan.Url;
+                options.AssociateOnly = true;
+            });
+        await associateMonitor.Task;
+    }
+
+    /// <summary>
+    /// Shows a blocking modal dialog with an indeterminate spinner while <paramref name="work"/>
+    /// runs, then closes it. Used to indicate activity during the fetch/download gap in the batch.
+    /// </summary>
+    /// <summary>
+    /// Shows a blocking modal busy dialog (centered spinner + status text) while <paramref name="work"/>
+    /// runs. The work receives a status setter to update the message (e.g. fetching / downloading /
+    /// extracting). The dialog is closed when the work completes.
+    /// </summary>
+    private static async Task<T> RunWithBusyDialogAsync<T>(string initialMessage,
+        Func<Action<string>, CancellationToken, Task<T>> work, CancellationToken ct)
+    {
+        var statusText = new Microsoft.UI.Xaml.Controls.TextBlock
+        {
+            Text = initialMessage,
+            FontSize = 16,
+            TextAlignment = Microsoft.UI.Xaml.TextAlignment.Center,
+            TextWrapping = Microsoft.UI.Xaml.TextWrapping.WrapWholeWords,
+            MaxWidth = 380
+        };
+
+        var dialog = new Microsoft.UI.Xaml.Controls.ContentDialog
+        {
+            XamlRoot = App.MainWindow.Content.XamlRoot,
+            Content = new Microsoft.UI.Xaml.Controls.StackPanel
+            {
+                HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment.Center,
+                VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment.Center,
+                Spacing = 16,
+                MinWidth = 320,
+                Children =
+                {
+                    new Microsoft.UI.Xaml.Controls.ProgressRing { IsActive = true, Width = 48, Height = 48 },
+                    statusText
+                }
+            }
+        };
+
+        try
+        {
+            // Start the work first, then show the (modal) dialog over it. The dialog's show task is
+            // observed so a fault during shutdown / dialog teardown does not become an unhandled
+            // exception (which would pop the app's error windows).
+            var workTask = work(message => statusText.Text = message, ct);
+            var showTask = dialog.ShowAsync().AsTask();
+            _ = showTask.ContinueWith(t => _ = t.Exception, TaskContinuationOptions.OnlyOnFaulted);
+
+            return await workTask;
+        }
+        finally
+        {
+            try
+            {
+                dialog.Hide();
+            }
+            catch
+            {
+                // ignore if the dialog was not fully opened yet / already closed
+            }
+        }
+    }
+
+    private GIMI_ModManager.Core.Contracts.Entities.ICharacterModList? GetModListForMod(Guid modId) =>
+        _skinManagerService.CharacterModLists.FirstOrDefault(ml => ml.Mods.Any(m => m.Mod.Id == modId));
+
+    private static bool IsBatchUpdateAvailable(GIMI_ModManager.Core.Services.GameBanana.Models.ModPageInfo modInfo,
+        string localModFolder)
+    {
+        var newestGbDate = modInfo.Files.Select(f => f.DateAdded).OrderByDescending(d => d).FirstOrDefault();
+        if (newestGbDate == default)
+            return false;
+
+        DateTime newestLocal;
+        try
+        {
+            newestLocal = Directory.EnumerateFiles(localModFolder, "*", SearchOption.AllDirectories)
+                .Select(File.GetLastWriteTime)
+                .OrderByDescending(d => d)
+                .FirstOrDefault();
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+
+        return newestLocal != default && newestGbDate > newestLocal;
+    }
+
+    /// <summary>One orphan mod queued for repair.</summary>
+    private sealed record OrphanMod(Guid ModId, string FolderName, string CharacterName, string SearchTerms, string FolderPath, bool IncludeTools);
+
+    private sealed class BatchRepairSummary
+    {
+        public int Repaired { get; set; }
+        public int Skipped { get; set; }
+        public int Failed { get; set; }
+        public int Total { get; set; }
+        public bool Canceled { get; set; }
+    }
+
+    private void ShowBatchRepairSummary(BatchRepairSummary summary)
+    {
+        var message = string.Format(
+            _localizer.GetLocalizedStringOrDefault("BatchRepair_SummaryMessage") ?? "{0} repaired, {1} skipped, {2} failed.",
+            summary.Repaired, summary.Skipped, summary.Failed);
+        if (summary.Canceled)
+            message += " " + (_localizer.GetLocalizedStringOrDefault("BatchRepair_SummaryCanceled") ?? "The batch was canceled.");
+
+        NotificationManager.ShowNotification(
+            _localizer.GetLocalizedStringOrDefault("BatchRepair_SummaryTitle") ?? "Batch repair finished",
+            message, TimeSpan.FromSeconds(8));
     }
 
     private async Task RefreshBackendCharactersModsAsync()

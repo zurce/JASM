@@ -41,10 +41,31 @@ public sealed class GameBananaCoreService(
     /// Use to let a user re-link a mod to its GameBanana page when the ModUrl was lost.
     /// </summary>
     public async Task<IReadOnlyList<ApiSearchModResult>> SearchModsAsync(string searchString, int? gameRowId = null,
-        CancellationToken ct = default)
+        bool includeTools = false, CancellationToken ct = default)
     {
         var apiGameBananaClient = CreateApiGameBananaClient();
-        return await apiGameBananaClient.SearchModsAsync(searchString, gameRowId, ct).ConfigureAwait(false);
+        return await apiGameBananaClient.SearchModsAsync(searchString, gameRowId, includeTools, ct)
+            .ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Gets a <em>tool</em> profile (gamebanana.com/tools/&lt;id&gt;) as a <see cref="ModPageInfo"/>.
+    /// Tools share the same profile shape as mods.
+    /// </summary>
+    public async Task<ModPageInfo?> GetToolProfileAsync(GbModId toolId, CancellationToken ct = default)
+    {
+        var cached = _cache.Get<ModPageInfo>(toolId);
+        if (cached != null)
+            return cached;
+
+        var apiGameBananaClient = CreateApiGameBananaClient();
+        var apiProfile = await apiGameBananaClient.GetToolProfileAsync(toolId, ct).ConfigureAwait(false);
+        if (apiProfile == null)
+            return null;
+
+        var modInfo = new ModPageInfo(apiProfile);
+        _cache.Set(toolId, modInfo);
+        return modInfo;
     }
 
     /// <summary>

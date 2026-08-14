@@ -23,6 +23,7 @@ public sealed class ApiGameBananaClient(
 
     private const string DownloadUrl = "https://gamebanana.com/dl/";
     private const string ApiUrl = "https://gamebanana.com/apiv11/Mod/";
+    private const string ToolApiUrl = "https://gamebanana.com/apiv11/Tool/";
     private const string HealthCheckUrl = "https://gamebanana.com/apiv11";
 
     public async Task<bool> HealthCheckAsync(CancellationToken cancellationToken = default)
@@ -43,31 +44,60 @@ public sealed class ApiGameBananaClient(
         return response.StatusCode == HttpStatusCode.OK;
     }
 
+    public async Task<ApiModProfile?> GetToolProfileAsync(GbModId toolId, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(toolId);
+
+        var toolPageApiUrl = new Uri(ToolApiUrl + toolId + "/ProfilePage");
+        return await FetchProfileAsync(toolPageApiUrl, cancellationToken).ConfigureAwait(false);
+    }
+
     public async Task<ApiModProfile?> GetModProfileAsync(GbModId modId, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(modId);
 
         var modPageApiUrl = GetModInfoUrl(modId);
+        return await FetchProfileAsync(modPageApiUrl, cancellationToken).ConfigureAwait(false);
+    }
 
-        using var response = await SendRequest(modPageApiUrl, cancellationToken).ConfigureAwait(false);
-
-        _logger.Debug("Got response from GameBanana: {response}", response.StatusCode);
-        await using var contentStream =
-            await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-
-        var apiResponse =
-            await JsonSerializer.DeserializeAsync<ApiModProfile>(contentStream,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
-
-
-        if (apiResponse == null)
+    private async Task<ApiModProfile?> FetchProfileAsync(Uri modPageApiUrl, CancellationToken cancellationToken)
+    {
+        // GameBanana can transiently return an empty/200-with-no-body response (e.g. when the app
+        // hits the API right after a search or while the background update checker is running).
+        // Retry a few times with backoff before giving up.
+        const int maxAttempts = 3;
+        for (var attempt = 1; ; attempt++)
         {
-            _logger.Error("Failed to deserialize GameBanana response: {content}", contentStream);
-            throw new HttpRequestException(
-                $"Failed to deserialize GameBanana response. Reason: {response?.ReasonPhrase}");
-        }
+            using var response = await SendRequest(modPageApiUrl, cancellationToken).ConfigureAwait(false);
 
-        return apiResponse;
+            _logger.Debug("Got response from GameBanana: {response}", response.StatusCode);
+            var json = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+
+            if (!string.IsNullOrWhiteSpace(json))
+            {
+                try
+                {
+                    var apiResponse = JsonSerializer.Deserialize<ApiModProfile>(json);
+                    if (apiResponse is not null)
+                        return apiResponse;
+                }
+                catch (JsonException)
+                {
+                    // malformed body — fall through to retry
+                }
+            }
+
+            if (attempt >= maxAttempts || cancellationToken.IsCancellationRequested)
+            {
+                _logger.Error(
+                    "GameBanana returned an empty/invalid profile response after {Attempts} attempts: {Url}",
+                    attempt, modPageApiUrl);
+                throw new HttpRequestException(
+                    $"GameBanana returned an empty/invalid response for {modPageApiUrl}");
+            }
+
+            await Task.Delay(TimeSpan.FromMilliseconds(400 * attempt), cancellationToken).ConfigureAwait(false);
+        }
     }
 
     public async Task<ApiModFilesInfo?> GetModFilesInfoAsync(GbModId modId,
@@ -124,7 +154,7 @@ public sealed class ApiGameBananaClient(
     private const string SearchUrl = "https://gamebanana.com/apiv11/Util/Search/Results";
 
     public async Task<IReadOnlyList<ApiSearchModResult>> SearchModsAsync(string searchString, int? gameRowId = null,
-        CancellationToken cancellationToken = default)
+        bool includeTools = false, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(searchString))
             return Array.Empty<ApiSearchModResult>();
@@ -134,27 +164,42 @@ public sealed class ApiGameBananaClient(
             query += $"&_idGameRow={gameRowId.Value}";
         var searchUri = new Uri(SearchUrl + "?" + query);
 
-        using var response = await SendRequest(searchUri, cancellationToken).ConfigureAwait(false);
-        await using var contentStream =
-            await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-
-        ApiSearchResponse? search;
-        try
+        // GameBanana can transiently return an empty/invalid search body; retry by re-sending the
+        // request (a response body can only be read once).
+        const int maxAttempts = 3;
+        for (var attempt = 1; ; attempt++)
         {
-            search = await JsonSerializer.DeserializeAsync<ApiSearchResponse>(contentStream,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
-        }
-        catch (JsonException e)
-        {
-            _logger.Warning(e, "Failed to deserialize GameBanana search response");
-            return Array.Empty<ApiSearchModResult>();
-        }
+            using var response = await SendRequest(searchUri, cancellationToken).ConfigureAwait(false);
+            var json = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 
-        // Only actual mods — the search API also returns mod requests and other article types.
-        return search?.Records
-                   ?.Where(r => r is not null && string.Equals(r.ModelName, "Mod", StringComparison.OrdinalIgnoreCase))
-                   .ToArray()
-               ?? Array.Empty<ApiSearchModResult>();
+            if (!string.IsNullOrWhiteSpace(json))
+            {
+                try
+                {
+                    var search = JsonSerializer.Deserialize<ApiSearchResponse>(json);
+                    if (search is not null)
+                    {
+                        // Only actual mods (and optionally tools) — the search API also returns
+                        // requests/questions and other article types that are never installable mods.
+                        return search.Records
+                                   ?.Where(r => r is not null &&
+                                                (string.Equals(r.ModelName, "Mod", StringComparison.OrdinalIgnoreCase) ||
+                                                 (includeTools && string.Equals(r.ModelName, "Tool", StringComparison.OrdinalIgnoreCase))))
+                                   .ToArray()
+                               ?? Array.Empty<ApiSearchModResult>();
+                    }
+                }
+                catch (JsonException e)
+                {
+                    _logger.Warning(e, "Failed to deserialize GameBanana search response (attempt {Attempt})", attempt);
+                }
+            }
+
+            if (attempt >= maxAttempts || cancellationToken.IsCancellationRequested)
+                return Array.Empty<ApiSearchModResult>();
+
+            await Task.Delay(TimeSpan.FromMilliseconds(300 * attempt), cancellationToken).ConfigureAwait(false);
+        }
     }
 
     private static Uri GetAltUrlForModInfo(GbModFileId modFileId)

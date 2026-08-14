@@ -426,6 +426,91 @@
     <value>Применить пресет:</value>
   </data>
 
+  <data name="CharactersPage_AdvancedBatchConfigurations" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Расширенные пакетные настройки</value>
+  </data>
+  <data name="CharactersPage_BatchRepairOrphanMods.Text" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Пакетное восстановление потерянных модов</value>
+  </data>
+  <data name="BatchRepair_Title" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Восстановление потерянных модов</value>
+  </data>
+  <data name="BatchRepair_WindowTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Восстановление потерянных модов</value>
+  </data>
+  <data name="BatchRepair_Cancel" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Отмена</value>
+  </data>
+  <data name="BatchRepair_UseMod" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Использовать этот мод</value>
+  </data>
+  <data name="BatchRepair_Skip" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Пропустить</value>
+  </data>
+  <data name="BatchRepair_PickTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Выберите мод GameBanana для</value>
+  </data>
+  <data name="BatchRepair_NoOrphansTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Нет потерянных модов</value>
+  </data>
+  <data name="BatchRepair_NoOrphansMessage" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Нет модов без ссылки GameBanana.</value>
+  </data>
+  <data name="BatchRepair_FailedTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Пакетное восстановление не удалось</value>
+  </data>
+  <data name="BatchRepair_SummaryTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Пакетное восстановление завершено</value>
+  </data>
+  <data name="BatchRepair_SummaryMessage" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>{0} восстановлено, {1} пропущено, {2} с ошибкой.</value>
+  </data>
+  <data name="BatchRepair_SummaryCanceled" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Пакет был отменён.</value>
+  </data>
+  <data name="BatchRepair_CharacterLabel" xml:space="preserve">
+    <!-- batch orphan repair dialog label -->
+    <value>Персонаж</value>
+  </data>
+  <data name="BatchRepair_Working" xml:space="preserve">
+    <!-- batch orphan repair busy indicator -->
+    <value>Работаем</value>
+  </data>
+  <data name="BatchRepair_FetchingInfo" xml:space="preserve">
+    <!-- batch busy status -->
+    <value>Получаем информацию о моде {0}...</value>
+  </data>
+  <data name="BatchRepair_Downloading" xml:space="preserve">
+    <!-- batch busy status -->
+    <value>Загружаем {0}...</value>
+  </data>
+  <data name="BatchRepair_Extracting" xml:space="preserve">
+    <!-- batch busy status -->
+    <value>Распаковываем {0}...</value>
+  </data>
+
+
+  <data name="BatchRepair_ModLabel" xml:space="preserve">
+    <!-- batch orphan repair dialog label -->
+    <value>Мод</value>
+  </data>
+
+
+
   <data name="CharactersPage_ApplyPresetConfirmText" xml:space="preserve">
     <!-- Label for preset application status -->
     <value>Подтвердить</value>
@@ -806,12 +891,17 @@
   </data>
   <data name="ModPane_AlwaysRedownload" xml:space="preserve">
     <!-- Checkbox in the search dialog: always run the download/install flow for the selected mod -->
-    <value>Всегда скачивать мод заново</value>
+    <value>Принудительно скачать мод заново</value>
   </data>
   <data name="ModPane_LikelyUpdateTooltip" xml:space="preserve">
     <!-- Tooltip on the update icon in search results (this result likely has a newer version) -->
     <value>Это более новая версия файла; ваш мод будет обновлён при привязке</value>
   </data>
+  <data name="ModPane_RefetchTooltip" xml:space="preserve">
+    <!-- Alt + URL refetch button tooltip -->
+    <value>Повторно получить информацию о моде с GameBanana</value>
+  </data>
+
   <data name="ModInstaller_AssociateMod" xml:space="preserve">
     <!-- Primary button label in the ModInstaller "associate" mode that only writes the mod's metadata to its settings -->
     <value>Связать этот мод</value>

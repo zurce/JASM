@@ -377,6 +377,89 @@
     <!-- Label for preset application status -->
     <value>Apply Preset:</value>
   </data>
+  <data name="CharactersPage_AdvancedBatchConfigurations" xml:space="preserve">
+    <!-- Batch button label shown while Alt is held, exposing advanced batch options -->
+    <value>Advanced Batch Configurations</value>
+  </data>
+  <data name="CharactersPage_BatchRepairOrphanMods.Text" xml:space="preserve">
+    <!-- Advanced batch action: walk orphan mods and re-link each to its GameBanana mod -->
+    <value>Batch repair orphan mods</value>
+  </data>
+  <data name="BatchRepair_Title" xml:space="preserve">
+    <!-- Title of the batch orphan repair modal window -->
+    <value>Repair orphan mods</value>
+  </data>
+  <data name="BatchRepair_WindowTitle" xml:space="preserve">
+    <!-- Window title of the batch orphan repair modal -->
+    <value>Repair orphan mods</value>
+  </data>
+  <data name="BatchRepair_Cancel" xml:space="preserve">
+    <!-- Button to abort the batch repair -->
+    <value>Cancel</value>
+  </data>
+  <data name="BatchRepair_UseMod" xml:space="preserve">
+    <!-- Button to use the selected GameBanana search result for the current orphan mod -->
+    <value>Use this mod</value>
+  </data>
+  <data name="BatchRepair_Skip" xml:space="preserve">
+    <!-- Button to skip the current orphan mod without linking it -->
+    <value>Skip</value>
+  </data>
+  <data name="BatchRepair_PickTitle" xml:space="preserve">
+    <!-- Prefix shown above the search picker for the current orphan mod (the mod name is appended) -->
+    <value>Select the GameBanana mod for</value>
+  </data>
+  <data name="BatchRepair_NoOrphansTitle" xml:space="preserve">
+    <!-- Notification title when there are no orphan mods to repair -->
+    <value>No orphan mods</value>
+  </data>
+  <data name="BatchRepair_NoOrphansMessage" xml:space="preserve">
+    <!-- Notification body when there are no orphan mods to repair -->
+    <value>No mods are missing a GameBanana link.</value>
+  </data>
+  <data name="BatchRepair_FailedTitle" xml:space="preserve">
+    <!-- Notification title when the batch repair crashes -->
+    <value>Batch repair failed</value>
+  </data>
+  <data name="BatchRepair_SummaryTitle" xml:space="preserve">
+    <!-- Notification title after the batch repair finishes -->
+    <value>Batch repair finished</value>
+  </data>
+  <data name="BatchRepair_SummaryMessage" xml:space="preserve">
+    <!-- Summary of the batch repair; {0}=repaired {1}=skipped {2}=failed -->
+    <value>{0} repaired, {1} skipped, {2} failed.</value>
+  </data>
+  <data name="BatchRepair_SummaryCanceled" xml:space="preserve">
+    <!-- Suffix appended to the summary when the batch was canceled early -->
+    <value>The batch was canceled.</value>
+  </data>
+  <data name="BatchRepair_CharacterLabel" xml:space="preserve">
+    <!-- batch orphan repair dialog label -->
+    <value>Character</value>
+  </data>
+  <data name="BatchRepair_Working" xml:space="preserve">
+    <!-- batch orphan repair busy indicator -->
+    <value>Working</value>
+  </data>
+  <data name="BatchRepair_FetchingInfo" xml:space="preserve">
+    <!-- batch busy status -->
+    <value>Fetching mod info for {0}...</value>
+  </data>
+  <data name="BatchRepair_Downloading" xml:space="preserve">
+    <!-- batch busy status -->
+    <value>Downloading {0}...</value>
+  </data>
+  <data name="BatchRepair_Extracting" xml:space="preserve">
+    <!-- batch busy status -->
+    <value>Extracting {0}...</value>
+  </data>
+
+
+  <data name="BatchRepair_ModLabel" xml:space="preserve">
+    <!-- batch orphan repair dialog label -->
+    <value>Mod</value>
+  </data>
+
   <data name="CharactersPage_ApplyPresetConfirmText" xml:space="preserve">
     <!-- Label for preset application status -->
     <value>Confirm</value>
@@ -694,12 +777,17 @@
   </data>
   <data name="ModPane_AlwaysRedownload" xml:space="preserve">
     <!-- Checkbox in the search dialog: always run the download/install flow for the selected mod -->
-    <value>Always redownload the mod</value>
+    <value>Force mod redownload</value>
   </data>
   <data name="ModPane_LikelyUpdateTooltip" xml:space="preserve">
     <!-- Tooltip on the update icon in search results (this result likely has a newer version) -->
     <value>This is a newer file version, your mod will be updated if associated</value>
   </data>
+  <data name="ModPane_RefetchTooltip" xml:space="preserve">
+    <!-- Alt + URL refetch button tooltip -->
+    <value>Refetch mod info from GameBanana</value>
+  </data>
+
   <data name="ModInstaller_AssociateMod" xml:space="preserve">
     <!-- Primary button label in the ModInstaller "associate" mode that only writes the mod's metadata to its settings -->
     <value>Associate this mod</value>
