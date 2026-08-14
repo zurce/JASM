@@ -16,7 +16,7 @@
 		<WindowsPackageType>None</WindowsPackageType>
 		<BaseOutputPath></BaseOutputPath>
 		<!-- x-release-please-start-version -->
-		<VersionPrefix>3.0.0</VersionPrefix>
+		<VersionPrefix>3.0.1</VersionPrefix>
 		<!-- x-release-please-end -->
 		<Title>JASM+ - Just Another Skin Manager Plus</Title>
 		<AssemblyName>JASM - Just Another Skin Manager</AssemblyName>
