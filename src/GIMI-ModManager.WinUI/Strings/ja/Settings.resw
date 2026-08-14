@@ -193,5 +193,11 @@ JASMはWUWAとZZZを部分的にサポートしています。</value>
   <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
     <value>コミュニティゲームを更新</value>
   </data>
+  <data name="CommunityUpdateAvailableText.Text" xml:space="preserve">
+    <value>新しいコミュニティアセットが利用可能です。</value>
+  </data>
+  <data name="Settings_CommunityUpdateIgnore.Content" xml:space="preserve">
+    <value>無視</value>
+  </data>
 
 </root>

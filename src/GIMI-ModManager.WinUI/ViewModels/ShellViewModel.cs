@@ -15,6 +15,7 @@ namespace GIMI_ModManager.WinUI.ViewModels;
 public partial class ShellViewModel : ObservableRecipient
 {
     private readonly UpdateChecker _updateChecker;
+    private readonly CommunityGamesUpdateChecker _communityGamesUpdateChecker;
     private readonly BusyService _busyService;
     public readonly SelectedGameService SelectedGameService;
     [ObservableProperty] private bool isBackEnabled;
@@ -30,6 +31,7 @@ public partial class ShellViewModel : ObservableRecipient
 
     public ShellViewModel(INavigationService navigationService, INavigationViewService navigationViewService,
         NotificationManager notificationManager, UpdateChecker updateChecker,
+        CommunityGamesUpdateChecker communityGamesUpdateChecker,
         IGameService gameService, SelectedGameService selectedGameService, BusyService busyService)
     {
         NavigationService = navigationService;
@@ -37,10 +39,13 @@ public partial class ShellViewModel : ObservableRecipient
         NavigationViewService = navigationViewService;
         NotificationManager = notificationManager;
         _updateChecker = updateChecker;
+        _communityGamesUpdateChecker = communityGamesUpdateChecker;
         GameService = gameService;
         SelectedGameService = selectedGameService;
         _busyService = busyService;
         _updateChecker.NewVersionAvailable += OnNewVersionAvailable;
+        _communityGamesUpdateChecker.NewCommitAvailable += OnCommunityUpdateAvailable;
+        _communityGamesUpdateChecker.NoNewCommitAvailable += OnCommunityUpdateCleared;
         _busyService.BusyChanged += (sender, e) =>
         {
             if (e.Key == BusyService.MainWindowKey)
@@ -61,6 +66,28 @@ public partial class ShellViewModel : ObservableRecipient
         {
             SettingsInfoBadgeOpacity = show ? 1 : 0;
             ShowSettingsInfoBadge?.Invoke(this, show);
+        });
+    }
+
+    private void OnCommunityUpdateAvailable(object? sender, EventArgs e)
+    {
+        App.MainWindow.DispatcherQueue.TryEnqueue(() =>
+        {
+            SettingsInfoBadgeOpacity = 1;
+            ShowSettingsInfoBadge?.Invoke(this, true);
+        });
+    }
+
+    private void OnCommunityUpdateCleared(object? sender, EventArgs e)
+    {
+        // Only clear if the JASM app update badge is not itself active.
+        var appUpdateActive = _updateChecker.LatestRetrievedVersion is not null &&
+                              _updateChecker.LatestRetrievedVersion != new Version() &&
+                              _updateChecker.IgnoredVersion != _updateChecker.LatestRetrievedVersion;
+        App.MainWindow.DispatcherQueue.TryEnqueue(() =>
+        {
+            SettingsInfoBadgeOpacity = appUpdateActive ? 1 : 0;
+            ShowSettingsInfoBadge?.Invoke(this, appUpdateActive);
         });
     }
 

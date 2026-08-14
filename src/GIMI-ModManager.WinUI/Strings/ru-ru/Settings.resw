@@ -193,5 +193,11 @@ JASM+ частично поддерживает WUWA и ZZZ</value>
   <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
     <value>Обновить игры сообщества</value>
   </data>
+  <data name="CommunityUpdateAvailableText.Text" xml:space="preserve">
+    <value>Доступны новые ресурсы сообщества.</value>
+  </data>
+  <data name="Settings_CommunityUpdateIgnore.Content" xml:space="preserve">
+    <value>Игнорировать</value>
+  </data>
 
 </root>

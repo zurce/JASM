@@ -243,6 +243,22 @@
                             Width="400"
                             HorizontalAlignment="Left"
                             l:Uids.Uid="/Settings/CommunityRepoUrlTextBox" />
+
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="12"
+                            Visibility="{x:Bind ViewModel.IsCommunityUpdateAvailable, Mode=OneWay, Converter={StaticResource BoolToVisibleConverter}}">
+                            <FontIcon Glyph="&#xE896;" Foreground="{ThemeResource AccentFillColorDefaultBrush}" VerticalAlignment="Center" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Text="New community assets are available."
+                                l:Uids.Uid="/Settings/CommunityUpdateAvailableText" />
+                            <Button
+                                Command="{x:Bind ViewModel.DismissCommunityUpdateCommand}"
+                                Content="Ignore"
+                                l:Uids.Uid="/Settings/Settings_CommunityUpdateIgnore" />
+                        </StackPanel>
+
                         <Button
                             Command="{x:Bind ViewModel.UpdateCommunityGamesCommand}"
                             Content="Update Community Games"

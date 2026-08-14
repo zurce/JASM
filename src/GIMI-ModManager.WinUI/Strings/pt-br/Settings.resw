@@ -168,4 +168,10 @@
   <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
     <value>Atualizar Jogos da Comunidade</value>
   </data>
+  <data name="CommunityUpdateAvailableText.Text" xml:space="preserve">
+    <value>Novos recursos da comunidade estão disponíveis.</value>
+  </data>
+  <data name="Settings_CommunityUpdateIgnore.Content" xml:space="preserve">
+    <value>Ignorar</value>
+  </data>
 </root>

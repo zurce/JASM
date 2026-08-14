@@ -173,4 +173,10 @@ La verificación manual de actualizaciones siempre consulta directamente a GameB
   <data name="UpdateCommunityGamesButton.Content" xml:space="preserve">
     <value>Actualizar Juegos de la Comunidad</value>
   </data>
+  <data name="CommunityUpdateAvailableText.Text" xml:space="preserve">
+    <value>Hay nuevos recursos comunitarios disponibles.</value>
+  </data>
+  <data name="Settings_CommunityUpdateIgnore.Content" xml:space="preserve">
+    <value>Ignorar</value>
+  </data>
 </root>

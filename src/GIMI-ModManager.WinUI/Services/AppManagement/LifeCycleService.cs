@@ -23,6 +23,7 @@ public class LifeCycleService(
     ModNotificationManager modNotificationManager,
     IWindowManagerService windowManagerService,
     UpdateChecker updateChecker,
+    CommunityGamesUpdateChecker communityGamesUpdateChecker,
     ModUpdateAvailableChecker modUpdateAvailableChecker,
     CommandService commandService)
 {
@@ -32,6 +33,7 @@ public class LifeCycleService(
     private ModNotificationManager _modNotificationManager = modNotificationManager;
     private readonly IWindowManagerService _windowManagerService = windowManagerService;
     private readonly UpdateChecker _updateChecker = updateChecker;
+    private readonly CommunityGamesUpdateChecker _communityGamesUpdateChecker = communityGamesUpdateChecker;
     private readonly ModUpdateAvailableChecker _modUpdateAvailableChecker = modUpdateAvailableChecker;
     private readonly CommandService _commandService = commandService;
 
@@ -216,6 +218,7 @@ public class LifeCycleService(
         {
             _modUpdateAvailableChecker.CancelAndStop();
             _updateChecker.CancelAndStop();
+            _communityGamesUpdateChecker.CancelAndStop();
             _notificationManager.CancelAndStop();
             commandService.Cleanup();
         });
