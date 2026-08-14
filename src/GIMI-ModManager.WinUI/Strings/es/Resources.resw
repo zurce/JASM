@@ -397,6 +397,91 @@
     <!-- Label for preset application status -->
     <value>Aplicar Preset:</value>
   </data>
+
+  <data name="CharactersPage_AdvancedBatchConfigurations" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Configuraciones de Lote Avanzadas</value>
+  </data>
+  <data name="CharactersPage_BatchRepairOrphanMods.Text" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Reparar mods huérfanos en lote</value>
+  </data>
+  <data name="BatchRepair_Title" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Reparar mods huérfanos</value>
+  </data>
+  <data name="BatchRepair_WindowTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Reparar mods huérfanos</value>
+  </data>
+  <data name="BatchRepair_Cancel" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Cancelar</value>
+  </data>
+  <data name="BatchRepair_UseMod" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Usar este mod</value>
+  </data>
+  <data name="BatchRepair_Skip" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Omitir</value>
+  </data>
+  <data name="BatchRepair_PickTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Selecciona el mod de GameBanana para</value>
+  </data>
+  <data name="BatchRepair_NoOrphansTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Sin mods huérfanos</value>
+  </data>
+  <data name="BatchRepair_NoOrphansMessage" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>No hay mods que pierdan su enlace de GameBanana.</value>
+  </data>
+  <data name="BatchRepair_FailedTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Falló la reparación en lote</value>
+  </data>
+  <data name="BatchRepair_SummaryTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>Reparación en lote terminada</value>
+  </data>
+  <data name="BatchRepair_SummaryMessage" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>{0} reparados, {1} omitidos, {2} fallidos.</value>
+  </data>
+  <data name="BatchRepair_SummaryCanceled" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>El lote fue cancelado.</value>
+  </data>
+  <data name="BatchRepair_CharacterLabel" xml:space="preserve">
+    <!-- batch orphan repair dialog label -->
+    <value>Personaje</value>
+  </data>
+  <data name="BatchRepair_Working" xml:space="preserve">
+    <!-- batch orphan repair busy indicator -->
+    <value>Trabajando</value>
+  </data>
+  <data name="BatchRepair_FetchingInfo" xml:space="preserve">
+    <!-- batch busy status -->
+    <value>Obteniendo información del mod {0}...</value>
+  </data>
+  <data name="BatchRepair_Downloading" xml:space="preserve">
+    <!-- batch busy status -->
+    <value>Descargando {0}...</value>
+  </data>
+  <data name="BatchRepair_Extracting" xml:space="preserve">
+    <!-- batch busy status -->
+    <value>Extrayendo {0}...</value>
+  </data>
+
+
+  <data name="BatchRepair_ModLabel" xml:space="preserve">
+    <!-- batch orphan repair dialog label -->
+    <value>Mod</value>
+  </data>
+
+
   <data name="CharactersPage_ApplyPresetConfirmText" xml:space="preserve">
     <!-- Label for preset application status -->
     <value>Confirmar</value>
@@ -714,12 +799,17 @@
   </data>
   <data name="ModPane_AlwaysRedownload" xml:space="preserve">
     <!-- Checkbox in the search dialog: always run the download/install flow for the selected mod -->
-    <value>Volver a descargar siempre el mod</value>
+    <value>Forzar redescarga del mod</value>
   </data>
   <data name="ModPane_LikelyUpdateTooltip" xml:space="preserve">
     <!-- Tooltip on the update icon in search results (this result likely has a newer version) -->
     <value>Esta es una versión de archivo más reciente; tu mod se actualizará si lo asocias</value>
   </data>
+  <data name="ModPane_RefetchTooltip" xml:space="preserve">
+    <!-- Alt + URL refetch button tooltip -->
+    <value>Volver a obtener la información del mod de GameBanana</value>
+  </data>
+
   <data name="ModInstaller_AssociateMod" xml:space="preserve">
     <!-- Primary button label in the ModInstaller "associate" mode that only writes the mod's metadata to its settings -->
     <value>Asociar este mod</value>

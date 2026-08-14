@@ -341,11 +341,22 @@ public partial class App : Application
     protected override async void OnLaunched(LaunchActivatedEventArgs args)
     {
         Environment.SetEnvironmentVariable("WEBVIEW2_USE_VISUAL_HOSTING_FOR_OWNED_WINDOWS", "1");
+        AttachAltKeyTracker();
         ScheduleOldVersionCleanup();
         await GetService<ILanguageLocalizer>().InitializeAsync();
         NotImplemented.NotificationManager = GetService<NotificationManager>();
         base.OnLaunched(args);
         await GetService<IActivationService>().ActivateAsync(args).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Starts the Alt held-state poller so the rest of the app (advanced batch configurations,
+    /// mod URL refetch, ...) can react to "advanced mode" without each page wiring its own handlers.
+    /// Polls the key state (key events miss Alt releases in text boxes/modals).
+    /// </summary>
+    private static void AttachAltKeyTracker()
+    {
+        GIMI_ModManager.WinUI.Helpers.AltKeyTracker.Start();
     }
 
     private static void ScheduleOldVersionCleanup()

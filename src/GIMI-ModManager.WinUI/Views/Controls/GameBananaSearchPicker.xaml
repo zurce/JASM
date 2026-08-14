@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UserControl
+    x:Class="GIMI_ModManager.WinUI.Views.Controls.GameBananaSearchPicker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:l="using:WinUI3Localizer"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="SearchResultRowTemplate">
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Text="{Binding Name}"
+                    TextTrimming="CharacterEllipsis" />
+                <FontIcon
+                    Grid.Column="1"
+                    FontSize="14"
+                    Foreground="{Binding UpdateIconBrush}"
+                    Glyph="&#xE8F1;"
+                    ToolTipService.ToolTip="{Binding UpdateTooltip}"
+                    Visibility="{Binding UpdateIconVisibility}" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid Width="460">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" ColumnSpacing="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox
+                x:Name="SearchBox"
+                Grid.Column="0"
+                KeyDown="SearchBox_OnKeyDown" />
+            <Button
+                x:Name="SearchButton"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Click="SearchButton_OnClick" />
+        </Grid>
+
+        <CheckBox
+            x:Name="AlwaysRedownloadCheckbox"
+            Grid.Row="1"
+            Margin="0,6,0,6" />
+
+        <ListView
+            x:Name="ResultsList"
+            Grid.Row="2"
+            MinHeight="200"
+            MaxHeight="360"
+            ItemTemplate="{StaticResource SearchResultRowTemplate}"
+            SelectionMode="Single" />
+
+        <TextBlock
+            x:Name="NoResultsText"
+            Grid.Row="2"
+            Margin="0,8,0,0"
+            TextWrapping="WrapWholeWords"
+            Visibility="Collapsed" />
+    </Grid>
+</UserControl>

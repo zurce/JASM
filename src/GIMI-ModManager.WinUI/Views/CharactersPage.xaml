@@ -289,7 +289,7 @@
                 CornerRadius="8"
                 Orientation="Horizontal">
                 <CommandBar DefaultLabelPosition="Right" IsOpen="False">
-                    <AppBarButton Label="Batch Configurations" l:Uids.Uid="CharactersPage_BatchConfigurations">
+                    <AppBarButton Label="{x:Bind ViewModel.BatchConfigurationsLabel, Mode=OneWay}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="&#xEA41;" />
                         </AppBarButton.Icon>
@@ -313,6 +313,16 @@
                                             <StackPanel Orientation="Horizontal" Spacing="8">
                                                 <FontIcon Glyph="&#xE74D;" />
                                                 <TextBlock Text="Clean up" l:Uids.Uid="CharactersPage_CleanUp" />
+                                            </StackPanel>
+                                        </Button>
+                                        <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+                                        <Button
+                                            HorizontalAlignment="Stretch"
+                                            Command="{x:Bind ViewModel.BatchRepairOrphanModsCommand}"
+                                            Visibility="{x:Bind ViewModel.ShowAdvancedBatchItem, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <FontIcon Glyph="&#xE8F1;" />
+                                                <TextBlock Text="Batch repair orphan mods" l:Uids.Uid="CharactersPage_BatchRepairOrphanMods" />
                                             </StackPanel>
                                         </Button>
                                         <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />

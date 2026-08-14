@@ -19,6 +19,12 @@ public interface IApiGameBananaClient
     public Task<ApiModProfile?> GetModProfileAsync(GbModId modId, CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// Gets a <em>tool</em> profile (gamebanana.com/tools/&lt;id&gt;) from the GameBanana API. Tools
+    /// share the same profile shape as mods, so the same model is used.
+    /// </summary>
+    public Task<ApiModProfile?> GetToolProfileAsync(GbModId toolId, CancellationToken cancellationToken = default);
+
+    /// <summary>
     /// Gets the mod files info from the GameBanana API.
     /// </summary>
     /// <param name="modId">The Game banana's mod Id</param>
@@ -49,10 +55,11 @@ public interface IApiGameBananaClient
     /// </summary>
     /// <param name="searchString">The search query (e.g. a mod folder name + character).</param>
     /// <param name="gameRowId">Optional GameBanana game id to narrow results (e.g. Genshin = 8552).</param>
+    /// <param name="includeTools">When true, also include Tool results (for non-character sections like Others/custom).</param>
     /// <param name="cancellationToken"></param>
     /// <returns>A list of matching mods (name + profile url).</returns>
     public Task<IReadOnlyList<ApiSearchModResult>> SearchModsAsync(string searchString, int? gameRowId = null,
-        CancellationToken cancellationToken = default);
+        bool includeTools = false, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Download mod file from GameBanana.

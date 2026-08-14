@@ -39,8 +39,13 @@ public class GameBananaService(
         if (modGbId is null)
             throw new InvalidGameBananaUrlException($"Invalid GameBanana url: {modUrl}");
 
-        var result = await _gameBananaCoreService.GetModProfileAsync(new GbModId(modGbId), cancellationToken)
-            .ConfigureAwait(false);
+        // gamebanana.com/tools/<id> is a Tool submission, not a Mod — route to the Tool API.
+        var isTool = modUrl.Segments.Any(s => s.Equals("tools/", StringComparison.OrdinalIgnoreCase));
+        var result = isTool
+            ? await _gameBananaCoreService.GetToolProfileAsync(new GbModId(modGbId), cancellationToken)
+                .ConfigureAwait(false)
+            : await _gameBananaCoreService.GetModProfileAsync(new GbModId(modGbId), cancellationToken)
+                .ConfigureAwait(false);
 
         if (result is null)
             throw new InvalidOperationException($"Mod with id {modGbId} not found");
@@ -93,17 +98,27 @@ public class GameBananaService(
     /// <param name="searchTerms">The search query (e.g. a character name and/or mod folder terms).</param>
     /// <param name="gameRowId">GameBanana game id; pass null to search across all games.</param>
     public async Task<IReadOnlyList<ApiSearchModResult>> SearchModsAsync(string searchTerms, int? gameRowId,
-        CancellationToken cancellationToken = default)
+        bool includeTools = false, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(searchTerms))
             return Array.Empty<ApiSearchModResult>();
 
-        return await _gameBananaCoreService.SearchModsAsync(searchTerms, gameRowId, cancellationToken)
+        return await _gameBananaCoreService.SearchModsAsync(searchTerms, gameRowId, includeTools, cancellationToken)
             .ConfigureAwait(false);
     }
 
     /// <summary>Builds <c>https://gamebanana.com/mods/&lt;id&gt;</c> from a mod row id.</summary>
     public static Uri BuildModUrlFromId(int modId) => new($"https://gamebanana.com/mods/{modId}");
+
+    /// <summary>
+    /// Whether GameBanana Tools should be included in the search for the section the mod belongs to.
+    /// Tools are only relevant for non-playable-character sections (the built-in "Others" section
+    /// and user-created custom sections) — real characters stay mod-only.
+    /// </summary>
+    public static bool ShouldIncludeTools(GIMI_ModManager.Core.GamesService.Interfaces.IModdableObject? moddableObject) =>
+        moddableObject is not null &&
+        (moddableObject.IsCustomModObject ||
+         string.Equals(moddableObject.InternalName.Id, "Others", StringComparison.OrdinalIgnoreCase));
 
     private string? GetModIdFromUri(Uri modUrl)
     {

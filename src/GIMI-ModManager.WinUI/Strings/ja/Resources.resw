@@ -426,6 +426,91 @@
     <value>プリセットを適用:</value>
   </data>
 
+  <data name="CharactersPage_AdvancedBatchConfigurations" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>詳細バッチ設定</value>
+  </data>
+  <data name="CharactersPage_BatchRepairOrphanMods.Text" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>孤児Modをバッチ修復</value>
+  </data>
+  <data name="BatchRepair_Title" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>孤児Modを修復</value>
+  </data>
+  <data name="BatchRepair_WindowTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>孤児Modを修復</value>
+  </data>
+  <data name="BatchRepair_Cancel" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>キャンセル</value>
+  </data>
+  <data name="BatchRepair_UseMod" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>このModを使う</value>
+  </data>
+  <data name="BatchRepair_Skip" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>スキップ</value>
+  </data>
+  <data name="BatchRepair_PickTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>GameBananaのModを選択:</value>
+  </data>
+  <data name="BatchRepair_NoOrphansTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>孤児Modなし</value>
+  </data>
+  <data name="BatchRepair_NoOrphansMessage" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>GameBananaリンクがないModはありません。</value>
+  </data>
+  <data name="BatchRepair_FailedTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>バッチ修復に失敗しました</value>
+  </data>
+  <data name="BatchRepair_SummaryTitle" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>バッチ修復が完了しました</value>
+  </data>
+  <data name="BatchRepair_SummaryMessage" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>{0}件修復、{1}件スキップ、{2}件失敗。</value>
+  </data>
+  <data name="BatchRepair_SummaryCanceled" xml:space="preserve">
+    <!-- batch orphan repair -->
+    <value>バッチはキャンセルされました。</value>
+  </data>
+  <data name="BatchRepair_CharacterLabel" xml:space="preserve">
+    <!-- batch orphan repair dialog label -->
+    <value>キャラクター</value>
+  </data>
+  <data name="BatchRepair_Working" xml:space="preserve">
+    <!-- batch orphan repair busy indicator -->
+    <value>処理中</value>
+  </data>
+  <data name="BatchRepair_FetchingInfo" xml:space="preserve">
+    <!-- batch busy status -->
+    <value>{0}のMod情報を取得中...</value>
+  </data>
+  <data name="BatchRepair_Downloading" xml:space="preserve">
+    <!-- batch busy status -->
+    <value>{0}をダウンロード中...</value>
+  </data>
+  <data name="BatchRepair_Extracting" xml:space="preserve">
+    <!-- batch busy status -->
+    <value>{0}を解凍中...</value>
+  </data>
+
+
+  <data name="BatchRepair_ModLabel" xml:space="preserve">
+    <!-- batch orphan repair dialog label -->
+    <value>Mod</value>
+  </data>
+
+
+
   <data name="CharactersPage_ApplyPresetConfirmText" xml:space="preserve">
     <!-- Label for preset application status -->
     <value>確認</value>
@@ -806,12 +891,17 @@
   </data>
   <data name="ModPane_AlwaysRedownload" xml:space="preserve">
     <!-- Checkbox in the search dialog: always run the download/install flow for the selected mod -->
-    <value>常にModを再ダウンロード</value>
+    <value>Modの再ダウンロードを強制</value>
   </data>
   <data name="ModPane_LikelyUpdateTooltip" xml:space="preserve">
     <!-- Tooltip on the update icon in search results (this result likely has a newer version) -->
     <value>これは新しいファイル版です。関連付けるとModが更新されます</value>
   </data>
+  <data name="ModPane_RefetchTooltip" xml:space="preserve">
+    <!-- Alt + URL refetch button tooltip -->
+    <value>GameBananaからMod情報を再取得</value>
+  </data>
+
   <data name="ModInstaller_AssociateMod" xml:space="preserve">
     <!-- Primary button label in the ModInstaller "associate" mode that only writes the mod's metadata to its settings -->
     <value>このModを関連付ける</value>
