@@ -949,6 +949,8 @@ public partial class ModPaneFieldsVm : ObservableObject
     public bool IsModDisplayNameChanged => ModDisplayName != UnchangedValue?.ModDisplayName;
     [ObservableProperty] private string _modUrl = string.Empty;
     public bool IsModUrlChanged => ModUrl != UnchangedValue?.ModUrl;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasDescription))] private string? _description = null;
+    public bool HasDescription => !string.IsNullOrWhiteSpace(Description);
     [ObservableProperty] private string? _modIniPath = null;
     public bool IsModIniPathChanged => ModIniPath != UnchangedValue?.ModIniPath;
     [ObservableProperty] private bool _ignoreMergedIni = true;
@@ -965,6 +967,7 @@ public partial class ModPaneFieldsVm : ObservableObject
         ImageUri = modSettings.ImagePath ?? ImageHandlerService.StaticPlaceholderImageUri;
         ModDisplayName = modEntry.Mod.GetDisplayName();
         ModUrl = modSettings.ModUrl?.ToString() ?? "";
+        Description = modSettings.Description;
         ModIniPath = modSettings.MergedIniPath?.ToString();
         IgnoreMergedIni = modSettings.IgnoreMergedIni;
 

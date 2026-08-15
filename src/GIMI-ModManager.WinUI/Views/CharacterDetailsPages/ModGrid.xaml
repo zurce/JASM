@@ -207,14 +207,25 @@
                     IsReadOnly="True"
                     Tag="Presets" />
 
-                <controls:DataGridTextColumn
+                <controls:DataGridTemplateColumn
                     x:Name="NotesColumn"
-                    Width="SizeToCells"
-                    Binding="{Binding Description, Mode=OneWay}"
+                    Width="200"
                     CanUserSort="False"
                     Header="Notes"
-                    IsReadOnly="False"
-                    Tag="Description" />
+                    IsReadOnly="True"
+                    Tag="Description">
+                    <controls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                MaxWidth="190"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Text="{Binding NotesPreview, Mode=OneWay}"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap" />
+                        </DataTemplate>
+                    </controls:DataGridTemplateColumn.CellTemplate>
+                </controls:DataGridTemplateColumn>
 
             </controls:DataGrid.Columns>
 
