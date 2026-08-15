@@ -167,8 +167,15 @@
 
 
         <ScrollViewer Grid.Row="3">
+            <StackPanel Spacing="8">
+                <RichTextBlock
+                    FontSize="12"
+                    IsTextSelectionEnabled="True"
+                    TextWrapping="WrapWholeWords"
+                    Visibility="{x:Bind ViewModel.ModModel.HasDescription, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
+                    xaml:HtmlToRichText.Html="{x:Bind ViewModel.ModModel.Description, Mode=OneWay}" />
 
-            <controls1:SwitchPresenter Visibility="{x:Bind ViewModel.IsModLoaded, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Value="{x:Bind ViewModel.ModModel.IsKeySwapManagementEnabled, Mode=OneWay}">
+                <controls1:SwitchPresenter Visibility="{x:Bind ViewModel.IsModLoaded, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Value="{x:Bind ViewModel.ModModel.IsKeySwapManagementEnabled, Mode=OneWay}">
                 <controls1:Case Value="true">
                     <StackPanel>
                         <ItemsRepeater ItemsSource="{x:Bind ViewModel.ModModel.KeySwaps, Mode=OneWay}">
@@ -216,6 +223,7 @@
 
                 </controls1:Case>
             </controls1:SwitchPresenter>
+            </StackPanel>
         </ScrollViewer>
 
 

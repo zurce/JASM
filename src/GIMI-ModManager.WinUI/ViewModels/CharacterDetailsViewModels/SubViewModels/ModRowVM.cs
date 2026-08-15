@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using GIMI_ModManager.Core.Entities;
 using GIMI_ModManager.Core.Entities.Mods.Contract;
 using GIMI_ModManager.WinUI.Helpers;
+using GIMI_ModManager.WinUI.Helpers.Xaml;
 using GIMI_ModManager.WinUI.Services.Notifications;
 
 namespace GIMI_ModManager.WinUI.ViewModels.CharacterDetailsViewModels.SubViewModels;
@@ -30,6 +31,7 @@ public partial class ModRowVM : ObservableObject
     [ObservableProperty] private string _inPresets = string.Empty;
 
     [ObservableProperty] private string _description = string.Empty;
+    [ObservableProperty] private string _notesPreview = string.Empty;
 
 
     public ObservableCollection<ModRowVM_ModNotificationVM> ModNotifications { get; } = new();
@@ -52,6 +54,9 @@ public partial class ModRowVM : ObservableObject
         DateAdded = modSettings?.DateAdded ?? DateTime.MinValue;
         DateAddedFormated = DateAdded.ToString("d");
         Author = modSettings?.Author ?? string.Empty;
+        NotesPreview = modSettings is null || string.IsNullOrWhiteSpace(modSettings.Description)
+            ? string.Empty
+            : HtmlToRichText.StripHtml(modSettings.Description);
         Description = modSettings?.Description ?? string.Empty;
         Presets = presetNames.ToArray();
         InPresets = string.Join(',', Presets);
