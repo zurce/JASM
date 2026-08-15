@@ -199,5 +199,35 @@ JASMはWUWAとZZZを部分的にサポートしています。</value>
   <data name="Settings_CommunityUpdateIgnore.Content" xml:space="preserve">
     <value>無視</value>
   </data>
+  <data name="AdvancedSettingsSectionHeader.Text" xml:space="preserve">
+    <value>詳細設定とエキスパート設定</value>
+  </data>
+  <data name="ModPersistenceLabel.Text" xml:space="preserve">
+    <value>Mod設定の永続化</value>
+  </data>
+  <data name="ModPersistence_None.Content" xml:space="preserve">
+    <value>永続化なし</value>
+  </data>
+  <data name="ModPersistence_FileIni.Content" xml:space="preserve">
+    <value>ファイル永続化モード</value>
+  </data>
+  <data name="ModPersistence_UserIni.Content" xml:space="preserve">
+    <value>User Settings（d3dx_user.ini）の監視と自動管理</value>
+  </data>
+  <data name="ExpertConfigLabel.Text" xml:space="preserve">
+    <value>エキスパート設定</value>
+  </data>
+  <data name="ExpertConfig_ResumeLabel.Text" xml:space="preserve">
+    <value>キャラクター再開時：</value>
+  </data>
+  <data name="ExpertConfig_ResumeDesc.Text" xml:space="preserve">
+    <value>バッチ設定でAltを押し続けると、高度なバッチ設定が有効になります。</value>
+  </data>
+  <data name="ExpertConfig_ModPageLabel.Text" xml:space="preserve">
+    <value>キャラクターModページ：</value>
+  </data>
+  <data name="ExpertConfig_ModPageDesc.Text" xml:space="preserve">
+    <value>開くURLボタンでAltを押し続けると、既存のModの再関連付けが有効になります。</value>
+  </data>
 
 </root>

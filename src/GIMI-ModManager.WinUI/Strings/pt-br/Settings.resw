@@ -174,4 +174,34 @@
   <data name="Settings_CommunityUpdateIgnore.Content" xml:space="preserve">
     <value>Ignorar</value>
   </data>
+  <data name="AdvancedSettingsSectionHeader.Text" xml:space="preserve">
+    <value>Configurações avançadas e configurações de especialista</value>
+  </data>
+  <data name="ModPersistenceLabel.Text" xml:space="preserve">
+    <value>Persistência de configuração do mod</value>
+  </data>
+  <data name="ModPersistence_None.Content" xml:space="preserve">
+    <value>Sem persistência duradoura</value>
+  </data>
+  <data name="ModPersistence_FileIni.Content" xml:space="preserve">
+    <value>Modo de persistência em arquivo</value>
+  </data>
+  <data name="ModPersistence_UserIni.Content" xml:space="preserve">
+    <value>Vigilância e gerenciamento automático do User Settings (d3dx_user.ini)</value>
+  </data>
+  <data name="ExpertConfigLabel.Text" xml:space="preserve">
+    <value>Configurações de especialista</value>
+  </data>
+  <data name="ExpertConfig_ResumeLabel.Text" xml:space="preserve">
+    <value>Ao retomar o personagem:</value>
+  </data>
+  <data name="ExpertConfig_ResumeDesc.Text" xml:space="preserve">
+    <value>Manter Alt em configurações em lote ativa configurações avançadas em lote.</value>
+  </data>
+  <data name="ExpertConfig_ModPageLabel.Text" xml:space="preserve">
+    <value>Página de mod do personagem:</value>
+  </data>
+  <data name="ExpertConfig_ModPageDesc.Text" xml:space="preserve">
+    <value>Manter Alt no botão abrir-URL ativa a reassociação em mods existentes.</value>
+  </data>
 </root>

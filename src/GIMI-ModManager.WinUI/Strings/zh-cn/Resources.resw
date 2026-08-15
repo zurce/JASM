@@ -4416,4 +4416,13 @@ Ini路径：{1}</value>
     <!-- Non-blocking warning: the chosen mods folder is inside the JASM install folder; placing mods outside avoids them being affected by updates -->
     <value>此模组文件夹位于JASM安装文件夹内。建议将模组放置在JASM之外，以免受更新影响。</value>
   </data>
+  <data name="Settings_ModPersistence_NoneDesc" xml:space="preserve">
+    <value>如果游戏运行时热切换模组，模组将丢失其预设和配置。</value>
+  </data>
+  <data name="Settings_ModPersistence_FileIniDesc" xml:space="preserve">
+    <value>设置将被覆盖到模组的.ini文件中。如果期望某些默认值，这可能会带来问题；如出现问题请重新安装模组。</value>
+  </data>
+  <data name="Settings_ModPersistence_UserIniDesc" xml:space="preserve">
+    <value>监视并自动管理 d3dx_user.ini。如果重新加载模组耗时过长或存储较慢，可能会带来问题；如果加载不正常，可能需要按F10重新加载几次。</value>
+  </data>
 </root>

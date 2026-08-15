@@ -15,6 +15,7 @@
     <Page.Resources>
         <xaml1:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
         <xaml1:BoolToVisibleConverter x:Key="BoolToVisibleConverter" />
+        <xaml1:EnumToIndexConverter x:Key="EnumToIndexConverter" />
     </Page.Resources>
     <Grid>
 
@@ -468,6 +469,66 @@
                     <TextBlock Visibility="{x:Bind ViewModel.ExportingMods, Mode=OneWay}" Text="{x:Bind ViewModel.CurrentModName, Mode=OneWay}" />
                 </StackPanel>
 
+                <TextBlock
+                    Style="{ThemeResource SubtitleTextBlockStyle}"
+                    Text="Advanced Settings &amp; Expert Configurations"
+                    l:Uids.Uid="/Settings/AdvancedSettingsSectionHeader" />
+                <StackPanel Margin="{StaticResource SmallTopBottomMargin}" Spacing="16" HorizontalAlignment="Left">
+                    <StackPanel Spacing="8" MaxWidth="620">
+                        <TextBlock
+                            Text="Mod Configuration Persistence"
+                            FontWeight="SemiBold"
+                            IsTextSelectionEnabled="True"
+                            l:Uids.Uid="/Settings/ModPersistenceLabel" />
+                        <ComboBox
+                            Width="400"
+                            HorizontalAlignment="Left"
+                            SelectedIndex="{x:Bind ViewModel.SelectedModPersistenceMode, Mode=TwoWay, Converter={StaticResource EnumToIndexConverter}}">
+                            <ComboBoxItem Content="No hard persistence" Tag="None" l:Uids.Uid="/Settings/ModPersistence_None" />
+                            <ComboBoxItem Content="File persistence mode" Tag="FileIni" l:Uids.Uid="/Settings/ModPersistence_FileIni" />
+                            <ComboBoxItem Content="User Settings (d3dx_user.ini) watchdog and auto management" Tag="UserIniWatchdog" l:Uids.Uid="/Settings/ModPersistence_UserIni" />
+                        </ComboBox>
+                        <InfoBar
+                            IsClosable="False"
+                            IsOpen="True"
+                            Severity="Warning"
+                            Message="{x:Bind ViewModel.ModPersistenceDescription, Mode=OneWay}" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8" MaxWidth="620">
+                        <TextBlock
+                            Text="Expert Configurations"
+                            FontWeight="SemiBold"
+                            IsTextSelectionEnabled="True"
+                            l:Uids.Uid="/Settings/ExpertConfigLabel" />
+                        <StackPanel Spacing="6">
+                            <StackPanel Spacing="2">
+                                <TextBlock
+                                    FontWeight="SemiBold"
+                                    Text="On Character Resume:"
+                                    IsTextSelectionEnabled="True"
+                                    l:Uids.Uid="/Settings/ExpertConfig_ResumeLabel" />
+                                <TextBlock
+                                    TextWrapping="WrapWholeWords"
+                                    Text="Holding Alt in batch configurations enables advanced batch configurations."
+                                    IsTextSelectionEnabled="True"
+                                    l:Uids.Uid="/Settings/ExpertConfig_ResumeDesc" />
+                            </StackPanel>
+                            <StackPanel Spacing="2">
+                                <TextBlock
+                                    FontWeight="SemiBold"
+                                    Text="Character Mod Page:"
+                                    IsTextSelectionEnabled="True"
+                                    l:Uids.Uid="/Settings/ExpertConfig_ModPageLabel" />
+                                <TextBlock
+                                    TextWrapping="WrapWholeWords"
+                                    Text="Holding Alt on the open-URL button enables re-association on existing mods."
+                                    IsTextSelectionEnabled="True"
+                                    l:Uids.Uid="/Settings/ExpertConfig_ModPageDesc" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
 
                 <TextBlock
                     Style="{ThemeResource SubtitleTextBlockStyle}"

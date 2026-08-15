@@ -4415,4 +4415,13 @@ JASMはModを移動したり削除したりしません。
     <!-- Non-blocking warning: the chosen mods folder is inside the JASM install folder; placing mods outside avoids them being affected by updates -->
     <value>このMODフォルダーはJASMインストールフォルダー内にあります。更新の影響を受けないよう、JASMの外にMODを配置することをお勧めします。</value>
   </data>
+  <data name="Settings_ModPersistence_NoneDesc" xml:space="preserve">
+    <value>ゲーム実行中にModをホットスワップすると、プリセットと設定が失われます。</value>
+  </data>
+  <data name="Settings_ModPersistence_FileIniDesc" xml:space="preserve">
+    <value>設定はModの.iniファイルに上書きされます。特定のデフォルトを期待している場合は問題が発生する可能性があります。問題が起きた場合はModを再インストールしてください。</value>
+  </data>
+  <data name="Settings_ModPersistence_UserIniDesc" xml:space="preserve">
+    <value>d3dx_user.iniを監視し自動管理します。Modの再読み込みに時間がかかる場合やストレージが遅い場合は問題が発生する可能性があります。正しく読み込まれない場合は（F10で）数回再読み込みが必要になることがあります。</value>
+  </data>
 </root>

@@ -179,4 +179,34 @@ La verificación manual de actualizaciones siempre consulta directamente a GameB
   <data name="Settings_CommunityUpdateIgnore.Content" xml:space="preserve">
     <value>Ignorar</value>
   </data>
+  <data name="AdvancedSettingsSectionHeader.Text" xml:space="preserve">
+    <value>Configuración avanzada y configuraciones de experto</value>
+  </data>
+  <data name="ModPersistenceLabel.Text" xml:space="preserve">
+    <value>Persistencia de configuración de mods</value>
+  </data>
+  <data name="ModPersistence_None.Content" xml:space="preserve">
+    <value>Sin persistencia persistente</value>
+  </data>
+  <data name="ModPersistence_FileIni.Content" xml:space="preserve">
+    <value>Modo de persistencia en archivo</value>
+  </data>
+  <data name="ModPersistence_UserIni.Content" xml:space="preserve">
+    <value>Supervisión y gestión automática de User Settings (d3dx_user.ini)</value>
+  </data>
+  <data name="ExpertConfigLabel.Text" xml:space="preserve">
+    <value>Configuraciones de experto</value>
+  </data>
+  <data name="ExpertConfig_ResumeLabel.Text" xml:space="preserve">
+    <value>Al reanudar personaje:</value>
+  </data>
+  <data name="ExpertConfig_ResumeDesc.Text" xml:space="preserve">
+    <value>Mantener Alt en configuraciones por lotes habilita configuraciones avanzadas por lotes.</value>
+  </data>
+  <data name="ExpertConfig_ModPageLabel.Text" xml:space="preserve">
+    <value>Página de mods del personaje:</value>
+  </data>
+  <data name="ExpertConfig_ModPageDesc.Text" xml:space="preserve">
+    <value>Mantener Alt en el botón abrir-URL habilita la reasociación en mods existentes.</value>
+  </data>
 </root>

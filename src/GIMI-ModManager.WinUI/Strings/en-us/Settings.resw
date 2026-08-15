@@ -179,4 +179,34 @@ Manually checking for updates always checks GameBanana directly</value>
   <data name="Settings_CommunityUpdateIgnore.Content" xml:space="preserve">
     <value>Ignore</value>
   </data>
+  <data name="AdvancedSettingsSectionHeader.Text" xml:space="preserve">
+    <value>Advanced Settings &amp; Expert Configurations</value>
+  </data>
+  <data name="ModPersistenceLabel.Text" xml:space="preserve">
+    <value>Mod Configuration Persistence</value>
+  </data>
+  <data name="ModPersistence_None.Content" xml:space="preserve">
+    <value>No hard persistence</value>
+  </data>
+  <data name="ModPersistence_FileIni.Content" xml:space="preserve">
+    <value>File persistence mode</value>
+  </data>
+  <data name="ModPersistence_UserIni.Content" xml:space="preserve">
+    <value>User Settings (d3dx_user.ini) watchdog and auto management</value>
+  </data>
+  <data name="ExpertConfigLabel.Text" xml:space="preserve">
+    <value>Expert Configurations</value>
+  </data>
+  <data name="ExpertConfig_ResumeLabel.Text" xml:space="preserve">
+    <value>On Character Resume:</value>
+  </data>
+  <data name="ExpertConfig_ResumeDesc.Text" xml:space="preserve">
+    <value>Holding Alt in batch configurations enables advanced batch configurations.</value>
+  </data>
+  <data name="ExpertConfig_ModPageLabel.Text" xml:space="preserve">
+    <value>Character Mod Page:</value>
+  </data>
+  <data name="ExpertConfig_ModPageDesc.Text" xml:space="preserve">
+    <value>Holding Alt on the open-URL button enables re-association on existing mods.</value>
+  </data>
 </root>
