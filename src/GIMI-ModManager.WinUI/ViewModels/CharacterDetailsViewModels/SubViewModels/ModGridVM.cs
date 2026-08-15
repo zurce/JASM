@@ -13,8 +13,10 @@ using GIMI_ModManager.Core.Entities;
 using GIMI_ModManager.Core.Helpers;
 using GIMI_ModManager.Core.Services.ModPresetService;
 using GIMI_ModManager.Core.Services.ModPresetService.Models;
+using GIMI_ModManager.Core.Services;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Helpers;
+using GIMI_ModManager.WinUI.Models.Settings;
 using GIMI_ModManager.WinUI.Services.AppManagement;
 using GIMI_ModManager.WinUI.Services.ModHandling;
 using GIMI_ModManager.WinUI.Services.Notifications;
@@ -32,7 +34,8 @@ public partial class ModGridVM(
     ILocalSettingsService localSettingsService,
     ModNotificationManager modNotificationManager,
     ModSettingsService modSettingsService,
-    IWindowManagerService windowManagerService)
+    IWindowManagerService windowManagerService,
+    UserPreferencesService userPreferencesService)
     : ObservableRecipient, IRecipient<ModChangedMessage>
 {
     private readonly ISkinManagerService _skinManagerService = skinManagerService;
@@ -43,6 +46,7 @@ public partial class ModGridVM(
     private readonly ModNotificationManager _modNotificationManager = modNotificationManager;
     private readonly ModSettingsService _modSettingsService = modSettingsService;
     private readonly IWindowManagerService _windowManagerService = windowManagerService;
+    private readonly UserPreferencesService _userPreferencesService = userPreferencesService;
     private readonly ILogger _logger = Log.ForContext<ModGridVM>();
 
     private DispatcherQueue _dispatcherQueue = null!;
@@ -368,11 +372,45 @@ public partial class ModGridVM(
             return;
 
         var otherMods = SingleSelect ? _modsBackend.Where(mod => modVmToToggle.Id != mod.Id && mod.IsEnabled).ToArray() : [];
+        var togglingEnabled = modEntryToToggle.IsEnabled;
+        var persistenceMode = (_localSettingsService.ReadSetting<ModPersistenceSettings>(
+                                   ModPersistenceSettings.Key, ModPersistenceSettings.Scope)
+                               ?? new ModPersistenceSettings()).Mode;
+        var persistenceEnabled = persistenceMode != ModPersistenceMode.None;
 
         try
         {
             await Task.Run(() =>
             {
+                // 1. If the toggled mod is currently enabled (about to be disabled), capture its
+                //    last-used in-game config into its loaded_user.ini BEFORE the state flips.
+                if (persistenceEnabled && togglingEnabled)
+                {
+                    try
+                    {
+                        _userPreferencesService.SaveModConfigToFolder(modEntryToToggle);
+                        if (persistenceMode == ModPersistenceMode.UserIniWatchdog)
+                            _userPreferencesService.RemoveModConfigFromUserIni(modEntryToToggle);
+                    }
+                    catch (Exception saveEx) { _logger.Warning(saveEx, "[ModToggle] Failed to save config to folder before disabling mod"); }
+                }
+
+                // Also capture mods being switched away from in single-select (auto-disabled).
+                if (persistenceEnabled)
+                {
+                    foreach (var otherMod in otherMods)
+                    {
+                        if (!otherMod.IsEnabled) continue;
+                        try
+                        {
+                            _userPreferencesService.SaveModConfigToFolder(otherMod);
+                            if (persistenceMode == ModPersistenceMode.UserIniWatchdog)
+                                _userPreferencesService.RemoveModConfigFromUserIni(otherMod);
+                        }
+                        catch (Exception saveEx) { _logger.Warning(saveEx, "[ModToggle] Failed to save config to folder for auto-disabled mod"); }
+                    }
+                }
+
                 try
                 {
                     foreach (var skinEntry in otherMods)
@@ -388,6 +426,20 @@ public partial class ModGridVM(
 
 
                 _modList.ToggleMod(modEntryToToggle.Id);
+
+                // 2. If the toggled mod is now enabled (was disabled), restore its saved config
+                //    using the selected persistence strategy.
+                if (persistenceEnabled && !togglingEnabled)
+                {
+                    try
+                    {
+                        if (persistenceMode == ModPersistenceMode.FileIni)
+                            _userPreferencesService.ApplyModConfigToModIni(modEntryToToggle);
+                        else if (persistenceMode == ModPersistenceMode.UserIniWatchdog)
+                            _userPreferencesService.RestoreModConfigToUserIni(modEntryToToggle);
+                    }
+                    catch (Exception applyEx) { _logger.Warning(applyEx, "[ModToggle] Failed to restore saved config after enabling"); }
+                }
             }, CancellationToken.None);
 
 

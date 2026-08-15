@@ -199,5 +199,35 @@ JASM+ частично поддерживает WUWA и ZZZ</value>
   <data name="Settings_CommunityUpdateIgnore.Content" xml:space="preserve">
     <value>Игнорировать</value>
   </data>
+  <data name="AdvancedSettingsSectionHeader.Text" xml:space="preserve">
+    <value>Расширенные настройки и конфигурации эксперта</value>
+  </data>
+  <data name="ModPersistenceLabel.Text" xml:space="preserve">
+    <value>Сохранение конфигурации модов</value>
+  </data>
+  <data name="ModPersistence_None.Content" xml:space="preserve">
+    <value>Без постоянного сохранения</value>
+  </data>
+  <data name="ModPersistence_FileIni.Content" xml:space="preserve">
+    <value>Режим сохранения в файле</value>
+  </data>
+  <data name="ModPersistence_UserIni.Content" xml:space="preserve">
+    <value>Наблюдение и автоматическое управление User Settings (d3dx_user.ini)</value>
+  </data>
+  <data name="ExpertConfigLabel.Text" xml:space="preserve">
+    <value>Конфигурации эксперта</value>
+  </data>
+  <data name="ExpertConfig_ResumeLabel.Text" xml:space="preserve">
+    <value>При возобновлении персонажа:</value>
+  </data>
+  <data name="ExpertConfig_ResumeDesc.Text" xml:space="preserve">
+    <value>Удержание Alt в пакетных конфигурациях включает расширенные пакетные конфигурации.</value>
+  </data>
+  <data name="ExpertConfig_ModPageLabel.Text" xml:space="preserve">
+    <value>Страница модов персонажа:</value>
+  </data>
+  <data name="ExpertConfig_ModPageDesc.Text" xml:space="preserve">
+    <value>Удержание Alt на кнопке открытия URL включает повторную привязку существующих модов.</value>
+  </data>
 
 </root>

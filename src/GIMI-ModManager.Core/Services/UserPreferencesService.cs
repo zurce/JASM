@@ -14,6 +14,7 @@ public class UserPreferencesService(ILogger logger, ISkinManagerService skinMana
     private DirectoryInfo _threeMigotoFolder = null!;
     private DirectoryInfo _activeModsFolder = null!;
     private static string D3DX_USER_INI = Constants.UserIniFileName;
+    private const string LoadedUserIniFileName = "loaded_user.ini";
 
 
     public Task InitializeAsync()
@@ -22,6 +23,355 @@ public class UserPreferencesService(ILogger logger, ISkinManagerService skinMana
         _activeModsFolder = new DirectoryInfo(_skinManagerService.ActiveModsFolderPath);
 
         return Task.CompletedTask;
+    }
+
+    /// <summary>
+    /// Captures a mod's current overrides from <c>d3dx_user.ini</c> (matched by its
+    /// <c>$\mods\...\mod-name\...ini\key</c> path) into a <c>loaded_user.ini</c> file placed
+    /// **inside the mod's folder**, so the last-used in-game config travels with the mod. Call
+    /// this BEFORE disabling/leaving the mod (while it is still enabled and its d3dx_user.ini
+    /// lines are present). If the mod has no lines right now, any stale <c>loaded_user.ini</c>
+    /// is removed.
+    /// </summary>
+    public bool SaveModConfigToFolder(CharacterSkinEntry skinEntry)
+    {
+        try
+        {
+            if (_threeMigotoFolder is null || !_threeMigotoFolder.Exists)
+                return false;
+
+            var d3dxUserIni = new FileInfo(Path.Combine(_threeMigotoFolder.FullName, D3DX_USER_INI));
+            if (!d3dxUserIni.Exists)
+                return false;
+
+            var lines = File.ReadAllLines(d3dxUserIni.FullName);
+            var matches = FindExistingModPref(_activeModsFolder.FullName, lines, skinEntry);
+            var loadedUserIni = Path.Combine(skinEntry.Mod.FullPath, LoadedUserIniFileName);
+
+            if (matches.Count == 0)
+            {
+                if (File.Exists(loadedUserIni))
+                {
+                    File.Delete(loadedUserIni);
+                    _logger.Information("[LoadedIni] mod={ModName} had no d3dx_user.ini overrides; removed stale loaded_user.ini", skinEntry.Mod.Name);
+                }
+                else
+                {
+                    _logger.Information("[LoadedIni] mod={ModName} has no d3dx_user.ini overrides; nothing to save", skinEntry.Mod.Name);
+                }
+                return true;
+            }
+
+            var captured = matches.Select(m => lines[m.Index]).ToArray();
+            File.WriteAllLines(loadedUserIni, captured);
+            _logger.Information("[LoadedIni] mod={ModName} saved {Count} override(s) to {Path}", skinEntry.Mod.Name, captured.Length, loadedUserIni);
+            return true;
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "[LoadedIni] Failed to save loaded_user.ini for mod {ModName}", skinEntry.Mod.Name);
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Applies a mod's saved configuration by **rewriting the mod's own .ini**: for each value in
+    /// <c>loaded_user.ini</c> (e.g. <c>...\remielle.ini\garter = 0</c>), it sets the matching
+    /// <c>global persist $Garter = value</c> line inside the mod's <c>[Constants]</c> section to the
+    /// saved value. This makes the mod load with the saved state on the next reload, without editing
+    /// the game-managed <c>d3dx_user.ini</c> (so no stale global overrides / "both mods enabled").
+    /// It only ever touches <c>global persist</c> default lines — never the <c>[KeySwap]</c> cycle lists.
+    /// </summary>
+    public bool ApplyModConfigToModIni(CharacterSkinEntry skinEntry)
+    {
+        try
+        {
+            var loadedUserIni = Path.Combine(skinEntry.Mod.FullPath, LoadedUserIniFileName);
+            if (!File.Exists(loadedUserIni))
+            {
+                _logger.Information("[ModIni] mod={ModName} has no loaded_user.ini, nothing to apply", skinEntry.Mod.Name);
+                return false;
+            }
+
+            // modNameSpace is the prefix used in the d3dx_user.ini lines, e.g. $\mods\char\name\modfolder\.
+            var modNameSpace = (string)CreateUserIniPreference(_activeModsFolder.FullName, skinEntry);
+            if (string.IsNullOrEmpty(modNameSpace))
+                return false;
+
+            var savedLines = File.ReadAllLines(loadedUserIni);
+            var applied = 0;
+
+            foreach (var line in savedLines)
+            {
+                if (!line.StartsWith(modNameSpace, StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                // e.g. remielle latex harness\remielle.ini\garter = 0
+                var rest = line[modNameSpace.Length..];
+                var eq = rest.LastIndexOf('=');
+                if (eq <= 0)
+                    continue;
+
+                var iniRelPath = rest[..eq].Trim();          // remielle latex harness\remielle.ini\garter
+                var value = rest[(eq + 1)..].Trim();          // 0
+
+                var iniSep = iniRelPath.LastIndexOf('\\');
+                var key = iniRelPath[(iniSep + 1)..];          // garter
+                var iniSubPath = iniRelPath[..iniSep];         // remielle latex harness\remielle.ini
+
+                var iniFile = Path.Combine(skinEntry.Mod.FullPath, iniSubPath);
+                if (!File.Exists(iniFile))
+                {
+                    _logger.Warning("[ModIni] mod={ModName} referenced ini file not found: {File}", skinEntry.Mod.Name, iniFile);
+                    continue;
+                }
+
+                if (SetPersistValue(iniFile, key, value))
+                    applied++;
+            }
+
+            _logger.Information("[ModIni] mod={ModName} applied {Applied} persist value(s) in its .ini", skinEntry.Mod.Name, applied);
+            return applied > 0;
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "[ModIni] Failed to apply mod config to .ini for mod {ModName}", skinEntry.Mod.Name);
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Rewrites the <c>global persist $&lt;key&gt; = x</c> line in the ini's <c>[Constants]</c> section to
+    /// <paramref name="value"/>, preserving everything else. Returns true if a matching persist line
+    /// was found and updated. Never touches <c>[KeySwap]</c>/cycle lists.
+    /// </summary>
+    private static bool SetPersistValue(string iniFile, string key, string value)
+    {
+        var lines = File.ReadAllLines(iniFile).ToList();
+        var inConstants = false;
+        var changed = false;
+        var target = "$" + key; // variable name, e.g. $Garter (case-insensitive match)
+
+        for (var i = 0; i < lines.Count; i++)
+        {
+            var line = lines[i];
+            var trimmed = line.Trim();
+
+            if (IniConfigHelpers.IsSection(line))
+            {
+                inConstants = IniConfigHelpers.IsSection(line, "Constants");
+                continue;
+            }
+
+            if (!inConstants)
+                continue;
+
+            // Match: global persist $Garter = <anything>| ; comment
+            // Require the variable token to be exact (not $GarterLow matching $Garter).
+            if (trimmed.StartsWith("global persist", StringComparison.OrdinalIgnoreCase)
+                && HasExactVariable(trimmed, target))
+            {
+                lines[i] = $"global persist {target} = {value}";
+                changed = true;
+                break;
+            }
+        }
+
+        if (changed)
+        {
+            File.WriteAllLines(iniFile, lines);
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>Returns true when <paramref name="line"/> contains the exact variable token
+    /// (e.g. <c>$Garter</c>) — not as a substring of a longer variable like <c>$GarterLow</c>.</summary>
+    private static bool HasExactVariable(string line, string variable)
+    {
+        var idx = line.IndexOf(variable, StringComparison.OrdinalIgnoreCase);
+        while (idx != -1)
+        {
+            var beforeOk = idx == 0 || char.IsWhiteSpace(line[idx - 1]);
+            var afterIdx = idx + variable.Length;
+            var afterOk = afterIdx >= line.Length || char.IsWhiteSpace(line[afterIdx]) || line[afterIdx] == '=';
+            if (beforeOk && afterOk)
+                return true;
+            idx = line.IndexOf(variable, idx + 1, StringComparison.OrdinalIgnoreCase);
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Removes a mod's override lines from <c>d3dx_user.ini</c> (matched by its <c>$\mods\...</c>
+    /// namespace). Used on disable in watchdog mode so a disabled mod's config stops applying
+    /// (avoids stale overrides / "both mods enabled").
+    /// </summary>
+    public bool RemoveModConfigFromUserIni(CharacterSkinEntry skinEntry)
+    {
+        try
+        {
+            if (_threeMigotoFolder is null || !_threeMigotoFolder.Exists)
+                return false;
+            var d3dxUserIni = new FileInfo(Path.Combine(_threeMigotoFolder.FullName, D3DX_USER_INI));
+            if (!d3dxUserIni.Exists)
+                return false;
+
+            var lines = File.ReadAllLines(d3dxUserIni.FullName).ToList();
+            var modNameSpace = (string)CreateUserIniPreference(_activeModsFolder.FullName, skinEntry);
+            if (string.IsNullOrEmpty(modNameSpace))
+                return false;
+
+            var before = lines.Count;
+            lines.RemoveAll(l => l.StartsWith(modNameSpace, StringComparison.OrdinalIgnoreCase));
+            if (lines.Count == before)
+                return false;
+
+            File.WriteAllLines(d3dxUserIni.FullName, lines);
+            _logger.Information("[LoadedIni] mod={ModName} removed {Removed} override(s) from d3dx_user.ini", skinEntry.Mod.Name, before - lines.Count);
+            return true;
+        }
+        catch (Exception e)
+        {
+            _logger.Warning(e, "[LoadedIni] Failed to remove overrides for mod {ModName} from d3dx_user.ini", skinEntry.Mod.Name);
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Restores a mod's saved configuration by writing its <c>loaded_user.ini</c> lines back into
+    /// <c>d3dx_user.ini</c>, then arming a **one-shot** file watcher: if the game rewrites the file
+    /// (clobbering the restore), JASM re-applies once and stops. The user drives the actual reload
+    /// (F10); a stale load is harmless.
+    /// </summary>
+    public bool RestoreModConfigToUserIni(CharacterSkinEntry skinEntry)
+    {
+        try
+        {
+            if (_threeMigotoFolder is null || !_threeMigotoFolder.Exists)
+                return false;
+            var d3dxUserIni = new FileInfo(Path.Combine(_threeMigotoFolder.FullName, D3DX_USER_INI));
+            if (!d3dxUserIni.Exists)
+                return false;
+
+            var loadedUserIni = Path.Combine(skinEntry.Mod.FullPath, LoadedUserIniFileName);
+            if (!File.Exists(loadedUserIni))
+                return false;
+
+            var applied = ApplySavedConfig(d3dxUserIni, skinEntry);
+            if (!applied)
+                return false;
+            ArmOneShotReapply(d3dxUserIni, skinEntry);
+            return true;
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "[LoadedIni] Failed to restore mod config for {ModName}", skinEntry.Mod.Name);
+            return false;
+        }
+    }
+
+    /// <summary>Writes a mod's saved <c>loaded_user.ini</c> lines into <c>d3dx_user.ini</c> (under its
+    /// <c>$\mods\...</c> namespace), removing any existing entries first.</summary>
+    private bool ApplySavedConfig(FileInfo d3dxUserIni, CharacterSkinEntry skinEntry)
+    {
+        var loadedUserIni = Path.Combine(skinEntry.Mod.FullPath, LoadedUserIniFileName);
+        if (!File.Exists(loadedUserIni))
+            return false;
+
+        var lines = File.ReadAllLines(d3dxUserIni.FullName).ToList();
+        var constantSectionIndex = lines.FindIndex(l => IniConfigHelpers.IsSection(l, "Constants"));
+        if (constantSectionIndex == -1)
+            return false;
+
+        var modNameSpace = (string)CreateUserIniPreference(_activeModsFolder.FullName, skinEntry);
+        if (string.IsNullOrEmpty(modNameSpace))
+            return false;
+
+        lines.RemoveAll(l => l.StartsWith(modNameSpace, StringComparison.OrdinalIgnoreCase));
+
+        var restoreLines = File.ReadAllLines(loadedUserIni)
+            .Where(l => l.StartsWith(modNameSpace, StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+        if (restoreLines.Length == 0)
+            return false;
+
+        var insertAt = constantSectionIndex + 2;
+        for (var i = 0; i < restoreLines.Length; i++)
+            lines.Insert(insertAt + i, restoreLines[i]);
+
+        File.WriteAllLines(d3dxUserIni.FullName, lines);
+        _logger.Information("[LoadedIni] mod={ModName} restored {Count} override(s) into {D3dxUser}", skinEntry.Mod.Name, restoreLines.Length, d3dxUserIni.FullName);
+        return true;
+    }
+
+    /// <summary>Watches <c>d3dx_user.ini</c> for a single change, re-applies the mod's saved config once,
+    /// then stops. Debounced to avoid looping on a burst of game writes.</summary>
+    private void ArmOneShotReapply(FileInfo d3dxUserIni, CharacterSkinEntry skinEntry)
+    {
+        try
+        {
+            if (d3dxUserIni.Directory is null)
+                return;
+
+            var watcher = new FileSystemWatcher(d3dxUserIni.Directory.FullName, D3DX_USER_INI)
+            {
+                NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size
+            };
+
+            FileSystemEventHandler handler = null!;
+            var debounce = new System.Threading.CancellationTokenSource();
+            var disposed = false;
+
+            void Stop()
+            {
+                if (disposed)
+                    return;
+                disposed = true;
+                debounce.Cancel();
+                watcher.Changed -= handler;
+                watcher.Dispose();
+                _logger.Information("[LoadedIni] one-shot d3dx_user.ini watcher stopped");
+            }
+
+            handler = (_, _) =>
+            {
+                try
+                {
+                    debounce.Cancel();
+                    debounce = new System.Threading.CancellationTokenSource();
+                    _ = Task.Delay(TimeSpan.FromMilliseconds(250), debounce.Token)
+                        .ContinueWith(_ =>
+                        {
+                            if (debounce.IsCancellationRequested)
+                                return;
+                            _logger.Information("[LoadedIni] d3dx_user.ini changed; re-applying saved config for {ModName}", skinEntry.Mod.Name);
+                            try
+                            {
+                                ApplySavedConfig(d3dxUserIni, skinEntry);
+                            }
+                            finally
+                            {
+                                Stop();
+                            }
+                        }, TaskScheduler.Default);
+                }
+                catch (Exception e)
+                {
+                    _logger.Warning(e, "[LoadedIni] one-shot watcher handler failed");
+                    Stop();
+                }
+            };
+
+            watcher.Changed += handler;
+            watcher.EnableRaisingEvents = true;
+            _logger.Information("[LoadedIni] one-shot d3dx_user.ini watcher armed for {ModName}", skinEntry.Mod.Name);
+        }
+        catch (Exception e)
+        {
+            _logger.Warning(e, "[LoadedIni] Failed to arm one-shot watcher for {ModName}", skinEntry.Mod.Name);
+        }
     }
 
     /// <summary>

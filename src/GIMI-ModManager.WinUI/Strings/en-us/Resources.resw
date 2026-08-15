@@ -3622,4 +3622,13 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
     <!-- Non-blocking warning: the chosen mods folder is inside the JASM install folder; placing mods outside avoids them being affected by updates -->
     <value>This mods folder is inside the JASM install folder. It is recommended to place mods outside of JASM so they are not affected by updates.</value>
   </data>
+  <data name="Settings_ModPersistence_NoneDesc" xml:space="preserve">
+    <value>Mods will lose their presets and configs if hot-swapped while the game is running.</value>
+  </data>
+  <data name="Settings_ModPersistence_FileIniDesc" xml:space="preserve">
+    <value>Settings will be overridden in the Mod's .ini file. This can cause issues if certain defaults are expected; reinstall mods if issues arise.</value>
+  </data>
+  <data name="Settings_ModPersistence_UserIniDesc" xml:space="preserve">
+    <value>Watches and auto-manages d3dx_user.ini. This can cause issues if reloading mods takes too long or if storage is too slow; may require reloading (F10) a couple times if not loading properly.</value>
+  </data>
 </root>

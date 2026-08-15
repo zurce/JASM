@@ -157,6 +157,43 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     [ObservableProperty] private GameSource _selectedGameSource = GameSource.Release;
     [ObservableProperty] private string _communityRepoUrl = string.Empty;
     [ObservableProperty] private bool _isCommunitySourceSelected;
+    [ObservableProperty] private ModPersistenceMode _selectedModPersistenceMode = ModPersistenceMode.None;
+
+    public string ModPersistenceDescription => SelectedModPersistenceMode switch
+    {
+        ModPersistenceMode.None =>
+            _localizer.GetLocalizedStringOrDefault("Settings_ModPersistence_NoneDesc") ??
+            "Mods will lose their presets and configs if hot-swapped while the game is running.",
+        ModPersistenceMode.FileIni =>
+            _localizer.GetLocalizedStringOrDefault("Settings_ModPersistence_FileIniDesc") ??
+            "Settings will be overridden in the Mod's .ini file. This can cause issues if certain defaults are expected; reinstall mods if issues arise.",
+        ModPersistenceMode.UserIniWatchdog =>
+            _localizer.GetLocalizedStringOrDefault("Settings_ModPersistence_UserIniDesc") ??
+            "Watches and auto-manages d3dx_user.ini. This can cause issues if reloading mods takes too long or if storage is too slow; may require reloading (F10) a couple times if not loading properly.",
+        _ => string.Empty
+    };
+
+    partial void OnSelectedModPersistenceModeChanged(ModPersistenceMode value)
+    {
+        OnPropertyChanged(nameof(ModPersistenceDescription));
+        _ = SaveModPersistenceModeAsync();
+    }
+
+    private async Task SaveModPersistenceModeAsync()
+    {
+        var settings = await _localSettingsService
+            .ReadOrCreateSettingAsync<ModPersistenceSettings>(ModPersistenceSettings.Key, ModPersistenceSettings.Scope);
+        settings.Mode = SelectedModPersistenceMode;
+        await _localSettingsService.SaveSettingAsync(ModPersistenceSettings.Key, settings, ModPersistenceSettings.Scope);
+    }
+
+    private async Task LoadModPersistenceModeAsync()
+    {
+        var settings = await _localSettingsService
+            .ReadOrCreateSettingAsync<ModPersistenceSettings>(ModPersistenceSettings.Key, ModPersistenceSettings.Scope);
+        SelectedModPersistenceMode = settings.Mode;
+        OnPropertyChanged(nameof(SelectedModPersistenceMode));
+    }
 
     partial void OnSelectedGameSourceChanged(GameSource value)
     {
@@ -340,6 +377,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         _selectedGameSource = _modManagerOptions?.GameSource ?? GameSource.Release;
         _communityRepoUrl = _modManagerOptions?.CommunityRepoUrl ?? "https://github.com/zurce/JASM-Community-Resources";
         _isCommunitySourceSelected = _selectedGameSource == GameSource.Community;
+        _ = LoadModPersistenceModeAsync();
 
 
         PathToGIMIFolderPicker.IsValidChanged += (sender, args) => SaveSettingsCommand.NotifyCanExecuteChanged();

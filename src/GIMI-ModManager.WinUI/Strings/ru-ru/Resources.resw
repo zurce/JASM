@@ -4416,4 +4416,13 @@ JASM+ не будет перемещать ваши моды и не будет 
     <!-- Non-blocking warning: the chosen mods folder is inside the JASM install folder; placing mods outside avoids them being affected by updates -->
     <value>Эта папка модов находится внутри папки установки JASM. Рекомендуется размещать моды вне JASM, чтобы они не затрагивались обновлениями.</value>
   </data>
+  <data name="Settings_ModPersistence_NoneDesc" xml:space="preserve">
+    <value>Моды потеряют свои пресеты и конфигурации при горячей замене во время работы игры.</value>
+  </data>
+  <data name="Settings_ModPersistence_FileIniDesc" xml:space="preserve">
+    <value>Настройки будут перезаписаны в файле .ini мода. Это может вызвать проблемы, если ожидаются определённые значения по умолчанию; при возникновении проблем переустановите моды.</value>
+  </data>
+  <data name="Settings_ModPersistence_UserIniDesc" xml:space="preserve">
+    <value>Отслеживает и автоматически управляет файлом d3dx_user.ini. Это может вызвать проблемы, если загрузка модов занимает слишком много времени или хранилище медленное; при некорректной загрузке может потребоваться несколько перезагрузок (F10).</value>
+  </data>
 </root>

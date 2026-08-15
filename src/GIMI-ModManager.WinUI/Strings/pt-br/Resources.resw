@@ -4376,4 +4376,13 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
     <!-- Non-blocking warning: the chosen mods folder is inside the JASM install folder; placing mods outside avoids them being affected by updates -->
     <value>Esta pasta de mods está dentro da pasta de instalação do JASM. É recomendado colocar os mods fora do JASM para que não sejam afetados por atualizações.</value>
   </data>
+  <data name="Settings_ModPersistence_NoneDesc" xml:space="preserve">
+    <value>Os mods perderão seus presets e configurações se forem trocados a quente enquanto o jogo estiver em execução.</value>
+  </data>
+  <data name="Settings_ModPersistence_FileIniDesc" xml:space="preserve">
+    <value>As configurações serão substituídas no arquivo .ini do mod. Isso pode causar problemas se certos padrões forem esperados; reinstale os mods se surgirem problemas.</value>
+  </data>
+  <data name="Settings_ModPersistence_UserIniDesc" xml:space="preserve">
+    <value>Vigia e gerencia automaticamente o d3dx_user.ini. Isso pode causar problemas se recarregar mods demorar muito ou se o armazenamento for lento; pode exigir recarregar (F10) algumas vezes se não carregar corretamente.</value>
+  </data>
 </root>
