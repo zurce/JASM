@@ -1,0 +1,22 @@
+[
+  {
+    "InternalName": "Character",
+    "DisplayName": "Personaje",
+    "DisplayNamePlural": "Personajes"
+  },
+  {
+    "InternalName": "NPC",
+    "DisplayName": "PNJ",
+    "DisplayNamePlural": "PNJ"
+  },
+  {
+    "InternalName": "Object",
+    "DisplayName": "Objeto",
+    "DisplayNamePlural": "Objetos"
+  },
+  {
+    "InternalName": "Weapon",
+    "DisplayName": "Arma",
+    "DisplayNamePlural": "Armas"
+  }
+]

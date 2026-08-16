@@ -1,0 +1,392 @@
+[
+  {
+    "InternalName": "Others",
+    "DisplayName": "キャラクター"
+  },
+  {
+    "InternalName": "Weapons",
+    "DisplayName": "武器"
+  },
+  {
+    "InternalName": "Trailblazer",
+    "DisplayName": "開拓者"
+  },
+  {
+    "InternalName": "Arlan",
+    "DisplayName": "アーラン"
+  },
+  {
+    "InternalName": "Asta",
+    "DisplayName": "アスター"
+  },
+  {
+    "InternalName": "Bailu",
+    "DisplayName": "白露"
+  },
+  {
+    "InternalName": "Blade",
+    "DisplayName": "刃"
+  },
+  {
+    "InternalName": "Bronya",
+    "DisplayName": "ブローニャ"
+  },
+  {
+    "InternalName": "Clara",
+    "DisplayName": "クラーラ"
+  },
+  {
+    "InternalName": "Dan Heng",
+    "DisplayName": "丹恒"
+  },
+  {
+    "InternalName": "Dan Heng IL",
+    "DisplayName": "丹恒・飲月"
+  },
+  {
+    "InternalName": "Dan Heng PT",
+    "DisplayName": "丹恒・騰荒"
+  },
+  {
+    "InternalName": "FuXuan",
+    "DisplayName": "符玄"
+  },
+  {
+    "InternalName": "Gepard",
+    "DisplayName": "ジェパード"
+  },
+  {
+    "InternalName": "Guinaifen",
+    "DisplayName": "桂乃芬"
+  },
+  {
+    "InternalName": "Herta",
+    "DisplayName": "ヘルタ"
+  },
+  {
+    "InternalName": "Himeko",
+    "DisplayName": "姫子"
+  },
+  {
+    "InternalName": "Hook",
+    "DisplayName": "フック"
+  },
+  {
+    "InternalName": "JingYuan",
+    "DisplayName": "景元"
+  },
+  {
+    "InternalName": "Jingliu",
+    "DisplayName": "鏡流"
+  },
+  {
+    "InternalName": "Kafka",
+    "DisplayName": "カフカ"
+  },
+  {
+    "InternalName": "Luka",
+    "DisplayName": "ルカ"
+  },
+  {
+    "InternalName": "Luocha",
+    "DisplayName": "羅刹"
+  },
+  {
+    "InternalName": "Lynx",
+    "DisplayName": "リンクス"
+  },
+  {
+    "InternalName": "March7",
+    "DisplayName": "三月なのか",
+    "InGameSkins": [
+      {
+        "InternalName": "March7Hunt",
+        "DisplayName": "三月なのか・巡狩"
+      },
+      {
+        "InternalName": "MarchNS",
+        "DisplayName": "冬の後の日差し"
+      }
+    ]
+  },
+  {
+    "InternalName": "Natasha",
+    "DisplayName": "ナターシャ"
+  },
+  {
+    "InternalName": "Pela",
+    "DisplayName": "ペラ"
+  },
+  {
+    "InternalName": "Qingque",
+    "DisplayName": "青雀"
+  },
+  {
+    "InternalName": "Sampo",
+    "DisplayName": "サンポ"
+  },
+  {
+    "InternalName": "Seele",
+    "DisplayName": "ゼーレ"
+  },
+  {
+    "InternalName": "Serval",
+    "DisplayName": "セーバル"
+  },
+  {
+    "InternalName": "SilverWolf",
+    "DisplayName": "銀狼"
+  },
+  {
+    "InternalName": "Sushang",
+    "DisplayName": "素裳"
+  },
+  {
+    "InternalName": "Tingyun",
+    "DisplayName": "停雲"
+  },
+  {
+    "InternalName": "Topaz",
+    "DisplayName": "トパーズ&カブ"
+  },
+  {
+    "InternalName": "Welt",
+    "DisplayName": "ヴェルト"
+  },
+  {
+    "InternalName": "Yanqing",
+    "DisplayName": "彦卿"
+  },
+  {
+    "InternalName": "Yukong",
+    "DisplayName": "御空"
+  },
+  {
+    "InternalName": "Argenti",
+    "DisplayName": "アルジェンティ"
+  },
+  {
+    "InternalName": "DrRatio",
+    "DisplayName": "Dr.レイシオ"
+  },
+  {
+    "InternalName": "Hanya",
+    "DisplayName": "寒鴉"
+  },
+  {
+    "InternalName": "Huohuo",
+    "DisplayName": "フォフォ"
+  },
+  {
+    "InternalName": "RuanMei",
+    "DisplayName": "ルアン・メェイ",
+    "InGameSkins": [
+      {
+        "InternalName": "RuanMeiPlumblossomLetter",
+        "DisplayName": "梅の便り"
+      }
+    ]
+  },
+  {
+    "InternalName": "Xueyi",
+    "DisplayName": "雪衣"
+  },
+  {
+    "InternalName": "BlackSwan",
+    "DisplayName": "ブラックスワン"
+  },
+  {
+    "InternalName": "Sparkle",
+    "DisplayName": "花火"
+  },
+  {
+    "InternalName": "Misha",
+    "DisplayName": "ミーシャ"
+  },
+  {
+    "InternalName": "Acheron",
+    "DisplayName": "黄泉"
+  },
+  {
+    "InternalName": "Aventurine",
+    "DisplayName": "アベンチュリン"
+  },
+  {
+    "InternalName": "Gallagher",
+    "DisplayName": "ギャラガー"
+  },
+  {
+    "InternalName": "Robin",
+    "DisplayName": "ロビン"
+  },
+  {
+    "InternalName": "Boothill",
+    "DisplayName": "ブートヒル"
+  },
+  {
+    "InternalName": "Firefly",
+    "DisplayName": "ホタル",
+    "InGameSkins": [
+      {
+        "InternalName": "FireflySpringMissive",
+        "DisplayName": "春の便り"
+      }
+    ]
+  },
+  {
+    "InternalName": "Jade",
+    "DisplayName": "ジェイド"
+  },
+  {
+    "InternalName": "Yunli",
+    "DisplayName": "雲璃"
+  },
+  {
+    "InternalName": "Jiaoqiu",
+    "DisplayName": "椒丘"
+  },
+  {
+    "InternalName": "Feixiao",
+    "DisplayName": "飛霄"
+  },
+  {
+    "InternalName": "Lingsha",
+    "DisplayName": "霊砂"
+  },
+  {
+    "InternalName": "Moze",
+    "DisplayName": "モゼ"
+  },
+  {
+    "InternalName": "Rappa",
+    "DisplayName": "乱破"
+  },
+  {
+    "InternalName": "Fugue",
+    "DisplayName": "帰忘の流離人"
+  },
+  {
+    "InternalName": "Sunday",
+    "DisplayName": "サンデー"
+  },
+  {
+    "InternalName": "The Herta",
+    "DisplayName": "マダム・ヘルタ"
+  },
+  {
+    "InternalName": "Aglaea",
+    "DisplayName": "アグライア"
+  },
+  {
+    "InternalName": "Tribbie",
+    "DisplayName": "トリビー"
+  },
+  {
+    "InternalName": "Mydei",
+    "DisplayName": "モーディス"
+  },
+  {
+    "InternalName": "Castorice",
+    "DisplayName": "キャストリス",
+    "InGameSkins": [
+      {
+        "InternalName": "CastoriceGossamerFlutter",
+        "DisplayName": "薄羽の舞"
+      }
+    ]
+  },
+  {
+    "InternalName": "Anaxa",
+    "DisplayName": "アナイクス"
+  },
+  {
+    "InternalName": "Hyacine",
+    "DisplayName": "ヒアンシー"
+  },
+  {
+    "InternalName": "Cipher",
+    "DisplayName": "サフェル"
+  },
+  {
+    "InternalName": "Phainon",
+    "DisplayName": "ファイノン"
+  },
+  {
+    "InternalName": "Saber",
+    "DisplayName": "セイバー"
+  },
+  {
+    "InternalName": "Archer",
+    "DisplayName": "アーチャー"
+  },
+  {
+    "InternalName": "Cerydra",
+    "DisplayName": "ケリュドラ"
+  },
+  {
+    "InternalName": "Hysilens",
+    "DisplayName": "セイレンス"
+  },
+  {
+    "InternalName": "Evernight",
+    "DisplayName": "長夜月"
+  },
+  {
+    "InternalName": "Cyrene",
+    "DisplayName": "キュレネ"
+  },
+  {
+    "InternalName": "Dahlia",
+    "DisplayName": "ダリア"
+  },
+  {
+    "InternalName": "Sparxie",
+    "DisplayName": "火花",
+    "InGameSkins": [
+      {
+        "InternalName": "SparxieCandyCoatedWaves",
+        "DisplayName": "キャンディウェーブ"
+      }
+    ]
+  },
+  {
+    "InternalName": "Ashveil",
+    "DisplayName": "不死途"
+  },
+  {
+    "InternalName": "YaoGuang",
+    "DisplayName": "爻光"
+  },
+  {
+    "InternalName": "Evanescia",
+    "DisplayName": "緋英"
+  },
+  {
+    "InternalName": "SilverWolf999",
+    "DisplayName": "銀狼LV.999"
+  },
+  {
+    "InternalName": "MortenaxBlade",
+    "DisplayName": "千冶・刃"
+  },
+  {
+    "InternalName": "HimekoNova",
+    "DisplayName": "姫子・旅立ち"
+  },
+  {
+    "InternalName": "Gilgamesh",
+    "DisplayName": "ギルガメッシュ"
+  },
+  {
+    "InternalName": "RinTohsaka",
+    "DisplayName": "遠坂凛"
+  },
+  {
+    "InternalName": "RobinSummeretto",
+    "DisplayName": "ロビン・夏空の歌"
+  },
+  {
+    "InternalName": "AventurineWaveflair",
+    "DisplayName": "アベンチュリン・波と戯れる夏"
+  }
+]

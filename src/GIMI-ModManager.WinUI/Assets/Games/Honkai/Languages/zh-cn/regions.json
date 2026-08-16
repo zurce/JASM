@@ -9,11 +9,11 @@
   },
   {
     "InternalName": "Herta Space Station",
-    "DisplayName": "空间站「黑塔」"
+    "DisplayName": "黑塔空间站"
   },
   {
     "InternalName": "Jarilo VI",
-    "DisplayName": "雅利洛-Ⅵ"
+    "DisplayName": "Jarilo VI"
   },
   {
     "InternalName": "The Xianzhou Luofu",
@@ -21,11 +21,11 @@
   },
   {
     "InternalName": "The Xianzhou Yaoqing",
-    "DisplayName": "仙舟「曜青」"
+    "DisplayName": "The Xianzhou Yaoqing"
   },
   {
     "InternalName": "The Xianzhou Zhuming",
-    "DisplayName": "仙舟「朱明」"
+    "DisplayName": "The Xianzhou Zhuming"
   },
   {
     "InternalName": "Penacony",
@@ -33,14 +33,30 @@
   },
   {
     "InternalName": "Pteruges-V",
-    "DisplayName": "天衣五"
+    "DisplayName": "Pteruges-V"
   },
   {
     "InternalName": "Punklorde",
-    "DisplayName": "朋克洛德"
+    "DisplayName": "Punklorde"
   },
   {
     "InternalName": "Cosmic",
     "DisplayName": "宇宙"
+  },
+  {
+    "InternalName": "Amphoreus",
+    "DisplayName": "翁法罗斯"
+  },
+  {
+    "InternalName": "Annihilation",
+    "DisplayName": "Annihilation Gang"
+  },
+  {
+    "InternalName": "Planarcadia",
+    "DisplayName": "Planarcadia"
+  },
+  {
+    "InternalName": "Another World",
+    "DisplayName": "异世界"
   }
 ]

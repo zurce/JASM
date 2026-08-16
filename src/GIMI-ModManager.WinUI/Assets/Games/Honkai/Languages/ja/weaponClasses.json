@@ -1,0 +1,42 @@
+[
+  {
+    "InternalName": "Adaptive",
+    "DisplayName": "適応"
+  },
+  {
+    "InternalName": "Abundance",
+    "DisplayName": "豊穣"
+  },
+  {
+    "InternalName": "Destruction",
+    "DisplayName": "壊滅"
+  },
+  {
+    "InternalName": "Erudition",
+    "DisplayName": "知恵"
+  },
+  {
+    "InternalName": "Harmony",
+    "DisplayName": "調和"
+  },
+  {
+    "InternalName": "Hunt",
+    "DisplayName": "巡狩"
+  },
+  {
+    "InternalName": "Nihility",
+    "DisplayName": "虚無"
+  },
+  {
+    "InternalName": "Preservation",
+    "DisplayName": "存護"
+  },
+  {
+    "InternalName": "Remembrance",
+    "DisplayName": "記憶"
+  },
+  {
+    "InternalName": "Elation",
+    "DisplayName": "愉悦"
+  }
+]

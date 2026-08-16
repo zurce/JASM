@@ -1,0 +1,34 @@
+[
+  {
+    "InternalName": "Adaptive",
+    "DisplayName": "Adaptive"
+  },
+  {
+    "InternalName": "Imaginary",
+    "DisplayName": "허수"
+  },
+  {
+    "InternalName": "Quantum",
+    "DisplayName": "양자"
+  },
+  {
+    "InternalName": "Wind",
+    "DisplayName": "바람"
+  },
+  {
+    "InternalName": "Lightning",
+    "DisplayName": "번개"
+  },
+  {
+    "InternalName": "Ice",
+    "DisplayName": "얼음"
+  },
+  {
+    "InternalName": "Fire",
+    "DisplayName": "화염"
+  },
+  {
+    "InternalName": "Physical",
+    "DisplayName": "물리"
+  }
+]

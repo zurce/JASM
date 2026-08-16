@@ -1,0 +1,990 @@
+[
+  {
+    "InternalName": "Others_Weapons",
+    "DisplayName": "Armas"
+  },
+  {
+    "InternalName": "The Catch",
+    "DisplayName": "The Catch"
+  },
+  {
+    "InternalName": "A Thousand Floating Dreams",
+    "DisplayName": "Sonhos Flutuantes das Mil Noites"
+  },
+  {
+    "InternalName": "Akuoumaru",
+    "DisplayName": "Akuoumaru"
+  },
+  {
+    "InternalName": "Alley Hunter",
+    "DisplayName": "Caçador do Beco"
+  },
+  {
+    "InternalName": "Amenoma Kageuchi",
+    "DisplayName": "Lâmina Amenoma Kageuta"
+  },
+  {
+    "InternalName": "Amos' Bow",
+    "DisplayName": "Arco de Amos"
+  },
+  {
+    "InternalName": "Apprentice's Notes",
+    "DisplayName": "Anotações do Aprendiz"
+  },
+  {
+    "InternalName": "Aqua Simulacra",
+    "DisplayName": "Aqua Simulacra"
+  },
+  {
+    "InternalName": "Aquila Favonia",
+    "DisplayName": "Falcão"
+  },
+  {
+    "InternalName": "Ballad of the Boundless Blue",
+    "DisplayName": "Canção do Vasto Azul"
+  },
+  {
+    "InternalName": "Ballad of the Fjords",
+    "DisplayName": "Canção do Fiorde"
+  },
+  {
+    "InternalName": "Beacon of the Reed Sea",
+    "DisplayName": "Sinal dos Mares"
+  },
+  {
+    "InternalName": "Beginner's Protector",
+    "DisplayName": "Protetor de Iniciante"
+  },
+  {
+    "InternalName": "Black Tassel",
+    "DisplayName": "Borla Preta"
+  },
+  {
+    "InternalName": "Blackcliff Agate",
+    "DisplayName": "Ágata do Penhasco Obscuro"
+  },
+  {
+    "InternalName": "Blackcliff Longsword",
+    "DisplayName": "Espada do Penhasco Obscuro"
+  },
+  {
+    "InternalName": "Blackcliff Pole",
+    "DisplayName": "Lança do Penhasco Obscuro"
+  },
+  {
+    "InternalName": "Blackcliff Slasher",
+    "DisplayName": "Foice do Penhasco Obscuro"
+  },
+  {
+    "InternalName": "Blackcliff Warbow",
+    "DisplayName": "Arco do Penhasco Obscuro"
+  },
+  {
+    "InternalName": "Bloodtainted Greatsword",
+    "DisplayName": "Espadão Sangrento"
+  },
+  {
+    "InternalName": "Calamity Queller",
+    "DisplayName": "Subjugadora de Calamidades"
+  },
+  {
+    "InternalName": "Cashflow Supervision",
+    "DisplayName": "Supervisão de Caixa"
+  },
+  {
+    "InternalName": "Cinnabar Spindle",
+    "DisplayName": "Haste de Cinábrio"
+  },
+  {
+    "InternalName": "Compound Bow",
+    "DisplayName": "Arco Composto"
+  },
+  {
+    "InternalName": "Cool Steel",
+    "DisplayName": "Lâmina Fria"
+  },
+  {
+    "InternalName": "Crescent Pike",
+    "DisplayName": "Pique Crescente"
+  },
+  {
+    "InternalName": "Dark Iron Sword",
+    "DisplayName": "Espada de Ferro Negro"
+  },
+  {
+    "InternalName": "Deathmatch",
+    "DisplayName": "Lança do Duelo"
+  },
+  {
+    "InternalName": "Debate Club",
+    "DisplayName": "Pacifista"
+  },
+  {
+    "InternalName": "Dodoco Tales",
+    "DisplayName": "Contos de Dodoco"
+  },
+  {
+    "InternalName": "Dragon's Bane",
+    "DisplayName": "Perdição do Dragão"
+  },
+  {
+    "InternalName": "Dragonspine Spear",
+    "DisplayName": "Lança da Espinha do Dragão"
+  },
+  {
+    "InternalName": "Dull Blade",
+    "DisplayName": "Lâmina Sem Fio"
+  },
+  {
+    "InternalName": "Elegy for the End",
+    "DisplayName": "Elegia do Suspiro Final"
+  },
+  {
+    "InternalName": "Emerald Orb",
+    "DisplayName": "Orbe de Esmeralda"
+  },
+  {
+    "InternalName": "End of the Line",
+    "DisplayName": "Águas Secas"
+  },
+  {
+    "InternalName": "Engulfing Lightning",
+    "DisplayName": "Luz do Cortador de Grama"
+  },
+  {
+    "InternalName": "Everlasting Moonglow",
+    "DisplayName": "Fumetsu Gekka"
+  },
+  {
+    "InternalName": "Eye of Perception",
+    "DisplayName": "Olho da Percepção"
+  },
+  {
+    "InternalName": "Fading Twilight",
+    "DisplayName": "Crepúsculo Desvanecido"
+  },
+  {
+    "InternalName": "Favonius Codex",
+    "DisplayName": "Codex de Favonius"
+  },
+  {
+    "InternalName": "Favonius Greatsword",
+    "DisplayName": "Grande Espada de Favonius"
+  },
+  {
+    "InternalName": "Favonius Lance",
+    "DisplayName": "Lança de Favonius"
+  },
+  {
+    "InternalName": "Favonius Sword",
+    "DisplayName": "Espada de Favonius"
+  },
+  {
+    "InternalName": "Favonius Warbow",
+    "DisplayName": "Arco de Favonius"
+  },
+  {
+    "InternalName": "Ferrous Shadow",
+    "DisplayName": "Sombra de Ferro"
+  },
+  {
+    "InternalName": "Festering Desire",
+    "DisplayName": "Espada Pútrida"
+  },
+  {
+    "InternalName": "Fillet Blade",
+    "DisplayName": "Lâmina de Filés"
+  },
+  {
+    "InternalName": "Finale of the Deep",
+    "DisplayName": "Epílogo das Profundezas"
+  },
+  {
+    "InternalName": "Fleuve Cendre Ferryman",
+    "DisplayName": "Cruzamento de Fleuve Cendre"
+  },
+  {
+    "InternalName": "Flowing Purity",
+    "DisplayName": "Fluxo da Pureza"
+  },
+  {
+    "InternalName": "Forest Regalia",
+    "DisplayName": "Espada Real da Floresta"
+  },
+  {
+    "InternalName": "Freedom-Sworn",
+    "DisplayName": "Juramento pela Liberdade"
+  },
+  {
+    "InternalName": "Frostbearer",
+    "DisplayName": "Fruto do Sabugueiro"
+  },
+  {
+    "InternalName": "Fruit of Fulfillment",
+    "DisplayName": "Fruto da Abundância"
+  },
+  {
+    "InternalName": "Hakushin Ring",
+    "DisplayName": "Anel de Hakushin"
+  },
+  {
+    "InternalName": "Halberd",
+    "DisplayName": "Alabarda"
+  },
+  {
+    "InternalName": "Hamayumi",
+    "DisplayName": "Arco Quebra-Demônios"
+  },
+  {
+    "InternalName": "Haran Geppaku Futsu",
+    "DisplayName": "Maremoto da Lua de Futsu"
+  },
+  {
+    "InternalName": "Harbinger of Dawn",
+    "DisplayName": "Prenúncio do Alvorecer"
+  },
+  {
+    "InternalName": "Hunter's Bow",
+    "DisplayName": "Arco do Caçador"
+  },
+  {
+    "InternalName": "Hunter's Path",
+    "DisplayName": "Caminho do Caçador"
+  },
+  {
+    "InternalName": "Iron Point",
+    "DisplayName": "Ponta de Ferro"
+  },
+  {
+    "InternalName": "Iron Sting",
+    "DisplayName": "Espinho de Ferro"
+  },
+  {
+    "InternalName": "Jadefall's Splendor",
+    "DisplayName": "Esplendor Índigo"
+  },
+  {
+    "InternalName": "Kagotsurube Isshin",
+    "DisplayName": "Kagotsurube Isshin"
+  },
+  {
+    "InternalName": "Katsuragikiri Nagamasa",
+    "DisplayName": "Espada Grande de Katsuragi"
+  },
+  {
+    "InternalName": "Kagura's Verity",
+    "DisplayName": "Prova de Kagura"
+  },
+  {
+    "InternalName": "Key of Khaj-Nisut",
+    "DisplayName": "Chave de Hierofania"
+  },
+  {
+    "InternalName": "King's Squire",
+    "DisplayName": "Vassalo do Rei"
+  },
+  {
+    "InternalName": "Kitain Cross Spear",
+    "DisplayName": "Lança Cruzada de Kitain"
+  },
+  {
+    "InternalName": "Light of Foliar Incision",
+    "DisplayName": "Luz das Folhas Cortadas"
+  },
+  {
+    "InternalName": "Lion's Roar",
+    "DisplayName": "Rugido do Leão"
+  },
+  {
+    "InternalName": "Lithic Blade",
+    "DisplayName": "Espada Antiga de Millelith"
+  },
+  {
+    "InternalName": "Lithic Spear",
+    "DisplayName": "Lança de Millelith"
+  },
+  {
+    "InternalName": "Lost Prayer to the Sacred Winds",
+    "DisplayName": "Oração Perdida aos Ventos Sagrados"
+  },
+  {
+    "InternalName": "Luxurious Sea-Lord",
+    "DisplayName": "Lorde do Mar Luxuoso"
+  },
+  {
+    "InternalName": "Magic Guide",
+    "DisplayName": "Guia de Magia"
+  },
+  {
+    "InternalName": "Mailed Flower",
+    "DisplayName": "Flor de Aço"
+  },
+  {
+    "InternalName": "Makhaira Aquamarine",
+    "DisplayName": "Água-Marinha de Mahara"
+  },
+  {
+    "InternalName": "Mappa Mare",
+    "DisplayName": "Mappa Mare"
+  },
+  {
+    "InternalName": "Memory of Dust",
+    "DisplayName": "Memória da Poeira"
+  },
+  {
+    "InternalName": "Messenger",
+    "DisplayName": "Mensageiro"
+  },
+  {
+    "InternalName": "Missive Windspear",
+    "DisplayName": "Lâmina do Vento Mensageiro"
+  },
+  {
+    "InternalName": "Mistsplitter Reforged",
+    "DisplayName": "Cortadora da Neblina Reforjada"
+  },
+  {
+    "InternalName": "Mitternachts Waltz",
+    "DisplayName": "Valsa do Crepúsculo"
+  },
+  {
+    "InternalName": "Moonpiercer",
+    "DisplayName": "Perfurador de Luas"
+  },
+  {
+    "InternalName": "Mouun's Moon",
+    "DisplayName": "Lua de Mouun"
+  },
+  {
+    "InternalName": "Oathsworn Eye",
+    "DisplayName": "Olho do Juramento"
+  },
+  {
+    "InternalName": "Old Merc's Pal",
+    "DisplayName": "Espada do Mercenário"
+  },
+  {
+    "InternalName": "Otherworldly Story",
+    "DisplayName": "Histórias de Outros Mundos"
+  },
+  {
+    "InternalName": "Pocket Grimoire",
+    "DisplayName": "Grimório de Bolso"
+  },
+  {
+    "InternalName": "Polar Star",
+    "DisplayName": "Estrela Invernal"
+  },
+  {
+    "InternalName": "Portable Power Saw",
+    "DisplayName": "Serra Elétrica Portátil"
+  },
+  {
+    "InternalName": "Predator",
+    "DisplayName": "Predador"
+  },
+  {
+    "InternalName": "Primordial Jade Cutter",
+    "DisplayName": "Cortador de Jade Primordial"
+  },
+  {
+    "InternalName": "Primordial Jade Winged-Spear",
+    "DisplayName": "Lança de Jade Primitiva"
+  },
+  {
+    "InternalName": "Prospector's Drill",
+    "DisplayName": "Broca do Prospector"
+  },
+  {
+    "InternalName": "Prototype Amber",
+    "DisplayName": "Protótipo Âmbar"
+  },
+  {
+    "InternalName": "Prototype Archaic",
+    "DisplayName": "Protótipo Arcaico"
+  },
+  {
+    "InternalName": "Prototype Crescent",
+    "DisplayName": "Protótipo da Luz Lunar Pálida"
+  },
+  {
+    "InternalName": "Prototype Rancour",
+    "DisplayName": "Protótipo Rancor"
+  },
+  {
+    "InternalName": "Prototype Starglitter",
+    "DisplayName": "Protótipo Estelar"
+  },
+  {
+    "InternalName": "Rainslasher",
+    "DisplayName": "Segadeira da Chuva"
+  },
+  {
+    "InternalName": "Range Gauge",
+    "DisplayName": "Medidor de Alcance"
+  },
+  {
+    "InternalName": "Raven Bow",
+    "DisplayName": "Arco de Corvo"
+  },
+  {
+    "InternalName": "Recurve Bow",
+    "DisplayName": "Arco Recurvado"
+  },
+  {
+    "InternalName": "Redhorn Stonethresher",
+    "DisplayName": "Chifres Vermelhos Destruidores de Pedras"
+  },
+  {
+    "InternalName": "Rightful Reward",
+    "DisplayName": "Justa Recompensa"
+  },
+  {
+    "InternalName": "Royal Bow",
+    "DisplayName": "Arco Real"
+  },
+  {
+    "InternalName": "Royal Greatsword",
+    "DisplayName": "Espadão Real"
+  },
+  {
+    "InternalName": "Royal Grimoire",
+    "DisplayName": "Grimório Real"
+  },
+  {
+    "InternalName": "Royal Longsword",
+    "DisplayName": "Espada Longa Real"
+  },
+  {
+    "InternalName": "Royal Spear",
+    "DisplayName": "Lança de Caça Real"
+  },
+  {
+    "InternalName": "Rust",
+    "DisplayName": "Arco Enferrujado"
+  },
+  {
+    "InternalName": "Sacrificial Bow",
+    "DisplayName": "Arco do Sacrifício"
+  },
+  {
+    "InternalName": "Sacrificial Fragments",
+    "DisplayName": "Memórias de Sacrifício"
+  },
+  {
+    "InternalName": "Sacrificial Greatsword",
+    "DisplayName": "Espadão do Sacrifício"
+  },
+  {
+    "InternalName": "Sacrificial Jade",
+    "DisplayName": "Sacrifício de Jade"
+  },
+  {
+    "InternalName": "Sacrificial Sword",
+    "DisplayName": "Espada do Sacrifício"
+  },
+  {
+    "InternalName": "Sapwood Blade",
+    "DisplayName": "Espada de Madeira"
+  },
+  {
+    "InternalName": "Scion of the Blazing Sun",
+    "DisplayName": "Herdeiro do Sol"
+  },
+  {
+    "InternalName": "Seasoned Hunter's Bow",
+    "DisplayName": "Arco do Caçador Experiente"
+  },
+  {
+    "InternalName": "Serpent Spine",
+    "DisplayName": "Espinha Dorsal da Serpente"
+  },
+  {
+    "InternalName": "Sharpshooter's Oath",
+    "DisplayName": "Juramento de Sagitário"
+  },
+  {
+    "InternalName": "Silver Sword",
+    "DisplayName": "Espada de Prata"
+  },
+  {
+    "InternalName": "Skyrider Greatsword",
+    "DisplayName": "Espadão do Cavaleiro do Céu"
+  },
+  {
+    "InternalName": "Skyrider Sword",
+    "DisplayName": "Espada do Cavaleiro do Céu"
+  },
+  {
+    "InternalName": "Skyward Atlas",
+    "DisplayName": "Atlas Celestial"
+  },
+  {
+    "InternalName": "Skyward Blade",
+    "DisplayName": "Espada Celestial"
+  },
+  {
+    "InternalName": "Skyward Harp",
+    "DisplayName": "Harpa Celestial"
+  },
+  {
+    "InternalName": "Skyward Pride",
+    "DisplayName": "Orgulho Celestial"
+  },
+  {
+    "InternalName": "Skyward Spine",
+    "DisplayName": "Espinha Celestial"
+  },
+  {
+    "InternalName": "Slingshot",
+    "DisplayName": "Estilingue"
+  },
+  {
+    "InternalName": "Snow-Tombed Starsilver",
+    "DisplayName": "Estrela de Prata Enterrada na Neve"
+  },
+  {
+    "InternalName": "Solar Pearl",
+    "DisplayName": "Pérola Solar"
+  },
+  {
+    "InternalName": "Song of Broken Pines",
+    "DisplayName": "Canção dos Pinhos"
+  },
+  {
+    "InternalName": "Song of Stillness",
+    "DisplayName": "Canção do Silêncio"
+  },
+  {
+    "InternalName": "Splendor of Tranquil Waters",
+    "DisplayName": "Esplendor das Águas Silenciosas"
+  },
+  {
+    "InternalName": "Staff of Homa",
+    "DisplayName": "Báculo de Homa"
+  },
+  {
+    "InternalName": "Staff of the Scarlet Sands",
+    "DisplayName": "Báculo das Areias Escarlates"
+  },
+  {
+    "InternalName": "Summit Shaper",
+    "DisplayName": "Cortador de Montanhas"
+  },
+  {
+    "InternalName": "Sword of Descension",
+    "DisplayName": "Espada do Advento"
+  },
+  {
+    "InternalName": "Sword of Narzissenkreuz",
+    "DisplayName": "Espada da Cruz de Narcissus"
+  },
+  {
+    "InternalName": "Talking Stick",
+    "DisplayName": "Diálogo"
+  },
+  {
+    "InternalName": "The Alley Flash",
+    "DisplayName": "Brilho do Beco"
+  },
+  {
+    "InternalName": "The Bell",
+    "DisplayName": "O Sino"
+  },
+  {
+    "InternalName": "The Black Sword",
+    "DisplayName": "Espada Negra"
+  },
+  {
+    "InternalName": "The Dockhand's Assistant",
+    "DisplayName": "A Doca"
+  },
+  {
+    "InternalName": "The First Great Magic",
+    "DisplayName": "Arcana Original"
+  },
+  {
+    "InternalName": "The Flute",
+    "DisplayName": "A Flauta"
+  },
+  {
+    "InternalName": "The Stringless",
+    "DisplayName": "Último Acorde"
+  },
+  {
+    "InternalName": "The Unforged",
+    "DisplayName": "Espada Áspera"
+  },
+  {
+    "InternalName": "The Viridescent Hunt",
+    "DisplayName": "Arco Esmeralda do Caçador"
+  },
+  {
+    "InternalName": "The Widsith",
+    "DisplayName": "Sinfonia dos Indolentes"
+  },
+  {
+    "InternalName": "Thrilling Tales of Dragon Slayers",
+    "DisplayName": "Histórias Extraordinárias de Caçadores de Dragões"
+  },
+  {
+    "InternalName": "Thundering Pulse",
+    "DisplayName": "Agitação Trovejante"
+  },
+  {
+    "InternalName": "Tidal Shadow",
+    "DisplayName": "Lâmina das Ondas"
+  },
+  {
+    "InternalName": "Tome of the Eternal Flow",
+    "DisplayName": "Rito do Fluxo Eterno"
+  },
+  {
+    "InternalName": "Toukabou Shigure",
+    "DisplayName": "Chuva Floral"
+  },
+  {
+    "InternalName": "Traveler's Handy Sword",
+    "DisplayName": "Espada do Viajante"
+  },
+  {
+    "InternalName": "Tulaytullah's Remembrance",
+    "DisplayName": "Reminiscências de Tulaytullah"
+  },
+  {
+    "InternalName": "Twin Nephrite",
+    "DisplayName": "Nefrita Gêmea"
+  },
+  {
+    "InternalName": "Vortex Vanquisher",
+    "DisplayName": "Perfuradora Prismática"
+  },
+  {
+    "InternalName": "Wandering Evenstar",
+    "DisplayName": "Estrela Itinerante"
+  },
+  {
+    "InternalName": "Waster Greatsword",
+    "DisplayName": "Espadão do Julgamento"
+  },
+  {
+    "InternalName": "Wavebreaker's Fin",
+    "DisplayName": "Barbatana do Quebra Ondas"
+  },
+  {
+    "InternalName": "White Iron Greatsword",
+    "DisplayName": "Espadão de Ferro Branco"
+  },
+  {
+    "InternalName": "White Tassel",
+    "DisplayName": "Borla Branca"
+  },
+  {
+    "InternalName": "Whiteblind",
+    "DisplayName": "Sombra Branca"
+  },
+  {
+    "InternalName": "Windblume Ode",
+    "DisplayName": "Ode à Brisa Florescente"
+  },
+  {
+    "InternalName": "Wine and Song",
+    "DisplayName": "Vinho e Música"
+  },
+  {
+    "InternalName": "Wolf's Gravestone",
+    "DisplayName": "Túmulo do Lobo"
+  },
+  {
+    "InternalName": "Wolf-Fang",
+    "DisplayName": "Farpa"
+  },
+  {
+    "InternalName": "Xiphos' Moonlight",
+    "DisplayName": "Luz Lunar de Xiphos"
+  },
+  {
+    "InternalName": "Verdict",
+    "DisplayName": "Veredito"
+  },
+  {
+    "InternalName": "Crimson Moon's Semblance",
+    "DisplayName": "Semblante da Lua Carmesim"
+  },
+  {
+    "InternalName": "Absolution",
+    "DisplayName": "Absolvição"
+  },
+  {
+    "InternalName": "Silvershower Heartstrings",
+    "DisplayName": "Cordas da Chuva Branca"
+  },
+  {
+    "InternalName": "Uraku Misugiri",
+    "DisplayName": "Urakugo Rensai"
+  },
+  {
+    "InternalName": "Crane's Echoing Call",
+    "DisplayName": "Chamado Ecoante da Garça"
+  },
+  {
+    "InternalName": "AzureLight",
+    "DisplayName": "Azul Brilhante"
+  },
+  {
+    "InternalName": "Sturdy Bone",
+    "DisplayName": "Osso Robusto"
+  },
+  {
+    "InternalName": "Flute of Ezpitzal",
+    "DisplayName": "Flauta de Ezpitzal"
+  },
+  {
+    "InternalName": "Calamity of Eshu",
+    "DisplayName": "Calamidade de Eshu"
+  },
+  {
+    "InternalName": "Serenity's Call",
+    "DisplayName": "Chamado da Serenidade"
+  },
+  {
+    "InternalName": "Moonweaver's Dawn",
+    "DisplayName": "Alvorada do Tecedor do Luar"
+  },
+  {
+    "InternalName": "Heretic's Molten Blade",
+    "DisplayName": "Lâmina Derretida do Herege"
+  },
+  {
+    "InternalName": "Emberwell",
+    "DisplayName": "Fonte da Ignição"
+  },
+  {
+    "InternalName": "Peak Patrol Song",
+    "DisplayName": "Canção da Patrulha do Pico"
+  },
+  {
+    "InternalName": "Athame Artis",
+    "DisplayName": "Corrupção Sombria"
+  },
+  {
+    "InternalName": "Lightbearing Moonshard",
+    "DisplayName": "Fragmento Lunar da Luz"
+  },
+  {
+    "InternalName": "Whitelake Frostfeather",
+    "DisplayName": "Asa Gelada do Lago Branco"
+  },
+  {
+    "InternalName": "Exaiphanes Blade",
+    "DisplayName": "Sabre da Ponta Estelar"
+  },
+  {
+    "InternalName": "Ultimate Overlord's Mega Magic Sword",
+    "DisplayName": "\"Ultimate Overlord's Mega Magic Sword\""
+  },
+  {
+    "InternalName": "Fruitful Hook",
+    "DisplayName": "Gancho Frutífero"
+  },
+  {
+    "InternalName": "Earth Shaker",
+    "DisplayName": "Estremecedor da Terra"
+  },
+  {
+    "InternalName": "Flame-Forged Insight",
+    "DisplayName": "Forja da Sabedoria"
+  },
+  {
+    "InternalName": "Master Key",
+    "DisplayName": "Chave Mestra"
+  },
+  {
+    "InternalName": "Forged by the Golden Melody",
+    "DisplayName": "Forjada pela Lei Dourada"
+  },
+  {
+    "InternalName": "Blade of Atonement",
+    "DisplayName": "Lâmina da Redenção"
+  },
+  {
+    "InternalName": "Fang of the Mountain King",
+    "DisplayName": "Presa do Rei da Montanha"
+  },
+  {
+    "InternalName": "A Thousand Blazing Suns",
+    "DisplayName": "Mil Sóis Ardentes"
+  },
+  {
+    "InternalName": "Gest of the Mighty Wolf",
+    "DisplayName": "Balada do Poderoso Lobo"
+  },
+  {
+    "InternalName": "A Teaspoon of Transcendence",
+    "DisplayName": "Chave da Transcendência"
+  },
+  {
+    "InternalName": "Dialogues of the Desert Sages",
+    "DisplayName": "Conversas dos Sábios do Deserto"
+  },
+  {
+    "InternalName": "Mountain-Bracing Bolt",
+    "DisplayName": "Prego Esmagador de Montanhas"
+  },
+  {
+    "InternalName": "Footprint of the Rainbow",
+    "DisplayName": "Trilha do Arco-Íris"
+  },
+  {
+    "InternalName": "Tamayuratei no Ohanashi",
+    "DisplayName": "Fofocas Breves do Pavilhão"
+  },
+  {
+    "InternalName": "Prospector's Shovel",
+    "DisplayName": "Pá do Escavador"
+  },
+  {
+    "InternalName": "Sacrificer's Staff",
+    "DisplayName": "Cajado do Sacrificador"
+  },
+  {
+    "InternalName": "Frostbreath",
+    "DisplayName": "Sopro Gélido"
+  },
+  {
+    "InternalName": "Song of the Vigil",
+    "DisplayName": "Canção da Vigília"
+  },
+  {
+    "InternalName": "Lumidouce Elegy",
+    "DisplayName": "Elegia Lumidouce"
+  },
+  {
+    "InternalName": "Symphonist of Scents",
+    "DisplayName": "Sinfonista de Aromas"
+  },
+  {
+    "InternalName": "Fractured Halo",
+    "DisplayName": "Resplendor Fragmentado"
+  },
+  {
+    "InternalName": "Bloodsoaked Ruins",
+    "DisplayName": "Ruínas Ensanguentadas"
+  },
+  {
+    "InternalName": "Disaster and Remorse",
+    "DisplayName": "Desastre e Remorso"
+  },
+  {
+    "InternalName": "Ash-Graven Drinking Horn",
+    "DisplayName": "Cálice de Chifre Cinza Escarlate"
+  },
+  {
+    "InternalName": "Waveriding Whirl",
+    "DisplayName": "Redemoinho das Ondas"
+  },
+  {
+    "InternalName": "Ring of Yaxche",
+    "DisplayName": "Anel de Yaxche"
+  },
+  {
+    "InternalName": "Etherlight Spindlelute",
+    "DisplayName": "Lira do Tecedor da Luz"
+  },
+  {
+    "InternalName": "Blackmarrow Lantern",
+    "DisplayName": "Lanterna do Tutano Preto"
+  },
+  {
+    "InternalName": "Dawning Frost",
+    "DisplayName": "Estrela Gelada"
+  },
+  {
+    "InternalName": "Clash of Kings",
+    "DisplayName": "Duelo de Reis"
+  },
+  {
+    "InternalName": "Echoes of the Heart",
+    "DisplayName": "Ecos do Coração"
+  },
+  {
+    "InternalName": "Surf's Up",
+    "DisplayName": "Hora do Surfe"
+  },
+  {
+    "InternalName": "Starcaller's Watch",
+    "DisplayName": "Observatório do Chamador de Estrelas"
+  },
+  {
+    "InternalName": "Sunny Morning Sleep-In",
+    "DisplayName": "Hibernação Matinal do Ano Novo"
+  },
+  {
+    "InternalName": "Vivid Notions",
+    "DisplayName": "Coração Resplandecente"
+  },
+  {
+    "InternalName": "Nightweaver's Looking Glass",
+    "DisplayName": "Luneta do Tecedor da Noite"
+  },
+  {
+    "InternalName": "Reliquary of Truth",
+    "DisplayName": "Relicário da Verdade"
+  },
+  {
+    "InternalName": "Nocturne's Curtain Call",
+    "DisplayName": "Cortinas Noturnas"
+  },
+  {
+    "InternalName": "Angelos' Heptades",
+    "DisplayName": "Os Sete Éditos da Poeira e Luz"
+  },
+  {
+    "InternalName": "Ibis Piercer",
+    "DisplayName": "Bico de Íbis"
+  },
+  {
+    "InternalName": "Cloudforged",
+    "DisplayName": "Tocador de Nuvens"
+  },
+  {
+    "InternalName": "Flower-Wreathed Feathers",
+    "DisplayName": "Penas Cercadas de Flores"
+  },
+  {
+    "InternalName": "Chain Breaker",
+    "DisplayName": "Quebrador de Correntes"
+  },
+  {
+    "InternalName": "Sequence of Solitude",
+    "DisplayName": "Ritmo da Solidão"
+  },
+  {
+    "InternalName": "Snare Hook",
+    "DisplayName": "Gancho da Armadilha"
+  },
+  {
+    "InternalName": "Rainbow Serpent's Rain Bow",
+    "DisplayName": "Cordas da Chuva da Serpente Arco-Íris"
+  },
+  {
+    "InternalName": "Jade Vista",
+    "DisplayName": "Vista da Jade Primordial"
+  },
+  {
+    "InternalName": "Covenant of Frost and Snow",
+    "DisplayName": "Pacto do Gelo e Neve"
+  },
+  {
+    "InternalName": "Astral Vulture's Crimson Plumage",
+    "DisplayName": "Plumagem Escarlate do Abutre Astral"
+  },
+  {
+    "InternalName": "The Daybreak Chronicles",
+    "DisplayName": "As Crônicas do Amanhecer"
+  },
+  {
+    "InternalName": "Golden Frostbound Oath",
+    "DisplayName": "Ramo Dourado do Juramento Gelado"
+  }
+]

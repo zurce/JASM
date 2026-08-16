@@ -1,0 +1,386 @@
+[
+  {
+    "InternalName": "Others",
+    "DisplayName": "Agents"
+  },
+  {
+    "InternalName": "Weapons",
+    "DisplayName": "Bangboo"
+  },
+  {
+    "InternalName": "Belle",
+    "DisplayName": "Belle",
+    "InGameSkins": [
+      {
+        "InternalName": "BelleDelicateSunlight",
+        "DisplayName": "Belle Delicate Sunlight"
+      },
+      {
+        "InternalName": "BelleSummerSkies",
+        "DisplayName": "Belle Summer Skies"
+      },
+      {
+        "InternalName": "BelleBrillianceOfStars",
+        "DisplayName": "Belle Brilliance of Stars"
+      }
+    ]
+  },
+  {
+    "InternalName": "Wise",
+    "DisplayName": "Wise",
+    "InGameSkins": [
+      {
+        "InternalName": "WiseSoaringCrane",
+        "DisplayName": "Wise Soaring Crane"
+      },
+      {
+        "InternalName": "WisePeacefulWaves",
+        "DisplayName": "Wise Peaceful Waves"
+      },
+      {
+        "InternalName": "WiseOathOfSkies",
+        "DisplayName": "Wise Oath of Skies"
+      }
+    ]
+  },
+  {
+    "InternalName": "Rina",
+    "DisplayName": "Rina"
+  },
+  {
+    "InternalName": "Ellen",
+    "DisplayName": "Ellen",
+    "InGameSkins": [
+      {
+        "InternalName": "Ellen On Campus",
+        "DisplayName": "Ellen On Campus"
+      }
+    ]
+  },
+  {
+    "InternalName": "Grace",
+    "DisplayName": "Grace"
+  },
+  {
+    "InternalName": "Koleda",
+    "DisplayName": "Koleda"
+  },
+  {
+    "InternalName": "Nekomata",
+    "DisplayName": "Nekomata"
+  },
+  {
+    "InternalName": "Soldier11",
+    "DisplayName": "Soldier 11"
+  },
+  {
+    "InternalName": "Lycaon",
+    "DisplayName": "Lycaon"
+  },
+  {
+    "InternalName": "ZhuYuan",
+    "DisplayName": "Zhu Yuan"
+  },
+  {
+    "InternalName": "Anby",
+    "DisplayName": "Anby"
+  },
+  {
+    "InternalName": "Anton",
+    "DisplayName": "Anton"
+  },
+  {
+    "InternalName": "Ben",
+    "DisplayName": "Ben"
+  },
+  {
+    "InternalName": "Billy",
+    "DisplayName": "Billy"
+  },
+  {
+    "InternalName": "Corin",
+    "DisplayName": "Corin"
+  },
+  {
+    "InternalName": "Lucy",
+    "DisplayName": "Lucy",
+    "InGameSkins": [
+      {
+        "InternalName": "Princess on Holiday",
+        "DisplayName": "Lucy Princess on Holiday"
+      }
+    ]
+  },
+  {
+    "InternalName": "Nicole",
+    "DisplayName": "Nicole",
+    "InGameSkins": [
+      {
+        "InternalName": "Nicole Cunning Cutie",
+        "DisplayName": "Nicole Cunning Cutie"
+      }
+    ]
+  },
+  {
+    "InternalName": "Piper",
+    "DisplayName": "Piper"
+  },
+  {
+    "InternalName": "Soukaku",
+    "DisplayName": "Soukaku"
+  },
+  {
+    "InternalName": "Miyabi",
+    "DisplayName": "Miyabi"
+  },
+  {
+    "InternalName": "Jane",
+    "DisplayName": "Jane",
+    "InGameSkins": [
+      {
+        "InternalName": "Jane Doe Nocturne of Light",
+        "DisplayName": "Jane Doe Nocturne of Light"
+      }
+    ]
+  },
+  {
+    "InternalName": "Qingyi",
+    "DisplayName": "Qingyi"
+  },
+  {
+    "InternalName": "Seth",
+    "DisplayName": "Seth"
+  },
+  {
+    "InternalName": "Caesar",
+    "DisplayName": "Caesar"
+  },
+  {
+    "InternalName": "Burnice",
+    "DisplayName": "Burnice"
+  },
+  {
+    "InternalName": "Yanagi",
+    "DisplayName": "Yanagi"
+  },
+  {
+    "InternalName": "Harumasa",
+    "DisplayName": "Harumasa"
+  },
+  {
+    "InternalName": "Astra",
+    "DisplayName": "Astra Yao",
+    "InGameSkins": [
+      {
+        "InternalName": "Astra Chandelier",
+        "DisplayName": "Astra Chandelier"
+      }
+    ]
+  },
+  {
+    "InternalName": "Evelyn",
+    "DisplayName": "Evelyn"
+  },
+  {
+    "InternalName": "Lighter",
+    "DisplayName": "Lighter"
+  },
+  {
+    "InternalName": "Pulchra",
+    "DisplayName": "Pulchra"
+  },
+  {
+    "InternalName": "Silver Soldier - Anby",
+    "DisplayName": "Soldier 0 - Anby"
+  },
+  {
+    "InternalName": "Trigger",
+    "DisplayName": "Trigger"
+  },
+  {
+    "InternalName": "Vivian",
+    "DisplayName": "Vivian",
+    "InGameSkins": [
+      {
+        "InternalName": "IrisOfTheShore",
+        "DisplayName": "Iris of the Shore"
+      }
+    ]
+  },
+  {
+    "InternalName": "Hugo",
+    "DisplayName": "Hugo"
+  },
+  {
+    "InternalName": "Yixuan",
+    "DisplayName": "Yixuan",
+    "InGameSkins": [
+      {
+        "InternalName": "YixuanTrailsofInk",
+        "DisplayName": "YixuanTrailsofInkr"
+      }
+    ]
+  },
+  {
+    "InternalName": "Panyinhu",
+    "DisplayName": "Pan Yinhu"
+  },
+  {
+    "InternalName": "Jufufu",
+    "DisplayName": "Ju Fufu"
+  },
+  {
+    "InternalName": "Yuzuha",
+    "DisplayName": "Yuzuha",
+    "InGameSkins": [
+      {
+        "InternalName": "YuzuhaTanukiInBroadDaylight",
+        "DisplayName": "Yuzuha Tanuki in Broad Daylight"
+      }
+    ]
+  },
+  {
+    "InternalName": "Alice",
+    "DisplayName": "Alice",
+    "InGameSkins": [
+      {
+        "InternalName": "AliceSeaOfThyme",
+        "DisplayName": "Alice Sea of Thyme"
+      }
+    ]
+  },
+  {
+    "InternalName": "Orphie",
+    "DisplayName": "Orphie & Magus"
+  },
+  {
+    "InternalName": "Seed",
+    "DisplayName": "Seed"
+  },
+  {
+    "InternalName": "Manato",
+    "DisplayName": "Manato",
+    "InGameSkins": [
+      {
+        "InternalName": "WhiteHeartSilhouette",
+        "DisplayName": "White Heart Silhouette"
+      }
+    ]
+  },
+  {
+    "InternalName": "Lucia",
+    "DisplayName": "Lucia"
+  },
+  {
+    "InternalName": "Yidhari",
+    "DisplayName": "Yidhari"
+  },
+  {
+    "InternalName": "Dialyn",
+    "DisplayName": "Dialyn"
+  },
+  {
+    "InternalName": "Banyue",
+    "DisplayName": "Banyue"
+  },
+  {
+    "InternalName": "YeShunguang",
+    "DisplayName": "Ye Shunguang",
+    "InGameSkins": [
+      {
+        "InternalName": "Ye Shunguang Touch of Dawnlight",
+        "DisplayName": "Ye Shunguang Touch of Dawnlight"
+      }
+    ]
+  },
+  {
+    "InternalName": "Zhao",
+    "DisplayName": "Zhao"
+  },
+  {
+    "InternalName": "Sunna",
+    "DisplayName": "Sunna",
+    "InGameSkins": [
+      {
+        "InternalName": "Sunna Afternoon Tea Break",
+        "DisplayName": "Sunna Afternoon Tea Break"
+      }
+    ]
+  },
+  {
+    "InternalName": "Aria",
+    "DisplayName": "Aria",
+    "InGameSkins": [
+      {
+        "InternalName": "Aria Discordant Note",
+        "DisplayName": "Aria Discordant Note"
+      }
+    ]
+  },
+  {
+    "InternalName": "NangongYu",
+    "DisplayName": "Nangong Yu",
+    "InGameSkins": [
+      {
+        "InternalName": "RhapsodysMuse",
+        "DisplayName": "Nangong Yu Rhapsody's Muse"
+      }
+    ]
+  },
+  {
+    "InternalName": "Cissia",
+    "DisplayName": "Cissia"
+  },
+  {
+    "InternalName": "StarlightBilly",
+    "DisplayName": "Starlight - Billy"
+  },
+  {
+    "InternalName": "Promeia",
+    "DisplayName": "Promeia"
+  },
+  {
+    "InternalName": "Pyrois",
+    "DisplayName": "Pyrois"
+  },
+  {
+    "InternalName": "Norma",
+    "DisplayName": "Norma"
+  },
+  {
+    "InternalName": "Velina",
+    "DisplayName": "Velina"
+  },
+  {
+    "InternalName": "Remielle",
+    "DisplayName": "Remielle",
+    "InGameSkins": [
+      {
+        "InternalName": "MoonlightWhispers",
+        "DisplayName": "Remielle Moonlight Whispers"
+      },
+      {
+        "InternalName": "SeashadePasSeul",
+        "DisplayName": "Remielle Seashade Pas Seul"
+      }
+    ]
+  },
+  {
+    "InternalName": "Sigrid",
+    "DisplayName": "Sigrid",
+    "InGameSkins": [
+      {
+        "InternalName": "MajesticWavechaser",
+        "DisplayName": "Sigrid Majestic Wavechaser"
+      }
+    ]
+  },
+  {
+    "InternalName": "Claret",
+    "DisplayName": "Claret"
+  },
+  {
+    "InternalName": "Pryce",
+    "DisplayName": "Pryce"
+  }
+]

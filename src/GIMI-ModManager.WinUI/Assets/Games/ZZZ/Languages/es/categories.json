@@ -1,0 +1,22 @@
+[
+  {
+    "InternalName": "Character",
+    "DisplayName": "Agente",
+    "DisplayNamePlural": "Agentes"
+  },
+  {
+    "InternalName": "NPC",
+    "DisplayName": "PNJ",
+    "DisplayNamePlural": "PNJ"
+  },
+  {
+    "InternalName": "Object",
+    "DisplayName": "Objeto",
+    "DisplayNamePlural": "Objetos"
+  },
+  {
+    "InternalName": "Weapon",
+    "DisplayName": "Bangbú",
+    "DisplayNamePlural": "Bangbús"
+  }
+]

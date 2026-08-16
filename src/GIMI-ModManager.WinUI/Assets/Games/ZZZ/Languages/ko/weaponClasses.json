@@ -1,0 +1,30 @@
+[
+  {
+    "InternalName": "Anomaly",
+    "DisplayName": "이상"
+  },
+  {
+    "InternalName": "Attack",
+    "DisplayName": "강공"
+  },
+  {
+    "InternalName": "Defense",
+    "DisplayName": "방어"
+  },
+  {
+    "InternalName": "Stun",
+    "DisplayName": "격파"
+  },
+  {
+    "InternalName": "Support",
+    "DisplayName": "지원"
+  },
+  {
+    "InternalName": "Rupture",
+    "DisplayName": "파격"
+  },
+  {
+    "InternalName": "Armorer",
+    "DisplayName": "축방"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "InternalName": "Anomaly",
+    "DisplayName": "Anomalia"
+  },
+  {
+    "InternalName": "Attack",
+    "DisplayName": "Ataque"
+  },
+  {
+    "InternalName": "Defense",
+    "DisplayName": "Defesa"
+  },
+  {
+    "InternalName": "Stun",
+    "DisplayName": "Atordoamento"
+  },
+  {
+    "InternalName": "Support",
+    "DisplayName": "Suporte"
+  },
+  {
+    "InternalName": "Rupture",
+    "DisplayName": "Ruptura"
+  },
+  {
+    "InternalName": "Armorer",
+    "DisplayName": "Armadura"
+  }
+]

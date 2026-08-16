@@ -1,0 +1,990 @@
+[
+  {
+    "InternalName": "Others_Weapons",
+    "DisplayName": "武器"
+  },
+  {
+    "InternalName": "The Catch",
+    "DisplayName": "The Catch"
+  },
+  {
+    "InternalName": "A Thousand Floating Dreams",
+    "DisplayName": "千夜に浮かぶ夢"
+  },
+  {
+    "InternalName": "Akuoumaru",
+    "DisplayName": "惡王丸"
+  },
+  {
+    "InternalName": "Alley Hunter",
+    "DisplayName": "ダークアレイの狩人"
+  },
+  {
+    "InternalName": "Amenoma Kageuchi",
+    "DisplayName": "天目影打"
+  },
+  {
+    "InternalName": "Amos' Bow",
+    "DisplayName": "アモスの弓"
+  },
+  {
+    "InternalName": "Apprentice's Notes",
+    "DisplayName": "生徒ノート"
+  },
+  {
+    "InternalName": "Aqua Simulacra",
+    "DisplayName": "若水"
+  },
+  {
+    "InternalName": "Aquila Favonia",
+    "DisplayName": "風鷹剣"
+  },
+  {
+    "InternalName": "Ballad of the Boundless Blue",
+    "DisplayName": "果てなき紺碧の唄"
+  },
+  {
+    "InternalName": "Ballad of the Fjords",
+    "DisplayName": "フィヨルドの歌"
+  },
+  {
+    "InternalName": "Beacon of the Reed Sea",
+    "DisplayName": "葦海の標"
+  },
+  {
+    "InternalName": "Beginner's Protector",
+    "DisplayName": "新米の長槍"
+  },
+  {
+    "InternalName": "Black Tassel",
+    "DisplayName": "黒纓槍"
+  },
+  {
+    "InternalName": "Blackcliff Agate",
+    "DisplayName": "黒岩の緋玉"
+  },
+  {
+    "InternalName": "Blackcliff Longsword",
+    "DisplayName": "黒岩の長剣"
+  },
+  {
+    "InternalName": "Blackcliff Pole",
+    "DisplayName": "黒岩の突槍"
+  },
+  {
+    "InternalName": "Blackcliff Slasher",
+    "DisplayName": "黒岩の斬刀"
+  },
+  {
+    "InternalName": "Blackcliff Warbow",
+    "DisplayName": "黒岩の戦弓"
+  },
+  {
+    "InternalName": "Bloodtainted Greatsword",
+    "DisplayName": "龍血を浴びた剣"
+  },
+  {
+    "InternalName": "Calamity Queller",
+    "DisplayName": "息災"
+  },
+  {
+    "InternalName": "Cashflow Supervision",
+    "DisplayName": "凛流の監視者"
+  },
+  {
+    "InternalName": "Cinnabar Spindle",
+    "DisplayName": "シナバースピンドル"
+  },
+  {
+    "InternalName": "Compound Bow",
+    "DisplayName": "リングボウ"
+  },
+  {
+    "InternalName": "Cool Steel",
+    "DisplayName": "冷刃"
+  },
+  {
+    "InternalName": "Crescent Pike",
+    "DisplayName": "流月の針"
+  },
+  {
+    "InternalName": "Dark Iron Sword",
+    "DisplayName": "暗鉄剣"
+  },
+  {
+    "InternalName": "Deathmatch",
+    "DisplayName": "死闘の槍"
+  },
+  {
+    "InternalName": "Debate Club",
+    "DisplayName": "理屈責め"
+  },
+  {
+    "InternalName": "Dodoco Tales",
+    "DisplayName": "ドドコの物語"
+  },
+  {
+    "InternalName": "Dragon's Bane",
+    "DisplayName": "匣中滅龍"
+  },
+  {
+    "InternalName": "Dragonspine Spear",
+    "DisplayName": "ドラゴンスピア"
+  },
+  {
+    "InternalName": "Dull Blade",
+    "DisplayName": "無鋒の剣"
+  },
+  {
+    "InternalName": "Elegy for the End",
+    "DisplayName": "終焉を嘆く詩"
+  },
+  {
+    "InternalName": "Emerald Orb",
+    "DisplayName": "翡玉法珠"
+  },
+  {
+    "InternalName": "End of the Line",
+    "DisplayName": "竭沢"
+  },
+  {
+    "InternalName": "Engulfing Lightning",
+    "DisplayName": "草薙の稲光"
+  },
+  {
+    "InternalName": "Everlasting Moonglow",
+    "DisplayName": "不滅の月華"
+  },
+  {
+    "InternalName": "Eye of Perception",
+    "DisplayName": "昭心"
+  },
+  {
+    "InternalName": "Fading Twilight",
+    "DisplayName": "落霞"
+  },
+  {
+    "InternalName": "Favonius Codex",
+    "DisplayName": "西風秘典"
+  },
+  {
+    "InternalName": "Favonius Greatsword",
+    "DisplayName": "西風大剣"
+  },
+  {
+    "InternalName": "Favonius Lance",
+    "DisplayName": "西風長槍"
+  },
+  {
+    "InternalName": "Favonius Sword",
+    "DisplayName": "西風剣"
+  },
+  {
+    "InternalName": "Favonius Warbow",
+    "DisplayName": "西風猟弓"
+  },
+  {
+    "InternalName": "Ferrous Shadow",
+    "DisplayName": "鉄影段平"
+  },
+  {
+    "InternalName": "Festering Desire",
+    "DisplayName": "腐植の剣"
+  },
+  {
+    "InternalName": "Fillet Blade",
+    "DisplayName": "チ虎魚の刀"
+  },
+  {
+    "InternalName": "Finale of the Deep",
+    "DisplayName": "海淵のフィナーレ"
+  },
+  {
+    "InternalName": "Fleuve Cendre Ferryman",
+    "DisplayName": "サーンドルの渡し守"
+  },
+  {
+    "InternalName": "Flowing Purity",
+    "DisplayName": "純水流華"
+  },
+  {
+    "InternalName": "Forest Regalia",
+    "DisplayName": "森林のレガリア"
+  },
+  {
+    "InternalName": "Freedom-Sworn",
+    "DisplayName": "蒼古なる自由への誓い"
+  },
+  {
+    "InternalName": "Frostbearer",
+    "DisplayName": "冬忍びの実"
+  },
+  {
+    "InternalName": "Fruit of Fulfillment",
+    "DisplayName": "満悦の実"
+  },
+  {
+    "InternalName": "Hakushin Ring",
+    "DisplayName": "白辰の輪"
+  },
+  {
+    "InternalName": "Halberd",
+    "DisplayName": "鉾槍"
+  },
+  {
+    "InternalName": "Hamayumi",
+    "DisplayName": "破魔の弓"
+  },
+  {
+    "InternalName": "Haran Geppaku Futsu",
+    "DisplayName": "波乱月白経津"
+  },
+  {
+    "InternalName": "Harbinger of Dawn",
+    "DisplayName": "黎明の神剣"
+  },
+  {
+    "InternalName": "Hunter's Bow",
+    "DisplayName": "狩猟弓"
+  },
+  {
+    "InternalName": "Hunter's Path",
+    "DisplayName": "狩人の道"
+  },
+  {
+    "InternalName": "Iron Point",
+    "DisplayName": "鉄尖槍"
+  },
+  {
+    "InternalName": "Iron Sting",
+    "DisplayName": "鉄蜂の刺し"
+  },
+  {
+    "InternalName": "Jadefall's Splendor",
+    "DisplayName": "碧落の瓏"
+  },
+  {
+    "InternalName": "Kagotsurube Isshin",
+    "DisplayName": "籠釣瓶一心"
+  },
+  {
+    "InternalName": "Katsuragikiri Nagamasa",
+    "DisplayName": "桂木斬長正"
+  },
+  {
+    "InternalName": "Kagura's Verity",
+    "DisplayName": "神楽の真意"
+  },
+  {
+    "InternalName": "Key of Khaj-Nisut",
+    "DisplayName": "聖顕の鍵"
+  },
+  {
+    "InternalName": "King's Squire",
+    "DisplayName": "王の近侍"
+  },
+  {
+    "InternalName": "Kitain Cross Spear",
+    "DisplayName": "喜多院十文字槍"
+  },
+  {
+    "InternalName": "Light of Foliar Incision",
+    "DisplayName": "萃光の裁葉"
+  },
+  {
+    "InternalName": "Lion's Roar",
+    "DisplayName": "匣中龍吟"
+  },
+  {
+    "InternalName": "Lithic Blade",
+    "DisplayName": "千岩古剣"
+  },
+  {
+    "InternalName": "Lithic Spear",
+    "DisplayName": "千岩長槍"
+  },
+  {
+    "InternalName": "Lost Prayer to the Sacred Winds",
+    "DisplayName": "四風原典"
+  },
+  {
+    "InternalName": "Luxurious Sea-Lord",
+    "DisplayName": "銜玉の海皇"
+  },
+  {
+    "InternalName": "Magic Guide",
+    "DisplayName": "魔導緒論"
+  },
+  {
+    "InternalName": "Mailed Flower",
+    "DisplayName": "鉄彩の花"
+  },
+  {
+    "InternalName": "Makhaira Aquamarine",
+    "DisplayName": "マカイラの水色"
+  },
+  {
+    "InternalName": "Mappa Mare",
+    "DisplayName": "万国諸海の図譜"
+  },
+  {
+    "InternalName": "Memory of Dust",
+    "DisplayName": "浮世の錠"
+  },
+  {
+    "InternalName": "Messenger",
+    "DisplayName": "文使い"
+  },
+  {
+    "InternalName": "Missive Windspear",
+    "DisplayName": "風信の矛"
+  },
+  {
+    "InternalName": "Mistsplitter Reforged",
+    "DisplayName": "霧切の廻光"
+  },
+  {
+    "InternalName": "Mitternachts Waltz",
+    "DisplayName": "幽夜のワルツ"
+  },
+  {
+    "InternalName": "Moonpiercer",
+    "DisplayName": "ムーンピアサー"
+  },
+  {
+    "InternalName": "Mouun's Moon",
+    "DisplayName": "曚雲の月"
+  },
+  {
+    "InternalName": "Oathsworn Eye",
+    "DisplayName": "誓いの明瞳"
+  },
+  {
+    "InternalName": "Old Merc's Pal",
+    "DisplayName": "傭兵の重剣"
+  },
+  {
+    "InternalName": "Otherworldly Story",
+    "DisplayName": "異世界旅行記"
+  },
+  {
+    "InternalName": "Pocket Grimoire",
+    "DisplayName": "ポケット魔導書"
+  },
+  {
+    "InternalName": "Polar Star",
+    "DisplayName": "冬極の白星"
+  },
+  {
+    "InternalName": "Portable Power Saw",
+    "DisplayName": "携帯型チェーンソー"
+  },
+  {
+    "InternalName": "Predator",
+    "DisplayName": "プレデター"
+  },
+  {
+    "InternalName": "Primordial Jade Cutter",
+    "DisplayName": "磐岩結緑"
+  },
+  {
+    "InternalName": "Primordial Jade Winged-Spear",
+    "DisplayName": "和璞鳶"
+  },
+  {
+    "InternalName": "Prospector's Drill",
+    "DisplayName": "プロスペクタードリル"
+  },
+  {
+    "InternalName": "Prototype Amber",
+    "DisplayName": "金珀·試作"
+  },
+  {
+    "InternalName": "Prototype Archaic",
+    "DisplayName": "古華·試作"
+  },
+  {
+    "InternalName": "Prototype Crescent",
+    "DisplayName": "澹月·試作"
+  },
+  {
+    "InternalName": "Prototype Rancour",
+    "DisplayName": "斬岩·試作"
+  },
+  {
+    "InternalName": "Prototype Starglitter",
+    "DisplayName": "星鎌·試作"
+  },
+  {
+    "InternalName": "Rainslasher",
+    "DisplayName": "雨裁"
+  },
+  {
+    "InternalName": "Range Gauge",
+    "DisplayName": "レンジゲージ"
+  },
+  {
+    "InternalName": "Raven Bow",
+    "DisplayName": "鴉羽の弓"
+  },
+  {
+    "InternalName": "Recurve Bow",
+    "DisplayName": "リカーブボウ"
+  },
+  {
+    "InternalName": "Redhorn Stonethresher",
+    "DisplayName": "赤角石塵滅砕"
+  },
+  {
+    "InternalName": "Rightful Reward",
+    "DisplayName": "正義の報酬"
+  },
+  {
+    "InternalName": "Royal Bow",
+    "DisplayName": "旧貴族長弓"
+  },
+  {
+    "InternalName": "Royal Greatsword",
+    "DisplayName": "旧貴族大剣"
+  },
+  {
+    "InternalName": "Royal Grimoire",
+    "DisplayName": "旧貴族秘法録"
+  },
+  {
+    "InternalName": "Royal Longsword",
+    "DisplayName": "旧貴族長剣"
+  },
+  {
+    "InternalName": "Royal Spear",
+    "DisplayName": "旧貴族猟槍"
+  },
+  {
+    "InternalName": "Rust",
+    "DisplayName": "弓蔵"
+  },
+  {
+    "InternalName": "Sacrificial Bow",
+    "DisplayName": "祭礼の弓"
+  },
+  {
+    "InternalName": "Sacrificial Fragments",
+    "DisplayName": "祭礼の断片"
+  },
+  {
+    "InternalName": "Sacrificial Greatsword",
+    "DisplayName": "祭礼の大剣"
+  },
+  {
+    "InternalName": "Sacrificial Jade",
+    "DisplayName": "古祠の瓏"
+  },
+  {
+    "InternalName": "Sacrificial Sword",
+    "DisplayName": "祭礼の剣"
+  },
+  {
+    "InternalName": "Sapwood Blade",
+    "DisplayName": "原木刀"
+  },
+  {
+    "InternalName": "Scion of the Blazing Sun",
+    "DisplayName": "烈日の後嗣"
+  },
+  {
+    "InternalName": "Seasoned Hunter's Bow",
+    "DisplayName": "歴戦の狩猟弓"
+  },
+  {
+    "InternalName": "Serpent Spine",
+    "DisplayName": "螭龍の剣"
+  },
+  {
+    "InternalName": "Sharpshooter's Oath",
+    "DisplayName": "シャープシューターの誓い"
+  },
+  {
+    "InternalName": "Silver Sword",
+    "DisplayName": "銀の剣"
+  },
+  {
+    "InternalName": "Skyrider Greatsword",
+    "DisplayName": "飛天大御剣"
+  },
+  {
+    "InternalName": "Skyrider Sword",
+    "DisplayName": "飛天御剣"
+  },
+  {
+    "InternalName": "Skyward Atlas",
+    "DisplayName": "天空の巻"
+  },
+  {
+    "InternalName": "Skyward Blade",
+    "DisplayName": "天空の刃"
+  },
+  {
+    "InternalName": "Skyward Harp",
+    "DisplayName": "天空の翼"
+  },
+  {
+    "InternalName": "Skyward Pride",
+    "DisplayName": "天空の傲"
+  },
+  {
+    "InternalName": "Skyward Spine",
+    "DisplayName": "天空の脊"
+  },
+  {
+    "InternalName": "Slingshot",
+    "DisplayName": "弾弓"
+  },
+  {
+    "InternalName": "Snow-Tombed Starsilver",
+    "DisplayName": "雪葬の星銀"
+  },
+  {
+    "InternalName": "Solar Pearl",
+    "DisplayName": "匣中日月"
+  },
+  {
+    "InternalName": "Song of Broken Pines",
+    "DisplayName": "松韻の響く頃"
+  },
+  {
+    "InternalName": "Song of Stillness",
+    "DisplayName": "静寂の唄"
+  },
+  {
+    "InternalName": "Splendor of Tranquil Waters",
+    "DisplayName": "静水流転の輝き"
+  },
+  {
+    "InternalName": "Staff of Homa",
+    "DisplayName": "護摩の杖"
+  },
+  {
+    "InternalName": "Staff of the Scarlet Sands",
+    "DisplayName": "赤砂の杖"
+  },
+  {
+    "InternalName": "Summit Shaper",
+    "DisplayName": "斬山の刃"
+  },
+  {
+    "InternalName": "Sword of Descension",
+    "DisplayName": "降臨の剣"
+  },
+  {
+    "InternalName": "Sword of Narzissenkreuz",
+    "DisplayName": "水仙十字の剣"
+  },
+  {
+    "InternalName": "Talking Stick",
+    "DisplayName": "話死合い棒"
+  },
+  {
+    "InternalName": "The Alley Flash",
+    "DisplayName": "ダークアレイの閃光"
+  },
+  {
+    "InternalName": "The Bell",
+    "DisplayName": "鐘の剣"
+  },
+  {
+    "InternalName": "The Black Sword",
+    "DisplayName": "黒剣"
+  },
+  {
+    "InternalName": "The Dockhand's Assistant",
+    "DisplayName": "船渠剣"
+  },
+  {
+    "InternalName": "The First Great Magic",
+    "DisplayName": "始まりの大魔術"
+  },
+  {
+    "InternalName": "The Flute",
+    "DisplayName": "笛の剣"
+  },
+  {
+    "InternalName": "The Stringless",
+    "DisplayName": "絶弦"
+  },
+  {
+    "InternalName": "The Unforged",
+    "DisplayName": "無工の剣"
+  },
+  {
+    "InternalName": "The Viridescent Hunt",
+    "DisplayName": "蒼翠の狩猟弓"
+  },
+  {
+    "InternalName": "The Widsith",
+    "DisplayName": "流浪楽章"
+  },
+  {
+    "InternalName": "Thrilling Tales of Dragon Slayers",
+    "DisplayName": "龍殺しの英傑譚"
+  },
+  {
+    "InternalName": "Thundering Pulse",
+    "DisplayName": "飛雷の鳴弦"
+  },
+  {
+    "InternalName": "Tidal Shadow",
+    "DisplayName": "タイダル·シャドー"
+  },
+  {
+    "InternalName": "Tome of the Eternal Flow",
+    "DisplayName": "久遠流転の大典"
+  },
+  {
+    "InternalName": "Toukabou Shigure",
+    "DisplayName": "東花坊時雨"
+  },
+  {
+    "InternalName": "Traveler's Handy Sword",
+    "DisplayName": "旅道の剣"
+  },
+  {
+    "InternalName": "Tulaytullah's Remembrance",
+    "DisplayName": "トゥライトゥーラの記憶"
+  },
+  {
+    "InternalName": "Twin Nephrite",
+    "DisplayName": "特級の宝玉"
+  },
+  {
+    "InternalName": "Vortex Vanquisher",
+    "DisplayName": "破天の槍"
+  },
+  {
+    "InternalName": "Wandering Evenstar",
+    "DisplayName": "彷徨える星"
+  },
+  {
+    "InternalName": "Waster Greatsword",
+    "DisplayName": "訓練用大剣"
+  },
+  {
+    "InternalName": "Wavebreaker's Fin",
+    "DisplayName": "斬波のひれ長"
+  },
+  {
+    "InternalName": "White Iron Greatsword",
+    "DisplayName": "白鉄の大剣"
+  },
+  {
+    "InternalName": "White Tassel",
+    "DisplayName": "白纓槍"
+  },
+  {
+    "InternalName": "Whiteblind",
+    "DisplayName": "白影の剣"
+  },
+  {
+    "InternalName": "Windblume Ode",
+    "DisplayName": "風花の頌歌"
+  },
+  {
+    "InternalName": "Wine and Song",
+    "DisplayName": "ダークアレイの酒と詩"
+  },
+  {
+    "InternalName": "Wolf's Gravestone",
+    "DisplayName": "狼の末路"
+  },
+  {
+    "InternalName": "Wolf-Fang",
+    "DisplayName": "狼牙"
+  },
+  {
+    "InternalName": "Xiphos' Moonlight",
+    "DisplayName": "サイフォスの月明かり"
+  },
+  {
+    "InternalName": "Verdict",
+    "DisplayName": "裁断"
+  },
+  {
+    "InternalName": "Crimson Moon's Semblance",
+    "DisplayName": "赤月のシルエット"
+  },
+  {
+    "InternalName": "Absolution",
+    "DisplayName": "赦罪"
+  },
+  {
+    "InternalName": "Silvershower Heartstrings",
+    "DisplayName": "白雨心弦"
+  },
+  {
+    "InternalName": "Uraku Misugiri",
+    "DisplayName": "有楽御簾切"
+  },
+  {
+    "InternalName": "Crane's Echoing Call",
+    "DisplayName": "鶴鳴の余韻"
+  },
+  {
+    "InternalName": "AzureLight",
+    "DisplayName": "蒼耀"
+  },
+  {
+    "InternalName": "Sturdy Bone",
+    "DisplayName": "ストロング・ボーン"
+  },
+  {
+    "InternalName": "Flute of Ezpitzal",
+    "DisplayName": "エズピツァルの笛"
+  },
+  {
+    "InternalName": "Calamity of Eshu",
+    "DisplayName": "厄水の災い"
+  },
+  {
+    "InternalName": "Serenity's Call",
+    "DisplayName": "静謐の笛"
+  },
+  {
+    "InternalName": "Moonweaver's Dawn",
+    "DisplayName": "月紡ぎの曙光"
+  },
+  {
+    "InternalName": "Heretic's Molten Blade",
+    "DisplayName": "異端を狩る熔刃"
+  },
+  {
+    "InternalName": "Emberwell",
+    "DisplayName": "導炎の源"
+  },
+  {
+    "InternalName": "Peak Patrol Song",
+    "DisplayName": "岩峰を巡る歌"
+  },
+  {
+    "InternalName": "Athame Artis",
+    "DisplayName": "黒蝕"
+  },
+  {
+    "InternalName": "Lightbearing Moonshard",
+    "DisplayName": "三日月の含光"
+  },
+  {
+    "InternalName": "Whitelake Frostfeather",
+    "DisplayName": "白銀の湖を舞う翼"
+  },
+  {
+    "InternalName": "Exaiphanes Blade",
+    "DisplayName": "星鋒の剣"
+  },
+  {
+    "InternalName": "Ultimate Overlord's Mega Magic Sword",
+    "DisplayName": "\"Ultimate Overlord's Mega Magic Sword\""
+  },
+  {
+    "InternalName": "Fruitful Hook",
+    "DisplayName": "実りの鉤鉈"
+  },
+  {
+    "InternalName": "Earth Shaker",
+    "DisplayName": "アースシェイカー"
+  },
+  {
+    "InternalName": "Flame-Forged Insight",
+    "DisplayName": "知恵の溶炎"
+  },
+  {
+    "InternalName": "Master Key",
+    "DisplayName": "万能の鍵"
+  },
+  {
+    "InternalName": "Forged by the Golden Melody",
+    "DisplayName": "シンフォニーの鋳影"
+  },
+  {
+    "InternalName": "Blade of Atonement",
+    "DisplayName": "救済の剣"
+  },
+  {
+    "InternalName": "Fang of the Mountain King",
+    "DisplayName": "山の王の長牙"
+  },
+  {
+    "InternalName": "A Thousand Blazing Suns",
+    "DisplayName": "千烈の日輪"
+  },
+  {
+    "InternalName": "Gest of the Mighty Wolf",
+    "DisplayName": "狼の武勲詩"
+  },
+  {
+    "InternalName": "A Teaspoon of Transcendence",
+    "DisplayName": "超越の鍵"
+  },
+  {
+    "InternalName": "Dialogues of the Desert Sages",
+    "DisplayName": "砂中の賢者達の問答"
+  },
+  {
+    "InternalName": "Mountain-Bracing Bolt",
+    "DisplayName": "鎮山の釘"
+  },
+  {
+    "InternalName": "Footprint of the Rainbow",
+    "DisplayName": "虹の行方"
+  },
+  {
+    "InternalName": "Tamayuratei no Ohanashi",
+    "DisplayName": "玉響停の御噺"
+  },
+  {
+    "InternalName": "Prospector's Shovel",
+    "DisplayName": "金掘りのシャベル"
+  },
+  {
+    "InternalName": "Sacrificer's Staff",
+    "DisplayName": "聖祭者の輝杖"
+  },
+  {
+    "InternalName": "Frostbreath",
+    "DisplayName": "氷の吐息"
+  },
+  {
+    "InternalName": "Song of the Vigil",
+    "DisplayName": "遠望の歌"
+  },
+  {
+    "InternalName": "Lumidouce Elegy",
+    "DisplayName": "ルミドゥースの挽歌"
+  },
+  {
+    "InternalName": "Symphonist of Scents",
+    "DisplayName": "香りのシンフォニスト"
+  },
+  {
+    "InternalName": "Fractured Halo",
+    "DisplayName": "砕け散る光輪"
+  },
+  {
+    "InternalName": "Bloodsoaked Ruins",
+    "DisplayName": "血染めの荒れ地"
+  },
+  {
+    "InternalName": "Disaster and Remorse",
+    "DisplayName": "災憾"
+  },
+  {
+    "InternalName": "Ash-Graven Drinking Horn",
+    "DisplayName": "蒼紋の角杯"
+  },
+  {
+    "InternalName": "Waveriding Whirl",
+    "DisplayName": "波乗りの旋回"
+  },
+  {
+    "InternalName": "Ring of Yaxche",
+    "DisplayName": "ヤシュチェの環"
+  },
+  {
+    "InternalName": "Etherlight Spindlelute",
+    "DisplayName": "天光のリュート"
+  },
+  {
+    "InternalName": "Blackmarrow Lantern",
+    "DisplayName": "烏髄の孤灯"
+  },
+  {
+    "InternalName": "Dawning Frost",
+    "DisplayName": "霜辰"
+  },
+  {
+    "InternalName": "Clash of Kings",
+    "DisplayName": "諸王の対局"
+  },
+  {
+    "InternalName": "Echoes of the Heart",
+    "DisplayName": "胸中の谺"
+  },
+  {
+    "InternalName": "Surf's Up",
+    "DisplayName": "サーフィンタイム"
+  },
+  {
+    "InternalName": "Starcaller's Watch",
+    "DisplayName": "祭星者の眺め"
+  },
+  {
+    "InternalName": "Sunny Morning Sleep-In",
+    "DisplayName": "寝正月の初晴"
+  },
+  {
+    "InternalName": "Vivid Notions",
+    "DisplayName": "ヴィヴィッド・ハート"
+  },
+  {
+    "InternalName": "Nightweaver's Looking Glass",
+    "DisplayName": "夜を紡ぐ天鏡"
+  },
+  {
+    "InternalName": "Reliquary of Truth",
+    "DisplayName": "真言の匣"
+  },
+  {
+    "InternalName": "Nocturne's Curtain Call",
+    "DisplayName": "帳の夜曲"
+  },
+  {
+    "InternalName": "Angelos' Heptades",
+    "DisplayName": "塵と光の七つの誓約"
+  },
+  {
+    "InternalName": "Ibis Piercer",
+    "DisplayName": "トキの嘴"
+  },
+  {
+    "InternalName": "Cloudforged",
+    "DisplayName": "築雲"
+  },
+  {
+    "InternalName": "Flower-Wreathed Feathers",
+    "DisplayName": "花飾りの羽"
+  },
+  {
+    "InternalName": "Chain Breaker",
+    "DisplayName": "チェーンブレイカー"
+  },
+  {
+    "InternalName": "Sequence of Solitude",
+    "DisplayName": "冷寂の音"
+  },
+  {
+    "InternalName": "Snare Hook",
+    "DisplayName": "羅網の針"
+  },
+  {
+    "InternalName": "Rainbow Serpent's Rain Bow",
+    "DisplayName": "虹蛇の雨弦"
+  },
+  {
+    "InternalName": "Jade Vista",
+    "DisplayName": "千鈞懸黎"
+  },
+  {
+    "InternalName": "Covenant of Frost and Snow",
+    "DisplayName": "霜雪の契"
+  },
+  {
+    "InternalName": "Astral Vulture's Crimson Plumage",
+    "DisplayName": "星鷲の紅き羽"
+  },
+  {
+    "InternalName": "The Daybreak Chronicles",
+    "DisplayName": "暁を告げる歴史"
+  },
+  {
+    "InternalName": "Golden Frostbound Oath",
+    "DisplayName": "霜契の金枝"
+  }
+]

@@ -1,0 +1,688 @@
+[
+  {
+    "InternalName": "Others",
+    "DisplayName": "Personajes"
+  },
+  {
+    "InternalName": "Weapons",
+    "DisplayName": "Arma"
+  },
+  {
+    "InternalName": "Gliders",
+    "DisplayName": "Gliders"
+  },
+  {
+    "InternalName": "Albedo",
+    "DisplayName": "Albedo"
+  },
+  {
+    "InternalName": "Alhaitham",
+    "DisplayName": "Alhacén"
+  },
+  {
+    "InternalName": "Aloy",
+    "DisplayName": "Aloy"
+  },
+  {
+    "InternalName": "Amber",
+    "DisplayName": "Amber",
+    "InGameSkins": [
+      {
+        "InternalName": "AmberCN",
+        "DisplayName": "AmberCN"
+      }
+    ]
+  },
+  {
+    "InternalName": "Arataki Itto",
+    "DisplayName": "Arataki Itto"
+  },
+  {
+    "InternalName": "Baizhu",
+    "DisplayName": "Baizhu"
+  },
+  {
+    "InternalName": "Barbara",
+    "DisplayName": "Bárbara",
+    "InGameSkins": [
+      {
+        "InternalName": "Barbara Summertime Sparkle",
+        "DisplayName": "Verano radiante"
+      }
+    ]
+  },
+  {
+    "InternalName": "Beidou",
+    "DisplayName": "Beidou"
+  },
+  {
+    "InternalName": "Bennett",
+    "DisplayName": "Bennett",
+    "InGameSkins": [
+      {
+        "InternalName": "Bennett Adventures in Blazing Hue",
+        "DisplayName": "Aventura llameante"
+      }
+    ]
+  },
+  {
+    "InternalName": "Candace",
+    "DisplayName": "Candace"
+  },
+  {
+    "InternalName": "Charlotte",
+    "DisplayName": "Charlotte",
+    "InGameSkins": [
+      {
+        "InternalName": "CharlotteHurlockVariations",
+        "DisplayName": "Variaciones de Hurlock"
+      }
+    ]
+  },
+  {
+    "InternalName": "Chongyun",
+    "DisplayName": "Chongyun"
+  },
+  {
+    "InternalName": "Collei",
+    "DisplayName": "Collei"
+  },
+  {
+    "InternalName": "Cyno",
+    "DisplayName": "Cyno"
+  },
+  {
+    "InternalName": "Dehya",
+    "DisplayName": "Dehya"
+  },
+  {
+    "InternalName": "Diluc",
+    "DisplayName": "Diluc",
+    "InGameSkins": [
+      {
+        "InternalName": "Diluc Red Dead of Night",
+        "DisplayName": "Noche carmesí"
+      }
+    ]
+  },
+  {
+    "InternalName": "Diona",
+    "DisplayName": "Diona"
+  },
+  {
+    "InternalName": "Dori",
+    "DisplayName": "Dori"
+  },
+  {
+    "InternalName": "Eula",
+    "DisplayName": "Eula"
+  },
+  {
+    "InternalName": "Faruzan",
+    "DisplayName": "Faruzán"
+  },
+  {
+    "InternalName": "Fischl",
+    "DisplayName": "Fischl",
+    "InGameSkins": [
+      {
+        "InternalName": "Fischl Ein Immernachtstraum",
+        "DisplayName": "Sueño de la noche eterna"
+      }
+    ]
+  },
+  {
+    "InternalName": "Freminet",
+    "DisplayName": "Fréminet"
+  },
+  {
+    "InternalName": "Furina",
+    "DisplayName": "Furina"
+  },
+  {
+    "InternalName": "Ganyu",
+    "DisplayName": "Ganyu",
+    "InGameSkins": [
+      {
+        "InternalName": "GanyuTwilight",
+        "DisplayName": "Brumas de jade"
+      }
+    ]
+  },
+  {
+    "InternalName": "Gorou",
+    "DisplayName": "Gorou"
+  },
+  {
+    "InternalName": "Hu Tao",
+    "DisplayName": "Hu Tao",
+    "InGameSkins": [
+      {
+        "InternalName": "Hu Tao Cherries Snow-Laden",
+        "DisplayName": "Cerezas cubiertas de nieve"
+      }
+    ]
+  },
+  {
+    "InternalName": "Jean",
+    "DisplayName": "Jean",
+    "InGameSkins": [
+      {
+        "InternalName": "JeanCN",
+        "DisplayName": "JeanCN"
+      },
+      {
+        "InternalName": "Jean Sea Breeze Dandelion",
+        "DisplayName": "Sueño de la brisa marina"
+      }
+    ]
+  },
+  {
+    "InternalName": "Kaedehara Kazuha",
+    "DisplayName": "Kaedehara Kazuha"
+  },
+  {
+    "InternalName": "Kaeya",
+    "DisplayName": "Kaeya",
+    "InGameSkins": [
+      {
+        "InternalName": "Kaeya Sailwind Shadow",
+        "DisplayName": "Sombra de la vela"
+      }
+    ]
+  },
+  {
+    "InternalName": "Kamisato Ayaka",
+    "DisplayName": "Kamisato Ayaka",
+    "InGameSkins": [
+      {
+        "InternalName": "Ayaka Springbloom Missive",
+        "DisplayName": "Carta de la floración"
+      }
+    ]
+  },
+  {
+    "InternalName": "Kamisato Ayato",
+    "DisplayName": "Kamisato Ayato"
+  },
+  {
+    "InternalName": "Kaveh",
+    "DisplayName": "Kaveh"
+  },
+  {
+    "InternalName": "Keqing",
+    "DisplayName": "Keching",
+    "InGameSkins": [
+      {
+        "InternalName": "Keqing Opulent Splendor",
+        "DisplayName": "Grácil esplendor"
+      }
+    ]
+  },
+  {
+    "InternalName": "Kirara",
+    "DisplayName": "Kirara",
+    "InGameSkins": [
+      {
+        "InternalName": "Kirara Phantom in Boots",
+        "DisplayName": "Gata con botas"
+      }
+    ]
+  },
+  {
+    "InternalName": "Klee",
+    "DisplayName": "Klee",
+    "InGameSkins": [
+      {
+        "InternalName": "Klee Blossoming Starlight",
+        "DisplayName": "Luz estelar en flor"
+      }
+    ]
+  },
+  {
+    "InternalName": "Kujou Sara",
+    "DisplayName": "Kujou Sara"
+  },
+  {
+    "InternalName": "Kuki Shinobu",
+    "DisplayName": "Kuki Shinobu"
+  },
+  {
+    "InternalName": "Layla",
+    "DisplayName": "Laila"
+  },
+  {
+    "InternalName": "Lisa",
+    "DisplayName": "Lisa",
+    "InGameSkins": [
+      {
+        "InternalName": "Lisa A Sobriquet Under Shade",
+        "DisplayName": "Identidad oculta"
+      }
+    ]
+  },
+  {
+    "InternalName": "Lynette",
+    "DisplayName": "Lynette"
+  },
+  {
+    "InternalName": "Lyney",
+    "DisplayName": "Lyney"
+  },
+  {
+    "InternalName": "Mika",
+    "DisplayName": "Mika"
+  },
+  {
+    "InternalName": "Mona",
+    "DisplayName": "Mona",
+    "InGameSkins": [
+      {
+        "InternalName": "MonaCN",
+        "DisplayName": "MonaCN"
+      }
+    ]
+  },
+  {
+    "InternalName": "Nahida",
+    "DisplayName": "Nahida"
+  },
+  {
+    "InternalName": "Navia",
+    "DisplayName": "Navia"
+  },
+  {
+    "InternalName": "Neuvillette",
+    "DisplayName": "Neuvillette",
+    "InGameSkins": [
+      {
+        "InternalName": "MelusentGift",
+        "DisplayName": "Obsequio melusino"
+      }
+    ]
+  },
+  {
+    "InternalName": "Nilou",
+    "DisplayName": "Nilou",
+    "InGameSkins": [
+      {
+        "InternalName": "Nilou Breeze of Sabaa",
+        "DisplayName": "Brisa de Saba"
+      }
+    ]
+  },
+  {
+    "InternalName": "Ningguang",
+    "DisplayName": "Ninguang",
+    "InGameSkins": [
+      {
+        "InternalName": "Ningguang Orchid's Evening Gown",
+        "DisplayName": "Gala de las orquídeas"
+      }
+    ]
+  },
+  {
+    "InternalName": "Noelle",
+    "DisplayName": "Noelle"
+  },
+  {
+    "InternalName": "Paimon",
+    "DisplayName": "Paimon"
+  },
+  {
+    "InternalName": "Qiqi",
+    "DisplayName": "Qiqi"
+  },
+  {
+    "InternalName": "Raiden Shogun",
+    "DisplayName": "Shogun Raiden"
+  },
+  {
+    "InternalName": "Razor",
+    "DisplayName": "Razor"
+  },
+  {
+    "InternalName": "Rosaria",
+    "DisplayName": "Rosaria",
+    "InGameSkins": [
+      {
+        "InternalName": "RosariaCN",
+        "DisplayName": "RosariaCN"
+      }
+    ]
+  },
+  {
+    "InternalName": "Sangonomiya Kokomi",
+    "DisplayName": "Sangonomiya Kokomi"
+  },
+  {
+    "InternalName": "Sayu",
+    "DisplayName": "Sayu"
+  },
+  {
+    "InternalName": "Shenhe",
+    "DisplayName": "Shenhe",
+    "InGameSkins": [
+      {
+        "InternalName": "ShenheFrostflower",
+        "DisplayName": "Rocío gélido"
+      }
+    ]
+  },
+  {
+    "InternalName": "Shikanoin Heizou",
+    "DisplayName": "Shikanoin Heizou"
+  },
+  {
+    "InternalName": "Sucrose",
+    "DisplayName": "Sacarosa"
+  },
+  {
+    "InternalName": "Tartaglia",
+    "DisplayName": "Tartaglia"
+  },
+  {
+    "InternalName": "Thoma",
+    "DisplayName": "Thoma"
+  },
+  {
+    "InternalName": "Tighnari",
+    "DisplayName": "Tignari"
+  },
+  {
+    "InternalName": "Traveler (Female)",
+    "DisplayName": "Viajero",
+    "InGameSkins": [
+      {
+        "InternalName": "Lumine As Heaven and Earth Are Made Anew",
+        "DisplayName": "Recomposición del cielo y la tierra"
+      }
+    ]
+  },
+  {
+    "InternalName": "Traveler (Male)",
+    "DisplayName": "Viajero",
+    "InGameSkins": [
+      {
+        "InternalName": "Aether As Heaven and Earth Are Made Anew",
+        "DisplayName": "Recomposición del cielo y la tierra"
+      }
+    ]
+  },
+  {
+    "InternalName": "Venti",
+    "DisplayName": "Venti"
+  },
+  {
+    "InternalName": "Wanderer",
+    "DisplayName": "Trotamundos"
+  },
+  {
+    "InternalName": "Xiangling",
+    "DisplayName": "Xiangling",
+    "InGameSkins": [
+      {
+        "InternalName": "Xiangling New Year's Cheer",
+        "DisplayName": "Alegría de Año Nuevo"
+      }
+    ]
+  },
+  {
+    "InternalName": "Xiao",
+    "DisplayName": "Xiao"
+  },
+  {
+    "InternalName": "Xingqiu",
+    "DisplayName": "Xingchiu",
+    "InGameSkins": [
+      {
+        "InternalName": "Xingqiu Bamboo Rain",
+        "DisplayName": "Lluvia de bambú"
+      }
+    ]
+  },
+  {
+    "InternalName": "Xinyan",
+    "DisplayName": "Xinyan"
+  },
+  {
+    "InternalName": "Yae Miko",
+    "DisplayName": "Yae Miko"
+  },
+  {
+    "InternalName": "Yanfei",
+    "DisplayName": "Yanfei"
+  },
+  {
+    "InternalName": "Yaoyao",
+    "DisplayName": "Yaoyao",
+    "InGameSkins": [
+      {
+        "InternalName": "Rainlit Bamboo Reverie",
+        "DisplayName": "Ensoñación del bambusal"
+      }
+    ]
+  },
+  {
+    "InternalName": "Yelan",
+    "DisplayName": "Yelan",
+    "InGameSkins": [
+      {
+        "InternalName": "Yelan Tranquil Banquet",
+        "DisplayName": "Banquete apacible"
+      }
+    ]
+  },
+  {
+    "InternalName": "Yoimiya",
+    "DisplayName": "Yoimiya"
+  },
+  {
+    "InternalName": "Yun Jin",
+    "DisplayName": "Yun Jin"
+  },
+  {
+    "InternalName": "Zhongli",
+    "DisplayName": "Zhongli"
+  },
+  {
+    "InternalName": "Wriothesley",
+    "DisplayName": "Wriothesley"
+  },
+  {
+    "InternalName": "Chevreuse",
+    "DisplayName": "Chevreuse"
+  },
+  {
+    "InternalName": "Xianyun",
+    "DisplayName": "Xianyun"
+  },
+  {
+    "InternalName": "Gaming",
+    "DisplayName": "Gaming"
+  },
+  {
+    "InternalName": "Chiori",
+    "DisplayName": "Chiori"
+  },
+  {
+    "InternalName": "Arlecchino",
+    "DisplayName": "Arlecchino"
+  },
+  {
+    "InternalName": "Clorinde",
+    "DisplayName": "Clorinde"
+  },
+  {
+    "InternalName": "Sigewinne",
+    "DisplayName": "Sigewinne"
+  },
+  {
+    "InternalName": "Sethos",
+    "DisplayName": "Sethos"
+  },
+  {
+    "InternalName": "Emilie",
+    "DisplayName": "Émilie"
+  },
+  {
+    "InternalName": "Mualani",
+    "DisplayName": "Mualani"
+  },
+  {
+    "InternalName": "Kinich",
+    "DisplayName": "Kinich"
+  },
+  {
+    "InternalName": "Kachina",
+    "DisplayName": "Kachina"
+  },
+  {
+    "InternalName": "Xilonen",
+    "DisplayName": "Xilonen"
+  },
+  {
+    "InternalName": "Chasca",
+    "DisplayName": "Chasca"
+  },
+  {
+    "InternalName": "Ororon",
+    "DisplayName": "Ororon"
+  },
+  {
+    "InternalName": "Citlali",
+    "DisplayName": "Citlalí",
+    "InGameSkins": [
+      {
+        "InternalName": "CitlaliWhispersOfStarsAndSmoke",
+        "DisplayName": "Susurros de estrellas y humo"
+      }
+    ]
+  },
+  {
+    "InternalName": "Mavuika",
+    "DisplayName": "Mavuika"
+  },
+  {
+    "InternalName": "Lan Yan",
+    "DisplayName": "Lan Yan"
+  },
+  {
+    "InternalName": "Yumemizuki Mizuki",
+    "DisplayName": "Yumemizuki Mizuki"
+  },
+  {
+    "InternalName": "Varesa",
+    "DisplayName": "Varesa"
+  },
+  {
+    "InternalName": "Iansan",
+    "DisplayName": "Iansán"
+  },
+  {
+    "InternalName": "Escoffier",
+    "DisplayName": "Escoffier"
+  },
+  {
+    "InternalName": "Ifa",
+    "DisplayName": "Ifá"
+  },
+  {
+    "InternalName": "Skirk",
+    "DisplayName": "Skirk"
+  },
+  {
+    "InternalName": "Dahlia",
+    "DisplayName": "Dahlia"
+  },
+  {
+    "InternalName": "Ineffa",
+    "DisplayName": "Ineffa"
+  },
+  {
+    "InternalName": "Aino",
+    "DisplayName": "Aino"
+  },
+  {
+    "InternalName": "Flins",
+    "DisplayName": "Flins"
+  },
+  {
+    "InternalName": "Lauma",
+    "DisplayName": "Lauma"
+  },
+  {
+    "InternalName": "Nefer",
+    "DisplayName": "Néfer"
+  },
+  {
+    "InternalName": "Manekin",
+    "DisplayName": "Manekín masculino"
+  },
+  {
+    "InternalName": "Jahoda",
+    "DisplayName": "Jahoda"
+  },
+  {
+    "InternalName": "Durin",
+    "DisplayName": "Durin",
+    "InGameSkins": [
+      {
+        "InternalName": "DurinTowardTheDistantHorizon",
+        "DisplayName": "Hacia el horizonte lejano"
+      }
+    ]
+  },
+  {
+    "InternalName": "Columbina",
+    "DisplayName": "Colombina"
+  },
+  {
+    "InternalName": "Zibai",
+    "DisplayName": "Zibai"
+  },
+  {
+    "InternalName": "Illuga",
+    "DisplayName": "Illuga"
+  },
+  {
+    "InternalName": "Varka",
+    "DisplayName": "Varka"
+  },
+  {
+    "InternalName": "Nicole",
+    "DisplayName": "Nicole"
+  },
+  {
+    "InternalName": "Prune",
+    "DisplayName": "Prune"
+  },
+  {
+    "InternalName": "Lohen",
+    "DisplayName": "Lohen"
+  },
+  {
+    "InternalName": "Sandrone",
+    "DisplayName": "Sandrone"
+  },
+  {
+    "InternalName": "Linnea",
+    "DisplayName": "Linnéa"
+  },
+  {
+    "InternalName": "Alyosha",
+    "DisplayName": "Aliosha"
+  },
+  {
+    "InternalName": "Vesna",
+    "DisplayName": "Vesna"
+  },
+  {
+    "InternalName": "Odette",
+    "DisplayName": "Odette"
+  },
+  {
+    "InternalName": "Vodyanitsa",
+    "DisplayName": "Vodyanitsa"
+  }
+]

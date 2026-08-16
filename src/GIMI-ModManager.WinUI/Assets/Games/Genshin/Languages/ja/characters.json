@@ -1,0 +1,688 @@
+[
+  {
+    "InternalName": "Others",
+    "DisplayName": "キャラクター"
+  },
+  {
+    "InternalName": "Weapons",
+    "DisplayName": "武器"
+  },
+  {
+    "InternalName": "Gliders",
+    "DisplayName": "Gliders"
+  },
+  {
+    "InternalName": "Albedo",
+    "DisplayName": "アルベド"
+  },
+  {
+    "InternalName": "Alhaitham",
+    "DisplayName": "アルハイゼン"
+  },
+  {
+    "InternalName": "Aloy",
+    "DisplayName": "アーロイ"
+  },
+  {
+    "InternalName": "Amber",
+    "DisplayName": "アンバー",
+    "InGameSkins": [
+      {
+        "InternalName": "AmberCN",
+        "DisplayName": "アンバーCN"
+      }
+    ]
+  },
+  {
+    "InternalName": "Arataki Itto",
+    "DisplayName": "荒瀧一斗"
+  },
+  {
+    "InternalName": "Baizhu",
+    "DisplayName": "白朮"
+  },
+  {
+    "InternalName": "Barbara",
+    "DisplayName": "バーバラ",
+    "InGameSkins": [
+      {
+        "InternalName": "Barbara Summertime Sparkle",
+        "DisplayName": "サマータイムスパークル"
+      }
+    ]
+  },
+  {
+    "InternalName": "Beidou",
+    "DisplayName": "北斗"
+  },
+  {
+    "InternalName": "Bennett",
+    "DisplayName": "ベネット",
+    "InGameSkins": [
+      {
+        "InternalName": "Bennett Adventures in Blazing Hue",
+        "DisplayName": "熱き色彩の冒険"
+      }
+    ]
+  },
+  {
+    "InternalName": "Candace",
+    "DisplayName": "キャンディス"
+  },
+  {
+    "InternalName": "Charlotte",
+    "DisplayName": "シャルロット",
+    "InGameSkins": [
+      {
+        "InternalName": "CharlotteHurlockVariations",
+        "DisplayName": "ハーロック・バリエーション"
+      }
+    ]
+  },
+  {
+    "InternalName": "Chongyun",
+    "DisplayName": "重雲"
+  },
+  {
+    "InternalName": "Collei",
+    "DisplayName": "コレイ"
+  },
+  {
+    "InternalName": "Cyno",
+    "DisplayName": "セノ"
+  },
+  {
+    "InternalName": "Dehya",
+    "DisplayName": "ディシア"
+  },
+  {
+    "InternalName": "Diluc",
+    "DisplayName": "ディルック",
+    "InGameSkins": [
+      {
+        "InternalName": "Diluc Red Dead of Night",
+        "DisplayName": "レッドデッド・オブ・ナイト"
+      }
+    ]
+  },
+  {
+    "InternalName": "Diona",
+    "DisplayName": "ディオナ"
+  },
+  {
+    "InternalName": "Dori",
+    "DisplayName": "ドリー"
+  },
+  {
+    "InternalName": "Eula",
+    "DisplayName": "エウルア"
+  },
+  {
+    "InternalName": "Faruzan",
+    "DisplayName": "ファルザン"
+  },
+  {
+    "InternalName": "Fischl",
+    "DisplayName": "フィッシュル",
+    "InGameSkins": [
+      {
+        "InternalName": "Fischl Ein Immernachtstraum",
+        "DisplayName": "極夜の真夢"
+      }
+    ]
+  },
+  {
+    "InternalName": "Freminet",
+    "DisplayName": "フレミネ"
+  },
+  {
+    "InternalName": "Furina",
+    "DisplayName": "フリーナ"
+  },
+  {
+    "InternalName": "Ganyu",
+    "DisplayName": "甘雨",
+    "InGameSkins": [
+      {
+        "InternalName": "GanyuTwilight",
+        "DisplayName": "玄玉瑶芳"
+      }
+    ]
+  },
+  {
+    "InternalName": "Gorou",
+    "DisplayName": "ゴロー"
+  },
+  {
+    "InternalName": "Hu Tao",
+    "DisplayName": "胡桃",
+    "InGameSkins": [
+      {
+        "InternalName": "Hu Tao Cherries Snow-Laden",
+        "DisplayName": "雪嶺の紅梅"
+      }
+    ]
+  },
+  {
+    "InternalName": "Jean",
+    "DisplayName": "ジン",
+    "InGameSkins": [
+      {
+        "InternalName": "JeanCN",
+        "DisplayName": "ジンCN"
+      },
+      {
+        "InternalName": "Jean Sea Breeze Dandelion",
+        "DisplayName": "海風の夢"
+      }
+    ]
+  },
+  {
+    "InternalName": "Kaedehara Kazuha",
+    "DisplayName": "楓原万葉"
+  },
+  {
+    "InternalName": "Kaeya",
+    "DisplayName": "ガイア",
+    "InGameSkins": [
+      {
+        "InternalName": "Kaeya Sailwind Shadow",
+        "DisplayName": "帆影の遊風"
+      }
+    ]
+  },
+  {
+    "InternalName": "Kamisato Ayaka",
+    "DisplayName": "神里綾華",
+    "InGameSkins": [
+      {
+        "InternalName": "Ayaka Springbloom Missive",
+        "DisplayName": "花時に訪れる手紙"
+      }
+    ]
+  },
+  {
+    "InternalName": "Kamisato Ayato",
+    "DisplayName": "神里綾人"
+  },
+  {
+    "InternalName": "Kaveh",
+    "DisplayName": "カーヴェ"
+  },
+  {
+    "InternalName": "Keqing",
+    "DisplayName": "刻晴",
+    "InGameSkins": [
+      {
+        "InternalName": "Keqing Opulent Splendor",
+        "DisplayName": "霓裾の舞"
+      }
+    ]
+  },
+  {
+    "InternalName": "Kirara",
+    "DisplayName": "綺良々",
+    "InGameSkins": [
+      {
+        "InternalName": "Kirara Phantom in Boots",
+        "DisplayName": "ブーツの怪傑"
+      }
+    ]
+  },
+  {
+    "InternalName": "Klee",
+    "DisplayName": "クレー",
+    "InGameSkins": [
+      {
+        "InternalName": "Klee Blossoming Starlight",
+        "DisplayName": "星燭に咲く花"
+      }
+    ]
+  },
+  {
+    "InternalName": "Kujou Sara",
+    "DisplayName": "九条裟羅"
+  },
+  {
+    "InternalName": "Kuki Shinobu",
+    "DisplayName": "久岐忍"
+  },
+  {
+    "InternalName": "Layla",
+    "DisplayName": "レイラ"
+  },
+  {
+    "InternalName": "Lisa",
+    "DisplayName": "リサ",
+    "InGameSkins": [
+      {
+        "InternalName": "Lisa A Sobriquet Under Shade",
+        "DisplayName": "葉隠れの芳名"
+      }
+    ]
+  },
+  {
+    "InternalName": "Lynette",
+    "DisplayName": "リネット"
+  },
+  {
+    "InternalName": "Lyney",
+    "DisplayName": "リネ"
+  },
+  {
+    "InternalName": "Mika",
+    "DisplayName": "ミカ"
+  },
+  {
+    "InternalName": "Mona",
+    "DisplayName": "モナ",
+    "InGameSkins": [
+      {
+        "InternalName": "MonaCN",
+        "DisplayName": "モナCN"
+      }
+    ]
+  },
+  {
+    "InternalName": "Nahida",
+    "DisplayName": "ナヒーダ"
+  },
+  {
+    "InternalName": "Navia",
+    "DisplayName": "ナヴィア"
+  },
+  {
+    "InternalName": "Neuvillette",
+    "DisplayName": "ヌヴィレット",
+    "InGameSkins": [
+      {
+        "InternalName": "MelusentGift",
+        "DisplayName": "メリュジーヌの贈り物"
+      }
+    ]
+  },
+  {
+    "InternalName": "Nilou",
+    "DisplayName": "ニィロウ",
+    "InGameSkins": [
+      {
+        "InternalName": "Nilou Breeze of Sabaa",
+        "DisplayName": "東風のそよ風"
+      }
+    ]
+  },
+  {
+    "InternalName": "Ningguang",
+    "DisplayName": "凝光",
+    "InGameSkins": [
+      {
+        "InternalName": "Ningguang Orchid's Evening Gown",
+        "DisplayName": "紗の幽蘭"
+      }
+    ]
+  },
+  {
+    "InternalName": "Noelle",
+    "DisplayName": "ノエル"
+  },
+  {
+    "InternalName": "Paimon",
+    "DisplayName": "パイモン"
+  },
+  {
+    "InternalName": "Qiqi",
+    "DisplayName": "七七"
+  },
+  {
+    "InternalName": "Raiden Shogun",
+    "DisplayName": "雷電将軍"
+  },
+  {
+    "InternalName": "Razor",
+    "DisplayName": "レザー"
+  },
+  {
+    "InternalName": "Rosaria",
+    "DisplayName": "ロサリア",
+    "InGameSkins": [
+      {
+        "InternalName": "RosariaCN",
+        "DisplayName": "ロサリアCN"
+      }
+    ]
+  },
+  {
+    "InternalName": "Sangonomiya Kokomi",
+    "DisplayName": "珊瑚宮心海"
+  },
+  {
+    "InternalName": "Sayu",
+    "DisplayName": "早柚"
+  },
+  {
+    "InternalName": "Shenhe",
+    "DisplayName": "申鶴",
+    "InGameSkins": [
+      {
+        "InternalName": "ShenheFrostflower",
+        "DisplayName": "冷花幽露"
+      }
+    ]
+  },
+  {
+    "InternalName": "Shikanoin Heizou",
+    "DisplayName": "鹿野院平蔵"
+  },
+  {
+    "InternalName": "Sucrose",
+    "DisplayName": "スクロース"
+  },
+  {
+    "InternalName": "Tartaglia",
+    "DisplayName": "タルタリヤ"
+  },
+  {
+    "InternalName": "Thoma",
+    "DisplayName": "トーマ"
+  },
+  {
+    "InternalName": "Tighnari",
+    "DisplayName": "ティナリ"
+  },
+  {
+    "InternalName": "Traveler (Female)",
+    "DisplayName": "旅人",
+    "InGameSkins": [
+      {
+        "InternalName": "Lumine As Heaven and Earth Are Made Anew",
+        "DisplayName": "天地が新たに作られる時"
+      }
+    ]
+  },
+  {
+    "InternalName": "Traveler (Male)",
+    "DisplayName": "旅人",
+    "InGameSkins": [
+      {
+        "InternalName": "Aether As Heaven and Earth Are Made Anew",
+        "DisplayName": "天地が新たに作られる時"
+      }
+    ]
+  },
+  {
+    "InternalName": "Venti",
+    "DisplayName": "ウェンティ"
+  },
+  {
+    "InternalName": "Wanderer",
+    "DisplayName": "放浪者"
+  },
+  {
+    "InternalName": "Xiangling",
+    "DisplayName": "香菱",
+    "InGameSkins": [
+      {
+        "InternalName": "Xiangling New Year's Cheer",
+        "DisplayName": "歳末の輝き"
+      }
+    ]
+  },
+  {
+    "InternalName": "Xiao",
+    "DisplayName": "魈"
+  },
+  {
+    "InternalName": "Xingqiu",
+    "DisplayName": "行秋",
+    "InGameSkins": [
+      {
+        "InternalName": "Xingqiu Bamboo Rain",
+        "DisplayName": "雨化竹身"
+      }
+    ]
+  },
+  {
+    "InternalName": "Xinyan",
+    "DisplayName": "辛炎"
+  },
+  {
+    "InternalName": "Yae Miko",
+    "DisplayName": "八重神子"
+  },
+  {
+    "InternalName": "Yanfei",
+    "DisplayName": "煙緋"
+  },
+  {
+    "InternalName": "Yaoyao",
+    "DisplayName": "ヨォーヨ",
+    "InGameSkins": [
+      {
+        "InternalName": "Rainlit Bamboo Reverie",
+        "DisplayName": "雨竹の幽想"
+      }
+    ]
+  },
+  {
+    "InternalName": "Yelan",
+    "DisplayName": "夜蘭",
+    "InGameSkins": [
+      {
+        "InternalName": "Yelan Tranquil Banquet",
+        "DisplayName": "静夜の宴"
+      }
+    ]
+  },
+  {
+    "InternalName": "Yoimiya",
+    "DisplayName": "宵宮"
+  },
+  {
+    "InternalName": "Yun Jin",
+    "DisplayName": "雲菫"
+  },
+  {
+    "InternalName": "Zhongli",
+    "DisplayName": "鍾離"
+  },
+  {
+    "InternalName": "Wriothesley",
+    "DisplayName": "リオセスリ"
+  },
+  {
+    "InternalName": "Chevreuse",
+    "DisplayName": "シュヴルーズ"
+  },
+  {
+    "InternalName": "Xianyun",
+    "DisplayName": "閑雲"
+  },
+  {
+    "InternalName": "Gaming",
+    "DisplayName": "嘉明"
+  },
+  {
+    "InternalName": "Chiori",
+    "DisplayName": "千織"
+  },
+  {
+    "InternalName": "Arlecchino",
+    "DisplayName": "アルレッキーノ"
+  },
+  {
+    "InternalName": "Clorinde",
+    "DisplayName": "クロリンデ"
+  },
+  {
+    "InternalName": "Sigewinne",
+    "DisplayName": "シグウィン"
+  },
+  {
+    "InternalName": "Sethos",
+    "DisplayName": "セトス"
+  },
+  {
+    "InternalName": "Emilie",
+    "DisplayName": "エミリエ"
+  },
+  {
+    "InternalName": "Mualani",
+    "DisplayName": "ムアラニ"
+  },
+  {
+    "InternalName": "Kinich",
+    "DisplayName": "キィニチ"
+  },
+  {
+    "InternalName": "Kachina",
+    "DisplayName": "カチーナ"
+  },
+  {
+    "InternalName": "Xilonen",
+    "DisplayName": "シロネン"
+  },
+  {
+    "InternalName": "Chasca",
+    "DisplayName": "チャスカ"
+  },
+  {
+    "InternalName": "Ororon",
+    "DisplayName": "オロルン"
+  },
+  {
+    "InternalName": "Citlali",
+    "DisplayName": "シトラリ",
+    "InGameSkins": [
+      {
+        "InternalName": "CitlaliWhispersOfStarsAndSmoke",
+        "DisplayName": "星と煙の囁き"
+      }
+    ]
+  },
+  {
+    "InternalName": "Mavuika",
+    "DisplayName": "マーヴィカ"
+  },
+  {
+    "InternalName": "Lan Yan",
+    "DisplayName": "藍硯"
+  },
+  {
+    "InternalName": "Yumemizuki Mizuki",
+    "DisplayName": "夢見月瑞希"
+  },
+  {
+    "InternalName": "Varesa",
+    "DisplayName": "ヴァレサ"
+  },
+  {
+    "InternalName": "Iansan",
+    "DisplayName": "イアンサ"
+  },
+  {
+    "InternalName": "Escoffier",
+    "DisplayName": "エスコフィエ"
+  },
+  {
+    "InternalName": "Ifa",
+    "DisplayName": "イファ"
+  },
+  {
+    "InternalName": "Skirk",
+    "DisplayName": "スカーク"
+  },
+  {
+    "InternalName": "Dahlia",
+    "DisplayName": "ダリア"
+  },
+  {
+    "InternalName": "Ineffa",
+    "DisplayName": "イネファ"
+  },
+  {
+    "InternalName": "Aino",
+    "DisplayName": "アイノ"
+  },
+  {
+    "InternalName": "Flins",
+    "DisplayName": "フリンズ"
+  },
+  {
+    "InternalName": "Lauma",
+    "DisplayName": "ラウマ"
+  },
+  {
+    "InternalName": "Nefer",
+    "DisplayName": "ネフェル"
+  },
+  {
+    "InternalName": "Manekin",
+    "DisplayName": "ドール（男）"
+  },
+  {
+    "InternalName": "Jahoda",
+    "DisplayName": "ヤフォダ"
+  },
+  {
+    "InternalName": "Durin",
+    "DisplayName": "ドゥリン",
+    "InGameSkins": [
+      {
+        "InternalName": "DurinTowardTheDistantHorizon",
+        "DisplayName": "遥かなる地平へ"
+      }
+    ]
+  },
+  {
+    "InternalName": "Columbina",
+    "DisplayName": "コロンビーナ"
+  },
+  {
+    "InternalName": "Zibai",
+    "DisplayName": "兹白"
+  },
+  {
+    "InternalName": "Illuga",
+    "DisplayName": "イルーガ"
+  },
+  {
+    "InternalName": "Varka",
+    "DisplayName": "ファルカ"
+  },
+  {
+    "InternalName": "Nicole",
+    "DisplayName": "ニコ"
+  },
+  {
+    "InternalName": "Prune",
+    "DisplayName": "プルーネ"
+  },
+  {
+    "InternalName": "Lohen",
+    "DisplayName": "ローエン"
+  },
+  {
+    "InternalName": "Sandrone",
+    "DisplayName": "サンドローネ"
+  },
+  {
+    "InternalName": "Linnea",
+    "DisplayName": "リンネア"
+  },
+  {
+    "InternalName": "Alyosha",
+    "DisplayName": "アリョーシャ"
+  },
+  {
+    "InternalName": "Vesna",
+    "DisplayName": "ヴェスナ"
+  },
+  {
+    "InternalName": "Odette",
+    "DisplayName": "オデット"
+  },
+  {
+    "InternalName": "Vodyanitsa",
+    "DisplayName": "ヴォジャニーツァ"
+  }
+]

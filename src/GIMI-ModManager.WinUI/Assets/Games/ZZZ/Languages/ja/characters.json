@@ -1,0 +1,386 @@
+[
+  {
+    "InternalName": "Others",
+    "DisplayName": "エージェント"
+  },
+  {
+    "InternalName": "Weapons",
+    "DisplayName": "ボンプ"
+  },
+  {
+    "InternalName": "Belle",
+    "DisplayName": "リン",
+    "InGameSkins": [
+      {
+        "InternalName": "BelleDelicateSunlight",
+        "DisplayName": "微光のぬくもり"
+      },
+      {
+        "InternalName": "BelleSummerSkies",
+        "DisplayName": "サマースカイ"
+      },
+      {
+        "InternalName": "BelleBrillianceOfStars",
+        "DisplayName": "輝く星空"
+      }
+    ]
+  },
+  {
+    "InternalName": "Wise",
+    "DisplayName": "アキラ",
+    "InGameSkins": [
+      {
+        "InternalName": "WiseSoaringCrane",
+        "DisplayName": "舞い上がる鶴"
+      },
+      {
+        "InternalName": "WisePeacefulWaves",
+        "DisplayName": "穏やかな波"
+      },
+      {
+        "InternalName": "WiseOathOfSkies",
+        "DisplayName": "大空の誓い"
+      }
+    ]
+  },
+  {
+    "InternalName": "Rina",
+    "DisplayName": "リナ"
+  },
+  {
+    "InternalName": "Ellen",
+    "DisplayName": "エレン",
+    "InGameSkins": [
+      {
+        "InternalName": "Ellen On Campus",
+        "DisplayName": "キャンパスライフ"
+      }
+    ]
+  },
+  {
+    "InternalName": "Grace",
+    "DisplayName": "グレース"
+  },
+  {
+    "InternalName": "Koleda",
+    "DisplayName": "クレタ"
+  },
+  {
+    "InternalName": "Nekomata",
+    "DisplayName": "猫又"
+  },
+  {
+    "InternalName": "Soldier11",
+    "DisplayName": "「11号」"
+  },
+  {
+    "InternalName": "Lycaon",
+    "DisplayName": "ライカン"
+  },
+  {
+    "InternalName": "ZhuYuan",
+    "DisplayName": "朱鳶"
+  },
+  {
+    "InternalName": "Anby",
+    "DisplayName": "アンビー"
+  },
+  {
+    "InternalName": "Anton",
+    "DisplayName": "アンドー"
+  },
+  {
+    "InternalName": "Ben",
+    "DisplayName": "ベン"
+  },
+  {
+    "InternalName": "Billy",
+    "DisplayName": "ビリー"
+  },
+  {
+    "InternalName": "Corin",
+    "DisplayName": "カリン"
+  },
+  {
+    "InternalName": "Lucy",
+    "DisplayName": "ルーシー",
+    "InGameSkins": [
+      {
+        "InternalName": "Princess on Holiday",
+        "DisplayName": "休日のプリンセス"
+      }
+    ]
+  },
+  {
+    "InternalName": "Nicole",
+    "DisplayName": "ニコ",
+    "InGameSkins": [
+      {
+        "InternalName": "Nicole Cunning Cutie",
+        "DisplayName": "いたずらキューティー"
+      }
+    ]
+  },
+  {
+    "InternalName": "Piper",
+    "DisplayName": "パイパー"
+  },
+  {
+    "InternalName": "Soukaku",
+    "DisplayName": "蒼角"
+  },
+  {
+    "InternalName": "Miyabi",
+    "DisplayName": "星見雅"
+  },
+  {
+    "InternalName": "Jane",
+    "DisplayName": "ジェーン",
+    "InGameSkins": [
+      {
+        "InternalName": "Jane Doe Nocturne of Light",
+        "DisplayName": "光の夜想曲"
+      }
+    ]
+  },
+  {
+    "InternalName": "Qingyi",
+    "DisplayName": "青衣"
+  },
+  {
+    "InternalName": "Seth",
+    "DisplayName": "セス"
+  },
+  {
+    "InternalName": "Caesar",
+    "DisplayName": "シーザー"
+  },
+  {
+    "InternalName": "Burnice",
+    "DisplayName": "バーニス"
+  },
+  {
+    "InternalName": "Yanagi",
+    "DisplayName": "月城柳"
+  },
+  {
+    "InternalName": "Harumasa",
+    "DisplayName": "浅羽悠真"
+  },
+  {
+    "InternalName": "Astra",
+    "DisplayName": "アストラ",
+    "InGameSkins": [
+      {
+        "InternalName": "Astra Chandelier",
+        "DisplayName": "シャンデリアの輝き"
+      }
+    ]
+  },
+  {
+    "InternalName": "Evelyn",
+    "DisplayName": "イヴリン"
+  },
+  {
+    "InternalName": "Lighter",
+    "DisplayName": "ライト"
+  },
+  {
+    "InternalName": "Pulchra",
+    "DisplayName": "プルクラ"
+  },
+  {
+    "InternalName": "Silver Soldier - Anby",
+    "DisplayName": "0号・アンビー"
+  },
+  {
+    "InternalName": "Trigger",
+    "DisplayName": "「トリガー」"
+  },
+  {
+    "InternalName": "Vivian",
+    "DisplayName": "ビビアン",
+    "InGameSkins": [
+      {
+        "InternalName": "IrisOfTheShore",
+        "DisplayName": "渚のアイリス"
+      }
+    ]
+  },
+  {
+    "InternalName": "Hugo",
+    "DisplayName": "ヒューゴ"
+  },
+  {
+    "InternalName": "Yixuan",
+    "DisplayName": "儀玄",
+    "InGameSkins": [
+      {
+        "InternalName": "YixuanTrailsofInk",
+        "DisplayName": "墨の軌跡"
+      }
+    ]
+  },
+  {
+    "InternalName": "Panyinhu",
+    "DisplayName": "潘引壺"
+  },
+  {
+    "InternalName": "Jufufu",
+    "DisplayName": "橘福福"
+  },
+  {
+    "InternalName": "Yuzuha",
+    "DisplayName": "浮波柚葉",
+    "InGameSkins": [
+      {
+        "InternalName": "YuzuhaTanukiInBroadDaylight",
+        "DisplayName": "白日のタヌキ"
+      }
+    ]
+  },
+  {
+    "InternalName": "Alice",
+    "DisplayName": "アリス",
+    "InGameSkins": [
+      {
+        "InternalName": "AliceSeaOfThyme",
+        "DisplayName": "タイムの海"
+      }
+    ]
+  },
+  {
+    "InternalName": "Orphie",
+    "DisplayName": "オルペウス&「鬼火」"
+  },
+  {
+    "InternalName": "Seed",
+    "DisplayName": "「シード」"
+  },
+  {
+    "InternalName": "Manato",
+    "DisplayName": "狛野真斗",
+    "InGameSkins": [
+      {
+        "InternalName": "WhiteHeartSilhouette",
+        "DisplayName": "純白のシルエット"
+      }
+    ]
+  },
+  {
+    "InternalName": "Lucia",
+    "DisplayName": "リュシア"
+  },
+  {
+    "InternalName": "Yidhari",
+    "DisplayName": "イドリー"
+  },
+  {
+    "InternalName": "Dialyn",
+    "DisplayName": "ダイアリン"
+  },
+  {
+    "InternalName": "Banyue",
+    "DisplayName": "盤岳"
+  },
+  {
+    "InternalName": "YeShunguang",
+    "DisplayName": "葉瞬光",
+    "InGameSkins": [
+      {
+        "InternalName": "Ye Shunguang Touch of Dawnlight",
+        "DisplayName": "夜明けの光"
+      }
+    ]
+  },
+  {
+    "InternalName": "Zhao",
+    "DisplayName": "照"
+  },
+  {
+    "InternalName": "Sunna",
+    "DisplayName": "千夏",
+    "InGameSkins": [
+      {
+        "InternalName": "Sunna Afternoon Tea Break",
+        "DisplayName": "アフタヌーンティー"
+      }
+    ]
+  },
+  {
+    "InternalName": "Aria",
+    "DisplayName": "アリア",
+    "InGameSkins": [
+      {
+        "InternalName": "Aria Discordant Note",
+        "DisplayName": "不協和音"
+      }
+    ]
+  },
+  {
+    "InternalName": "NangongYu",
+    "DisplayName": "南宮羽",
+    "InGameSkins": [
+      {
+        "InternalName": "RhapsodysMuse",
+        "DisplayName": "狂詩曲のミューズ"
+      }
+    ]
+  },
+  {
+    "InternalName": "Cissia",
+    "DisplayName": "シーシィア"
+  },
+  {
+    "InternalName": "StarlightBilly",
+    "DisplayName": "スターライト･ビリー"
+  },
+  {
+    "InternalName": "Promeia",
+    "DisplayName": "プロメイア"
+  },
+  {
+    "InternalName": "Pyrois",
+    "DisplayName": "ピュロイス"
+  },
+  {
+    "InternalName": "Norma",
+    "DisplayName": "ノルムー"
+  },
+  {
+    "InternalName": "Velina",
+    "DisplayName": "ヴェリナ"
+  },
+  {
+    "InternalName": "Remielle",
+    "DisplayName": "レミエール",
+    "InGameSkins": [
+      {
+        "InternalName": "MoonlightWhispers",
+        "DisplayName": "月光の囁き"
+      },
+      {
+        "InternalName": "SeashadePasSeul",
+        "DisplayName": "海影の独舞"
+      }
+    ]
+  },
+  {
+    "InternalName": "Sigrid",
+    "DisplayName": "シグリッド",
+    "InGameSkins": [
+      {
+        "InternalName": "MajesticWavechaser",
+        "DisplayName": "華麗なる波追い"
+      }
+    ]
+  },
+  {
+    "InternalName": "Claret",
+    "DisplayName": "Claret"
+  },
+  {
+    "InternalName": "Pryce",
+    "DisplayName": "Pryce"
+  }
+]

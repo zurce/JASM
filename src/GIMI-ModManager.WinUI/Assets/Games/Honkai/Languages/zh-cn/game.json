@@ -1,11 +1,13 @@
 {
-  "GameName": "Honkai: Star Rail",
+  "GameName": "崩坏：星穹铁道",
   "GameShortName": "Honkai",
-  "RarityName": "Rarity",
+  "RarityName": "稀有度",
   "GameIcon": "Start_Game.webp",
   "GameBananaUrl": "https://gamebanana.com/games/18366",
   "GameModelImporterUrl": "https://github.com/SilentNightSound/SR-Model-Importer",
   "GameModelImporterName": "Star-Rail-Model-Importer",
   "GameModelImporterShortName": "SRMI",
-  "GameModelImporterExeName": [ "3DMigotoLoader.exe" ]
+  "GameModelImporterExeName": [
+    "3DMigotoLoader.exe"
+  ]
 }

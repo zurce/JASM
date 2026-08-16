@@ -1,0 +1,22 @@
+[
+  {
+    "InternalName": "Character",
+    "DisplayName": "代理人",
+    "DisplayNamePlural": "代理人"
+  },
+  {
+    "InternalName": "NPC",
+    "DisplayName": "NPC",
+    "DisplayNamePlural": "NPC"
+  },
+  {
+    "InternalName": "Object",
+    "DisplayName": "物品",
+    "DisplayNamePlural": "物品"
+  },
+  {
+    "InternalName": "Weapon",
+    "DisplayName": "邦布",
+    "DisplayNamePlural": "邦布"
+  }
+]

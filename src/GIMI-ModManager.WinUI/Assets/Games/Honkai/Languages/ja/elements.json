@@ -1,0 +1,34 @@
+[
+  {
+    "InternalName": "Adaptive",
+    "DisplayName": "Adaptive"
+  },
+  {
+    "InternalName": "Imaginary",
+    "DisplayName": "虚数"
+  },
+  {
+    "InternalName": "Quantum",
+    "DisplayName": "量子"
+  },
+  {
+    "InternalName": "Wind",
+    "DisplayName": "風"
+  },
+  {
+    "InternalName": "Lightning",
+    "DisplayName": "雷"
+  },
+  {
+    "InternalName": "Ice",
+    "DisplayName": "氷"
+  },
+  {
+    "InternalName": "Fire",
+    "DisplayName": "炎"
+  },
+  {
+    "InternalName": "Physical",
+    "DisplayName": "物理"
+  }
+]

@@ -1,7 +1,7 @@
 [
   {
     "InternalName": "Others",
-    "DisplayName": "Другие"
+    "DisplayName": "Персонажи"
   },
   {
     "InternalName": "Weapons",
@@ -9,7 +9,7 @@
   },
   {
     "InternalName": "Gliders",
-    "DisplayName": "Воздушные планеры"
+    "DisplayName": "Gliders"
   },
   {
     "InternalName": "Albedo",
@@ -24,14 +24,14 @@
     "DisplayName": "Элой"
   },
   {
+    "InternalName": "Amber",
+    "DisplayName": "Эмбер",
     "InGameSkins": [
       {
         "InternalName": "AmberCN",
         "DisplayName": "ЭмберCN"
       }
-    ],
-    "InternalName": "Amber",
-    "DisplayName": "Эмбер"
+    ]
   },
   {
     "InternalName": "Arataki Itto",
@@ -42,14 +42,14 @@
     "DisplayName": "Бай Чжу"
   },
   {
+    "InternalName": "Barbara",
+    "DisplayName": "Барбара",
     "InGameSkins": [
       {
         "InternalName": "Barbara Summertime Sparkle",
         "DisplayName": "Летний блеск"
       }
-    ],
-    "InternalName": "Barbara",
-    "DisplayName": "Барбара"
+    ]
   },
   {
     "InternalName": "Beidou",
@@ -57,7 +57,13 @@
   },
   {
     "InternalName": "Bennett",
-    "DisplayName": "Беннет"
+    "DisplayName": "Беннет",
+    "InGameSkins": [
+      {
+        "InternalName": "Bennett Adventures in Blazing Hue",
+        "DisplayName": "Пламенные приключения"
+      }
+    ]
   },
   {
     "InternalName": "Candace",
@@ -65,7 +71,13 @@
   },
   {
     "InternalName": "Charlotte",
-    "DisplayName": "Шарлотта"
+    "DisplayName": "Шарлотта",
+    "InGameSkins": [
+      {
+        "InternalName": "CharlotteHurlockVariations",
+        "DisplayName": "Вариации Херлока"
+      }
+    ]
   },
   {
     "InternalName": "Chongyun",
@@ -84,14 +96,14 @@
     "DisplayName": "Дэхья"
   },
   {
+    "InternalName": "Diluc",
+    "DisplayName": "Дилюк",
     "InGameSkins": [
       {
         "InternalName": "Diluc Red Dead of Night",
         "DisplayName": "Алая ночь"
       }
-    ],
-    "InternalName": "Diluc",
-    "DisplayName": "Дилюк"
+    ]
   },
   {
     "InternalName": "Diona",
@@ -110,14 +122,14 @@
     "DisplayName": "Фарузан"
   },
   {
+    "InternalName": "Fischl",
+    "DisplayName": "Фишль",
     "InGameSkins": [
       {
         "InternalName": "Fischl Ein Immernachtstraum",
         "DisplayName": "Сон вечной ночи"
       }
-    ],
-    "InternalName": "Fischl",
-    "DisplayName": "Фишль"
+    ]
   },
   {
     "InternalName": "Freminet",
@@ -128,30 +140,32 @@
     "DisplayName": "Фурина"
   },
   {
+    "InternalName": "Ganyu",
+    "DisplayName": "Гань Юй",
     "InGameSkins": [
       {
         "InternalName": "GanyuTwilight",
-        "DisplayName": "Цветок сумрака"
+        "DisplayName": "Цветок сумерек"
       }
-    ],
-    "InternalName": "Ganyu",
-    "DisplayName": "Гань Юй"
+    ]
   },
   {
     "InternalName": "Gorou",
     "DisplayName": "Горо"
   },
   {
+    "InternalName": "Hu Tao",
+    "DisplayName": "Ху Тао",
     "InGameSkins": [
       {
         "InternalName": "Hu Tao Cherries Snow-Laden",
-        "DisplayName": "Вишни под снегом"
+        "DisplayName": "Снежная сакура"
       }
-    ],
-    "InternalName": "Hu Tao",
-    "DisplayName": "Ху Тао"
+    ]
   },
   {
+    "InternalName": "Jean",
+    "DisplayName": "Джинн",
     "InGameSkins": [
       {
         "InternalName": "JeanCN",
@@ -161,33 +175,31 @@
         "InternalName": "Jean Sea Breeze Dandelion",
         "DisplayName": "Сон морского бриза"
       }
-    ],
-    "InternalName": "Jean",
-    "DisplayName": "Джинн"
+    ]
   },
   {
     "InternalName": "Kaedehara Kazuha",
     "DisplayName": "Кадзуха"
   },
   {
+    "InternalName": "Kaeya",
+    "DisplayName": "Кэйа",
     "InGameSkins": [
       {
         "InternalName": "Kaeya Sailwind Shadow",
-        "DisplayName": "Тень ветра в парусах"
+        "DisplayName": "Тень ветра под парусами"
       }
-    ],
-    "InternalName": "Kaeya",
-    "DisplayName": "Кэйа"
+    ]
   },
   {
+    "InternalName": "Kamisato Ayaka",
+    "DisplayName": "Аяка",
     "InGameSkins": [
       {
         "InternalName": "Ayaka Springbloom Missive",
         "DisplayName": "Послание весеннего цветения"
       }
-    ],
-    "InternalName": "Kamisato Ayaka",
-    "DisplayName": "Аяка"
+    ]
   },
   {
     "InternalName": "Kamisato Ayato",
@@ -198,34 +210,34 @@
     "DisplayName": "Кавех"
   },
   {
+    "InternalName": "Keqing",
+    "DisplayName": "Кэ Цин",
     "InGameSkins": [
       {
         "InternalName": "Keqing Opulent Splendor",
         "DisplayName": "Яркая лёгкость"
       }
-    ],
-    "InternalName": "Keqing",
-    "DisplayName": "Кэ Цин"
+    ]
   },
   {
+    "InternalName": "Kirara",
+    "DisplayName": "Кирара",
     "InGameSkins": [
       {
         "InternalName": "Kirara Phantom in Boots",
         "DisplayName": "Призрак в сапогах"
       }
-    ],
-    "InternalName": "Kirara",
-    "DisplayName": "Кирара"
+    ]
   },
   {
+    "InternalName": "Klee",
+    "DisplayName": "Кли",
     "InGameSkins": [
       {
         "InternalName": "Klee Blossoming Starlight",
-        "DisplayName": "Цветущий свет звёзд"
+        "DisplayName": "Цветущий звёздный свет"
       }
-    ],
-    "InternalName": "Klee",
-    "DisplayName": "Кли"
+    ]
   },
   {
     "InternalName": "Kujou Sara",
@@ -233,21 +245,21 @@
   },
   {
     "InternalName": "Kuki Shinobu",
-    "DisplayName": "Куки Синобу"
+    "DisplayName": "Синобу"
   },
   {
     "InternalName": "Layla",
     "DisplayName": "Лайла"
   },
   {
+    "InternalName": "Lisa",
+    "DisplayName": "Лиза",
     "InGameSkins": [
       {
         "InternalName": "Lisa A Sobriquet Under Shade",
         "DisplayName": "Инкогнито в тени листвы"
       }
-    ],
-    "InternalName": "Lisa",
-    "DisplayName": "Лиза"
+    ]
   },
   {
     "InternalName": "Lynette",
@@ -262,14 +274,14 @@
     "DisplayName": "Мика"
   },
   {
+    "InternalName": "Mona",
+    "DisplayName": "Мона",
     "InGameSkins": [
       {
         "InternalName": "MonaCN",
         "DisplayName": "МонаCN"
       }
-    ],
-    "InternalName": "Mona",
-    "DisplayName": "Мона"
+    ]
   },
   {
     "InternalName": "Nahida",
@@ -281,31 +293,37 @@
   },
   {
     "InternalName": "Neuvillette",
-    "DisplayName": "Невиллет"
+    "DisplayName": "Нёвиллет",
+    "InGameSkins": [
+      {
+        "InternalName": "MelusentGift",
+        "DisplayName": "Подарок мелюзины"
+      }
+    ]
   },
   {
+    "InternalName": "Nilou",
+    "DisplayName": "Нилу",
     "InGameSkins": [
       {
         "InternalName": "Nilou Breeze of Sabaa",
         "DisplayName": "Дыхание Сабаа"
       }
-    ],
-    "InternalName": "Nilou",
-    "DisplayName": "Нилу"
+    ]
   },
   {
+    "InternalName": "Ningguang",
+    "DisplayName": "Нин Гуан",
     "InGameSkins": [
       {
         "InternalName": "Ningguang Orchid's Evening Gown",
         "DisplayName": "Флёр орхидеи"
       }
-    ],
-    "InternalName": "Ningguang",
-    "DisplayName": "Нин Гуан"
+    ]
   },
   {
     "InternalName": "Noelle",
-    "DisplayName": "Ноэль"
+    "DisplayName": "Ноэлль"
   },
   {
     "InternalName": "Paimon",
@@ -317,21 +335,21 @@
   },
   {
     "InternalName": "Raiden Shogun",
-    "DisplayName": "Райден Эи"
+    "DisplayName": "Райдэн"
   },
   {
     "InternalName": "Razor",
     "DisplayName": "Рэйзор"
   },
   {
+    "InternalName": "Rosaria",
+    "DisplayName": "Розария",
     "InGameSkins": [
       {
         "InternalName": "RosariaCN",
         "DisplayName": "РозарияCN"
       }
-    ],
-    "InternalName": "Rosaria",
-    "DisplayName": "Розария"
+    ]
   },
   {
     "InternalName": "Sangonomiya Kokomi",
@@ -342,14 +360,14 @@
     "DisplayName": "Саю"
   },
   {
+    "InternalName": "Shenhe",
+    "DisplayName": "Шэнь Хэ",
     "InGameSkins": [
       {
         "InternalName": "ShenheFrostflower",
-        "DisplayName": "Росы морозных цветов"
+        "DisplayName": "Роса морозных цветов"
       }
-    ],
-    "InternalName": "Shenhe",
-    "DisplayName": "Шэнь Хэ"
+    ]
   },
   {
     "InternalName": "Shikanoin Heizou",
@@ -373,11 +391,23 @@
   },
   {
     "InternalName": "Traveler (Female)",
-    "DisplayName": "Люмин"
+    "DisplayName": "Путешественник",
+    "InGameSkins": [
+      {
+        "InternalName": "Lumine As Heaven and Earth Are Made Anew",
+        "DisplayName": "В час обновления мира"
+      }
+    ]
   },
   {
     "InternalName": "Traveler (Male)",
-    "DisplayName": "Итэр"
+    "DisplayName": "Путешественник",
+    "InGameSkins": [
+      {
+        "InternalName": "Aether As Heaven and Earth Are Made Anew",
+        "DisplayName": "В час обновления мира"
+      }
+    ]
   },
   {
     "InternalName": "Venti",
@@ -388,28 +418,28 @@
     "DisplayName": "Странник"
   },
   {
+    "InternalName": "Xiangling",
+    "DisplayName": "Сян Лин",
     "InGameSkins": [
       {
         "InternalName": "Xiangling New Year's Cheer",
-        "DisplayName": "Новогоднее веселье"
+        "DisplayName": "Новогодняя радость"
       }
-    ],
-    "InternalName": "Xiangling",
-    "DisplayName": "Сян Лин"
+    ]
   },
   {
     "InternalName": "Xiao",
     "DisplayName": "Сяо"
   },
   {
+    "InternalName": "Xingqiu",
+    "DisplayName": "Син Цю",
     "InGameSkins": [
       {
         "InternalName": "Xingqiu Bamboo Rain",
         "DisplayName": "Бамбуковый дождь"
       }
-    ],
-    "InternalName": "Xingqiu",
-    "DisplayName": "Син Цю"
+    ]
   },
   {
     "InternalName": "Xinyan",
@@ -425,11 +455,23 @@
   },
   {
     "InternalName": "Yaoyao",
-    "DisplayName": "Яо Яо"
+    "DisplayName": "Яо Яо",
+    "InGameSkins": [
+      {
+        "InternalName": "Rainlit Bamboo Reverie",
+        "DisplayName": "Бамбуковые грёзы"
+      }
+    ]
   },
   {
     "InternalName": "Yelan",
-    "DisplayName": "Е Лань"
+    "DisplayName": "Е Лань",
+    "InGameSkins": [
+      {
+        "InternalName": "Yelan Tranquil Banquet",
+        "DisplayName": "Спокойный банкет"
+      }
+    ]
   },
   {
     "InternalName": "Yoimiya",
@@ -480,59 +522,167 @@
     "DisplayName": "Сетос"
   },
   {
-    "InternalName": "Chasca",
-    "DisplayName": "Часка"
-  },
-  {
-    "InternalName": "Citlali",
-    "DisplayName": "Ситлали"
-  },
-  {
     "InternalName": "Emilie",
     "DisplayName": "Эмилия"
-  },
-  {
-    "InternalName": "Iansan",
-    "DisplayName": "Иансан"
-  },
-  {
-    "InternalName": "Kachina",
-    "DisplayName": "Качина"
-  },
-  {
-    "InternalName": "Kinich",
-    "DisplayName": "Кинич"
-  },
-  {
-    "InternalName": "Lan Yan",
-    "DisplayName": "Лань Янь"
-  },
-  {
-    "InternalName": "Mavuika",
-    "DisplayName": "Мавуика"
   },
   {
     "InternalName": "Mualani",
     "DisplayName": "Муалани"
   },
   {
-    "InternalName": "Ororon",
-    "DisplayName": "Оророн"
+    "InternalName": "Kinich",
+    "DisplayName": "Кинич"
   },
   {
-    "InternalName": "Varesa",
-    "DisplayName": "Вареса"
+    "InternalName": "Kachina",
+    "DisplayName": "Качина"
   },
   {
     "InternalName": "Xilonen",
     "DisplayName": "Шилонен"
   },
   {
+    "InternalName": "Chasca",
+    "DisplayName": "Часка"
+  },
+  {
+    "InternalName": "Ororon",
+    "DisplayName": "Оророн"
+  },
+  {
+    "InternalName": "Citlali",
+    "DisplayName": "Ситлали",
+    "InGameSkins": [
+      {
+        "InternalName": "CitlaliWhispersOfStarsAndSmoke",
+        "DisplayName": "Шёпот звёзд и дыма"
+      }
+    ]
+  },
+  {
+    "InternalName": "Mavuika",
+    "DisplayName": "Мавуика"
+  },
+  {
+    "InternalName": "Lan Yan",
+    "DisplayName": "Лань Янь"
+  },
+  {
     "InternalName": "Yumemizuki Mizuki",
     "DisplayName": "Мидзуки"
   },
   {
+    "InternalName": "Varesa",
+    "DisplayName": "Вареса"
+  },
+  {
+    "InternalName": "Iansan",
+    "DisplayName": "Иансан"
+  },
+  {
     "InternalName": "Escoffier",
     "DisplayName": "Эскофье"
+  },
+  {
+    "InternalName": "Ifa",
+    "DisplayName": "Ифа"
+  },
+  {
+    "InternalName": "Skirk",
+    "DisplayName": "Скирк"
+  },
+  {
+    "InternalName": "Dahlia",
+    "DisplayName": "Далия"
+  },
+  {
+    "InternalName": "Ineffa",
+    "DisplayName": "Инеффа"
+  },
+  {
+    "InternalName": "Aino",
+    "DisplayName": "Айно"
+  },
+  {
+    "InternalName": "Flins",
+    "DisplayName": "Флинс"
+  },
+  {
+    "InternalName": "Lauma",
+    "DisplayName": "Лаума"
+  },
+  {
+    "InternalName": "Nefer",
+    "DisplayName": "Нефер"
+  },
+  {
+    "InternalName": "Manekin",
+    "DisplayName": "Манекен (м)"
+  },
+  {
+    "InternalName": "Jahoda",
+    "DisplayName": "Ягода"
+  },
+  {
+    "InternalName": "Durin",
+    "DisplayName": "Дурин",
+    "InGameSkins": [
+      {
+        "InternalName": "DurinTowardTheDistantHorizon",
+        "DisplayName": "К далёкому горизонту"
+      }
+    ]
+  },
+  {
+    "InternalName": "Columbina",
+    "DisplayName": "Коломбина"
+  },
+  {
+    "InternalName": "Zibai",
+    "DisplayName": "Цзы Бай"
+  },
+  {
+    "InternalName": "Illuga",
+    "DisplayName": "Иллуги"
+  },
+  {
+    "InternalName": "Varka",
+    "DisplayName": "Варка"
+  },
+  {
+    "InternalName": "Nicole",
+    "DisplayName": "Николь"
+  },
+  {
+    "InternalName": "Prune",
+    "DisplayName": "Прюн"
+  },
+  {
+    "InternalName": "Lohen",
+    "DisplayName": "Лоэн"
+  },
+  {
+    "InternalName": "Sandrone",
+    "DisplayName": "Сандроне"
+  },
+  {
+    "InternalName": "Linnea",
+    "DisplayName": "Линнея"
+  },
+  {
+    "InternalName": "Alyosha",
+    "DisplayName": "Алёша"
+  },
+  {
+    "InternalName": "Vesna",
+    "DisplayName": "Весна"
+  },
+  {
+    "InternalName": "Odette",
+    "DisplayName": "Одетта"
+  },
+  {
+    "InternalName": "Vodyanitsa",
+    "DisplayName": "Водяница"
   }
 ]
