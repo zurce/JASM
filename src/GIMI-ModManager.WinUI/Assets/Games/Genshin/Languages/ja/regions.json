@@ -1,0 +1,42 @@
+[
+  {
+    "InternalName": "Mondstadt",
+    "DisplayName": "モンド"
+  },
+  {
+    "InternalName": "Liyue",
+    "DisplayName": "璃月"
+  },
+  {
+    "InternalName": "Inazuma",
+    "DisplayName": "稲妻"
+  },
+  {
+    "InternalName": "Sumeru",
+    "DisplayName": "スメール"
+  },
+  {
+    "InternalName": "Fontaine",
+    "DisplayName": "フォンテーヌ"
+  },
+  {
+    "InternalName": "Khaenri'ah",
+    "DisplayName": "カーンルイア"
+  },
+  {
+    "InternalName": "Natlan",
+    "DisplayName": "ナタ"
+  },
+  {
+    "InternalName": "Snezhnaya",
+    "DisplayName": "スネージナヤ"
+  },
+  {
+    "InternalName": "Extraterrestrial",
+    "DisplayName": "異界"
+  },
+  {
+    "InternalName": "Nod-Krai",
+    "DisplayName": "ノードクレイ"
+  }
+]

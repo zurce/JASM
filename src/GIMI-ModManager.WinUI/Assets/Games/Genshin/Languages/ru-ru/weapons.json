@@ -1,11 +1,11 @@
 [
   {
     "InternalName": "Others_Weapons",
-    "DisplayName": "Другие Оружия"
+    "DisplayName": "Оружия"
   },
   {
     "InternalName": "The Catch",
-    "DisplayName": "Улов"
+    "DisplayName": "The Catch"
   },
   {
     "InternalName": "A Thousand Floating Dreams",
@@ -57,7 +57,7 @@
   },
   {
     "InternalName": "Black Tassel",
-    "DisplayName": "Чёрный меч"
+    "DisplayName": "Чёрная кисть"
   },
   {
     "InternalName": "Blackcliff Agate",
@@ -317,7 +317,7 @@
   },
   {
     "InternalName": "Mailed Flower",
-    "DisplayName": "Двуручный меч Фавония"
+    "DisplayName": "Цветок в латах"
   },
   {
     "InternalName": "Makhaira Aquamarine",
@@ -449,7 +449,7 @@
   },
   {
     "InternalName": "Royal Grimoire",
-    "DisplayName": "Цветок в латах"
+    "DisplayName": "Королевский гримуар"
   },
   {
     "InternalName": "Royal Longsword",
@@ -726,5 +726,265 @@
   {
     "InternalName": "Crane's Echoing Call",
     "DisplayName": "Звонкий клич журавля"
+  },
+  {
+    "InternalName": "AzureLight",
+    "DisplayName": "Лазурное сияние"
+  },
+  {
+    "InternalName": "Sturdy Bone",
+    "DisplayName": "Крепкая кость"
+  },
+  {
+    "InternalName": "Flute of Ezpitzal",
+    "DisplayName": "Флейта Эспицаль"
+  },
+  {
+    "InternalName": "Calamity of Eshu",
+    "DisplayName": "Бедствие Эшу"
+  },
+  {
+    "InternalName": "Serenity's Call",
+    "DisplayName": "Зов безмятежности"
+  },
+  {
+    "InternalName": "Moonweaver's Dawn",
+    "DisplayName": "Рассвет прядильщицы луны"
+  },
+  {
+    "InternalName": "Heretic's Molten Blade",
+    "DisplayName": "Расплавленный клинок еретика"
+  },
+  {
+    "InternalName": "Emberwell",
+    "DisplayName": "Источник пламени"
+  },
+  {
+    "InternalName": "Peak Patrol Song",
+    "DisplayName": "Песнь патруля пиков"
+  },
+  {
+    "InternalName": "Athame Artis",
+    "DisplayName": "Атаме артис"
+  },
+  {
+    "InternalName": "Lightbearing Moonshard",
+    "DisplayName": "Светоносный осколок луны"
+  },
+  {
+    "InternalName": "Whitelake Frostfeather",
+    "DisplayName": "Морозное перо белого озера"
+  },
+  {
+    "InternalName": "Exaiphanes Blade",
+    "DisplayName": "Клинок озарения"
+  },
+  {
+    "InternalName": "Ultimate Overlord's Mega Magic Sword",
+    "DisplayName": "\"Ultimate Overlord's Mega Magic Sword\""
+  },
+  {
+    "InternalName": "Fruitful Hook",
+    "DisplayName": "Плодотворный крюк"
+  },
+  {
+    "InternalName": "Earth Shaker",
+    "DisplayName": "Сотрясающий землю"
+  },
+  {
+    "InternalName": "Flame-Forged Insight",
+    "DisplayName": "Выкованное пламенем озарение"
+  },
+  {
+    "InternalName": "Master Key",
+    "DisplayName": "Мастер-ключ"
+  },
+  {
+    "InternalName": "Forged by the Golden Melody",
+    "DisplayName": "Творение золотой мелодии"
+  },
+  {
+    "InternalName": "Blade of Atonement",
+    "DisplayName": "Клинок искупления"
+  },
+  {
+    "InternalName": "Fang of the Mountain King",
+    "DisplayName": "Клык Горного короля"
+  },
+  {
+    "InternalName": "A Thousand Blazing Suns",
+    "DisplayName": "Тысяча ослепительных солнц"
+  },
+  {
+    "InternalName": "Gest of the Mighty Wolf",
+    "DisplayName": "Подвиг могучего волка"
+  },
+  {
+    "InternalName": "A Teaspoon of Transcendence",
+    "DisplayName": "Чайная ложка трансцендентности"
+  },
+  {
+    "InternalName": "Dialogues of the Desert Sages",
+    "DisplayName": "Диалог пустынных мудрецов"
+  },
+  {
+    "InternalName": "Mountain-Bracing Bolt",
+    "DisplayName": "Крепящий горы шип"
+  },
+  {
+    "InternalName": "Footprint of the Rainbow",
+    "DisplayName": "След радуги"
+  },
+  {
+    "InternalName": "Tamayuratei no Ohanashi",
+    "DisplayName": "Тамаюратэй но оханаси"
+  },
+  {
+    "InternalName": "Prospector's Shovel",
+    "DisplayName": "Лопата старателя"
+  },
+  {
+    "InternalName": "Sacrificer's Staff",
+    "DisplayName": "Посох жертвующей"
+  },
+  {
+    "InternalName": "Frostbreath",
+    "DisplayName": "Морозное дыхание"
+  },
+  {
+    "InternalName": "Song of the Vigil",
+    "DisplayName": "Песнь бдения"
+  },
+  {
+    "InternalName": "Lumidouce Elegy",
+    "DisplayName": "Элегия Люмидус"
+  },
+  {
+    "InternalName": "Symphonist of Scents",
+    "DisplayName": "Симфонист ароматов"
+  },
+  {
+    "InternalName": "Fractured Halo",
+    "DisplayName": "Расколотый ореол"
+  },
+  {
+    "InternalName": "Bloodsoaked Ruins",
+    "DisplayName": "Окровавленные руины"
+  },
+  {
+    "InternalName": "Disaster and Remorse",
+    "DisplayName": "Бедствие и раскаяние"
+  },
+  {
+    "InternalName": "Ash-Graven Drinking Horn",
+    "DisplayName": "Пепельный рог"
+  },
+  {
+    "InternalName": "Waveriding Whirl",
+    "DisplayName": "Вихрь на волнах"
+  },
+  {
+    "InternalName": "Ring of Yaxche",
+    "DisplayName": "Кольцо Яшче"
+  },
+  {
+    "InternalName": "Etherlight Spindlelute",
+    "DisplayName": "Лютня ткача света"
+  },
+  {
+    "InternalName": "Blackmarrow Lantern",
+    "DisplayName": "Фонарь чёрной сердцевины"
+  },
+  {
+    "InternalName": "Dawning Frost",
+    "DisplayName": "Рассветный иней"
+  },
+  {
+    "InternalName": "Clash of Kings",
+    "DisplayName": "Игры королей"
+  },
+  {
+    "InternalName": "Echoes of the Heart",
+    "DisplayName": "Отголоски сердца"
+  },
+  {
+    "InternalName": "Surf's Up",
+    "DisplayName": "Лови волну"
+  },
+  {
+    "InternalName": "Starcaller's Watch",
+    "DisplayName": "Бдение взывающего к звёздам"
+  },
+  {
+    "InternalName": "Sunny Morning Sleep-In",
+    "DisplayName": "Сон солнечным утром"
+  },
+  {
+    "InternalName": "Vivid Notions",
+    "DisplayName": "Переливающиеся чаяния"
+  },
+  {
+    "InternalName": "Nightweaver's Looking Glass",
+    "DisplayName": "Зеркало прядильщицы ночи"
+  },
+  {
+    "InternalName": "Reliquary of Truth",
+    "DisplayName": "Шкатулка истин"
+  },
+  {
+    "InternalName": "Nocturne's Curtain Call",
+    "DisplayName": "Вызов ноктюрна"
+  },
+  {
+    "InternalName": "Angelos' Heptades",
+    "DisplayName": "Гептада ангела"
+  },
+  {
+    "InternalName": "Ibis Piercer",
+    "DisplayName": "Клюв ибиса"
+  },
+  {
+    "InternalName": "Cloudforged",
+    "DisplayName": "Выкованный из облаков"
+  },
+  {
+    "InternalName": "Flower-Wreathed Feathers",
+    "DisplayName": "Украшенные цветами перья"
+  },
+  {
+    "InternalName": "Chain Breaker",
+    "DisplayName": "Разбивающий цепи"
+  },
+  {
+    "InternalName": "Sequence of Solitude",
+    "DisplayName": "Каденция одиночества"
+  },
+  {
+    "InternalName": "Snare Hook",
+    "DisplayName": "Крюк силка"
+  },
+  {
+    "InternalName": "Rainbow Serpent's Rain Bow",
+    "DisplayName": "Струны дождя радужного змея"
+  },
+  {
+    "InternalName": "Jade Vista",
+    "DisplayName": "Поникшая артемизия"
+  },
+  {
+    "InternalName": "Covenant of Frost and Snow",
+    "DisplayName": "Завет льда и снега"
+  },
+  {
+    "InternalName": "Astral Vulture's Crimson Plumage",
+    "DisplayName": "Алое перо звёздного грифа"
+  },
+  {
+    "InternalName": "The Daybreak Chronicles",
+    "DisplayName": "Хроники рассвета"
+  },
+  {
+    "InternalName": "Golden Frostbound Oath",
+    "DisplayName": "Золотая клятва льда"
   }
 ]

@@ -1,0 +1,22 @@
+[
+  {
+    "InternalName": "Character",
+    "DisplayName": "キャラクター",
+    "DisplayNamePlural": "キャラクター"
+  },
+  {
+    "InternalName": "NPC",
+    "DisplayName": "NPC",
+    "DisplayNamePlural": "NPC"
+  },
+  {
+    "InternalName": "Object",
+    "DisplayName": "アイテム",
+    "DisplayNamePlural": "アイテム"
+  },
+  {
+    "InternalName": "Weapon",
+    "DisplayName": "武器",
+    "DisplayNamePlural": "武器"
+  }
+]

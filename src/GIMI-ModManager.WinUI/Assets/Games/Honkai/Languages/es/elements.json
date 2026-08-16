@@ -1,0 +1,34 @@
+[
+  {
+    "InternalName": "Adaptive",
+    "DisplayName": "Adaptive"
+  },
+  {
+    "InternalName": "Imaginary",
+    "DisplayName": "Imaginario"
+  },
+  {
+    "InternalName": "Quantum",
+    "DisplayName": "Cuántico"
+  },
+  {
+    "InternalName": "Wind",
+    "DisplayName": "Viento"
+  },
+  {
+    "InternalName": "Lightning",
+    "DisplayName": "Rayo"
+  },
+  {
+    "InternalName": "Ice",
+    "DisplayName": "Hielo"
+  },
+  {
+    "InternalName": "Fire",
+    "DisplayName": "Fuego"
+  },
+  {
+    "InternalName": "Physical",
+    "DisplayName": "Físico"
+  }
+]

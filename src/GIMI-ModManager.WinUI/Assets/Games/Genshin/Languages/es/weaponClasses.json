@@ -1,0 +1,22 @@
+[
+  {
+    "InternalName": "Sword",
+    "DisplayName": "Espada ligera"
+  },
+  {
+    "InternalName": "Bow",
+    "DisplayName": "Arco"
+  },
+  {
+    "InternalName": "Claymore",
+    "DisplayName": "Mandoble"
+  },
+  {
+    "InternalName": "Polearm",
+    "DisplayName": "Lanza"
+  },
+  {
+    "InternalName": "Catalyst",
+    "DisplayName": "Catalizador"
+  }
+]

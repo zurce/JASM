@@ -1,11 +1,47 @@
 [
   {
+    "InternalName": "Others",
+    "DisplayName": "Агенты"
+  },
+  {
+    "InternalName": "Weapons",
+    "DisplayName": "Банбу"
+  },
+  {
     "InternalName": "Belle",
-    "DisplayName": "Белль"
+    "DisplayName": "Белль",
+    "InGameSkins": [
+      {
+        "InternalName": "BelleDelicateSunlight",
+        "DisplayName": "Нежный солнечный свет"
+      },
+      {
+        "InternalName": "BelleSummerSkies",
+        "DisplayName": "Летние небеса"
+      },
+      {
+        "InternalName": "BelleBrillianceOfStars",
+        "DisplayName": "Сияние звёзд"
+      }
+    ]
   },
   {
     "InternalName": "Wise",
-    "DisplayName": "Вайз"
+    "DisplayName": "Вайз",
+    "InGameSkins": [
+      {
+        "InternalName": "WiseSoaringCrane",
+        "DisplayName": "Парящий журавль"
+      },
+      {
+        "InternalName": "WisePeacefulWaves",
+        "DisplayName": "Спокойные волны"
+      },
+      {
+        "InternalName": "WiseOathOfSkies",
+        "DisplayName": "Клятва небес"
+      }
+    ]
   },
   {
     "InternalName": "Rina",
@@ -13,7 +49,13 @@
   },
   {
     "InternalName": "Ellen",
-    "DisplayName": "Эллен"
+    "DisplayName": "Эллен",
+    "InGameSkins": [
+      {
+        "InternalName": "Ellen On Campus",
+        "DisplayName": "В кампусе"
+      }
+    ]
   },
   {
     "InternalName": "Grace",
@@ -25,11 +67,11 @@
   },
   {
     "InternalName": "Nekomata",
-    "DisplayName": "Некомата"
+    "DisplayName": "Нэкомата"
   },
   {
     "InternalName": "Soldier11",
-    "DisplayName": "Солдат11"
+    "DisplayName": "Солдат 11"
   },
   {
     "InternalName": "Lycaon",
@@ -61,11 +103,23 @@
   },
   {
     "InternalName": "Lucy",
-    "DisplayName": "Люси"
+    "DisplayName": "Люси",
+    "InGameSkins": [
+      {
+        "InternalName": "Princess on Holiday",
+        "DisplayName": "Принцесса на каникулах"
+      }
+    ]
   },
   {
     "InternalName": "Nicole",
-    "DisplayName": "Николь"
+    "DisplayName": "Николь",
+    "InGameSkins": [
+      {
+        "InternalName": "Nicole Cunning Cutie",
+        "DisplayName": "Хитрая милашка"
+      }
+    ]
   },
   {
     "InternalName": "Piper",
@@ -80,40 +134,14 @@
     "DisplayName": "Мияби"
   },
   {
-    "InternalName": "Astra",
-    "DisplayName": "Астра Яо"
-  },
-  {
-    "InternalName": "Burnice",
-    "DisplayName": "Бёрнис"
-  },
-  {
-    "InternalName": "Caesar",
-    "DisplayName": "Цезарь"
-  },
-  {
-    "InternalName": "Evelyn",
-    "DisplayName": "Эвелин"
-  },
-  {
-    "InternalName": "Miyabi",
-    "DisplayName": "Мияби"
-  },
-  {
-    "InternalName": "Harumasa",
-    "DisplayName": "Харумаса"
-  },
-  {
     "InternalName": "Jane",
-    "DisplayName": "Джейн"
-  },
-  {
-    "InternalName": "Lighter",
-    "DisplayName": "Лайтер"
-  },
-  {
-    "InternalName": "Pulchra",
-    "DisplayName": "Пульхра"
+    "DisplayName": "Джейн",
+    "InGameSkins": [
+      {
+        "InternalName": "Jane Doe Nocturne of Light",
+        "DisplayName": "Ноктюрн света"
+      }
+    ]
   },
   {
     "InternalName": "Qingyi",
@@ -124,6 +152,44 @@
     "DisplayName": "Сет"
   },
   {
+    "InternalName": "Caesar",
+    "DisplayName": "Цезарь"
+  },
+  {
+    "InternalName": "Burnice",
+    "DisplayName": "Бёрнис"
+  },
+  {
+    "InternalName": "Yanagi",
+    "DisplayName": "Янаги"
+  },
+  {
+    "InternalName": "Harumasa",
+    "DisplayName": "Харумаса"
+  },
+  {
+    "InternalName": "Astra",
+    "DisplayName": "Астра Яо",
+    "InGameSkins": [
+      {
+        "InternalName": "Astra Chandelier",
+        "DisplayName": "Хрустальная люстра"
+      }
+    ]
+  },
+  {
+    "InternalName": "Evelyn",
+    "DisplayName": "Эвелин"
+  },
+  {
+    "InternalName": "Lighter",
+    "DisplayName": "Лайтер"
+  },
+  {
+    "InternalName": "Pulchra",
+    "DisplayName": "Пульхра"
+  },
+  {
     "InternalName": "Silver Soldier - Anby",
     "DisplayName": "Солдат 0 Энби"
   },
@@ -132,15 +198,189 @@
     "DisplayName": "Гашетка"
   },
   {
-    "InternalName": "Yanagi",
-    "DisplayName": "Янаги"
-  },
-  {
     "InternalName": "Vivian",
-    "DisplayName": "Вивиан"
+    "DisplayName": "Вивиан",
+    "InGameSkins": [
+      {
+        "InternalName": "IrisOfTheShore",
+        "DisplayName": "Ирис побережья"
+      }
+    ]
   },
   {
-    "InternalName": "Others",
-    "DisplayName": "Другое"
+    "InternalName": "Hugo",
+    "DisplayName": "Хуго"
+  },
+  {
+    "InternalName": "Yixuan",
+    "DisplayName": "Исюань",
+    "InGameSkins": [
+      {
+        "InternalName": "YixuanTrailsofInk",
+        "DisplayName": "Следы туши"
+      }
+    ]
+  },
+  {
+    "InternalName": "Panyinhu",
+    "DisplayName": "Пань Иньху"
+  },
+  {
+    "InternalName": "Jufufu",
+    "DisplayName": "Цзюй Фуфу"
+  },
+  {
+    "InternalName": "Yuzuha",
+    "DisplayName": "Юдзуха",
+    "InGameSkins": [
+      {
+        "InternalName": "YuzuhaTanukiInBroadDaylight",
+        "DisplayName": "Тануки средь бела дня"
+      }
+    ]
+  },
+  {
+    "InternalName": "Alice",
+    "DisplayName": "Элис",
+    "InGameSkins": [
+      {
+        "InternalName": "AliceSeaOfThyme",
+        "DisplayName": "Море тимьяна"
+      }
+    ]
+  },
+  {
+    "InternalName": "Orphie",
+    "DisplayName": "Орфея и Магус"
+  },
+  {
+    "InternalName": "Seed",
+    "DisplayName": "Сид"
+  },
+  {
+    "InternalName": "Manato",
+    "DisplayName": "Манато",
+    "InGameSkins": [
+      {
+        "InternalName": "WhiteHeartSilhouette",
+        "DisplayName": "Белый силуэт"
+      }
+    ]
+  },
+  {
+    "InternalName": "Lucia",
+    "DisplayName": "Люсия"
+  },
+  {
+    "InternalName": "Yidhari",
+    "DisplayName": "Йидхари"
+  },
+  {
+    "InternalName": "Dialyn",
+    "DisplayName": "Диалинь"
+  },
+  {
+    "InternalName": "Banyue",
+    "DisplayName": "Баньюэ"
+  },
+  {
+    "InternalName": "YeShunguang",
+    "DisplayName": "Е Шуньгуан",
+    "InGameSkins": [
+      {
+        "InternalName": "Ye Shunguang Touch of Dawnlight",
+        "DisplayName": "Прикосновение рассвета"
+      }
+    ]
+  },
+  {
+    "InternalName": "Zhao",
+    "DisplayName": "Чжао"
+  },
+  {
+    "InternalName": "Sunna",
+    "DisplayName": "Санна",
+    "InGameSkins": [
+      {
+        "InternalName": "Sunna Afternoon Tea Break",
+        "DisplayName": "Послеполуденный чай"
+      }
+    ]
+  },
+  {
+    "InternalName": "Aria",
+    "DisplayName": "Ария",
+    "InGameSkins": [
+      {
+        "InternalName": "Aria Discordant Note",
+        "DisplayName": "Диссонирующая нота"
+      }
+    ]
+  },
+  {
+    "InternalName": "NangongYu",
+    "DisplayName": "Наньгун Юй",
+    "InGameSkins": [
+      {
+        "InternalName": "RhapsodysMuse",
+        "DisplayName": "Муза рапсодии"
+      }
+    ]
+  },
+  {
+    "InternalName": "Cissia",
+    "DisplayName": "Циссия"
+  },
+  {
+    "InternalName": "StarlightBilly",
+    "DisplayName": "Звёздный Билли"
+  },
+  {
+    "InternalName": "Promeia",
+    "DisplayName": "Промея"
+  },
+  {
+    "InternalName": "Pyrois",
+    "DisplayName": "Пироис"
+  },
+  {
+    "InternalName": "Norma",
+    "DisplayName": "Норма"
+  },
+  {
+    "InternalName": "Velina",
+    "DisplayName": "Велина"
+  },
+  {
+    "InternalName": "Remielle",
+    "DisplayName": "Ремиэлла",
+    "InGameSkins": [
+      {
+        "InternalName": "MoonlightWhispers",
+        "DisplayName": "Шёпот лунного света"
+      },
+      {
+        "InternalName": "SeashadePasSeul",
+        "DisplayName": "Танец морской тени"
+      }
+    ]
+  },
+  {
+    "InternalName": "Sigrid",
+    "DisplayName": "Сигрид",
+    "InGameSkins": [
+      {
+        "InternalName": "MajesticWavechaser",
+        "DisplayName": "Величественный ловец волн"
+      }
+    ]
+  },
+  {
+    "InternalName": "Claret",
+    "DisplayName": "Claret"
+  },
+  {
+    "InternalName": "Pryce",
+    "DisplayName": "Pryce"
   }
 ]

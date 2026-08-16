@@ -1,27 +1,30 @@
 [
-	{
-		"InternalName": "Fire",
-		"DisplayName": "Ígneo",
-		"Image": "Fire.svg"
-	},
-	{
-		"InternalName": "Electric",
-		"DisplayName": "Eléctrico",
-		"Image": "Electric.svg"
-	},
-	{
-		"InternalName": "Ice",
-		"DisplayName": "Glacial",
-		"Image": "Ice.svg"
-	},
-	{
-		"InternalName": "Physical",
-		"DisplayName": "Físico",
-		"Image": "Physical.svg"
-	},
-	{
-		"InternalName": "Ether",
-		"DisplayName": "Etéreo",
-		"Image": "Ether.svg"
-	}
+  {
+    "InternalName": "Fire",
+    "DisplayName": "Ígneo"
+  },
+  {
+    "InternalName": "Electric",
+    "DisplayName": "Eléctrico"
+  },
+  {
+    "InternalName": "Ice",
+    "DisplayName": "Glacial"
+  },
+  {
+    "InternalName": "Physical",
+    "DisplayName": "Físico"
+  },
+  {
+    "InternalName": "Ether",
+    "DisplayName": "Etéreo"
+  },
+  {
+    "InternalName": "Wind",
+    "DisplayName": "Wind"
+  },
+  {
+    "InternalName": "Lumiflux",
+    "DisplayName": "Lumiflux"
+  }
 ]

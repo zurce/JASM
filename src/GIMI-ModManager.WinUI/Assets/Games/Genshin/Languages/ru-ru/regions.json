@@ -17,14 +17,26 @@
   },
   {
     "InternalName": "Fontaine",
-    "DisplayName": "Фонтейн"
+    "DisplayName": "Fontaine"
   },
   {
     "InternalName": "Khaenri'ah",
     "DisplayName": "Каэнри'ах"
   },
   {
+    "InternalName": "Natlan",
+    "DisplayName": "Натлан"
+  },
+  {
     "InternalName": "Snezhnaya",
     "DisplayName": "Снежная"
+  },
+  {
+    "InternalName": "Extraterrestrial",
+    "DisplayName": "Внеземной"
+  },
+  {
+    "InternalName": "Nod-Krai",
+    "DisplayName": "Нод-Край"
   }
 ]

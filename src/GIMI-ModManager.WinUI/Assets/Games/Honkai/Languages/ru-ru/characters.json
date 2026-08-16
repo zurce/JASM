@@ -1,7 +1,11 @@
 [
   {
     "InternalName": "Others",
-    "DisplayName": "Другие"
+    "DisplayName": "Персонажи"
+  },
+  {
+    "InternalName": "Weapons",
+    "DisplayName": "Оружие"
   },
   {
     "InternalName": "Trailblazer",
@@ -38,6 +42,10 @@
   {
     "InternalName": "Dan Heng IL",
     "DisplayName": "Дань Хэн: Пожиратель Луны"
+  },
+  {
+    "InternalName": "Dan Heng PT",
+    "DisplayName": "Дань Хэн: Освободитель Пустошей"
   },
   {
     "InternalName": "FuXuan",
@@ -93,11 +101,11 @@
     "InGameSkins": [
       {
         "InternalName": "March7Hunt",
-        "DisplayName": "Охота"
+        "DisplayName": "Март 7: Охота"
       },
       {
         "InternalName": "MarchNS",
-        "DisplayName": "Зарождение весны"
+        "DisplayName": "Весенняя оттепель"
       }
     ]
   },
@@ -139,7 +147,7 @@
   },
   {
     "InternalName": "Topaz",
-    "DisplayName": "Топаз"
+    "DisplayName": "Топаз и Счетовод"
   },
   {
     "InternalName": "Welt",
@@ -167,11 +175,17 @@
   },
   {
     "InternalName": "Huohuo",
-    "DisplayName": "Хо Хо"
+    "DisplayName": "Хохо"
   },
   {
     "InternalName": "RuanMei",
-    "DisplayName": "Жуань Мэй"
+    "DisplayName": "Жуань Мэй",
+    "InGameSkins": [
+      {
+        "InternalName": "RuanMeiPlumblossomLetter",
+        "DisplayName": "Письмо с веткой сливы"
+      }
+    ]
   },
   {
     "InternalName": "Xueyi",
@@ -179,7 +193,7 @@
   },
   {
     "InternalName": "BlackSwan",
-    "DisplayName": "Черный Лебедь"
+    "DisplayName": "Чёрный Лебедь"
   },
   {
     "InternalName": "Sparkle",
@@ -211,35 +225,29 @@
   },
   {
     "InternalName": "Firefly",
-    "DisplayName": "Светлячок"
+    "DisplayName": "Светлячок",
+    "InGameSkins": [
+      {
+        "InternalName": "FireflySpringMissive",
+        "DisplayName": "Весеннее послание"
+      }
+    ]
   },
   {
     "InternalName": "Jade",
     "DisplayName": "Яшма"
   },
   {
-    "InternalName": "Aglaea",
-    "DisplayName": "Аглая"
-  },
-  {
-    "InternalName": "Anaxa",
-    "DisplayName": "Анакса"
-  },
-  {
-    "InternalName": "Castorice",
-    "DisplayName": "Кастория"
-  },
-  {
-    "InternalName": "Feixiao",
-    "DisplayName": "Фэйсяо"
-  },
-  {
-    "InternalName": "Fugue",
-    "DisplayName": "Фуга"
+    "InternalName": "Yunli",
+    "DisplayName": "Юньли"
   },
   {
     "InternalName": "Jiaoqiu",
     "DisplayName": "Цзяоцю"
+  },
+  {
+    "InternalName": "Feixiao",
+    "DisplayName": "Фэйсяо"
   },
   {
     "InternalName": "Lingsha",
@@ -250,12 +258,12 @@
     "DisplayName": "Моцзэ"
   },
   {
-    "InternalName": "Mydei",
-    "DisplayName": "Мидей"
-  },
-  {
     "InternalName": "Rappa",
     "DisplayName": "Раппа"
+  },
+  {
+    "InternalName": "Fugue",
+    "DisplayName": "Фуга"
   },
   {
     "InternalName": "Sunday",
@@ -266,11 +274,119 @@
     "DisplayName": "Великая Герта"
   },
   {
+    "InternalName": "Aglaea",
+    "DisplayName": "Аглая"
+  },
+  {
     "InternalName": "Tribbie",
     "DisplayName": "Трибби"
   },
   {
-    "InternalName": "Yunli",
-    "DisplayName": "Юньли"
+    "InternalName": "Mydei",
+    "DisplayName": "Мидей"
+  },
+  {
+    "InternalName": "Castorice",
+    "DisplayName": "Кастория",
+    "InGameSkins": [
+      {
+        "InternalName": "CastoriceGossamerFlutter",
+        "DisplayName": "Шёлковый трепет"
+      }
+    ]
+  },
+  {
+    "InternalName": "Anaxa",
+    "DisplayName": "Анакса"
+  },
+  {
+    "InternalName": "Hyacine",
+    "DisplayName": "Гиацина"
+  },
+  {
+    "InternalName": "Cipher",
+    "DisplayName": "Цифер"
+  },
+  {
+    "InternalName": "Phainon",
+    "DisplayName": "Фаенон"
+  },
+  {
+    "InternalName": "Saber",
+    "DisplayName": "Сэйбер"
+  },
+  {
+    "InternalName": "Archer",
+    "DisplayName": "Арчер"
+  },
+  {
+    "InternalName": "Cerydra",
+    "DisplayName": "Керидра"
+  },
+  {
+    "InternalName": "Hysilens",
+    "DisplayName": "Гисиленса"
+  },
+  {
+    "InternalName": "Evernight",
+    "DisplayName": "Темень"
+  },
+  {
+    "InternalName": "Cyrene",
+    "DisplayName": "Кирена"
+  },
+  {
+    "InternalName": "Dahlia",
+    "DisplayName": "Георгина"
+  },
+  {
+    "InternalName": "Sparxie",
+    "DisplayName": "Искра",
+    "InGameSkins": [
+      {
+        "InternalName": "SparxieCandyCoatedWaves",
+        "DisplayName": "Сладкие волны"
+      }
+    ]
+  },
+  {
+    "InternalName": "Ashveil",
+    "DisplayName": "Эшвейл"
+  },
+  {
+    "InternalName": "YaoGuang",
+    "DisplayName": "Яо Гуан"
+  },
+  {
+    "InternalName": "Evanescia",
+    "DisplayName": "Эванесса"
+  },
+  {
+    "InternalName": "SilverWolf999",
+    "DisplayName": "Серебряный Волк ур. 999"
+  },
+  {
+    "InternalName": "MortenaxBlade",
+    "DisplayName": "Мортенакс Блэйд"
+  },
+  {
+    "InternalName": "HimekoNova",
+    "DisplayName": "Химеко: Нова"
+  },
+  {
+    "InternalName": "Gilgamesh",
+    "DisplayName": "Гильгамеш"
+  },
+  {
+    "InternalName": "RinTohsaka",
+    "DisplayName": "Рин Тосака"
+  },
+  {
+    "InternalName": "RobinSummeretto",
+    "DisplayName": "Зарянка: Летняя песнь"
+  },
+  {
+    "InternalName": "AventurineWaveflair",
+    "DisplayName": "Авантюрин: Летний бриз"
   }
 ]

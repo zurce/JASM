@@ -1,19 +1,19 @@
 [
   {
     "InternalName": "Sword",
-    "DisplayName": "Мечь"
+    "DisplayName": "Одноручное"
   },
   {
     "InternalName": "Bow",
-    "DisplayName": "Лук"
+    "DisplayName": "Стрелковое"
   },
   {
     "InternalName": "Claymore",
-    "DisplayName": "Двуручный Мечь"
+    "DisplayName": "Двуручное"
   },
   {
     "InternalName": "Polearm",
-    "DisplayName": "Копьё"
+    "DisplayName": "Древковое"
   },
   {
     "InternalName": "Catalyst",

@@ -1,0 +1,42 @@
+[
+  {
+    "InternalName": "Adaptive",
+    "DisplayName": "Адаптивный"
+  },
+  {
+    "InternalName": "Abundance",
+    "DisplayName": "Изобилие"
+  },
+  {
+    "InternalName": "Destruction",
+    "DisplayName": "Разрушение"
+  },
+  {
+    "InternalName": "Erudition",
+    "DisplayName": "Эрудиция"
+  },
+  {
+    "InternalName": "Harmony",
+    "DisplayName": "Гармония"
+  },
+  {
+    "InternalName": "Hunt",
+    "DisplayName": "Охота"
+  },
+  {
+    "InternalName": "Nihility",
+    "DisplayName": "Небытие"
+  },
+  {
+    "InternalName": "Preservation",
+    "DisplayName": "Сохранение"
+  },
+  {
+    "InternalName": "Remembrance",
+    "DisplayName": "Память"
+  },
+  {
+    "InternalName": "Elation",
+    "DisplayName": "Радость"
+  }
+]

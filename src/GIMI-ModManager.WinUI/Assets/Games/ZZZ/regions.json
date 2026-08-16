@@ -66,5 +66,13 @@
     {
       "InternalName": "APD",
       "DisplayName": "Airspace Patrol Department"
+    },
+    {
+      "InternalName": "Roscaelifer",
+      "DisplayName": "Roscaelifer"
+    },
+    {
+      "InternalName": "FlintWorks",
+      "DisplayName": "Flint Workshop"
     }
 ]

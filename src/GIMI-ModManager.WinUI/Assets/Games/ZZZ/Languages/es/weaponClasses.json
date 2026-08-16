@@ -18,5 +18,13 @@
   {
     "InternalName": "Support",
     "DisplayName": "Auxiliar"
+  },
+  {
+    "InternalName": "Rupture",
+    "DisplayName": "Ruptura"
+  },
+  {
+    "InternalName": "Armorer",
+    "DisplayName": "Blindado"
   }
 ]

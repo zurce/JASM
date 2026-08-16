@@ -1,8 +1,8 @@
-﻿[
+[
   {
     "InternalName": "Character",
-    "DisplayName": "Персонаж",
-    "DisplayNamePlural": "Персонажи"
+    "DisplayName": "Агент",
+    "DisplayNamePlural": "Агенты"
   },
   {
     "InternalName": "NPC",
@@ -16,7 +16,7 @@
   },
   {
     "InternalName": "Weapon",
-    "DisplayName": "Оружие",
-    "DisplayNamePlural": "Оружия"
+    "DisplayName": "Банбу",
+    "DisplayNamePlural": "Банбу"
   }
 ]

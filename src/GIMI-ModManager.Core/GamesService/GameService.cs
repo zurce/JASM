@@ -1027,14 +1027,32 @@ public class GameService : IGameService
     [MemberNotNullWhen(true, nameof(_languageOverrideDirectory))]
     private bool LanguageOverrideAvailable()
     {
-        var currentLanguage = _localizer.CurrentLanguage;
-
-        _languageOverrideDirectory =
-            new DirectoryInfo(Path.Combine(_assetsDirectory.FullName, "Languages", currentLanguage.LanguageCode));
+        _languageOverrideDirectory = ResolveLanguageOverrideDirectory(_localizer.CurrentLanguage.LanguageCode);
 
         // Read overrides from the active language folder (including en-us) when it exists, so
         // per-game category/name overrides (e.g. ZZZ "Weapon" -> "Bangboo") can be shipped.
         return _languageOverrideDirectory.Exists && _languageOverrideDirectory.GetFiles().Any();
+    }
+
+    /// <summary>
+    /// Resolves the per-game language override folder for <paramref name="languageCode"/>. Tries the
+    /// exact code first (e.g. <c>en-us</c>), then falls back to the 2-letter primary code (e.g. <c>en</c>)
+    /// so assets shipping only the primary code ("Languages/en", "Languages/es", ...) are honored.
+    /// </summary>
+    private DirectoryInfo ResolveLanguageOverrideDirectory(string languageCode)
+    {
+        var exact = new DirectoryInfo(Path.Combine(_assetsDirectory.FullName, "Languages", languageCode));
+        if (exact.Exists)
+            return exact;
+
+        if (languageCode.Length > 2)
+        {
+            var primary = new DirectoryInfo(Path.Combine(_assetsDirectory.FullName, "Languages", languageCode[..2]));
+            if (primary.Exists)
+                return primary;
+        }
+
+        return exact;
     }
 
 
@@ -1264,15 +1282,7 @@ public class GameService : IGameService
 
         _logger.Debug("Language changed to {Language}", _localizer.CurrentLanguage.LanguageCode);
 
-        _languageOverrideDirectory =
-            new DirectoryInfo(Path.Combine(_assetsDirectory.FullName, "Languages",
-                _localizer.CurrentLanguage.LanguageCode));
-
-        if (_localizer.CurrentLanguage.LanguageCode == "en-us")
-        {
-            _languageOverrideDirectory = new DirectoryInfo(Path.Combine(_assetsDirectory.FullName));
-        }
-
+        _languageOverrideDirectory = ResolveLanguageOverrideDirectory(_localizer.CurrentLanguage.LanguageCode);
 
         await MapDisplayNames("characters.json", _characters.ToEnumerable()).ConfigureAwait(false);
         await MapDisplayNames("npcs.json", _npcs.ToEnumerable()).ConfigureAwait(false);
