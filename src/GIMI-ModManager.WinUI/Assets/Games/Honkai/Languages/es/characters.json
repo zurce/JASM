@@ -1,0 +1,392 @@
+[
+  {
+    "InternalName": "Others",
+    "DisplayName": "Personajes"
+  },
+  {
+    "InternalName": "Weapons",
+    "DisplayName": "Arma"
+  },
+  {
+    "InternalName": "Trailblazer",
+    "DisplayName": "Trazacaminos"
+  },
+  {
+    "InternalName": "Arlan",
+    "DisplayName": "Arlan"
+  },
+  {
+    "InternalName": "Asta",
+    "DisplayName": "Asta"
+  },
+  {
+    "InternalName": "Bailu",
+    "DisplayName": "Bailu"
+  },
+  {
+    "InternalName": "Blade",
+    "DisplayName": "Blade"
+  },
+  {
+    "InternalName": "Bronya",
+    "DisplayName": "Bronya"
+  },
+  {
+    "InternalName": "Clara",
+    "DisplayName": "Clara"
+  },
+  {
+    "InternalName": "Dan Heng",
+    "DisplayName": "Dan Heng"
+  },
+  {
+    "InternalName": "Dan Heng IL",
+    "DisplayName": "Dan Heng - Imbibitor Lunae"
+  },
+  {
+    "InternalName": "Dan Heng PT",
+    "DisplayName": "Dan Heng - Permansor Terrae"
+  },
+  {
+    "InternalName": "FuXuan",
+    "DisplayName": "Fu Xuan"
+  },
+  {
+    "InternalName": "Gepard",
+    "DisplayName": "Gepard"
+  },
+  {
+    "InternalName": "Guinaifen",
+    "DisplayName": "Guinaifen"
+  },
+  {
+    "InternalName": "Herta",
+    "DisplayName": "Herta"
+  },
+  {
+    "InternalName": "Himeko",
+    "DisplayName": "Himeko"
+  },
+  {
+    "InternalName": "Hook",
+    "DisplayName": "Hook"
+  },
+  {
+    "InternalName": "JingYuan",
+    "DisplayName": "Jing Yuan"
+  },
+  {
+    "InternalName": "Jingliu",
+    "DisplayName": "Jingliu"
+  },
+  {
+    "InternalName": "Kafka",
+    "DisplayName": "Kafka"
+  },
+  {
+    "InternalName": "Luka",
+    "DisplayName": "Luka"
+  },
+  {
+    "InternalName": "Luocha",
+    "DisplayName": "Luocha"
+  },
+  {
+    "InternalName": "Lynx",
+    "DisplayName": "Lynx"
+  },
+  {
+    "InternalName": "March7",
+    "DisplayName": "Siete de Marzo",
+    "InGameSkins": [
+      {
+        "InternalName": "March7Hunt",
+        "DisplayName": "Siete de Marzo: Cacería"
+      },
+      {
+        "InternalName": "MarchNS",
+        "DisplayName": "Primavera incipiente"
+      }
+    ]
+  },
+  {
+    "InternalName": "Natasha",
+    "DisplayName": "Natasha"
+  },
+  {
+    "InternalName": "Pela",
+    "DisplayName": "Pela"
+  },
+  {
+    "InternalName": "Qingque",
+    "DisplayName": "Qingque"
+  },
+  {
+    "InternalName": "Sampo",
+    "DisplayName": "Sampo"
+  },
+  {
+    "InternalName": "Seele",
+    "DisplayName": "Seele"
+  },
+  {
+    "InternalName": "Serval",
+    "DisplayName": "Serval"
+  },
+  {
+    "InternalName": "SilverWolf",
+    "DisplayName": "Silver Wolf"
+  },
+  {
+    "InternalName": "Sushang",
+    "DisplayName": "Sushang"
+  },
+  {
+    "InternalName": "Tingyun",
+    "DisplayName": "Tingyun"
+  },
+  {
+    "InternalName": "Topaz",
+    "DisplayName": "Topaz y Conti"
+  },
+  {
+    "InternalName": "Welt",
+    "DisplayName": "Welt"
+  },
+  {
+    "InternalName": "Yanqing",
+    "DisplayName": "Yanqing"
+  },
+  {
+    "InternalName": "Yukong",
+    "DisplayName": "Yukong"
+  },
+  {
+    "InternalName": "Argenti",
+    "DisplayName": "Argenti"
+  },
+  {
+    "InternalName": "DrRatio",
+    "DisplayName": "Dr. Ratio"
+  },
+  {
+    "InternalName": "Hanya",
+    "DisplayName": "Hanya"
+  },
+  {
+    "InternalName": "Huohuo",
+    "DisplayName": "Huohuo"
+  },
+  {
+    "InternalName": "RuanMei",
+    "DisplayName": "Ruan Mei",
+    "InGameSkins": [
+      {
+        "InternalName": "RuanMeiPlumblossomLetter",
+        "DisplayName": "Carta de ciruelo"
+      }
+    ]
+  },
+  {
+    "InternalName": "Xueyi",
+    "DisplayName": "Xueyi"
+  },
+  {
+    "InternalName": "BlackSwan",
+    "DisplayName": "Cisne Negro"
+  },
+  {
+    "InternalName": "Sparkle",
+    "DisplayName": "Sparkle"
+  },
+  {
+    "InternalName": "Misha",
+    "DisplayName": "Misha"
+  },
+  {
+    "InternalName": "Acheron",
+    "DisplayName": "Acheron"
+  },
+  {
+    "InternalName": "Aventurine",
+    "DisplayName": "Aventurino"
+  },
+  {
+    "InternalName": "Gallagher",
+    "DisplayName": "Gallagher"
+  },
+  {
+    "InternalName": "Robin",
+    "DisplayName": "Robin"
+  },
+  {
+    "InternalName": "Boothill",
+    "DisplayName": "Boothill"
+  },
+  {
+    "InternalName": "Firefly",
+    "DisplayName": "Luciérnaga",
+    "InGameSkins": [
+      {
+        "InternalName": "FireflySpringMissive",
+        "DisplayName": "Misiva primaveral"
+      }
+    ]
+  },
+  {
+    "InternalName": "Jade",
+    "DisplayName": "Jade"
+  },
+  {
+    "InternalName": "Yunli",
+    "DisplayName": "Yunli"
+  },
+  {
+    "InternalName": "Jiaoqiu",
+    "DisplayName": "Jiaoqiu"
+  },
+  {
+    "InternalName": "Feixiao",
+    "DisplayName": "Feixiao"
+  },
+  {
+    "InternalName": "Lingsha",
+    "DisplayName": "Lingsha"
+  },
+  {
+    "InternalName": "Moze",
+    "DisplayName": "Moze"
+  },
+  {
+    "InternalName": "Rappa",
+    "DisplayName": "Rappa"
+  },
+  {
+    "InternalName": "Fugue",
+    "DisplayName": "Fugue"
+  },
+  {
+    "InternalName": "Sunday",
+    "DisplayName": "Sunday"
+  },
+  {
+    "InternalName": "The Herta",
+    "DisplayName": "Sra. Herta"
+  },
+  {
+    "InternalName": "Aglaea",
+    "DisplayName": "Aglaea"
+  },
+  {
+    "InternalName": "Tribbie",
+    "DisplayName": "Tribbie"
+  },
+  {
+    "InternalName": "Mydei",
+    "DisplayName": "Midei"
+  },
+  {
+    "InternalName": "Castorice",
+    "DisplayName": "Castorice",
+    "InGameSkins": [
+      {
+        "InternalName": "CastoriceGossamerFlutter",
+        "DisplayName": "Aleteo de seda"
+      }
+    ]
+  },
+  {
+    "InternalName": "Anaxa",
+    "DisplayName": "Anaxa"
+  },
+  {
+    "InternalName": "Hyacine",
+    "DisplayName": "Hyacine"
+  },
+  {
+    "InternalName": "Cipher",
+    "DisplayName": "Cífer"
+  },
+  {
+    "InternalName": "Phainon",
+    "DisplayName": "Fainón"
+  },
+  {
+    "InternalName": "Saber",
+    "DisplayName": "Saber"
+  },
+  {
+    "InternalName": "Archer",
+    "DisplayName": "Archer"
+  },
+  {
+    "InternalName": "Cerydra",
+    "DisplayName": "Céridra"
+  },
+  {
+    "InternalName": "Hysilens",
+    "DisplayName": "Hysilens"
+  },
+  {
+    "InternalName": "Evernight",
+    "DisplayName": "Larganoche"
+  },
+  {
+    "InternalName": "Cyrene",
+    "DisplayName": "Cirene"
+  },
+  {
+    "InternalName": "Dahlia",
+    "DisplayName": "La Dalia"
+  },
+  {
+    "InternalName": "Sparxie",
+    "DisplayName": "Chispa",
+    "InGameSkins": [
+      {
+        "InternalName": "SparxieCandyCoatedWaves",
+        "DisplayName": "Olas acarameladas"
+      }
+    ]
+  },
+  {
+    "InternalName": "Ashveil",
+    "DisplayName": "Ashveil"
+  },
+  {
+    "InternalName": "YaoGuang",
+    "DisplayName": "Yao Guang"
+  },
+  {
+    "InternalName": "Evanescia",
+    "DisplayName": "Evanescia"
+  },
+  {
+    "InternalName": "SilverWolf999",
+    "DisplayName": "Silver Wolf Niv. 999"
+  },
+  {
+    "InternalName": "MortenaxBlade",
+    "DisplayName": "Mortenax Blade"
+  },
+  {
+    "InternalName": "HimekoNova",
+    "DisplayName": "Himeko Nova"
+  },
+  {
+    "InternalName": "Gilgamesh",
+    "DisplayName": "Gilgamesh"
+  },
+  {
+    "InternalName": "RinTohsaka",
+    "DisplayName": "Rin Tohsaka"
+  },
+  {
+    "InternalName": "RobinSummeretto",
+    "DisplayName": "Robin: Summeretto"
+  },
+  {
+    "InternalName": "AventurineWaveflair",
+    "DisplayName": "Aventurino: Olas veraniegas"
+  }
+]

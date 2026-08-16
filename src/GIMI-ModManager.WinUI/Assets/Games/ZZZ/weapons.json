@@ -1,1 +1,371 @@
-[]
+[
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Penguinboo.png",
+    "InternalName": "Penguinboo",
+    "DisplayName": "Penguinboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Luckyboo.png",
+    "InternalName": "Luckyboo",
+    "DisplayName": "Luckyboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Exploreboo.png",
+    "InternalName": "Exploreboo",
+    "DisplayName": "Exploreboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Sumoboo.png",
+    "InternalName": "Sumoboo",
+    "DisplayName": "Sumoboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Paperboo.png",
+    "InternalName": "Paperboo",
+    "DisplayName": "Paperboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Bagboo.png",
+    "InternalName": "Bagboo",
+    "DisplayName": "Bagboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Cryboo.png",
+    "InternalName": "Cryboo",
+    "DisplayName": "Cryboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Avocaboo.png",
+    "InternalName": "Avocaboo",
+    "DisplayName": "Avocaboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Boollseye.png",
+    "InternalName": "Boollseye",
+    "DisplayName": "Boollseye"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Electroboo.png",
+    "InternalName": "Electroboo",
+    "DisplayName": "Electroboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Magnetiboo.png",
+    "InternalName": "Magnetiboo",
+    "DisplayName": "Magnetiboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Booressure.png",
+    "InternalName": "Booressure",
+    "DisplayName": "Booressure"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Baddieboo.png",
+    "InternalName": "Baddieboo",
+    "DisplayName": "Baddieboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Overtimeboo.png",
+    "InternalName": "Overtimeboo",
+    "DisplayName": "Overtimeboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Brawlerboo.png",
+    "InternalName": "Brawlerboo",
+    "DisplayName": "Brawlerboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Excaliboo.png",
+    "InternalName": "Excaliboo",
+    "DisplayName": "Excaliboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Knightboo.png",
+    "InternalName": "Knightboo",
+    "DisplayName": "Knightboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Bild_N__Boolok.png",
+    "InternalName": "Bild N. Boolok",
+    "DisplayName": "Bild N. Boolok"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Booltergeist.png",
+    "InternalName": "Booltergeist",
+    "DisplayName": "Booltergeist"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Sharkboo.png",
+    "InternalName": "Sharkboo",
+    "DisplayName": "Sharkboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Safety.png",
+    "InternalName": "Safety",
+    "DisplayName": "Safety"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Devilboo.png",
+    "InternalName": "Devilboo",
+    "DisplayName": "Devilboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Butler.png",
+    "InternalName": "Butler",
+    "DisplayName": "Butler"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Amillion.png",
+    "InternalName": "Amillion",
+    "DisplayName": "Amillion"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Rocketboo.png",
+    "InternalName": "Rocketboo",
+    "DisplayName": "Rocketboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Plugboo.png",
+    "InternalName": "Plugboo",
+    "DisplayName": "Plugboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Resonaboo.png",
+    "InternalName": "Resonaboo",
+    "DisplayName": "Resonaboo"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Biggest_Fan.png",
+    "InternalName": "Biggest Fan",
+    "DisplayName": "Biggest Fan"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Red_Moccus.png",
+    "InternalName": "Red Moccus",
+    "DisplayName": "Red Moccus"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Officer_Cui.png",
+    "InternalName": "Officer Cui",
+    "DisplayName": "Officer Cui"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Bangvolver.png",
+    "InternalName": "Bangvolver",
+    "DisplayName": "Bangvolver"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Agent_Gulliver.png",
+    "InternalName": "Agent Gulliver",
+    "DisplayName": "Agent Gulliver"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Snap.png",
+    "InternalName": "Snap",
+    "DisplayName": "Snap"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Robin.png",
+    "InternalName": "Robin",
+    "DisplayName": "Robin"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Belion.png",
+    "InternalName": "Belion",
+    "DisplayName": "Belion"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Miss_Esme.png",
+    "InternalName": "Miss Esme",
+    "DisplayName": "Miss Esme"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Mercury.png",
+    "InternalName": "Mercury",
+    "DisplayName": "Mercury"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Birkblick.png",
+    "InternalName": "Birkblick",
+    "DisplayName": "Birkblick"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Sprout.png",
+    "InternalName": "Sprout",
+    "DisplayName": "Sprout"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Ultra_Jake.png",
+    "InternalName": "Ultra Jake",
+    "DisplayName": "Ultra Jake"
+  },
+  {
+    "Rarity": 0,
+    "Type": "Bangboo",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Ariel.png",
+    "InternalName": "Ariel",
+    "DisplayName": "Ariel"
+  }
+]

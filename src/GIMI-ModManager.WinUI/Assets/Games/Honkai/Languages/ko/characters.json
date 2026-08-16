@@ -1,0 +1,392 @@
+[
+  {
+    "InternalName": "Others",
+    "DisplayName": "캐릭터"
+  },
+  {
+    "InternalName": "Weapons",
+    "DisplayName": "무기"
+  },
+  {
+    "InternalName": "Trailblazer",
+    "DisplayName": "개척자"
+  },
+  {
+    "InternalName": "Arlan",
+    "DisplayName": "아를란"
+  },
+  {
+    "InternalName": "Asta",
+    "DisplayName": "아스타"
+  },
+  {
+    "InternalName": "Bailu",
+    "DisplayName": "백로"
+  },
+  {
+    "InternalName": "Blade",
+    "DisplayName": "블레이드"
+  },
+  {
+    "InternalName": "Bronya",
+    "DisplayName": "브로냐"
+  },
+  {
+    "InternalName": "Clara",
+    "DisplayName": "클라라"
+  },
+  {
+    "InternalName": "Dan Heng",
+    "DisplayName": "단항"
+  },
+  {
+    "InternalName": "Dan Heng IL",
+    "DisplayName": "단항•음월"
+  },
+  {
+    "InternalName": "Dan Heng PT",
+    "DisplayName": "단항•등황"
+  },
+  {
+    "InternalName": "FuXuan",
+    "DisplayName": "부현"
+  },
+  {
+    "InternalName": "Gepard",
+    "DisplayName": "게파드"
+  },
+  {
+    "InternalName": "Guinaifen",
+    "DisplayName": "계네빈"
+  },
+  {
+    "InternalName": "Herta",
+    "DisplayName": "헤르타"
+  },
+  {
+    "InternalName": "Himeko",
+    "DisplayName": "히메코"
+  },
+  {
+    "InternalName": "Hook",
+    "DisplayName": "후크"
+  },
+  {
+    "InternalName": "JingYuan",
+    "DisplayName": "경원"
+  },
+  {
+    "InternalName": "Jingliu",
+    "DisplayName": "경류"
+  },
+  {
+    "InternalName": "Kafka",
+    "DisplayName": "카프카"
+  },
+  {
+    "InternalName": "Luka",
+    "DisplayName": "루카"
+  },
+  {
+    "InternalName": "Luocha",
+    "DisplayName": "나찰"
+  },
+  {
+    "InternalName": "Lynx",
+    "DisplayName": "링스"
+  },
+  {
+    "InternalName": "March7",
+    "DisplayName": "Mar. 7th",
+    "InGameSkins": [
+      {
+        "InternalName": "March7Hunt",
+        "DisplayName": "Mar. 7th•수렵"
+      },
+      {
+        "InternalName": "MarchNS",
+        "DisplayName": "겨울이 가고 찾아온 봄"
+      }
+    ]
+  },
+  {
+    "InternalName": "Natasha",
+    "DisplayName": "나타샤"
+  },
+  {
+    "InternalName": "Pela",
+    "DisplayName": "페라"
+  },
+  {
+    "InternalName": "Qingque",
+    "DisplayName": "청작"
+  },
+  {
+    "InternalName": "Sampo",
+    "DisplayName": "삼포"
+  },
+  {
+    "InternalName": "Seele",
+    "DisplayName": "제레"
+  },
+  {
+    "InternalName": "Serval",
+    "DisplayName": "서벌"
+  },
+  {
+    "InternalName": "SilverWolf",
+    "DisplayName": "은랑"
+  },
+  {
+    "InternalName": "Sushang",
+    "DisplayName": "소상"
+  },
+  {
+    "InternalName": "Tingyun",
+    "DisplayName": "정운"
+  },
+  {
+    "InternalName": "Topaz",
+    "DisplayName": "토파즈&복순이"
+  },
+  {
+    "InternalName": "Welt",
+    "DisplayName": "웰트"
+  },
+  {
+    "InternalName": "Yanqing",
+    "DisplayName": "연경"
+  },
+  {
+    "InternalName": "Yukong",
+    "DisplayName": "어공"
+  },
+  {
+    "InternalName": "Argenti",
+    "DisplayName": "아젠티"
+  },
+  {
+    "InternalName": "DrRatio",
+    "DisplayName": "Dr. 레이시오"
+  },
+  {
+    "InternalName": "Hanya",
+    "DisplayName": "한아"
+  },
+  {
+    "InternalName": "Huohuo",
+    "DisplayName": "곽향"
+  },
+  {
+    "InternalName": "RuanMei",
+    "DisplayName": "완•매",
+    "InGameSkins": [
+      {
+        "InternalName": "RuanMeiPlumblossomLetter",
+        "DisplayName": "매화를 꺾어 부치는 편지"
+      }
+    ]
+  },
+  {
+    "InternalName": "Xueyi",
+    "DisplayName": "설의"
+  },
+  {
+    "InternalName": "BlackSwan",
+    "DisplayName": "블랙 스완"
+  },
+  {
+    "InternalName": "Sparkle",
+    "DisplayName": "스파클"
+  },
+  {
+    "InternalName": "Misha",
+    "DisplayName": "미샤"
+  },
+  {
+    "InternalName": "Acheron",
+    "DisplayName": "아케론"
+  },
+  {
+    "InternalName": "Aventurine",
+    "DisplayName": "어벤츄린"
+  },
+  {
+    "InternalName": "Gallagher",
+    "DisplayName": "갤러거"
+  },
+  {
+    "InternalName": "Robin",
+    "DisplayName": "로빈"
+  },
+  {
+    "InternalName": "Boothill",
+    "DisplayName": "부트힐"
+  },
+  {
+    "InternalName": "Firefly",
+    "DisplayName": "반디",
+    "InGameSkins": [
+      {
+        "InternalName": "FireflySpringMissive",
+        "DisplayName": "봄날의 편지"
+      }
+    ]
+  },
+  {
+    "InternalName": "Jade",
+    "DisplayName": "제이드"
+  },
+  {
+    "InternalName": "Yunli",
+    "DisplayName": "운리"
+  },
+  {
+    "InternalName": "Jiaoqiu",
+    "DisplayName": "초구"
+  },
+  {
+    "InternalName": "Feixiao",
+    "DisplayName": "비소"
+  },
+  {
+    "InternalName": "Lingsha",
+    "DisplayName": "영사"
+  },
+  {
+    "InternalName": "Moze",
+    "DisplayName": "맥택"
+  },
+  {
+    "InternalName": "Rappa",
+    "DisplayName": "라파"
+  },
+  {
+    "InternalName": "Fugue",
+    "DisplayName": "망귀인"
+  },
+  {
+    "InternalName": "Sunday",
+    "DisplayName": "선데이"
+  },
+  {
+    "InternalName": "The Herta",
+    "DisplayName": "더 헤르타"
+  },
+  {
+    "InternalName": "Aglaea",
+    "DisplayName": "아글라이아"
+  },
+  {
+    "InternalName": "Tribbie",
+    "DisplayName": "트리비"
+  },
+  {
+    "InternalName": "Mydei",
+    "DisplayName": "마이데이"
+  },
+  {
+    "InternalName": "Castorice",
+    "DisplayName": "카스토리스",
+    "InGameSkins": [
+      {
+        "InternalName": "CastoriceGossamerFlutter",
+        "DisplayName": "가벼운 날갯짓"
+      }
+    ]
+  },
+  {
+    "InternalName": "Anaxa",
+    "DisplayName": "아낙사"
+  },
+  {
+    "InternalName": "Hyacine",
+    "DisplayName": "히아킨"
+  },
+  {
+    "InternalName": "Cipher",
+    "DisplayName": "사이퍼"
+  },
+  {
+    "InternalName": "Phainon",
+    "DisplayName": "파이논"
+  },
+  {
+    "InternalName": "Saber",
+    "DisplayName": "세이버"
+  },
+  {
+    "InternalName": "Archer",
+    "DisplayName": "아처"
+  },
+  {
+    "InternalName": "Cerydra",
+    "DisplayName": "케리드라"
+  },
+  {
+    "InternalName": "Hysilens",
+    "DisplayName": "히실렌스"
+  },
+  {
+    "InternalName": "Evernight",
+    "DisplayName": "에버나이트"
+  },
+  {
+    "InternalName": "Cyrene",
+    "DisplayName": "키레네"
+  },
+  {
+    "InternalName": "Dahlia",
+    "DisplayName": "달리아"
+  },
+  {
+    "InternalName": "Sparxie",
+    "DisplayName": "스파키",
+    "InGameSkins": [
+      {
+        "InternalName": "SparxieCandyCoatedWaves",
+        "DisplayName": "달콤한 물결"
+      }
+    ]
+  },
+  {
+    "InternalName": "Ashveil",
+    "DisplayName": "애쉬베일"
+  },
+  {
+    "InternalName": "YaoGuang",
+    "DisplayName": "효광"
+  },
+  {
+    "InternalName": "Evanescia",
+    "DisplayName": "에바네시아"
+  },
+  {
+    "InternalName": "SilverWolf999",
+    "DisplayName": "은랑 LV.999"
+  },
+  {
+    "InternalName": "MortenaxBlade",
+    "DisplayName": "천야•블레이드"
+  },
+  {
+    "InternalName": "HimekoNova",
+    "DisplayName": "히메코•노바"
+  },
+  {
+    "InternalName": "Gilgamesh",
+    "DisplayName": "길가메시"
+  },
+  {
+    "InternalName": "RinTohsaka",
+    "DisplayName": "토오사카 린"
+  },
+  {
+    "InternalName": "RobinSummeretto",
+    "DisplayName": "로빈•서머레토"
+  },
+  {
+    "InternalName": "AventurineWaveflair",
+    "DisplayName": "어벤츄린•웨이브"
+  }
+]

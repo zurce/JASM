@@ -204,7 +204,14 @@
       "Fontaine"
     ],
     "ModFilesName": "Charlotte",
-    "InGameSkins": [],
+    "InGameSkins": [
+      {
+        "ModFilesName": "CharlotteHurlockVariations",
+        "Image": "CharlotteHurlockVariations.png",
+        "InternalName": "CharlotteHurlockVariations",
+        "DisplayName": "Hurlock Variations"
+      }
+    ],
     "InternalName": "Charlotte",
     "DisplayName": "Charlotte"
   },
@@ -1801,7 +1808,14 @@
       "Natlan"
     ],
     "ModFilesName": "Citlali",
-    "InGameSkins": [],
+    "InGameSkins": [
+      {
+        "ModFilesName": "CitlaliWhispersOfStarsAndSmoke",
+        "Image": "CitlaliWhispersOfStarsAndSmoke.png",
+        "InternalName": "CitlaliWhispersOfStarsAndSmoke",
+        "DisplayName": "Whispers of Stars and Smoke"
+      }
+    ],
     "InternalName": "Citlali",
     "DisplayName": "Citlali"
   },
@@ -2093,7 +2107,14 @@
       "Mondstadt"
     ],
     "ModFilesName": "Durin",
-    "InGameSkins": [],
+    "InGameSkins": [
+      {
+        "ModFilesName": "DurinTowardTheDistantHorizon",
+        "Image": "DurinTowardTheDistantHorizon.png",
+        "InternalName": "DurinTowardTheDistantHorizon",
+        "DisplayName": "Toward the Distant Horizon"
+      }
+    ],
     "InternalName": "Durin",
     "DisplayName": "Durin"
   },
@@ -2251,5 +2272,74 @@
     "InGameSkins": [],
     "InternalName": "Linnea",
     "DisplayName": "Linnea"
+  },
+  {
+    "Keys": [
+      "alyosha"
+    ],
+    "ReleaseDate": "2026-08-12T00:00:00",
+    "Image": "Alyosha.webp",
+    "Rarity": 4,
+    "Element": "Electro",
+    "Class": "Polearm",
+    "Region": [
+      "Snezhnaya"
+    ],
+    "ModFilesName": "Alyosha",
+    "InGameSkins": [],
+    "InternalName": "Alyosha",
+    "DisplayName": "Alyosha"
+  },
+  {
+    "Keys": [
+      "vesna"
+    ],
+    "ReleaseDate": "2026-09-23T00:00:00",
+    "Image": "Vesna.webp",
+    "Rarity": 5,
+    "Element": "Anemo",
+    "Class": "Sword",
+    "Region": [
+      "Snezhnaya"
+    ],
+    "ModFilesName": "Vesna",
+    "InGameSkins": [],
+    "InternalName": "Vesna",
+    "DisplayName": "Vesna"
+  },
+  {
+    "Keys": [
+      "odette"
+    ],
+    "ReleaseDate": "2026-10-14T00:00:00",
+    "Image": "Odette.webp",
+    "Rarity": 5,
+    "Element": "Cryo",
+    "Class": "Sword",
+    "Region": [
+      "Snezhnaya"
+    ],
+    "ModFilesName": "Odette",
+    "InGameSkins": [],
+    "InternalName": "Odette",
+    "DisplayName": "Odette"
+  },
+  {
+    "Keys": [
+      "vodyanitsa",
+      "voyanidtsa"
+    ],
+    "ReleaseDate": "2026-10-14T00:00:00",
+    "Image": "Vodyanitsa.webp",
+    "Rarity": 5,
+    "Element": "Hydro",
+    "Class": "Catalyst",
+    "Region": [
+      "Snezhnaya"
+    ],
+    "ModFilesName": "Vodyanitsa",
+    "InGameSkins": [],
+    "InternalName": "Vodyanitsa",
+    "DisplayName": "Vodyanitsa"
   }
 ]

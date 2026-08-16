@@ -1,27 +1,30 @@
 [
-	{
-		"InternalName": "Fire",
-		"DisplayName": "Огонь",
-		"Image": "Fire.svg"
-	},
-	{
-		"InternalName": "Electric",
-		"DisplayName": "Электро",
-		"Image": "Electric.svg"
-	},
-	{
-		"InternalName": "Ice",
-		"DisplayName": "Лёд",
-		"Image": "Ice.svg"
-	},
-	{
-		"InternalName": "Physical",
-		"DisplayName": "Физический",
-		"Image": "Physical.svg"
-	},
-	{
-		"InternalName": "Ether",
-		"DisplayName": "Эфир",
-		"Image": "Ether.svg"
-	}
+  {
+    "InternalName": "Fire",
+    "DisplayName": "Огонь"
+  },
+  {
+    "InternalName": "Electric",
+    "DisplayName": "Электро"
+  },
+  {
+    "InternalName": "Ice",
+    "DisplayName": "Лед"
+  },
+  {
+    "InternalName": "Physical",
+    "DisplayName": "Физический"
+  },
+  {
+    "InternalName": "Ether",
+    "DisplayName": "Эфир"
+  },
+  {
+    "InternalName": "Wind",
+    "DisplayName": "Wind"
+  },
+  {
+    "InternalName": "Lumiflux",
+    "DisplayName": "Lumiflux"
+  }
 ]

@@ -1,19 +1,19 @@
 [
   {
     "InternalName": "Belogbog",
-    "DisplayName": "«Белобог»"
+    "DisplayName": "Belobog Heavy Industries"
   },
   {
     "InternalName": "ResponseTeam",
-    "DisplayName": "Группа особого реагирования угрозыска"
+    "DisplayName": "Criminal Investigation Special Response Team"
   },
   {
     "InternalName": "CHares",
-    "DisplayName": "«Хитрые зайцы»"
+    "DisplayName": "Хитрые зайцы"
   },
   {
     "InternalName": "OBOLS",
-    "DisplayName": "Отряд ОБОЛ"
+    "DisplayName": "OBOLS Squad"
   },
   {
     "InternalName": "Section6",
@@ -21,11 +21,11 @@
   },
   {
     "InternalName": "Calydon",
-    "DisplayName": "Сына Калидона"
+    "DisplayName": "Sons of Calydon"
   },
   {
     "InternalName": "Victoria",
-    "DisplayName": "Агенство домашнего персонала «Виктория»"
+    "DisplayName": "Агентство «Виктория»"
   },
   {
     "InternalName": "Phaethon",
@@ -33,6 +33,46 @@
   },
   {
     "InternalName": "Lyra",
-    "DisplayName": "«Созвездие Лиры»"
+    "DisplayName": "Stars of Lyra"
+  },
+  {
+    "InternalName": "Mockingbird",
+    "DisplayName": "Mockingbird"
+  },
+  {
+    "InternalName": "YSummit",
+    "DisplayName": "Yunkui Summit"
+  },
+  {
+    "InternalName": "Spook",
+    "DisplayName": "Spook Shack"
+  },
+  {
+    "InternalName": "Krampus",
+    "DisplayName": "Krampus Compliance Authority"
+  },
+  {
+    "InternalName": "AOD",
+    "DisplayName": "Angels of Delusion"
+  },
+  {
+    "InternalName": "ESD",
+    "DisplayName": "External Strategy Department"
+  },
+  {
+    "InternalName": "CovenantOfDayat",
+    "DisplayName": "Covenant of Dayat"
+  },
+  {
+    "InternalName": "APD",
+    "DisplayName": "Airspace Patrol Department"
+  },
+  {
+    "InternalName": "Roscaelifer",
+    "DisplayName": "Roscaelifer"
+  },
+  {
+    "InternalName": "FlintWorks",
+    "DisplayName": "Flint Workshop"
   }
 ]

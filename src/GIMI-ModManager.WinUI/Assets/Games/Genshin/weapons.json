@@ -1645,5 +1645,581 @@
     "Image": "AzureLight.png",
     "InternalName": "AzureLight",
     "DisplayName": "AzureLight"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Sword",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Sturdy_Bone.png",
+    "InternalName": "Sturdy Bone",
+    "DisplayName": "Sturdy Bone"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Sword",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Flute_of_Ezpitzal.png",
+    "InternalName": "Flute of Ezpitzal",
+    "DisplayName": "Flute of Ezpitzal"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Sword",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Calamity_of_Eshu.png",
+    "InternalName": "Calamity of Eshu",
+    "DisplayName": "Calamity of Eshu"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Sword",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Serenity_s_Call.png",
+    "InternalName": "Serenity's Call",
+    "DisplayName": "Serenity's Call"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Sword",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Moonweaver_s_Dawn.png",
+    "InternalName": "Moonweaver's Dawn",
+    "DisplayName": "Moonweaver's Dawn"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Sword",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Heretic_s_Molten_Blade.png",
+    "InternalName": "Heretic's Molten Blade",
+    "DisplayName": "Heretic's Molten Blade"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Sword",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Emberwell.png",
+    "InternalName": "Emberwell",
+    "DisplayName": "Emberwell"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Sword",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Peak_Patrol_Song.png",
+    "InternalName": "Peak Patrol Song",
+    "DisplayName": "Peak Patrol Song"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Sword",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Athame_Artis.png",
+    "InternalName": "Athame Artis",
+    "DisplayName": "Athame Artis"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Sword",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Lightbearing_Moonshard.png",
+    "InternalName": "Lightbearing Moonshard",
+    "DisplayName": "Lightbearing Moonshard"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Sword",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Whitelake_Frostfeather.png",
+    "InternalName": "Whitelake Frostfeather",
+    "DisplayName": "Whitelake Frostfeather"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Sword",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Exaiphanes_Blade.png",
+    "InternalName": "Exaiphanes Blade",
+    "DisplayName": "Exaiphanes Blade"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Claymore",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Ultimate_Overlord_s_Mega_Magic_Sword.png",
+    "InternalName": "Ultimate Overlord's Mega Magic Sword",
+    "DisplayName": "\"Ultimate Overlord's Mega Magic Sword\""
+  },
+  {
+    "Rarity": 4,
+    "Type": "Claymore",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Fruitful_Hook.png",
+    "InternalName": "Fruitful Hook",
+    "DisplayName": "Fruitful Hook"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Claymore",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Earth_Shaker.png",
+    "InternalName": "Earth Shaker",
+    "DisplayName": "Earth Shaker"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Claymore",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Flame-Forged_Insight.png",
+    "InternalName": "Flame-Forged Insight",
+    "DisplayName": "Flame-Forged Insight"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Claymore",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Master_Key.png",
+    "InternalName": "Master Key",
+    "DisplayName": "Master Key"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Claymore",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Forged_by_the_Golden_Melody.png",
+    "InternalName": "Forged by the Golden Melody",
+    "DisplayName": "Forged by the Golden Melody"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Claymore",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Blade_of_Atonement.png",
+    "InternalName": "Blade of Atonement",
+    "DisplayName": "Blade of Atonement"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Claymore",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Fang_of_the_Mountain_King.png",
+    "InternalName": "Fang of the Mountain King",
+    "DisplayName": "Fang of the Mountain King"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Claymore",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "A_Thousand_Blazing_Suns.png",
+    "InternalName": "A Thousand Blazing Suns",
+    "DisplayName": "A Thousand Blazing Suns"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Claymore",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Gest_of_the_Mighty_Wolf.png",
+    "InternalName": "Gest of the Mighty Wolf",
+    "DisplayName": "Gest of the Mighty Wolf"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Claymore",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "A_Teaspoon_of_Transcendence.png",
+    "InternalName": "A Teaspoon of Transcendence",
+    "DisplayName": "A Teaspoon of Transcendence"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Polearm",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Dialogues_of_the_Desert_Sages.png",
+    "InternalName": "Dialogues of the Desert Sages",
+    "DisplayName": "Dialogues of the Desert Sages"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Polearm",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Mountain-Bracing_Bolt.png",
+    "InternalName": "Mountain-Bracing Bolt",
+    "DisplayName": "Mountain-Bracing Bolt"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Polearm",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Footprint_of_the_Rainbow.png",
+    "InternalName": "Footprint of the Rainbow",
+    "DisplayName": "Footprint of the Rainbow"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Polearm",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Tamayuratei_no_Ohanashi.png",
+    "InternalName": "Tamayuratei no Ohanashi",
+    "DisplayName": "Tamayuratei no Ohanashi"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Polearm",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Prospector_s_Shovel.png",
+    "InternalName": "Prospector's Shovel",
+    "DisplayName": "Prospector's Shovel"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Polearm",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Sacrificer_s_Staff.png",
+    "InternalName": "Sacrificer's Staff",
+    "DisplayName": "Sacrificer's Staff"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Polearm",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Frostbreath.png",
+    "InternalName": "Frostbreath",
+    "DisplayName": "Frostbreath"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Polearm",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Song_of_the_Vigil.png",
+    "InternalName": "Song of the Vigil",
+    "DisplayName": "Song of the Vigil"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Polearm",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Lumidouce_Elegy.png",
+    "InternalName": "Lumidouce Elegy",
+    "DisplayName": "Lumidouce Elegy"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Polearm",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Symphonist_of_Scents.png",
+    "InternalName": "Symphonist of Scents",
+    "DisplayName": "Symphonist of Scents"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Polearm",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Fractured_Halo.png",
+    "InternalName": "Fractured Halo",
+    "DisplayName": "Fractured Halo"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Polearm",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Bloodsoaked_Ruins.png",
+    "InternalName": "Bloodsoaked Ruins",
+    "DisplayName": "Bloodsoaked Ruins"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Polearm",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Disaster_and_Remorse.png",
+    "InternalName": "Disaster and Remorse",
+    "DisplayName": "Disaster and Remorse"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Ash-Graven_Drinking_Horn.png",
+    "InternalName": "Ash-Graven Drinking Horn",
+    "DisplayName": "Ash-Graven Drinking Horn"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Waveriding_Whirl.png",
+    "InternalName": "Waveriding Whirl",
+    "DisplayName": "Waveriding Whirl"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Ring_of_Yaxche.png",
+    "InternalName": "Ring of Yaxche",
+    "DisplayName": "Ring of Yaxche"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Etherlight_Spindlelute.png",
+    "InternalName": "Etherlight Spindlelute",
+    "DisplayName": "Etherlight Spindlelute"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Blackmarrow_Lantern.png",
+    "InternalName": "Blackmarrow Lantern",
+    "DisplayName": "Blackmarrow Lantern"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Dawning_Frost.png",
+    "InternalName": "Dawning Frost",
+    "DisplayName": "Dawning Frost"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Clash_of_Kings.png",
+    "InternalName": "Clash of Kings",
+    "DisplayName": "Clash of Kings"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Echoes_of_the_Heart.png",
+    "InternalName": "Echoes of the Heart",
+    "DisplayName": "Echoes of the Heart"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Surf_s_Up.png",
+    "InternalName": "Surf's Up",
+    "DisplayName": "Surf's Up"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Starcaller_s_Watch.png",
+    "InternalName": "Starcaller's Watch",
+    "DisplayName": "Starcaller's Watch"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Sunny_Morning_Sleep-In.png",
+    "InternalName": "Sunny Morning Sleep-In",
+    "DisplayName": "Sunny Morning Sleep-In"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Vivid_Notions.png",
+    "InternalName": "Vivid Notions",
+    "DisplayName": "Vivid Notions"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Nightweaver_s_Looking_Glass.png",
+    "InternalName": "Nightweaver's Looking Glass",
+    "DisplayName": "Nightweaver's Looking Glass"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Reliquary_of_Truth.png",
+    "InternalName": "Reliquary of Truth",
+    "DisplayName": "Reliquary of Truth"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Nocturne_s_Curtain_Call.png",
+    "InternalName": "Nocturne's Curtain Call",
+    "DisplayName": "Nocturne's Curtain Call"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Catalyst",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Angelos__Heptades.png",
+    "InternalName": "Angelos' Heptades",
+    "DisplayName": "Angelos' Heptades"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Bow",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Ibis_Piercer.png",
+    "InternalName": "Ibis Piercer",
+    "DisplayName": "Ibis Piercer"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Bow",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Cloudforged.png",
+    "InternalName": "Cloudforged",
+    "DisplayName": "Cloudforged"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Bow",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Flower-Wreathed_Feathers.png",
+    "InternalName": "Flower-Wreathed Feathers",
+    "DisplayName": "Flower-Wreathed Feathers"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Bow",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Chain_Breaker.png",
+    "InternalName": "Chain Breaker",
+    "DisplayName": "Chain Breaker"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Bow",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Sequence_of_Solitude.png",
+    "InternalName": "Sequence of Solitude",
+    "DisplayName": "Sequence of Solitude"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Bow",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Snare_Hook.png",
+    "InternalName": "Snare Hook",
+    "DisplayName": "Snare Hook"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Bow",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Rainbow_Serpent_s_Rain_Bow.png",
+    "InternalName": "Rainbow Serpent's Rain Bow",
+    "DisplayName": "Rainbow Serpent's Rain Bow"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Bow",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Jade_Vista.png",
+    "InternalName": "Jade Vista",
+    "DisplayName": "Jade Vista"
+  },
+  {
+    "Rarity": 4,
+    "Type": "Bow",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Covenant_of_Frost_and_Snow.png",
+    "InternalName": "Covenant of Frost and Snow",
+    "DisplayName": "Covenant of Frost and Snow"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Bow",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Astral_Vulture_s_Crimson_Plumage.png",
+    "InternalName": "Astral Vulture's Crimson Plumage",
+    "DisplayName": "Astral Vulture's Crimson Plumage"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Bow",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "The_Daybreak_Chronicles.png",
+    "InternalName": "The Daybreak Chronicles",
+    "DisplayName": "The Daybreak Chronicles"
+  },
+  {
+    "Rarity": 5,
+    "Type": "Bow",
+    "ModFilesName": "",
+    "IsMultiMod": false,
+    "Image": "Golden_Frostbound_Oath.png",
+    "InternalName": "Golden Frostbound Oath",
+    "DisplayName": "Golden Frostbound Oath"
   }
 ]

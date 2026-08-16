@@ -1,0 +1,30 @@
+[
+  {
+    "InternalName": "Pyro",
+    "DisplayName": "불"
+  },
+  {
+    "InternalName": "Hydro",
+    "DisplayName": "물"
+  },
+  {
+    "InternalName": "Anemo",
+    "DisplayName": "바람"
+  },
+  {
+    "InternalName": "Electro",
+    "DisplayName": "번개"
+  },
+  {
+    "InternalName": "Dendro",
+    "DisplayName": "풀"
+  },
+  {
+    "InternalName": "Cryo",
+    "DisplayName": "얼음"
+  },
+  {
+    "InternalName": "Geo",
+    "DisplayName": "바위"
+  }
+]

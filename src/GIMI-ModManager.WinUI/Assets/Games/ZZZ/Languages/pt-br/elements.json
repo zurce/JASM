@@ -1,0 +1,30 @@
+[
+  {
+    "InternalName": "Fire",
+    "DisplayName": "Fogo"
+  },
+  {
+    "InternalName": "Electric",
+    "DisplayName": "Elétrico"
+  },
+  {
+    "InternalName": "Ice",
+    "DisplayName": "Gelo"
+  },
+  {
+    "InternalName": "Physical",
+    "DisplayName": "Físico"
+  },
+  {
+    "InternalName": "Ether",
+    "DisplayName": "Éter"
+  },
+  {
+    "InternalName": "Wind",
+    "DisplayName": "Wind"
+  },
+  {
+    "InternalName": "Lumiflux",
+    "DisplayName": "Lumiflux"
+  }
+]

@@ -24,7 +24,19 @@
     "DisplayName": "坎瑞亚"
   },
   {
+    "InternalName": "Natlan",
+    "DisplayName": "纳塔"
+  },
+  {
     "InternalName": "Snezhnaya",
     "DisplayName": "至冬国"
+  },
+  {
+    "InternalName": "Extraterrestrial",
+    "DisplayName": "异界"
+  },
+  {
+    "InternalName": "Nod-Krai",
+    "DisplayName": "诺德克莱"
   }
 ]

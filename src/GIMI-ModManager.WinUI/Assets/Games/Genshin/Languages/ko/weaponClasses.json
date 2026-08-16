@@ -1,0 +1,22 @@
+[
+  {
+    "InternalName": "Sword",
+    "DisplayName": "한손검"
+  },
+  {
+    "InternalName": "Bow",
+    "DisplayName": "활"
+  },
+  {
+    "InternalName": "Claymore",
+    "DisplayName": "양손검"
+  },
+  {
+    "InternalName": "Polearm",
+    "DisplayName": "장병기"
+  },
+  {
+    "InternalName": "Catalyst",
+    "DisplayName": "법구"
+  }
+]

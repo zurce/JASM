@@ -1,0 +1,30 @@
+[
+  {
+    "InternalName": "Anomaly",
+    "DisplayName": "異常"
+  },
+  {
+    "InternalName": "Attack",
+    "DisplayName": "強攻"
+  },
+  {
+    "InternalName": "Defense",
+    "DisplayName": "防護"
+  },
+  {
+    "InternalName": "Stun",
+    "DisplayName": "撃破"
+  },
+  {
+    "InternalName": "Support",
+    "DisplayName": "支援"
+  },
+  {
+    "InternalName": "Rupture",
+    "DisplayName": "破撃"
+  },
+  {
+    "InternalName": "Armorer",
+    "DisplayName": "築防"
+  }
+]

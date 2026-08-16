@@ -1,34 +1,78 @@
 [
-    {
-      "InternalName": "Belogbog",
-      "DisplayName": "Construcciones Belobog"
-    },
-    {
-      "InternalName": "ResponseTeam",
-      "DisplayName": "Equipo de Respuesta de la Unidad de Investigación"
-    },
-    {
-      "InternalName": "CHares",
-      "DisplayName": "Liebres Astutas"
-    },
-    {
-        "InternalName": "OBOLS",
-        "DisplayName": "Batallón Óbolos"
-    },
-    {
-      "InternalName": "Section6",
-      "DisplayName": "División N.°6"
-    },
-    {
-      "InternalName": "Calydon",
-      "DisplayName": "Hijos de Calidón"
-    },
-    {
-      "InternalName": "Victoria",
-      "DisplayName": "Servicios Domésticos Victoria"
-    },
-    {
-      "InternalName": "Phaethon",
-      "DisplayName": "Phaethon"
-    }
+  {
+    "InternalName": "Belogbog",
+    "DisplayName": "Belobog Heavy Industries"
+  },
+  {
+    "InternalName": "ResponseTeam",
+    "DisplayName": "Criminal Investigation Special Response Team"
+  },
+  {
+    "InternalName": "CHares",
+    "DisplayName": "Liebres Astutas"
+  },
+  {
+    "InternalName": "OBOLS",
+    "DisplayName": "OBOLS Squad"
+  },
+  {
+    "InternalName": "Section6",
+    "DisplayName": "División 6"
+  },
+  {
+    "InternalName": "Calydon",
+    "DisplayName": "Sons of Calydon"
+  },
+  {
+    "InternalName": "Victoria",
+    "DisplayName": "Victoria Housekeeping"
+  },
+  {
+    "InternalName": "Phaethon",
+    "DisplayName": "Faetón"
+  },
+  {
+    "InternalName": "Lyra",
+    "DisplayName": "Stars of Lyra"
+  },
+  {
+    "InternalName": "Mockingbird",
+    "DisplayName": "Mockingbird"
+  },
+  {
+    "InternalName": "YSummit",
+    "DisplayName": "Yunkui Summit"
+  },
+  {
+    "InternalName": "Spook",
+    "DisplayName": "Spook Shack"
+  },
+  {
+    "InternalName": "Krampus",
+    "DisplayName": "Krampus Compliance Authority"
+  },
+  {
+    "InternalName": "AOD",
+    "DisplayName": "Angels of Delusion"
+  },
+  {
+    "InternalName": "ESD",
+    "DisplayName": "External Strategy Department"
+  },
+  {
+    "InternalName": "CovenantOfDayat",
+    "DisplayName": "Covenant of Dayat"
+  },
+  {
+    "InternalName": "APD",
+    "DisplayName": "Airspace Patrol Department"
+  },
+  {
+    "InternalName": "Roscaelifer",
+    "DisplayName": "Roscaelifer"
+  },
+  {
+    "InternalName": "FlintWorks",
+    "DisplayName": "Flint Workshop"
+  }
 ]

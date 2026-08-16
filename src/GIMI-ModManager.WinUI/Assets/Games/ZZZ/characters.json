@@ -24,6 +24,12 @@
         "Image": "BelleSummerSkies.png",
         "InternalName": "BelleSummerSkies",
         "DisplayName": "Belle Summer Skies"
+      },
+      {
+        "ModFilesName": "BelleBrillianceOfStars",
+        "Image": "BelleBrillianceOfStars.png",
+        "InternalName": "BelleBrillianceOfStars",
+        "DisplayName": "Belle Brilliance of Stars"
       }
     ],
     "InternalName": "Belle",
@@ -54,6 +60,12 @@
         "Image": "WisePeacefulWaves.png",
         "InternalName": "WisePeacefulWaves",
         "DisplayName": "Wise Peaceful Waves"
+      },
+      {
+        "ModFilesName": "WiseOathOfSkies",
+        "Image": "WiseOathOfSkies.png",
+        "InternalName": "WiseOathOfSkies",
+        "DisplayName": "Wise Oath of Skies"
       }
     ],
     "InternalName": "Wise",
@@ -303,7 +315,14 @@
       "Calydon"
     ],
     "ModFilesName": "Lucy",
-    "InGameSkins": [],
+    "InGameSkins": [
+      {
+        "ModFilesName": "LucyPrincessOnHoliday",
+        "Image": "LucyPrincessOnHoliday.png",
+        "InternalName": "Princess on Holiday",
+        "DisplayName": "Lucy Princess on Holiday"
+      }
+    ],
     "InternalName": "Lucy",
     "DisplayName": "Lucy"
   },
@@ -1008,7 +1027,14 @@
       "AOD"
     ],
     "ModFilesName": "NangongYu",
-    "InGameSkins": [],
+    "InGameSkins": [
+      {
+        "ModFilesName": "NangongYuRhapsodysMuse",
+        "Image": "NangongYuRhapsodysMuse.png",
+        "InternalName": "RhapsodysMuse",
+        "DisplayName": "Nangong Yu Rhapsody's Muse"
+      }
+    ],
     "InternalName": "NangongYu",
     "DisplayName": "Nangong Yu"
   },
@@ -1135,7 +1161,20 @@
       "CovenantOfDayat"
     ],
     "ModFilesName": "Remielle",
-    "InGameSkins": [],
+    "InGameSkins": [
+      {
+        "ModFilesName": "RemielleMoonlightWhispers",
+        "Image": "RemielleMoonlightWhispers.png",
+        "InternalName": "MoonlightWhispers",
+        "DisplayName": "Remielle Moonlight Whispers"
+      },
+      {
+        "ModFilesName": "RemielleSeashadePasSeul",
+        "Image": "RemielleSeashadePasSeul.png",
+        "InternalName": "SeashadePasSeul",
+        "DisplayName": "Remielle Seashade Pas Seul"
+      }
+    ],
     "InternalName": "Remielle",
     "DisplayName": "Remielle"
   },
@@ -1154,9 +1193,59 @@
       "APD"
     ],
     "ModFilesName": "Sigrid",
-    "InGameSkins": [],
+    "InGameSkins": [
+      {
+        "ModFilesName": "SigridMajesticWavechaser",
+        "Image": "SigridMajesticWavechaser.png",
+        "InternalName": "MajesticWavechaser",
+        "DisplayName": "Sigrid Majestic Wavechaser"
+      }
+    ],
     "InternalName": "Sigrid",
     "DisplayName": "Sigrid"
+  },
+  {
+    "Keys": [
+      "claret",
+      "claret flint",
+      "claretflint"
+    ],
+    "ReleaseDate": "2026-09-09T00:00:00",
+    "Image": "Claret.webp",
+    "Rarity": 5,
+    "Element": "Electric",
+    "Class": "Armorer",
+    "Region": [
+      "Roscaelifer",
+      "FlintWorks"
+    ],
+    "ModFilesName": "Claret",
+    "InGameSkins": [],
+    "InternalName": "Claret",
+    "DisplayName": "Claret"
+  },
+  {
+    "Keys": [
+      "pryce",
+      "roxy",
+      "roxy ifrita pryce",
+      "roxy pryce",
+      "roxyifritapryce"
+    ],
+    "ReleaseDate": "2026-09-09T00:00:00",
+    "Image": "Pryce.webp",
+    "Rarity": 5,
+    "Element": "Wind",
+    "Class": "Stun",
+    "Region": [
+      "Roscaelifer",
+      "FlintWorks"
+    ],
+    "ModFilesName": "Pryce",
+    "InGameSkins": [],
+    "InternalName": "Pryce",
+    "DisplayName": "Pryce"
   }
 ]
+
 

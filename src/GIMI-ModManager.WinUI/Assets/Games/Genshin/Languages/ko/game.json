@@ -1,0 +1,13 @@
+{
+  "GameName": "원신",
+  "GameShortName": "Genshin",
+  "RarityName": "희귀도",
+  "GameIcon": "Start_Game.png",
+  "GameBananaUrl": "https://gamebanana.com/games/8552",
+  "GameModelImporterUrl": "https://github.com/SilentNightSound/GI-Model-Importer",
+  "GameModelImporterName": "Genshin-Impact-Model-Importer",
+  "GameModelImporterShortName": "GIMI",
+  "GameModelImporterExeName": [
+    "3DMigoto Loader.exe"
+  ]
+}

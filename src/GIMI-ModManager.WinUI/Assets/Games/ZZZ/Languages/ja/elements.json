@@ -1,0 +1,30 @@
+[
+  {
+    "InternalName": "Fire",
+    "DisplayName": "炎"
+  },
+  {
+    "InternalName": "Electric",
+    "DisplayName": "電気"
+  },
+  {
+    "InternalName": "Ice",
+    "DisplayName": "氷"
+  },
+  {
+    "InternalName": "Physical",
+    "DisplayName": "物理"
+  },
+  {
+    "InternalName": "Ether",
+    "DisplayName": "エーテル"
+  },
+  {
+    "InternalName": "Wind",
+    "DisplayName": "Wind"
+  },
+  {
+    "InternalName": "Lumiflux",
+    "DisplayName": "Lumiflux"
+  }
+]

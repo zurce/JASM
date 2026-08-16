@@ -1,0 +1,42 @@
+[
+  {
+    "InternalName": "Adaptive",
+    "DisplayName": "적응"
+  },
+  {
+    "InternalName": "Abundance",
+    "DisplayName": "풍요"
+  },
+  {
+    "InternalName": "Destruction",
+    "DisplayName": "파멸"
+  },
+  {
+    "InternalName": "Erudition",
+    "DisplayName": "지식"
+  },
+  {
+    "InternalName": "Harmony",
+    "DisplayName": "화합"
+  },
+  {
+    "InternalName": "Hunt",
+    "DisplayName": "수렵"
+  },
+  {
+    "InternalName": "Nihility",
+    "DisplayName": "공허"
+  },
+  {
+    "InternalName": "Preservation",
+    "DisplayName": "보존"
+  },
+  {
+    "InternalName": "Remembrance",
+    "DisplayName": "기억"
+  },
+  {
+    "InternalName": "Elation",
+    "DisplayName": "환락"
+  }
+]
