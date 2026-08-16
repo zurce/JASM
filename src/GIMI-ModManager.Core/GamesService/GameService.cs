@@ -1032,10 +1032,8 @@ public class GameService : IGameService
         _languageOverrideDirectory =
             new DirectoryInfo(Path.Combine(_assetsDirectory.FullName, "Languages", currentLanguage.LanguageCode));
 
-        if (currentLanguage.LanguageCode == "en-us")
-            return false;
-
-
+        // Read overrides from the active language folder (including en-us) when it exists, so
+        // per-game category/name overrides (e.g. ZZZ "Weapon" -> "Bangboo") can be shipped.
         return _languageOverrideDirectory.Exists && _languageOverrideDirectory.GetFiles().Any();
     }
 
