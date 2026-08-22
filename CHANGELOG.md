@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.3](https://github.com/zurce/JASM/compare/v3.0.2...v3.0.3) (2026-08-22)
+
+
+### Bug Fixes
+
+* route GameBanana tool downloads to the Tool API namespace ([32660bf](https://github.com/zurce/JASM/commit/32660bfd0755877d9e4eb5a8eec6d0895b6b4bd9))
+
 ## [2.22.9](https://github.com/Jorixon/JASM/compare/v2.22.8...v2.22.9) (2026-01-18)
 
 
