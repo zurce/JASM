@@ -100,12 +100,12 @@ public sealed class ApiGameBananaClient(
         }
     }
 
-    public async Task<ApiModFilesInfo?> GetModFilesInfoAsync(GbModId modId,
+    public async Task<ApiModFilesInfo?> GetModFilesInfoAsync(GbModId modId, bool isTool = false,
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(modId);
 
-        var requestUrl = GetModFilesInfoUrl(modId);
+        var requestUrl = GetModFilesInfoUrl(modId, isTool);
 
         using var response = await SendRequest(requestUrl, cancellationToken).ConfigureAwait(false);
 
@@ -129,11 +129,11 @@ public sealed class ApiGameBananaClient(
     }
 
     public async Task<ApiModFileInfo?> GetModFileInfoAsync(GbModId modId, GbModFileId modFileId,
-        CancellationToken cancellationToken = default)
+        bool isTool = false, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(modFileId);
 
-        var modFilesInfo = await GetModFilesInfoAsync(modId, cancellationToken).ConfigureAwait(false);
+        var modFilesInfo = await GetModFilesInfoAsync(modId, isTool, cancellationToken).ConfigureAwait(false);
 
         return modFilesInfo?.Files.FirstOrDefault(x => x.FileId.ToString() == modFileId);
     }
@@ -260,9 +260,13 @@ public sealed class ApiGameBananaClient(
         }
     }
 
-    private Uri GetModFilesInfoUrl(GbModId gbModId)
+    private Uri GetModFilesInfoUrl(GbModId gbModId, bool isTool = false)
     {
-        return new Uri(ApiUrl + gbModId + "/DownloadPage");
+        // Tools and mods share the same numeric id space but are different submissions. The file
+        // list must come from the matching API namespace or the wrong submission's files are
+        // returned (e.g. a tool id can resolve to an unrelated mod with the same row id).
+        var baseUrl = isTool ? ToolApiUrl : ApiUrl;
+        return new Uri(baseUrl + gbModId + "/DownloadPage");
     }
 
     private Uri GetModInfoUrl(GbModId gbModId)

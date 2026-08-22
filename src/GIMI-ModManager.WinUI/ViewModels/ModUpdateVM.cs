@@ -34,6 +34,7 @@ public partial class ModUpdateVM : ObservableRecipient
     private readonly CancellationToken _ct;
 
     private ModPageInfo? _modPageInfo;
+    private bool _isTool;
     private ISkinMod? _existingModToUpdate;
 
     [ObservableProperty] private string _initializing = "true";
@@ -130,7 +131,13 @@ public partial class ModUpdateVM : ObservableRecipient
 
         using (var _ = IgnorePollyLimiterScope.Ignore())
         {
-            _modPageInfo = await _gameBananaCoreService.GetModProfileAsync(new GbModId(_notification.ModsRetrievedResult.ModId), _ct);
+            // Tools and mods share the same numeric id space — route by the stored profile URL so the
+            // correct submission's profile and file list are fetched.
+            var sitePageUrl = _notification.ModsRetrievedResult.SitePageUrl;
+            _isTool = sitePageUrl?.Segments.Any(s => s.Equals("tools/", StringComparison.OrdinalIgnoreCase)) ?? false;
+            _modPageInfo = _isTool
+                ? await _gameBananaCoreService.GetToolProfileAsync(new GbModId(_notification.ModsRetrievedResult.ModId), _ct)
+                : await _gameBananaCoreService.GetModProfileAsync(new GbModId(_notification.ModsRetrievedResult.ModId), _ct);
         }
 
         if (_modPageInfo is null)
@@ -242,7 +249,8 @@ public partial class ModUpdateVM : ObservableRecipient
             fileInfoVm.Status = ModFileInfoVm.InstallStatus.Downloading;
             fileInfoVm.IsBusy = true;
 
-            var identifier = new GbModFileIdentifier(new GbModId(fileInfoVm.ModId), new GbModFileId(fileInfoVm.FileId));
+            var identifier = new GbModFileIdentifier(new GbModId(fileInfoVm.ModId), new GbModFileId(fileInfoVm.FileId),
+                IsTool: _isTool);
 
             var archivePath =
                 await Task.Run(() => _gameBananaCoreService.DownloadModAsync(identifier, fileInfoVm.Progress, _ct),

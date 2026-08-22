@@ -73,8 +73,12 @@ public class GameBananaService(
             throw new InvalidGameBananaUrlException(
                 $"Invalid GameBanana url: {modSettings.ModUrl} | For mod {mod.FullPath}");
 
+        // Tools and mods share the same numeric id space — route the file-list fetch to the correct
+        // API namespace based on the stored profile URL, or the wrong submission's files are returned.
+        var isTool = modSettings.ModUrl.Segments.Any(s => s.Equals("tools/", StringComparison.OrdinalIgnoreCase));
+
         var result = await _gameBananaCoreService
-            .GetModFilesInfoAsync(new GbModId(modGbId), ignoreCache: ignoreCache, ct: cancellationToken)
+            .GetModFilesInfoAsync(new GbModId(modGbId), isTool: isTool, ignoreCache: ignoreCache, ct: cancellationToken)
             .ConfigureAwait(false);
 
         if (result is null)

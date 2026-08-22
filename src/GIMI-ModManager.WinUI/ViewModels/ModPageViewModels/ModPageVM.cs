@@ -30,6 +30,7 @@ public partial class ModPageVM : ObservableRecipient
     private readonly WindowEx _window;
     private List<ModFileInfo> _modFiles = new();
     private GbModId _gbModId = null!;
+    private bool _isTool;
     private readonly CancellationToken _ct;
 
     private ModPageInfo? _modPageInfo;
@@ -94,6 +95,10 @@ public partial class ModPageVM : ObservableRecipient
         else
             await LogErrorAndClose(new InvalidGameBananaUrlException($"Invalid GameBanana url: {ModPage}"));
 
+        // gamebanana.com/tools/<id> is a Tool submission, not a Mod — the profile and file list must
+        // come from the Tool API namespace. Tools and mods share the same numeric id space, so
+        // fetching the Mod profile for a tool URL returns a completely different submission.
+        _isTool = ModPage.Segments.Any(s => s.Equals("tools/", StringComparison.OrdinalIgnoreCase));
 
         _characterModList = _skinManagerService.GetCharacterModList(_moddableObject);
 
@@ -106,7 +111,9 @@ public partial class ModPageVM : ObservableRecipient
 
         using (var _ = IgnorePollyLimiterScope.Ignore())
         {
-            _modPageInfo = await _gameBananaCoreService.GetModProfileAsync(_gbModId, _ct);
+            _modPageInfo = _isTool
+                ? await _gameBananaCoreService.GetToolProfileAsync(_gbModId, _ct)
+                : await _gameBananaCoreService.GetModProfileAsync(_gbModId, _ct);
         }
 
         if (_modPageInfo is null)
@@ -196,7 +203,8 @@ public partial class ModPageVM : ObservableRecipient
             fileInfoVm.Status = ModFileInfoVm.InstallStatus.Downloading;
             fileInfoVm.IsBusy = true;
 
-            var identifier = new GbModFileIdentifier(new GbModId(fileInfoVm.ModId), new GbModFileId(fileInfoVm.FileId));
+            var identifier = new GbModFileIdentifier(new GbModId(fileInfoVm.ModId), new GbModFileId(fileInfoVm.FileId),
+                IsTool: _isTool);
 
             var archivePath =
                 await Task.Run(() => _gameBananaCoreService.DownloadModAsync(identifier, fileInfoVm.Progress, _ct),
