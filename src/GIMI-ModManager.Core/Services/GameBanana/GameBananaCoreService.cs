@@ -54,7 +54,9 @@ public sealed class GameBananaCoreService(
     /// </summary>
     public async Task<ModPageInfo?> GetToolProfileAsync(GbModId toolId, CancellationToken ct = default)
     {
-        var cached = _cache.Get<ModPageInfo>(toolId);
+        // Tools and mods share the same numeric id space — never let one pollute the other's cache entry.
+        var cacheKey = GetSubmissionCacheKey(toolId, isTool: true);
+        var cached = _cache.Get<ModPageInfo>(cacheKey);
         if (cached != null)
             return cached;
 
@@ -64,7 +66,7 @@ public sealed class GameBananaCoreService(
             return null;
 
         var modInfo = new ModPageInfo(apiProfile);
-        _cache.Set(toolId, modInfo);
+        _cache.Set(cacheKey, modInfo);
         return modInfo;
     }
 
@@ -74,7 +76,9 @@ public sealed class GameBananaCoreService(
     /// </summary>
     public async Task<ModPageInfo?> GetModProfileAsync(GbModId modId, CancellationToken ct = default)
     {
-        var cachedModProfile = _cache.Get<ModPageInfo>(modId);
+        // Tools and mods share the same numeric id space — never let one pollute the other's cache entry.
+        var cacheKey = GetSubmissionCacheKey(modId, isTool: false);
+        var cachedModProfile = _cache.Get<ModPageInfo>(cacheKey);
 
         if (cachedModProfile != null)
             return cachedModProfile;
@@ -89,7 +93,7 @@ public sealed class GameBananaCoreService(
 
         var modInfo = new ModPageInfo(apiModProfile);
 
-        _cache.Set(modId, modInfo);
+        _cache.Set(cacheKey, modInfo);
 
         return modInfo;
     }
@@ -106,15 +110,19 @@ public sealed class GameBananaCoreService(
     /// Gets the files info of a mod from GameBanana. Uses caching to reduce the number of API calls. Is more lightweight than <see cref="GetModProfileAsync"/>>
     /// </summary>
     /// <param name="modId"></param>
+    /// <param name="isTool">True when the submission is a Tool (gamebanana.com/tools/&lt;id&gt;).
+    /// Tools and mods share the same numeric id space, so the files endpoint must be namespaced
+    /// correctly or a different submission's files are returned.</param>
     /// <param name="ignoreCache"></param>
     /// <param name="ct"></param>
     /// <returns></returns>
-    public async Task<IReadOnlyList<ModFileInfo>?> GetModFilesInfoAsync(GbModId modId, bool ignoreCache = false,
+    public async Task<IReadOnlyList<ModFileInfo>?> GetModFilesInfoAsync(GbModId modId, bool isTool = false,
+        bool ignoreCache = false,
         CancellationToken ct = default)
     {
         var apiGameBananaClient = CreateApiGameBananaClient();
 
-        var modFilesInfo = await GetModFilesInfoAsync(apiGameBananaClient, modId, ignoreCache: ignoreCache, ct: ct)
+        var modFilesInfo = await GetModFilesInfoAsync(apiGameBananaClient, modId, isTool, ignoreCache: ignoreCache, ct: ct)
             .ConfigureAwait(false);
 
         if (modFilesInfo == null)
@@ -173,12 +181,15 @@ public sealed class GameBananaCoreService(
         CancellationToken ct = default)
     {
         var cachedDataUsed = true;
-        var modFilesInfo = _cache.Get<ApiModFilesInfo>(modFileIdentifier.ModId);
+        // Tools and mods share the same numeric id space — the cache key must include the submission type.
+        var filesCacheKey = GetSubmissionCacheKey(modFileIdentifier.ModId, modFileIdentifier.IsTool);
+        var modFilesInfo = _cache.Get<ApiModFilesInfo>(filesCacheKey);
         var apiGameBananaClient = CreateApiGameBananaClient();
 
         if (modFilesInfo is null)
         {
-            modFilesInfo = await GetModFilesInfoAsync(apiGameBananaClient, modFileIdentifier.ModId, ct: ct)
+            modFilesInfo = await GetModFilesInfoAsync(apiGameBananaClient, modFileIdentifier.ModId,
+                    modFileIdentifier.IsTool, ct: ct)
                 .ConfigureAwait(false);
 
             if (modFilesInfo == null)
@@ -192,7 +203,8 @@ public sealed class GameBananaCoreService(
         {
             if (cachedDataUsed)
                 // Mod file not found in cache, try to get it directly from the API
-                modFileInfo = (await GetModFilesInfoAsync(apiGameBananaClient, modFileIdentifier.ModId, true, ct)
+                modFileInfo = (await GetModFilesInfoAsync(apiGameBananaClient, modFileIdentifier.ModId,
+                            modFileIdentifier.IsTool, true, ct)
                         .ConfigureAwait(false))
                     ?.Files.FirstOrDefault(x => x.FileId.ToString() == modFileIdentifier.ModFileId);
 
@@ -259,26 +271,32 @@ public sealed class GameBananaCoreService(
 
 
     private async Task<ApiModFilesInfo?> GetModFilesInfoAsync(
-        IApiGameBananaClient apiClient, GbModId modId,
+        IApiGameBananaClient apiClient, GbModId modId, bool isTool = false,
         bool ignoreCache = false, CancellationToken ct = default)
     {
+        // Tools and mods share the same numeric id space — namespace the cache key so a tool and a
+        // mod with the same row id can't return each other's (wrong) file lists.
+        var cacheKey = GetSubmissionCacheKey(modId, isTool);
         if (!ignoreCache)
         {
-            var cachedModFilesInfo = _cache.Get<ApiModFilesInfo>(modId);
+            var cachedModFilesInfo = _cache.Get<ApiModFilesInfo>(cacheKey);
             if (cachedModFilesInfo != null)
                 return cachedModFilesInfo;
         }
 
 
-        var modFilesInfo = await apiClient.GetModFilesInfoAsync(modId, ct)
+        var modFilesInfo = await apiClient.GetModFilesInfoAsync(modId, isTool, ct)
             .ConfigureAwait(false);
 
         if (modFilesInfo == null)
             return null;
 
-        _cache.Set(modId, modFilesInfo);
+        _cache.Set(cacheKey, modFilesInfo);
         return modFilesInfo;
     }
+
+    private static string GetSubmissionCacheKey(GbModId modId, bool isTool) =>
+        $"{modId.ModId}:{(isTool ? "tool" : "mod")}";
 }
 
 public sealed class DownloadHandle()

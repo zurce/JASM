@@ -1606,7 +1606,8 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
 
         var identifier = new GIMI_ModManager.Core.Services.GameBanana.Models.GbModFileIdentifier(
             new GIMI_ModManager.Core.Services.GameBanana.Models.GbModId(modInfo.ModId),
-            new GIMI_ModManager.Core.Services.GameBanana.Models.GbModFileId(file.FileId));
+            new GIMI_ModManager.Core.Services.GameBanana.Models.GbModFileId(file.FileId),
+            IsTool: modInfo.ModPageUrl?.Segments.Any(s => s.Equals("tools/", StringComparison.OrdinalIgnoreCase)) ?? false);
 
         var archivePath = await Task.Run(() => _gameBananaCoreService.DownloadModAsync(identifier, ct: ct), ct);
         setStatus(string.Format(

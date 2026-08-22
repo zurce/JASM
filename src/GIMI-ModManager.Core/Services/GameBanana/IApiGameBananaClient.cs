@@ -28,9 +28,13 @@ public interface IApiGameBananaClient
     /// Gets the mod files info from the GameBanana API.
     /// </summary>
     /// <param name="modId">The Game banana's mod Id</param>
+    /// <param name="isTool">True when the submission is a Tool (gamebanana.com/tools/&lt;id&gt;).
+    /// Tools and mods share the same numeric id space, so the files endpoint must be namespaced
+    /// correctly or a different submission's files are returned.</param>
     /// <param name="cancellationToken"></param>
     /// <returns>ApiModFilesInfo if mod exists or null</returns>
-    public Task<ApiModFilesInfo?> GetModFilesInfoAsync(GbModId modId, CancellationToken cancellationToken = default);
+    public Task<ApiModFilesInfo?> GetModFilesInfoAsync(GbModId modId, bool isTool = false,
+        CancellationToken cancellationToken = default);
 
 
     /// <summary>
@@ -38,10 +42,11 @@ public interface IApiGameBananaClient
     /// </summary>
     /// <param name="modId">The Game banana's mod Id</param>
     /// <param name="modFileId">The Game banana's mod files Id</param>
+    /// <param name="isTool">True when the submission is a Tool (gamebanana.com/tools/&lt;id&gt;).</param>
     /// <param name="cancellationToken"></param>
     /// <returns>ApiModFileInfo if file exists or null</returns>
     [Obsolete("Use GetModFilesInfoAsync instead")]
-    public Task<ApiModFileInfo?> GetModFileInfoAsync(GbModId modId, GbModFileId modFileId,
+    public Task<ApiModFileInfo?> GetModFileInfoAsync(GbModId modId, GbModFileId modFileId, bool isTool = false,
         CancellationToken cancellationToken = default);
 
     /// <summary>
