@@ -45,10 +45,32 @@ public partial class ModPageVM : ObservableRecipient
 
     [ObservableProperty] private bool _isOpenDownloadButtonEnabled = false;
 
+    /// <summary>True when the submission has more than one file, i.e. variants are possible.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsVariantsAvailable), nameof(InstallAsVariantsVisibility))]
+    private bool _hasMultipleFiles = false;
+
+    /// <summary>Variant-selection mode: checkboxes shown per file, batch download enabled.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsVariantsAvailable), nameof(InstallAsVariantsVisibility), nameof(VariantModeVisibility))]
+    [NotifyCanExecuteChangedFor(nameof(DownloadVariantsCommand))]
+    private bool _isVariantMode = false;
+
+    public bool IsVariantsAvailable => HasMultipleFiles && !IsVariantMode;
+
+    // Root-level x:Bind on a WindowEx can't use value converters (the generated code cannot root
+    // the converter lookup on a non-FrameworkElement), so expose ready-made Visibility values.
+    public Microsoft.UI.Xaml.Visibility InstallAsVariantsVisibility =>
+        IsVariantsAvailable ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
+
+    // In variant-selection mode the bottom-right button becomes "Download".
+    public Microsoft.UI.Xaml.Visibility VariantModeVisibility =>
+        IsVariantMode ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
+
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsNotBusy))]
     [NotifyCanExecuteChangedFor(nameof(CloseCommand), nameof(StartDownloadCommand),
-        nameof(StartInstallCommand))]
+        nameof(StartInstallCommand), nameof(ToggleVariantModeCommand), nameof(DownloadVariantsCommand))]
     private bool _isWindowBusy = false;
 
     public bool IsNotBusy => !IsWindowBusy;
@@ -126,12 +148,18 @@ public partial class ModPageVM : ObservableRecipient
         CharacterModListPath = new Uri(_characterModList.AbsModsFolderPath);
 
         _modFiles = _modPageInfo.Files.ToList();
+        HasMultipleFiles = _modFiles.Count > 1;
 
         foreach (var modFile in _modFiles)
         {
             var vm = new ModFileInfoVm(modFile, StartDownloadCommand, StartInstallCommand)
             {
                 IsBusy = true
+            };
+            vm.PropertyChanged += (_, args) =>
+            {
+                if (args.PropertyName == nameof(ModFileInfoVm.IsVariantSelected))
+                    DownloadVariantsCommand.NotifyCanExecuteChanged();
             };
             ModFileInfos.Add(vm);
             await InitializeModFileVmAsync(vm);
@@ -157,6 +185,81 @@ public partial class ModPageVM : ObservableRecipient
     {
         _window.Close();
         return Task.CompletedTask;
+    }
+
+    [RelayCommand(CanExecute = nameof(IsNotBusy))]
+    private void ToggleVariantMode()
+    {
+        IsVariantMode = !IsVariantMode;
+
+        foreach (var fileInfoVm in ModFileInfos)
+        {
+            fileInfoVm.ShowVariantCheckbox = IsVariantMode;
+            if (!IsVariantMode)
+                fileInfoVm.IsVariantSelected = false;
+        }
+    }
+
+    private bool CanDownloadVariants()
+    {
+        if (!IsVariantMode || !IsNotBusy)
+            return false;
+
+        var selected = ModFileInfos.Where(x => x.IsVariantSelected).ToList();
+        if (selected.Count == 0)
+            return false;
+
+        // No file may be mid-download/install while starting a variant batch.
+        var anyBusy = ModFileInfos.Any(x => x.Status is ModFileInfoVm.InstallStatus.Downloading
+            or ModFileInfoVm.InstallStatus.Installing or ModFileInfoVm.InstallStatus.Installed);
+
+        return !anyBusy && selected.Any(x => x.Status == ModFileInfoVm.InstallStatus.NotStarted ||
+                                            x.Status == ModFileInfoVm.InstallStatus.Downloaded);
+    }
+
+    /// <summary>
+    /// Batch-download all selected files (sequentially), then trigger the normal install flow for the
+    /// first downloaded file. Variant-aware installation of all files is deferred to a later phase.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanDownloadVariants))]
+    private async Task DownloadVariantsAsync()
+    {
+        var selected = ModFileInfos.Where(x => x.IsVariantSelected).ToList();
+        if (selected.Count == 0)
+            return;
+
+        IsWindowBusy = true;
+        try
+        {
+            foreach (var fileInfoVm in selected.Where(x => x.Status == ModFileInfoVm.InstallStatus.NotStarted))
+            {
+                await StartDownload(fileInfoVm);
+                if (fileInfoVm.Status != ModFileInfoVm.InstallStatus.Downloaded)
+                {
+                    // Download failed/cancelled — stop the batch here.
+                    return;
+                }
+            }
+
+            var first = selected.FirstOrDefault(x => x.ArchiveFile is not null &&
+                                                     x.Status == ModFileInfoVm.InstallStatus.Downloaded);
+            if (first is null)
+                return;
+
+            ExitVariantMode();
+
+            await StartInstallCommand.ExecuteAsync(first);
+        }
+        finally
+        {
+            IsWindowBusy = false;
+        }
+    }
+
+    private void ExitVariantMode()
+    {
+        if (IsVariantMode)
+            ToggleVariantMode();
     }
 
 
