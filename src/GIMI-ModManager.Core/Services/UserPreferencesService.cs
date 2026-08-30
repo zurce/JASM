@@ -16,6 +16,44 @@ public class UserPreferencesService(ILogger logger, ISkinManagerService skinMana
     private static string D3DX_USER_INI = Constants.UserIniFileName;
     private const string LoadedUserIniFileName = "loaded_user.ini";
 
+    /// <summary>
+    /// The mod's folder-name token, used to match its lines in <c>d3dx_user.ini</c> VERBATIM.
+    /// Matching is agnostic to the mods-mount path (a direct 3DMigoto install may mount mods
+    /// under any prefix, e.g. <c>$\..\texturas\</c>), so we key on the mod folder name only.
+    /// </summary>
+    private static string GetModFolderToken(CharacterSkinEntry skinEntry) =>
+        skinEntry.Mod.Name.Trim().TrimStart('\\');
+
+    /// <summary>
+    /// Resolves the <c>d3dx_user.ini</c> to read/write. In a direct (non-XXMI) 3DMigoto install,
+    /// <c>d3dx_user.ini</c> sits next to <c>3DMigoto Loader.exe</c> / <c>d3dx.ini</c>; if the configured
+    /// root doesn't contain it, walk up to the folder that does. For XXMI the root already contains it.
+    /// </summary>
+    private FileInfo? ResolveD3dxUserIni()
+    {
+        if (_threeMigotoFolder is null || !_threeMigotoFolder.Exists)
+            return null;
+
+        var direct = new FileInfo(Path.Combine(_threeMigotoFolder.FullName, D3DX_USER_INI));
+        if (direct.Exists)
+            return direct;
+
+        // Walk up until we find a folder that looks like a 3DMigoto root (has d3dx.ini / loader)
+        // and contains d3dx_user.ini.
+        var dir = _threeMigotoFolder;
+        while (dir is not null)
+        {
+            var ini = Path.Combine(dir.FullName, D3DX_USER_INI);
+            var marker = Path.Combine(dir.FullName, "d3dx.ini");
+            if (File.Exists(ini) && File.Exists(marker))
+                return new FileInfo(ini);
+            dir = dir.Parent;
+        }
+
+        return null;
+    }
+
+
 
     public Task InitializeAsync()
     {
@@ -37,18 +75,19 @@ public class UserPreferencesService(ILogger logger, ISkinManagerService skinMana
     {
         try
         {
-            if (_threeMigotoFolder is null || !_threeMigotoFolder.Exists)
-                return false;
-
-            var d3dxUserIni = new FileInfo(Path.Combine(_threeMigotoFolder.FullName, D3DX_USER_INI));
-            if (!d3dxUserIni.Exists)
+            var d3dxUserIni = ResolveD3dxUserIni();
+            if (d3dxUserIni is null || !d3dxUserIni.Exists)
                 return false;
 
             var lines = File.ReadAllLines(d3dxUserIni.FullName);
-            var matches = FindExistingModPref(_activeModsFolder.FullName, lines, skinEntry);
+            var token = GetModFolderToken(skinEntry);
+            var matches = lines
+                .Select((line, i) => new { line, i })
+                .Where(x => x.line.Contains(token, StringComparison.OrdinalIgnoreCase))
+                .ToArray();
             var loadedUserIni = Path.Combine(skinEntry.Mod.FullPath, LoadedUserIniFileName);
 
-            if (matches.Count == 0)
+            if (matches.Length == 0)
             {
                 if (File.Exists(loadedUserIni))
                 {
@@ -62,7 +101,7 @@ public class UserPreferencesService(ILogger logger, ISkinManagerService skinMana
                 return true;
             }
 
-            var captured = matches.Select(m => lines[m.Index]).ToArray();
+            var captured = matches.Select(m => m.line).ToArray();
             File.WriteAllLines(loadedUserIni, captured);
             _logger.Information("[LoadedIni] mod={ModName} saved {Count} override(s) to {Path}", skinEntry.Mod.Name, captured.Length, loadedUserIni);
             return true;
@@ -93,9 +132,8 @@ public class UserPreferencesService(ILogger logger, ISkinManagerService skinMana
                 return false;
             }
 
-            // modNameSpace is the prefix used in the d3dx_user.ini lines, e.g. $\mods\char\name\modfolder\.
-            var modNameSpace = (string)CreateUserIniPreference(_activeModsFolder.FullName, skinEntry);
-            if (string.IsNullOrEmpty(modNameSpace))
+            var token = GetModFolderToken(skinEntry);
+            if (string.IsNullOrEmpty(token))
                 return false;
 
             var savedLines = File.ReadAllLines(loadedUserIni);
@@ -103,21 +141,25 @@ public class UserPreferencesService(ILogger logger, ISkinManagerService skinMana
 
             foreach (var line in savedLines)
             {
-                if (!line.StartsWith(modNameSpace, StringComparison.OrdinalIgnoreCase))
+                // Match the mod folder token in the line, then keep everything AFTER the token
+                // (e.g. "...\sandrone_nsfw\sandrone thicc nsfw\sandrone.ini\feet = 0").
+                var tokenIdx = line.IndexOf(token, StringComparison.OrdinalIgnoreCase);
+                if (tokenIdx < 0)
                     continue;
 
-                // e.g. remielle latex harness\remielle.ini\garter = 0
-                var rest = line[modNameSpace.Length..];
+                var rest = tokenIdx + token.Length < line.Length
+                    ? line[(tokenIdx + token.Length)..].TrimStart('\\', ' ')
+                    : string.Empty;
                 var eq = rest.LastIndexOf('=');
                 if (eq <= 0)
                     continue;
 
-                var iniRelPath = rest[..eq].Trim();          // remielle latex harness\remielle.ini\garter
+                var iniRelPath = rest[..eq].Trim();          // sandrone thicc nsfw\sandrone.ini\feet
                 var value = rest[(eq + 1)..].Trim();          // 0
 
                 var iniSep = iniRelPath.LastIndexOf('\\');
-                var key = iniRelPath[(iniSep + 1)..];          // garter
-                var iniSubPath = iniRelPath[..iniSep];         // remielle latex harness\remielle.ini
+                var key = iniRelPath[(iniSep + 1)..];          // feet
+                var iniSubPath = iniRelPath[..iniSep];         // sandrone thicc nsfw\sandrone.ini
 
                 var iniFile = Path.Combine(skinEntry.Mod.FullPath, iniSubPath);
                 if (!File.Exists(iniFile))
@@ -212,19 +254,17 @@ public class UserPreferencesService(ILogger logger, ISkinManagerService skinMana
     {
         try
         {
-            if (_threeMigotoFolder is null || !_threeMigotoFolder.Exists)
-                return false;
-            var d3dxUserIni = new FileInfo(Path.Combine(_threeMigotoFolder.FullName, D3DX_USER_INI));
-            if (!d3dxUserIni.Exists)
+            var d3dxUserIni = ResolveD3dxUserIni();
+            if (d3dxUserIni is null || !d3dxUserIni.Exists)
                 return false;
 
             var lines = File.ReadAllLines(d3dxUserIni.FullName).ToList();
-            var modNameSpace = (string)CreateUserIniPreference(_activeModsFolder.FullName, skinEntry);
-            if (string.IsNullOrEmpty(modNameSpace))
+            var token = GetModFolderToken(skinEntry);
+            if (string.IsNullOrEmpty(token))
                 return false;
 
             var before = lines.Count;
-            lines.RemoveAll(l => l.StartsWith(modNameSpace, StringComparison.OrdinalIgnoreCase));
+            lines.RemoveAll(l => l.Contains(token, StringComparison.OrdinalIgnoreCase));
             if (lines.Count == before)
                 return false;
 
@@ -249,10 +289,8 @@ public class UserPreferencesService(ILogger logger, ISkinManagerService skinMana
     {
         try
         {
-            if (_threeMigotoFolder is null || !_threeMigotoFolder.Exists)
-                return false;
-            var d3dxUserIni = new FileInfo(Path.Combine(_threeMigotoFolder.FullName, D3DX_USER_INI));
-            if (!d3dxUserIni.Exists)
+            var d3dxUserIni = ResolveD3dxUserIni();
+            if (d3dxUserIni is null || !d3dxUserIni.Exists)
                 return false;
 
             var loadedUserIni = Path.Combine(skinEntry.Mod.FullPath, LoadedUserIniFileName);
@@ -285,14 +323,14 @@ public class UserPreferencesService(ILogger logger, ISkinManagerService skinMana
         if (constantSectionIndex == -1)
             return false;
 
-        var modNameSpace = (string)CreateUserIniPreference(_activeModsFolder.FullName, skinEntry);
-        if (string.IsNullOrEmpty(modNameSpace))
+        var token = GetModFolderToken(skinEntry);
+        if (string.IsNullOrEmpty(token))
             return false;
 
-        lines.RemoveAll(l => l.StartsWith(modNameSpace, StringComparison.OrdinalIgnoreCase));
+        lines.RemoveAll(l => l.Contains(token, StringComparison.OrdinalIgnoreCase));
 
         var restoreLines = File.ReadAllLines(loadedUserIni)
-            .Where(l => l.StartsWith(modNameSpace, StringComparison.OrdinalIgnoreCase))
+            .Where(l => l.Trim().Length > 0)
             .ToArray();
         if (restoreLines.Length == 0)
             return false;
