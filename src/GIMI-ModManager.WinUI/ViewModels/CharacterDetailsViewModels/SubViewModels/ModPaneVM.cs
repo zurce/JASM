@@ -113,7 +113,7 @@ public sealed partial class ModPaneVM(
         catch (Exception e)
         {
             _logger.Error(e, "Failed to switch variant to {Variant} on mod {Mod}", variant.Name, _loadedMod.Mod.GetDisplayName());
-            _notificationService.ShowNotification("Failed to switch variant", e.Message, null);
+            _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_FailedSwitchVariant") ?? "Failed to switch variant", e.Message, null);
         }
     }
 
@@ -161,7 +161,7 @@ public sealed partial class ModPaneVM(
         {
             _logger.Error(e, "Failed to rename variant {Old} to {New} on mod {Mod}", oldName, newName,
                 _loadedMod.Mod.GetDisplayName());
-            _notificationService.ShowNotification("Failed to rename variant", e.Message, null);
+            _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_FailedRenameVariant") ?? "Failed to rename variant", e.Message, null);
         }
     }
 

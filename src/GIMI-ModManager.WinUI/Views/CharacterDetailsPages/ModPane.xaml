@@ -135,7 +135,7 @@
                         SelectionChanged="VariantSelector_OnSelectionChanged" />
 
                     <TextBox
-                        Header="Rename variant:"
+                        Header="Rename variant:" l:Uids.Uid="ModPane_RenameVariant"
                         IsEnabled="{x:Bind ViewModel.IsNotReadOnly, Mode=OneWay}"
                         KeyDown="VariantRenameBox_OnKeyDown"
                         Text="{x:Bind ViewModel.EditingVariantName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -145,7 +145,7 @@
                 <StackPanel Grid.Column="1" VerticalAlignment="Bottom" Orientation="Horizontal">
                     <Button
                         Command="{x:Bind ViewModel.StartRenameVariantCommand}"
-                        ToolTipService.ToolTip="Rename variant"
+                        ToolTipService.ToolTip="Rename variant" l:Uids.Uid="ModPane_RenameVariantButton"
                         Visibility="{x:Bind ViewModel.IsNotRenamingVariant, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <FontIcon FontSize="14" Glyph="&#xE70F;" />
                     </Button>
@@ -153,7 +153,7 @@
                     <Button
                         Margin="4,0,0,0"
                         Command="{x:Bind ViewModel.ConfirmRenameVariantCommand}"
-                        ToolTipService.ToolTip="Save name"
+                        ToolTipService.ToolTip="Save name" l:Uids.Uid="ModPane_RenameVariantSaveButton"
                         Visibility="{x:Bind ViewModel.IsRenamingVariant, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <FontIcon FontSize="14" Glyph="&#xE73E;" />
                     </Button>
@@ -161,7 +161,7 @@
                     <Button
                         Margin="4,0,0,0"
                         Command="{x:Bind ViewModel.CancelRenameVariantCommand}"
-                        ToolTipService.ToolTip="Cancel"
+                        ToolTipService.ToolTip="Cancel" l:Uids.Uid="ModPane_RenameVariantCancelButton"
                         Visibility="{x:Bind ViewModel.IsRenamingVariant, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <FontIcon FontSize="14" Glyph="&#xE711;" />
                     </Button>
