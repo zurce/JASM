@@ -44,6 +44,15 @@ public partial class ModFileInfoVm : ObservableObject
     [NotifyCanExecuteChangedFor(nameof(InstallCommand), nameof(DownloadCommand))]
     private FileInfo? _archiveFile;
 
+    [ObservableProperty] private bool _isVariantSelected;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(VariantCheckboxVisibility))]
+    private bool _showVariantCheckbox;
+
+    public Microsoft.UI.Xaml.Visibility VariantCheckboxVisibility =>
+        ShowVariantCheckbox ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
+
     public IProgress<int> Progress { get; }
 
 

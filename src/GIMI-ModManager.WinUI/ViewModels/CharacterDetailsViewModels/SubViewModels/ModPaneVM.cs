@@ -12,7 +12,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CommunityToolkitWrapper;
+using GIMI_ModManager.Core.Contracts.Entities;
 using GIMI_ModManager.Core.Contracts.Services;
+using GIMI_ModManager.Core.Services;
 using GIMI_ModManager.Core.Entities;
 using GIMI_ModManager.Core.Entities.Mods.Contract;
 using GIMI_ModManager.Core.GamesService;
@@ -63,6 +65,105 @@ public sealed partial class ModPaneVM(
     [ObservableProperty] private bool _isEditingModName;
 
     public bool IsNotReadOnly => !IsReadOnly;
+
+    // Variant support: populated when the loaded mod has variant folders.
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasVariants))]
+    private List<VariantListItem> _variants = new();
+
+    public bool HasVariants => Variants.Count > 0;
+
+    [ObservableProperty] private int _selectedVariantIndex = -1;
+
+    public bool IsNotRenamingVariant => !IsRenamingVariant;
+
+    public sealed record VariantListItem(string Name, bool Enabled)
+    {
+        public override string ToString() => Enabled ? $"✔ {Name}" : Name;
+    }
+
+    private void LoadVariants(ISkinMod mod)
+    {
+        try
+        {
+            var detected = VariantManager.DetectVariants(mod);
+            Variants = detected?.Select(v => new VariantListItem(v.Name, v.Enabled)).ToList() ?? new List<VariantListItem>();
+            SelectedVariantIndex = Variants.FindIndex(v => v.Enabled);
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "Failed to detect variants for mod {Mod}", mod.GetDisplayName());
+            Variants = new List<VariantListItem>();
+        }
+    }
+
+    public async Task SelectVariantAsync(VariantListItem? variant)
+    {
+        if (variant is null || !IsModLoaded || !HasVariants)
+            return;
+
+        if (variant.Enabled && Variants.Count(v => v.Enabled) == 1)
+            return; // already the active variant
+
+        try
+        {
+            await VariantManager.SetActiveVariantAsync(_loadedMod.Mod, variant.Name);
+            LoadVariants(_loadedMod.Mod);
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "Failed to switch variant to {Variant} on mod {Mod}", variant.Name, _loadedMod.Mod.GetDisplayName());
+            _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_FailedSwitchVariant") ?? "Failed to switch variant", e.Message, null);
+        }
+    }
+
+    // Variant renaming: pencil toggles the selector into a text field.
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsNotRenamingVariant))]
+    private bool _isRenamingVariant;
+
+    [ObservableProperty] private string _editingVariantName = string.Empty;
+
+    public VariantListItem? SelectedVariant =>
+        SelectedVariantIndex >= 0 && SelectedVariantIndex < Variants.Count ? Variants[SelectedVariantIndex] : null;
+
+    [RelayCommand]
+    private void StartRenameVariant()
+    {
+        if (!HasVariants || SelectedVariant is null)
+            return;
+        EditingVariantName = SelectedVariant.Name;
+        IsRenamingVariant = true;
+    }
+
+    [RelayCommand]
+    private void CancelRenameVariant() => IsRenamingVariant = false;
+
+    [RelayCommand]
+    private async Task ConfirmRenameVariantAsync()
+    {
+        if (!IsRenamingVariant || !IsModLoaded || SelectedVariant is null)
+            return;
+
+        var oldName = SelectedVariant.Name;
+        var newName = EditingVariantName.Trim();
+        IsRenamingVariant = false;
+
+        if (newName.Equals(oldName, StringComparison.OrdinalIgnoreCase))
+            return;
+
+        try
+        {
+            await VariantManager.RenameVariantAsync(_loadedMod.Mod, oldName, newName);
+            LoadVariants(_loadedMod.Mod);
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "Failed to rename variant {Old} to {New} on mod {Mod}", oldName, newName,
+                _loadedMod.Mod.GetDisplayName());
+            _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_FailedRenameVariant") ?? "Failed to rename variant", e.Message, null);
+        }
+    }
 
     private Guid? _loadedModId;
     private CharacterSkinEntry? _loadedMod;
@@ -171,6 +272,7 @@ public sealed partial class ModPaneVM(
         _loadedMod = modPaneData.modEntry;
         ModModel = ModPaneFieldsVm.FromModEntry(modPaneData.modEntry, modPaneData.modSettings, modPaneData.keySwaps ?? []);
         ModModel.PropertyChanged += ModModel_PropertyChanged;
+        LoadVariants(modPaneData.modEntry.Mod);
         _loadedModId = modId;
         IsReadOnly = false;
     }
@@ -190,6 +292,7 @@ public sealed partial class ModPaneVM(
         if (ModModel.IsLoaded)
             ModModel.PropertyChanged -= ModModel_PropertyChanged;
         ModModel = new ModPaneFieldsVm();
+        Variants = new List<VariantListItem>();
         return Task.CompletedTask;
     }
 

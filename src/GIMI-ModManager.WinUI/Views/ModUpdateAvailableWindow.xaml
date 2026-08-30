@@ -92,6 +92,12 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <StackPanel Orientation="Horizontal">
+                                                    <CheckBox
+                                                        Margin="0,0,8,0"
+                                                        VerticalAlignment="Center"
+                                                        IsChecked="{x:Bind IsVariantSelected, Mode=TwoWay}"
+                                                        Visibility="{x:Bind VariantCheckboxVisibility, Mode=OneWay}" />
+
                                                     <TextBlock
                                                         IsTextSelectionEnabled="True"
                                                         Style="{ThemeResource SubtitleTextBlockStyle}"
@@ -184,6 +190,25 @@
                         Content="Ignore and Close"
                         IsEnabled="{x:Bind ViewModel.IsNotBusy, Mode=OneWay}"
                         ToolTipService.ToolTip="Removes the notification and closes this window" />
+
+                    <StackPanel
+                        Grid.Column="1"
+                        Margin="8,0"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Button
+                            Height="50"
+                            Command="{x:Bind ViewModel.DownloadVariantsCommand}"
+                            Content="Download" l:Uids.Uid="ModUpdateAvailableWindow_DownloadVariantsButton"
+                            Style="{ThemeResource AccentButtonStyle}"
+                            Visibility="{x:Bind ViewModel.VariantModeVisibility, Mode=OneWay}" />
+
+                        <Button
+                            Height="50"
+                            Command="{x:Bind ViewModel.ToggleVariantModeCommand}"
+                            Content="Install as Variants" l:Uids.Uid="ModUpdateAvailableWindow_InstallAsVariantsButton"
+                            Visibility="{x:Bind ViewModel.InstallAsVariantsVisibility, Mode=OneWay}" />
+                    </StackPanel>
 
                     <StackPanel
                         Grid.Column="1"

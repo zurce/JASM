@@ -102,3 +102,20 @@ public static class ModFolderHelpers
         return entry.Name.StartsWith(".JASM_", StringComparison.OrdinalIgnoreCase);
     }
 }
+
+/// <summary>
+/// Helpers for mod variant folders inside a variant-aware mod.
+/// Each variant is a plain-named folder (the variant name); the active variant is the one without
+/// the standard DISABLED_ prefix ("DISABLED_pink" is inactive, "pink" is active).
+/// Which folders are variants is defined by the variants array in .JASM_ModConfig.json.
+/// </summary>
+public static class VariantFolderHelpers
+{
+    /// <summary>Returns the enabled (unprefixed) form of a variant folder name.</summary>
+    public static string GetEnabledVariantFolderName(string folderName) =>
+        ModFolderHelpers.GetFolderNameWithoutDisabledPrefix(folderName);
+
+    /// <summary>Returns the disabled (DISABLED_-prefixed) form of a variant folder name.</summary>
+    public static string GetDisabledVariantFolderName(string folderName) =>
+        ModFolderHelpers.GetFolderNameWithDisabledPrefix(folderName);
+}

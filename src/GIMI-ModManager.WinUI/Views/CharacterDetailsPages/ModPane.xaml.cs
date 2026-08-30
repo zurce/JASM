@@ -35,6 +35,24 @@ public sealed partial class ModPane : UserControl
     }
 
 
+    private async void VariantSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (ViewModel is null || sender is not ComboBox comboBox)
+            return;
+
+        if (comboBox.SelectedItem is ModPaneVM.VariantListItem variant)
+            await ViewModel.SelectVariantAsync(variant);
+    }
+
+    private async void VariantRenameBox_OnKeyDown(object sender, Microsoft.UI.Xaml.Input.KeyRoutedEventArgs e)
+    {
+        if (e.Key != Windows.System.VirtualKey.Enter || ViewModel is null)
+            return;
+
+        e.Handled = true;
+        await ViewModel.ConfirmRenameVariantCommand.ExecuteAsync(null);
+    }
+
     private async void PaneImage_OnDragEnter(object sender, DragEventArgs e)
     {
         if (ViewModel.IsReadOnly || ViewModel.BusySetter.IsHardBusy)

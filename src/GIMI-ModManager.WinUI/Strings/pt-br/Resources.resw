@@ -845,6 +845,10 @@
     <!-- Label for the mod page URL field -->
     <value>URL do Mod:</value>
   </data>
+  <data name="ModPane_Variant.Header" xml:space="preserve">
+    <!-- Label for the variant selector in the mod pane -->
+    <value>Variante:</value>
+  </data>
   <data name="ModPane_SearchButton.Text" xml:space="preserve">
     <!-- Button label shown on the mod URL field to search GameBanana when the URL is empty -->
     <value>Buscar</value>
@@ -872,6 +876,30 @@
   <data name="ModPane_SearchError" xml:space="preserve">
     <!-- Notification title when a GameBanana search fails -->
     <value>Falha ao pesquisar</value>
+  </data>
+  <data name="ModPane_FailedSwitchVariant" xml:space="preserve">
+    <!-- Notification when switching the active variant failed -->
+    <value>Falha ao alternar a variante</value>
+  </data>
+  <data name="ModPane_FailedRenameVariant" xml:space="preserve">
+    <!-- Notification when renaming a variant failed -->
+    <value>Falha ao renomear a variante</value>
+  </data>
+  <data name="ModPane_RenameVariant.Header" xml:space="preserve">
+    <!-- Header for the variant rename text box -->
+    <value>Renomear variante:</value>
+  </data>
+  <data name="ModPane_RenameVariantButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip for the pencil button that starts renaming a variant -->
+    <value>Renomear variante</value>
+  </data>
+  <data name="ModPane_RenameVariantSaveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip for the button that confirms a variant rename -->
+    <value>Salvar nome</value>
+  </data>
+  <data name="ModPane_RenameVariantCancelButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip for the button that cancels a variant rename -->
+    <value>Cancelar</value>
   </data>
   <data name="ModPane_DownloadingMod" xml:space="preserve">
     <!-- Notification title while downloading the mod from GameBanana to re-link it -->
@@ -1593,6 +1621,14 @@ Ou
     <!-- Button to install the mod -->
     <value>Instalar</value>
   </data>
+  <data name="GbModPageWindow_DownloadVariantsButton.Content" xml:space="preserve">
+    <!-- Button to batch-download the selected files as variants -->
+    <value>Baixar</value>
+  </data>
+  <data name="GbModPageWindow_InstallAsVariantsButton.Content" xml:space="preserve">
+    <!-- Button to enter variant-selection mode -->
+    <value>Instalar como variantes</value>
+  </data>
 
   <data name="GbModPageWindow_CloseButton.Content" xml:space="preserve">
     <!-- Button to close the window -->
@@ -1677,6 +1713,14 @@ Ou
   <data name="ModUpdateAvailableWindow_InstallButton.Content" xml:space="preserve">
     <!-- Button to install the mod -->
     <value>Instalar</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_DownloadVariantsButton.Content" xml:space="preserve">
+    <!-- Button to batch-download the selected files as variants -->
+    <value>Baixar</value>
+  </data>
+  <data name="ModUpdateAvailableWindow_InstallAsVariantsButton.Content" xml:space="preserve">
+    <!-- Button to enter variant-selection mode -->
+    <value>Instalar como variantes</value>
   </data>
 
   <data name="ModUpdateAvailableWindow_IgnoreCloseButton.Content" xml:space="preserve">

@@ -57,6 +57,17 @@ public record ModSettings
     {
     }
 
+    public ModSettings DeepCopyWithVariants(IReadOnlyList<ModVariant> variants)
+    {
+        return new ModSettings(
+            Id, CustomName, Author, Version, ModUrl, ImagePath, CharacterSkinOverride, Description,
+            DateAdded, LastChecked, MergedIniPath, IgnoreMergedIni,
+            _preferences is null ? null : new Dictionary<string, string>(_preferences))
+        {
+            Variants = variants
+        };
+    }
+
     public Guid Id { get; internal set; }
 
     public string? CustomName { get; internal set; }
@@ -83,6 +94,8 @@ public record ModSettings
     private Dictionary<string, string>? _preferences;
     public IReadOnlyDictionary<string, string> Preferences => _preferences ??= new Dictionary<string, string>();
 
+    public IReadOnlyList<ModVariant>? Variants { get; internal set; }
+
 
     internal static ModSettings FromJsonSkinSettings(ISkinMod? skinMod, JsonModSettings settings)
     {
@@ -106,7 +119,10 @@ public record ModSettings
             IgnoreMergedIni = settings.MergedIniPath == string.Empty,
             _preferences = settings.Preferences is null
                 ? null
-                : new Dictionary<string, string>(settings.Preferences)
+                : new Dictionary<string, string>(settings.Preferences),
+            Variants = settings.Variants is null
+                ? null
+                : settings.Variants.Select(v => new ModVariant(v.Name, v.FolderName, v.Enabled)).ToList()
         };
     }
 
@@ -127,7 +143,10 @@ public record ModSettings
             MergedIniPath = IgnoreMergedIni
                 ? ""
                 : SkinModHelpers.UriPathToModRelativePath(skinMod, MergedIniPath?.LocalPath),
-            Preferences = Preferences.Count == 0 ? null : new Dictionary<string, string>(Preferences)
+            Preferences = Preferences.Count == 0 ? null : new Dictionary<string, string>(Preferences),
+            Variants = Variants is null || Variants.Count == 0
+                ? null
+                : Variants.Select(v => new JsonVariantEntry { Name = v.Name, FolderName = v.FolderName, Enabled = v.Enabled }).ToList()
         };
     }
 
