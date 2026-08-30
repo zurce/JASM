@@ -116,12 +116,64 @@
             </SplitButton>
         </Grid>
 
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <TextBox
+        <StackPanel Grid.Row="2">
+            <!-- Variant selector: only visible for mods that support variants -->
+            <Grid Margin="0,0,0,8" Visibility="{x:Bind ViewModel.HasVariants, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid>
+                    <ComboBox
+                        HorizontalAlignment="Stretch"
+                        Header="Variant:" l:Uids.Uid="ModPane_Variant"
+                        IsEnabled="{x:Bind ViewModel.IsNotReadOnly, Mode=OneWay}"
+                        ItemsSource="{x:Bind ViewModel.Variants, Mode=OneWay}"
+                        SelectedIndex="{x:Bind ViewModel.SelectedVariantIndex, Mode=TwoWay}"
+                        Visibility="{x:Bind ViewModel.IsNotRenamingVariant, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
+                        SelectionChanged="VariantSelector_OnSelectionChanged" />
+
+                    <TextBox
+                        Header="Rename variant:"
+                        IsEnabled="{x:Bind ViewModel.IsNotReadOnly, Mode=OneWay}"
+                        KeyDown="VariantRenameBox_OnKeyDown"
+                        Text="{x:Bind ViewModel.EditingVariantName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Visibility="{x:Bind ViewModel.IsRenamingVariant, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                </Grid>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Bottom" Orientation="Horizontal">
+                    <Button
+                        Command="{x:Bind ViewModel.StartRenameVariantCommand}"
+                        ToolTipService.ToolTip="Rename variant"
+                        Visibility="{x:Bind ViewModel.IsNotRenamingVariant, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <FontIcon FontSize="14" Glyph="&#xE70F;" />
+                    </Button>
+
+                    <Button
+                        Margin="4,0,0,0"
+                        Command="{x:Bind ViewModel.ConfirmRenameVariantCommand}"
+                        ToolTipService.ToolTip="Save name"
+                        Visibility="{x:Bind ViewModel.IsRenamingVariant, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <FontIcon FontSize="14" Glyph="&#xE73E;" />
+                    </Button>
+
+                    <Button
+                        Margin="4,0,0,0"
+                        Command="{x:Bind ViewModel.CancelRenameVariantCommand}"
+                        ToolTipService.ToolTip="Cancel"
+                        Visibility="{x:Bind ViewModel.IsRenamingVariant, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <FontIcon FontSize="14" Glyph="&#xE711;" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox
                 VerticalAlignment="Center"
                 Header="Mod Url:" l:Uids.Uid="ModPane_ModUrl"
                 IsEnabled="{x:Bind ViewModel.IsNotReadOnly, Mode=OneWay}"
@@ -162,7 +214,8 @@
                 <FontIcon FontSize="18" Glyph="&#xE8A7;" />
             </HyperlinkButton>
 
-        </Grid>
+            </Grid>
+        </StackPanel>
 
 
 

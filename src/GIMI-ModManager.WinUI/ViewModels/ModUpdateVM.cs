@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GIMI_ModManager.Core.Contracts.Entities;
@@ -8,6 +10,7 @@ using GIMI_ModManager.Core.Helpers;
 using GIMI_ModManager.Core.Services;
 using GIMI_ModManager.Core.Services.GameBanana;
 using GIMI_ModManager.Core.Services.GameBanana.Models;
+using GIMI_ModManager.Core.Entities.Mods.FileModels;
 using GIMI_ModManager.WinUI.Services.ModHandling;
 using GIMI_ModManager.WinUI.Services.Notifications;
 using GIMI_ModManager.WinUI.ViewModels.ModPageViewModels;
@@ -39,6 +42,27 @@ public partial class ModUpdateVM : ObservableRecipient
 
     [ObservableProperty] private string _initializing = "true";
 
+    /// <summary>True when the submission has more than one file, i.e. variants are possible.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsVariantsAvailable), nameof(InstallAsVariantsVisibility))]
+    private bool _hasMultipleFiles = false;
+
+    /// <summary>Variant-selection mode: checkboxes shown per file, batch download enabled.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsVariantsAvailable), nameof(InstallAsVariantsVisibility), nameof(VariantModeVisibility))]
+    [NotifyCanExecuteChangedFor(nameof(DownloadVariantsCommand))]
+    private bool _isVariantMode = false;
+
+    public bool IsVariantsAvailable => HasMultipleFiles && !IsVariantMode;
+
+    // Root-level x:Bind on a WindowEx can't use value converters — expose ready-made Visibility values.
+    public Microsoft.UI.Xaml.Visibility InstallAsVariantsVisibility =>
+        IsVariantsAvailable ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
+
+    // In variant-selection mode the bottom-right button becomes "Download".
+    public Microsoft.UI.Xaml.Visibility VariantModeVisibility =>
+        IsVariantMode ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
+
     [ObservableProperty] private string _modName = string.Empty;
 
     [ObservableProperty] private Uri _modPage = new("https://gamebanana.com/");
@@ -52,7 +76,7 @@ public partial class ModUpdateVM : ObservableRecipient
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsNotBusy))]
     [NotifyCanExecuteChangedFor(nameof(IgnoreAndCloseCommand), nameof(StartDownloadCommand),
-        nameof(StartInstallCommand))]
+        nameof(StartInstallCommand), nameof(ToggleVariantModeCommand), nameof(DownloadVariantsCommand))]
     private bool _isWindowBusy = false;
 
     public bool IsNotBusy => !IsWindowBusy;
@@ -155,6 +179,7 @@ public partial class ModUpdateVM : ObservableRecipient
 
 
         _modFiles = _modPageInfo.Files.ToList();
+        HasMultipleFiles = _modFiles.Count > 1;
 
         foreach (var modFile in _modFiles)
         {
@@ -162,6 +187,11 @@ public partial class ModUpdateVM : ObservableRecipient
             {
                 IsNew = modFile.DateAdded > LastUpdateCheck,
                 IsBusy = true
+            };
+            vm.PropertyChanged += (_, args) =>
+            {
+                if (args.PropertyName == nameof(ModFileInfoVm.IsVariantSelected))
+                    DownloadVariantsCommand.NotifyCanExecuteChanged();
             };
             ModFileInfos.Add(vm);
             await InitializeModFileVmAsync(vm);
@@ -300,10 +330,208 @@ public partial class ModUpdateVM : ObservableRecipient
         return canInstall;
     }
 
+    [RelayCommand(CanExecute = nameof(IsNotBusy))]
+    private void ToggleVariantMode()
+    {
+        IsVariantMode = !IsVariantMode;
+
+        foreach (var fileInfoVm in ModFileInfos)
+        {
+            fileInfoVm.ShowVariantCheckbox = IsVariantMode;
+            if (!IsVariantMode)
+                fileInfoVm.IsVariantSelected = false;
+        }
+    }
+
+    private void ExitVariantMode()
+    {
+        if (IsVariantMode)
+            ToggleVariantMode();
+    }
+
+    private bool CanDownloadVariants()
+    {
+        if (!IsVariantMode || !IsNotBusy)
+            return false;
+
+        var selected = ModFileInfos.Where(x => x.IsVariantSelected).ToList();
+        if (selected.Count == 0)
+            return false;
+
+        // No file may be mid-download/install while starting a variant batch.
+        var anyBusy = ModFileInfos.Any(x => x.Status is ModFileInfoVm.InstallStatus.Downloading
+            or ModFileInfoVm.InstallStatus.Installing or ModFileInfoVm.InstallStatus.Installed);
+
+        return !anyBusy && selected.Any(x => x.Status == ModFileInfoVm.InstallStatus.NotStarted ||
+                                            x.Status == ModFileInfoVm.InstallStatus.Downloaded);
+    }
+
+    /// <summary>
+    /// Batch-download all selected files (sequentially), then install them as variants of the
+    /// updated mod. Single selection falls back to the normal single-file update flow.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanDownloadVariants))]
+    private async Task DownloadVariantsAsync()
+    {
+        var selected = ModFileInfos.Where(x => x.IsVariantSelected).ToList();
+        if (selected.Count == 0)
+            return;
+
+        IsWindowBusy = true;
+        try
+        {
+            foreach (var fileInfoVm in selected.Where(x => x.Status == ModFileInfoVm.InstallStatus.NotStarted))
+            {
+                await StartDownload(fileInfoVm);
+                if (fileInfoVm.Status != ModFileInfoVm.InstallStatus.Downloaded)
+                {
+                    // Download failed/cancelled — stop the batch here.
+                    return;
+                }
+            }
+
+            var downloaded = selected.Where(x => x.ArchiveFile is not null &&
+                                                 x.Status == ModFileInfoVm.InstallStatus.Downloaded).ToList();
+            if (downloaded.Count == 0)
+                return;
+
+            ExitVariantMode();
+
+            if (downloaded.Count > 1)
+                await InstallVariantsAsync(downloaded, downloaded[0]);
+            else
+                await StartInstall(downloaded[0]);
+        }
+        finally
+        {
+            IsWindowBusy = false;
+        }
+    }
+
+    /// <summary>
+    /// Installs several downloaded archives as one variant-aware update of the existing mod:
+    /// &lt;top&gt;/{ .JASM_ModConfig.json, ramielle_mod/, DISABLED_pink/, ... }.
+    /// The whole structure goes through the normal installer with the existing mod marked for overwrite.
+    /// </summary>
+    private async Task InstallVariantsAsync(IReadOnlyList<ModFileInfoVm> files, ModFileInfoVm mainFile)
+    {
+        IsWindowBusy = true;
+        try
+        {
+            foreach (var f in files)
+                f.Status = ModFileInfoVm.InstallStatus.Installing;
+
+            var result = await Task.Run(async () =>
+            {
+                var tmpRoot = App.GetUniqueTmpFolder();
+
+                var mainSections = Path.GetFileName(mainFile.ArchiveFile!.FullName)
+                    .Split(ModArchiveRepository.Separator);
+                if (mainSections.Length != 4)
+                    throw new InvalidArchiveNameFormatException();
+
+                // Top-level folder keeps the original archive base name, e.g. "coolmod"
+                var topFolder = tmpRoot.CreateSubdirectory(mainSections[0]);
+
+                foreach (var file in files)
+                {
+                    var modFolder = _archiveService.ExtractArchive(file.ArchiveFile!.FullName,
+                        App.GetUniqueTmpFolder().FullName);
+
+                    var sections = Path.GetFileName(file.ArchiveFile.FullName).Split(ModArchiveRepository.Separator);
+                    if (sections.Length != 4)
+                        throw new InvalidArchiveNameFormatException();
+
+                    // One plain-named folder per variant, e.g. "pink". The first (main) file is
+                    // installed enabled; extras are disabled.
+                    var variantFolderName = ReferenceEquals(file, mainFile)
+                        ? sections[0]
+                        : VariantFolderHelpers.GetDisabledVariantFolderName(sections[0]);
+
+                    modFolder.MoveTo(Path.Combine(topFolder.FullName, variantFolderName));
+                }
+
+                // Write the initial .JASM_ModConfig.json marking the mod as variant-aware
+                var variantNames = files.Select(f =>
+                    Path.GetFileNameWithoutExtension(f.ArchiveFile!.FullName)
+                        .Split(ModArchiveRepository.Separator)[0]).ToList();
+                var variants = VariantManager.CreateInitialVariants(variantNames, variantNames[0]);
+
+                var settings = new JsonModSettings
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    DateAdded = DateTime.Now.ToString(CultureInfo.CurrentCulture),
+                    Variants = variants.Select(v => new JsonVariantEntry
+                    {
+                        Name = v.Name,
+                        FolderName = v.FolderName,
+                        Enabled = v.Enabled
+                    }).ToList()
+                };
+
+                await File.WriteAllTextAsync(
+                    Path.Combine(topFolder.FullName, Constants.ModConfigFileName),
+                    JsonSerializer.Serialize(settings, new JsonSerializerOptions { WriteIndented = true }), _ct);
+
+                var modUrl = _modPageInfo?.ModPageUrl;
+
+                using var task = await _modInstallerService.StartModInstallationAsync(topFolder, _characterModList,
+                    setup: options =>
+                    {
+                        options.ModUrl = modUrl;
+                        options.ExistingModToOverwritePath = _existingModToUpdate?.FullPath;
+                    }).ConfigureAwait(false);
+
+                return await task.WaitForCloseAsync(_ct).ConfigureAwait(false);
+            }, _ct);
+
+            if (result.CloseReason == CloseRequestedArgs.CloseReasons.Error)
+                throw new Exception("An error occured during mod install, see logs", result.Exception);
+
+            if (result.CloseReason == CloseRequestedArgs.CloseReasons.Canceled)
+            {
+                foreach (var f in files)
+                    f.Status = ModFileInfoVm.InstallStatus.Downloaded;
+                return;
+            }
+
+            foreach (var f in files)
+                f.Status = ModFileInfoVm.InstallStatus.Installed;
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "Failed to install mod variants");
+
+            _notificationManager.ShowNotification("Failed to install mod variants",
+                e.InnerException?.Message ?? e.Message, TimeSpan.FromSeconds(10));
+
+            foreach (var f in files)
+                f.Status = ModFileInfoVm.InstallStatus.Downloaded;
+        }
+        finally
+        {
+            IsWindowBusy = false;
+        }
+    }
+
 
     [RelayCommand(CanExecute = nameof(CanInstall))]
     private async Task StartInstall(ModFileInfoVm fileInfoVm)
     {
+        // In variant-selection mode, installing any marked file installs ALL marked files as variants.
+        if (IsVariantMode)
+        {
+            var selected = ModFileInfos.Where(x => x.IsVariantSelected && x.ArchiveFile is not null &&
+                                                   x.Status == ModFileInfoVm.InstallStatus.Downloaded).ToList();
+            if (selected.Count > 1)
+            {
+                var main = selected.FirstOrDefault(x => ReferenceEquals(x, fileInfoVm)) ?? selected[0];
+                ExitVariantMode();
+                await InstallVariantsAsync(selected, main);
+                return;
+            }
+        }
+
         IsWindowBusy = true;
         fileInfoVm.IsBusy = true;
 

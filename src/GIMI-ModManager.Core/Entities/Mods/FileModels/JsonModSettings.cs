@@ -2,7 +2,7 @@
 
 namespace GIMI_ModManager.Core.Entities.Mods.FileModels;
 
-internal class JsonModSettings
+public class JsonModSettings
 {
     public string Id { get; set; } = string.Empty;
 
@@ -38,4 +38,16 @@ internal class JsonModSettings
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public Dictionary<string, string>? Preferences { get; set; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public List<JsonVariantEntry>? Variants { get; set; }
+}
+
+public class JsonVariantEntry
+{
+    public string Name { get; set; } = string.Empty;
+
+    public string FolderName { get; set; } = string.Empty;
+
+    public bool Enabled { get; set; }
 }

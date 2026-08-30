@@ -206,6 +206,16 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
                             LastSelectedRootFolder.IsSelected = true;
                         }
                     });
+                else if (ModFolderHelpers.FolderNameEquals(modDir.Name, RootFolder.First().Name))
+                    // Variant mods keep their .JASM_ModConfig.json at the very top of the install
+                    // structure, so AutoSetModRootFolder resolves to the root folder itself — which
+                    // GetByPath cannot return (it only searches children). Set the root directly,
+                    // otherwise AddModCommand is never notified and the button stays disabled.
+                    dispatcherQueue.TryEnqueue(() =>
+                    {
+                        _modInstallation.SetRootModFolder(modDir);
+                        AddModCommand.NotifyCanExecuteChanged();
+                    });
             }
 
             var shaderFixesDir = _modInstallation.AutoSetShaderFixesFolder();
