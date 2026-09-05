@@ -395,7 +395,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
     /// </summary>
     public string AddModButtonText => _associateMode
         ? (App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_AssociateMod") ?? "Associate this mod")
-        : (App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstallerPage_AddModButton.Content") ?? "Add Mod");
+        : (App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstallerPage_AddModButton_Content") ?? "Add Mod");
 
     private void SetupAssociateMode()
     {

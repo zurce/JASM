@@ -4331,6 +4331,10 @@ JASM+ не будет перемещать ваши моды и не будет 
     <value>При ручном указании пути папка должна существовать</value>
   </data>
 
+  <data name="ModInstallerPage_AddModButton_Content" xml:space="preserve">
+    <!-- Button to finish installing the mod -->
+    <value>Добавить мод</value>
+  </data>
   <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
     <!-- Label/placeholder for a free-text note about this mod -->
     <value>Пользовательская текстовая заметка, отображаемая в сетке на странице деталей персонажа</value>

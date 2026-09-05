@@ -3674,6 +3674,10 @@ JASM+ no moverá ninguno de tus mods ni los eliminará.
     <!-- Toggle tooltip: keep window always on top -->
     <value>Mantener ventana siempre al frente</value>
   </data>
+  <data name="ModInstallerPage_AddModButton_Content" xml:space="preserve">
+    <!-- Button to finish installing the mod -->
+    <value>Agregar Mod</value>
+  </data>
   <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
     <!-- Label/placeholder for a free-text note about this mod -->
     <value>Nota de texto libre personalizada, mostrada en la cuadrícula en la página de detalles del personaje</value>
