@@ -191,6 +191,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <ToggleButton
@@ -230,27 +231,44 @@
                     VerticalAlignment="Bottom"
                     IsActive="{x:Bind ViewModel.IsRetrievingModInfo, Mode=OneWay}" />
 
-                <TextBox
+                <StackPanel
                     Grid.Row="1"
+                    Margin="0,4,0,4"
+                    Orientation="Horizontal"
+                    Visibility="{x:Bind ViewModel.InstallSkinSelectorVisibility, Mode=OneWay}">
+                    <TextBlock
+                        Margin="0,0,8,0"
+                        VerticalAlignment="Center"
+                        Text="Install in Skin:" l:Uids.Uid="ModInstallerPage_InstallSkinLabel" />
+                    <ComboBox
+                        MinWidth="200"
+                        VerticalAlignment="Center"
+                        DisplayMemberPath="DisplayName"
+                        ItemsSource="{x:Bind ViewModel.InstallableSkins, Mode=OneWay}"
+                        SelectedValue="{x:Bind ViewModel.SelectedInstallSkinInternalName, Mode=TwoWay}"
+                        SelectedValuePath="InternalName.Id" />
+                </StackPanel>
+                <TextBox
+                    Grid.Row="2"
                     Header="Mod page url" l:Uids.Uid="ModInstallerPage_ModPageUrl"
                     IsReadOnly="{x:Bind ViewModel.IsRetrievingModInfo, Mode=OneWay}"
                     KeyDown="UrlTextBox_KeyDown"
                     PlaceholderText="Paste URL to auto populate fields (GameBanana only)"
                     Text="{x:Bind ViewModel.ModUrl, Mode=TwoWay}" />
                 <TextBox
-                    Grid.Row="2"
+                    Grid.Row="3"
                     Header="Mod Custom Name" l:Uids.Uid="ModInstallerPage_ModCustomName"
                     IsReadOnly="{x:Bind ViewModel.IsRetrievingModInfo, Mode=OneWay}"
                     PlaceholderText="Custom Name displayed throughout JASM"
                     Text="{x:Bind ViewModel.CustomName, Mode=TwoWay}" />
                 <TextBox
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Header="Author" l:Uids.Uid="ModInstallerPage_Author"
                     IsReadOnly="{x:Bind ViewModel.IsRetrievingModInfo, Mode=OneWay}"
                     Text="{x:Bind ViewModel.Author, Mode=TwoWay}" />
                 <TextBox
                     x:Name="NoteTextBox"
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Margin="0,0,0,8"
                     AcceptsReturn="False"
                     Header="Note" l:Uids.Uid="ModInstallerPage_Note"

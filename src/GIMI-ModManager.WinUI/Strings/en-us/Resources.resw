@@ -1125,6 +1125,10 @@ Or
     <!-- Button to finish installing the mod -->
     <value>Add Mod</value>
   </data>
+  <data name="ModInstallerPage_InstallSkinLabel.Text" xml:space="preserve">
+    <!-- Label for the skin selector dropdown on the Mod Installer page -->
+    <value>Install in Skin:</value>
+  </data>
   
   <data name="CharacterGalleryPage_SelectSkin.Content" xml:space="preserve">
     <!-- Menu item to select a character skin -->
