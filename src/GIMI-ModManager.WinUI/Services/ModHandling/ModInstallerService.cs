@@ -143,7 +143,7 @@ public sealed class ModInstallation : IDisposable
 {
     private readonly ModCrawlerService _modCrawlerService = App.GetService<ModCrawlerService>();
     private readonly ISkinManagerService _skinManagerService = App.GetService<ISkinManagerService>();
-    private readonly ICharacterModList _destinationModList;
+    private ICharacterModList _destinationModList;
     private readonly DirectoryInfo _originalModFolder;
     private readonly List<FileStream> _lockedFiles = new();
 
@@ -161,6 +161,15 @@ public sealed class ModInstallation : IDisposable
         _destinationModList = destinationModList;
         SetRootModFolder(originalModFolder);
         LockFiles();
+    }
+
+    /// <summary>
+    /// Switches the install destination (e.g. to a skin-character's mod list).
+    /// Temp-folder state (root/shader selection, locks) is unaffected.
+    /// </summary>
+    public void RetargetDestination(ICharacterModList destinationModList)
+    {
+        _destinationModList = destinationModList;
     }
 
     private void LockFiles()

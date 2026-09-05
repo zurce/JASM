@@ -18,12 +18,17 @@ using GIMI_ModManager.Core.Services.ModPresetService;
 using GIMI_ModManager.Core.Services.ModPresetService.Models;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Contracts.ViewModels;
+using GIMI_ModManager.WinUI.Models.CustomControlTemplates;
 using GIMI_ModManager.WinUI.Models.Settings;
 using GIMI_ModManager.WinUI.Services;
 using GIMI_ModManager.WinUI.Services.AppManagement;
 using GIMI_ModManager.WinUI.Services.ModHandling;
 using GIMI_ModManager.WinUI.Services.Notifications;
+using GIMI_ModManager.WinUI.ViewModels.CharacterDetailsViewModels;
+using GIMI_ModManager.WinUI.Views;
+using GIMI_ModManager.WinUI.Views.CharacterDetailsPages;
 using Microsoft.UI.Dispatching;
+using Microsoft.UI.Xaml;
 using Serilog;
 using Constants = GIMI_ModManager.Core.Helpers.Constants;
 using static GIMI_ModManager.WinUI.ViewModels.CloseRequestedArgs;
@@ -46,6 +51,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
     private readonly ModPresetService _modPresetService;
 
     private ICharacterModList _characterModList = null!;
+    private ICharacterModList _originModList = null!;
     private ICharacterSkin? _inGameSkin = null;
     private DispatcherQueue? _dispatcherQueue;
     private InstallOptions? _installOptions;
@@ -64,6 +70,18 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
     public event EventHandler<CloseRequestedArgs>? CloseRequested;
 
     [ObservableProperty] private string _modCharacterName = string.Empty;
+
+    // Install destination for the "Install in Skin" selector. A non-default skin resolves to
+    // its skin-character's mod list when one exists (skins-as-characters mode); otherwise the
+    // shared character folder is used and the mod is pinned to the skin via skin override.
+    public ObservableCollection<ICharacterSkin> InstallableSkins { get; } = new();
+
+    [ObservableProperty] private string? _selectedInstallSkinInternalName;
+
+    public bool HasInstallableSkins => InstallableSkins.Count > 1;
+
+    public Visibility InstallSkinSelectorVisibility =>
+        HasInstallableSkins ? Visibility.Visible : Visibility.Collapsed;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(ReRetrieveModInfoCommand))]
@@ -166,8 +184,11 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         DispatcherQueue dispatcherQueue, ICharacterSkin? inGameSkin = null, InstallOptions? options = null)
     {
         _characterModList = characterModList;
+        _originModList = characterModList;
         ModCharacterName = characterModList.Character.DisplayName;
+        InitInstallSkinSelector(inGameSkin);
         _modInstallation = ModInstallation.Start(modToInstall, _characterModList);
+        ApplyInstallTargetList();
         // Associate mode must not hold the live mod's files locked (LockFiles opens every file);
         // the settings file needs to be read/written during association.
         if (options?.AssociateOnly == true)
@@ -305,6 +326,64 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         }
     }
 
+    // Populates the "Install in Skin" selector and applies the matching install target list.
+    private void InitInstallSkinSelector(ICharacterSkin? inGameSkin)
+    {
+        InstallableSkins.Clear();
+        if (_characterModList.Character is not ICharacter character || character.Skins.Count <= 1)
+            return;
+
+        foreach (var skin in character.Skins)
+            InstallableSkins.Add(skin);
+
+        if (inGameSkin is not null
+            && InstallableSkins.Any(s => s.InternalNameEquals(inGameSkin.InternalName)))
+            SelectedInstallSkinInternalName = inGameSkin.InternalName.Id;
+        else
+            SelectedInstallSkinInternalName =
+                InstallableSkins.FirstOrDefault(s => s.IsDefault)?.InternalName.Id
+                ?? InstallableSkins.FirstOrDefault()?.InternalName.Id;
+
+        OnPropertyChanged(nameof(HasInstallableSkins));
+        OnPropertyChanged(nameof(InstallSkinSelectorVisibility));
+    }
+
+    partial void OnSelectedInstallSkinInternalNameChanged(string? value) => ApplyInstallTargetList();
+
+    public ICharacterSkin? SelectedInstallSkin =>
+        SelectedInstallSkinInternalName is null ? null
+        : InstallableSkins.FirstOrDefault(s =>
+            string.Equals(s.InternalName.Id, SelectedInstallSkinInternalName, StringComparison.OrdinalIgnoreCase));
+
+    private ICharacterModList ResolveInstallTargetList(ICharacterSkin? skin)
+    {
+        // Associate mode edits an already-installed mod in place — the skin selector
+        // must not redirect it elsewhere.
+        if (_installOptions?.AssociateOnly == true)
+            return _originModList;
+
+        if (skin is null || skin.IsDefault)
+            return _originModList;
+
+        // Skins-as-characters mode: each skin is its own character with its own mod folder.
+        return _skinManagerService.GetCharacterModListOrDefault(skin.InternalName) ?? _originModList;
+    }
+
+    private void ApplyInstallTargetList()
+    {
+        if (_modInstallation is null)
+            return;
+
+        var target = ResolveInstallTargetList(SelectedInstallSkin);
+        if (ReferenceEquals(target, _characterModList))
+            return;
+
+        _characterModList = target;
+        _modInstallation.RetargetDestination(target);
+        ModCharacterName = target.Character.DisplayName;
+        AddModCommand.NotifyCanExecuteChanged();
+    }
+
     /// <summary>
     /// "Associate" mode: only writes the mod's metadata to its settings file (no files added or
     /// replaced). The primary button becomes "Associate this mod" and is enabled.
@@ -325,6 +404,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         // re-evaluated (and thus enabled) now that _modInstallation is set, and its label updates.
         AddModCommand.NotifyCanExecuteChanged();
         OnPropertyChanged(nameof(AddModButtonText));
+        ApplyInstallTargetList();
     }
 
     private async Task AssociateModAsync()
@@ -403,6 +483,20 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
             string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_AddedToModList") ?? "Mod '{0}' ({1}), was successfully added to {2} ModList", modName, newMod.Name, _characterModList.Character.DisplayName),
             TimeSpan.FromSeconds(5));
 
+        // An explicit non-default skin choice beats content detection when there is no
+        // separate skin folder (normal mode): the install went to the shared character
+        // folder, so pin the new mod to the chosen skin in both enable paths.
+        // (EnableOnlyMod alone only applied the choice when "enable on install" was on.)
+        var installSkin = SelectedInstallSkin;
+        if (installSkin is not null && !installSkin.IsDefault
+            && ReferenceEquals(_characterModList, _originModList))
+        {
+            _inGameSkin = installSkin;
+            var newModId = newMod.Id;
+            var skinInternalName = installSkin.InternalName;
+            Task.Run(() => _modSettingsService.SetCharacterSkinOverrideLegacy(newModId, skinInternalName));
+        }
+
         if (EnableThisMod)
             Task.Run(() => EnableOnlyMod(newMod));
         else
@@ -423,6 +517,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
 
         _dispatcherQueue?.TryEnqueue(() =>
         {
+            SwitchToInstallTargetPage();
             CloseRequested?.Invoke(this, new CloseRequestedArgs(CloseReasons.Success));
         });
 
@@ -439,6 +534,91 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
                 AttentionType = AttentionType.Added,
                 Message = "Mod was successfully added"
             }));
+    }
+
+    // After a successful install, move the main window to the install target's character
+    // page — but only if it is currently showing this install's character context.
+    private void SwitchToInstallTargetPage()
+    {
+        var navigation = App.GetService<INavigationService>();
+        var target = _characterModList.Character;
+        var originId = _originModList.Character.InternalName.Id;
+        var targetId = target.InternalName.Id;
+        var frameContent = navigation.Frame?.Content;
+
+        var viewingDetails = frameContent is CharacterDetailsPage detailsPage
+            && detailsPage.ViewModel.ShownModObject is { } shown
+            && (shown.InternalNameEquals(originId) || shown.InternalNameEquals(targetId));
+        var viewingOverview = frameContent is ModsOverviewPage overviewPage
+            && OverviewShowsCharacter(overviewPage.ViewModel, originId, targetId);
+        if (!viewingDetails && !viewingOverview)
+            return;
+
+        navigation.NavigateToCharacterDetails(target.InternalName);
+
+        // Normal mode: the card opens on the default skin — switch it to the installed one.
+        // In skins-as-characters mode the skin page already is the right context.
+        // The card can still be busy settling the new mod, so retry until it sticks.
+        var installSkin = SelectedInstallSkin;
+        if (installSkin is null || installSkin.IsDefault
+            || !ReferenceEquals(_characterModList, _originModList))
+            return;
+
+        // CharacterDetailsViewModel is transient: resolve the card through the live page,
+        // never via App.GetService (that would return a detached instance).
+        var livePage = navigation.Frame?.Content as CharacterDetailsPage;
+        if (livePage is null)
+            return;
+
+        _ = SelectInstallSkinWithRetryAsync(navigation, livePage, installSkin, originId);
+    }
+
+    private static bool OverviewShowsCharacter(ModsOverviewVM vm, string originId, string targetId) =>
+        vm.GoToNode switch
+        {
+            ModdableObjectNode objNode => objNode.ModdableObject.InternalNameEquals(originId)
+                || objNode.ModdableObject.InternalNameEquals(targetId),
+            ModModelNode modNode => modNode.ParentModdableObject?.ModdableObject.InternalNameEquals(originId) == true
+                || modNode.ParentModdableObject?.ModdableObject.InternalNameEquals(targetId) == true,
+            _ => false
+        };
+
+    private static async Task SelectInstallSkinWithRetryAsync(INavigationService navigation,
+        CharacterDetailsPage livePage, ICharacterSkin skin, string originId)
+    {
+        try
+        {
+            for (var attempt = 0; attempt < 20; attempt++)
+            {
+                var done = await App.MainWindow.DispatcherQueue
+                    .EnqueueAsync(() => TrySelectInstallSkin(navigation, livePage, skin, originId))
+                    .ConfigureAwait(false);
+                if (done)
+                    return;
+                await Task.Delay(250).ConfigureAwait(false);
+            }
+        }
+        catch
+        {
+            // Installer/main window going away mid-retry — nothing left to switch to.
+        }
+    }
+
+    private static bool TrySelectInstallSkin(INavigationService navigation,
+        CharacterDetailsPage livePage, ICharacterSkin skin, string originId)
+    {
+        // Stop if the user navigated away from the install target page.
+        if (!ReferenceEquals(navigation.Frame?.Content, livePage))
+            return true;
+        var cardVm = livePage.ViewModel;
+        if (!cardVm.IsCharacter || !cardVm.Character.InternalNameEquals(originId))
+            return false;
+        if (cardVm.SelectedSkin?.InternalNameEquals(skin.InternalName) == true)
+            return true;
+        if (cardVm.IsHardBusy)
+            return false;
+        cardVm.SelectSkinCommand.Execute(new SelectCharacterTemplate(skin));
+        return false;
     }
 
 
