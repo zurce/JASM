@@ -1630,8 +1630,24 @@
     <value>Скачать</value>
   </data>
   <data name="GbModPageWindow_InstallAsVariantsButton.Content" xml:space="preserve">
-    <!-- Button to enter variant-selection mode -->
-    <value>Установить как варианты</value>
+    <!-- Button to enter multi-install selection mode -->
+    <value>Мульти установка</value>
+  </data>
+  <data name="InstallingAsAddonLabel.Text" xml:space="preserve">
+    <!-- Label on a multi-install file nested under another as an add-on -->
+    <value>Установка как аддон</value>
+  </data>
+  <data name="DetachDropZoneHint.Text" xml:space="preserve">
+    <!-- Hint on the multi-install drop lane for detaching nested add-on files -->
+    <value>Отпустите здесь, чтобы отсоединить</value>
+  </data>
+  <data name="DropToNestHint.Text" xml:space="preserve">
+    <!-- Hint shown on a multi-install file hovered as a drop target for nesting -->
+    <value>Отпустите, чтобы вложить как аддон</value>
+  </data>
+  <data name="CancelButton.Text" xml:space="preserve">
+    <!-- Cancel button text (exits multi-install selection mode) -->
+    <value>Отмена</value>
   </data>
 
   <data name="GbModPageWindow_CloseButton.Content" xml:space="preserve">
@@ -1723,8 +1739,8 @@
     <value>Скачать</value>
   </data>
   <data name="ModUpdateAvailableWindow_InstallAsVariantsButton.Content" xml:space="preserve">
-    <!-- Button to enter variant-selection mode -->
-    <value>Установить как варианты</value>
+    <!-- Button to enter multi-install selection mode -->
+    <value>Мульти установка</value>
   </data>
 
   <data name="ModUpdateAvailableWindow_IgnoreCloseButton.Content" xml:space="preserve">

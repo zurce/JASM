@@ -20,6 +20,11 @@ public partial class ModFileInfoVm : ObservableObject
     public TimeSpan Age => DateTime.Now - DateAdded;
 
     public string AgeFormated => FormaterHelpers.FormatTimeSinceAdded(Age);
+    public long FileSizeBytes => _modFileInfo.FileSizeBytes;
+    public string FileSizeFormated => FormaterHelpers.FormatFileSize(FileSizeBytes);
+    public bool HasFileSize => FileSizeBytes >= 0;
+    public Microsoft.UI.Xaml.Visibility FileSizeVisibility =>
+        HasFileSize ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
 
     public string Description => _modFileInfo.Description;
 
@@ -45,6 +50,27 @@ public partial class ModFileInfoVm : ObservableObject
     private FileInfo? _archiveFile;
 
     [ObservableProperty] private bool _isVariantSelected;
+
+    /// <summary>Parent file this file nests under as an add-on (multi-install drag). Null = top-level.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsAddonChild), nameof(AddonIndent), nameof(AddonLabelVisibility))]
+    private ModFileInfoVm? _addonParent;
+
+    public bool IsAddonChild => AddonParent is not null;
+
+    public Microsoft.UI.Xaml.Thickness AddonIndent => IsAddonChild
+        ? new Microsoft.UI.Xaml.Thickness(32, 8, 0, 8)
+        : new Microsoft.UI.Xaml.Thickness(0, 8, 0, 8);
+
+    public Microsoft.UI.Xaml.Visibility AddonLabelVisibility =>
+        IsAddonChild ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(DropTargetVisibility))]
+    private bool _isDropTarget;
+
+    public Microsoft.UI.Xaml.Visibility DropTargetVisibility =>
+        IsDropTarget ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(VariantCheckboxVisibility))]

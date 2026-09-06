@@ -10,10 +10,10 @@ public class ModFileInfo
         ModId = modId;
         FileId = apiModFileInfo.FileId.ToString();
         FileName = apiModFileInfo.FileName;
+        Md5Checksum = apiModFileInfo.Md5Checksum;
+        FileSizeBytes = apiModFileInfo.FileSize;
         Description = apiModFileInfo.Description;
         DateAdded = DateTimeOffset.FromUnixTimeSeconds(apiModFileInfo.DateAdded).DateTime;
-        Md5Checksum = apiModFileInfo.Md5Checksum;
-        ModId = modId;
     }
 
     public ModFileInfo(string modId, string fileId, string fileName, string description, string md5Checksum,
@@ -42,4 +42,5 @@ public class ModFileInfo
     public DateTime DateAdded { get; init; }
     [JsonIgnore] public TimeSpan Age => DateTime.Now - DateAdded;
     public string Md5Checksum { get; init; }
+    public long FileSizeBytes { get; init; } = -1;
 }

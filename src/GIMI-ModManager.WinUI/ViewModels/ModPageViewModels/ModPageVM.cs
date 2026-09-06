@@ -163,7 +163,10 @@ public partial class ModPageVM : ObservableRecipient
             vm.PropertyChanged += (_, args) =>
             {
                 if (args.PropertyName == nameof(ModFileInfoVm.IsVariantSelected))
+                {
                     DownloadVariantsCommand.NotifyCanExecuteChanged();
+                    SyncAddonCheckboxes(vm);
+                }
             };
             ModFileInfos.Add(vm);
             await InitializeModFileVmAsync(vm);
@@ -192,15 +195,68 @@ public partial class ModPageVM : ObservableRecipient
     }
 
     [RelayCommand(CanExecute = nameof(IsNotBusy))]
-    private void ToggleVariantMode()
+    private void ToggleVariantMode() => SetVariantMode(!IsVariantMode, clearNesting: true);
+
+    private void ExitVariantMode() => SetVariantMode(false, clearNesting: false);
+
+    private void SetVariantMode(bool enabled, bool clearNesting)
     {
-        IsVariantMode = !IsVariantMode;
+        IsVariantMode = enabled;
 
         foreach (var fileInfoVm in ModFileInfos)
         {
-            fileInfoVm.ShowVariantCheckbox = IsVariantMode;
-            if (!IsVariantMode)
+            fileInfoVm.ShowVariantCheckbox = enabled;
+            if (!enabled)
+            {
                 fileInfoVm.IsVariantSelected = false;
+                // Cancelling multi-install resets nesting; the install path preserves it.
+                if (clearNesting)
+                {
+                    fileInfoVm.AddonParent = null;
+                    fileInfoVm.IsDropTarget = false;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Nests a file under another as an add-on (multi-install drag). Null target detaches.
+    /// Depth-1 only: targets must be top-level and dragged files must not own add-ons.
+    /// Dragging implies include, so the nested file is checked.
+    /// </summary>
+    public bool AttachAsAddon(ModFileInfoVm dragged, ModFileInfoVm? target)
+    {
+        if (!IsVariantMode || dragged is null)
+            return false;
+        if (target is null)
+        {
+            dragged.AddonParent = null;
+            return true;
+        }
+        if (ReferenceEquals(dragged, target) || target.AddonParent is not null)
+            return false;
+        if (ModFileInfos.Any(x => ReferenceEquals(x.AddonParent, dragged)))
+            return false;
+        dragged.AddonParent = target;
+        dragged.IsVariantSelected = true;
+        // Keep the parent directly above its children in the list.
+        ModFileInfos.Remove(dragged);
+        ModFileInfos.Insert(ModFileInfos.IndexOf(target) + 1, dragged);
+        return true;
+    }
+
+    /// <summary>
+    /// Keeps attach checkboxes consistent: checking a nested file checks its parent;
+    /// unchecking a parent unchecks its nested files. Terminates (depth-1, guarded).
+    /// </summary>
+    private void SyncAddonCheckboxes(ModFileInfoVm changed)
+    {
+        if (changed.IsVariantSelected && changed.AddonParent is not null)
+            changed.AddonParent.IsVariantSelected = true;
+        else if (!changed.IsVariantSelected)
+        {
+            foreach (var child in ModFileInfos.Where(x => ReferenceEquals(x.AddonParent, changed)))
+                child.IsVariantSelected = false;
         }
     }
 
@@ -266,11 +322,6 @@ public partial class ModPageVM : ObservableRecipient
         }
     }
 
-    private void ExitVariantMode()
-    {
-        if (IsVariantMode)
-            ToggleVariantMode();
-    }
 
     /// <summary>
     /// Installs several downloaded archives as one variant-aware mod:
@@ -297,6 +348,16 @@ public partial class ModPageVM : ObservableRecipient
                 // Top-level folder keeps the original archive base name, e.g. "coolmod"
                 var topFolder = tmpRoot.CreateSubdirectory(mainSections[0]);
 
+                // Partition checked files: top-level files become exclusive variants,
+                // dragged-nested files become add-ons physically nested inside their
+                // parent root folder (so disabling the root disables its add-ons too).
+                var roots = files.Where(f => f.AddonParent is null).ToList();
+                if (roots.Count == 0)
+                    roots = [.. files]; // degenerate: no top-level files, all act as roots
+                var mainRoot = roots.FirstOrDefault(r => ReferenceEquals(r, mainFile)) ?? roots[0];
+
+                var baseNames = new Dictionary<ModFileInfoVm, string>();
+                var placedRoots = new Dictionary<ModFileInfoVm, DirectoryInfo>();
                 foreach (var file in files)
                 {
                     var modFolder = _archiveService.ExtractArchive(file.ArchiveFile!.FullName,
@@ -305,21 +366,41 @@ public partial class ModPageVM : ObservableRecipient
                     var sections = Path.GetFileName(file.ArchiveFile.FullName).Split(ModArchiveRepository.Separator);
                     if (sections.Length != 4)
                         throw new InvalidArchiveNameFormatException();
+                    baseNames[file] = sections[0];
 
-                    // One plain-named folder per variant, e.g. "pink". The first (main) file is
-                    // installed enabled; extras are disabled.
-                    var variantFolderName = ReferenceEquals(file, mainFile)
-                        ? sections[0]
-                        : VariantFolderHelpers.GetDisabledVariantFolderName(sections[0]);
+                    // Roots use exclusive variant naming (main enabled, rest disabled);
+                    // nested files extract flat first and are relocated into their parent below.
+                    var folderName = roots.Contains(file)
+                        ? (ReferenceEquals(file, mainRoot)
+                            ? sections[0]
+                            : VariantFolderHelpers.GetDisabledVariantFolderName(sections[0]))
+                        : sections[0];
 
-                    modFolder.MoveTo(Path.Combine(topFolder.FullName, variantFolderName));
+                    var dest = Path.Combine(topFolder.FullName, folderName);
+                    modFolder.MoveTo(dest);
+                    if (roots.Contains(file))
+                        placedRoots[file] = new DirectoryInfo(dest);
                 }
 
-                // Write the initial .JASM_ModConfig.json marking the mod as variant-aware
-                var variantNames = files.Select(f =>
-                    Path.GetFileNameWithoutExtension(f.ArchiveFile!.FullName)
-                        .Split(ModArchiveRepository.Separator)[0]).ToList();
-                var variants = VariantManager.CreateInitialVariants(variantNames, variantNames[0]);
+                // Relocate nested files inside their parent root folder. A nested file whose
+                // parent was not included installs flat and stays out of the addons array.
+                var placedAddonNames = new List<string>();
+                foreach (var file in files.Where(f => f.AddonParent is not null))
+                {
+                    if (!placedRoots.TryGetValue(file.AddonParent!, out var parentDir))
+                    {
+                        _logger.Warning("Add-on '{File}' parent was not installed; leaving it flat", baseNames[file]);
+                        continue;
+                    }
+                    var src = Path.Combine(topFolder.FullName, baseNames[file]);
+                    Directory.Move(src, Path.Combine(parentDir.FullName, baseNames[file]));
+                    placedAddonNames.Add(baseNames[file]);
+                }
+
+                // Write the initial .JASM_ModConfig.json with both arrays
+                var variantNames = roots.Select(f => baseNames[f]).ToList();
+                var variants = VariantManager.CreateInitialVariants(variantNames, baseNames[mainRoot]);
+                var addons = AddonManager.CreateInitialAddons(placedAddonNames);
 
                 var settings = new JsonModSettings
                 {
@@ -330,6 +411,12 @@ public partial class ModPageVM : ObservableRecipient
                         Name = v.Name,
                         FolderName = v.FolderName,
                         Enabled = v.Enabled
+                    }).ToList(),
+                    Addons = addons.Count == 0 ? null : addons.Select(a => new JsonAddonEntry
+                    {
+                        Name = a.Name,
+                        FolderName = a.FolderName,
+                        Enabled = a.Enabled
                     }).ToList()
                 };
 

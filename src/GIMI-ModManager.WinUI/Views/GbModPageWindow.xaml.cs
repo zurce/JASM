@@ -6,6 +6,10 @@ using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.ViewModels.ModPageViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.Web.WebView2.Core;
+using Microsoft.UI.Xaml.Controls;
+using Windows.ApplicationModel.DataTransfer;
+using System.Linq;
+using GIMI_ModManager.Core.Contracts.Services;
 
 namespace GIMI_ModManager.WinUI.Views;
 
@@ -24,7 +28,16 @@ public sealed partial class GbModPageWindow : WindowEx
         _cts = new CancellationTokenSource();
 
         ViewModel = new ModPageVM(gameBananaUri, moddableObject, this, _cts.Token);
+        ViewModel.PropertyChanged += (_, args) =>
+        {
+            if (args.PropertyName == nameof(ModPageVM.IsVariantMode))
+            {
+                UpdateDetachZone();
+                UpdateCloseButton();
+            }
+        };
         InitializeComponent();
+
 
         if (Content is FrameworkElement rootElement)
         {
@@ -41,6 +54,21 @@ public sealed partial class GbModPageWindow : WindowEx
         };
 
         InitWebView();
+    }
+    private void CloseCancel_Click(object sender, RoutedEventArgs e)
+    {
+        if (ViewModel.IsVariantMode)
+            ViewModel.ToggleVariantModeCommand.Execute(null);
+        else
+            ViewModel.CloseCommand.Execute(null);
+    }
+
+    private void UpdateCloseButton()
+    {
+        var localizer = App.GetService<ILanguageLocalizer>();
+        CloseCancelButton.Content = ViewModel.IsVariantMode
+            ? localizer.GetLocalizedStringOrDefault("CancelButton.Text") ?? "Cancel"
+            : localizer.GetLocalizedStringOrDefault("WindowManagerService_Close") ?? "Close";
     }
 
     private void InitWebView()
@@ -105,4 +133,84 @@ public sealed partial class GbModPageWindow : WindowEx
         else
             ModPageBrowser.CoreWebView2.OpenDefaultDownloadDialog();
     }
+
+    private List<ModFileInfoVm> _draggedAddonFiles = [];
+
+    private void FileList_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
+    {
+        foreach (var vm in ViewModel.ModFileInfos) vm.IsDropTarget = false;
+        _draggedAddonFiles = e.Items.OfType<ModFileInfoVm>().ToList();
+        e.Data.SetText("jasm-addon-nest");
+        e.Data.RequestedOperation = DataPackageOperation.Move;
+    }
+
+    private void FileItem_DragOver(object sender, DragEventArgs e)
+    {
+        foreach (var vm in ViewModel.ModFileInfos) vm.IsDropTarget = false;
+        if (sender is FrameworkElement { DataContext: ModFileInfoVm target })
+            target.IsDropTarget = true;
+        if (ViewModel.IsVariantMode && e.DataView.AvailableFormats.Contains(StandardDataFormats.Text))
+            e.AcceptedOperation = DataPackageOperation.Move;
+    }
+
+    private void FileItem_Drop(object sender, DragEventArgs e)
+    {
+        e.Handled = true;
+        foreach (var vm in ViewModel.ModFileInfos) vm.IsDropTarget = false;
+        if (sender is FrameworkElement { DataContext: ModFileInfoVm target })
+        {
+            foreach (var dragged in _draggedAddonFiles)
+                ViewModel.AttachAsAddon(dragged, target);
+        }
+        _draggedAddonFiles.Clear();
+        UpdateDetachZone();
+    }
+
+    private void FileList_Drop(object sender, DragEventArgs e)
+    {
+        foreach (var vm in ViewModel.ModFileInfos) vm.IsDropTarget = false;
+        // Blank-area drop detaches back to top level (item drops mark Handled above).
+        foreach (var dragged in _draggedAddonFiles)
+            ViewModel.AttachAsAddon(dragged, null);
+        _draggedAddonFiles.Clear();
+        UpdateDetachZone();
+    }
+
+    private void FileItem_DragLeave(object sender, DragEventArgs e)
+    {
+        if (sender is FrameworkElement { DataContext: ModFileInfoVm target })
+            target.IsDropTarget = false;
+    }
+
+    private void DetachAddon_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement { DataContext: ModFileInfoVm target })
+            target.AddonParent = null;
+        UpdateDetachZone();
+    }
+
+    private void DetachZone_DragOver(object sender, DragEventArgs e)
+    {
+        if (ViewModel.IsVariantMode && e.DataView.AvailableFormats.Contains(StandardDataFormats.Text))
+            e.AcceptedOperation = DataPackageOperation.Move;
+    }
+
+    private void DetachZone_Drop(object sender, DragEventArgs e)
+    {
+        e.Handled = true;
+        foreach (var vm in ViewModel.ModFileInfos) vm.IsDropTarget = false;
+        foreach (var dragged in _draggedAddonFiles)
+            ViewModel.AttachAsAddon(dragged, null);
+        _draggedAddonFiles.Clear();
+        UpdateDetachZone();
+    }
+
+    private void UpdateDetachZone()
+    {
+        DetachDropZone.Visibility = ViewModel.IsVariantMode
+            && ViewModel.ModFileInfos.Any(x => x.IsAddonChild)
+            ? Visibility.Visible
+            : Visibility.Collapsed;
+    }
+
 }

@@ -1388,8 +1388,24 @@ O
     <value>Descargar</value>
   </data>
   <data name="GbModPageWindow_InstallAsVariantsButton.Content" xml:space="preserve">
-    <!-- Button to enter variant-selection mode -->
-    <value>Instalar como variantes</value>
+    <!-- Button to enter multi-install selection mode -->
+    <value>Multi instalación</value>
+  </data>
+  <data name="InstallingAsAddonLabel.Text" xml:space="preserve">
+    <!-- Label on a multi-install file nested under another as an add-on -->
+    <value>Instalando como addon</value>
+  </data>
+  <data name="DetachDropZoneHint.Text" xml:space="preserve">
+    <!-- Hint on the multi-install drop lane for detaching nested add-on files -->
+    <value>Suelta aquí para separar</value>
+  </data>
+  <data name="DropToNestHint.Text" xml:space="preserve">
+    <!-- Hint shown on a multi-install file hovered as a drop target for nesting -->
+    <value>Soltar para anidar como addon</value>
+  </data>
+  <data name="CancelButton.Text" xml:space="preserve">
+    <!-- Cancel button text (exits multi-install selection mode) -->
+    <value>Cancelar</value>
   </data>
   <data name="GbModPageWindow_CloseButton.Content" xml:space="preserve">
     <!-- Button to close the window -->
@@ -1468,8 +1484,8 @@ O
     <value>Descargar</value>
   </data>
   <data name="ModUpdateAvailableWindow_InstallAsVariantsButton.Content" xml:space="preserve">
-    <!-- Button to enter variant-selection mode -->
-    <value>Instalar como variantes</value>
+    <!-- Button to enter multi-install selection mode -->
+    <value>Multi instalación</value>
   </data>
   <data name="ModUpdateAvailableWindow_IgnoreCloseButton.Content" xml:space="preserve">
     <!-- Button to close the window -->

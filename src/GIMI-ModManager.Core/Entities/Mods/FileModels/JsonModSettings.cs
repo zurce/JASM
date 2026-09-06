@@ -41,6 +41,18 @@ public class JsonModSettings
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public List<JsonVariantEntry>? Variants { get; set; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public List<JsonAddonEntry>? Addons { get; set; }
+}
+
+public class JsonAddonEntry
+{
+    public string Name { get; set; } = string.Empty;
+
+    public string FolderName { get; set; } = string.Empty;
+
+    public bool Enabled { get; set; }
 }
 
 public class JsonVariantEntry

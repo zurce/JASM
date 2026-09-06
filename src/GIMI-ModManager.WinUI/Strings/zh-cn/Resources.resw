@@ -1630,8 +1630,24 @@
     <value>下载</value>
   </data>
   <data name="GbModPageWindow_InstallAsVariantsButton.Content" xml:space="preserve">
-    <!-- Button to enter variant-selection mode -->
-    <value>以变体方式安装</value>
+    <!-- Button to enter multi-install selection mode -->
+    <value>批量安装</value>
+  </data>
+  <data name="InstallingAsAddonLabel.Text" xml:space="preserve">
+    <!-- Label on a multi-install file nested under another as an add-on -->
+    <value>作为 addon 安装</value>
+  </data>
+  <data name="DetachDropZoneHint.Text" xml:space="preserve">
+    <!-- Hint on a multi-install drop lane for detaching nested add-on files -->
+    <value>拖到此处分离</value>
+  </data>
+  <data name="DropToNestHint.Text" xml:space="preserve">
+    <!-- Hint shown on a multi-install file hovered as a drop target for nesting -->
+    <value>松开以嵌套为 addon</value>
+  </data>
+  <data name="CancelButton.Text" xml:space="preserve">
+    <!-- Cancel button text (exits multi-install selection mode) -->
+    <value>取消</value>
   </data>
 
   <data name="GbModPageWindow_CloseButton.Content" xml:space="preserve">
@@ -1723,8 +1739,8 @@
     <value>下载</value>
   </data>
   <data name="ModUpdateAvailableWindow_InstallAsVariantsButton.Content" xml:space="preserve">
-    <!-- Button to enter variant-selection mode -->
-    <value>以变体方式安装</value>
+    <!-- Button to enter multi-install selection mode -->
+    <value>批量安装</value>
   </data>
 
   <data name="ModUpdateAvailableWindow_IgnoreCloseButton.Content" xml:space="preserve">
