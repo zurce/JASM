@@ -239,6 +239,9 @@ public partial class ModPageVM : ObservableRecipient
             return false;
         dragged.AddonParent = target;
         dragged.IsVariantSelected = true;
+        // Explicit (not via notification): re-setting an already-checked file fires nothing.
+        if (!target.IsVariantSelected)
+            target.IsVariantSelected = true;
         // Keep the parent directly above its children in the list.
         ModFileInfos.Remove(dragged);
         ModFileInfos.Insert(ModFileInfos.IndexOf(target) + 1, dragged);
@@ -349,15 +352,14 @@ public partial class ModPageVM : ObservableRecipient
                 var topFolder = tmpRoot.CreateSubdirectory(mainSections[0]);
 
                 // Partition checked files: top-level files become exclusive variants,
-                // dragged-nested files become add-ons physically nested inside their
-                // parent root folder (so disabling the root disables its add-ons too).
+                // dragged-nested files become add-ons. All live flat side by side under
+                // the top folder — add-ons belong to the main mod, not to any variant.
                 var roots = files.Where(f => f.AddonParent is null).ToList();
                 if (roots.Count == 0)
                     roots = [.. files]; // degenerate: no top-level files, all act as roots
                 var mainRoot = roots.FirstOrDefault(r => ReferenceEquals(r, mainFile)) ?? roots[0];
 
                 var baseNames = new Dictionary<ModFileInfoVm, string>();
-                var placedRoots = new Dictionary<ModFileInfoVm, DirectoryInfo>();
                 foreach (var file in files)
                 {
                     var modFolder = _archiveService.ExtractArchive(file.ArchiveFile!.FullName,
@@ -378,35 +380,27 @@ public partial class ModPageVM : ObservableRecipient
 
                     var dest = Path.Combine(topFolder.FullName, folderName);
                     modFolder.MoveTo(dest);
-                    if (roots.Contains(file))
-                        placedRoots[file] = new DirectoryInfo(dest);
                 }
 
-                // Relocate nested files inside their parent root folder. A nested file whose
-                // parent was not included installs flat and stays out of the addons array.
-                var placedAddonNames = new List<string>();
-                foreach (var file in files.Where(f => f.AddonParent is not null))
-                {
-                    if (!placedRoots.TryGetValue(file.AddonParent!, out var parentDir))
-                    {
-                        _logger.Warning("Add-on '{File}' parent was not installed; leaving it flat", baseNames[file]);
-                        continue;
-                    }
-                    var src = Path.Combine(topFolder.FullName, baseNames[file]);
-                    Directory.Move(src, Path.Combine(parentDir.FullName, baseNames[file]));
-                    placedAddonNames.Add(baseNames[file]);
-                }
+                // Add-ons belong to the main mod: nested files install flat, all enabled.
+                var placedAddonNames = files
+                    .Where(f => f.AddonParent is not null && !roots.Contains(f))
+                    .Select(f => baseNames[f]).ToList();
 
                 // Write the initial .JASM_ModConfig.json with both arrays
+                // A single root is just the mod itself — variants only exist when there is
+                // an actual exclusive choice between two or more top-level files.
                 var variantNames = roots.Select(f => baseNames[f]).ToList();
-                var variants = VariantManager.CreateInitialVariants(variantNames, baseNames[mainRoot]);
+                var variants = roots.Count > 1
+                    ? VariantManager.CreateInitialVariants(variantNames, baseNames[mainRoot])
+                    : null;
                 var addons = AddonManager.CreateInitialAddons(placedAddonNames);
 
                 var settings = new JsonModSettings
                 {
                     Id = Guid.NewGuid().ToString(),
                     DateAdded = DateTime.Now.ToString(CultureInfo.CurrentCulture),
-                    Variants = variants.Select(v => new JsonVariantEntry
+                    Variants = variants?.Select(v => new JsonVariantEntry
                     {
                         Name = v.Name,
                         FolderName = v.FolderName,

@@ -75,6 +75,18 @@ public record ModSettings
         };
     }
 
+    public ModSettings DeepCopyWithAddons(IReadOnlyList<ModAddon> addons)
+    {
+        return new ModSettings(
+            Id, CustomName, Author, Version, ModUrl, ImagePath, CharacterSkinOverride, Description,
+            DateAdded, LastChecked, MergedIniPath, IgnoreMergedIni,
+            _preferences is null ? null : new Dictionary<string, string>(_preferences))
+        {
+            Variants = Variants,
+            Addons = addons
+        };
+    }
+
     public Guid Id { get; internal set; }
 
     public string? CustomName { get; internal set; }

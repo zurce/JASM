@@ -1,3 +1,5 @@
+using GIMI_ModManager.Core.Entities.Mods.Contract;
+using GIMI_ModManager.Core.Helpers;
 using System.Text.Json;
 using GIMI_ModManager.Core.Entities.Mods.FileModels;
 
@@ -42,5 +44,50 @@ public class ModConfigDeserializationTests
         Assert.Equal("MauxRose", s.Author);
         Assert.Equal("https://gamebanana.com/mods/692258", s.ModUrl);
         Assert.Equal("default_velinaairgid", s.CharacterSkinOverride);
+    }
+
+    [Fact]
+    public void ContainmentArrays_Survive_JsonRoundTrip()
+    {
+        var original = new JsonModSettings
+        {
+            Id = Guid.NewGuid().ToString(),
+            Variants =
+            [
+                new JsonVariantEntry { Name = "main", FolderName = "main", Enabled = true }
+            ],
+            Addons =
+            [
+                new JsonAddonEntry { Name = "addonA", FolderName = "addonA", Enabled = true }
+            ]
+        };
+        var json = JsonSerializer.Serialize(original);
+        var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        var restored = JsonSerializer.Deserialize<JsonModSettings>(json, opts);
+        Assert.NotNull(restored);
+        Assert.Single(restored.Variants!);
+        Assert.Single(restored.Addons!);
+        Assert.Equal("addonA", restored.Addons![0].Name);
+    }
+
+    [Fact]
+    public void DeepCopies_Preserve_VariantsAndAddons()
+    {
+        var settings = new ModSettings(Guid.NewGuid())
+        {
+            Variants = [new ModVariant("main", "main", true)],
+            Addons = [new ModAddon("addonA", "addonA", true)]
+        };
+
+        // The installer re-save path (fresh settings + preserve copies) must drop neither array.
+        var withProps = settings.DeepCopyWithProperties(customName: NewValue<string?>.Set("renamed"));
+        Assert.NotNull(withProps.Variants);
+        Assert.NotNull(withProps.Addons);
+
+        var withVariants = settings.DeepCopyWithVariants(withProps.Variants!);
+        Assert.NotNull(withVariants.Addons);
+
+        var withAddons = settings.DeepCopyWithAddons(withProps.Addons!);
+        Assert.NotNull(withAddons.Variants);
     }
 }
