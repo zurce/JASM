@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.1.0](https://github.com/zurce/JASM/compare/v3.0.2...v3.1.0) (2026-09-07)
+
+
+### Features
+
+* addon rows in mod grid with per-row checkbox alignment ([07fd766](https://github.com/zurce/JASM/commit/07fd766804be8a5e86204eda896a8ec53fb76bfb))
+* dependent add-on mods via multi-install (model, batch, drag-nest) ([c5db19e](https://github.com/zurce/JASM/commit/c5db19efd762580f05648d43b90cc8de574bfc9d))
+* grid integration for add-ons plus install flow fixes ([8f1d9a3](https://github.com/zurce/JASM/commit/8f1d9a35c938209c48fbbcf33197f3ac2425a445))
+* install mods into alternate in-game skins from the Mod Installer ([c5a0053](https://github.com/zurce/JASM/commit/c5a0053ae186febfbaa839671e1ed93c0c12b5ae))
+* install multiple GameBanana files as variants (phase 1 UI flow) ([6354a49](https://github.com/zurce/JASM/commit/6354a49e84a5600b65b6f58dc2a0252a863dfe55))
+
+
+### Bug Fixes
+
+* persist mod config for direct (non-XXMI) 3DMigoto installs ([fe74566](https://github.com/zurce/JASM/commit/fe7456615ccacb96750623fda317699e4a8ff14d))
+* resolve Add Mod button text via underscore resw key in all locales ([3819a55](https://github.com/zurce/JASM/commit/3819a5540d1ca862486cc9cfba0ccb07ba6b9b50))
+* route GameBanana tool downloads to the Tool API namespace ([32660bf](https://github.com/zurce/JASM/commit/32660bfd0755877d9e4eb5a8eec6d0895b6b4bd9))
+
 ## [2.22.9](https://github.com/Jorixon/JASM/compare/v2.22.8...v2.22.9) (2026-01-18)
 
 
