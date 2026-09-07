@@ -87,10 +87,9 @@
                     x:Name="EnabledColumn"
                     Header="Enabled"
                     Tag="IsEnabled">
-
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:DataType="subViewModels:ModRowVM">
-                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid HorizontalAlignment="{x:Bind CheckAlignment, Mode=OneWay}" VerticalAlignment="Center">
                                 <CheckBox
                                     Width="Auto"
                                     MinWidth="0"
@@ -157,7 +156,7 @@
                     Tag="DisplayName">
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:DataType="subViewModels:ModRowVM">
-                            <StackPanel Orientation="Horizontal" Margin="{x:Bind RowIndent, Mode=OneWay}">
+                            <StackPanel Orientation="Horizontal">
                                 <Button
                                     Margin="0,0,4,0"
                                     Padding="4,0"

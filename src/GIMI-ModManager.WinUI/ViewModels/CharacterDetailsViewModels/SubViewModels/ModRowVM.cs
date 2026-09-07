@@ -82,7 +82,8 @@ public partial class ModRowVM : ObservableObject
     public bool HasAddons { get; set; }
     public bool IsCollapsed { get; set; }
     public string CollapseGlyph => IsCollapsed ? "\uE76C" : "\uE70D";
-    public Thickness RowIndent => IsAddon ? new Thickness(8, 0, 0, 0) : new Thickness(0);
+    public HorizontalAlignment CheckAlignment =>
+        IsAddon ? HorizontalAlignment.Right : HorizontalAlignment.Center;
     public Visibility CollapseChevronVisibility =>
         HasAddons ? Visibility.Visible : Visibility.Collapsed;
     public bool ParentIsEnabled { get; set; } = true;
@@ -97,8 +98,8 @@ public partial class ModRowVM : ObservableObject
         OnPropertyChanged(nameof(ParentIsEnabled));
         OnPropertyChanged(nameof(NameOpacity));
         OnPropertyChanged(nameof(HasAddons));
-        OnPropertyChanged(nameof(RowIndent));
         OnPropertyChanged(nameof(CollapseChevronVisibility));
+        OnPropertyChanged(nameof(CheckAlignment));
     }
 
     internal static ModRowVM CreateAddonRow(Guid parentModId, string parentName, ModAddon addon,

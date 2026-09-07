@@ -373,6 +373,10 @@ public partial class ModGridVM(
             foreach (var child in visibleChildren)
                 GridMods.Add(child);
         }
+        // Bindings that never notify (indent, alignment) don't stick in recycled
+        // DataGrid cells — refresh everything once rows are attached.
+        foreach (var row in GridMods)
+            row.NotifyAddonVisualChanged();
     }
 
     private async Task UpdateModVmAsync(CharacterSkinEntry characterSkinEntry, bool useSettingsCache = true,
