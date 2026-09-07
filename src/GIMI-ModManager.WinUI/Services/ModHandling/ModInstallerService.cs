@@ -362,13 +362,15 @@ public sealed class ModInstallation : IDisposable
 
         var skinMod = await SkinMod.CreateModAsync(ModFolder, true).ConfigureAwait(false);
 
-        // Preserve variant info written during install (e.g. by the GameBanana variant flow) —
-        // the fresh ModSettings below would otherwise wipe the variants array.
+        // Preserve variant/addon info written during install (e.g. by the GameBanana
+        // multi-install flow) — the fresh ModSettings below would otherwise wipe both arrays.
         IReadOnlyList<ModVariant>? existingVariants = null;
+        IReadOnlyList<ModAddon>? existingAddons = null;
         try
         {
             var preExistingSettings = await skinMod.Settings.ReadSettingsAsync().ConfigureAwait(false);
             existingVariants = preExistingSettings.Variants;
+            existingAddons = preExistingSettings.Addons;
         }
         catch
         {
@@ -390,6 +392,8 @@ public sealed class ModInstallation : IDisposable
 
         if (existingVariants is { Count: > 0 })
             settings = settings.DeepCopyWithVariants(existingVariants);
+        if (existingAddons is { Count: > 0 })
+            settings = settings.DeepCopyWithAddons(existingAddons);
 
         await skinMod.Settings.SaveSettingsAsync(settings, new SaveSettingsOptions { DeleteOldImage = false })
             .ConfigureAwait(false);

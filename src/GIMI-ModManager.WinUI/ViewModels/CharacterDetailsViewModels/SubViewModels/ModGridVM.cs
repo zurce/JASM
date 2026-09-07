@@ -10,10 +10,11 @@ using CommunityToolkitWrapper;
 using GIMI_ModManager.Core.Contracts.Entities;
 using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.Entities;
+using GIMI_ModManager.Core.Entities.Mods.Contract;
 using GIMI_ModManager.Core.Helpers;
 using GIMI_ModManager.Core.Services.ModPresetService;
-using GIMI_ModManager.Core.Services.ModPresetService.Models;
 using GIMI_ModManager.Core.Services;
+using GIMI_ModManager.Core.Services.ModPresetService.Models;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Helpers;
 using GIMI_ModManager.WinUI.Models.Settings;
@@ -78,6 +79,9 @@ public partial class ModGridVM(
     public List<CharacterSkinEntry> GetModsBackend() => [.. _modsBackend];
     private Dictionary<Guid, ModPreset[]> _modToPresetMapping = [];
     private readonly List<ModRowVM> _gridModsBackend = [];
+    private readonly Dictionary<Guid, List<ModRowVM>> _addonRows = [];
+    private readonly HashSet<Guid> _collapsedParents = [];
+    private string _searchFilter = "";
     public List<ModRowVM> GetGridModsBackend() => [.. _gridModsBackend];
     public ObservableCollection<ModRowVM> GridMods { get; } = [];
     public ObservableCollection<ModRowVM> SelectedMods { get; } = [];
@@ -189,7 +193,7 @@ public partial class ModGridVM(
         }, _navigationCt);
 
 
-        GridMods.AddRange(_gridModsBackend);
+        RebuildVisibleMods();
         SetModSorting(CurrentSortingMethod.SortingMethodType, IsDescendingSort);
     }
 
@@ -225,7 +229,7 @@ public partial class ModGridVM(
 
         await Task.Run(LoadModsAsync, _navigationCt);
 
-        GridMods.AddRange(_gridModsBackend);
+        RebuildVisibleMods();
         SetModSorting(CurrentSortingMethod.SortingMethodType, IsDescendingSort);
     }
 
@@ -257,6 +261,7 @@ public partial class ModGridVM(
             var modVm = await CreateModRowVM(x, _navigationCt).ConfigureAwait(false);
             _gridModsBackend.Add(modVm);
         }
+        BuildAddonRows();
 
         _dispatcherQueue.TryEnqueue(() =>
         {
@@ -284,6 +289,92 @@ public partial class ModGridVM(
         };
     }
 
+    private void BuildAddonRows()
+    {
+        _addonRows.Clear();
+        foreach (var parentEntry in _modsBackend)
+            RefreshAddonRows(parentEntry);
+        _collapsedParents.RemoveWhere(id => _modsBackend.All(m => m.Id != id));
+    }
+
+    private void RefreshAddonRows(CharacterSkinEntry parentEntry)
+    {
+        var addons = AddonManager.DetectAddons(parentEntry.Mod);
+        var parentRow = _gridModsBackend.FirstOrDefault(m => m.Id == parentEntry.Id);
+        if (addons is null || addons.Count == 0)
+        {
+            _addonRows.Remove(parentEntry.Id);
+            if (parentRow is not null)
+            {
+                parentRow.HasAddons = false;
+                parentRow.ToggleCollapseAction = null;
+                parentRow.NotifyAddonVisualChanged();
+            }
+            return;
+        }
+        var rows = addons.Select(a => ModRowVM.CreateAddonRow(parentEntry.Id,
+            parentEntry.Mod.GetDisplayName(), a, parentRow?.DateAdded ?? DateTime.MinValue,
+            new AsyncRelayCommand<ModRowVM>(ToggleModAsync),
+            new AsyncRelayCommand<UpdateModSettingsArgument>(UpdateModSettingsAsync))).ToList();
+        foreach (var row in rows)
+        {
+            row.ParentIsEnabled = parentRow?.IsEnabled ?? true;
+            row.NotifyAddonVisualChanged();
+        }
+        _addonRows[parentEntry.Id] = rows;
+        if (parentRow is not null)
+        {
+            parentRow.HasAddons = true;
+            parentRow.ToggleCollapseAction = ToggleParentCollapse;
+            parentRow.NotifyAddonVisualChanged();
+        }
+    }
+
+    private void ToggleParentCollapse(ModRowVM parentRow)
+    {
+        if (!_collapsedParents.Add(parentRow.Id))
+            _collapsedParents.Remove(parentRow.Id);
+        parentRow.IsCollapsed = _collapsedParents.Contains(parentRow.Id);
+        parentRow.NotifyAddonVisualChanged();
+        RebuildVisibleMods();
+    }
+
+    private void PushAddonParentState(Guid parentId)
+    {
+        var parent = _gridModsBackend.FirstOrDefault(m => m.Id == parentId);
+        if (parent is null || !_addonRows.TryGetValue(parentId, out var rows))
+            return;
+        foreach (var row in rows)
+        {
+            row.ParentIsEnabled = parent.IsEnabled;
+            row.NotifyAddonVisualChanged();
+        }
+    }
+
+    private bool MatchesFilter(ModRowVM row) =>
+        _searchFilter.IsNullOrEmpty() ||
+        row.SearchableText.Contains(_searchFilter, StringComparison.CurrentCultureIgnoreCase);
+
+    private void RebuildVisibleMods()
+    {
+        GridMods.Clear();
+        foreach (var parent in _gridModsBackend)
+        {
+            var parentMatches = MatchesFilter(parent);
+            var hasChildren = _addonRows.TryGetValue(parent.Id, out var children) && children.Count > 0;
+            var visibleChildren = hasChildren
+                ? children.Where(c => parentMatches || MatchesFilter(c)).ToList()
+                : [];
+            if (!parentMatches && visibleChildren.Count == 0)
+                continue;
+            GridMods.Add(parent);
+            if (_collapsedParents.Contains(parent.Id))
+                continue;
+            foreach (var child in visibleChildren)
+                GridMods.Add(child);
+        }
+    }
+
     private async Task UpdateModVmAsync(CharacterSkinEntry characterSkinEntry, bool useSettingsCache = true,
         CancellationToken cancellationToken = default)
     {
@@ -305,31 +396,16 @@ public partial class ModGridVM(
 
     public ModRowVM[] SearchFilterMods(string searchText)
     {
-        var modsToShow = _gridModsBackend
-            .Where(x => x.SearchableText.Contains(searchText, StringComparison.CurrentCultureIgnoreCase))
-            .ToArray();
-
-        var modsToHide = _gridModsBackend.Except(modsToShow).ToArray();
-
-        foreach (var mod in modsToShow)
-        {
-            if (GridMods.Contains(mod))
-                continue;
-
-            GridMods.Add(mod);
-        }
-
-        foreach (var modToHide in modsToHide)
-            GridMods.Remove(modToHide);
-
+        _searchFilter = searchText;
+        RebuildVisibleMods();
         return GridMods.ToArray();
     }
 
     public void ResetModView()
     {
         var selectedMod = SelectedMods.FirstOrDefault();
-        GridMods.Clear();
-        GridMods.AddRange(_gridModsBackend);
+        _searchFilter = "";
+        RebuildVisibleMods();
 
         if (selectedMod is not null)
             SetSelectedMod(selectedMod.Id);
@@ -364,6 +440,12 @@ public partial class ModGridVM(
     {
         if (modVmToToggle is null)
             return;
+
+        if (modVmToToggle.IsAddon)
+        {
+            await ToggleAddonAsync(modVmToToggle);
+            return;
+        }
 
         using var _ = BusySetter.StartSoftBusy();
 
@@ -444,6 +526,7 @@ public partial class ModGridVM(
 
 
             await UpdateModVmAsync(modEntryToToggle, false, CancellationToken.None);
+            PushAddonParentState(modEntryToToggle.Id);
             foreach (var otherModEntry in otherMods)
             {
                 await UpdateModVmAsync(otherModEntry, false, CancellationToken.None);
@@ -457,6 +540,39 @@ public partial class ModGridVM(
 
         RefreshMultipleModsActiveWarning();
         Messenger.Send(new ModChangedMessage(this, modEntryToToggle, null));
+    }
+
+    private async Task ToggleAddonAsync(ModRowVM addonRow)
+    {
+        if (addonRow.ParentModId is not { } parentId)
+            return;
+        var parentEntry = _modsBackend.FirstOrDefault(x => x.Id == parentId);
+        if (parentEntry is null)
+            return;
+        using var _ = BusySetter.StartSoftBusy();
+        var enable = !addonRow.IsEnabled;
+        try
+        {
+            await Task.Run(async () =>
+            {
+                // A child cannot be effectively on while its parent folder is disabled.
+                if (enable && !parentEntry.IsEnabled)
+                {
+                    _modList.EnableMod(parentEntry.Id);
+                    await UpdateModVmAsync(parentEntry, false, CancellationToken.None);
+                }
+                await AddonManager.SetAddonEnabledAsync(parentEntry.Mod, addonRow.FolderName, enable)
+                    .ConfigureAwait(false);
+            }, CancellationToken.None);
+        }
+        catch (Exception e)
+        {
+            _notificationService.ShowNotification(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_ErrorTogglingMod") ?? "An error occured toggling mod", e.Message, TimeSpan.FromSeconds(5));
+            return;
+        }
+        RefreshAddonRows(parentEntry);
+        RebuildVisibleMods();
+        RefreshMultipleModsActiveWarning();
     }
 
     private async Task UpdateModSettingsAsync(UpdateModSettingsArgument? arg)
@@ -559,10 +675,15 @@ public partial class ModGridVM(
     // DataGrid is quite limited in this regard, so it is in charge of the selection and the view model just listens
     public void SelectionChanged_EventHandler(ICollection<ModRowVM> selectedMods, ICollection<ModRowVM> removedMods)
     {
+        // Add-on rows resolve to their parent: pane and menus operate on the containing
+        // mod, so delete/move naturally cover the whole folder.
+        var effectiveSelected = selectedMods
+            .Select(m => m.IsAddon && FindParentRow(m.ParentModId) is { } parent ? parent : m)
+            .ToList();
         var anyChanges = false;
-        if (selectedMods.Any())
+        if (effectiveSelected.Any())
         {
-            foreach (var mod in selectedMods)
+            foreach (var mod in effectiveSelected)
             {
                 if (!SelectedMods.Contains(mod))
                 {
@@ -589,7 +710,17 @@ public partial class ModGridVM(
             OnPropertyChanged(nameof(IsSingleModSelected));
             OnModsSelected?.Invoke(this, new ModRowSelectedEventArgs(SelectedMods));
         }
+
+        // Re-point the view at resolved parents (converges: the follow-up pass is a no-op).
+        foreach (var mod in selectedMods.Where(m => m.IsAddon))
+        {
+            if (FindParentRow(mod.ParentModId) is { } parent)
+                SetSelectedMod(parent.Id);
+        }
     }
+
+    private ModRowVM? FindParentRow(Guid? parentModId) =>
+        parentModId is null ? null : _gridModsBackend.FirstOrDefault(m => m.Id == parentModId);
 
     // Only to be used by code behind
     public async Task OnKeyDown_EventHandlerAsync(VirtualKey key)
@@ -674,21 +805,15 @@ public partial class ModGridVM(
 
     private void SortMods()
     {
+        // Backend holds parents only, so it sorts as before; children are glued back
+        // under their parent on rebuild and can never scatter across groups.
+        var selectedIds = SelectedMods.Select(m => m.Id).ToArray();
         var sortedBackendMods = CurrentSortingMethod.Sort(_gridModsBackend, IsDescendingSort).ToArray();
         _gridModsBackend.Clear();
         _gridModsBackend.AddRange(sortedBackendMods);
-
-        var sortedVisibleMods = CurrentSortingMethod.Sort(GridMods, IsDescendingSort).ToArray();
-        for (var newPosition = 0; newPosition < sortedVisibleMods.Length; newPosition++)
-        {
-            var mod = sortedVisibleMods[newPosition];
-            var oldPosition = GridMods.IndexOf(mod);
-
-            if (oldPosition == newPosition)
-                continue;
-
-            GridMods.Move(oldPosition, newPosition);
-        }
+        RebuildVisibleMods();
+        foreach (var id in selectedIds)
+            SetSelectedMod(id);
     }
 
     private Task<LockReleaser> ModRefreshLockAsync() => _modRefreshLock.LockAsync(null, _navigationCt);

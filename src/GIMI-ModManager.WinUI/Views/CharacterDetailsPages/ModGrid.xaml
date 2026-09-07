@@ -148,14 +148,34 @@
                     </controls:DataGridTemplateColumn.CellTemplate>
                 </controls:DataGridTemplateColumn>
 
-                <controls:DataGridTextColumn
+                <controls:DataGridTemplateColumn
                     Width="SizeToCells"
-                    Binding="{Binding DisplayName, Mode=OneWay}"
                     CanUserSort="True"
                     x:Name="ModNameColumn"
                     Header="Mod Name"
                     IsReadOnly="True"
-                    Tag="DisplayName" />
+                    Tag="DisplayName">
+                    <controls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate x:DataType="subViewModels:ModRowVM">
+                            <StackPanel Orientation="Horizontal" Margin="{x:Bind RowIndent, Mode=OneWay}">
+                                <Button
+                                    Margin="0,0,4,0"
+                                    Padding="4,0"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Command="{x:Bind ToggleCollapseCommand}"
+                                    Visibility="{x:Bind CollapseChevronVisibility, Mode=OneWay}">
+                                    <FontIcon FontSize="12" Glyph="{x:Bind CollapseGlyph, Mode=OneWay}" />
+                                </Button>
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    Opacity="{x:Bind NameOpacity, Mode=OneWay}"
+                                    Text="{x:Bind DisplayName, Mode=OneWay}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </controls:DataGridTemplateColumn.CellTemplate>
+                </controls:DataGridTemplateColumn>
 
                 <controls:DataGridTextColumn
                     Width="SizeToCells"
