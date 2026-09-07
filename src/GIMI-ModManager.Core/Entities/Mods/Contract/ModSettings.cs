@@ -49,8 +49,14 @@ public record ModSettings
             newLastChecked ?? LastChecked,
             mergedIniPath ?? MergedIniPath,
             ignoreMergedIni ?? IgnoreMergedIni,
-            _preferences is null ? null : new Dictionary<string, string>(_preferences)
-        );
+            _preferences is null ? null : new Dictionary<string, string>(_preferences))
+        {
+            // Copies must preserve the containment arrays: DeepCopyWithProperties callers
+            // (skin override, settings update, merged-ini fixes, dupe rename) all re-save,
+            // so dropping these would silently wipe them from .JASM_ModConfig.json.
+            Variants = Variants,
+            Addons = Addons
+        };
     }
 
     internal ModSettings()
@@ -64,7 +70,8 @@ public record ModSettings
             DateAdded, LastChecked, MergedIniPath, IgnoreMergedIni,
             _preferences is null ? null : new Dictionary<string, string>(_preferences))
         {
-            Variants = variants
+            Variants = variants,
+            Addons = Addons
         };
     }
 
@@ -96,6 +103,8 @@ public record ModSettings
 
     public IReadOnlyList<ModVariant>? Variants { get; internal set; }
 
+    public IReadOnlyList<ModAddon>? Addons { get; internal set; }
+
 
     internal static ModSettings FromJsonSkinSettings(ISkinMod? skinMod, JsonModSettings settings)
     {
@@ -122,7 +131,10 @@ public record ModSettings
                 : new Dictionary<string, string>(settings.Preferences),
             Variants = settings.Variants is null
                 ? null
-                : settings.Variants.Select(v => new ModVariant(v.Name, v.FolderName, v.Enabled)).ToList()
+                : settings.Variants.Select(v => new ModVariant(v.Name, v.FolderName, v.Enabled)).ToList(),
+            Addons = settings.Addons is null
+                ? null
+                : settings.Addons.Select(a => new ModAddon(a.Name, a.FolderName, a.Enabled)).ToList()
         };
     }
 
@@ -146,7 +158,10 @@ public record ModSettings
             Preferences = Preferences.Count == 0 ? null : new Dictionary<string, string>(Preferences),
             Variants = Variants is null || Variants.Count == 0
                 ? null
-                : Variants.Select(v => new JsonVariantEntry { Name = v.Name, FolderName = v.FolderName, Enabled = v.Enabled }).ToList()
+                : Variants.Select(v => new JsonVariantEntry { Name = v.Name, FolderName = v.FolderName, Enabled = v.Enabled }).ToList(),
+            Addons = Addons is null || Addons.Count == 0
+                ? null
+                : Addons.Select(a => new JsonAddonEntry { Name = a.Name, FolderName = a.FolderName, Enabled = a.Enabled }).ToList()
         };
     }
 

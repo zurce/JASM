@@ -66,15 +66,23 @@
                     </controls1:Case>
                     <controls1:Case Value="false">
                         <ListView
+                            AllowDrop="True"
+                            CanDragItems="{x:Bind ViewModel.IsVariantMode, Mode=OneWay}"
+                            DragItemsStarting="FileList_DragItemsStarting"
+                            Drop="FileList_Drop"
                             IsEnabled="{x:Bind ViewModel.IsNotBusy, Mode=OneWay}"
                             ItemsSource="{x:Bind ViewModel.ModFileInfos, Mode=OneWay}"
                             SelectionMode="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="modPageViewModels:ModFileInfoVm">
                                     <Grid
-                                        Margin="0,8"
+                                        Margin="{x:Bind AddonIndent, Mode=OneWay}"
                                         Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                        CornerRadius="4">
+                                        CornerRadius="4"
+                                        AllowDrop="True"
+                                        DragOver="FileItem_DragOver"
+                                        DragLeave="FileItem_DragLeave"
+                                        Drop="FileItem_Drop">
 
                                         <controls:BoolBorder
                                             BorderColor="{ThemeResource AccentFillColorSelectedTextBackgroundBrush}"
@@ -83,50 +91,112 @@
                                             <Grid Margin="8">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto" />
-                                                    <RowDefinition />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
 
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
                                                     <ColumnDefinition />
+                                                    <ColumnDefinition Width="Auto" />
                                                 </Grid.ColumnDefinitions>
 
-                                                <StackPanel Orientation="Horizontal">
-                                                    <CheckBox
+                                                <Border
+                                                    Grid.RowSpan="3"
+                                                    Background="{ThemeResource AccentFillColorDefaultBrush}"
+                                                    CornerRadius="4,0,0,4"
+                                                    Margin="-8,-8,0,-8"
+                                                    Visibility="{x:Bind VariantCheckboxVisibility, Mode=OneWay}">
+                                                    <FontIcon
+                                                        Margin="8,0"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        FontSize="14"
+                                                        Width="14"
+                                                        Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
+                                                        Glyph="&#xE76F;"
+                                                        Opacity="1">
+                                                        <FontIcon.RenderTransform>
+                                                            <RotateTransform Angle="90" CenterX="7" CenterY="7" />
+                                                        </FontIcon.RenderTransform>
+                                                    </FontIcon>
+                                                </Border>
+
+                                                <CheckBox
+                                                    Grid.Column="1"
+                                                    Grid.RowSpan="3"
+                                                    Margin="8,0,8,0"
+                                                    VerticalAlignment="Center"
+                                                    MinWidth="0"
+                                                    Padding="0"
+                                                    Width="24"
+                                                    IsChecked="{x:Bind IsVariantSelected, Mode=TwoWay}"
+                                                    Visibility="{x:Bind VariantCheckboxVisibility, Mode=OneWay}" />
+
+                                                <TextBlock
+                                                    Grid.Column="2"
+                                                    VerticalAlignment="Center"
+                                                    IsTextSelectionEnabled="True"
+                                                    Style="{ThemeResource SubtitleTextBlockStyle}"
+                                                    Text="{x:Bind FileName}" />
+
+                                                <StackPanel
+                                                    Grid.Row="1"
+                                                    Grid.Column="2"
+                                                    Orientation="Horizontal">
+                                                    <TextBlock
                                                         Margin="0,0,8,0"
                                                         VerticalAlignment="Center"
-                                                        IsChecked="{x:Bind IsVariantSelected, Mode=TwoWay}"
-                                                        Visibility="{x:Bind VariantCheckboxVisibility, Mode=OneWay}" />
-
-                                                    <TextBlock
                                                         IsTextSelectionEnabled="True"
-                                                        Style="{ThemeResource SubtitleTextBlockStyle}"
-                                                        Text="{x:Bind FileName}" />
-
+                                                        ToolTipService.ToolTip="{x:Bind DateAddedTooltipFormat}"
+                                                        Text="{x:Bind AgeFormated}" />
+                                                    <TextBlock
+                                                        Margin="0,0,8,0"
+                                                        VerticalAlignment="Center"
+                                                        IsTextSelectionEnabled="True"
+                                                        Text="{x:Bind FileSizeFormated}"
+                                                        Visibility="{x:Bind FileSizeVisibility, Mode=OneWay}" />
+                                                    <StackPanel
+                                                        Orientation="Horizontal"
+                                                        Visibility="{x:Bind AddonLabelVisibility, Mode=OneWay}">
+                                                        <TextBlock
+                                                            VerticalAlignment="Center"
+                                                            FontStyle="Italic"
+                                                            Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                                            Text="Installing as addon" l:Uids.Uid="InstallingAsAddonLabel" />
+                                                        <Button
+                                                            Margin="4,0,0,0"
+                                                            Padding="6,2"
+                                                            VerticalAlignment="Center"
+                                                            Background="Transparent"
+                                                            BorderThickness="0"
+                                                            Click="DetachAddon_Click">
+                                                            <FontIcon FontSize="12" Glyph="&#xE7A7;" />
+                                                        </Button>
+                                                    </StackPanel>
                                                     <TextBlock
                                                         Margin="8,0"
-                                                        VerticalAlignment="Bottom"
-                                                        IsTextSelectionEnabled="True"
-                                                        Text="{x:Bind AgeFormated}"
-                                                        ToolTipService.ToolTip="{x:Bind DateAddedTooltipFormat}" />
+                                                        VerticalAlignment="Center"
+                                                        FontStyle="Italic"
+                                                        Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                                        Text="Drop to nest as addon" l:Uids.Uid="DropToNestHint"
+                                                        Visibility="{x:Bind DropTargetVisibility, Mode=OneWay}" />
                                                 </StackPanel>
-
-
-
                                                 <TextBlock
-                                                    Grid.Row="1"
-                                                    Grid.Column="0"
+                                                    Grid.Row="2"
+                                                    Grid.Column="2"
+                                                    Grid.ColumnSpan="2"
                                                     IsTextSelectionEnabled="True"
                                                     Text="{x:Bind Description}" />
-
                                                 <TextBlock
                                                     Grid.Row="0"
-                                                    Grid.Column="1"
+                                                    Grid.Column="3"
                                                     HorizontalAlignment="Right"
                                                     Text="New since last check"
                                                     Visibility="{Binding Path=IsNew, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}" />
 
-                                                <StackPanel Grid.Row="1" Grid.Column="1">
+                                                <StackPanel Grid.RowSpan="3" Grid.Column="3" VerticalAlignment="Center">
                                                     <Grid>
                                                         <Button
                                                             Width="90"
@@ -178,20 +248,44 @@
 
 
                 <Grid Grid.Row="2" Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
+                    <Border
+                        x:Name="DetachDropZone"
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        Margin="0,0,0,8"
+                        Padding="12,10"
+                        Background="{ThemeResource ControlFillColorSecondaryBrush}"
+                        CornerRadius="6"
+                        AllowDrop="True"
+                        DragOver="DetachZone_DragOver"
+                        Drop="DetachZone_Drop"
+                        Visibility="Collapsed">
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="8">
+                            <FontIcon VerticalAlignment="Center" Glyph="&#xE7A7;" Opacity="0.7" />
+                            <TextBlock VerticalAlignment="Center" Text="Drop here to detach" l:Uids.Uid="DetachDropZoneHint" />
+                        </StackPanel>
+                    </Border>
                     <Button
+                        x:Name="CloseCancelButton"
+                        Grid.Row="1"
                         Width="200"
                         Height="50"
                         HorizontalAlignment="Left"
-                        Command="{x:Bind ViewModel.IgnoreAndCloseCommand}"
+                        Click="CloseCancel_Click"
                         Content="Ignore and Close"
                         IsEnabled="{x:Bind ViewModel.IsNotBusy, Mode=OneWay}"
                         ToolTipService.ToolTip="Removes the notification and closes this window" />
 
                     <StackPanel
+                        Grid.Row="1"
                         Grid.Column="1"
                         Margin="8,0"
                         VerticalAlignment="Center"
@@ -211,6 +305,7 @@
                     </StackPanel>
 
                     <StackPanel
+                        Grid.Row="1"
                         Grid.Column="1"
                         Padding="4"
                         HorizontalAlignment="Right"
