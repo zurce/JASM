@@ -4330,6 +4330,10 @@ JASMはModを移動したり削除したりしません。
     <value>手動でパスを指定する場合、フォルダーが存在している必要があります</value>
   </data>
 
+  <data name="ModInstallerPage_AddModButton_Content" xml:space="preserve">
+    <!-- Button to finish installing the mod -->
+    <value>Modを追加</value>
+  </data>
   <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
     <!-- Label/placeholder for a free-text note about this mod -->
     <value>カスタム自由テキストメモ。キャラクター詳細ページのグリッドに表示されます</value>

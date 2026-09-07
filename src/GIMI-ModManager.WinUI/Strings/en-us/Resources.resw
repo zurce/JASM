@@ -3580,6 +3580,10 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
     <!-- Label/placeholder for the working directory -->
     <value>When manually specifying a path, the folder must exist</value>
   </data>
+  <data name="ModInstallerPage_AddModButton_Content" xml:space="preserve">
+    <!-- Button to finish installing the mod -->
+    <value>Add Mod</value>
+  </data>
   <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
     <!-- Label/placeholder for a free-text note about this mod -->
     <value>Custom free text note, shown in grid on character details page</value>

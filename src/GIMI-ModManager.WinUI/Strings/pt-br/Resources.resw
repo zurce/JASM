@@ -4327,6 +4327,10 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
     <value>Ao especificar um caminho manualmente, a pasta deve existir</value>
   </data>
 
+  <data name="ModInstallerPage_AddModButton_Content" xml:space="preserve">
+    <!-- Button to finish installing the mod -->
+    <value>Adicionar Mod</value>
+  </data>
   <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
     <!-- Label/placeholder for a free-text note about this mod -->
     <value>Nota de texto livre personalizada, exibida na grade na página de detalhes do personagem</value>

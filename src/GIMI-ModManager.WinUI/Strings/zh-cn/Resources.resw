@@ -4331,6 +4331,10 @@ Ini路径：{1}</value>
     <value>手动指定路径时，文件夹必须存在</value>
   </data>
 
+  <data name="ModInstallerPage_AddModButton_Content" xml:space="preserve">
+    <!-- Button to finish installing the mod -->
+    <value>添加Mod</value>
+  </data>
   <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
     <!-- Label/placeholder for a free-text note about this mod -->
     <value>自定义文本备注，显示在角色详情页面的网格中</value>
