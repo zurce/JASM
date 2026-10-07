@@ -4273,7 +4273,7 @@ Ini路径：{1}</value>
 
   <data name="CharactersPage_NoCategoryFound" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the character name -->
-    <value>未找到类别</value>
+    <value>未找到{0}...</value>
   </data>
 
   <data name="CharacterDetails_ViewToggle_OffContent" xml:space="preserve">
@@ -4411,7 +4411,7 @@ Ini路径：{1}</value>
 
   <data name="CharacterGallery_DeleteConfirmText" xml:space="preserve">
     <!-- Confirmation question when deleting a mod. {0} is the mod name -->
-    <value>确定要删除此Mod吗？</value>
+    <value>确定要删除{0}吗？</value>
   </data>
 
   <data name="CharacterGallery_DeleteTitle" xml:space="preserve">

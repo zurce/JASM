@@ -3634,7 +3634,8 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 
   <data name="CharDetails_CannotMoveModsMsg" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
-    <value> consulte logs para detalhes.</value>
+    <value>Não é possível mover mods
+{0}, consulte os logs para detalhes.</value>
   </data>
 
   <data name="CharDetails_MovedSuccessMsg" xml:space="preserve">

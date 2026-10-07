@@ -1,0 +1,6 @@
+# Working batches are regenerated from template.csv; keep them out of git.
+batches/
+
+# Python bytecode cache.
+__pycache__/
+*.pyc
