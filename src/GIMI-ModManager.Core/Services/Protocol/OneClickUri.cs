@@ -9,12 +9,26 @@ namespace GIMI_ModManager.Core.Services.Protocol;
 /// <param name="Identifier">The submission + file the link points at.</param>
 /// <param name="ArchiveUrl">The archive URL embedded in the link (always a GameBanana host).</param>
 /// <param name="Raw">The original, trimmed argument.</param>
-public sealed record OneClickInstallRequest(GbModFileIdentifier Identifier, Uri ArchiveUrl, string Raw)
+/// <param name="DevOptions">Development-only overrides, present only when the caller allowed them (see <see cref="OneClickUri.TryParse"/>).</param>
+public sealed record OneClickInstallRequest(GbModFileIdentifier Identifier, Uri ArchiveUrl, string Raw,
+    OneClickDevOptions? DevOptions = null)
 {
     public GbModId ModId => Identifier.ModId;
     public GbModFileId ModFileId => Identifier.ModFileId;
     public bool IsTool => Identifier.IsTool;
 }
+
+/// <summary>
+/// Development-only overrides carried by a link, so the dev harness can reproduce cases GameBanana itself
+/// cannot express — above all the target <em>skin</em>: GameBanana has no concept of in-game skins, so a link
+/// only identifies a file, and picking the skin is the user's job in the installer.
+/// </summary>
+/// <param name="GameBananaGameRowId">Pretend the submission belongs to this game row id (to exercise the wrong-game path).</param>
+/// <param name="CharacterName">Install for this character instead of the one derived from the category.</param>
+/// <param name="SkinInternalName">Preselect this in-game skin in the installer.</param>
+/// <param name="AutoInstall">Press install without user interaction (for unattended tests).</param>
+public sealed record OneClickDevOptions(int? GameBananaGameRowId, string? CharacterName, string? SkinInternalName,
+    bool AutoInstall);
 
 /// <summary>
 /// Parser for GameBanana's 1-click installer links.
@@ -55,7 +69,12 @@ public static class OneClickUri
     /// <param name="rawArgument">The raw argument, e.g. <c>argv[1]</c>. Null/empty is simply "not ours".</param>
     /// <param name="request">The parsed request when this returns true.</param>
     /// <param name="scheme">Expected scheme; defaults to <see cref="DefaultScheme"/>. Overridable for dev/test.</param>
-    public static bool TryParse(string? rawArgument, out OneClickInstallRequest? request, string scheme = DefaultScheme)
+    /// <param name="allowDevOptions">
+    /// Accept the development-only <c>?key=value</c> suffix (see <see cref="OneClickDevOptions"/>). Production
+    /// passes false, so a link is exactly what GameBanana emits and nothing else — a suffix is rejected there.
+    /// </param>
+    public static bool TryParse(string? rawArgument, out OneClickInstallRequest? request, string scheme = DefaultScheme,
+        bool allowDevOptions = false)
     {
         request = null;
 
@@ -63,7 +82,14 @@ public static class OneClickUri
         if (string.IsNullOrEmpty(raw) || raw.Length > MaxArgumentLength)
             return false;
 
-        var match = Pattern.Match(raw);
+        var queryIndex = raw.IndexOf('?');
+        var link = queryIndex < 0 ? raw : raw[..queryIndex];
+        var query = queryIndex < 0 ? null : raw[(queryIndex + 1)..];
+
+        if (query is not null && !allowDevOptions)
+            return false;
+
+        var match = Pattern.Match(link);
         if (!match.Success)
             return false;
 
@@ -82,15 +108,83 @@ public static class OneClickUri
         if (!Uri.TryCreate(match.Groups["url"].Value, UriKind.Absolute, out var archiveUrl))
             return false;
 
+        OneClickDevOptions? devOptions = null;
+        if (query is not null && !TryParseDevOptions(query, out devOptions))
+            return false;
+
         var isTool = match.Groups["type"].Value.Equals("Tool", StringComparison.OrdinalIgnoreCase);
 
         request = new OneClickInstallRequest(
             new GbModFileIdentifier(new GbModId(modId), new GbModFileId(fileId), isTool),
             archiveUrl,
-            raw);
+            raw,
+            devOptions);
 
         return true;
     }
+
+    /// <summary>
+    /// Dev suffix: <c>?game=&lt;rowId&gt;&amp;character=&lt;name&gt;&amp;skin=&lt;internalName&gt;&amp;autostart=1</c>.
+    /// Strict on purpose — unknown keys are rejected and values are charset-limited, because these values select a
+    /// character/skin (never a path or a URL).
+    /// </summary>
+    private static bool TryParseDevOptions(string query, out OneClickDevOptions? options)
+    {
+        options = null;
+
+        int? gameRowId = null;
+        string? character = null;
+        string? skin = null;
+        var autoInstall = false;
+
+        foreach (var pair in query.Split('&', StringSplitOptions.RemoveEmptyEntries))
+        {
+            var separator = pair.IndexOf('=');
+            if (separator <= 0)
+                return false;
+
+            var key = pair[..separator];
+            var value = Uri.UnescapeDataString(pair[(separator + 1)..]);
+
+            switch (key)
+            {
+                case "game":
+                    if (!int.TryParse(value, out var parsedGame) || parsedGame <= 0)
+                        return false;
+                    gameRowId = parsedGame;
+                    break;
+
+                case "character":
+                    if (!IsValidName(value))
+                        return false;
+                    character = value;
+                    break;
+
+                case "skin":
+                    if (!IsValidName(value))
+                        return false;
+                    skin = value;
+                    break;
+
+                case "autostart":
+                    if (value is not ("1" or "true"))
+                        return false;
+                    autoInstall = true;
+                    break;
+
+                default:
+                    return false;
+            }
+        }
+
+        options = new OneClickDevOptions(gameRowId, character, skin, autoInstall);
+        return true;
+    }
+
+    /// <summary>Character/skin names: letters, digits, spaces and the few separators the game assets actually use.</summary>
+    private static bool IsValidName(string value) =>
+        value.Length is > 0 and <= 64 &&
+        value.All(c => char.IsLetterOrDigit(c) || c is ' ' or '_' or '-' or '.' or '\'' or '(' or ')');
 
     /// <summary>
     /// Normalises a raw argument: Windows may pad it with whitespace and, depending on how the process was

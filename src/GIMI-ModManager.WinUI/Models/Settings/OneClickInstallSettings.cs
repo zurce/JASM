@@ -26,4 +26,11 @@ public class OneClickInstallSettings
     /// already knows, e.g. the Firefox dev harness) — production uses <see cref="OneClickUri.DefaultScheme"/>.
     /// </summary>
     public string Scheme { get; set; } = OneClickUri.DefaultScheme;
+
+    /// <summary>
+    /// Development-only: accept the <c>?game=&amp;character=&amp;skin=&amp;autostart=</c> suffix on a link so the
+    /// dev harness can reproduce cases GameBanana cannot express (skins above all). Off by default, and the
+    /// suffix is rejected outright when off.
+    /// </summary>
+    public bool AllowDevOptions { get; set; }
 }

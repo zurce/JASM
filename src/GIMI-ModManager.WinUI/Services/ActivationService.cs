@@ -97,8 +97,8 @@ public class ActivationService : IActivationService
 #endif
 
         // A GameBanana 1-click link arrives as a command line argument (registered URL scheme handler).
-        var oneClickScheme = await _oneClickLaunchService.GetSchemeAsync();
-        _oneClickLaunchService.CaptureFromCommandLine(_args, oneClickScheme);
+        var (oneClickScheme, allowDevOptions) = await _oneClickLaunchService.GetLinkOptionsAsync();
+        _oneClickLaunchService.CaptureFromCommandLine(_args, oneClickScheme, allowDevOptions);
 
         await HandleLaunchArgsAsync();
 

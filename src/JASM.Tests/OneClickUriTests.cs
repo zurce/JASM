@@ -134,4 +134,69 @@ public class OneClickUriTests
         Assert.True(OneClickUri.TryParse(OneClickUri.Build(1, 2, isTool: true), out var tool));
         Assert.True(tool!.IsTool);
     }
+
+    // --- dev-only options (the harness needs to drive cases GameBanana cannot express, e.g. skins) ---
+
+    [Fact]
+    public void DevOptions_RejectedInProduction()
+    {
+        // Production must accept exactly what GameBanana emits and nothing else.
+        Assert.False(OneClickUri.TryParse("jasm-plus:https://gamebanana.com/mmdl/1,Mod,2?skin=Klee", out var request));
+        Assert.Null(request);
+    }
+
+    [Fact]
+    public void DevOptions_ParsedWhenAllowed()
+    {
+        var ok = OneClickUri.TryParse(
+            "jasm-plus:https://gamebanana.com/mmdl/1393005,Mod,534833?game=19567&character=Klee&skin=Klee%20Blossoming%20Starlight&autostart=1",
+            out var request, Scheme, allowDevOptions: true);
+
+        Assert.True(ok);
+        var dev = request!.DevOptions;
+        Assert.NotNull(dev);
+        Assert.Equal(19567, dev!.GameBananaGameRowId);
+        Assert.Equal("Klee", dev.CharacterName);
+        Assert.Equal("Klee Blossoming Starlight", dev.SkinInternalName);
+        Assert.True(dev.AutoInstall);
+        // The link itself must still parse to the same submission.
+        Assert.Equal("534833", request.ModId.ModId);
+        Assert.Equal("1393005", request.ModFileId.ModFileId);
+    }
+
+    [Fact]
+    public void DevOptions_AbsentWhenNoSuffix()
+    {
+        Assert.True(OneClickUri.TryParse("jasm-plus:https://gamebanana.com/mmdl/1,Mod,2", out var request, Scheme,
+            allowDevOptions: true));
+        Assert.Null(request!.DevOptions);
+    }
+
+    [Theory]
+    [InlineData("?skin=../../etc/passwd")] // path smuggling attempt
+    [InlineData("?skin=<script>alert(1)</script>")]
+    [InlineData("?skin=")]
+    [InlineData("?game=0")]
+    [InlineData("?game=abc")]
+    [InlineData("?autostart=0")]
+    [InlineData("?autostart=yes")]
+    [InlineData("?unknown=1")]
+    [InlineData("?skin")] // no '='
+    [InlineData("?skin=Klee&")] // trailing separator is fine, but an empty pair is dropped -> still valid
+    public void DevOptions_RejectsBadValues(string suffix)
+    {
+        var result = OneClickUri.TryParse($"jasm-plus:https://gamebanana.com/mmdl/1,Mod,2{suffix}", out _,
+            Scheme, allowDevOptions: true);
+
+        // The trailing-separator case is the only one that is allowed to succeed.
+        Assert.Equal(suffix == "?skin=Klee&", result);
+    }
+
+    [Fact]
+    public void DevOptions_RejectsOverlongName()
+    {
+        var longName = new string('a', 65);
+        Assert.False(OneClickUri.TryParse($"jasm-plus:https://gamebanana.com/mmdl/1,Mod,2?skin={longName}", out _,
+            Scheme, allowDevOptions: true));
+    }
 }

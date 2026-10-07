@@ -74,7 +74,9 @@ public sealed class OneClickInstallService
                 return;
             }
 
-            var game = await ResolveGameAsync(profile.GameBananaGameId).ConfigureAwait(true);
+            // Dev harness: pretend the submission belongs to another game (to exercise the wrong-game path).
+            var gameRowId = request.DevOptions?.GameBananaGameRowId ?? profile.GameBananaGameId;
+            var game = await ResolveGameAsync(gameRowId).ConfigureAwait(true);
             if (game is null)
             {
                 Notify("OneClick_UnsupportedGame_Title",
@@ -95,13 +97,18 @@ public sealed class OneClickInstallService
                 return;
             }
 
-            var character = ResolveCharacter(profile.GameBananaCategoryName);
+            // Dev harness: force a character (or a deliberately wrong one) instead of the category-derived one.
+            var characterName = request.DevOptions?.CharacterName is { Length: > 0 } devCharacter
+                ? devCharacter
+                : profile.GameBananaCategoryName;
+
+            var character = ResolveCharacter(characterName);
             if (character is null)
             {
                 Notify("OneClick_UnknownTarget_Title",
                     Format("OneClick_UnknownTarget_Message",
                         "Could not find a character called \"{0}\" in JASM+. Install the mod from GameBanana manually.",
-                        profile.GameBananaCategoryName ?? "?"));
+                        characterName ?? "?"));
                 return;
             }
 
@@ -119,7 +126,13 @@ public sealed class OneClickInstallService
 
             await _modInstallerService
                 .StartModInstallationAsync(zipRoot, modList, inGameSkin: null,
-                    setup: options => options.ModUrl = modUrl)
+                    setup: options =>
+                    {
+                        options.ModUrl = modUrl;
+                        // Dev harness only (never set by a GameBanana link in production).
+                        options.PreferredSkinInternalName = request.DevOptions?.SkinInternalName;
+                        options.AutoInstall = request.DevOptions?.AutoInstall ?? false;
+                    })
                 .ConfigureAwait(true);
         }
         catch (Exception e)
