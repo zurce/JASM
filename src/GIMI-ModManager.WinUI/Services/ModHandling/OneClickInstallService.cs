@@ -191,21 +191,8 @@ public sealed class OneClickInstallService
     /// against the game's characters. Matching is name-based because JASM's own search never used GameBanana
     /// categories — the character was always implied by the page the user was on.
     /// </summary>
-    internal ICharacter? ResolveCharacter(string? categoryName)
-    {
-        if (string.IsNullOrWhiteSpace(categoryName))
-            return null;
-
-        return _gameService.GetCharacters(includeDisabled: true)
-            .FirstOrDefault(c => CharacterNameMatcher.Matches(categoryName, NamesOf(c)));
-    }
-
-    private static IEnumerable<string?> NamesOf(ICharacter character)
-    {
-        yield return character.InternalName;
-        yield return character.DisplayName;
-        yield return character.ModFilesName;
-    }
+    internal ICharacter? ResolveCharacter(string? categoryName) =>
+        OneClickCharacterResolver.Resolve(categoryName, _gameService.GetCharacters(includeDisabled: true));
 
     /// <summary>
     /// Mirrors what the GameBanana download window does before installing: the archive is extracted to a temp
