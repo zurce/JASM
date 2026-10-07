@@ -97,7 +97,7 @@ public class ActivationService : IActivationService
 #endif
 
         // A GameBanana 1-click link arrives as a command line argument (registered URL scheme handler).
-        var oneClickScheme = await _oneClickLaunchService.GetSchemeAsync().ConfigureAwait(false);
+        var oneClickScheme = await _oneClickLaunchService.GetSchemeAsync();
         _oneClickLaunchService.CaptureFromCommandLine(_args, oneClickScheme);
 
         await HandleLaunchArgsAsync();
@@ -205,8 +205,9 @@ public class ActivationService : IActivationService
             return;
         }
 
-        Application.Current.Exit();
-        await Task.Delay(-1);
+        // NOTE: this runs before the shell/window exists, so Application.Current.Exit() has nothing to close and
+        // leaves the process parked (observed as a lingering JASM process). A hard exit is deterministic here.
+        Environment.Exit(0);
     }
 
 
