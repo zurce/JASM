@@ -4163,17 +4163,17 @@ JASM+ не будет перемещать ваши моды и не будет 
 
   <data name="CharDetails_DuplicateModsMessage" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
-    <value>Обнаружены дублирующиеся моды</value>
+    <value>Дублирующиеся моды обнаружены в папке модов {0}.</value>
   </data>
 
   <data name="CharDetails_DuplicateRenamedMessage" xml:space="preserve">
     <!-- Contains multiple dynamic value placeholders -->
-    <value>Дублирующиеся моды переименованы</value>
+    <value>Мод: «{0}» был переименован в «{1}» во избежание конфликтов.</value>
   </data>
 
   <data name="CharDetails_NewModFilesAvailable" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
-    <value>Доступны новые файлы модов</value>
+    <value>Доступны новые файлы модов: {0}</value>
   </data>
 
   <data name="CharDetails_SetButton.Text" xml:space="preserve">
@@ -4198,7 +4198,7 @@ JASM+ не будет перемещать ваши моды и не будет 
 
   <data name="CharDetails_DeleteModsDialog_Title" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
-    <value>Удалить моды</value>
+    <value>Удалить эти моды ({0} шт.)?</value>
   </data>
 
   <data name="CharDetails_PresetErrorMods" xml:space="preserve">
@@ -4273,7 +4273,7 @@ JASM+ не будет перемещать ваши моды и не будет 
 
   <data name="CharactersPage_NoCategoryFound" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the character name -->
-    <value>Категория не найдена</value>
+    <value>Не найдено: {0}...</value>
   </data>
 
   <data name="CharacterDetails_ViewToggle_OffContent" xml:space="preserve">
@@ -4411,7 +4411,7 @@ JASM+ не будет перемещать ваши моды и не будет 
 
   <data name="CharacterGallery_DeleteConfirmText" xml:space="preserve">
     <!-- Confirmation question when deleting a mod. {0} is the mod name -->
-    <value>Вы уверены, что хотите удалить этот мод?</value>
+    <value>Вы уверены, что хотите удалить {0}?</value>
   </data>
 
   <data name="CharacterGallery_DeleteTitle" xml:space="preserve">

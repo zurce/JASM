@@ -3912,7 +3912,7 @@ JASMはModを移動したり削除したりしません。
 
   <data name="Notification_ModIniNotInModFolderMsg" xml:space="preserve">
     <!-- Notification body message: The mod ini file must be in the mod folder. Mod folder: {0}\... Shown when modininotinmodfoldermsg -->
-    <value>Mod iniファイルはModフォルダー内にある必要があります。Modフォルダー: {0}</value>
+    <value>Mod iniファイルはModフォルダー内にある必要があります。Modフォルダー: {0}\nIniパス: {1}</value>
   </data>
 
   <data name="Notification_AnErrorOccurred" xml:space="preserve">
@@ -4162,17 +4162,17 @@ JASMはModを移動したり削除したりしません。
 
   <data name="CharDetails_DuplicateModsMessage" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
-    <value>重複Modが検出されました</value>
+    <value>{0}のModフォルダーで重複Modが検出されました</value>
   </data>
 
   <data name="CharDetails_DuplicateRenamedMessage" xml:space="preserve">
     <!-- Contains multiple dynamic value placeholders -->
-    <value>重複Modの名前が変更されました</value>
+    <value>Mod:「{0}」は競合を避けるため「{1}」に名前が変更されました</value>
   </data>
 
   <data name="CharDetails_NewModFilesAvailable" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
-    <value>新しいModファイルが利用可能です</value>
+    <value>新しいModファイルが利用可能です: {0}</value>
   </data>
 
   <data name="CharDetails_SetButton.Text" xml:space="preserve">
@@ -4197,7 +4197,7 @@ JASMはModを移動したり削除したりしません。
 
   <data name="CharDetails_DeleteModsDialog_Title" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
-    <value>Modを削除</value>
+    <value>この{0}個のModを削除しますか？</value>
   </data>
 
   <data name="CharDetails_PresetErrorMods" xml:space="preserve">
@@ -4272,7 +4272,7 @@ JASMはModを移動したり削除したりしません。
 
   <data name="CharactersPage_NoCategoryFound" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the character name -->
-    <value>カテゴリが見つかりません</value>
+    <value>{0}が見つかりません...</value>
   </data>
 
   <data name="CharacterDetails_ViewToggle_OffContent" xml:space="preserve">
@@ -4410,7 +4410,7 @@ JASMはModを移動したり削除したりしません。
 
   <data name="CharacterGallery_DeleteConfirmText" xml:space="preserve">
     <!-- Confirmation question when deleting a mod. {0} is the mod name -->
-    <value>このModを削除してもよろしいですか？</value>
+    <value>{0}を削除してもよろしいですか？</value>
   </data>
 
   <data name="CharacterGallery_DeleteTitle" xml:space="preserve">
