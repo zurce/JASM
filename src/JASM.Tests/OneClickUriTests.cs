@@ -42,6 +42,16 @@ public class OneClickUriTests
     }
 
     [Fact]
+    public void Parses_QuotedArgument()
+    {
+        // ShellExecute may wrap the argument in quotes: "jasm-plus:https://…"
+        var ok = OneClickUri.TryParse("\"jasm-plus:https://gamebanana.com/mmdl/1831455,Mod,691863\"", out var request, Scheme);
+
+        Assert.True(ok);
+        Assert.Equal("jasm-plus:https://gamebanana.com/mmdl/1831455,Mod,691863", request!.Raw);
+    }
+
+    [Fact]
     public void SchemeMatchesCaseInsensitively()
     {
         Assert.True(OneClickUri.TryParse("JASM-PLUS:https://gamebanana.com/mmdl/1,Mod,2", out _, Scheme));

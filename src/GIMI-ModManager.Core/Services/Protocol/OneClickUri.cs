@@ -59,7 +59,7 @@ public static class OneClickUri
     {
         request = null;
 
-        var raw = rawArgument?.Trim();
+        var raw = Normalize(rawArgument);
         if (string.IsNullOrEmpty(raw) || raw.Length > MaxArgumentLength)
             return false;
 
@@ -90,6 +90,23 @@ public static class OneClickUri
             raw);
 
         return true;
+    }
+
+    /// <summary>
+    /// Normalises a raw argument: Windows may pad it with whitespace and, depending on how the process was
+    /// started (ShellExecute vs a command line built by a browser), may also wrap the whole argument in
+    /// quotes — <c>"jasm-plus:https://…"</c>. Both forms are the same link.
+    /// </summary>
+    internal static string? Normalize(string? rawArgument)
+    {
+        var raw = rawArgument?.Trim();
+        if (string.IsNullOrEmpty(raw))
+            return raw;
+
+        if (raw.Length > 1 && raw[0] == '"' && raw[^1] == '"')
+            raw = raw[1..^1].Trim();
+
+        return raw;
     }
 
     /// <summary>Builds a link. Used by tests and dev tooling — production only ever parses.</summary>

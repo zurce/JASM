@@ -11,6 +11,9 @@ public class ModPageInfo
         ModName = apiModProfile.ModName;
         AuthorName = apiModProfile.Author?.AuthorName;
         Description = apiModProfile.Description;
+        GameBananaGameId = apiModProfile.Game?.GameId ?? -1;
+        GameBananaGameName = apiModProfile.Game?.Name;
+        GameBananaCategoryName = apiModProfile.Category?.Name;
         List<Uri> previewImageUrls = [];
         if (apiModProfile.PreviewMedia is not null)
         {
@@ -44,6 +47,16 @@ public class ModPageInfo
     public string? ModName { get; init; }
     public string? AuthorName { get; init; }
     public string? Description { get; init; }
+
+    /// <summary>GameBanana's game row id for this submission (e.g. Genshin = 8552). Used to pick the target game.</summary>
+    public int GameBananaGameId { get; init; } = -1;
+
+    /// <summary>Game name as reported by GameBanana (e.g. "Genshin Impact").</summary>
+    public string? GameBananaGameName { get; init; }
+
+    /// <summary>Category inside that game — for these games the character (e.g. "Klee") or a section ("Others").</summary>
+    public string? GameBananaCategoryName { get; init; }
+
     public IReadOnlyList<Uri> PreviewImages { get; init; }
 
     public IReadOnlyList<ModFileInfo> Files { get; init; }
