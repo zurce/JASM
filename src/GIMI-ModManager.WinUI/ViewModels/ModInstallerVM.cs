@@ -483,18 +483,29 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
             string.Format(App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModInstaller_AddedToModList") ?? "Mod '{0}' ({1}), was successfully added to {2} ModList", modName, newMod.Name, _characterModList.Character.DisplayName),
             TimeSpan.FromSeconds(5));
 
-        // An explicit non-default skin choice beats content detection when there is no
-        // separate skin folder (normal mode): the install went to the shared character
-        // folder, so pin the new mod to the chosen skin in both enable paths.
-        // (EnableOnlyMod alone only applied the choice when "enable on install" was on.)
+        // The "Install in Skin" choice must win over content detection, including the default skin.
+        // A mod archive can contain markers for several skins (this one ships KleeMod AND
+        // KleeBlossomingStarlightMod), and detection returns the first one it finds — so a mod installed
+        // with the default skin selected surfaced under Blossoming Starlight in the character page, i.e.
+        // under a different skin than the installer showed.
         var installSkin = SelectedInstallSkin;
-        if (installSkin is not null && !installSkin.IsDefault
-            && ReferenceEquals(_characterModList, _originModList))
+        if (installSkin is not null && ReferenceEquals(_characterModList, _originModList))
         {
             _inGameSkin = installSkin;
             var newModId = newMod.Id;
             var skinInternalName = installSkin.InternalName;
-            Task.Run(() => _modSettingsService.SetCharacterSkinOverrideLegacy(newModId, skinInternalName));
+            var installCharacter = _characterModList.Character as ICharacter;
+
+            Task.Run(async () =>
+            {
+                // Only pin when detection would disagree — plain mods without skin markers stay
+                // unassigned exactly as before, and a pin to the skin it already lands on is pointless.
+                var detectedSkin = await _characterSkinService.GetFirstSkinForModAsync(newMod, installCharacter);
+                if (detectedSkin is null || detectedSkin.InternalNameEquals(skinInternalName))
+                    return;
+
+                await _modSettingsService.SetCharacterSkinOverrideLegacy(newModId, skinInternalName);
+            });
         }
 
         if (EnableThisMod)

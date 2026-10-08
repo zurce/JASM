@@ -7,6 +7,7 @@ using CommunityToolkitWrapper;
 using GIMI_ModManager.Core.Contracts.Services;
 using GIMI_ModManager.Core.GamesService;
 using GIMI_ModManager.Core.Helpers;
+using GIMI_ModManager.Core.Services.Protocol;
 using GIMI_ModManager.WinUI.Activation;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Models.Options;
@@ -44,6 +45,8 @@ public class ActivationService : IActivationService
     private readonly ModUpdateAvailableChecker _modUpdateAvailableChecker;
     private readonly ModNotificationManager _modNotificationManager;
     private readonly LifeCycleService _lifeCycleService;
+    private readonly OneClickLaunchService _oneClickLaunchService;
+    private readonly OneClickInstallService _oneClickInstallService;
     private UIElement? _shell = null;
 
     private readonly string[] _args = Environment.GetCommandLineArgs().Skip(1).ToArray();
@@ -59,7 +62,8 @@ public class ActivationService : IActivationService
         ModUpdateAvailableChecker modUpdateAvailableChecker, ILogger logger,
         ModNotificationManager modNotificationManager, INavigationViewService navigationViewService,
         ISkinManagerService skinManagerService, NotificationManager notificationManager,
-        LifeCycleService lifeCycleService)
+        LifeCycleService lifeCycleService, OneClickLaunchService oneClickLaunchService,
+        OneClickInstallService oneClickInstallService)
     {
         _defaultHandler = defaultHandler;
         _activationHandlers = activationHandlers;
@@ -79,6 +83,8 @@ public class ActivationService : IActivationService
         _skinManagerService = skinManagerService;
         _notificationManager = notificationManager;
         _lifeCycleService = lifeCycleService;
+        _oneClickLaunchService = oneClickLaunchService;
+        _oneClickInstallService = oneClickInstallService;
         _logger = logger.ForContext<ActivationService>();
     }
 
@@ -89,6 +95,10 @@ public class ActivationService : IActivationService
 #elif RELEASE
         _logger.Information("JASM starting up in RELEASE mode...");
 #endif
+
+        // A GameBanana 1-click link arrives as a command line argument (registered URL scheme handler).
+        var oneClickScheme = await _oneClickLaunchService.GetSchemeAsync();
+        _oneClickLaunchService.CaptureFromCommandLine(_args, oneClickScheme);
 
         await HandleLaunchArgsAsync();
 
@@ -119,6 +129,52 @@ public class ActivationService : IActivationService
 
         // Show popups
         ShowStartupPopups();
+
+        // Register/repair the 1-click URL scheme (honours the Settings toggle) and pick up links
+        // handed over by launches that found another instance already running.
+        await ApplyOneClickRegistrationAsync();
+        StartOneClickHandling();
+    }
+
+    /// <summary>
+    /// Registers, repairs or removes the custom URL scheme according to the app-scoped setting. Never fatal:
+    /// a machine where the registry write is blocked must still start normally.
+    /// </summary>
+    private async Task ApplyOneClickRegistrationAsync()
+    {
+        try
+        {
+            await _oneClickLaunchService.ApplyRegistrationAsync();
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "Could not apply the GameBanana 1-click scheme registration");
+        }
+    }
+
+    /// <summary>Handles a link that arrived with this launch and any handed over later, on the UI thread.</summary>
+    private void StartOneClickHandling()
+    {
+        _oneClickLaunchService.RequestReceived += (_, request) =>
+            App.MainWindow.DispatcherQueue.TryEnqueue(() => _ = RunOneClickAsync(request));
+
+        _oneClickLaunchService.StartHandoffWatcher();
+
+        var pending = _oneClickLaunchService.TakePendingRequest();
+        if (pending is not null)
+            _ = RunOneClickAsync(pending);
+    }
+
+    private async Task RunOneClickAsync(OneClickInstallRequest request)
+    {
+        try
+        {
+            await _oneClickInstallService.HandleAsync(request).ConfigureAwait(true);
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "GameBanana 1-click link could not be handled");
+        }
     }
 
     private async Task CheckIfAlreadyRunningAsync()
@@ -130,6 +186,12 @@ public class ActivationService : IActivationService
         var hWnd = isJasmRunningHWND.Value;
 
         _logger.Information("JASM is already running, exiting...");
+
+        // A 1-click link would be lost with this process, so hand it to the running instance first.
+        var pendingOneClick = _oneClickLaunchService.TakePendingRequest();
+        if (pendingOneClick is not null)
+            _oneClickLaunchService.WriteHandoff(pendingOneClick);
+
         try
         {
             PInvoke.ShowWindow(hWnd, SHOW_WINDOW_CMD.SW_RESTORE);
@@ -143,8 +205,9 @@ public class ActivationService : IActivationService
             return;
         }
 
-        Application.Current.Exit();
-        await Task.Delay(-1);
+        // NOTE: this runs before the shell/window exists, so Application.Current.Exit() has nothing to close and
+        // leaves the process parked (observed as a lingering JASM process). A hard exit is deterministic here.
+        Environment.Exit(0);
     }
 
 

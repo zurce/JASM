@@ -137,6 +137,12 @@ public partial class App : Application
                 services.AddSingleton<ImageHandlerService>();
                 services.AddSingleton<SelectedGameService>();
 
+                // GameBanana 1-click installs (custom URL scheme)
+                services.AddSingleton<GIMI_ModManager.Core.Services.Protocol.IRegistryValueStore,
+                    WindowsRegistryValueStore>();
+                services.AddSingleton<OneClickLaunchService>();
+                services.AddSingleton<OneClickInstallService>();
+
                 services.AddSingleton<LifeCycleService>();
                 services.AddSingleton<BusyService>();
                 services.AddSingleton<JsonExporterService>();
