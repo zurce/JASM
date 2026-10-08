@@ -382,12 +382,12 @@ public sealed class OneClickInstallService
         // custom (private, generic) item types through its ABI, which throws a NullReferenceException from the
         // selector setters instead of anything helpful.
         var categories = _gameService.GetCategories();
-        var categoryBox = CreatePicker(Format("OneClick_Confirm_Category", "Category"), content,
+        var (categoryBox, _) = CreatePicker(Format("OneClick_Confirm_Category", "Category"), content,
             categories.Select(CategoryLabel).ToList());
 
-        var objectBox = CreatePicker(Format("OneClick_Confirm_Character", "Character"), content);
-        var skinBox = CreatePicker(Format("OneClick_Confirm_Skin", "Skin"), content);
-        var skinRow = (StackPanel)skinBox.Parent!;
+        var (objectBox, _) = CreatePicker(Format("OneClick_Confirm_Character", "Character"), content);
+        var (skinBox, skinRow) = CreatePicker(Format("OneClick_Confirm_Skin", "Skin"), content);
+        skinRow.Visibility = Visibility.Collapsed;
 
         var dialog = new ContentDialog
         {
@@ -437,30 +437,55 @@ public sealed class OneClickInstallService
             dialog.IsPrimaryButtonEnabled = objectBox.SelectedIndex >= 0;
         }
 
-        categoryBox.SelectionChanged += (_, _) => RefreshObjects();
-        objectBox.SelectionChanged += (_, _) => RefreshSkins();
+        // Every callback that WinUI can invoke (selection changed, deferred selection) is guarded: an exception
+        // inside a dispatcher callback is an unhandled WinRT stowed exception, which kills the process
+        // (0xc000027b) instead of surfacing an error. Worst case here is "nothing preselected".
+        categoryBox.SelectionChanged += (_, _) => Guarded(RefreshObjects, "refresh the target list");
+        objectBox.SelectionChanged += (_, _) => Guarded(RefreshSkins, "refresh the skin list");
 
         // Selection has to wait until the control is fully realised: a ComboBox raised Loaded still fails with
         // E_POINTER from the selector setters (template/items host not applied yet), so it is deferred one
         // dispatcher tick past Loaded.
         var preselected = false;
-        categoryBox.Loaded += (_, _) => App.MainWindow.DispatcherQueue.TryEnqueue(() =>
+        // The ComboBox rejects selection until its template/items host is applied (E_POINTER, which as an
+        // unhandled dispatcher exception crashes the app), so this runs after Loaded and retries a few times.
+        // Each attempt is guarded: worst case the user picks the target manually.
+        var attempts = 0;
+
+        void Preselect()
         {
             if (preselected)
                 return;
 
-            preselected = true;
+            try
+            {
+                var index = detectedCharacter is null
+                    ? 0
+                    // ICharacter.ModCategory is the ICategory the character belongs to (not the enum).
+                    : categories.FindIndex(category => category.Equals(detectedCharacter.ModCategory));
 
-            var index = detectedCharacter is null
-                ? 0
-                // ICharacter.ModCategory is the ICategory the character belongs to (not the enum).
-                : categories.FindIndex(category => category.Equals(detectedCharacter.ModCategory));
+                // With nothing detected (UI/weapon mods, new character, ambiguous name) the character stays
+                // unselected and Install is disabled until the user picks one.
+                categoryBox.SelectedIndex = index >= 0 ? index : 0;
+                RefreshObjects();
+                preselected = true;
+            }
+            catch (Exception e)
+            {
+                if (++attempts >= 5)
+                {
+                    _logger.Warning(e,
+                        "1-click install dialog could not preselect the target; the user has to choose");
+                    return;
+                }
 
-            // With nothing detected (UI/weapon mods, new character, ambiguous name) the character stays
-            // unselected and Install is disabled until the user picks one.
-            categoryBox.SelectedIndex = index >= 0 ? index : 0;
-            RefreshObjects();
-        });
+                _logger.Debug(e, "1-click install dialog: retrying target preselection ({Attempt})", attempts);
+                _ = Task.Delay(200).ContinueWith(_ =>
+                    App.MainWindow.DispatcherQueue.TryEnqueue(Preselect));
+            }
+        }
+
+        categoryBox.Loaded += (_, _) => App.MainWindow.DispatcherQueue.TryEnqueue(Preselect);
 
         var result = await dialog.ShowAsync();
         _logger.Information("1-click dialog '{Title}' returned {Result}", dialog.Title, result);
@@ -480,8 +505,30 @@ public sealed class OneClickInstallService
 
     private sealed record InstallTarget(IModdableObject Target, ICharacterSkin? Skin);
 
-    /// <summary>Adds a labelled picker row to the dialog and returns the combo box (items are set later).</summary>
-    private static ComboBox CreatePicker(string label, StackPanel content, List<string>? items = null)
+    /// <summary>
+    /// Runs a dialog callback, logging instead of throwing: WinUI invokes these from its own dispatcher, where an
+    /// exception becomes an unhandled stowed exception that terminates the process (observed as an app crash with
+    /// exception code 0xc000027b right after the install dialog opened).
+    /// </summary>
+    private void Guarded(Action action, string what)
+    {
+        try
+        {
+            action();
+        }
+        catch (Exception e)
+        {
+            _logger.Warning(e, "1-click install dialog could not {What}", what);
+        }
+    }
+
+    /// <summary>
+    /// Adds a labelled picker row to the dialog. Returns the row as well as the box: <c>FrameworkElement.Parent</c>
+    /// is null while the panel is not in a visual tree, so the row cannot be recovered from the box (doing so
+    /// threw a NullReferenceException and, from a dispatcher callback, crashed the app).
+    /// </summary>
+    private static (ComboBox Box, StackPanel Row) CreatePicker(string label, StackPanel content,
+        List<string>? items = null)
     {
         var row = new StackPanel { Spacing = 4 };
         row.Children.Add(new TextBlock { Text = label, FontSize = 12, Opacity = 0.85 });
@@ -497,7 +544,7 @@ public sealed class OneClickInstallService
         row.Children.Add(box);
         content.Children.Add(row);
 
-        return box;
+        return (box, row);
     }
 
     /// <summary>Category label, localized the same way the characters page does it (Category_&lt;name&gt;).</summary>
