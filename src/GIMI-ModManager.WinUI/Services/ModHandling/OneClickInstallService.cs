@@ -138,11 +138,15 @@ public sealed class OneClickInstallService
             // opens it already has one, so offering it twice would be redundant).
             var helperWillOpen = !settings.InstallWithoutConfirmation;
 
-            _logger.Information(
-                "1-click install for mod {ModId}: asking for a target (character {Character}, Mod Installer Helper {Helper})",
-                request.ModId, character?.DisplayName ?? "not detected", helperWillOpen ? "opens" : "skipped");
+            // The skin picker exists only for the skipped-helper mode: with the helper open it has its own.
+            var offerSkinPicker = !helperWillOpen;
 
-            var chosen = await ConfirmInstallAsync(profile, fileInfo, game.Value, character, modUrl, helperWillOpen)
+            _logger.Information(
+                "1-click install for mod {ModId}: asking for a target (character {Character}, Mod Installer Helper {Helper}, skin picker {SkinPicker})",
+                request.ModId, character?.DisplayName ?? "not detected", helperWillOpen ? "opens" : "skipped",
+                offerSkinPicker ? "shown" : "hidden");
+
+            var chosen = await ConfirmInstallAsync(profile, fileInfo, game.Value, character, modUrl, offerSkinPicker)
                 .ConfigureAwait(true);
 
             if (chosen is null)
@@ -329,7 +333,7 @@ public sealed class OneClickInstallService
     /// characters are still installable instead of dead-ending.
     /// </summary>
     private async Task<InstallTarget?> ConfirmInstallAsync(ModPageInfo profile, ModFileInfo? fileInfo,
-        SupportedGames game, ICharacter? detectedCharacter, Uri? modUrl, bool offerSkin)
+        SupportedGames game, ICharacter? detectedCharacter, Uri? modUrl, bool offerSkinPicker)
     {
         var lines = new List<string>
         {
@@ -386,7 +390,8 @@ public sealed class OneClickInstallService
         // No placeholder on the target picker on purpose: an empty dropdown is the cue that the user has to
         // choose (a label would look like something is already selected).
         var (objectBox, _) = CreatePicker(string.Empty, pickerRow);
-        var (skinBox, skinRow) = CreatePicker(Format("OneClick_Confirm_Skin", "Skin"), content);
+        var (skinBox, skinRow) = CreatePicker(string.Empty, content,
+            labelAbove: Format("OneClick_Confirm_Skin", "Skin"));
         skinRow.Visibility = Visibility.Collapsed;
 
         var dialog = new ContentDialog
@@ -423,7 +428,7 @@ public sealed class OneClickInstallService
             var selected = objectIndex >= 0 && objectIndex < currentObjects.Count ? currentObjects[objectIndex] : null;
             var character = selected as ICharacter;
             // Only when the helper will be skipped: it has its own skin selector, so asking twice is redundant.
-            var hasSkins = offerSkin && character is not null && character.Skins.Count > 1;
+            var hasSkins = offerSkinPicker && character is not null && character.Skins.Count > 1;
 
             skinRow.Visibility = hasSkins ? Visibility.Visible : Visibility.Collapsed;
 
@@ -529,9 +534,12 @@ public sealed class OneClickInstallService
     /// threw a NullReferenceException and, from a dispatcher callback, crashed the app).
     /// </summary>
     private static (ComboBox Box, StackPanel Row) CreatePicker(string placeholder, StackPanel content,
-        List<string>? items = null)
+        List<string>? items = null, string? labelAbove = null)
     {
         var row = new StackPanel { Spacing = 4 };
+
+        if (!string.IsNullOrEmpty(labelAbove))
+            row.Children.Add(new TextBlock { Text = labelAbove, FontSize = 12, Opacity = 0.85 });
 
         var box = new ComboBox
         {
