@@ -359,7 +359,7 @@ public sealed class OneClickInstallService
                     : $" — {fileInfo.AnalysisResultVerbose}"));
         }
 
-        // --- pickers ---
+        // --- pickers (index-based selection: WinUI's SelectedItem setter throws for object items) ---
         var content = new StackPanel { Spacing = 8, MaxWidth = 460 };
         content.Children.Add(new TextBlock
         {
@@ -378,15 +378,15 @@ public sealed class OneClickInstallService
             });
         }
 
-        var categoryChoices = _gameService.GetCategories()
-            .Select(category => new Choice<ICategory>(category, CategoryLabel(category)))
-            .ToList();
-        var categoryBox = CreatePicker(Format("OneClick_Confirm_Category", "Category"), content, categoryChoices);
+        // Pickers use plain strings as items and keep the values in parallel lists: WinUI fails to marshal
+        // custom (private, generic) item types through its ABI, which throws a NullReferenceException from the
+        // selector setters instead of anything helpful.
+        var categories = _gameService.GetCategories();
+        var categoryBox = CreatePicker(Format("OneClick_Confirm_Category", "Category"), content,
+            categories.Select(CategoryLabel).ToList());
 
-        var objectBox = CreatePicker(Format("OneClick_Confirm_Character", "Character"), content,
-            new List<Choice<IModdableObject>>());
-        var skinBox = CreatePicker(Format("OneClick_Confirm_Skin", "Skin"), content,
-            new List<Choice<ICharacterSkin?>>());
+        var objectBox = CreatePicker(Format("OneClick_Confirm_Character", "Character"), content);
+        var skinBox = CreatePicker(Format("OneClick_Confirm_Skin", "Skin"), content);
         var skinRow = (StackPanel)skinBox.Parent!;
 
         var dialog = new ContentDialog
@@ -400,92 +400,100 @@ public sealed class OneClickInstallService
             IsPrimaryButtonEnabled = false
         };
 
+        var currentObjects = new List<IModdableObject>();
+        var currentSkins = new List<ICharacterSkin?>();
+
         void RefreshObjects()
         {
-            var category = (categoryBox.SelectedItem as Choice<ICategory>)?.Value;
-            var objects = category is null
-                ? []
-                : _gameService.GetModdableObjects(category)
-                    .Select(item => new Choice<IModdableObject>(item, item.DisplayName))
-                    .ToList();
+            var categoryIndex = categoryBox.SelectedIndex;
+            var category = categoryIndex >= 0 && categoryIndex < categories.Count ? categories[categoryIndex] : null;
 
-            objectBox.ItemsSource = objects;
-            objectBox.SelectedItem = detectedCharacter is not null
-                ? objects.FirstOrDefault(choice => choice.Value.InternalNameEquals(detectedCharacter.InternalName))
-                : null;
+            currentObjects = category is null ? [] : _gameService.GetModdableObjects(category).ToList();
+            objectBox.ItemsSource = currentObjects.Select(item => item.DisplayName).ToList();
+            objectBox.SelectedIndex = detectedCharacter is null
+                ? -1
+                : currentObjects.FindIndex(item => item.InternalNameEquals(detectedCharacter.InternalName));
 
             RefreshSkins();
         }
 
         void RefreshSkins()
         {
-            var character = (objectBox.SelectedItem as Choice<IModdableObject>)?.Value as ICharacter;
+            var objectIndex = objectBox.SelectedIndex;
+            var selected = objectIndex >= 0 && objectIndex < currentObjects.Count ? currentObjects[objectIndex] : null;
+            var character = selected as ICharacter;
             var hasSkins = character is not null && character.Skins.Count > 1;
 
             skinRow.Visibility = hasSkins ? Visibility.Visible : Visibility.Collapsed;
 
-            var choices = new List<Choice<ICharacterSkin?>>
-            {
-                new(null, Format("OneClick_Confirm_DefaultSkin", "Default"))
-            };
+            currentSkins = [null];
             if (hasSkins)
-                choices.AddRange(character!.Skins.Where(skin => !skin.IsDefault)
-                    .Select(skin => new Choice<ICharacterSkin?>(skin, skin.DisplayName)));
+                currentSkins.AddRange(character!.Skins.Where(skin => !skin.IsDefault));
 
-            skinBox.ItemsSource = choices;
+            skinBox.ItemsSource = currentSkins
+                .Select(skin => skin?.DisplayName ?? Format("OneClick_Confirm_DefaultSkin", "Default"))
+                .ToList();
             skinBox.SelectedIndex = 0;
-            dialog.IsPrimaryButtonEnabled = objectBox.SelectedItem is not null;
+            dialog.IsPrimaryButtonEnabled = objectBox.SelectedIndex >= 0;
         }
 
         categoryBox.SelectionChanged += (_, _) => RefreshObjects();
         objectBox.SelectionChanged += (_, _) => RefreshSkins();
 
-        if (detectedCharacter is not null)
+        // Selection has to wait until the control is fully realised: a ComboBox raised Loaded still fails with
+        // E_POINTER from the selector setters (template/items host not applied yet), so it is deferred one
+        // dispatcher tick past Loaded.
+        var preselected = false;
+        categoryBox.Loaded += (_, _) => App.MainWindow.DispatcherQueue.TryEnqueue(() =>
         {
-            // ICharacter.ModCategory is the ICategory the character belongs to (not the enum).
-            categoryBox.SelectedItem = categoryChoices
-                .FirstOrDefault(choice => choice.Value.Equals(detectedCharacter.ModCategory));
-        }
-        else
-        {
-            // Nothing detected (UI/weapon mods, new character, ambiguous name): leave it to the user, with the
-            // Install button disabled until they pick something.
-            categoryBox.SelectedIndex = 0;
-        }
+            if (preselected)
+                return;
+
+            preselected = true;
+
+            var index = detectedCharacter is null
+                ? 0
+                // ICharacter.ModCategory is the ICategory the character belongs to (not the enum).
+                : categories.FindIndex(category => category.Equals(detectedCharacter.ModCategory));
+
+            // With nothing detected (UI/weapon mods, new character, ambiguous name) the character stays
+            // unselected and Install is disabled until the user picks one.
+            categoryBox.SelectedIndex = index >= 0 ? index : 0;
+            RefreshObjects();
+        });
 
         var result = await dialog.ShowAsync();
-        _logger.Information("1-click dialog '{Title}' returned {Result}",
-            dialog.Title, result);
+        _logger.Information("1-click dialog '{Title}' returned {Result}", dialog.Title, result);
 
         if (result != ContentDialogResult.Primary)
             return null;
 
-        var selectedObject = (objectBox.SelectedItem as Choice<IModdableObject>)?.Value;
-        var selectedSkin = (skinBox.SelectedItem as Choice<ICharacterSkin?>)?.Value;
+        var objectIndex = objectBox.SelectedIndex;
+        if (objectIndex < 0 || objectIndex >= currentObjects.Count)
+            return null;
 
-        return selectedObject is null ? null : new InstallTarget(selectedObject, selectedSkin);
-    }
+        var skinIndex = skinBox.SelectedIndex;
+        var skin = skinIndex >= 0 && skinIndex < currentSkins.Count ? currentSkins[skinIndex] : null;
 
-    /// <summary>A label + value pair for the pickers.</summary>
-    private sealed record Choice<T>(T Value, string Label)
-    {
-        public override string ToString() => Label;
+        return new InstallTarget(currentObjects[objectIndex], skin);
     }
 
     private sealed record InstallTarget(IModdableObject Target, ICharacterSkin? Skin);
 
-    /// <summary>Adds a labelled picker row to the dialog and returns the combo box.</summary>
-    private static ComboBox CreatePicker<T>(string label, StackPanel content, List<Choice<T>> items)
+    /// <summary>Adds a labelled picker row to the dialog and returns the combo box (items are set later).</summary>
+    private static ComboBox CreatePicker(string label, StackPanel content, List<string>? items = null)
     {
         var row = new StackPanel { Spacing = 4 };
         row.Children.Add(new TextBlock { Text = label, FontSize = 12, Opacity = 0.85 });
 
         var box = new ComboBox
         {
-            ItemsSource = items,
             HorizontalAlignment = HorizontalAlignment.Stretch,
             MinWidth = 260
         };
+        if (items is not null)
+            box.ItemsSource = items;
+
         row.Children.Add(box);
         content.Children.Add(row);
 
@@ -570,8 +578,24 @@ public sealed class OneClickInstallService
         }
     }
 
-    private string Format(string key, string fallback, params object[] args) =>
-        string.Format(_localizer.GetLocalizedStringOrDefault(key) ?? fallback, args);
+    /// <summary>
+    /// Formats a localized string with its arguments, falling back to English when a translation has mismatched
+    /// placeholders (translations are editable data — a missing {0} must not turn an install into "failed").
+    /// </summary>
+    private string Format(string key, string fallback, params object[] args)
+    {
+        var template = _localizer.GetLocalizedStringOrDefault(key) ?? fallback;
+
+        try
+        {
+            return string.Format(template, args);
+        }
+        catch (FormatException)
+        {
+            _logger.Warning("1-click string {Key} has mismatched placeholders; using the English text", key);
+            return string.Format(fallback, args);
+        }
+    }
 
     private void Notify(string titleKey, string message)
     {

@@ -4535,7 +4535,7 @@ JASMはModを移動したり削除したりしません。
     <value>Author: {0}</value>
   </data>
 <data name="OneClick_Confirm_Target" xml:space="preserve">
-    <value>Install for: {0} — {1}</value>
+    <value>Game: {0}</value>
   </data>
 <data name="OneClick_Confirm_Source" xml:space="preserve">
     <value>Source: {0}</value>

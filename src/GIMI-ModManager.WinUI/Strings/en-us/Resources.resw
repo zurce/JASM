@@ -3757,7 +3757,7 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   </data>
   <!-- Confirmation line: game and character. (One-click installer) -->
   <data name="OneClick_Confirm_Target" xml:space="preserve">
-    <value>Install for: {0} — {1}</value>
+    <value>Game: {0}</value>
   </data>
   <!-- Confirmation line: the link's mod page URL. (One-click installer) -->
   <data name="OneClick_Confirm_Source" xml:space="preserve">
