@@ -72,6 +72,11 @@ public class ModInstallerService(
         ArgumentNullException.ThrowIfNull(modFolder);
         ArgumentNullException.ThrowIfNull(modList);
 
+        // A link cannot ask what to do about a name clash, so this never replaces anything: the new mod goes in
+        // beside the existing one under a free folder name ("Name (2)"). It is left disabled as well, so a web
+        // link cannot silently change which mod the game loads.
+        modFolder = EnsureFreeModFolderName(modFolder, modList);
+
         using var installation = ModInstallation.Start(modFolder, modList);
         installation.AutoSetModRootFolder();
 
@@ -80,13 +85,10 @@ public class ModInstallerService(
         var addOptions = metadata ?? new AddModOptions();
         addOptions.ModUrl = options.ModUrl?.ToString();
 
-        // A same-named mod means reinstalling this file: replace it (that is what "update this mod" does).
-        var duplicate = installation.AnyDuplicateName();
-        var installed = duplicate is not null
-            ? await installation.AddAndReplaceAsync(duplicate, addOptions).ConfigureAwait(false)
-            : await installation.AddModAsync(addOptions).ConfigureAwait(false);
+        var installed = await installation.AddModAsync(addOptions).ConfigureAwait(false);
 
-        // Skin: the one the user picked in the dialog, else whatever the archive content indicates.
+        // The skin the user picked in the dialog, else whatever the archive content indicates. It is stored on
+        // the mod rather than applied: the mod is disabled, so this is the skin it uses once it gets enabled.
         ICharacterSkin? skin = null;
         if (modList.Character is ICharacter character)
         {
@@ -100,29 +102,11 @@ public class ModInstallerService(
                     .ConfigureAwait(false);
         }
 
-        // Enable the new mod and disable the other mods that would conflict with it: same skin when the
-        // character has in-game skins, otherwise every other enabled mod in the list.
-        var conflicting = new List<ISkinMod>();
-        if (skin is not null)
-        {
-            await foreach (var skinMod in _characterSkinService.GetModsForSkinAsync(skin).ConfigureAwait(false))
-                conflicting.Add(skinMod);
-        }
-        else
-        {
-            conflicting.AddRange(modList.Mods.Where(entry => entry.IsEnabled).Select(entry => entry.Mod));
-        }
+        // Left disabled: a link cannot ask, and silently turning a mod on changes what the game loads.
+        if (modList.IsModEnabled(installed))
+            modList.DisableMod(installed.Id);
 
-        foreach (var other in conflicting.Where(mod => mod.Id != installed.Id))
-        {
-            if (modList.IsModEnabled(other))
-                modList.DisableMod(other.Id);
-        }
-
-        if (!modList.IsModEnabled(installed))
-            modList.EnableMod(installed.Id);
-
-        _logger.Information("Installed {ModName} into {Target} without the Mod Installer Helper{ Skin}",
+        _logger.Information("Installed {ModName} into {Target} without the Mod Installer Helper{ Skin} (disabled)",
             installed.Name, modList.Character.DisplayName,
             skin is null ? string.Empty : $" (skin {skin.DisplayName})");
 
@@ -149,6 +133,39 @@ public class ModInstallerService(
         });
 
         return installed;
+    }
+
+    /// <summary>
+    ///     Returns <paramref name="modFolder" /> renamed to a free name when a mod with the same folder name is
+    ///     already installed ("Name (2)"), so an unattended install never has to replace an existing mod.
+    /// </summary>
+    private static DirectoryInfo EnsureFreeModFolderName(DirectoryInfo modFolder, ICharacterModList modList)
+    {
+        static bool IsTaken(ICharacterModList list, string folderName)
+        {
+            return list.Mods.Any(entry => ModFolderHelpers.FolderNameEquals(entry.Mod.Name, folderName));
+        }
+
+        if (!IsTaken(modList, modFolder.Name))
+            return modFolder;
+
+        var newName = string.Empty;
+        for (var i = 2; i < 1000 && newName.IsNullOrEmpty(); i++)
+        {
+            var candidate = $"{modFolder.Name} ({i})";
+            if (!IsTaken(modList, candidate))
+                newName = candidate;
+        }
+
+        if (newName.IsNullOrEmpty())
+            newName = $"{modFolder.Name} ({Guid.NewGuid():N})";
+
+        var parent = modFolder.Parent
+                     ?? throw new InvalidOperationException($"Mod folder {modFolder.FullName} has no parent folder");
+
+        var destination = Path.Combine(parent.FullName, newName);
+        modFolder.MoveTo(destination);
+        return new DirectoryInfo(destination);
     }
 
     private async Task<InstallMonitor> InternalStartAsync(DirectoryInfo modFolder, ICharacterModList modList,

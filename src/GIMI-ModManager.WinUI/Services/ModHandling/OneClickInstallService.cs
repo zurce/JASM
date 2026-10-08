@@ -168,6 +168,8 @@ public sealed class OneClickInstallService
 
             var modList = _skinManagerService.GetCharacterModList(target);
 
+            AddModOptions? metadata = null;
+
             // A heavy mod takes minutes; without this the app looked frozen (the download used to run with no
             // progress reporting at all). Reuses the same busy dialog as the orphan-mod batch repair.
             var zipRoot = await BusyDialog.RunAsync(
@@ -204,6 +206,10 @@ public sealed class OneClickInstallService
                     if (!reported)
                         setStatus(Format("OneClick_UsingCachedArchive_Status", "Using the cached archive for {0}…",
                             modTitle));
+
+                    // Next to the download, not at install time: the Mod Installer Helper reads a mod's
+                    // metadata off its page, so the 1-click flow has to fetch it whether the helper opens or not.
+                    metadata = await BuildModMetadataAsync(profile, modUrl, token).ConfigureAwait(true);
 
                     setStatus(Format("OneClick_Extracting_Status", "Extracting {0}…", modTitle));
                     return await Task.Run(() => ExtractToArchiveRoot(archivePath), token).ConfigureAwait(true);
@@ -243,30 +249,6 @@ public sealed class OneClickInstallService
             }
             else
             {
-                // The helper fetches the mod's metadata from its URL; skipping it must not leave the mod bare.
-                var metadata = new AddModOptions
-                {
-                    ModName = profile.ModName,
-                    Author = profile.AuthorName,
-                    Description = profile.Description,
-                    ModUrl = modUrl?.ToString()
-                };
-
-                var previewImageUrl = profile.PreviewImages?.FirstOrDefault();
-                if (previewImageUrl is not null)
-                {
-                    try
-                    {
-                        var image = await _imageHandlerService.DownloadImageAsync(previewImageUrl, ct)
-                            .ConfigureAwait(true);
-                        metadata.ModImage = new Uri(image.Path);
-                    }
-                    catch (Exception e)
-                    {
-                        _logger.Warning(e, "Could not download the cover image for mod {ModId}", request.ModId);
-                    }
-                }
-
                 await _modInstallerService.InstallSilentlyAsync(zipRoot, modList, installOptions, metadata, ct)
                     .ConfigureAwait(true);
             }
@@ -659,6 +641,37 @@ public sealed class OneClickInstallService
         {
             _logger.Debug(e, "Could not clean up the extracted archive after cancelling");
         }
+    }
+
+    /// <summary>
+    ///     Builds the metadata the installer writes into the mod's settings: what the Mod Installer Helper reads
+    ///     off the mod page (name, author, description, URL) plus its cover image.
+    /// </summary>
+    private async Task<AddModOptions> BuildModMetadataAsync(ModPageInfo modPage, Uri? modUrl, CancellationToken ct)
+    {
+        var metadata = new AddModOptions
+        {
+            ModName = modPage.ModName,
+            Author = modPage.AuthorName,
+            Description = modPage.Description,
+            ModUrl = modUrl?.ToString()
+        };
+
+        var previewImageUrl = modPage.PreviewImages?.FirstOrDefault();
+        if (previewImageUrl is null)
+            return metadata;
+
+        try
+        {
+            var image = await _imageHandlerService.DownloadImageAsync(previewImageUrl, ct).ConfigureAwait(false);
+            metadata.ModImage = new Uri(image.Path);
+        }
+        catch (Exception e)
+        {
+            _logger.Warning(e, "Could not download the cover image for mod page {ModPageUrl}", modPage.ModPageUrl);
+        }
+
+        return metadata;
     }
 
     /// <summary>
