@@ -34,9 +34,9 @@ public class ProtocolRegistrationServiceTests
         Assert.True(service.TryRegister(out var error));
         Assert.Null(error);
 
-        Assert.Equal("URL:JASM+ 1-Click Installer", store.Values[@"Software\Classes\jasm-plus"][""]);
-        Assert.Equal(string.Empty, store.Values[@"Software\Classes\jasm-plus"]["URL Protocol"]);
-        Assert.Equal($"\"{Exe}\" \"%1\"", store.Values[@"Software\Classes\jasm-plus\shell\open\command"][""]);
+        Assert.Equal("URL:JASM+ 1-Click Installer", store.Values[@"jasm-plus"][""]);
+        Assert.Equal(string.Empty, store.Values[@"jasm-plus"]["URL Protocol"]);
+        Assert.Equal($"\"{Exe}\" \"%1\"", store.Values[@"jasm-plus\shell\open\command"][""]);
     }
 
     [Fact]
@@ -47,7 +47,7 @@ public class ProtocolRegistrationServiceTests
 
         service.TryRegister(out _);
 
-        var command = store.Values[@"Software\Classes\jasm-plus\shell\open\command"][""];
+        var command = store.Values[@"jasm-plus\shell\open\command"][""];
         Assert.StartsWith("\"", command);
         Assert.Contains("JASM - Just Another Skin Manager.exe\"", command);
     }
@@ -71,9 +71,9 @@ public class ProtocolRegistrationServiceTests
     public void Register_RefusesToTakeOverAnotherApplicationScheme()
     {
         var store = new FakeRegistryValueStore();
-        store.SetValue(@"Software\Classes\jasm-plus", "", "URL:Some Other Tool protocol");
-        store.SetValue(@"Software\Classes\jasm-plus", "URL Protocol", "");
-        store.SetValue(@"Software\Classes\jasm-plus\shell\open\command", "", @"""C:\Other\app.exe"" ""%1""");
+        store.SetValue(@"jasm-plus", "", "URL:Some Other Tool protocol");
+        store.SetValue(@"jasm-plus", "URL Protocol", "");
+        store.SetValue(@"jasm-plus\shell\open\command", "", @"""C:\Other\app.exe"" ""%1""");
 
         var service = CreateService(store);
         var registered = service.TryRegister(out var error);
@@ -83,16 +83,16 @@ public class ProtocolRegistrationServiceTests
         Assert.Contains("already registered to another application", error);
 
         // Nothing was modified.
-        Assert.Equal("URL:Some Other Tool protocol", store.Values[@"Software\Classes\jasm-plus"][""]);
-        Assert.Equal(@"""C:\Other\app.exe"" ""%1""", store.Values[@"Software\Classes\jasm-plus\shell\open\command"][""]);
+        Assert.Equal("URL:Some Other Tool protocol", store.Values[@"jasm-plus"][""]);
+        Assert.Equal(@"""C:\Other\app.exe"" ""%1""", store.Values[@"jasm-plus\shell\open\command"][""]);
     }
 
     [Fact]
     public void ForeignRegistration_IsReportedAsSuch()
     {
         var store = new FakeRegistryValueStore();
-        store.SetValue(@"Software\Classes\jasm-plus", "", "URL:Someone else protocol");
-        store.SetValue(@"Software\Classes\jasm-plus\shell\open\command", "", @"""C:\Other\app.exe"" ""%1""");
+        store.SetValue(@"jasm-plus", "", "URL:Someone else protocol");
+        store.SetValue(@"jasm-plus\shell\open\command", "", @"""C:\Other\app.exe"" ""%1""");
 
         var status = CreateService(store).GetStatus();
 
@@ -122,12 +122,12 @@ public class ProtocolRegistrationServiceTests
         var store = new FakeRegistryValueStore();
         var service = CreateService(store);
         service.TryRegister(out _);
-        store.SetValue(@"Software\Classes\jasm-plus\shell\open\command", "", @"""C:\Old\Location\JASM - Just Another Skin Manager.exe"" ""%1""");
+        store.SetValue(@"jasm-plus\shell\open\command", "", @"""C:\Old\Location\JASM - Just Another Skin Manager.exe"" ""%1""");
 
         Assert.True(service.TryEnsureRegistered(out var error, out var changed));
         Assert.Null(error);
         Assert.True(changed);
-        Assert.Equal($"\"{Exe}\" \"%1\"", store.Values[@"Software\Classes\jasm-plus\shell\open\command"][""]);
+        Assert.Equal($"\"{Exe}\" \"%1\"", store.Values[@"jasm-plus\shell\open\command"][""]);
     }
 
     [Fact]
@@ -151,7 +151,7 @@ public class ProtocolRegistrationServiceTests
 
         Assert.True(service.TryUnregister(out var error));
         Assert.Null(error);
-        Assert.False(store.KeyExists(@"Software\Classes\jasm-plus"));
+        Assert.False(store.KeyExists(@"jasm-plus"));
         Assert.False(service.GetStatus().KeyExists);
     }
 
@@ -170,8 +170,8 @@ public class ProtocolRegistrationServiceTests
 
         service.TryRegister(out _);
 
-        Assert.True(store.KeyExists(@"Software\Classes\some-other-manager"));
-        Assert.False(store.KeyExists(@"Software\Classes\jasm-plus"));
+        Assert.True(store.KeyExists(@"some-other-manager"));
+        Assert.False(store.KeyExists(@"jasm-plus"));
         Assert.Equal("some-other-manager", service.Scheme);
     }
 

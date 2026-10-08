@@ -55,7 +55,8 @@ public sealed class ProtocolRegistrationService
 
     public string Scheme => _scheme;
 
-    public string KeyPath => $@"Software\Classes\{_scheme}";
+    /// <summary>Key path below the current user's classes root (the store adds <c>Software\Classes</c>).</summary>
+    public string KeyPath => _scheme;
 
     public string CommandKeyPath => $@"{KeyPath}\shell\open\command";
 
