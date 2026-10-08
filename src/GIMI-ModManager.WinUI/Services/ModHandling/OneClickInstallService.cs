@@ -383,7 +383,9 @@ public sealed class OneClickInstallService
         var (categoryBox, _) = CreatePicker(Format("OneClick_Confirm_Category", "Category"), pickerRow,
             categories.Select(CategoryLabel).ToList());
 
-        var (objectBox, _) = CreatePicker(Format("OneClick_Confirm_Targets", "Targets"), pickerRow);
+        // No placeholder on the target picker on purpose: an empty dropdown is the cue that the user has to
+        // choose (a label would look like something is already selected).
+        var (objectBox, _) = CreatePicker(string.Empty, pickerRow);
         var (skinBox, skinRow) = CreatePicker(Format("OneClick_Confirm_Skin", "Skin"), content);
         skinRow.Visibility = Visibility.Collapsed;
 
@@ -533,7 +535,7 @@ public sealed class OneClickInstallService
 
         var box = new ComboBox
         {
-            PlaceholderText = placeholder,
+            PlaceholderText = placeholder ?? string.Empty,
             HorizontalAlignment = HorizontalAlignment.Stretch,
             MinWidth = 200
         };

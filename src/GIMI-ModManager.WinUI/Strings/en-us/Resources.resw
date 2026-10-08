@@ -3799,10 +3799,6 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   <data name="OneClick_Confirm_Category" xml:space="preserve">
     <value>Category</value>
   </data>
-  <!-- Confirmation dialog: character/object picker label. (One-click installer) -->
-  <data name="OneClick_Confirm_Targets" xml:space="preserve">
-    <value>Targets</value>
-  </data>
   <!-- Confirmation dialog: skin picker label (shown when the character has skins). (One-click installer) -->
   <data name="OneClick_Confirm_Skin" xml:space="preserve">
     <value>Skin</value>

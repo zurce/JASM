@@ -4529,9 +4529,6 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 <data name="OneClick_Confirm_Category" xml:space="preserve">
     <value>Category</value>
   </data>
-<data name="OneClick_Confirm_Targets" xml:space="preserve">
-    <value>Targets</value>
-  </data>
 <data name="OneClick_Confirm_Skin" xml:space="preserve">
     <value>Skin</value>
   </data>

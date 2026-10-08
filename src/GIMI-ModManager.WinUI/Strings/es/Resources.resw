@@ -3856,9 +3856,6 @@ JASM+ no moverá ninguno de tus mods ni los eliminará.
 <data name="OneClick_Confirm_Category" xml:space="preserve">
     <value>Category</value>
   </data>
-<data name="OneClick_Confirm_Targets" xml:space="preserve">
-    <value>Targets</value>
-  </data>
 <data name="OneClick_Confirm_Skin" xml:space="preserve">
     <value>Skin</value>
   </data>
