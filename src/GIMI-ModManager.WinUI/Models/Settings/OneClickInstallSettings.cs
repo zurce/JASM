@@ -26,4 +26,11 @@ public class OneClickInstallSettings
     /// knows while integration is being set up; production uses <see cref="OneClickUri.DefaultScheme"/>.
     /// </summary>
     public string Scheme { get; set; } = OneClickUri.DefaultScheme;
+
+    /// <summary>
+    /// Skip the pre-install confirmation and install as soon as the link is handled. Off by default: a link is
+    /// triggered from a web page, so installing without asking should be an explicit choice. The archive content
+    /// warning is not affected by this.
+    /// </summary>
+    public bool InstallWithoutConfirmation { get; set; }
 }

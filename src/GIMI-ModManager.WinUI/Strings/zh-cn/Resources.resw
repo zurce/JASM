@@ -4532,4 +4532,43 @@ Ini路径：{1}</value>
 <data name="OneClick_Extracting_Status" xml:space="preserve">
     <value>Extracting {0}…</value>
   </data>
+<data name="OneClick_Confirm_Title" xml:space="preserve">
+    <value>Install this mod?</value>
+  </data>
+<data name="OneClick_Confirm_Mod" xml:space="preserve">
+    <value>Mod: {0}</value>
+  </data>
+<data name="OneClick_Confirm_Author" xml:space="preserve">
+    <value>Author: {0}</value>
+  </data>
+<data name="OneClick_Confirm_Target" xml:space="preserve">
+    <value>Install for: {0} — {1}</value>
+  </data>
+<data name="OneClick_Confirm_Source" xml:space="preserve">
+    <value>Source: {0}</value>
+  </data>
+<data name="OneClick_Confirm_Scan" xml:space="preserve">
+    <value>GameBanana scan: {0}{1}</value>
+  </data>
+<data name="OneClick_Confirm_Note" xml:space="preserve">
+    <value>It will be downloaded and the Mod Installer will open.</value>
+  </data>
+<data name="OneClick_Confirm_Install" xml:space="preserve">
+    <value>Install</value>
+  </data>
+<data name="OneClick_Confirm_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+<data name="OneClick_Warning_Title" xml:space="preserve">
+    <value>This archive contains executable files</value>
+  </data>
+<data name="OneClick_Warning_Message" xml:space="preserve">
+    <value>{0} contains files that can run code:</value>
+  </data>
+<data name="OneClick_Warning_More" xml:space="preserve">
+    <value>…and {0} more</value>
+  </data>
+<data name="OneClick_Warning_Continue" xml:space="preserve">
+    <value>Continue anyway</value>
+  </data>
 </root>

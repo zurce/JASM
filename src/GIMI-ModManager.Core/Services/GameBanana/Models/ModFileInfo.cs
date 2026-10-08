@@ -14,6 +14,9 @@ public class ModFileInfo
         FileSizeBytes = apiModFileInfo.FileSize;
         Description = apiModFileInfo.Description;
         DateAdded = DateTimeOffset.FromUnixTimeSeconds(apiModFileInfo.DateAdded).DateTime;
+        AvResult = apiModFileInfo.AvResult;
+        AnalysisResult = apiModFileInfo.AnalysisResult;
+        AnalysisResultVerbose = apiModFileInfo.AnalysisResultVerbose;
     }
 
     public ModFileInfo(string modId, string fileId, string fileName, string description, string md5Checksum,
@@ -43,4 +46,13 @@ public class ModFileInfo
     [JsonIgnore] public TimeSpan Age => DateTime.Now - DateAdded;
     public string Md5Checksum { get; init; }
     public long FileSizeBytes { get; init; } = -1;
+
+    /// <summary>GameBanana's antivirus verdict for this file (e.g. <c>clean</c>), shown before installing.</summary>
+    public string? AvResult { get; init; }
+
+    /// <summary>GameBanana's analysis verdict (e.g. <c>ok</c>).</summary>
+    public string? AnalysisResult { get; init; }
+
+    /// <summary>Human-readable analysis verdict from GameBanana.</summary>
+    public string? AnalysisResultVerbose { get; init; }
 }

@@ -10,6 +10,9 @@ using GIMI_ModManager.Core.Services.GameBanana.Models;
 using GIMI_ModManager.Core.Services.Protocol;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Helpers;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using GIMI_ModManager.WinUI.Services.AppManagement;
 using GIMI_ModManager.WinUI.Services.ModHandling;
 using GIMI_ModManager.WinUI.Services.Notifications;
 using Serilog;
@@ -33,6 +36,7 @@ public sealed class OneClickInstallService
     private readonly ModInstallerService _modInstallerService;
     private readonly ArchiveService _archiveService;
     private readonly SelectedGameService _selectedGameService;
+    private readonly OneClickLaunchService _oneClickLaunchService;
     private readonly NotificationManager _notificationManager;
     private readonly ILanguageLocalizer _localizer;
     private readonly ILogger _logger;
@@ -43,6 +47,7 @@ public sealed class OneClickInstallService
         ModInstallerService modInstallerService,
         ArchiveService archiveService,
         SelectedGameService selectedGameService,
+        OneClickLaunchService oneClickLaunchService,
         NotificationManager notificationManager,
         ILanguageLocalizer localizer,
         ILogger logger)
@@ -53,6 +58,7 @@ public sealed class OneClickInstallService
         _modInstallerService = modInstallerService;
         _archiveService = archiveService;
         _selectedGameService = selectedGameService;
+        _oneClickLaunchService = oneClickLaunchService;
         _notificationManager = notificationManager;
         _localizer = localizer;
         _logger = logger.ForContext<OneClickInstallService>();
@@ -108,6 +114,17 @@ public sealed class OneClickInstallService
             var modList = _skinManagerService.GetCharacterModList(character);
             var modUrl = profile.ModPageUrl;
             var modTitle = profile.ModName ?? character.DisplayName;
+            var fileInfo = profile.Files?.FirstOrDefault(file => file.FileId == request.ModFileId.ToString());
+
+            var settings = await _oneClickLaunchService.GetSettingsAsync().ConfigureAwait(true);
+
+            // A link comes from a web page, so installing is confirmed unless the user turned that off.
+            if (!settings.InstallWithoutConfirmation &&
+                !await ConfirmInstallAsync(profile, fileInfo, game.Value, character, modUrl).ConfigureAwait(true))
+            {
+                _logger.Information("1-click install for mod {ModId} was cancelled before downloading", request.ModId);
+                return;
+            }
 
             // A heavy mod takes minutes; without this the app looked frozen (the download used to run with no
             // progress reporting at all). Reuses the same busy dialog as the orphan-mod batch repair.
@@ -150,6 +167,18 @@ public sealed class OneClickInstallService
                     return await Task.Run(() => ExtractToArchiveRoot(archivePath), token).ConfigureAwait(true);
                 },
                 ct).ConfigureAwait(true);
+
+            // Assets must never require running code, and this archive came off the web: warn (even when
+            // confirmation was turned off) when it ships something executable.
+            var executableLikeFiles = ArchiveContentScan.FindExecutableLikeFiles(zipRoot.FullName);
+            if (executableLikeFiles.Count > 0 &&
+                !await ConfirmArchiveContentsAsync(modTitle, executableLikeFiles).ConfigureAwait(true))
+            {
+                _logger.Information("1-click install for mod {ModId} was cancelled at the content warning",
+                    request.ModId);
+                TryDeleteTempZipRoot(zipRoot);
+                return;
+            }
 
             _logger.Information("Opening the Mod Installer for {ModName} (mod {ModId}, file {FileId})",
                 modTitle, request.ModId, request.ModFileId);
@@ -238,6 +267,113 @@ public sealed class OneClickInstallService
 
         _logger.Debug("Prepared 1-click archive root at {ZipRoot}", zipRoot.FullName);
         return zipRoot;
+    }
+
+    /// <summary>
+    /// Asks before downloading and installing what a link points at: what the mod is, who made it, where it goes
+    /// and what GameBanana's own scan said. A URL scheme is triggerable from any web page, so this is the point
+    /// where the user decides — unless they turned confirmation off in Settings.
+    /// </summary>
+    private async Task<bool> ConfirmInstallAsync(ModPageInfo profile, ModFileInfo? fileInfo, SupportedGames game,
+        ICharacter character, Uri? modUrl)
+    {
+        var lines = new List<string>
+        {
+            Format("OneClick_Confirm_Mod", "Mod: {0}", profile.ModName ?? "?"),
+            Format("OneClick_Confirm_Author", "Author: {0}", profile.AuthorName ?? "?"),
+            Format("OneClick_Confirm_Target", "Install for: {0} — {1}", game, character.DisplayName)
+        };
+
+        if (modUrl is not null)
+            lines.Add(Format("OneClick_Confirm_Source", "Source: {0}", modUrl));
+
+        if (fileInfo is not null && (!string.IsNullOrWhiteSpace(fileInfo.AvResult) ||
+                                     !string.IsNullOrWhiteSpace(fileInfo.AnalysisResultVerbose)))
+        {
+            lines.Add(Format("OneClick_Confirm_Scan", "GameBanana scan: {0}{1}",
+                fileInfo.AvResult ?? fileInfo.AnalysisResult ?? "?",
+                string.IsNullOrWhiteSpace(fileInfo.AnalysisResultVerbose)
+                    ? string.Empty
+                    : $" — {fileInfo.AnalysisResultVerbose}"));
+        }
+
+        lines.Add(Format("OneClick_Confirm_Note", "It will be downloaded and the Mod Installer will open."));
+
+        return await ShowConfirmDialogAsync(
+                Format("OneClick_Confirm_Title", "Install this mod?"),
+                lines,
+                Format("OneClick_Confirm_Install", "Install"),
+                Format("OneClick_Confirm_Cancel", "Cancel"))
+            .ConfigureAwait(true);
+    }
+
+    /// <summary>Warns when the extracted archive contains something executable (see <see cref="ArchiveContentScan"/>).</summary>
+    private async Task<bool> ConfirmArchiveContentsAsync(string modTitle, IReadOnlyList<string> executableLikeFiles)
+    {
+        var shown = executableLikeFiles.Take(10).ToList();
+        if (executableLikeFiles.Count > shown.Count)
+            shown.Add(Format("OneClick_Warning_More", "…and {0} more", executableLikeFiles.Count - shown.Count));
+
+        return await ShowConfirmDialogAsync(
+                Format("OneClick_Warning_Title", "This archive contains executable files"),
+                [
+                    Format("OneClick_Warning_Message", "{0} contains files that can run code:", modTitle),
+                    string.Join(Environment.NewLine, shown)
+                ],
+                Format("OneClick_Warning_Continue", "Continue anyway"),
+                Format("OneClick_Confirm_Cancel", "Cancel"))
+            .ConfigureAwait(true);
+    }
+
+    private static async Task<bool> ShowConfirmDialogAsync(string title, IReadOnlyList<string> lines,
+        string primaryButtonText, string closeButtonText)
+    {
+        var content = new StackPanel { Spacing = 8, MaxWidth = 460 };
+
+        content.Children.Add(new TextBlock
+        {
+            Text = lines[0],
+            TextWrapping = TextWrapping.WrapWholeWords
+        });
+
+        foreach (var line in lines.Skip(1))
+        {
+            content.Children.Add(new TextBlock
+            {
+                Text = line,
+                TextWrapping = TextWrapping.Wrap,
+                FontSize = 12,
+                Opacity = 0.85
+            });
+        }
+
+        var dialog = new ContentDialog
+        {
+            XamlRoot = App.MainWindow.Content.XamlRoot,
+            Title = title,
+            Content = content,
+            PrimaryButtonText = primaryButtonText,
+            CloseButtonText = closeButtonText,
+            DefaultButton = ContentDialogButton.Primary
+        };
+
+        return await dialog.ShowAsync() == ContentDialogResult.Primary;
+    }
+
+    /// <summary>Best effort cleanup of the extracted scratch folder when the user backs out.</summary>
+    private void TryDeleteTempZipRoot(DirectoryInfo zipRoot)
+    {
+        try
+        {
+            var parent = zipRoot.Parent;
+            if (parent is not null && parent.Exists && parent.FullName.StartsWith(Path.GetTempPath(),
+                    StringComparison.OrdinalIgnoreCase))
+                parent.Delete(true);
+        }
+        catch (Exception e)
+        {
+            _logger.Debug(e, "Could not clean up the extracted archive after cancelling");
+        }
     }
 
     private string Format(string key, string fallback, params object[] args) =>
