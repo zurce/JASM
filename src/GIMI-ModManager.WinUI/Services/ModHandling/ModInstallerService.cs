@@ -88,6 +88,12 @@ public class InstallOptions
     /// image) to its settings file — no mod files are added/replaced.
     /// </summary>
     public bool AssociateOnly { get; set; }
+
+    /// <summary>
+    /// In-game skin to preselect in the installer. Set when the user picked a target skin for a 1-click install
+    /// (GameBanana cannot express a skin in a link, so the choice comes from the install dialog).
+    /// </summary>
+    public string? PreferredSkinInternalName { get; set; }
 }
 
 public sealed class InstallMonitor : IDisposable

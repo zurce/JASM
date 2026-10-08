@@ -126,32 +126,61 @@ public sealed class OneClickInstallService
                 return;
             }
 
-            if (character is null)
-            {
-                Notify("OneClick_UnknownTarget_Title",
-                    Format("OneClick_UnknownTarget_Message",
-                        "Could not find a character called \"{0}\" in JASM+. Install the mod from GameBanana manually.",
-                        profile.GameBananaCategoryName ?? "?"));
-                return;
-            }
-
-            var modList = _skinManagerService.GetCharacterModList(character);
             var modUrl = profile.ModPageUrl;
-            var modTitle = profile.ModName ?? character.DisplayName;
+            var modTitle = profile.ModName ?? character?.DisplayName ?? "?";
             var fileInfo = profile.Files?.FirstOrDefault(file => file.FileId == request.ModFileId.ToString());
 
             var settings = await _oneClickLaunchService.GetSettingsAsync().ConfigureAwait(true);
 
-            // A link comes from a web page, so installing is confirmed unless the user turned that off.
-            _logger.Information("1-click install for mod {ModId}: confirmation {Confirmation}",
-                request.ModId, settings.InstallWithoutConfirmation ? "disabled by setting" : "required");
+            // The dialog is the target picker: it appears whenever there is something to decide — an undetected
+            // character, a character with in-game skins (GameBanana cannot express a skin in a link), or simply
+            // because the user did not turn confirmation off.
+            var characterHasSkins = character is not null && character.Skins.Count > 1;
+            var requiresConfirmation = OneClickTargetRules.RequiresConfirmation(
+                settings.InstallWithoutConfirmation, character is not null, characterHasSkins);
 
-            if (!settings.InstallWithoutConfirmation &&
-                !await ConfirmInstallAsync(profile, fileInfo, game.Value, character, modUrl).ConfigureAwait(true))
+            IModdableObject? target = character;
+            ICharacterSkin? targetSkin = null;
+
+            _logger.Information(
+                "1-click install for mod {ModId}: dialog {Dialog} (character {Character}, skins {Skins}, auto-install {Auto})",
+                request.ModId, requiresConfirmation ? "shown" : "skipped",
+                character?.DisplayName ?? "not detected", characterHasSkins ? "yes" : "no",
+                settings.InstallWithoutConfirmation ? "on" : "off");
+
+            if (requiresConfirmation)
             {
-                _logger.Information("1-click install for mod {ModId} was cancelled before downloading", request.ModId);
+                var chosen = await ConfirmInstallAsync(profile, fileInfo, game.Value, character, modUrl)
+                    .ConfigureAwait(true);
+
+                if (chosen is null)
+                {
+                    _logger.Information("1-click install for mod {ModId} was cancelled in the install dialog",
+                        request.ModId);
+                    return;
+                }
+
+                target = chosen.Target;
+                targetSkin = chosen.Skin;
+            }
+            else
+            {
+                _logger.Information("1-click install for mod {ModId}: no confirmation needed, using detected {Target}",
+                    request.ModId, target!.DisplayName);
+            }
+
+            if (target is null)
+            {
+                // Defensive: RequiresConfirmation guarantees a target was chosen above.
+                Notify("OneClick_Failed_Title",
+                    Format("OneClick_NoTarget_Message", "No install target was selected."));
                 return;
             }
+
+            _logger.Information("1-click install for mod {ModId}: target {Target}{Skin}", request.ModId,
+                target.DisplayName, targetSkin is null ? string.Empty : $" ({targetSkin.DisplayName})");
+
+            var modList = _skinManagerService.GetCharacterModList(target);
 
             // A heavy mod takes minutes; without this the app looked frozen (the download used to run with no
             // progress reporting at all). Reuses the same busy dialog as the orphan-mod batch repair.
@@ -212,7 +241,11 @@ public sealed class OneClickInstallService
 
             await _modInstallerService
                 .StartModInstallationAsync(zipRoot, modList, inGameSkin: null,
-                    setup: options => options.ModUrl = modUrl)
+                    setup: options =>
+                    {
+                        options.ModUrl = modUrl;
+                        options.PreferredSkinInternalName = targetSkin?.InternalName.Id;
+                    })
                 .ConfigureAwait(true);
         }
         catch (Exception e)
@@ -297,18 +330,20 @@ public sealed class OneClickInstallService
     }
 
     /// <summary>
-    /// Asks before downloading and installing what a link points at: what the mod is, who made it, where it goes
-    /// and what GameBanana's own scan said. A URL scheme is triggerable from any web page, so this is the point
-    /// where the user decides — unless they turned confirmation off in Settings.
+    /// Asks before installing what a link points at and, above all, *where* it goes: a category dropdown
+    /// (Characters / Weapons / NPCs / Objects / …), an object dropdown inside that category, and — only when the
+    /// chosen character actually has in-game skins — a skin dropdown, because GameBanana cannot express a skin in
+    /// a link. Without a selection the Install button stays disabled, so UI/weapon mods and undetected
+    /// characters are still installable instead of dead-ending.
     /// </summary>
-    private async Task<bool> ConfirmInstallAsync(ModPageInfo profile, ModFileInfo? fileInfo, SupportedGames game,
-        ICharacter character, Uri? modUrl)
+    private async Task<InstallTarget?> ConfirmInstallAsync(ModPageInfo profile, ModFileInfo? fileInfo,
+        SupportedGames game, ICharacter? detectedCharacter, Uri? modUrl)
     {
         var lines = new List<string>
         {
             Format("OneClick_Confirm_Mod", "Mod: {0}", profile.ModName ?? "?"),
             Format("OneClick_Confirm_Author", "Author: {0}", profile.AuthorName ?? "?"),
-            Format("OneClick_Confirm_Target", "Install for: {0} — {1}", game, character.DisplayName)
+            Format("OneClick_Confirm_Target", "Game: {0}", game)
         };
 
         if (modUrl is not null)
@@ -324,15 +359,143 @@ public sealed class OneClickInstallService
                     : $" — {fileInfo.AnalysisResultVerbose}"));
         }
 
-        lines.Add(Format("OneClick_Confirm_Note", "It will be downloaded and the Mod Installer will open."));
+        // --- pickers ---
+        var content = new StackPanel { Spacing = 8, MaxWidth = 460 };
+        content.Children.Add(new TextBlock
+        {
+            Text = lines[0],
+            TextWrapping = TextWrapping.WrapWholeWords
+        });
 
-        return await ShowConfirmDialogAsync(
-                Format("OneClick_Confirm_Title", "Install this mod?"),
-                lines,
-                Format("OneClick_Confirm_Install", "Install"),
-                Format("OneClick_Confirm_Cancel", "Cancel"))
-            .ConfigureAwait(true);
+        foreach (var line in lines.Skip(1))
+        {
+            content.Children.Add(new TextBlock
+            {
+                Text = line,
+                TextWrapping = TextWrapping.Wrap,
+                FontSize = 12,
+                Opacity = 0.85
+            });
+        }
+
+        var categoryChoices = _gameService.GetCategories()
+            .Select(category => new Choice<ICategory>(category, CategoryLabel(category)))
+            .ToList();
+        var categoryBox = CreatePicker(Format("OneClick_Confirm_Category", "Category"), content, categoryChoices);
+
+        var objectBox = CreatePicker(Format("OneClick_Confirm_Character", "Character"), content,
+            new List<Choice<IModdableObject>>());
+        var skinBox = CreatePicker(Format("OneClick_Confirm_Skin", "Skin"), content,
+            new List<Choice<ICharacterSkin?>>());
+        var skinRow = (StackPanel)skinBox.Parent!;
+
+        var dialog = new ContentDialog
+        {
+            XamlRoot = App.MainWindow.Content.XamlRoot,
+            Title = Format("OneClick_Confirm_Title", "Install this mod?"),
+            Content = content,
+            PrimaryButtonText = Format("OneClick_Confirm_Install", "Install"),
+            CloseButtonText = Format("OneClick_Confirm_Cancel", "Cancel"),
+            DefaultButton = ContentDialogButton.Primary,
+            IsPrimaryButtonEnabled = false
+        };
+
+        void RefreshObjects()
+        {
+            var category = (categoryBox.SelectedItem as Choice<ICategory>)?.Value;
+            var objects = category is null
+                ? []
+                : _gameService.GetModdableObjects(category)
+                    .Select(item => new Choice<IModdableObject>(item, item.DisplayName))
+                    .ToList();
+
+            objectBox.ItemsSource = objects;
+            objectBox.SelectedItem = detectedCharacter is not null
+                ? objects.FirstOrDefault(choice => choice.Value.InternalNameEquals(detectedCharacter.InternalName))
+                : null;
+
+            RefreshSkins();
+        }
+
+        void RefreshSkins()
+        {
+            var character = (objectBox.SelectedItem as Choice<IModdableObject>)?.Value as ICharacter;
+            var hasSkins = character is not null && character.Skins.Count > 1;
+
+            skinRow.Visibility = hasSkins ? Visibility.Visible : Visibility.Collapsed;
+
+            var choices = new List<Choice<ICharacterSkin?>>
+            {
+                new(null, Format("OneClick_Confirm_DefaultSkin", "Default"))
+            };
+            if (hasSkins)
+                choices.AddRange(character!.Skins.Where(skin => !skin.IsDefault)
+                    .Select(skin => new Choice<ICharacterSkin?>(skin, skin.DisplayName)));
+
+            skinBox.ItemsSource = choices;
+            skinBox.SelectedIndex = 0;
+            dialog.IsPrimaryButtonEnabled = objectBox.SelectedItem is not null;
+        }
+
+        categoryBox.SelectionChanged += (_, _) => RefreshObjects();
+        objectBox.SelectionChanged += (_, _) => RefreshSkins();
+
+        if (detectedCharacter is not null)
+        {
+            // ICharacter.ModCategory is the ICategory the character belongs to (not the enum).
+            categoryBox.SelectedItem = categoryChoices
+                .FirstOrDefault(choice => choice.Value.Equals(detectedCharacter.ModCategory));
+        }
+        else
+        {
+            // Nothing detected (UI/weapon mods, new character, ambiguous name): leave it to the user, with the
+            // Install button disabled until they pick something.
+            categoryBox.SelectedIndex = 0;
+        }
+
+        var result = await dialog.ShowAsync();
+        _logger.Information("1-click dialog '{Title}' returned {Result}",
+            dialog.Title, result);
+
+        if (result != ContentDialogResult.Primary)
+            return null;
+
+        var selectedObject = (objectBox.SelectedItem as Choice<IModdableObject>)?.Value;
+        var selectedSkin = (skinBox.SelectedItem as Choice<ICharacterSkin?>)?.Value;
+
+        return selectedObject is null ? null : new InstallTarget(selectedObject, selectedSkin);
     }
+
+    /// <summary>A label + value pair for the pickers.</summary>
+    private sealed record Choice<T>(T Value, string Label)
+    {
+        public override string ToString() => Label;
+    }
+
+    private sealed record InstallTarget(IModdableObject Target, ICharacterSkin? Skin);
+
+    /// <summary>Adds a labelled picker row to the dialog and returns the combo box.</summary>
+    private static ComboBox CreatePicker<T>(string label, StackPanel content, List<Choice<T>> items)
+    {
+        var row = new StackPanel { Spacing = 4 };
+        row.Children.Add(new TextBlock { Text = label, FontSize = 12, Opacity = 0.85 });
+
+        var box = new ComboBox
+        {
+            ItemsSource = items,
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            MinWidth = 260
+        };
+        row.Children.Add(box);
+        content.Children.Add(row);
+
+        return box;
+    }
+
+    /// <summary>Category label, localized the same way the characters page does it (Category_&lt;name&gt;).</summary>
+    private string CategoryLabel(ICategory category) =>
+        _localizer.GetLocalizedStringOrDefault("Category_" + category.DisplayNamePlural.Replace(" ", ""))
+        ?? category.DisplayNamePlural;
 
     /// <summary>Warns when the extracted archive contains something executable (see <see cref="ArchiveContentScan"/>).</summary>
     private async Task<bool> ConfirmArchiveContentsAsync(string modTitle, IReadOnlyList<string> executableLikeFiles)

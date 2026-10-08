@@ -3727,14 +3727,6 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   <data name="OneClick_WrongGame_Message" xml:space="preserve">
     <value>This mod is for {0}. Switch JASM+ to {0} and click the link again.</value>
   </data>
-  <!-- Notification title when GameBanana's category cannot be matched to a JASM+ character. (One-click installer) -->
-  <data name="OneClick_UnknownTarget_Title" xml:space="preserve">
-    <value>Character not found</value>
-  </data>
-  <!-- Shown when the linked mod's category cannot be resolved; {0} is GameBanana's category name. (One-click installer) -->
-  <data name="OneClick_UnknownTarget_Message" xml:space="preserve">
-    <value>Could not find a character called "{0}" in JASM+. Install the mod from GameBanana manually.</value>
-  </data>
   <!-- Busy dialog status before a 1-click download starts; {0} is the mod name. (One-click installer) -->
   <data name="OneClick_Preparing_Status" xml:space="preserve">
     <value>Preparing {0}…</value>
@@ -3775,10 +3767,6 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   <data name="OneClick_Confirm_Scan" xml:space="preserve">
     <value>GameBanana scan: {0}{1}</value>
   </data>
-  <!-- Confirmation line: what happens after confirming. (One-click installer) -->
-  <data name="OneClick_Confirm_Note" xml:space="preserve">
-    <value>It will be downloaded and the Mod Installer will open.</value>
-  </data>
   <!-- Confirmation button: proceed. (One-click installer) -->
   <data name="OneClick_Confirm_Install" xml:space="preserve">
     <value>Install</value>
@@ -3806,5 +3794,25 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   <!-- Busy dialog status while a 1-click link is resolved (network-bound, can queue behind the update checker). (One-click installer) -->
   <data name="OneClick_Checking_Status" xml:space="preserve">
     <value>Checking GameBanana…</value>
+  </data>
+  <!-- Confirmation dialog: category picker label. (One-click installer) -->
+  <data name="OneClick_Confirm_Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <!-- Confirmation dialog: character/object picker label. (One-click installer) -->
+  <data name="OneClick_Confirm_Character" xml:space="preserve">
+    <value>Character</value>
+  </data>
+  <!-- Confirmation dialog: skin picker label (shown when the character has skins). (One-click installer) -->
+  <data name="OneClick_Confirm_Skin" xml:space="preserve">
+    <value>Skin</value>
+  </data>
+  <!-- Confirmation dialog: the character's default skin choice. (One-click installer) -->
+  <data name="OneClick_Confirm_DefaultSkin" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <!-- Shown if a 1-click install ends up with no target. (One-click installer) -->
+  <data name="OneClick_NoTarget_Message" xml:space="preserve">
+    <value>No install target was selected.</value>
   </data>
 </root>
