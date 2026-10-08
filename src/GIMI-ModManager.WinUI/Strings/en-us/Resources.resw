@@ -3803,4 +3803,8 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   <data name="OneClick_Warning_Continue" xml:space="preserve">
     <value>Continue anyway</value>
   </data>
+  <!-- Busy dialog status while a 1-click link is resolved (network-bound, can queue behind the update checker). (One-click installer) -->
+  <data name="OneClick_Checking_Status" xml:space="preserve">
+    <value>Checking GameBanana…</value>
+  </data>
 </root>

@@ -69,9 +69,35 @@ public sealed class OneClickInstallService
     {
         try
         {
-            var profile = await _gameBananaCoreService
-                .GetModProfileAsync(new GbModId(request.ModId), ct)
-                .ConfigureAwait(true);
+            _logger.Information("Handling 1-click link for mod {ModId} / file {FileId}", request.ModId,
+                request.ModFileId);
+
+            // Resolution is network-bound and can queue behind the background update checker, so it gets the
+            // same visible progress treatment as the download — otherwise the app just looks frozen.
+            var (profile, game, character) = await BusyDialog.RunAsync(
+                Format("OneClick_Checking_Status", "Checking GameBanana…"),
+                async (setStatus, token) =>
+                {
+                    var modProfile = await _gameBananaCoreService
+                        .GetModProfileAsync(new GbModId(request.ModId), token)
+                        .ConfigureAwait(true);
+
+                    _logger.Information("1-click link mod {ModId}: profile {Profile}", request.ModId,
+                        modProfile is null
+                            ? "not found"
+                            : $"'{modProfile.ModName}' game={modProfile.GameBananaGameName} category={modProfile.GameBananaCategoryName}");
+
+                    if (modProfile is null)
+                        return (null, (SupportedGames?)null, (ICharacter?)null);
+
+                    var resolvedGame = await ResolveGameAsync(modProfile.GameBananaGameId).ConfigureAwait(true);
+                    if (resolvedGame is null)
+                        return (modProfile, (SupportedGames?)null, (ICharacter?)null);
+
+                    var resolvedCharacter = ResolveCharacter(modProfile.GameBananaCategoryName);
+                    return (modProfile, resolvedGame, resolvedCharacter);
+                },
+                ct).ConfigureAwait(true);
 
             if (profile is null)
             {
@@ -81,7 +107,6 @@ public sealed class OneClickInstallService
                 return;
             }
 
-            var game = await ResolveGameAsync(profile.GameBananaGameId).ConfigureAwait(true);
             if (game is null)
             {
                 Notify("OneClick_UnsupportedGame_Title",
@@ -91,17 +116,16 @@ public sealed class OneClickInstallService
             }
 
             var selectedGame = await _selectedGameService.GetSelectedGameAsync().ConfigureAwait(true);
-            if (!string.Equals(game.ToString(), selectedGame, StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(game.Value.ToString(), selectedGame, StringComparison.OrdinalIgnoreCase))
             {
                 // Follow-up: a "switch to <game> and install?" prompt. For now, be explicit rather than
                 // silently switching the user's whole UI context.
                 Notify("OneClick_WrongGame_Title",
                     Format("OneClick_WrongGame_Message", "This mod is for {0}. Switch JASM+ to {0} and click the link again.",
-                        game.ToString()));
+                        game.Value));
                 return;
             }
 
-            var character = ResolveCharacter(profile.GameBananaCategoryName);
             if (character is null)
             {
                 Notify("OneClick_UnknownTarget_Title",
@@ -119,6 +143,9 @@ public sealed class OneClickInstallService
             var settings = await _oneClickLaunchService.GetSettingsAsync().ConfigureAwait(true);
 
             // A link comes from a web page, so installing is confirmed unless the user turned that off.
+            _logger.Information("1-click install for mod {ModId}: confirmation {Confirmation}",
+                request.ModId, settings.InstallWithoutConfirmation ? "disabled by setting" : "required");
+
             if (!settings.InstallWithoutConfirmation &&
                 !await ConfirmInstallAsync(profile, fileInfo, game.Value, character, modUrl).ConfigureAwait(true))
             {
@@ -357,7 +384,11 @@ public sealed class OneClickInstallService
             DefaultButton = ContentDialogButton.Primary
         };
 
-        return await dialog.ShowAsync() == ContentDialogResult.Primary;
+        var result = await dialog.ShowAsync();
+        Serilog.Log.ForContext<OneClickInstallService>()
+            .Information("1-click dialog '{Title}' returned {Result}", title, result);
+
+        return result == ContentDialogResult.Primary;
     }
 
     /// <summary>Best effort cleanup of the extracted scratch folder when the user backs out.</summary>

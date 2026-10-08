@@ -4532,4 +4532,7 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 <data name="OneClick_Warning_Continue" xml:space="preserve">
     <value>Continue anyway</value>
   </data>
+<data name="OneClick_Checking_Status" xml:space="preserve">
+    <value>Checking GameBanana…</value>
+  </data>
 </root>

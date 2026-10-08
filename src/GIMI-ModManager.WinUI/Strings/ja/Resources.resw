@@ -4570,4 +4570,7 @@ JASMはModを移動したり削除したりしません。
 <data name="OneClick_Warning_Continue" xml:space="preserve">
     <value>Continue anyway</value>
   </data>
+<data name="OneClick_Checking_Status" xml:space="preserve">
+    <value>Checking GameBanana…</value>
+  </data>
 </root>

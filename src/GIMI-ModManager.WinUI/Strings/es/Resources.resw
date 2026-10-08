@@ -3859,4 +3859,7 @@ JASM+ no moverá ninguno de tus mods ni los eliminará.
 <data name="OneClick_Warning_Continue" xml:space="preserve">
     <value>Continue anyway</value>
   </data>
+<data name="OneClick_Checking_Status" xml:space="preserve">
+    <value>Checking GameBanana…</value>
+  </data>
 </root>
