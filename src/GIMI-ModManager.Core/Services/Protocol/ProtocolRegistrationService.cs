@@ -22,8 +22,7 @@ public sealed record ProtocolRegistrationStatus(
 /// Only the policy lives here (what to write, when to repair, when to refuse); the actual store is injected,
 /// which keeps this testable and keeps OS access in the app layer.
 ///
-/// Shape written (identical to what the other integrated managers use, verified against live
-/// MIMM / Deadlock Mod Manager registrations — per-user, no admin rights):
+/// Shape written (the one Windows uses for a per-user URL scheme association — per-user, no admin rights):
 /// <code>
 /// HKCU\Software\Classes\jasm-plus
 ///     (default)          = "URL:JASM+ 1-Click Installer"

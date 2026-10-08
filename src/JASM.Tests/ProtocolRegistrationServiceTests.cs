@@ -71,7 +71,7 @@ public class ProtocolRegistrationServiceTests
     public void Register_RefusesToTakeOverAnotherApplicationScheme()
     {
         var store = new FakeRegistryValueStore();
-        store.SetValue(@"Software\Classes\jasm-plus", "", "URL:dev.stormix.deadlock-mod-manager protocol");
+        store.SetValue(@"Software\Classes\jasm-plus", "", "URL:Some Other Tool protocol");
         store.SetValue(@"Software\Classes\jasm-plus", "URL Protocol", "");
         store.SetValue(@"Software\Classes\jasm-plus\shell\open\command", "", @"""C:\Other\app.exe"" ""%1""");
 
@@ -83,7 +83,7 @@ public class ProtocolRegistrationServiceTests
         Assert.Contains("already registered to another application", error);
 
         // Nothing was modified.
-        Assert.Equal("URL:dev.stormix.deadlock-mod-manager protocol", store.Values[@"Software\Classes\jasm-plus"][""]);
+        Assert.Equal("URL:Some Other Tool protocol", store.Values[@"Software\Classes\jasm-plus"][""]);
         Assert.Equal(@"""C:\Other\app.exe"" ""%1""", store.Values[@"Software\Classes\jasm-plus\shell\open\command"][""]);
     }
 
@@ -163,16 +163,16 @@ public class ProtocolRegistrationServiceTests
     }
 
     [Fact]
-    public void DevSchemeOverride_UsesTheGivenSchemeKey()
+    public void ConfiguredScheme_UsesItsOwnKey()
     {
         var store = new FakeRegistryValueStore();
-        var service = CreateService(store, scheme: "mimm");
+        var service = CreateService(store, scheme: "some-other-manager");
 
         service.TryRegister(out _);
 
-        Assert.True(store.KeyExists(@"Software\Classes\mimm"));
+        Assert.True(store.KeyExists(@"Software\Classes\some-other-manager"));
         Assert.False(store.KeyExists(@"Software\Classes\jasm-plus"));
-        Assert.Equal("mimm", service.Scheme);
+        Assert.Equal("some-other-manager", service.Scheme);
     }
 
     [Theory]

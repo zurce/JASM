@@ -7,20 +7,20 @@ namespace JASM.Tests;
 /// <summary>
 /// 1-click installs pick the target game and character from the submission's profile payload, so the mapping of
 /// <c>_aGame</c> / <c>_aCategory</c> into JASM's model is load-bearing. Payload captured from
-/// <c>get apiv11/Mod/691863/ProfilePage</c> (the live mod the user linked while researching this feature).
+/// <c>apiv11/Mod/534833/ProfilePage</c> (a Genshin mod).
 /// </summary>
 public class ModPageInfoMappingTests
 {
     private const string ProfileJson = """
     {
-      "_idRow": 691863,
-      "_sName": "Yamato remodel",
-      "_sProfileUrl": "https://gamebanana.com/mods/691863",
-      "_aGame": { "_idRow": 20948, "_sName": "Deadlock" },
-      "_aCategory": { "_idRow": 33328, "_sName": "Yamato" },
-      "_aSubmitter": { "_sName": "Someone", "_sProfileUrl": "https://gamebanana.com/members/1" },
+      "_idRow": 534833,
+      "_sName": "Soap's Klee",
+      "_sProfileUrl": "https://gamebanana.com/mods/534833",
+      "_aGame": { "_idRow": 8552, "_sName": "Genshin Impact" },
+      "_aCategory": { "_idRow": 4001, "_sName": "Klee" },
+      "_aSubmitter": { "_sName": "Soapkitty", "_sProfileUrl": "https://gamebanana.com/members/1" },
       "_aFiles": [
-        { "_idRow": 1831455, "_sFile": "yamato.zip", "_sDownloadUrl": "https://gamebanana.com/dl/1831455" }
+        { "_idRow": 1393005, "_sFile": "kleemods.zip", "_sDownloadUrl": "https://gamebanana.com/dl/1393005" }
       ]
     }
     """;
@@ -33,10 +33,10 @@ public class ModPageInfoMappingTests
 
         var modPageInfo = new ModPageInfo(apiProfile!);
 
-        Assert.Equal(20948, modPageInfo.GameBananaGameId);
-        Assert.Equal("Deadlock", modPageInfo.GameBananaGameName);
-        Assert.Equal("Yamato", modPageInfo.GameBananaCategoryName);
-        Assert.Equal("Yamato remodel", modPageInfo.ModName);
+        Assert.Equal(8552, modPageInfo.GameBananaGameId);
+        Assert.Equal("Genshin Impact", modPageInfo.GameBananaGameName);
+        Assert.Equal("Klee", modPageInfo.GameBananaCategoryName);
+        Assert.Equal("Soap's Klee", modPageInfo.ModName);
     }
 
     [Fact]

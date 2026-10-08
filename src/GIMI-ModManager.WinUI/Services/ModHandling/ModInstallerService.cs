@@ -88,16 +88,6 @@ public class InstallOptions
     /// image) to its settings file — no mod files are added/replaced.
     /// </summary>
     public bool AssociateOnly { get; set; }
-
-    /// <summary>
-    /// Development-only: preselect this in-game skin in the installer. GameBanana has no concept of skins, so a
-    /// link only identifies a file and the user normally picks the skin — this exists so the dev harness can
-    /// reproduce skin cases without clicking.
-    /// </summary>
-    public string? PreferredSkinInternalName { get; set; }
-
-    /// <summary>Development-only: press install without user interaction (unattended reproduction runs).</summary>
-    public bool AutoInstall { get; set; }
 }
 
 public sealed class InstallMonitor : IDisposable

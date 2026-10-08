@@ -61,30 +61,21 @@ public sealed class OneClickLaunchService : IDisposable
         return string.IsNullOrWhiteSpace(settings.Scheme) ? OneClickUri.DefaultScheme : settings.Scheme.Trim();
     }
 
-    /// <summary>Scheme to accept plus whether the dev-only link suffix is allowed.</summary>
-    public async Task<(string Scheme, bool AllowDevOptions)> GetLinkOptionsAsync()
-    {
-        var settings = await GetSettingsAsync().ConfigureAwait(false);
-        var scheme = string.IsNullOrWhiteSpace(settings.Scheme) ? OneClickUri.DefaultScheme : settings.Scheme.Trim();
-        return (scheme, settings.AllowDevOptions);
-    }
-
     /// <summary>
     /// Reads a link out of this process's command line (how Windows launches a registered URL scheme handler).
     /// </summary>
-    public OneClickInstallRequest? CaptureFromCommandLine(string[] args, string scheme, bool allowDevOptions = false)
+    public OneClickInstallRequest? CaptureFromCommandLine(string[] args, string scheme)
     {
         if (_pendingRequest is not null)
             return _pendingRequest;
 
         foreach (var arg in args)
         {
-            if (!OneClickUri.TryParse(arg, out var request, scheme, allowDevOptions) || request is null)
+            if (!OneClickUri.TryParse(arg, out var request, scheme) || request is null)
                 continue;
 
-            _logger.Information("GameBanana 1-click link received: {ModId}/{FileId} ({Type}){Dev}",
-                request.ModId, request.ModFileId, request.IsTool ? "Tool" : "Mod",
-                request.DevOptions is null ? string.Empty : " [dev options]");
+            _logger.Information("GameBanana 1-click link received: {ModId}/{FileId} ({Type})",
+                request.ModId, request.ModFileId, request.IsTool ? "Tool" : "Mod");
             _pendingRequest = request;
             return request;
         }
@@ -158,9 +149,8 @@ public sealed class OneClickLaunchService : IDisposable
             if (string.IsNullOrEmpty(raw))
                 return;
 
-            var settings = GetSettingsAsync().GetAwaiter().GetResult();
-            var scheme = string.IsNullOrWhiteSpace(settings.Scheme) ? OneClickUri.DefaultScheme : settings.Scheme.Trim();
-            if (!OneClickUri.TryParse(raw, out var request, scheme, settings.AllowDevOptions) || request is null)
+            var scheme = GetSchemeAsync().GetAwaiter().GetResult();
+            if (!OneClickUri.TryParse(raw, out var request, scheme) || request is null)
             {
                 _logger.Warning("Ignored an invalid 1-click hand-off payload");
                 return;

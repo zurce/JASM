@@ -186,8 +186,6 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         _characterModList = characterModList;
         _originModList = characterModList;
         ModCharacterName = characterModList.Character.DisplayName;
-        // Set before the selector so it can honour InstallOptions.PreferredSkinInternalName.
-        _installOptions = options;
         InitInstallSkinSelector(inGameSkin);
         _modInstallation = ModInstallation.Start(modToInstall, _characterModList);
         ApplyInstallTargetList();
@@ -196,6 +194,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         if (options?.AssociateOnly == true)
             _modInstallation.UnlockFiles();
         _dispatcherQueue = dispatcherQueue;
+        _installOptions = options;
         _modToInstallFolder = modToInstall.FullName;
 
         RootFolder.Clear();
@@ -325,29 +324,6 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
                 }
             });
         }
-
-        if (_installOptions?.AutoInstall == true)
-            ScheduleAutoInstall();
-    }
-
-    /// <summary>
-    /// Development-only: press install as soon as the installer can actually do it, so a reproduction run needs
-    /// no interaction. Waits on <see cref="AddModCommand"/>'s CanExecuteChanged instead of guessing a delay.
-    /// </summary>
-    private void ScheduleAutoInstall()
-    {
-        void TryRun(object? sender, EventArgs e)
-        {
-            if (!AddModCommand.CanExecute(null))
-                return;
-
-            AddModCommand.CanExecuteChanged -= TryRun;
-            _logger.Information("AutoInstall requested (dev harness): installing without user interaction");
-            AddModCommand.Execute(null);
-        }
-
-        AddModCommand.CanExecuteChanged += TryRun;
-        TryRun(null, EventArgs.Empty);
     }
 
     // Populates the "Install in Skin" selector and applies the matching install target list.
@@ -363,10 +339,6 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         if (inGameSkin is not null
             && InstallableSkins.Any(s => s.InternalNameEquals(inGameSkin.InternalName)))
             SelectedInstallSkinInternalName = inGameSkin.InternalName.Id;
-        else if (_installOptions?.PreferredSkinInternalName is { Length: > 0 } preferredSkin
-                 && InstallableSkins.FirstOrDefault(s => s.InternalNameEquals(preferredSkin)) is { } preferred)
-            // Dev harness: pick an arbitrary skin that GameBanana cannot express in a link.
-            SelectedInstallSkinInternalName = preferred.InternalName.Id;
         else
             SelectedInstallSkinInternalName =
                 InstallableSkins.FirstOrDefault(s => s.IsDefault)?.InternalName.Id

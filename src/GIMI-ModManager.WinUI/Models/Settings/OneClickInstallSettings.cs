@@ -22,15 +22,8 @@ public class OneClickInstallSettings
     public bool Enabled { get; set; } = true;
 
     /// <summary>
-    /// Scheme to register and accept. Only ever changed for development (pointing a scheme that GameBanana
-    /// already knows, e.g. the Firefox dev harness) — production uses <see cref="OneClickUri.DefaultScheme"/>.
+    /// Scheme to register and accept. Kept configurable so a build can be pointed at a scheme GameBanana already
+    /// knows while integration is being set up; production uses <see cref="OneClickUri.DefaultScheme"/>.
     /// </summary>
     public string Scheme { get; set; } = OneClickUri.DefaultScheme;
-
-    /// <summary>
-    /// Development-only: accept the <c>?game=&amp;character=&amp;skin=&amp;autostart=</c> suffix on a link so the
-    /// dev harness can reproduce cases GameBanana cannot express (skins above all). Off by default, and the
-    /// suffix is rejected outright when off.
-    /// </summary>
-    public bool AllowDevOptions { get; set; }
 }
