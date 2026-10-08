@@ -33,13 +33,18 @@ public static class CharacterNameMatcher
     /// <summary>
     /// How well a GameBanana category name matches one character's names. Higher is better, 0 means no match.
     ///
-    /// GameBanana uses the full in-game name while JASM's assets may use a short one ("Anby Demara" vs "Anby",
-    /// "Astra Yao" vs "Astra"), so a candidate that is a *word* prefix of the category counts — word-based, not
-    /// character-based, so "Klee" never matches "Klee2".
+    /// GameBanana and the game assets do not agree on naming, and the assets are community-maintained — they
+    /// change without notice — so the resolution has to be tolerant in code rather than patched in data:
     ///
-    /// Deliberately NOT symmetric: "Soldier 0 Anby" does not match "Anby" (in ZZZ that is a different agent),
-    /// and a category that merely contains a name in the middle does not match either. A miss tells the user to
-    /// pick the character; a wrong match installs into the wrong folder.
+    ///   exact  - same name ignoring case/spacing/punctuation ("RaidenShogun" == "Raiden Shogun", and the
+    ///            assets' curated <c>Keys</c> aliases land here: "Claret Flint" == key "claret flint").
+    ///   prefix - GameBanana's full name starts with the asset's short one: "Anby Demara" ~ "Anby".
+    ///   suffix - the surname-first form, and ONLY that shape: exactly two words against a one-word asset name,
+    ///            e.g. "Hoshimi Miyabi" ~ "Miyabi" (assets may call her just "Miyabi").
+    ///
+    /// Word-based, so "Klee" never matches "Klee2". Deliberately asymmetric: "Soldier 0 Anby" does not match
+    /// "Anby" (a different agent), and a name appearing in the middle never matches. A miss asks the user to
+    /// pick; a wrong match installs into the wrong character's folder.
     /// </summary>
     public static int Score(string? gameBananaCategoryName, IEnumerable<string?> candidateNames)
     {
@@ -59,13 +64,16 @@ public static class CharacterNameMatcher
             int score;
             if (Normalize(candidateName) == wantedNormalized)
             {
-                // Same name, whatever the spacing/punctuation: "RaidenShogun" == "Raiden Shogun".
                 score = 200 + wanted.Count;
             }
             else if (candidate.Count <= wanted.Count && wanted.Take(candidate.Count).SequenceEqual(candidate))
             {
-                // GameBanana's full name starts with the asset's short one: "Anby Demara" ~ "Anby".
                 score = 100 + candidate.Count;
+            }
+            else if (wanted.Count == 2 && candidate.Count == 1 && wanted[1] == candidate[0])
+            {
+                // Surname-first only ("Hoshimi Miyabi"); anything longer is not assumed to be a name pattern.
+                score = 50 + candidate.Count;
             }
             else
             {

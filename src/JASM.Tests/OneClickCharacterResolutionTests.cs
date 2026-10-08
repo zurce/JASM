@@ -80,16 +80,30 @@ public class OneClickCharacterResolutionTests : IDisposable
     }
 
     [Fact]
-    public async Task Resolves_SurnameFirstCategory_ViaTheAssetAlias()
+    public async Task Resolves_SurnameFirstCategory_WithoutTouchingTheAssets()
     {
-        // GameBanana category "Hoshimi Miyabi" (surname first). JASM's asset calls her "Miyabi"; the asset's
-        // Keys carry the surname, the same way Nekomata carries "Nekomiya" and Yanagi carries "Tsukishiro".
+        // GameBanana says "Hoshimi Miyabi" (surname first); the asset only has "Miyabi" and its Keys do not
+        // carry the surname. Resolution must handle this in code — assets are community-maintained and change
+        // without notice, so they are never patched to make a feature work.
         var zzz = await InitGameServiceAsync("ZZZ");
 
         var character = OneClickCharacterResolver.Resolve("Hoshimi Miyabi", zzz.GetCharacters(includeDisabled: true));
 
         Assert.NotNull(character);
         Assert.Equal("miyabi", character!.InternalName.Id);
+    }
+
+    [Fact]
+    public async Task SurnameMatch_DoesNotBeatAShortNamePrefix()
+    {
+        // "Anby Demara": "Anby" is a word prefix (correct), "Demara" would be a word suffix. The prefix must win,
+        // and the middle/suffix shape must not drag in unrelated names.
+        var zzz = await InitGameServiceAsync("ZZZ");
+
+        var character = OneClickCharacterResolver.Resolve("Anby Demara", zzz.GetCharacters(includeDisabled: true));
+
+        Assert.NotNull(character);
+        Assert.Equal("anby", character!.InternalName.Id);
     }
 
     [Fact]
