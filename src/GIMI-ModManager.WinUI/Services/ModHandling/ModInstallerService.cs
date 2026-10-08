@@ -67,7 +67,7 @@ public class ModInstallerService(
     /// detected in-game skin, enable it (disabling the other mods of that skin) and raise the usual notifications.
     /// </summary>
     public async Task<ISkinMod> InstallSilentlyAsync(DirectoryInfo modFolder, ICharacterModList modList,
-        InstallOptions options, CancellationToken ct = default)
+        InstallOptions options, AddModOptions? metadata = null, CancellationToken ct = default)
     {
         ArgumentNullException.ThrowIfNull(modFolder);
         ArgumentNullException.ThrowIfNull(modList);
@@ -75,7 +75,10 @@ public class ModInstallerService(
         using var installation = ModInstallation.Start(modFolder, modList);
         installation.AutoSetModRootFolder();
 
-        var addOptions = new AddModOptions { ModUrl = options.ModUrl?.ToString() };
+        // Metadata (name, author, description, cover image) is normally fetched by the helper window from the
+        // mod URL; when the helper is skipped the caller supplies it so the mod is not installed bare.
+        var addOptions = metadata ?? new AddModOptions();
+        addOptions.ModUrl = options.ModUrl?.ToString();
 
         // A same-named mod means reinstalling this file: replace it (that is what "update this mod" does).
         var duplicate = installation.AnyDuplicateName();

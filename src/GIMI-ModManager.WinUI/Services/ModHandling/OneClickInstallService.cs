@@ -36,6 +36,7 @@ public sealed class OneClickInstallService
     private readonly ModInstallerService _modInstallerService;
     private readonly ArchiveService _archiveService;
     private readonly SelectedGameService _selectedGameService;
+    private readonly ImageHandlerService _imageHandlerService;
     private readonly OneClickLaunchService _oneClickLaunchService;
     private readonly NotificationManager _notificationManager;
     private readonly ILanguageLocalizer _localizer;
@@ -47,6 +48,7 @@ public sealed class OneClickInstallService
         ModInstallerService modInstallerService,
         ArchiveService archiveService,
         SelectedGameService selectedGameService,
+        ImageHandlerService imageHandlerService,
         OneClickLaunchService oneClickLaunchService,
         NotificationManager notificationManager,
         ILanguageLocalizer localizer,
@@ -58,6 +60,7 @@ public sealed class OneClickInstallService
         _modInstallerService = modInstallerService;
         _archiveService = archiveService;
         _selectedGameService = selectedGameService;
+        _imageHandlerService = imageHandlerService;
         _oneClickLaunchService = oneClickLaunchService;
         _notificationManager = notificationManager;
         _localizer = localizer;
@@ -240,7 +243,31 @@ public sealed class OneClickInstallService
             }
             else
             {
-                await _modInstallerService.InstallSilentlyAsync(zipRoot, modList, installOptions, ct)
+                // The helper fetches the mod's metadata from its URL; skipping it must not leave the mod bare.
+                var metadata = new AddModOptions
+                {
+                    ModName = profile.ModName,
+                    Author = profile.AuthorName,
+                    Description = profile.Description,
+                    ModUrl = modUrl?.ToString()
+                };
+
+                var previewImageUrl = profile.PreviewImages?.FirstOrDefault();
+                if (previewImageUrl is not null)
+                {
+                    try
+                    {
+                        var image = await _imageHandlerService.DownloadImageAsync(previewImageUrl, ct)
+                            .ConfigureAwait(true);
+                        metadata.ModImage = new Uri(image.Path);
+                    }
+                    catch (Exception e)
+                    {
+                        _logger.Warning(e, "Could not download the cover image for mod {ModId}", request.ModId);
+                    }
+                }
+
+                await _modInstallerService.InstallSilentlyAsync(zipRoot, modList, installOptions, metadata, ct)
                     .ConfigureAwait(true);
             }
         }
