@@ -132,53 +132,32 @@ public sealed class OneClickInstallService
 
             var settings = await _oneClickLaunchService.GetSettingsAsync().ConfigureAwait(true);
 
-            // The dialog is the target picker: it appears whenever there is something to decide — an undetected
-            // character, a character with in-game skins (GameBanana cannot express a skin in a link), or simply
-            // because the user did not turn confirmation off.
-            var characterHasSkins = character is not null && character.Skins.Count > 1;
-            var requiresConfirmation = OneClickTargetRules.RequiresConfirmation(
-                settings.InstallWithoutConfirmation, character is not null, characterHasSkins);
-
-            IModdableObject? target = character;
-            ICharacterSkin? targetSkin = null;
+            // The alert always asks — a link is triggered from a web page. "Install without asking for
+            // confirmation" only removes the *second* confirmation in the Mod Installer Helper, which would
+            // otherwise ask the same thing again; the skin picker below exists because of that (when the helper
+            // opens it already has one, so offering it twice would be redundant).
+            var helperWillOpen = !settings.InstallWithoutConfirmation;
 
             _logger.Information(
-                "1-click install for mod {ModId}: dialog {Dialog} (character {Character}, skins {Skins}, auto-install {Auto})",
-                request.ModId, requiresConfirmation ? "shown" : "skipped",
-                character?.DisplayName ?? "not detected", characterHasSkins ? "yes" : "no",
-                settings.InstallWithoutConfirmation ? "on" : "off");
+                "1-click install for mod {ModId}: asking for a target (character {Character}, Mod Installer Helper {Helper})",
+                request.ModId, character?.DisplayName ?? "not detected", helperWillOpen ? "opens" : "skipped");
 
-            if (requiresConfirmation)
+            var chosen = await ConfirmInstallAsync(profile, fileInfo, game.Value, character, modUrl, helperWillOpen)
+                .ConfigureAwait(true);
+
+            if (chosen is null)
             {
-                var chosen = await ConfirmInstallAsync(profile, fileInfo, game.Value, character, modUrl)
-                    .ConfigureAwait(true);
-
-                if (chosen is null)
-                {
-                    _logger.Information("1-click install for mod {ModId} was cancelled in the install dialog",
-                        request.ModId);
-                    return;
-                }
-
-                target = chosen.Target;
-                targetSkin = chosen.Skin;
-            }
-            else
-            {
-                _logger.Information("1-click install for mod {ModId}: no confirmation needed, using detected {Target}",
-                    request.ModId, target!.DisplayName);
-            }
-
-            if (target is null)
-            {
-                // Defensive: RequiresConfirmation guarantees a target was chosen above.
-                Notify("OneClick_Failed_Title",
-                    Format("OneClick_NoTarget_Message", "No install target was selected."));
+                _logger.Information("1-click install for mod {ModId} was cancelled in the install dialog",
+                    request.ModId);
                 return;
             }
 
-            _logger.Information("1-click install for mod {ModId}: target {Target}{Skin}", request.ModId,
-                target.DisplayName, targetSkin is null ? string.Empty : $" ({targetSkin.DisplayName})");
+            var target = chosen.Target;
+            var targetSkin = chosen.Skin;
+
+            _logger.Information("1-click install for mod {ModId}: target {Target}{Skin}, Mod Installer Helper {Helper}",
+                request.ModId, target.DisplayName, targetSkin is null ? string.Empty : $" ({targetSkin.DisplayName})",
+                helperWillOpen ? "opens" : "skipped");
 
             var modList = _skinManagerService.GetCharacterModList(target);
 
@@ -239,14 +218,27 @@ public sealed class OneClickInstallService
             _logger.Information("Opening the Mod Installer for {ModName} (mod {ModId}, file {FileId})",
                 modTitle, request.ModId, request.ModFileId);
 
-            await _modInstallerService
-                .StartModInstallationAsync(zipRoot, modList, inGameSkin: null,
-                    setup: options =>
+            var installOptions = new InstallOptions
+            {
+                ModUrl = modUrl,
+                PreferredSkinInternalName = targetSkin?.InternalName.Id
+            };
+
+            if (helperWillOpen)
+            {
+                await _modInstallerService
+                    .StartModInstallationAsync(zipRoot, modList, inGameSkin: null, setup: options =>
                     {
-                        options.ModUrl = modUrl;
-                        options.PreferredSkinInternalName = targetSkin?.InternalName.Id;
+                        options.ModUrl = installOptions.ModUrl;
+                        options.PreferredSkinInternalName = installOptions.PreferredSkinInternalName;
                     })
-                .ConfigureAwait(true);
+                    .ConfigureAwait(true);
+            }
+            else
+            {
+                await _modInstallerService.InstallSilentlyAsync(zipRoot, modList, installOptions, ct)
+                    .ConfigureAwait(true);
+            }
         }
         catch (Exception e)
         {
@@ -337,7 +329,7 @@ public sealed class OneClickInstallService
     /// characters are still installable instead of dead-ending.
     /// </summary>
     private async Task<InstallTarget?> ConfirmInstallAsync(ModPageInfo profile, ModFileInfo? fileInfo,
-        SupportedGames game, ICharacter? detectedCharacter, Uri? modUrl)
+        SupportedGames game, ICharacter? detectedCharacter, Uri? modUrl, bool offerSkin)
     {
         var lines = new List<string>
         {
@@ -382,10 +374,16 @@ public sealed class OneClickInstallService
         // custom (private, generic) item types through its ABI, which throws a NullReferenceException from the
         // selector setters instead of anything helpful.
         var categories = _gameService.GetCategories();
-        var (categoryBox, _) = CreatePicker(Format("OneClick_Confirm_Category", "Category"), content,
+
+        // Category and target sit next to each other; their placeholders say what they are, so labels above
+        // them would be redundant.
+        var pickerRow = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8 };
+        content.Children.Add(pickerRow);
+
+        var (categoryBox, _) = CreatePicker(Format("OneClick_Confirm_Category", "Category"), pickerRow,
             categories.Select(CategoryLabel).ToList());
 
-        var (objectBox, _) = CreatePicker(Format("OneClick_Confirm_Character", "Character"), content);
+        var (objectBox, _) = CreatePicker(Format("OneClick_Confirm_Targets", "Targets"), pickerRow);
         var (skinBox, skinRow) = CreatePicker(Format("OneClick_Confirm_Skin", "Skin"), content);
         skinRow.Visibility = Visibility.Collapsed;
 
@@ -422,7 +420,8 @@ public sealed class OneClickInstallService
             var objectIndex = objectBox.SelectedIndex;
             var selected = objectIndex >= 0 && objectIndex < currentObjects.Count ? currentObjects[objectIndex] : null;
             var character = selected as ICharacter;
-            var hasSkins = character is not null && character.Skins.Count > 1;
+            // Only when the helper will be skipped: it has its own skin selector, so asking twice is redundant.
+            var hasSkins = offerSkin && character is not null && character.Skins.Count > 1;
 
             skinRow.Visibility = hasSkins ? Visibility.Visible : Visibility.Collapsed;
 
@@ -527,16 +526,16 @@ public sealed class OneClickInstallService
     /// is null while the panel is not in a visual tree, so the row cannot be recovered from the box (doing so
     /// threw a NullReferenceException and, from a dispatcher callback, crashed the app).
     /// </summary>
-    private static (ComboBox Box, StackPanel Row) CreatePicker(string label, StackPanel content,
+    private static (ComboBox Box, StackPanel Row) CreatePicker(string placeholder, StackPanel content,
         List<string>? items = null)
     {
         var row = new StackPanel { Spacing = 4 };
-        row.Children.Add(new TextBlock { Text = label, FontSize = 12, Opacity = 0.85 });
 
         var box = new ComboBox
         {
+            PlaceholderText = placeholder,
             HorizontalAlignment = HorizontalAlignment.Stretch,
-            MinWidth = 260
+            MinWidth = 200
         };
         if (items is not null)
             box.ItemsSource = items;

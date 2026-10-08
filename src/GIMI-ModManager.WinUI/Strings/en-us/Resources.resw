@@ -435,7 +435,7 @@
   </data>
   <data name="BatchRepair_CharacterLabel" xml:space="preserve">
     <!-- batch orphan repair dialog label -->
-    <value>Character</value>
+    <value>Targets</value>
   </data>
   <data name="BatchRepair_Working" xml:space="preserve">
     <!-- batch orphan repair busy indicator -->
@@ -2068,7 +2068,7 @@ Only mods tracked by JASM+ will be disabled within the selected categories</valu
   
   <data name="Category_Character" xml:space="preserve">
     <!-- Filter category: Character -->
-    <value>Character</value>
+    <value>Targets</value>
   </data>
   <data name="Category_Characters" xml:space="preserve">
     <!-- Filter category: Characters -->
@@ -3505,7 +3505,7 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   </data>
   <data name="CharDetails_Loading_Character" xml:space="preserve">
     <!-- Loading text -->
-    <value>Character</value>
+    <value>Targets</value>
   </data>
   <data name="CustomImage_PasteImage.Text" xml:space="preserve">
     <!-- Context menu item to pasteimage an image -->
@@ -3800,8 +3800,8 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
     <value>Category</value>
   </data>
   <!-- Confirmation dialog: character/object picker label. (One-click installer) -->
-  <data name="OneClick_Confirm_Character" xml:space="preserve">
-    <value>Character</value>
+  <data name="OneClick_Confirm_Targets" xml:space="preserve">
+    <value>Targets</value>
   </data>
   <!-- Confirmation dialog: skin picker label (shown when the character has skins). (One-click installer) -->
   <data name="OneClick_Confirm_Skin" xml:space="preserve">

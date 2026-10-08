@@ -10,6 +10,7 @@ using GIMI_ModManager.Core.Services;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Models.Settings;
 using GIMI_ModManager.WinUI.Services.AppManagement;
+using GIMI_ModManager.WinUI.Services.Notifications;
 using GIMI_ModManager.WinUI.ViewModels;
 using GIMI_ModManager.WinUI.Views;
 using Microsoft.UI.Dispatching;
@@ -20,10 +21,22 @@ namespace GIMI_ModManager.WinUI.Services.ModHandling;
 
 public class ModInstallerService(
     IWindowManagerService windowManagerService,
-    ILocalSettingsService localSettingsService)
+    ILocalSettingsService localSettingsService,
+    CharacterSkinService characterSkinService,
+    ModSettingsService modSettingsService,
+    ModNotificationManager modNotificationManager,
+    NotificationManager notificationManager,
+    ILanguageLocalizer localizer,
+    ILogger logger)
 {
     private readonly ILocalSettingsService _localSettingsService = localSettingsService;
     private readonly IWindowManagerService _windowManagerService = windowManagerService;
+    private readonly CharacterSkinService _characterSkinService = characterSkinService;
+    private readonly ModSettingsService _modSettingsService = modSettingsService;
+    private readonly ModNotificationManager _modNotificationManager = modNotificationManager;
+    private readonly NotificationManager _notificationManager = notificationManager;
+    private readonly ILanguageLocalizer _localizer = localizer;
+    private readonly ILogger _logger = logger.ForContext<ModInstallerService>();
 
     public async Task<InstallMonitor> StartModInstallationAsync(DirectoryInfo modFolder, ICharacterModList modList,
         ICharacterSkin? inGameSkin = null, Action<InstallOptions>? setup = null)
@@ -45,6 +58,94 @@ public class ModInstallerService(
             await dispatcherQueue.EnqueueAsync(() => InternalStartAsync(modFolder, modList, inGameSkin, modOptions));
 
         return monitor;
+    }
+
+    /// <summary>
+    /// Installs without opening the Mod Installer Helper: used by 1-click installs when the user turned
+    /// confirmation off in the pre-install dialog (the helper would only ask the same thing again).
+    /// Mirrors what the helper does after its Install button is pressed — place the mod, pin the chosen or
+    /// detected in-game skin, enable it (disabling the other mods of that skin) and raise the usual notifications.
+    /// </summary>
+    public async Task<ISkinMod> InstallSilentlyAsync(DirectoryInfo modFolder, ICharacterModList modList,
+        InstallOptions options, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(modFolder);
+        ArgumentNullException.ThrowIfNull(modList);
+
+        using var installation = ModInstallation.Start(modFolder, modList);
+        installation.AutoSetModRootFolder();
+
+        var addOptions = new AddModOptions { ModUrl = options.ModUrl?.ToString() };
+
+        // A same-named mod means reinstalling this file: replace it (that is what "update this mod" does).
+        var duplicate = installation.AnyDuplicateName();
+        var installed = duplicate is not null
+            ? await installation.AddAndReplaceAsync(duplicate, addOptions).ConfigureAwait(false)
+            : await installation.AddModAsync(addOptions).ConfigureAwait(false);
+
+        // Skin: the one the user picked in the dialog, else whatever the archive content indicates.
+        ICharacterSkin? skin = null;
+        if (modList.Character is ICharacter character)
+        {
+            skin = !string.IsNullOrWhiteSpace(options.PreferredSkinInternalName)
+                ? character.Skins.FirstOrDefault(s => s.InternalNameEquals(options.PreferredSkinInternalName))
+                : await _characterSkinService.GetFirstSkinForModAsync(installed, character).ConfigureAwait(false);
+
+            if (skin is not null)
+                await _modSettingsService
+                    .SetCharacterSkinOverrideLegacy(installed.Id, skin.InternalName)
+                    .ConfigureAwait(false);
+        }
+
+        // Enable the new mod and disable the other mods that would conflict with it: same skin when the
+        // character has in-game skins, otherwise every other enabled mod in the list.
+        var conflicting = new List<ISkinMod>();
+        if (skin is not null)
+        {
+            await foreach (var skinMod in _characterSkinService.GetModsForSkinAsync(skin).ConfigureAwait(false))
+                conflicting.Add(skinMod);
+        }
+        else
+        {
+            conflicting.AddRange(modList.Mods.Where(entry => entry.IsEnabled).Select(entry => entry.Mod));
+        }
+
+        foreach (var other in conflicting.Where(mod => mod.Id != installed.Id))
+        {
+            if (modList.IsModEnabled(other))
+                modList.DisableMod(other.Id);
+        }
+
+        if (!modList.IsModEnabled(installed))
+            modList.EnableMod(installed.Id);
+
+        _logger.Information("Installed {ModName} into {Target} without the Mod Installer Helper{ Skin}",
+            installed.Name, modList.Character.DisplayName,
+            skin is null ? string.Empty : $" (skin {skin.DisplayName})");
+
+        _notificationManager.ShowNotification(
+            string.Format(_localizer.GetLocalizedStringOrDefault("ModInstaller_ModInstalled") ?? "Mod '{0}' installed",
+                installed.GetDisplayName()),
+            string.Format(
+                _localizer.GetLocalizedStringOrDefault("ModInstaller_AddedToModList")
+                ?? "Mod '{0}' ({1}), was successfully added to {2} ModList", installed.GetDisplayName(), installed.Name,
+                modList.Character.DisplayName),
+            TimeSpan.FromSeconds(5));
+
+        _modNotificationManager.AddModNotification(new ModNotification
+        {
+            ModId = installed.Id,
+            CharacterInternalName = modList.Character.InternalName,
+            ModCustomName = installed.Settings.TryGetSettings(out var settings)
+                ? settings.CustomName ?? installed.Name
+                : installed.Name,
+            ModFolderName = installed.Name,
+            ShowOnOverview = true,
+            AttentionType = AttentionType.Added,
+            Message = "Mod was successfully added"
+        });
+
+        return installed;
     }
 
     private async Task<InstallMonitor> InternalStartAsync(DirectoryInfo modFolder, ICharacterModList modList,
