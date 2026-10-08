@@ -37,7 +37,9 @@ public sealed class OneClickInstallService
     private readonly ArchiveService _archiveService;
     private readonly SelectedGameService _selectedGameService;
     private readonly ImageHandlerService _imageHandlerService;
+    private readonly SemaphoreSlim _installGate = new(1, 1);
     private readonly OneClickLaunchService _oneClickLaunchService;
+    private readonly ModUpdateAvailableChecker _modUpdateChecker;
     private readonly NotificationManager _notificationManager;
     private readonly ILanguageLocalizer _localizer;
     private readonly ILogger _logger;
@@ -50,6 +52,7 @@ public sealed class OneClickInstallService
         SelectedGameService selectedGameService,
         ImageHandlerService imageHandlerService,
         OneClickLaunchService oneClickLaunchService,
+        ModUpdateAvailableChecker modUpdateChecker,
         NotificationManager notificationManager,
         ILanguageLocalizer localizer,
         ILogger logger)
@@ -62,6 +65,7 @@ public sealed class OneClickInstallService
         _selectedGameService = selectedGameService;
         _imageHandlerService = imageHandlerService;
         _oneClickLaunchService = oneClickLaunchService;
+        _modUpdateChecker = modUpdateChecker;
         _notificationManager = notificationManager;
         _localizer = localizer;
         _logger = logger.ForContext<OneClickInstallService>();
@@ -70,10 +74,18 @@ public sealed class OneClickInstallService
     /// <summary>Runs the link. Safe to call from the UI thread; the installer is opened on it.</summary>
     public async Task HandleAsync(OneClickInstallRequest request, CancellationToken ct = default)
     {
+        // Links can arrive back to back (or be clicked twice). The busy and install dialogs are per window and
+        // only one can be open at a time, so they are handled one at a time instead of failing each other.
+        await _installGate.WaitAsync(ct).ConfigureAwait(true);
+
         try
         {
             _logger.Information("Handling 1-click link for mod {ModId} / file {FileId}", request.ModId,
                 request.ModFileId);
+
+            // A background update sweep holds the GameBanana rate limiter for as many requests as there are mods
+            // to check: let the install go first, the sweep resumes right after (already checked mods are skipped).
+            _modUpdateChecker.YieldToInteractiveRequest();
 
             // Resolution is network-bound and can queue behind the background update checker, so it gets the
             // same visible progress treatment as the download — otherwise the app just looks frozen.
@@ -257,6 +269,10 @@ public sealed class OneClickInstallService
         {
             _logger.Error(e, "1-click install failed for mod {ModId} / file {FileId}", request.ModId, request.ModFileId);
             Notify("OneClick_Failed_Title", Format("OneClick_Failed_Message", "1-click install failed: {0}", e.Message));
+        }
+        finally
+        {
+            _installGate.Release();
         }
     }
 

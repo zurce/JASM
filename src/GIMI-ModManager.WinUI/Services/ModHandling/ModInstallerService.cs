@@ -72,13 +72,18 @@ public class ModInstallerService(
         ArgumentNullException.ThrowIfNull(modFolder);
         ArgumentNullException.ThrowIfNull(modList);
 
+        using var installation = ModInstallation.Start(modFolder, modList);
+
+        // The archive root is often a wrapper around the real mod folder; the mod's name is the folder that
+        // holds it (that is what the duplicate checks compare), so resolution has to happen before naming.
+        var rootFolder = installation.AutoSetModRootFolder() ?? modFolder;
+
         // A link cannot ask what to do about a name clash, so this never replaces anything: the new mod goes in
         // beside the existing one under a free folder name ("Name (2)"). It is left disabled as well, so a web
         // link cannot silently change which mod the game loads.
-        modFolder = EnsureFreeModFolderName(modFolder, modList);
-
-        using var installation = ModInstallation.Start(modFolder, modList);
-        installation.AutoSetModRootFolder();
+        var freeRootFolder = EnsureFreeModFolderName(rootFolder, modList);
+        if (freeRootFolder.FullName != rootFolder.FullName)
+            installation.SetRootModFolder(freeRootFolder);
 
         // Metadata (name, author, description, cover image) is normally fetched by the helper window from the
         // mod URL; when the helper is skipped the caller supplies it so the mod is not installed bare.

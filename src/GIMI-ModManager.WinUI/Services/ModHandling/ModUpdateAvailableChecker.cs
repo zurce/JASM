@@ -24,6 +24,7 @@ public sealed class ModUpdateAvailableChecker
 
     private CancellationTokenSource? _stoppingCancellationTokenSource;
     private CancellationTokenSource? _producerWaitingCancellationTokenSource;
+    private CancellationTokenSource? _currentCheckCancellationTokenSource;
 
     private readonly TimeSpan _waitTime = TimeSpan.FromHours(2);
     private readonly TimeSpan _minWaitTimePerMod = TimeSpan.FromMinutes(60);
@@ -150,11 +151,16 @@ public sealed class ModUpdateAvailableChecker
             var requestOperation = new ModCheckOperation(modCheckRequest);
             requestOperation.SetModsToCheck(modsToCheck);
 
+            // A sweep is only cancellable token-wide, so the current one gets its own linked token: an
+            // interactive request (a 1-click install) has to be able to preempt it, otherwise it waits in the
+            // GameBanana rate limiter behind every remaining mod in the sweep.
+            using var runCancellationTokenSource = CancellationTokenSource.CreateLinkedTokenSource(stoppingToken);
+            Volatile.Write(ref _currentCheckCancellationTokenSource, runCancellationTokenSource);
 
             try
             {
                 stoppingToken.ThrowIfCancellationRequested();
-                await RunCheckerAsync(requestOperation, stoppingToken).ConfigureAwait(false);
+                await RunCheckerAsync(requestOperation, runCancellationTokenSource.Token).ConfigureAwait(false);
                 await FinishedRequestAsync(requestOperation, stoppingToken).ConfigureAwait(false);
             }
             catch (TaskCanceledException)
@@ -175,6 +181,11 @@ public sealed class ModUpdateAvailableChecker
                 NextRunAt = null;
                 OnUpdateCheckerEvent?.Invoke(this, new UpdateCheckerEvent(Status, NextRunAt));
                 break;
+            }
+            finally
+            {
+                Interlocked.CompareExchange(ref _currentCheckCancellationTokenSource, null,
+                    runCancellationTokenSource);
             }
         }
 
@@ -391,6 +402,26 @@ public sealed class ModUpdateAvailableChecker
         }
 
         _modCheckRequests.Add(checkRequest);
+    }
+
+    /// <summary>
+    ///     Cancels the running sweep, if any, and queues a fresh one so it happens right after the interactive
+    ///     request that asked for this. Used by the 1-click install: without it the profile lookup sits in the
+    ///     GameBanana rate limiter behind the whole sweep (minutes on a large mod list) and looks like a hang.
+    /// </summary>
+    public void YieldToInteractiveRequest()
+    {
+        var running = Volatile.Read(ref _currentCheckCancellationTokenSource);
+
+        if (running is null)
+            return;
+
+        _logger.Information("Yielding the running mod update check to an interactive request");
+
+        // Queue the replacement before cancelling: mods already checked are skipped by their LastChecked stamp,
+        // so the sweep picks up where it left off.
+        CheckNow();
+        running.Cancel();
     }
 
     public void CancelAndStop()
