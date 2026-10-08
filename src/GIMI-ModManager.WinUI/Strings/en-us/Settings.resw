@@ -209,4 +209,36 @@ Manually checking for updates always checks GameBanana directly</value>
   <data name="ExpertConfig_ModPageDesc.Text" xml:space="preserve">
     <value>Holding Alt on the open-URL button enables re-association on existing mods.</value>
   </data>
+  <!-- Settings section header for GameBanana 1-click installs. (One-click installer) -->
+  <data name="Settings_OneClickInstall.Content" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
+  <!-- Settings checkbox: register the jasm-plus link. (One-click installer) -->
+  <data name="Settings_OneClickInstallEnabled.Content" xml:space="preserve">
+    <value>Install mods from GameBanana 1-click links</value>
+  </data>
+  <!-- Settings checkbox: skip the pre-install confirmation. (One-click installer) -->
+  <data name="Settings_OneClickInstallWithoutConfirmation.Content" xml:space="preserve">
+    <value>Install without asking for confirmation</value>
+  </data>
+  <!-- Settings button: re-register the link for this installation. (One-click installer) -->
+  <data name="Settings_OneClickInstallRepair.Content" xml:space="preserve">
+    <value>Re-register link</value>
+  </data>
+  <!-- Settings button: remove the link registration. (One-click installer) -->
+  <data name="Settings_OneClickInstallRemove.Content" xml:space="preserve">
+    <value>Remove link</value>
+  </data>
+  <!-- Settings status line; {0} is the registered executable path. (One-click installer) -->
+  <data name="Settings_OneClickInstallStatus_Registered" xml:space="preserve">
+    <value>Registered for this installation ({0}).</value>
+  </data>
+  <!-- Settings status line when the link is not registered. (One-click installer) -->
+  <data name="Settings_OneClickInstallStatus_NotRegistered" xml:space="preserve">
+    <value>Not registered: GameBanana cannot open JASM+ yet.</value>
+  </data>
+  <!-- Settings status line when another application owns the link; {0} scheme, {1} executable. (One-click installer) -->
+  <data name="Settings_OneClickInstallStatus_Foreign" xml:space="preserve">
+    <value>The '{0}' link belongs to another application ({1}).</value>
+  </data>
 </root>
