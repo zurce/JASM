@@ -1429,7 +1429,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
                 {
                     // Show a blocking busy indicator during the fetch/download phase so the app
                     // does not appear frozen while the ModInstaller is being prepared.
-                    var plan = await RunWithBusyDialogAsync(
+                    var plan = await BusyDialog.RunAsync(
                         $"{_localizer.GetLocalizedStringOrDefault("BatchRepair_Working") ?? "Working"}... ({i + 1}/{orphans.Count})",
                         (setStatus, ct) => PrepareRepairAsync(orphan, pick.Url!, pick.AlwaysRedownload, setStatus, ct),
                         CancellationToken.None);
@@ -1654,67 +1654,6 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
         await associateMonitor.Task;
     }
 
-    /// <summary>
-    /// Shows a blocking modal dialog with an indeterminate spinner while <paramref name="work"/>
-    /// runs, then closes it. Used to indicate activity during the fetch/download gap in the batch.
-    /// </summary>
-    /// <summary>
-    /// Shows a blocking modal busy dialog (centered spinner + status text) while <paramref name="work"/>
-    /// runs. The work receives a status setter to update the message (e.g. fetching / downloading /
-    /// extracting). The dialog is closed when the work completes.
-    /// </summary>
-    private static async Task<T> RunWithBusyDialogAsync<T>(string initialMessage,
-        Func<Action<string>, CancellationToken, Task<T>> work, CancellationToken ct)
-    {
-        var statusText = new Microsoft.UI.Xaml.Controls.TextBlock
-        {
-            Text = initialMessage,
-            FontSize = 16,
-            TextAlignment = Microsoft.UI.Xaml.TextAlignment.Center,
-            TextWrapping = Microsoft.UI.Xaml.TextWrapping.WrapWholeWords,
-            MaxWidth = 380
-        };
-
-        var dialog = new Microsoft.UI.Xaml.Controls.ContentDialog
-        {
-            XamlRoot = App.MainWindow.Content.XamlRoot,
-            Content = new Microsoft.UI.Xaml.Controls.StackPanel
-            {
-                HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment.Center,
-                VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment.Center,
-                Spacing = 16,
-                MinWidth = 320,
-                Children =
-                {
-                    new Microsoft.UI.Xaml.Controls.ProgressRing { IsActive = true, Width = 48, Height = 48 },
-                    statusText
-                }
-            }
-        };
-
-        try
-        {
-            // Start the work first, then show the (modal) dialog over it. The dialog's show task is
-            // observed so a fault during shutdown / dialog teardown does not become an unhandled
-            // exception (which would pop the app's error windows).
-            var workTask = work(message => statusText.Text = message, ct);
-            var showTask = dialog.ShowAsync().AsTask();
-            _ = showTask.ContinueWith(t => _ = t.Exception, TaskContinuationOptions.OnlyOnFaulted);
-
-            return await workTask;
-        }
-        finally
-        {
-            try
-            {
-                dialog.Hide();
-            }
-            catch
-            {
-                // ignore if the dialog was not fully opened yet / already closed
-            }
-        }
-    }
 
     private GIMI_ModManager.Core.Contracts.Entities.ICharacterModList? GetModListForMod(Guid modId) =>
         _skinManagerService.CharacterModLists.FirstOrDefault(ml => ml.Mods.Any(m => m.Mod.Id == modId));

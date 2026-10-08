@@ -3699,4 +3699,56 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   <data name="Settings_ModPersistence_UserIniDesc" xml:space="preserve">
     <value>Watches and auto-manages d3dx_user.ini. This can cause issues if reloading mods takes too long or if storage is too slow; may require reloading (F10) a couple times if not loading properly.</value>
   </data>
+  <!-- Notification title when a 1-click install cannot be completed. (One-click installer) -->
+  <data name="OneClick_Failed_Title" xml:space="preserve">
+    <value>GameBanana 1-click install failed</value>
+  </data>
+  <!-- Body of the 1-click install failure notification; {0} is the error. (One-click installer) -->
+  <data name="OneClick_Failed_Message" xml:space="preserve">
+    <value>The install could not be completed: {0}</value>
+  </data>
+  <!-- Shown when the linked submission id cannot be resolved; {0} is the mod id. (One-click installer) -->
+  <data name="OneClick_ModNotFound_Message" xml:space="preserve">
+    <value>GameBanana did not return any information for mod {0}.</value>
+  </data>
+  <!-- Notification title when a linked mod belongs to a game JASM+ does not manage. (One-click installer) -->
+  <data name="OneClick_UnsupportedGame_Title" xml:space="preserve">
+    <value>Game not supported</value>
+  </data>
+  <!-- Shown for a game JASM+ does not manage; {0} is the game name from GameBanana. (One-click installer) -->
+  <data name="OneClick_UnsupportedGame_Message" xml:space="preserve">
+    <value>This mod is for {0}, which JASM+ does not support.</value>
+  </data>
+  <!-- Notification title when the linked mod is for a game that is not the active one. (One-click installer) -->
+  <data name="OneClick_WrongGame_Title" xml:space="preserve">
+    <value>Different game is active</value>
+  </data>
+  <!-- Shown when the mod's game is not the active one; {0} is the game name. (One-click installer) -->
+  <data name="OneClick_WrongGame_Message" xml:space="preserve">
+    <value>This mod is for {0}. Switch JASM+ to {0} and click the link again.</value>
+  </data>
+  <!-- Notification title when GameBanana's category cannot be matched to a JASM+ character. (One-click installer) -->
+  <data name="OneClick_UnknownTarget_Title" xml:space="preserve">
+    <value>Character not found</value>
+  </data>
+  <!-- Shown when the linked mod's category cannot be resolved; {0} is GameBanana's category name. (One-click installer) -->
+  <data name="OneClick_UnknownTarget_Message" xml:space="preserve">
+    <value>Could not find a character called "{0}" in JASM+. Install the mod from GameBanana manually.</value>
+  </data>
+  <!-- Busy dialog status before a 1-click download starts; {0} is the mod name. (One-click installer) -->
+  <data name="OneClick_Preparing_Status" xml:space="preserve">
+    <value>Preparing {0}…</value>
+  </data>
+  <!-- Busy dialog status while downloading; {0} is the mod name, {1} the percentage. (One-click installer) -->
+  <data name="OneClick_Downloading_Status" xml:space="preserve">
+    <value>Downloading {0} — {1}%</value>
+  </data>
+  <!-- Busy dialog status when the archive is already downloaded; {0} is the mod name. (One-click installer) -->
+  <data name="OneClick_UsingCachedArchive_Status" xml:space="preserve">
+    <value>Using the cached archive for {0}…</value>
+  </data>
+  <!-- Busy dialog status while the archive is extracted; {0} is the mod name. (One-click installer) -->
+  <data name="OneClick_Extracting_Status" xml:space="preserve">
+    <value>Extracting {0}…</value>
+  </data>
 </root>

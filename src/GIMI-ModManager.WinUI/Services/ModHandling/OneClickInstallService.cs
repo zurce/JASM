@@ -9,6 +9,7 @@ using GIMI_ModManager.Core.Services.GameBanana;
 using GIMI_ModManager.Core.Services.GameBanana.Models;
 using GIMI_ModManager.Core.Services.Protocol;
 using GIMI_ModManager.WinUI.Contracts.Services;
+using GIMI_ModManager.WinUI.Helpers;
 using GIMI_ModManager.WinUI.Services.ModHandling;
 using GIMI_ModManager.WinUI.Services.Notifications;
 using Serilog;
@@ -78,9 +79,8 @@ public sealed class OneClickInstallService
             if (game is null)
             {
                 Notify("OneClick_UnsupportedGame_Title",
-                    _localizer.GetLocalizedStringOrDefault("OneClick_UnsupportedGame_Message")
-                    ?? $"This mod is for a game JASM+ does not support{(
-                        profile.GameBananaGameName is { Length: > 0 } name ? $" ({name})" : string.Empty)}.");
+                    Format("OneClick_UnsupportedGame_Message", "This mod is for {0}, which JASM+ does not support.",
+                        profile.GameBananaGameName is { Length: > 0 } name ? name : "a game"));
                 return;
             }
 
@@ -107,15 +107,52 @@ public sealed class OneClickInstallService
 
             var modList = _skinManagerService.GetCharacterModList(character);
             var modUrl = profile.ModPageUrl;
+            var modTitle = profile.ModName ?? character.DisplayName;
 
-            var archivePath = await _gameBananaCoreService
-                .DownloadModAsync(request.Identifier, progress: null, ct)
-                .ConfigureAwait(true);
+            // A heavy mod takes minutes; without this the app looked frozen (the download used to run with no
+            // progress reporting at all). Reuses the same busy dialog as the orphan-mod batch repair.
+            var zipRoot = await BusyDialog.RunAsync(
+                Format("OneClick_Preparing_Status", "Preparing {0}…", modTitle),
+                async (setStatus, token) =>
+                {
+                    var reported = false;
+                    var lastPercent = -1;
+                    var lastDecile = -1;
+                    var progress = new Progress<int>(percent =>
+                    {
+                        reported = true;
 
-            var zipRoot = ExtractToArchiveRoot(archivePath);
+                        // One log line per 10% keeps this useful for support without flooding the log.
+                        if (percent / 10 != lastDecile)
+                        {
+                            lastDecile = percent / 10;
+                            _logger.Information("1-click download progress for mod {ModId}: {Percent}%",
+                                request.ModId, percent);
+                        }
+
+                        if (percent == lastPercent)
+                            return;
+
+                        lastPercent = percent;
+                        setStatus(Format("OneClick_Downloading_Status", "Downloading {0} — {1}%", modTitle, percent));
+                    });
+
+                    var archivePath = await _gameBananaCoreService
+                        .DownloadModAsync(request.Identifier, progress, token)
+                        .ConfigureAwait(true);
+
+                    // DownloadModAsync returns an existing local archive without reporting anything.
+                    if (!reported)
+                        setStatus(Format("OneClick_UsingCachedArchive_Status", "Using the cached archive for {0}…",
+                            modTitle));
+
+                    setStatus(Format("OneClick_Extracting_Status", "Extracting {0}…", modTitle));
+                    return await Task.Run(() => ExtractToArchiveRoot(archivePath), token).ConfigureAwait(true);
+                },
+                ct).ConfigureAwait(true);
 
             _logger.Information("Opening the Mod Installer for {ModName} (mod {ModId}, file {FileId})",
-                profile.ModName ?? character.DisplayName, request.ModId, request.ModFileId);
+                modTitle, request.ModId, request.ModFileId);
 
             await _modInstallerService
                 .StartModInstallationAsync(zipRoot, modList, inGameSkin: null,

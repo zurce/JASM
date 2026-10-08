@@ -3781,4 +3781,43 @@ JASM+ no moverá ninguno de tus mods ni los eliminará.
   <data name="Settings_ModPersistence_UserIniDesc" xml:space="preserve">
     <value>Supervisa y gestiona automáticamente d3dx_user.ini. Esto puede causar problemas si recargar mods tarda demasiado o si el almacenamiento es lento; puede requerir recargar (F10) un par de veces si no carga correctamente.</value>
   </data>
+<data name="OneClick_Failed_Title" xml:space="preserve">
+    <value>GameBanana 1-click install failed</value>
+  </data>
+<data name="OneClick_Failed_Message" xml:space="preserve">
+    <value>The install could not be completed: {0}</value>
+  </data>
+<data name="OneClick_ModNotFound_Message" xml:space="preserve">
+    <value>GameBanana did not return any information for mod {0}.</value>
+  </data>
+<data name="OneClick_UnsupportedGame_Title" xml:space="preserve">
+    <value>Game not supported</value>
+  </data>
+<data name="OneClick_UnsupportedGame_Message" xml:space="preserve">
+    <value>This mod is for {0}, which JASM+ does not support.</value>
+  </data>
+<data name="OneClick_WrongGame_Title" xml:space="preserve">
+    <value>Different game is active</value>
+  </data>
+<data name="OneClick_WrongGame_Message" xml:space="preserve">
+    <value>This mod is for {0}. Switch JASM+ to {0} and click the link again.</value>
+  </data>
+<data name="OneClick_UnknownTarget_Title" xml:space="preserve">
+    <value>Character not found</value>
+  </data>
+<data name="OneClick_UnknownTarget_Message" xml:space="preserve">
+    <value>Could not find a character called "{0}" in JASM+. Install the mod from GameBanana manually.</value>
+  </data>
+<data name="OneClick_Preparing_Status" xml:space="preserve">
+    <value>Preparing {0}…</value>
+  </data>
+<data name="OneClick_Downloading_Status" xml:space="preserve">
+    <value>Downloading {0} — {1}%</value>
+  </data>
+<data name="OneClick_UsingCachedArchive_Status" xml:space="preserve">
+    <value>Using the cached archive for {0}…</value>
+  </data>
+<data name="OneClick_Extracting_Status" xml:space="preserve">
+    <value>Extracting {0}…</value>
+  </data>
 </root>
