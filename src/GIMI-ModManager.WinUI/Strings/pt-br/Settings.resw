@@ -208,24 +208,24 @@
     <value>GameBanana</value>
   </data>
 <data name="Settings_OneClickInstallEnabled.Content" xml:space="preserve">
-    <value>Install mods from GameBanana 1-click links</value>
+    <value>Instale mods por links de um clique do GameBanana</value>
   </data>
 <data name="Settings_OneClickInstallWithoutConfirmation.Content" xml:space="preserve">
-    <value>Install without asking for confirmation</value>
+    <value>Instalar sem pedir confirmação</value>
   </data>
 <data name="Settings_OneClickInstallRepair.Content" xml:space="preserve">
-    <value>Re-register link</value>
+    <value>Registrar o link novamente</value>
   </data>
 <data name="Settings_OneClickInstallRemove.Content" xml:space="preserve">
-    <value>Remove link</value>
+    <value>Remover link</value>
   </data>
 <data name="Settings_OneClickInstallStatus_Registered" xml:space="preserve">
-    <value>Registered for this installation ({0}).</value>
+    <value>Registrado para esta instalação ({0}).</value>
   </data>
 <data name="Settings_OneClickInstallStatus_NotRegistered" xml:space="preserve">
-    <value>Not registered: GameBanana cannot open JASM+ yet.</value>
+    <value>Não registrado: o GameBanana ainda não pode abrir o JASM+.</value>
   </data>
 <data name="Settings_OneClickInstallStatus_Foreign" xml:space="preserve">
-    <value>The '{0}' link belongs to another application ({1}).</value>
+    <value>O link '{0}' pertence a outro aplicativo ({1}).</value>
   </data>
 </root>

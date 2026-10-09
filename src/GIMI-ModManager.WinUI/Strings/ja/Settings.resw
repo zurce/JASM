@@ -234,24 +234,24 @@ JASMはWUWAとZZZを部分的にサポートしています。</value>
     <value>GameBanana</value>
   </data>
 <data name="Settings_OneClickInstallEnabled.Content" xml:space="preserve">
-    <value>Install mods from GameBanana 1-click links</value>
+    <value>GameBananaのワンクリックリンクからModをインストール</value>
   </data>
 <data name="Settings_OneClickInstallWithoutConfirmation.Content" xml:space="preserve">
-    <value>Install without asking for confirmation</value>
+    <value>確認なしでインストール</value>
   </data>
 <data name="Settings_OneClickInstallRepair.Content" xml:space="preserve">
-    <value>Re-register link</value>
+    <value>リンクを再登録</value>
   </data>
 <data name="Settings_OneClickInstallRemove.Content" xml:space="preserve">
-    <value>Remove link</value>
+    <value>リンクを解除</value>
   </data>
 <data name="Settings_OneClickInstallStatus_Registered" xml:space="preserve">
-    <value>Registered for this installation ({0}).</value>
+    <value>このインストールに登録済み ({0})。</value>
   </data>
 <data name="Settings_OneClickInstallStatus_NotRegistered" xml:space="preserve">
-    <value>Not registered: GameBanana cannot open JASM+ yet.</value>
+    <value>未登録: GameBananaからJASM+を開けません。</value>
   </data>
 <data name="Settings_OneClickInstallStatus_Foreign" xml:space="preserve">
-    <value>The '{0}' link belongs to another application ({1}).</value>
+    <value>'{0}' リンクは別のアプリケーション ({1}) に属しています。</value>
   </data>
 </root>

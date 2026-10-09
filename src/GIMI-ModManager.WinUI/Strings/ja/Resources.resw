@@ -4493,87 +4493,87 @@ JASMはModを移動したり削除したりしません。
     <value>d3dx_user.iniを監視し自動管理します。Modの再読み込みに時間がかかる場合やストレージが遅い場合は問題が発生する可能性があります。正しく読み込まれない場合は（F10で）数回再読み込みが必要になることがあります。</value>
   </data>
 <data name="OneClick_Failed_Title" xml:space="preserve">
-    <value>GameBanana 1-click install failed</value>
+    <value>GameBananaワンクリックインストールに失敗しました</value>
   </data>
 <data name="OneClick_Failed_Message" xml:space="preserve">
-    <value>The install could not be completed: {0}</value>
+    <value>インストールを完了できませんでした: {0}</value>
   </data>
 <data name="OneClick_ModNotFound_Message" xml:space="preserve">
-    <value>GameBanana did not return any information for mod {0}.</value>
+    <value>GameBananaからMod {0} の情報が返されませんでした。</value>
   </data>
 <data name="OneClick_UnsupportedGame_Title" xml:space="preserve">
-    <value>Game not supported</value>
+    <value>対応していないゲーム</value>
   </data>
 <data name="OneClick_UnsupportedGame_Message" xml:space="preserve">
-    <value>This mod is for {0}, which JASM+ does not support.</value>
+    <value>このModは{0}用ですが、JASM+は対応していません。</value>
   </data>
 <data name="OneClick_WrongGame_Title" xml:space="preserve">
-    <value>Different game is active</value>
+    <value>別のゲームが選択されています</value>
   </data>
 <data name="OneClick_WrongGame_Message" xml:space="preserve">
-    <value>This mod is for {0}. Switch JASM+ to {0} and click the link again.</value>
+    <value>このModは{0}用です。JASM+を{0}に切り替えて、もう一度リンクをクリックしてください。</value>
   </data>
 <data name="OneClick_Preparing_Status" xml:space="preserve">
-    <value>Preparing {0}…</value>
+    <value>{0}を準備中…</value>
   </data>
 <data name="OneClick_Downloading_Status" xml:space="preserve">
-    <value>Downloading {0} — {1}%</value>
+    <value>{0}をダウンロード中 — {1}%</value>
   </data>
 <data name="OneClick_UsingCachedArchive_Status" xml:space="preserve">
-    <value>Using the cached archive for {0}…</value>
+    <value>{0}のキャッシュ済みアーカイブを使用中…</value>
   </data>
 <data name="OneClick_Extracting_Status" xml:space="preserve">
-    <value>Extracting {0}…</value>
+    <value>{0}を展開中…</value>
   </data>
 <data name="OneClick_Confirm_Title" xml:space="preserve">
-    <value>Install this mod?</value>
+    <value>このModをインストールしますか？</value>
   </data>
 <data name="OneClick_Confirm_Mod" xml:space="preserve">
     <value>Mod: {0}</value>
   </data>
 <data name="OneClick_Confirm_Author" xml:space="preserve">
-    <value>Author: {0}</value>
+    <value>作者: {0}</value>
   </data>
 <data name="OneClick_Confirm_Target" xml:space="preserve">
-    <value>Game: {0}</value>
+    <value>ゲーム: {0}</value>
   </data>
 <data name="OneClick_Confirm_Source" xml:space="preserve">
-    <value>Source: {0}</value>
+    <value>ソース: {0}</value>
   </data>
 <data name="OneClick_Confirm_Scan" xml:space="preserve">
-    <value>GameBanana scan: {0}{1}</value>
+    <value>GameBananaスキャン: {0}{1}</value>
   </data>
 <data name="OneClick_Confirm_Install" xml:space="preserve">
-    <value>Install</value>
+    <value>インストール</value>
   </data>
 <data name="OneClick_Confirm_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>キャンセル</value>
   </data>
 <data name="OneClick_Warning_Title" xml:space="preserve">
-    <value>This archive contains executable files</value>
+    <value>このアーカイブには実行可能なファイルが含まれています</value>
   </data>
 <data name="OneClick_Warning_Message" xml:space="preserve">
-    <value>{0} contains files that can run code:</value>
+    <value>{0}にコードを実行できるファイルが含まれています:</value>
   </data>
 <data name="OneClick_Warning_More" xml:space="preserve">
-    <value>…and {0} more</value>
+    <value>…他 {0} 件</value>
   </data>
 <data name="OneClick_Warning_Continue" xml:space="preserve">
-    <value>Continue anyway</value>
+    <value>そのまま続行</value>
   </data>
 <data name="OneClick_Checking_Status" xml:space="preserve">
-    <value>Checking GameBanana…</value>
+    <value>GameBananaを確認中…</value>
   </data>
 <data name="OneClick_Confirm_Category" xml:space="preserve">
-    <value>Category</value>
+    <value>カテゴリ</value>
   </data>
 <data name="OneClick_Confirm_Skin" xml:space="preserve">
-    <value>Skin</value>
+    <value>スキン</value>
   </data>
 <data name="OneClick_Confirm_DefaultSkin" xml:space="preserve">
-    <value>Default</value>
+    <value>デフォルト</value>
   </data>
 <data name="OneClick_NoTarget_Message" xml:space="preserve">
-    <value>No install target was selected.</value>
+    <value>インストール先が選択されていません。</value>
   </data>
 </root>

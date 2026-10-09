@@ -213,24 +213,24 @@ La verificación manual de actualizaciones siempre consulta directamente a GameB
     <value>GameBanana</value>
   </data>
 <data name="Settings_OneClickInstallEnabled.Content" xml:space="preserve">
-    <value>Install mods from GameBanana 1-click links</value>
+    <value>Instala mods desde enlaces de un clic de GameBanana</value>
   </data>
 <data name="Settings_OneClickInstallWithoutConfirmation.Content" xml:space="preserve">
-    <value>Install without asking for confirmation</value>
+    <value>Instalar sin pedir confirmación</value>
   </data>
 <data name="Settings_OneClickInstallRepair.Content" xml:space="preserve">
-    <value>Re-register link</value>
+    <value>Volver a registrar el enlace</value>
   </data>
 <data name="Settings_OneClickInstallRemove.Content" xml:space="preserve">
-    <value>Remove link</value>
+    <value>Quitar enlace</value>
   </data>
 <data name="Settings_OneClickInstallStatus_Registered" xml:space="preserve">
-    <value>Registered for this installation ({0}).</value>
+    <value>Registrado para esta instalación ({0}).</value>
   </data>
 <data name="Settings_OneClickInstallStatus_NotRegistered" xml:space="preserve">
-    <value>Not registered: GameBanana cannot open JASM+ yet.</value>
+    <value>Sin registrar: GameBanana aún no puede abrir JASM+.</value>
   </data>
 <data name="Settings_OneClickInstallStatus_Foreign" xml:space="preserve">
-    <value>The '{0}' link belongs to another application ({1}).</value>
+    <value>El enlace «{0}» pertenece a otra aplicación ({1}).</value>
   </data>
 </root>

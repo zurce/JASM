@@ -4455,87 +4455,87 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
     <value>Vigia e gerencia automaticamente o d3dx_user.ini. Isso pode causar problemas se recarregar mods demorar muito ou se o armazenamento for lento; pode exigir recarregar (F10) algumas vezes se não carregar corretamente.</value>
   </data>
 <data name="OneClick_Failed_Title" xml:space="preserve">
-    <value>GameBanana 1-click install failed</value>
+    <value>Falha na instalação com um clique do GameBanana</value>
   </data>
 <data name="OneClick_Failed_Message" xml:space="preserve">
-    <value>The install could not be completed: {0}</value>
+    <value>Não foi possível concluir a instalação: {0}</value>
   </data>
 <data name="OneClick_ModNotFound_Message" xml:space="preserve">
-    <value>GameBanana did not return any information for mod {0}.</value>
+    <value>O GameBanana não retornou informações para o mod {0}.</value>
   </data>
 <data name="OneClick_UnsupportedGame_Title" xml:space="preserve">
-    <value>Game not supported</value>
+    <value>Jogo não suportado</value>
   </data>
 <data name="OneClick_UnsupportedGame_Message" xml:space="preserve">
-    <value>This mod is for {0}, which JASM+ does not support.</value>
+    <value>Este mod é para {0}, que o JASM+ não suporta.</value>
   </data>
 <data name="OneClick_WrongGame_Title" xml:space="preserve">
-    <value>Different game is active</value>
+    <value>Outro jogo está ativo</value>
   </data>
 <data name="OneClick_WrongGame_Message" xml:space="preserve">
-    <value>This mod is for {0}. Switch JASM+ to {0} and click the link again.</value>
+    <value>Este mod é para {0}. Mude o JASM+ para {0} e clique no link novamente.</value>
   </data>
 <data name="OneClick_Preparing_Status" xml:space="preserve">
-    <value>Preparing {0}…</value>
+    <value>Preparando {0}…</value>
   </data>
 <data name="OneClick_Downloading_Status" xml:space="preserve">
-    <value>Downloading {0} — {1}%</value>
+    <value>Baixando {0} — {1}%</value>
   </data>
 <data name="OneClick_UsingCachedArchive_Status" xml:space="preserve">
-    <value>Using the cached archive for {0}…</value>
+    <value>Usando o arquivo em cache de {0}…</value>
   </data>
 <data name="OneClick_Extracting_Status" xml:space="preserve">
-    <value>Extracting {0}…</value>
+    <value>Extraindo {0}…</value>
   </data>
 <data name="OneClick_Confirm_Title" xml:space="preserve">
-    <value>Install this mod?</value>
+    <value>Instalar este mod?</value>
   </data>
 <data name="OneClick_Confirm_Mod" xml:space="preserve">
     <value>Mod: {0}</value>
   </data>
 <data name="OneClick_Confirm_Author" xml:space="preserve">
-    <value>Author: {0}</value>
+    <value>Autor: {0}</value>
   </data>
 <data name="OneClick_Confirm_Target" xml:space="preserve">
-    <value>Game: {0}</value>
+    <value>Jogo: {0}</value>
   </data>
 <data name="OneClick_Confirm_Source" xml:space="preserve">
-    <value>Source: {0}</value>
+    <value>Origem: {0}</value>
   </data>
 <data name="OneClick_Confirm_Scan" xml:space="preserve">
-    <value>GameBanana scan: {0}{1}</value>
+    <value>Verificação do GameBanana: {0}{1}</value>
   </data>
 <data name="OneClick_Confirm_Install" xml:space="preserve">
-    <value>Install</value>
+    <value>Instalar</value>
   </data>
 <data name="OneClick_Confirm_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
 <data name="OneClick_Warning_Title" xml:space="preserve">
-    <value>This archive contains executable files</value>
+    <value>Este arquivo contém arquivos executáveis</value>
   </data>
 <data name="OneClick_Warning_Message" xml:space="preserve">
-    <value>{0} contains files that can run code:</value>
+    <value>{0} contém arquivos que podem executar código:</value>
   </data>
 <data name="OneClick_Warning_More" xml:space="preserve">
-    <value>…and {0} more</value>
+    <value>…e mais {0}</value>
   </data>
 <data name="OneClick_Warning_Continue" xml:space="preserve">
-    <value>Continue anyway</value>
+    <value>Continuar mesmo assim</value>
   </data>
 <data name="OneClick_Checking_Status" xml:space="preserve">
-    <value>Checking GameBanana…</value>
+    <value>Verificando o GameBanana…</value>
   </data>
 <data name="OneClick_Confirm_Category" xml:space="preserve">
-    <value>Category</value>
+    <value>Categoria</value>
   </data>
 <data name="OneClick_Confirm_Skin" xml:space="preserve">
     <value>Skin</value>
   </data>
 <data name="OneClick_Confirm_DefaultSkin" xml:space="preserve">
-    <value>Default</value>
+    <value>Padrão</value>
   </data>
 <data name="OneClick_NoTarget_Message" xml:space="preserve">
-    <value>No install target was selected.</value>
+    <value>Nenhum destino de instalação foi selecionado.</value>
   </data>
 </root>
