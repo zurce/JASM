@@ -146,6 +146,7 @@
                             Content="Install without asking for confirmation"
                             l:Uids.Uid="Settings_OneClickInstallWithoutConfirmation"
                             IsChecked="{x:Bind ViewModel.OneClickInstallWithoutConfirmation, Mode=OneWay}"
+                            IsEnabled="{x:Bind ViewModel.OneClickInstallEnabled, Mode=OneWay}"
                             ToolTipService.ToolTip="Links install as soon as they are opened. The warning for archives that contain executable files is still shown." />
                         <TextBlock
                             Text="{x:Bind ViewModel.OneClickInstallStatusText, Mode=OneWay}"
