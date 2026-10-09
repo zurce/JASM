@@ -76,21 +76,32 @@ public class ModInstallerService(
 
         // The archive root is often a wrapper around the real mod folder; the mod's name is the folder that
         // holds it (that is what the duplicate checks compare), so resolution has to happen before naming.
-        var rootFolder = installation.AutoSetModRootFolder() ?? modFolder;
-
-        // A link cannot ask what to do about a name clash, so this never replaces anything: the new mod goes in
-        // beside the existing one under a free folder name ("Name (2)"). It is left disabled as well, so a web
-        // link cannot silently change which mod the game loads.
-        var freeRootFolder = EnsureFreeModFolderName(rootFolder, modList);
-        if (freeRootFolder.FullName != rootFolder.FullName)
-            installation.SetRootModFolder(freeRootFolder);
+        installation.AutoSetModRootFolder();
 
         // Metadata (name, author, description, cover image) is normally fetched by the helper window from the
         // mod URL; when the helper is skipped the caller supplies it so the mod is not installed bare.
         var addOptions = metadata ?? new AddModOptions();
         addOptions.ModUrl = options.ModUrl?.ToString();
 
-        var installed = await installation.AddModAsync(addOptions).ConfigureAwait(false);
+        // A link cannot ask what to do about a name clash, so this never replaces anything: the new mod goes in
+        // beside the existing one under a free folder name ("Name (2)"). It is left disabled as well, so a web
+        // link cannot silently change which mod the game loads.
+        var duplicate = installation.AnyDuplicateName();
+        ISkinMod installed;
+        if (duplicate is null)
+        {
+            installed = await installation.AddModAsync(addOptions).ConfigureAwait(false);
+        }
+        else
+        {
+            // Renaming the extracted folder in place is denied (it lives inside the archive root), so the mod is
+            // renamed the way the Helper's own rename flow does it: copied to a fresh temp folder first. The
+            // existing mod keeps its name — the new one is the copy that moves aside.
+            addOptions.NewModFolderName = GetFreeModFolderName(installation.ModFolder, modList);
+
+            installed = await installation.RenameAndAddAsync(addOptions, duplicate, duplicate.Name)
+                .ConfigureAwait(false);
+        }
 
         // The skin the user picked in the dialog, else whatever the archive content indicates. It is stored on
         // the mod rather than applied: the mod is disabled, so this is the skin it uses once it gets enabled.
@@ -141,36 +152,24 @@ public class ModInstallerService(
     }
 
     /// <summary>
-    ///     Returns <paramref name="modFolder" /> renamed to a free name when a mod with the same folder name is
-    ///     already installed ("Name (2)"), so an unattended install never has to replace an existing mod.
+    ///     Returns a folder name that is free in <paramref name="modList" /> ("Name (2)"), for installing a mod
+    ///     beside an existing one with the same name instead of replacing it.
     /// </summary>
-    private static DirectoryInfo EnsureFreeModFolderName(DirectoryInfo modFolder, ICharacterModList modList)
+    private static string GetFreeModFolderName(DirectoryInfo modFolder, ICharacterModList modList)
     {
         static bool IsTaken(ICharacterModList list, string folderName)
         {
             return list.Mods.Any(entry => ModFolderHelpers.FolderNameEquals(entry.Mod.Name, folderName));
         }
 
-        if (!IsTaken(modList, modFolder.Name))
-            return modFolder;
-
-        var newName = string.Empty;
-        for (var i = 2; i < 1000 && newName.IsNullOrEmpty(); i++)
+        for (var i = 2; i < 1000; i++)
         {
             var candidate = $"{modFolder.Name} ({i})";
             if (!IsTaken(modList, candidate))
-                newName = candidate;
+                return candidate;
         }
 
-        if (newName.IsNullOrEmpty())
-            newName = $"{modFolder.Name} ({Guid.NewGuid():N})";
-
-        var parent = modFolder.Parent
-                     ?? throw new InvalidOperationException($"Mod folder {modFolder.FullName} has no parent folder");
-
-        var destination = Path.Combine(parent.FullName, newName);
-        modFolder.MoveTo(destination);
-        return new DirectoryInfo(destination);
+        return $"{modFolder.Name} ({Guid.NewGuid():N})";
     }
 
     private async Task<InstallMonitor> InternalStartAsync(DirectoryInfo modFolder, ICharacterModList modList,
