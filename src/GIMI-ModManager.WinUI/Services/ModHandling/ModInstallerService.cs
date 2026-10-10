@@ -10,6 +10,7 @@ using GIMI_ModManager.Core.Services;
 using GIMI_ModManager.WinUI.Contracts.Services;
 using GIMI_ModManager.WinUI.Models.Settings;
 using GIMI_ModManager.WinUI.Services.AppManagement;
+using GIMI_ModManager.WinUI.Services.Notifications;
 using GIMI_ModManager.WinUI.ViewModels;
 using GIMI_ModManager.WinUI.Views;
 using Microsoft.UI.Dispatching;
@@ -20,10 +21,22 @@ namespace GIMI_ModManager.WinUI.Services.ModHandling;
 
 public class ModInstallerService(
     IWindowManagerService windowManagerService,
-    ILocalSettingsService localSettingsService)
+    ILocalSettingsService localSettingsService,
+    CharacterSkinService characterSkinService,
+    ModSettingsService modSettingsService,
+    ModNotificationManager modNotificationManager,
+    NotificationManager notificationManager,
+    ILanguageLocalizer localizer,
+    ILogger logger)
 {
     private readonly ILocalSettingsService _localSettingsService = localSettingsService;
     private readonly IWindowManagerService _windowManagerService = windowManagerService;
+    private readonly CharacterSkinService _characterSkinService = characterSkinService;
+    private readonly ModSettingsService _modSettingsService = modSettingsService;
+    private readonly ModNotificationManager _modNotificationManager = modNotificationManager;
+    private readonly NotificationManager _notificationManager = notificationManager;
+    private readonly ILanguageLocalizer _localizer = localizer;
+    private readonly ILogger _logger = logger.ForContext<ModInstallerService>();
 
     public async Task<InstallMonitor> StartModInstallationAsync(DirectoryInfo modFolder, ICharacterModList modList,
         ICharacterSkin? inGameSkin = null, Action<InstallOptions>? setup = null)
@@ -45,6 +58,118 @@ public class ModInstallerService(
             await dispatcherQueue.EnqueueAsync(() => InternalStartAsync(modFolder, modList, inGameSkin, modOptions));
 
         return monitor;
+    }
+
+    /// <summary>
+    /// Installs without opening the Mod Installer Helper: used by 1-click installs when the user turned
+    /// confirmation off in the pre-install dialog (the helper would only ask the same thing again).
+    /// Mirrors what the helper does after its Install button is pressed — place the mod, pin the chosen or
+    /// detected in-game skin, enable it (disabling the other mods of that skin) and raise the usual notifications.
+    /// </summary>
+    public async Task<ISkinMod> InstallSilentlyAsync(DirectoryInfo modFolder, ICharacterModList modList,
+        InstallOptions options, AddModOptions? metadata = null, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(modFolder);
+        ArgumentNullException.ThrowIfNull(modList);
+
+        using var installation = ModInstallation.Start(modFolder, modList);
+
+        // The archive root is often a wrapper around the real mod folder; the mod's name is the folder that
+        // holds it (that is what the duplicate checks compare), so resolution has to happen before naming.
+        installation.AutoSetModRootFolder();
+
+        // Metadata (name, author, description, cover image) is normally fetched by the helper window from the
+        // mod URL; when the helper is skipped the caller supplies it so the mod is not installed bare.
+        var addOptions = metadata ?? new AddModOptions();
+        addOptions.ModUrl = options.ModUrl?.ToString();
+
+        // A link cannot ask what to do about a name clash, so this never replaces anything: the new mod goes in
+        // beside the existing one under a free folder name ("Name (2)"). It is left disabled as well, so a web
+        // link cannot silently change which mod the game loads.
+        var duplicate = installation.AnyDuplicateName();
+        ISkinMod installed;
+        if (duplicate is null)
+        {
+            installed = await installation.AddModAsync(addOptions).ConfigureAwait(false);
+        }
+        else
+        {
+            // Renaming the extracted folder in place is denied (it lives inside the archive root), so the mod is
+            // renamed the way the Helper's own rename flow does it: copied to a fresh temp folder first. The
+            // existing mod keeps its name — the new one is the copy that moves aside.
+            addOptions.NewModFolderName = GetFreeModFolderName(installation.ModFolder, modList);
+
+            installed = await installation.RenameAndAddAsync(addOptions, duplicate, duplicate.Name)
+                .ConfigureAwait(false);
+        }
+
+        // The skin the user picked in the dialog, else whatever the archive content indicates. It is stored on
+        // the mod rather than applied: the mod is disabled, so this is the skin it uses once it gets enabled.
+        ICharacterSkin? skin = null;
+        if (modList.Character is ICharacter character)
+        {
+            skin = !string.IsNullOrWhiteSpace(options.PreferredSkinInternalName)
+                ? character.Skins.FirstOrDefault(s => s.InternalNameEquals(options.PreferredSkinInternalName))
+                : await _characterSkinService.GetFirstSkinForModAsync(installed, character).ConfigureAwait(false);
+
+            if (skin is not null)
+                await _modSettingsService
+                    .SetCharacterSkinOverrideLegacy(installed.Id, skin.InternalName)
+                    .ConfigureAwait(false);
+        }
+
+        // Left disabled: a link cannot ask, and silently turning a mod on changes what the game loads.
+        if (modList.IsModEnabled(installed))
+            modList.DisableMod(installed.Id);
+
+        _logger.Information("Installed {ModName} into {Target} without the Mod Installer Helper{ Skin} (disabled)",
+            installed.Name, modList.Character.DisplayName,
+            skin is null ? string.Empty : $" (skin {skin.DisplayName})");
+
+        _notificationManager.ShowNotification(
+            string.Format(_localizer.GetLocalizedStringOrDefault("ModInstaller_ModInstalled") ?? "Mod '{0}' installed",
+                installed.GetDisplayName()),
+            string.Format(
+                _localizer.GetLocalizedStringOrDefault("ModInstaller_AddedToModList")
+                ?? "Mod '{0}' ({1}), was successfully added to {2} ModList", installed.GetDisplayName(), installed.Name,
+                modList.Character.DisplayName),
+            TimeSpan.FromSeconds(5));
+
+        _modNotificationManager.AddModNotification(new ModNotification
+        {
+            ModId = installed.Id,
+            CharacterInternalName = modList.Character.InternalName,
+            ModCustomName = installed.Settings.TryGetSettings(out var settings)
+                ? settings.CustomName ?? installed.Name
+                : installed.Name,
+            ModFolderName = installed.Name,
+            ShowOnOverview = true,
+            AttentionType = AttentionType.Added,
+            Message = "Mod was successfully added"
+        });
+
+        return installed;
+    }
+
+    /// <summary>
+    ///     Returns a folder name that is free in <paramref name="modList" /> ("Name (2)"), for installing a mod
+    ///     beside an existing one with the same name instead of replacing it.
+    /// </summary>
+    private static string GetFreeModFolderName(DirectoryInfo modFolder, ICharacterModList modList)
+    {
+        static bool IsTaken(ICharacterModList list, string folderName)
+        {
+            return list.Mods.Any(entry => ModFolderHelpers.FolderNameEquals(entry.Mod.Name, folderName));
+        }
+
+        for (var i = 2; i < 1000; i++)
+        {
+            var candidate = $"{modFolder.Name} ({i})";
+            if (!IsTaken(modList, candidate))
+                return candidate;
+        }
+
+        return $"{modFolder.Name} ({Guid.NewGuid():N})";
     }
 
     private async Task<InstallMonitor> InternalStartAsync(DirectoryInfo modFolder, ICharacterModList modList,
@@ -88,6 +213,12 @@ public class InstallOptions
     /// image) to its settings file — no mod files are added/replaced.
     /// </summary>
     public bool AssociateOnly { get; set; }
+
+    /// <summary>
+    /// In-game skin to preselect in the installer. Set when the user picked a target skin for a 1-click install
+    /// (GameBanana cannot express a skin in a link, so the choice comes from the install dialog).
+    /// </summary>
+    public string? PreferredSkinInternalName { get; set; }
 }
 
 public sealed class InstallMonitor : IDisposable

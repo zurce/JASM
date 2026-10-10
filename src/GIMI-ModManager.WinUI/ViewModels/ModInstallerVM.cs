@@ -186,6 +186,8 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         _characterModList = characterModList;
         _originModList = characterModList;
         ModCharacterName = characterModList.Character.DisplayName;
+        // Set before the selector so it can honour InstallOptions.PreferredSkinInternalName (1-click target choice).
+        _installOptions = options;
         InitInstallSkinSelector(inGameSkin);
         _modInstallation = ModInstallation.Start(modToInstall, _characterModList);
         ApplyInstallTargetList();
@@ -194,7 +196,6 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         if (options?.AssociateOnly == true)
             _modInstallation.UnlockFiles();
         _dispatcherQueue = dispatcherQueue;
-        _installOptions = options;
         _modToInstallFolder = modToInstall.FullName;
 
         RootFolder.Clear();
@@ -339,6 +340,10 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         if (inGameSkin is not null
             && InstallableSkins.Any(s => s.InternalNameEquals(inGameSkin.InternalName)))
             SelectedInstallSkinInternalName = inGameSkin.InternalName.Id;
+        else if (_installOptions?.PreferredSkinInternalName is { Length: > 0 } preferredSkin
+                 && InstallableSkins.FirstOrDefault(s => s.InternalNameEquals(preferredSkin)) is { } preferred)
+            // The user picked this skin in the 1-click install dialog.
+            SelectedInstallSkinInternalName = preferred.InternalName.Id;
         else
             SelectedInstallSkinInternalName =
                 InstallableSkins.FirstOrDefault(s => s.IsDefault)?.InternalName.Id

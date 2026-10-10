@@ -4493,4 +4493,88 @@ JASM+ не будет перемещать ваши моды и не будет 
   <data name="Settings_ModPersistence_UserIniDesc" xml:space="preserve">
     <value>Отслеживает и автоматически управляет файлом d3dx_user.ini. Это может вызвать проблемы, если загрузка модов занимает слишком много времени или хранилище медленное; при некорректной загрузке может потребоваться несколько перезагрузок (F10).</value>
   </data>
+<data name="OneClick_Failed_Title" xml:space="preserve">
+    <value>Не удалось установить в один клик из GameBanana</value>
+  </data>
+<data name="OneClick_Failed_Message" xml:space="preserve">
+    <value>Не удалось завершить установку: {0}</value>
+  </data>
+<data name="OneClick_ModNotFound_Message" xml:space="preserve">
+    <value>GameBanana не вернул информацию о моде {0}.</value>
+  </data>
+<data name="OneClick_UnsupportedGame_Title" xml:space="preserve">
+    <value>Игра не поддерживается</value>
+  </data>
+<data name="OneClick_UnsupportedGame_Message" xml:space="preserve">
+    <value>Этот мод для {0}, а JASM+ её не поддерживает.</value>
+  </data>
+<data name="OneClick_WrongGame_Title" xml:space="preserve">
+    <value>Активна другая игра</value>
+  </data>
+<data name="OneClick_WrongGame_Message" xml:space="preserve">
+    <value>Этот мод для {0}. Переключите JASM+ на {0} и нажмите ссылку снова.</value>
+  </data>
+<data name="OneClick_Preparing_Status" xml:space="preserve">
+    <value>Подготовка {0}…</value>
+  </data>
+<data name="OneClick_Downloading_Status" xml:space="preserve">
+    <value>Скачивание {0} — {1}%</value>
+  </data>
+<data name="OneClick_UsingCachedArchive_Status" xml:space="preserve">
+    <value>Используется кэшированный архив для {0}…</value>
+  </data>
+<data name="OneClick_Extracting_Status" xml:space="preserve">
+    <value>Распаковка {0}…</value>
+  </data>
+<data name="OneClick_Confirm_Title" xml:space="preserve">
+    <value>Установить этот мод?</value>
+  </data>
+<data name="OneClick_Confirm_Mod" xml:space="preserve">
+    <value>Мод: {0}</value>
+  </data>
+<data name="OneClick_Confirm_Author" xml:space="preserve">
+    <value>Автор: {0}</value>
+  </data>
+<data name="OneClick_Confirm_Target" xml:space="preserve">
+    <value>Игра: {0}</value>
+  </data>
+<data name="OneClick_Confirm_Source" xml:space="preserve">
+    <value>Источник: {0}</value>
+  </data>
+<data name="OneClick_Confirm_Scan" xml:space="preserve">
+    <value>Проверка GameBanana: {0}{1}</value>
+  </data>
+<data name="OneClick_Confirm_Install" xml:space="preserve">
+    <value>Установить</value>
+  </data>
+<data name="OneClick_Confirm_Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+<data name="OneClick_Warning_Title" xml:space="preserve">
+    <value>Этот архив содержит исполняемые файлы</value>
+  </data>
+<data name="OneClick_Warning_Message" xml:space="preserve">
+    <value>{0} содержит файлы, которые могут выполнять код:</value>
+  </data>
+<data name="OneClick_Warning_More" xml:space="preserve">
+    <value>…и ещё {0}</value>
+  </data>
+<data name="OneClick_Warning_Continue" xml:space="preserve">
+    <value>Всё равно продолжить</value>
+  </data>
+<data name="OneClick_Checking_Status" xml:space="preserve">
+    <value>Проверка GameBanana…</value>
+  </data>
+<data name="OneClick_Confirm_Category" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+<data name="OneClick_Confirm_Skin" xml:space="preserve">
+    <value>Скин</value>
+  </data>
+<data name="OneClick_Confirm_DefaultSkin" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+<data name="OneClick_NoTarget_Message" xml:space="preserve">
+    <value>Цель установки не выбрана.</value>
+  </data>
 </root>

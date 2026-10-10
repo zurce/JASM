@@ -4493,4 +4493,88 @@ Ini路径：{1}</value>
   <data name="Settings_ModPersistence_UserIniDesc" xml:space="preserve">
     <value>监视并自动管理 d3dx_user.ini。如果重新加载模组耗时过长或存储较慢，可能会带来问题；如果加载不正常，可能需要按F10重新加载几次。</value>
   </data>
+<data name="OneClick_Failed_Title" xml:space="preserve">
+    <value>GameBanana 一键安装失败</value>
+  </data>
+<data name="OneClick_Failed_Message" xml:space="preserve">
+    <value>无法完成安装：{0}</value>
+  </data>
+<data name="OneClick_ModNotFound_Message" xml:space="preserve">
+    <value>GameBanana 未返回 Mod {0} 的任何信息。</value>
+  </data>
+<data name="OneClick_UnsupportedGame_Title" xml:space="preserve">
+    <value>不支持的游戏</value>
+  </data>
+<data name="OneClick_UnsupportedGame_Message" xml:space="preserve">
+    <value>此 Mod 适用于 {0}，JASM+ 不支持该游戏。</value>
+  </data>
+<data name="OneClick_WrongGame_Title" xml:space="preserve">
+    <value>当前是其他游戏</value>
+  </data>
+<data name="OneClick_WrongGame_Message" xml:space="preserve">
+    <value>此 Mod 适用于 {0}。请将 JASM+ 切换到 {0} 并再次点击链接。</value>
+  </data>
+<data name="OneClick_Preparing_Status" xml:space="preserve">
+    <value>正在准备 {0}…</value>
+  </data>
+<data name="OneClick_Downloading_Status" xml:space="preserve">
+    <value>正在下载 {0} — {1}%</value>
+  </data>
+<data name="OneClick_UsingCachedArchive_Status" xml:space="preserve">
+    <value>正在使用 {0} 的缓存压缩包…</value>
+  </data>
+<data name="OneClick_Extracting_Status" xml:space="preserve">
+    <value>正在解压 {0}…</value>
+  </data>
+<data name="OneClick_Confirm_Title" xml:space="preserve">
+    <value>要安装此 Mod 吗？</value>
+  </data>
+<data name="OneClick_Confirm_Mod" xml:space="preserve">
+    <value>Mod：{0}</value>
+  </data>
+<data name="OneClick_Confirm_Author" xml:space="preserve">
+    <value>作者：{0}</value>
+  </data>
+<data name="OneClick_Confirm_Target" xml:space="preserve">
+    <value>游戏：{0}</value>
+  </data>
+<data name="OneClick_Confirm_Source" xml:space="preserve">
+    <value>来源：{0}</value>
+  </data>
+<data name="OneClick_Confirm_Scan" xml:space="preserve">
+    <value>GameBanana 扫描：{0}{1}</value>
+  </data>
+<data name="OneClick_Confirm_Install" xml:space="preserve">
+    <value>安装</value>
+  </data>
+<data name="OneClick_Confirm_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+<data name="OneClick_Warning_Title" xml:space="preserve">
+    <value>此压缩包包含可执行文件</value>
+  </data>
+<data name="OneClick_Warning_Message" xml:space="preserve">
+    <value>{0} 包含可以运行代码的文件：</value>
+  </data>
+<data name="OneClick_Warning_More" xml:space="preserve">
+    <value>…以及另外 {0} 个</value>
+  </data>
+<data name="OneClick_Warning_Continue" xml:space="preserve">
+    <value>仍然继续</value>
+  </data>
+<data name="OneClick_Checking_Status" xml:space="preserve">
+    <value>正在检查 GameBanana…</value>
+  </data>
+<data name="OneClick_Confirm_Category" xml:space="preserve">
+    <value>分类</value>
+  </data>
+<data name="OneClick_Confirm_Skin" xml:space="preserve">
+    <value>皮肤</value>
+  </data>
+<data name="OneClick_Confirm_DefaultSkin" xml:space="preserve">
+    <value>默认</value>
+  </data>
+<data name="OneClick_NoTarget_Message" xml:space="preserve">
+    <value>未选择安装目标。</value>
+  </data>
 </root>

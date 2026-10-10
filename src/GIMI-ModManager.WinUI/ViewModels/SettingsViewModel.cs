@@ -55,6 +55,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     private readonly LifeCycleService _lifeCycleService;
     private readonly INavigationService _navigationService;
     private readonly ModArchiveRepository _modArchiveRepository;
+    private readonly OneClickLaunchService _oneClickLaunchService;
 
 
     private readonly NotificationManager _notificationManager;
@@ -109,6 +110,11 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
     [ObservableProperty] private Uri _archiveCacheFolderPath;
 
     [ObservableProperty] private bool _persistWindowSize = false;
+
+    // GameBanana 1-click installs (app-scoped)
+    [ObservableProperty] private bool _oneClickInstallEnabled = true;
+    [ObservableProperty] private bool _oneClickInstallWithoutConfirmation;
+    [ObservableProperty] private string _oneClickInstallStatusText = string.Empty;
 
     [ObservableProperty] private bool _persistWindowPosition = false;
 
@@ -318,7 +324,8 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         IGameService gameService, ILanguageLocalizer localizer,
         SelectedGameService selectedGameService, ModUpdateAvailableChecker modUpdateAvailableChecker,
         LifeCycleService lifeCycleService, INavigationService navigationService,
-        ModArchiveRepository modArchiveRepository, ICommunityGamesService communityGamesService)
+        ModArchiveRepository modArchiveRepository, ICommunityGamesService communityGamesService,
+        OneClickLaunchService oneClickLaunchService)
     {
         _themeSelectorService = themeSelectorService;
         _localSettingsService = localSettingsService;
@@ -337,6 +344,7 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         _navigationService = navigationService;
         _modArchiveRepository = modArchiveRepository;
         _communityGamesService = communityGamesService;
+        _oneClickLaunchService = oneClickLaunchService;
         GenshinProcessManager = genshinProcessManager;
         ThreeDMigtoProcessManager = threeDMigtoProcessManager;
         _logger = logger.ForContext<SettingsViewModel>();
@@ -483,6 +491,100 @@ public partial class SettingsViewModel : ObservableRecipient, INavigationAware
         }
 
         await _localSettingsService.SaveSettingAsync(ScreenSizeSettings.Key, windowSettings).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Loads the app-scoped 1-click settings and the current state of the URL scheme registration, so the
+    /// Settings page shows whether GameBanana links actually reach this installation.
+    /// </summary>
+    private async Task LoadOneClickInstallSettingsAsync()
+    {
+        try
+        {
+            var settings = await _oneClickLaunchService.GetSettingsAsync();
+            OneClickInstallEnabled = settings.Enabled;
+            OneClickInstallWithoutConfirmation = settings.InstallWithoutConfirmation;
+            await RefreshOneClickInstallStatusAsync().ConfigureAwait(false);
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "Could not read the 1-click install settings");
+        }
+    }
+
+    private async Task RefreshOneClickInstallStatusAsync()
+    {
+        var status = await _oneClickLaunchService.GetRegistrationStatusAsync().ConfigureAwait(false);
+        var scheme = await _oneClickLaunchService.GetSchemeAsync().ConfigureAwait(false);
+
+        if (!status.KeyExists)
+        {
+            OneClickInstallStatusText = _localizer.GetLocalizedStringOrDefault("/Settings/Settings_OneClickInstallStatus_NotRegistered")
+                                        ?? "Not registered: GameBanana cannot open JASM+ yet.";
+        }
+        else if (status.RegisteredToAnotherApplication)
+        {
+            OneClickInstallStatusText = string.Format(
+                _localizer.GetLocalizedStringOrDefault("/Settings/Settings_OneClickInstallStatus_Foreign")
+                ?? "The '{0}' link belongs to another application ({1}).", scheme, status.ExecutablePath ?? "?");
+        }
+        else
+        {
+            OneClickInstallStatusText = string.Format(
+                _localizer.GetLocalizedStringOrDefault("/Settings/Settings_OneClickInstallStatus_Registered")
+                ?? "Registered for this installation ({0}).", status.ExecutablePath ?? "?");
+        }
+    }
+
+    /// <summary>Registers or removes the link, then reflects the real result in the UI.</summary>
+    private async Task ApplyOneClickInstallEnabledAsync()
+    {
+        try
+        {
+            var settings = await _oneClickLaunchService.GetSettingsAsync();
+            settings.Enabled = OneClickInstallEnabled;
+            await _oneClickLaunchService.SaveSettingsAsync(settings);
+
+            await _oneClickLaunchService.ApplyRegistrationAsync();
+            await RefreshOneClickInstallStatusAsync().ConfigureAwait(false);
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "Could not update the GameBanana link registration");
+        }
+    }
+
+    [RelayCommand]
+    private async Task OneClickInstallEnabledToggle()
+    {
+        OneClickInstallEnabled = !OneClickInstallEnabled;
+        await ApplyOneClickInstallEnabledAsync();
+    }
+
+    [RelayCommand]
+    private async Task OneClickInstallWithoutConfirmationToggle()
+    {
+        OneClickInstallWithoutConfirmation = !OneClickInstallWithoutConfirmation;
+
+        var settings = await _oneClickLaunchService.GetSettingsAsync();
+        settings.InstallWithoutConfirmation = OneClickInstallWithoutConfirmation;
+        await _oneClickLaunchService.SaveSettingsAsync(settings);
+    }
+
+    /// <summary>Re-registers the link for this installation (e.g. after moving the app folder).</summary>
+    [RelayCommand]
+    private async Task OneClickInstallRepair()
+    {
+        OneClickInstallEnabled = true;
+        await ApplyOneClickInstallEnabledAsync();
+    }
+
+    /// <summary>Removes the link registration; GameBanana will no longer be able to open JASM+.</summary>
+    [RelayCommand]
+    private async Task OneClickInstallRemove()
+    {
+        OneClickInstallEnabled = false;
+        await ApplyOneClickInstallEnabledAsync();
     }
 
     private static string GetVersionDescription()
@@ -1450,6 +1552,7 @@ exit /b 1
 
         PersistWindowSize = windowSettings.PersistWindowSize;
         PersistWindowPosition = windowSettings.PersistWindowPosition;
+        await LoadOneClickInstallSettingsAsync();
         await GenshinProcessManager.TryInitialize();
         await ThreeDMigtoProcessManager.TryInitialize();
         ModCacheSizeGB = _modArchiveRepository.GetTotalCacheSizeInGB().ToString("F");

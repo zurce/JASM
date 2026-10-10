@@ -4492,4 +4492,88 @@ JASMはModを移動したり削除したりしません。
   <data name="Settings_ModPersistence_UserIniDesc" xml:space="preserve">
     <value>d3dx_user.iniを監視し自動管理します。Modの再読み込みに時間がかかる場合やストレージが遅い場合は問題が発生する可能性があります。正しく読み込まれない場合は（F10で）数回再読み込みが必要になることがあります。</value>
   </data>
+<data name="OneClick_Failed_Title" xml:space="preserve">
+    <value>GameBananaワンクリックインストールに失敗しました</value>
+  </data>
+<data name="OneClick_Failed_Message" xml:space="preserve">
+    <value>インストールを完了できませんでした: {0}</value>
+  </data>
+<data name="OneClick_ModNotFound_Message" xml:space="preserve">
+    <value>GameBananaからMod {0} の情報が返されませんでした。</value>
+  </data>
+<data name="OneClick_UnsupportedGame_Title" xml:space="preserve">
+    <value>対応していないゲーム</value>
+  </data>
+<data name="OneClick_UnsupportedGame_Message" xml:space="preserve">
+    <value>このModは{0}用ですが、JASM+は対応していません。</value>
+  </data>
+<data name="OneClick_WrongGame_Title" xml:space="preserve">
+    <value>別のゲームが選択されています</value>
+  </data>
+<data name="OneClick_WrongGame_Message" xml:space="preserve">
+    <value>このModは{0}用です。JASM+を{0}に切り替えて、もう一度リンクをクリックしてください。</value>
+  </data>
+<data name="OneClick_Preparing_Status" xml:space="preserve">
+    <value>{0}を準備中…</value>
+  </data>
+<data name="OneClick_Downloading_Status" xml:space="preserve">
+    <value>{0}をダウンロード中 — {1}%</value>
+  </data>
+<data name="OneClick_UsingCachedArchive_Status" xml:space="preserve">
+    <value>{0}のキャッシュ済みアーカイブを使用中…</value>
+  </data>
+<data name="OneClick_Extracting_Status" xml:space="preserve">
+    <value>{0}を展開中…</value>
+  </data>
+<data name="OneClick_Confirm_Title" xml:space="preserve">
+    <value>このModをインストールしますか？</value>
+  </data>
+<data name="OneClick_Confirm_Mod" xml:space="preserve">
+    <value>Mod: {0}</value>
+  </data>
+<data name="OneClick_Confirm_Author" xml:space="preserve">
+    <value>作者: {0}</value>
+  </data>
+<data name="OneClick_Confirm_Target" xml:space="preserve">
+    <value>ゲーム: {0}</value>
+  </data>
+<data name="OneClick_Confirm_Source" xml:space="preserve">
+    <value>ソース: {0}</value>
+  </data>
+<data name="OneClick_Confirm_Scan" xml:space="preserve">
+    <value>GameBananaスキャン: {0}{1}</value>
+  </data>
+<data name="OneClick_Confirm_Install" xml:space="preserve">
+    <value>インストール</value>
+  </data>
+<data name="OneClick_Confirm_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+<data name="OneClick_Warning_Title" xml:space="preserve">
+    <value>このアーカイブには実行可能なファイルが含まれています</value>
+  </data>
+<data name="OneClick_Warning_Message" xml:space="preserve">
+    <value>{0}にコードを実行できるファイルが含まれています:</value>
+  </data>
+<data name="OneClick_Warning_More" xml:space="preserve">
+    <value>…他 {0} 件</value>
+  </data>
+<data name="OneClick_Warning_Continue" xml:space="preserve">
+    <value>そのまま続行</value>
+  </data>
+<data name="OneClick_Checking_Status" xml:space="preserve">
+    <value>GameBananaを確認中…</value>
+  </data>
+<data name="OneClick_Confirm_Category" xml:space="preserve">
+    <value>カテゴリ</value>
+  </data>
+<data name="OneClick_Confirm_Skin" xml:space="preserve">
+    <value>スキン</value>
+  </data>
+<data name="OneClick_Confirm_DefaultSkin" xml:space="preserve">
+    <value>デフォルト</value>
+  </data>
+<data name="OneClick_NoTarget_Message" xml:space="preserve">
+    <value>インストール先が選択されていません。</value>
+  </data>
 </root>

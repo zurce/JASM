@@ -209,4 +209,28 @@ La verificación manual de actualizaciones siempre consulta directamente a GameB
   <data name="ExpertConfig_ModPageDesc.Text" xml:space="preserve">
     <value>Mantener Alt en el botón abrir-URL habilita la reasociación en mods existentes.</value>
   </data>
+<data name="Settings_OneClickInstall.Content" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
+<data name="Settings_OneClickInstallEnabled.Content" xml:space="preserve">
+    <value>Instala mods desde enlaces de un clic de GameBanana</value>
+  </data>
+<data name="Settings_OneClickInstallWithoutConfirmation.Content" xml:space="preserve">
+    <value>Instalar sin pedir confirmación</value>
+  </data>
+<data name="Settings_OneClickInstallRepair.Content" xml:space="preserve">
+    <value>Volver a registrar el enlace</value>
+  </data>
+<data name="Settings_OneClickInstallRemove.Content" xml:space="preserve">
+    <value>Quitar enlace</value>
+  </data>
+<data name="Settings_OneClickInstallStatus_Registered" xml:space="preserve">
+    <value>Registrado para esta instalación ({0}).</value>
+  </data>
+<data name="Settings_OneClickInstallStatus_NotRegistered" xml:space="preserve">
+    <value>Sin registrar: GameBanana aún no puede abrir JASM+.</value>
+  </data>
+<data name="Settings_OneClickInstallStatus_Foreign" xml:space="preserve">
+    <value>El enlace «{0}» pertenece a otra aplicación ({1}).</value>
+  </data>
 </root>

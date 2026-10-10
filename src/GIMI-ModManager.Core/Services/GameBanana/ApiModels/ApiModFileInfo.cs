@@ -17,6 +17,16 @@ public class ApiModFileInfo
     [JsonPropertyName("_sAnalysisResultCode")]
     public string AnalysisResultCode { get; init; } = null!;
 
+    /// <summary>GameBanana's antivirus verdict for this file (e.g. <c>clean</c>).</summary>
+    [JsonPropertyName("_sAvResult")] public string AvResult { get; init; } = null!;
+
+    /// <summary>GameBanana's analysis verdict (e.g. <c>ok</c>).</summary>
+    [JsonPropertyName("_sAnalysisResult")] public string AnalysisResult { get; init; } = null!;
+
+    /// <summary>Human-readable analysis verdict, e.g. "File passed preliminary analysis".</summary>
+    [JsonPropertyName("_sAnalysisResultVerbose")]
+    public string AnalysisResultVerbose { get; init; } = null!;
+
     [JsonPropertyName("_sMd5Checksum")] public string Md5Checksum { get; init; } = null!;
 
     [JsonPropertyName("_nDownloadCount")] public int DownloadCount { get; init; } = -1;

@@ -172,6 +172,11 @@ public sealed class OneClickLaunchService : IDisposable
         var scheme = string.IsNullOrWhiteSpace(settings.Scheme) ? OneClickUri.DefaultScheme : settings.Scheme.Trim();
         var service = CreateRegistrationService(scheme);
 
+        _logger.Information("1-click scheme registration check: enabled={Enabled}, scheme={Scheme}, status={Status}",
+            settings.Enabled, scheme, service.GetStatus() is { } status
+                ? $"exists={status.KeyExists} ours={status.RegisteredToThisExecutable} foreign={status.RegisteredToAnotherApplication}"
+                : "unknown");
+
         if (!settings.Enabled)
         {
             // Turning the feature off must leave the machine as clean as we found it — but only if it is ours.

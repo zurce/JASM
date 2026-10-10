@@ -230,4 +230,28 @@ JASM部分支持鸣潮和绝区零。</value>
     <value>在打开 URL 按钮上按住 Alt 可启用对现有 Mod 的重新关联。</value>
   </data>
 
+<data name="Settings_OneClickInstall.Content" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
+<data name="Settings_OneClickInstallEnabled.Content" xml:space="preserve">
+    <value>通过 GameBanana 一键链接安装 Mod</value>
+  </data>
+<data name="Settings_OneClickInstallWithoutConfirmation.Content" xml:space="preserve">
+    <value>安装时不请求确认</value>
+  </data>
+<data name="Settings_OneClickInstallRepair.Content" xml:space="preserve">
+    <value>重新注册链接</value>
+  </data>
+<data name="Settings_OneClickInstallRemove.Content" xml:space="preserve">
+    <value>移除链接</value>
+  </data>
+<data name="Settings_OneClickInstallStatus_Registered" xml:space="preserve">
+    <value>已为此安装注册（{0}）。</value>
+  </data>
+<data name="Settings_OneClickInstallStatus_NotRegistered" xml:space="preserve">
+    <value>未注册：GameBanana 目前无法打开 JASM+。</value>
+  </data>
+<data name="Settings_OneClickInstallStatus_Foreign" xml:space="preserve">
+    <value>'{0}' 链接属于其他应用程序（{1}）。</value>
+  </data>
 </root>

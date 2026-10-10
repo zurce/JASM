@@ -230,4 +230,28 @@ JASM+ частично поддерживает WUWA и ZZZ</value>
     <value>Удержание Alt на кнопке открытия URL включает повторную привязку существующих модов.</value>
   </data>
 
+<data name="Settings_OneClickInstall.Content" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
+<data name="Settings_OneClickInstallEnabled.Content" xml:space="preserve">
+    <value>Устанавливать моды по ссылкам GameBanana в один клик</value>
+  </data>
+<data name="Settings_OneClickInstallWithoutConfirmation.Content" xml:space="preserve">
+    <value>Устанавливать без подтверждения</value>
+  </data>
+<data name="Settings_OneClickInstallRepair.Content" xml:space="preserve">
+    <value>Перерегистрировать связь</value>
+  </data>
+<data name="Settings_OneClickInstallRemove.Content" xml:space="preserve">
+    <value>Удалить связь</value>
+  </data>
+<data name="Settings_OneClickInstallStatus_Registered" xml:space="preserve">
+    <value>Зарегистрировано для этой установки ({0}).</value>
+  </data>
+<data name="Settings_OneClickInstallStatus_NotRegistered" xml:space="preserve">
+    <value>Не зарегистрировано: GameBanana пока не может открыть JASM+.</value>
+  </data>
+<data name="Settings_OneClickInstallStatus_Foreign" xml:space="preserve">
+    <value>Связь «{0}» принадлежит другому приложению ({1}).</value>
+  </data>
 </root>
