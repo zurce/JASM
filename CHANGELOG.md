@@ -1,5 +1,48 @@
 # Changelog
 
+## [3.1.0](https://github.com/zurce/JASM/compare/v3.0.2...v3.1.0) (2026-10-10)
+
+
+### Features
+
+* addon rows in mod grid with per-row checkbox alignment ([07fd766](https://github.com/zurce/JASM/commit/07fd766804be8a5e86204eda896a8ec53fb76bfb))
+* dependent add-on mods via multi-install (model, batch, drag-nest) ([c5db19e](https://github.com/zurce/JASM/commit/c5db19efd762580f05648d43b90cc8de574bfc9d))
+* grid integration for add-ons plus install flow fixes ([8f1d9a3](https://github.com/zurce/JASM/commit/8f1d9a35c938209c48fbbcf33197f3ac2425a445))
+* **i18n:** in-repo translation pipeline + restore 16 dropped placeholders ([bbb3f84](https://github.com/zurce/JASM/commit/bbb3f8465480fa64cfd417e9382e8b1828a158d6))
+* install mods into alternate in-game skins from the Mod Installer ([c5a0053](https://github.com/zurce/JASM/commit/c5a0053ae186febfbaa839671e1ed93c0c12b5ae))
+* install multiple GameBanana files as variants (phase 1 UI flow) ([6354a49](https://github.com/zurce/JASM/commit/6354a49e84a5600b65b6f58dc2a0252a863dfe55))
+* **oneclick:** "install without confirmation" skips the Mod Installer Helper, not the alert ([0359954](https://github.com/zurce/JASM/commit/0359954290aaffac445d54cbecb5f82001da04d5))
+* **oneclick:** confirm before installing, and warn about executable content ([574b49a](https://github.com/zurce/JASM/commit/574b49aaafe6672b8ab2f8d4decbbf8113182ab5))
+* **oneclick:** dev-only link options so the harness can drive skin/target cases ([2cfe977](https://github.com/zurce/JASM/commit/2cfe9776a10a13be59fa0c4075c5fb3a091738e0))
+* **oneclick:** leave the target picker's placeholder empty ([023929f](https://github.com/zurce/JASM/commit/023929f7e140947fb6dc33184e4318aeb8dbcd2a))
+* **oneclick:** parse GameBanana 1-click links and own the scheme registration ([87e43c8](https://github.com/zurce/JASM/commit/87e43c8eb4cf3ee7abbbc21c5cf732c7c9796164))
+* **oneclick:** run GameBanana 1-click links through the normal install path ([ce0fca6](https://github.com/zurce/JASM/commit/ce0fca61370f2da78e616486f1e75febdc497e07))
+* **oneclick:** Settings section for GameBanana link installs ([4cd0889](https://github.com/zurce/JASM/commit/4cd08896cee75a895b41e6b13dc1c0494591f326))
+* **oneclick:** show download progress for heavy mods, and localize the 1-click strings ([03be6ee](https://github.com/zurce/JASM/commit/03be6eef0b8f45de2446d2eee06ecb8729d28678))
+* **oneclick:** show the busy dialog while resolving a link, plus flow diagnostics ([e560c38](https://github.com/zurce/JASM/commit/e560c38e81fd8a958a1d6bc894d10c24f8304ad4))
+* **oneclick:** target picker in the install dialog (category, character, skin) ([271de4b](https://github.com/zurce/JASM/commit/271de4b8e97224d706f0d352b619169e5d709036))
+* **oneclick:** unattended install takes metadata at download time, adds a separate disabled mod ([e514fb8](https://github.com/zurce/JASM/commit/e514fb833d845687772db08f8fa02aa3d3007ea0))
+
+
+### Bug Fixes
+
+* **i18n:** restore three labels my rename clobbered ([fc0ab85](https://github.com/zurce/JASM/commit/fc0ab85685f7b96f2cd5be74fa42a0f639795018))
+* **installer:** honour the chosen skin for multi-skin mod archives ([58111da](https://github.com/zurce/JASM/commit/58111daa1a4135aa32f9eb47cfe120a7c7be310e))
+* **oneclick:** a 1-click install no longer waits behind the mod update sweep, and never collides on a name ([6b5c02d](https://github.com/zurce/JASM/commit/6b5c02d5789a8588d8b4663360ddeb21921bc4d5))
+* **oneclick:** exit deterministically when another instance already runs ([1bd72fe](https://github.com/zurce/JASM/commit/1bd72fe09fa65a9bef7e793e3e637a1a183c1874))
+* **oneclick:** fetch the mod's metadata when the helper is skipped ([6a30593](https://github.com/zurce/JASM/commit/6a30593a0559629f623aba3267c2df9c189cf73d))
+* **oneclick:** install the same-named copy through RenameAndAddAsync, not by moving the extracted folder ([b0e68df](https://github.com/zurce/JASM/commit/b0e68df10fb00e10c537d7888a0f17fc4d113616))
+* **oneclick:** make the target dialog's pickers actually work in WinUI ([019cd51](https://github.com/zurce/JASM/commit/019cd5101877d777a1262006b0346073e6cb9f99))
+* **oneclick:** register the URL scheme in the right place (double-prefixed key path) ([a584a80](https://github.com/zurce/JASM/commit/a584a8052625776a1ffe14d6a34abc0f4f3b88cf))
+* **oneclick:** resolve GameBanana category names to JASM characters properly ([467e975](https://github.com/zurce/JASM/commit/467e975412d4280c6011e2798af35d3ccba83964))
+* **oneclick:** resolve surname-first categories in code, not by editing game assets ([b1e6414](https://github.com/zurce/JASM/commit/b1e64147a6e727dfbb4037522be10ef749be68f8))
+* **oneclick:** show the skin picker only when the helper is skipped, with a label above it ([e3ae8e7](https://github.com/zurce/JASM/commit/e3ae8e794c6e9ff465e165a5402ef3de679ed2cd))
+* **oneclick:** the install dialog's skin row crashed / came up empty ([72d56fe](https://github.com/zurce/JASM/commit/72d56fe5d0742350cea6e772674440713a4d8bda))
+* persist mod config for direct (non-XXMI) 3DMigoto installs ([fe74566](https://github.com/zurce/JASM/commit/fe7456615ccacb96750623fda317699e4a8ff14d))
+* resolve Add Mod button text via underscore resw key in all locales ([3819a55](https://github.com/zurce/JASM/commit/3819a5540d1ca862486cc9cfba0ccb07ba6b9b50))
+* route GameBanana tool downloads to the Tool API namespace ([32660bf](https://github.com/zurce/JASM/commit/32660bfd0755877d9e4eb5a8eec6d0895b6b4bd9))
+* **settings:** grey out the 1-click confirmation toggle when links are off ([ed549a0](https://github.com/zurce/JASM/commit/ed549a0afde80d09a0951507695d21130fd9ca45))
+
 ## [2.22.9](https://github.com/Jorixon/JASM/compare/v2.22.8...v2.22.9) (2026-01-18)
 
 
