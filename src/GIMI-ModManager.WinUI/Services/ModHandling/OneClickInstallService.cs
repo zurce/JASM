@@ -43,6 +43,7 @@ public sealed class OneClickInstallService
     private readonly NotificationManager _notificationManager;
     private readonly ILanguageLocalizer _localizer;
     private readonly ILogger _logger;
+    private readonly LifeCycleService _lifeCycleService;
 
     public OneClickInstallService(GameBananaCoreService gameBananaCoreService,
         IGameService gameService,
@@ -55,7 +56,8 @@ public sealed class OneClickInstallService
         ModUpdateAvailableChecker modUpdateChecker,
         NotificationManager notificationManager,
         ILanguageLocalizer localizer,
-        ILogger logger)
+        ILogger logger,
+        LifeCycleService lifeCycleService)
     {
         _gameBananaCoreService = gameBananaCoreService;
         _gameService = gameService;
@@ -69,6 +71,7 @@ public sealed class OneClickInstallService
         _notificationManager = notificationManager;
         _localizer = localizer;
         _logger = logger.ForContext<OneClickInstallService>();
+        _lifeCycleService = lifeCycleService;
     }
 
     /// <summary>Runs the link. Safe to call from the UI thread; the installer is opened on it.</summary>
@@ -130,15 +133,56 @@ public sealed class OneClickInstallService
                 return;
             }
 
-            var selectedGame = await _selectedGameService.GetSelectedGameAsync().ConfigureAwait(true);
-            if (!string.Equals(game.Value.ToString(), selectedGame, StringComparison.OrdinalIgnoreCase))
+            var selectedGameName = await _selectedGameService.GetSelectedGameAsync().ConfigureAwait(true);
+            var installGame = game.Value;
+            if (!string.Equals(game.Value.ToString(), selectedGameName, StringComparison.OrdinalIgnoreCase))
             {
-                // Follow-up: a "switch to <game> and install?" prompt. For now, be explicit rather than
-                // silently switching the user's whole UI context.
-                Notify("OneClick_WrongGame_Title",
-                    Format("OneClick_WrongGame_Message", "This mod is for {0}. Switch JASM+ to {0} and click the link again.",
-                        game.Value));
-                return;
+                // The mod belongs to another game. "Switch" restarts the app into that game with this same link
+                // on the new instance's command line; "Force" stays here and installs into the active game with
+                // no target preselected (cross-game mods usually fit a section such as Others).
+                var gameIsConfigured = await _selectedGameService
+                    .IsJasmInitializedForGameAsync(game.Value.ToString()).ConfigureAwait(true);
+
+                _logger.Information(
+                    "1-click link for mod {ModId} targets {Game}, but {Selected} is active (target game configured: {Configured}); asking the user",
+                    request.ModId, game.Value, selectedGameName, gameIsConfigured);
+
+                var decision = await PromptSwitchGameAsync(game.Value.ToString(), profile, gameIsConfigured)
+                    .ConfigureAwait(true);
+
+                switch (decision)
+                {
+                    case SwitchGameDecision.Cancel:
+                        _logger.Information("1-click install for mod {ModId} was cancelled at the switch-game prompt",
+                            request.ModId);
+                        return;
+
+                    case SwitchGameDecision.SwitchGame:
+                        _logger.Information(
+                            "1-click install for mod {ModId}: switching to {Game} and restarting to continue the install",
+                            request.ModId, game.Value);
+                        // Same restart contract the shell's game button uses (save the game, then restart); the raw
+                        // link rides along as an argument so the new instance runs this whole flow again.
+                        await _lifeCycleService.RestartAsync(
+                                request.Raw,
+                                notifyOnError: true,
+                                postShutdownLogic: () => _selectedGameService.SetSelectedGame(game.Value.ToString()))
+                            .ConfigureAwait(true);
+                        return;
+
+                    case SwitchGameDecision.ForceHere:
+                        // Drop the detected character: it was resolved from this mod's category, which belongs to
+                        // the other game and can collide with a name in this one.
+                        character = null;
+                        installGame = Enum.TryParse<SupportedGames>(selectedGameName, true, out var activeGame)
+                            ? activeGame
+                            : game.Value;
+
+                        _logger.Information(
+                            "1-click install for mod {ModId}: forcing the install on the active game ({Game}) with no target preselected",
+                            request.ModId, selectedGameName);
+                        break;
+                }
             }
 
             var modUrl = profile.ModPageUrl;
@@ -161,7 +205,7 @@ public sealed class OneClickInstallService
                 request.ModId, character?.DisplayName ?? "not detected", helperWillOpen ? "opens" : "skipped",
                 offerSkinPicker ? "shown" : "hidden");
 
-            var chosen = await ConfirmInstallAsync(profile, fileInfo, game.Value, character, modUrl, offerSkinPicker)
+            var chosen = await ConfirmInstallAsync(profile, fileInfo, installGame, character, modUrl, offerSkinPicker)
                 .ConfigureAwait(true);
 
             if (chosen is null)
@@ -604,8 +648,19 @@ public sealed class OneClickInstallService
             .ConfigureAwait(true);
     }
 
-    private static async Task<bool> ShowConfirmDialogAsync(string title, IReadOnlyList<string> lines,
+    private async Task<bool> ShowConfirmDialogAsync(string title, IReadOnlyList<string> lines,
         string primaryButtonText, string closeButtonText)
+        => await ShowDialogAsync(title, lines, primaryButtonText, closeButtonText).ConfigureAwait(true) ==
+           ContentDialogResult.Primary;
+
+    /// <summary>
+    /// Shows a dialog with <paramref name="lines"/> as the body (first line emphasized). The two-choice form uses
+    /// the dialog's own button row; three choices are stacked in the content instead, because that row lays its
+    /// buttons out horizontally and a long label ("Force Installation on this Game") is clipped rather than
+    /// wrapped — in several locales it would not fit at all.
+    /// </summary>
+    private async Task<ContentDialogResult> ShowDialogAsync(string title, IReadOnlyList<string> lines,
+        string primaryButtonText, string closeButtonText, string? secondaryButtonText = null)
     {
         var content = new StackPanel { Spacing = 8, MaxWidth = 460 };
 
@@ -631,16 +686,113 @@ public sealed class OneClickInstallService
             XamlRoot = App.MainWindow.Content.XamlRoot,
             Title = title,
             Content = content,
-            PrimaryButtonText = primaryButtonText,
-            CloseButtonText = closeButtonText,
             DefaultButton = ContentDialogButton.Primary
         };
 
+        // Our own buttons close the dialog with Hide(), which reports None, so the choice is kept here.
+        ContentDialogResult? chosen = null;
+
+        if (secondaryButtonText is null)
+        {
+            dialog.PrimaryButtonText = primaryButtonText;
+            dialog.CloseButtonText = closeButtonText;
+        }
+        else
+        {
+            // The dialog's own command row is horizontal, so the three choices would share it and a long label
+            // would be clipped instead of wrapping. Stack them in the content and leave the row empty.
+            var buttons = new StackPanel { Spacing = 6, Margin = new Thickness(0, 12, 0, 0) };
+            buttons.Children.Add(CreateChoiceButton(primaryButtonText, ContentDialogResult.Primary, true, dialog,
+                result => chosen = result));
+            buttons.Children.Add(CreateChoiceButton(secondaryButtonText, ContentDialogResult.Secondary, false, dialog,
+                result => chosen = result));
+            buttons.Children.Add(CreateChoiceButton(closeButtonText, ContentDialogResult.None, false, dialog,
+                result => chosen = result));
+            content.Children.Add(buttons);
+        }
+
         var result = await dialog.ShowAsync();
         Serilog.Log.ForContext<OneClickInstallService>()
-            .Information("1-click dialog '{Title}' returned {Result}", title, result);
+            .Information("1-click dialog '{Title}' returned {Result} (choice {Choice})", title, result,
+                chosen?.ToString() ?? "none");
 
-        return result == ContentDialogResult.Primary;
+        return chosen ?? result;
+    }
+
+    /// <summary>
+    /// One full-width button of a stacked dialog. The click is guarded: an exception thrown from a WinUI-invoked
+    /// callback is an unhandled stowed exception that kills the process.
+    /// </summary>
+    private Button CreateChoiceButton(string text, ContentDialogResult result, bool isPrimary,
+        ContentDialog dialog, Action<ContentDialogResult> onChosen)
+    {
+        var button = new Button
+        {
+            Content = new TextBlock
+            {
+                Text = text,
+                TextWrapping = TextWrapping.WrapWholeWords,
+                TextAlignment = TextAlignment.Center
+            },
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            MinWidth = 0
+        };
+
+        if (isPrimary && Application.Current.Resources.TryGetValue("AccentButtonStyle", out var accent) &&
+            accent is Style accentStyle)
+            button.Style = accentStyle;
+
+        button.Click += (_, _) => Guarded(() =>
+        {
+            onChosen(result);
+            dialog.Hide();
+        }, "return the dialog choice from the stacked buttons");
+
+        return button;
+    }
+
+    /// <summary>
+    /// Asks what to do when the linked mod belongs to a game other than the active one: switch to that game (the
+    /// install continues after the restart), cancel, or install it here anyway with no target preselected.
+    /// </summary>
+    private async Task<SwitchGameDecision> PromptSwitchGameAsync(string gameName, ModPageInfo profile,
+        bool gameIsConfigured)
+    {
+        var lines = new List<string>
+        {
+            Format("OneClick_SwitchGame_Message", "This mod is for {0}. Do you want to switch to it?", gameName)
+        };
+
+        if (!string.IsNullOrWhiteSpace(profile.ModName))
+            lines.Add(Format("OneClick_Confirm_Mod", "Mod: {0}", profile.ModName));
+
+        if (!gameIsConfigured)
+            lines.Add(Format("OneClick_SwitchGame_NotConfigured",
+                "JASM+ is not set up for {0} yet. You will be asked to configure it first; the installation continues afterwards.",
+                gameName));
+
+        var result = await ShowDialogAsync(
+                Format("OneClick_SwitchGame_Title", "Switch game?"),
+                lines,
+                Format("OneClick_SwitchGame_Yes", "Yes"),
+                Format("OneClick_SwitchGame_Cancel", "Cancel Installation"),
+                Format("OneClick_SwitchGame_Force", "Force Installation on this Game"))
+            .ConfigureAwait(true);
+
+        return result switch
+        {
+            ContentDialogResult.Primary => SwitchGameDecision.SwitchGame,
+            ContentDialogResult.Secondary => SwitchGameDecision.ForceHere,
+            _ => SwitchGameDecision.Cancel
+        };
+    }
+
+    /// <summary>What the user chose in the switch-game prompt.</summary>
+    private enum SwitchGameDecision
+    {
+        Cancel,
+        SwitchGame,
+        ForceHere
     }
 
     /// <summary>Best effort cleanup of the extracted scratch folder when the user backs out.</summary>

@@ -4508,12 +4508,6 @@ Ini路径：{1}</value>
 <data name="OneClick_UnsupportedGame_Message" xml:space="preserve">
     <value>此 Mod 适用于 {0}，JASM+ 不支持该游戏。</value>
   </data>
-<data name="OneClick_WrongGame_Title" xml:space="preserve">
-    <value>当前是其他游戏</value>
-  </data>
-<data name="OneClick_WrongGame_Message" xml:space="preserve">
-    <value>此 Mod 适用于 {0}。请将 JASM+ 切换到 {0} 并再次点击链接。</value>
-  </data>
 <data name="OneClick_Preparing_Status" xml:space="preserve">
     <value>正在准备 {0}…</value>
   </data>
@@ -4576,5 +4570,23 @@ Ini路径：{1}</value>
   </data>
 <data name="OneClick_NoTarget_Message" xml:space="preserve">
     <value>未选择安装目标。</value>
+  </data>
+<data name="OneClick_SwitchGame_Title" xml:space="preserve">
+    <value>切换游戏？</value>
+  </data>
+<data name="OneClick_SwitchGame_Message" xml:space="preserve">
+    <value>此 Mod 适用于 {0}。是否切换到该游戏？</value>
+  </data>
+<data name="OneClick_SwitchGame_NotConfigured" xml:space="preserve">
+    <value>JASM+ 尚未为 {0} 完成设置。系统会先要求你进行设置，之后安装将继续。</value>
+  </data>
+<data name="OneClick_SwitchGame_Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+<data name="OneClick_SwitchGame_Force" xml:space="preserve">
+    <value>强制安装到当前游戏</value>
+  </data>
+<data name="OneClick_SwitchGame_Cancel" xml:space="preserve">
+    <value>取消安装</value>
   </data>
 </root>
