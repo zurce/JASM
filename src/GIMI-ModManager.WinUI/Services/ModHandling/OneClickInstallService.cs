@@ -93,11 +93,17 @@ public sealed class OneClickInstallService
                 Format("OneClick_Checking_Status", "Checking GameBanana…"),
                 async (setStatus, token) =>
                 {
-                    var modProfile = await _gameBananaCoreService
-                        .GetModProfileAsync(new GbModId(request.ModId), token)
-                        .ConfigureAwait(true);
+                    // Tools and mods share one numeric id space, so the profile has to be fetched from the same
+                    // namespace the link came from; otherwise a tool resolves to an unrelated mod with the same
+                    // id (tools/22026 → *Mod* 22026 "Russia", game Counter-Strike: Source).
+                    var modProfile = request.IsTool
+                        ? await _gameBananaCoreService.GetToolProfileAsync(new GbModId(request.ModId), token)
+                            .ConfigureAwait(true)
+                        : await _gameBananaCoreService.GetModProfileAsync(new GbModId(request.ModId), token)
+                            .ConfigureAwait(true);
 
-                    _logger.Information("1-click link mod {ModId}: profile {Profile}", request.ModId,
+                    _logger.Information("1-click link {SubmissionType} {ModId}: profile {Profile}",
+                        request.IsTool ? "tool" : "mod", request.ModId,
                         modProfile is null
                             ? "not found"
                             : $"'{modProfile.ModName}' game={modProfile.GameBananaGameName} category={modProfile.GameBananaCategoryName}");
