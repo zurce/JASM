@@ -47,7 +47,14 @@ public class ActivationService : IActivationService
     private readonly LifeCycleService _lifeCycleService;
     private readonly OneClickLaunchService _oneClickLaunchService;
     private readonly OneClickInstallService _oneClickInstallService;
+    private readonly INavigationService _navigationService;
     private UIElement? _shell = null;
+
+    /// <summary>
+    /// 1-click links that arrived before the selected game had a usable configuration (a game that has never
+    /// been set up opens the setup page first). Flushed on the first navigation that happens with a ready game.
+    /// </summary>
+    private readonly Queue<OneClickInstallRequest> _parkedOneClicks = new();
 
     private readonly string[] _args = Environment.GetCommandLineArgs().Skip(1).ToArray();
 
@@ -63,7 +70,7 @@ public class ActivationService : IActivationService
         ModNotificationManager modNotificationManager, INavigationViewService navigationViewService,
         ISkinManagerService skinManagerService, NotificationManager notificationManager,
         LifeCycleService lifeCycleService, OneClickLaunchService oneClickLaunchService,
-        OneClickInstallService oneClickInstallService)
+        OneClickInstallService oneClickInstallService, INavigationService navigationService)
     {
         _defaultHandler = defaultHandler;
         _activationHandlers = activationHandlers;
@@ -85,6 +92,7 @@ public class ActivationService : IActivationService
         _lifeCycleService = lifeCycleService;
         _oneClickLaunchService = oneClickLaunchService;
         _oneClickInstallService = oneClickInstallService;
+        _navigationService = navigationService;
         _logger = logger.ForContext<ActivationService>();
     }
 
@@ -156,13 +164,58 @@ public class ActivationService : IActivationService
     private void StartOneClickHandling()
     {
         _oneClickLaunchService.RequestReceived += (_, request) =>
-            App.MainWindow.DispatcherQueue.TryEnqueue(() => _ = RunOneClickAsync(request));
+            App.MainWindow.DispatcherQueue.TryEnqueue(() => _ = RunOrParkOneClickAsync(request));
 
         _oneClickLaunchService.StartHandoffWatcher();
 
+        // A link can arrive while the app sits on the first-time setup page — that is what happens after the
+        // "switch game" prompt restarts into a game that has never been configured. Installing needs the game
+        // initialized, so the link waits for the first navigation that happens with a ready configuration
+        // (StartupViewModel navigates to the characters page right after it saves the setup).
+        _navigationService.Navigated += (_, _) => FlushParkedOneClicks();
+
         var pending = _oneClickLaunchService.TakePendingRequest();
         if (pending is not null)
-            _ = RunOneClickAsync(pending);
+            _ = RunOrParkOneClickAsync(pending);
+    }
+
+    /// <summary>Runs the link now, or parks it until the selected game has a usable configuration.</summary>
+    private async Task RunOrParkOneClickAsync(OneClickInstallRequest request)
+    {
+        if (await IsGameReadyForInstallAsync().ConfigureAwait(true))
+        {
+            await RunOneClickAsync(request).ConfigureAwait(true);
+            return;
+        }
+
+        _logger.Information(
+            "1-click link for mod {ModId} parked: the selected game has not been set up yet", request.ModId);
+        _parkedOneClicks.Enqueue(request);
+    }
+
+    private void FlushParkedOneClicks()
+    {
+        if (_parkedOneClicks.Count > 0)
+            _ = FlushParkedOneClicksAsync();
+    }
+
+    private async Task FlushParkedOneClicksAsync()
+    {
+        if (!await IsGameReadyForInstallAsync().ConfigureAwait(true))
+            return;
+
+        _logger.Information("Game configuration is ready; running {Count} parked 1-click link(s)",
+            _parkedOneClicks.Count);
+
+        while (_parkedOneClicks.Count > 0)
+            await RunOneClickAsync(_parkedOneClicks.Dequeue()).ConfigureAwait(true);
+    }
+
+    /// <summary>Whether the selected game is configured (the app did not fall through to the setup page).</summary>
+    private async Task<bool> IsGameReadyForInstallAsync()
+    {
+        var selectedGame = await _selectedGameService.GetSelectedGameAsync().ConfigureAwait(true);
+        return await _selectedGameService.IsJasmInitializedForGameAsync(selectedGame).ConfigureAwait(true);
     }
 
     private async Task RunOneClickAsync(OneClickInstallRequest request)

@@ -109,29 +109,39 @@ public class SelectedGameService
         return File.WriteAllTextAsync(_configPath, JsonConvert.SerializeObject(selectedGame, Formatting.Indented));
     }
 
+    /// <summary>
+    /// Whether JASM+ has a usable configuration for <paramref name="game"/> — i.e. the app starts "ready" for it
+    /// (a 3DMigoto root and a mods folder, both still on disk). Reads that game's own settings folder and
+    /// restores the caller's, so it is safe to ask about a game that is not the active one.
+    /// Used by the startup gate and by the 1-click "switch game?" prompt.
+    /// </summary>
     public async Task<bool> IsJasmInitializedForGameAsync(string game)
     {
         if (!IsValidGame(game))
             throw new ArgumentException("Invalid game name.");
 
-        string? oldGame = null;
-        if (!_localSettingsService.GameScopedSettingsLocation.Equals(GetGameSpecificSettingsFolderName(game),
-                StringComparison.OrdinalIgnoreCase))
-        {
-            oldGame = game;
+        // The settings service is always pointed at the selected game's folder while the app runs
+        // (SelectedGameService.InitializeAsync / SetSelectedGame), so that is what has to be restored.
+        // NB: GameScopedSettingsLocation is a full path; SetApplicationDataFolderName takes a folder name.
+        var activeGame = await GetSelectedGameAsync();
+        var swapped = !string.Equals(activeGame, game, StringComparison.OrdinalIgnoreCase);
+        if (swapped)
             _localSettingsService.SetApplicationDataFolderName(GetGameSpecificSettingsFolderName(game));
+
+        try
+        {
+            var modManagerOptions = await _localSettingsService
+                .ReadSettingAsync<ModManagerOptions>(ModManagerOptions.Section);
+
+            return Directory.Exists(modManagerOptions?.ModsFolderPath) &&
+                   Directory.Exists(modManagerOptions?.GimiRootFolderPath);
         }
-
-
-        var modManagerOptions = await Task
-            .Run(() => _localSettingsService.ReadSettingAsync<ModManagerOptions>(ModManagerOptions.Section));
-
-        var ret = modManagerOptions is not null && !string.IsNullOrEmpty(modManagerOptions.GimiRootFolderPath) &&
-                  !string.IsNullOrEmpty(modManagerOptions.ModsFolderPath);
-
-        if (oldGame != null)
-            _localSettingsService.SetApplicationDataFolderName(GetGameSpecificSettingsFolderName(oldGame));
-        return ret;
+        finally
+        {
+            // Leaving the shared settings service pointed at another game would corrupt every later read.
+            if (swapped)
+                _localSettingsService.SetApplicationDataFolderName(GetGameSpecificSettingsFolderName(activeGame));
+        }
     }
 
     private bool IsValidGame(string game)

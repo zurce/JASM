@@ -3719,13 +3719,29 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   <data name="OneClick_UnsupportedGame_Message" xml:space="preserve">
     <value>This mod is for {0}, which JASM+ does not support.</value>
   </data>
-  <!-- Notification title when the linked mod is for a game that is not the active one. (One-click installer) -->
-  <data name="OneClick_WrongGame_Title" xml:space="preserve">
-    <value>Different game is active</value>
+  <!-- Title of the prompt shown when a 1-click link's mod belongs to a game other than the active one. (One-click installer) -->
+  <data name="OneClick_SwitchGame_Title" xml:space="preserve">
+    <value>Switch game?</value>
   </data>
-  <!-- Shown when the mod's game is not the active one; {0} is the game name. (One-click installer) -->
-  <data name="OneClick_WrongGame_Message" xml:space="preserve">
-    <value>This mod is for {0}. Switch JASM+ to {0} and click the link again.</value>
+  <!-- Switch-game prompt body; {0} is the game the mod belongs to. (One-click installer) -->
+  <data name="OneClick_SwitchGame_Message" xml:space="preserve">
+    <value>This mod is for {0}. Do you want to switch to it?</value>
+  </data>
+  <!-- Shown in the switch-game prompt when the mod's game was never set up in JASM+; {0} is the game name. (One-click installer) -->
+  <data name="OneClick_SwitchGame_NotConfigured" xml:space="preserve">
+    <value>JASM+ is not set up for {0} yet. You will be asked to configure it first; the installation continues afterwards.</value>
+  </data>
+  <!-- Switch-game prompt: switch the active game and continue the install after the restart. (One-click installer) -->
+  <data name="OneClick_SwitchGame_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <!-- Switch-game prompt: install on the active game anyway, with no target preselected. (One-click installer) -->
+  <data name="OneClick_SwitchGame_Force" xml:space="preserve">
+    <value>Force Installation on this Game</value>
+  </data>
+  <!-- Switch-game prompt: cancel the installation. (One-click installer) -->
+  <data name="OneClick_SwitchGame_Cancel" xml:space="preserve">
+    <value>Cancel Installation</value>
   </data>
   <!-- Busy dialog status before a 1-click download starts; {0} is the mod name. (One-click installer) -->
   <data name="OneClick_Preparing_Status" xml:space="preserve">

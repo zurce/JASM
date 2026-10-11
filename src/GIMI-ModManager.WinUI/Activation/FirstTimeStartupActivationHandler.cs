@@ -50,11 +50,14 @@ public class FirstTimeStartupActivationHandler : ActivationHandler<LaunchActivat
 
     protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
     {
-        var options = Task
-            .Run(async () => await _localSettingsService.ReadSettingAsync<ModManagerOptions>(ModManagerOptions.Section))
+        // "Ready" = this game already has a usable configuration (3DMigoto root + mods folder on disk);
+        // anything else falls through to the first-time setup page. Same predicate as the 1-click
+        // "switch game?" prompt, which parks its link until this is true.
+        // The pool+block pattern keeps this context-free: blocking on an async call from the UI thread
+        // would deadlock on the captured synchronization context.
+        var selectedGame = Task.Run(_selectedGameService.GetSelectedGameAsync).GetAwaiter().GetResult();
+        return Task.Run(() => _selectedGameService.IsJasmInitializedForGameAsync(selectedGame))
             .GetAwaiter().GetResult();
-
-        return Directory.Exists(options?.ModsFolderPath) && Directory.Exists(options?.GimiRootFolderPath);
     }
 
     protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
