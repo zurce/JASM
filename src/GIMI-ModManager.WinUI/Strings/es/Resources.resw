@@ -3877,4 +3877,49 @@ JASM+ no moverá ninguno de tus mods ni los eliminará.
 <data name="OneClick_SwitchGame_Cancel" xml:space="preserve">
     <value>Cancelar instalación</value>
   </data>
+<data name="ModInstallerPage_ReplaceDuplicateModPreset.ToolTipService.ToolTip" xml:space="preserve">
+    <value>El mod duplicado será reemplazado en los presets por el mod recién instalado. Es mutuamente excluyente con la casilla «reemplazar el mod antiguo en los presets».</value>
+  </data>
+<data name="ModInstallerPage_AlwaysOnTopToggle.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Mantener la ventana siempre encima</value>
+  </data>
+<data name="ModInstallerPage_RetrieveModInfoButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Obtener la información del mod desde su página</value>
+  </data>
+<data name="ModInstallerPage_ForceOverwriteDifferentNameMod.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Si se marca, JASM+ intentará sobrescribir el mod antiguo con el nuevo, aunque los nombres de las carpetas sean diferentes. (La carpeta antigua se eliminará)</value>
+  </data>
+<data name="ModInstallerPage_EnableOnlyMod.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Esto activará este mod y desactivará todos los demás. Si es un personaje, solo se desactivarán los de sus skins</value>
+  </data>
+<data name="ModInstallerPage_AddRenameButton_Content" xml:space="preserve">
+    <value>Renombrar y agregar mod</value>
+  </data>
+<data name="ModInstallerPage_OverwriteOldModButton_Content" xml:space="preserve">
+    <value>Sobrescribir mod antiguo</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_Auto" xml:space="preserve">
+    <value>Automático</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_FromExistingMod" xml:space="preserve">
+    <value>Imagen del mod existente</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_FoundInNewMod" xml:space="preserve">
+    <value>Imagen local encontrada en el mod nuevo</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_SelectedFromNewMod" xml:space="preserve">
+    <value>Imagen local seleccionada del mod nuevo</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_Manual" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+<data name="Settings_UpdateButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>¿Actualizar la(s) ruta(s) de carpeta?</value>
+  </data>
+<data name="Settings_WindowSize.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Si se marca, el tamaño de la ventana principal se guarda al cerrar JASM+</value>
+  </data>
+<data name="Settings_WindowPosition.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Si se marca, la posición de la ventana principal se guarda al cerrar JASM+</value>
+  </data>
 </root>

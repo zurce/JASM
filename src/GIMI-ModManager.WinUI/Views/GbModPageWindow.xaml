@@ -269,9 +269,9 @@
                         Height="50"
                         HorizontalAlignment="Left"
                         Click="CloseCancel_Click"
-                        Content="Close" l:Uids.Uid="GbModPageWindow_CloseButton"
+                        Content="Close"
                         IsEnabled="{x:Bind ViewModel.IsNotBusy, Mode=OneWay}"
-                        ToolTipService.ToolTip="Close window" />
+                        ToolTipService.ToolTip="Close window" l:Uids.Uid="GbModPageWindow_CloseButton" />
 
                     <StackPanel
                         Grid.Row="1"

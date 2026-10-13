@@ -88,12 +88,12 @@
     <Grid>
         <ContentDialog
             x:Name="DuplicateModDialog"
-            Title="A folder with the same name exists" l:Uids.Uid="ModInstallerPage_DuplicateModDialog"
+            Title="A folder with the same name exists"
             CloseButtonText="Cancel"
             DefaultButton="Primary"
             IsPrimaryButtonEnabled="{x:Bind ViewModel.CanExecuteDialogCommand, Mode=OneWay}"
             PrimaryButtonCommand="{x:Bind ViewModel.AddModDialogCommand, Mode=OneWay}"
-            PrimaryButtonText="{x:Bind ViewModel.PrimaryButtonText, Mode=OneWay}">
+            PrimaryButtonText="{x:Bind ViewModel.PrimaryButtonText, Mode=OneWay}" l:Uids.Uid="ModInstallerPage_DuplicateModDialog">
             <ContentDialog.Content>
                 <Grid MinWidth="500">
                     <Grid.RowDefinitions>
@@ -106,7 +106,8 @@
                         IsClosable="False"
                         IsOpen="True"
                         Message="1. You can choose to overwrite the old mod, deleting it.&#x0a;Or&#x0a;2. You can rename either the new or the old mod"
-                        Severity="Warning" />
+                        Severity="Warning"
+                        l:Uids.Uid="ModInstallerPage_DuplicateInfoBar" />
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -121,14 +122,14 @@
                                 Margin="4"
                                 Header="Custom name"
                                 IsEnabled="{x:Bind ViewModel.OverwriteExistingMod, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}"
-                                PlaceholderText="CustomName"
-                                Text="{x:Bind ViewModel.CustomName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                Text="{x:Bind ViewModel.CustomName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                l:Uids.Uid="ModInstallerPage_NewModCustomName" />
                             <TextBox
                                 Margin="4"
                                 Header="Folder name"
                                 IsEnabled="{x:Bind ViewModel.OverwriteExistingMod, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}"
-                                PlaceholderText="FolderName"
-                                Text="{x:Bind ViewModel.ModFolderName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                Text="{x:Bind ViewModel.ModFolderName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                l:Uids.Uid="ModInstallerPage_NewModFolderName" />
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Margin="4">
@@ -137,14 +138,14 @@
                                 Margin="4"
                                 Header="Custom name"
                                 IsEnabled="{x:Bind ViewModel.OverwriteExistingMod, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}"
-                                PlaceholderText="CustomName"
-                                Text="{x:Bind ViewModel.DuplicateModCustomName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                Text="{x:Bind ViewModel.DuplicateModCustomName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                l:Uids.Uid="ModInstallerPage_OtherModCustomName" />
                             <TextBox
                                 Margin="4"
                                 Header="Folder name"
                                 IsEnabled="{x:Bind ViewModel.OverwriteExistingMod, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}"
-                                PlaceholderText="FolderName"
-                                Text="{x:Bind ViewModel.DuplicateModFolderName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                Text="{x:Bind ViewModel.DuplicateModFolderName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                l:Uids.Uid="ModInstallerPage_OtherModFolderName" />
                             <controls:LinkButton Link="{x:Bind ViewModel.DuplicateModPath, Mode=OneWay}" Text="Open existing mod folder..." l:Uids.Uid="ModInstallerPage_OpenExistingModFolder" />
                         </StackPanel>
 
@@ -160,7 +161,8 @@
                             Margin="4"
                             Command="{x:Bind ViewModel.ToggleReplaceDuplicateModInPresetCommand}"
                             IsChecked="{x:Bind ViewModel.ReplaceDuplicateModInPreset, Mode=OneWay}"
-                            ToolTipService.ToolTip="The duplicate mod will be replaced in presets by the newly installed mod. This is mutually exclusive with the 'replace old mod in presets' checkbox.">
+                            ToolTipService.ToolTip="The duplicate mod will be replaced in presets by the newly installed mod. This is mutually exclusive with the 'replace old mod in presets' checkbox."
+                            l:Uids.Uid="ModInstallerPage_ReplaceDuplicateModPreset">
                             <TextBlock TextWrapping="WrapWholeWords" Text="Replace duplicate mod in presets with new mod" l:Uids.Uid="ModInstallerPage_ReplaceDuplicateMod" />
                         </CheckBox>
                     </StackPanel>
@@ -250,17 +252,17 @@
                 </StackPanel>
                 <TextBox
                     Grid.Row="2"
-                    Header="Mod page url" l:Uids.Uid="ModInstallerPage_ModPageUrl"
+                    Header="Mod page url"
                     IsReadOnly="{x:Bind ViewModel.IsRetrievingModInfo, Mode=OneWay}"
                     KeyDown="UrlTextBox_KeyDown"
                     PlaceholderText="Paste URL to auto populate fields (GameBanana only)"
-                    Text="{x:Bind ViewModel.ModUrl, Mode=TwoWay}" />
+                    Text="{x:Bind ViewModel.ModUrl, Mode=TwoWay}" l:Uids.Uid="ModInstallerPage_ModPageUrl" />
                 <TextBox
                     Grid.Row="3"
-                    Header="Mod Custom Name" l:Uids.Uid="ModInstallerPage_ModCustomName"
+                    Header="Mod Custom Name"
                     IsReadOnly="{x:Bind ViewModel.IsRetrievingModInfo, Mode=OneWay}"
                     PlaceholderText="Custom Name displayed throughout JASM"
-                    Text="{x:Bind ViewModel.CustomName, Mode=TwoWay}" />
+                    Text="{x:Bind ViewModel.CustomName, Mode=TwoWay}" l:Uids.Uid="ModInstallerPage_ModCustomName" />
                 <TextBox
                     Grid.Row="4"
                     Header="Author" l:Uids.Uid="ModInstallerPage_Author"
@@ -271,9 +273,9 @@
                     Grid.Row="5"
                     Margin="0,0,0,8"
                     AcceptsReturn="False"
-                    Header="Note" l:Uids.Uid="ModInstallerPage_Note"
+                    Header="Note"
                     PlaceholderText="Custom free text note, shown in grid on character details page"
-                    Text="{x:Bind ViewModel.Description, Mode=TwoWay}" />
+                    Text="{x:Bind ViewModel.Description, Mode=TwoWay}" l:Uids.Uid="ModInstallerPage_Note" />
             </Grid>
 
             <!--</StackPanel>-->
@@ -360,16 +362,17 @@
 
                     <CheckBox
                         Margin="4,0"
-                        Content="Force Overwrite Different Name Mod?" l:Uids.Uid="ModInstallerPage_ForceOverwriteDifferentNameMod"
+                        Content="Force Overwrite Different Name Mod?"
                         IsChecked="{x:Bind ViewModel.ForceOverwriteDifferentNameMod, Mode=TwoWay}"
                         Visibility="{x:Bind ViewModel.HasExistingModToOverwrite, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
-                        ToolTipService.ToolTip="If checked, JASM will attempt to overwrite the old mod with the new one, even if the folder names are different. (The old folder will be deleted)"/>
+                        ToolTipService.ToolTip="If checked, JASM will attempt to overwrite the old mod with the new one, even if the folder names are different. (The old folder will be deleted)" l:Uids.Uid="ModInstallerPage_ForceOverwriteDifferentNameMod"/>
 
                     <CheckBox
                         Margin="4"
                         Command="{x:Bind ViewModel.ToggleReplaceDuplicateModInPresetCommand}"
                         IsChecked="{x:Bind ViewModel.ReplaceDuplicateModInPreset, Mode=OneWay}"
-                        ToolTipService.ToolTip="The duplicate mod will be replaced in presets by the newly installed mod. This is mutually exclusive with the 'replace old mod in presets' checkbox.">
+                        ToolTipService.ToolTip="The duplicate mod will be replaced in presets by the newly installed mod. This is mutually exclusive with the 'replace old mod in presets' checkbox."
+                        l:Uids.Uid="ModInstallerPage_ReplaceDuplicateModPreset">
                         <TextBlock TextWrapping="WrapWholeWords" Text="Replace duplicate mod in presets with new mod" l:Uids.Uid="ModInstallerPage_ReplaceDuplicateMod2" />
                     </CheckBox>
 
@@ -421,9 +424,9 @@
                     <CheckBox
                         Margin="4,0"
                         Command="{x:Bind ViewModel.EnableOnlyToggleCommand}"
-                        Content="Enable this mod and disable others?" l:Uids.Uid="ModInstallerPage_EnableOnlyMod"
+                        Content="Enable this mod and disable others?"
                         IsChecked="{x:Bind ViewModel.EnableThisMod, Mode=OneWay}"
-                        ToolTipService.ToolTip="This will enable this mod and disable all other mods. If a character then it will only disable for that characters skin" />
+                        ToolTipService.ToolTip="This will enable this mod and disable all other mods. If a character then it will only disable for that characters skin" l:Uids.Uid="ModInstallerPage_EnableOnlyMod" />
 
 
                     <Button

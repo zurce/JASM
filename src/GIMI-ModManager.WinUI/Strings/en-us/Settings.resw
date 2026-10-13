@@ -241,4 +241,16 @@ Manually checking for updates always checks GameBanana directly</value>
   <data name="Settings_OneClickInstallStatus_Foreign" xml:space="preserve">
     <value>The '{0}' link belongs to another application ({1}).</value>
   </data>
+  <!-- Tooltip of the "install mods from 1-click links" checkbox in Settings > GameBanana. -->
+  <data name="Settings_OneClickInstallEnabled.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Registers the link GameBanana opens; turning it off removes the registration</value>
+  </data>
+  <!-- Tooltip of the "install without asking for confirmation" checkbox in Settings > GameBanana. -->
+  <data name="Settings_OneClickInstallWithoutConfirmation.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Links install as soon as they are opened. The warning for archives that contain executable files is still shown.</value>
+  </data>
+  <!-- Section header of the GameBanana group in Settings. -->
+  <data name="Settings_OneClickInstall.Text" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
 </root>

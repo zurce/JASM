@@ -113,9 +113,18 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
 
     [ObservableProperty] private ObservableCollection<RootFolder> _rootFolder = new();
 
-    private const string AddRenameText = "Rename and Add mod";
-    private const string AddReplaceText = "Overwrite old mod";
-    [ObservableProperty] private string _primaryButtonText = AddRenameText;
+    // The duplicate-mod dialog's primary button switches between two labels; localized at read time.
+    private string AddRenameText =>
+        Localize("ModInstallerPage_AddRenameButton_Content", "Rename and Add mod");
+
+    private string AddReplaceText =>
+        Localize("ModInstallerPage_OverwriteOldModButton_Content", "Overwrite old mod");
+
+    [ObservableProperty] private string _primaryButtonText = string.Empty;
+
+    /// <summary>Localized string with its English fallback (same inline pattern used across the app).</summary>
+    private static string Localize(string key, string fallback) =>
+        App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault(key) ?? fallback;
 
     [ObservableProperty] private bool _overwriteExistingMod;
 
@@ -157,7 +166,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
 
     [ObservableProperty] private FileSystemItem? _lastSelectedImageFile;
 
-    [ObservableProperty] private string _imageSource = "Auto";
+    [ObservableProperty] private string _imageSource = Localize("ModInstallerPage_ImageSource_Auto", "Auto");
 
     public ModInstallerVM(ILogger logger, ImageHandlerService imageHandlerService,
         NotificationManager notificationManager, IWindowManagerService windowManagerService,
@@ -177,6 +186,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         _gameBananaService = gameBananaService;
         _modPresetService = modPresetService;
         _skinManagerService = skinManagerService;
+        PrimaryButtonText = AddRenameText;
         PropertyChanged += OnPropertyChanged;
     }
 
@@ -277,7 +287,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
                             {
                                 ClearModPreviewImage();
                                 ModPreviewImagePath = new Uri(imageFile.Path);
-                                ImageSource = "Image from existing Mod";
+                                ImageSource = Localize("ModInstallerPage_ImageSource_FromExistingMod", "Image from existing Mod");
                             }
 
                             CustomName = oldModSettings.CustomName ?? string.Empty;
@@ -302,7 +312,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
                     var fileSystemItem = RootFolder.FirstOrDefault()
                         ?.GetByPath(autoFoundImages.FirstOrDefault()?.LocalPath ?? "");
                     SetModPreviewImage(fileSystemItem);
-                    ImageSource = "Local image found in new Mod";
+                    ImageSource = Localize("ModInstallerPage_ImageSource_FoundInNewMod", "Local image found in new Mod");
                 });
 
             if (options?.ModUrl is not null)
@@ -755,7 +765,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         }
 
         LastSelectedImageFile = fileSystemItem;
-        ImageSource = "Local image selected from new Mod";
+        ImageSource = Localize("ModInstallerPage_ImageSource_SelectedFromNewMod", "Local image selected from new Mod");
     }
 
     [RelayCommand]
@@ -768,7 +778,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
             LastSelectedImageFile = null;
         }
 
-        ImageSource = "Manual";
+        ImageSource = Localize("ModInstallerPage_ImageSource_Manual", "Manual");
     }
 
     private bool _canCopyImage()
@@ -809,7 +819,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
         try
         {
             imageUri = await _imageHandlerService.GetImageFromClipboardAsync();
-            ImageSource = "Manual";
+            ImageSource = Localize("ModInstallerPage_ImageSource_Manual", "Manual");
         }
         catch (Exception e)
         {
@@ -840,7 +850,7 @@ public partial class ModInstallerVM : ObservableRecipient, INavigationAware, IDi
 
 
         ModPreviewImagePath = new Uri(imageUri.Path);
-        ImageSource = "Manual";
+        ImageSource = Localize("ModInstallerPage_ImageSource_Manual", "Manual");
         if (LastSelectedImageFile is not null)
         {
             LastSelectedImageFile.RightIcon = null;

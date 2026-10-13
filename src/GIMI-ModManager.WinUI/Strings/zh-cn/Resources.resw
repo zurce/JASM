@@ -4589,4 +4589,49 @@ Ini路径：{1}</value>
 <data name="OneClick_SwitchGame_Cancel" xml:space="preserve">
     <value>取消安装</value>
   </data>
+<data name="ModInstallerPage_ReplaceDuplicateModPreset.ToolTipService.ToolTip" xml:space="preserve">
+    <value>重复的Mod将在预设中被新安装的Mod替换。此选项与“替换预设中的旧Mod”复选框互斥。</value>
+  </data>
+<data name="ModInstallerPage_AlwaysOnTopToggle.ToolTipService.ToolTip" xml:space="preserve">
+    <value>窗口始终保持置顶</value>
+  </data>
+<data name="ModInstallerPage_RetrieveModInfoButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>从Mod页面获取Mod信息</value>
+  </data>
+<data name="ModInstallerPage_ForceOverwriteDifferentNameMod.ToolTipService.ToolTip" xml:space="preserve">
+    <value>勾选后，即使文件夹名称不同，JASM+也会尝试用新Mod覆盖旧Mod。（旧文件夹将被删除）</value>
+  </data>
+<data name="ModInstallerPage_EnableOnlyMod.ToolTipService.ToolTip" xml:space="preserve">
+    <value>这将启用此Mod并禁用所有其他Mod。如果是角色，则只禁用该角色的皮肤</value>
+  </data>
+<data name="ModInstallerPage_AddRenameButton_Content" xml:space="preserve">
+    <value>重命名并添加Mod</value>
+  </data>
+<data name="ModInstallerPage_OverwriteOldModButton_Content" xml:space="preserve">
+    <value>覆盖旧Mod</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_Auto" xml:space="preserve">
+    <value>自动</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_FromExistingMod" xml:space="preserve">
+    <value>现有Mod的图片</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_FoundInNewMod" xml:space="preserve">
+    <value>在新Mod中找到的本地图片</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_SelectedFromNewMod" xml:space="preserve">
+    <value>从新Mod中选择的本地图片</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_Manual" xml:space="preserve">
+    <value>手动</value>
+  </data>
+<data name="Settings_UpdateButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>更新文件夹路径？</value>
+  </data>
+<data name="Settings_WindowSize.ToolTipService.ToolTip" xml:space="preserve">
+    <value>勾选后，退出 JASM+ 时会保存主窗口大小</value>
+  </data>
+<data name="Settings_WindowPosition.ToolTipService.ToolTip" xml:space="preserve">
+    <value>勾选后，退出 JASM+ 时会保存主窗口位置</value>
+  </data>
 </root>

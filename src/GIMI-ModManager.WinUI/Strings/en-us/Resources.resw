@@ -976,6 +976,54 @@
 Or
 2. You can rename either the new or the old mod</value>
   </data>
+  <!-- Tooltip of the "replace duplicate mod in presets" checkbox (duplicate-mod dialog and page). -->
+  <data name="ModInstallerPage_ReplaceDuplicateModPreset.ToolTipService.ToolTip" xml:space="preserve">
+    <value>The duplicate mod will be replaced in presets by the newly installed mod. This is mutually exclusive with the 'replace old mod in presets' checkbox.</value>
+  </data>
+  <!-- Tooltip of the always-on-top toggle on the ModInstallerPage. -->
+  <data name="ModInstallerPage_AlwaysOnTopToggle.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Keep window always on top</value>
+  </data>
+  <!-- Tooltip of the button that re-reads a mod's info from its GameBanana page. -->
+  <data name="ModInstallerPage_RetrieveModInfoButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Retrieve mod info from the mod page</value>
+  </data>
+  <!-- Tooltip of the "force overwrite different name mod" checkbox. -->
+  <data name="ModInstallerPage_ForceOverwriteDifferentNameMod.ToolTipService.ToolTip" xml:space="preserve">
+    <value>If checked, JASM will attempt to overwrite the old mod with the new one, even if the folder names are different. (The old folder will be deleted)</value>
+  </data>
+  <!-- Tooltip of the "enable this mod and disable others" checkbox. -->
+  <data name="ModInstallerPage_EnableOnlyMod.ToolTipService.ToolTip" xml:space="preserve">
+    <value>This will enable this mod and disable all other mods. If a character then it will only disable for that characters skin</value>
+  </data>
+  <!-- Duplicate-mod dialog primary button: keep both mods, the new one under a new name. (Used from C#) -->
+  <data name="ModInstallerPage_AddRenameButton_Content" xml:space="preserve">
+    <value>Rename and Add mod</value>
+  </data>
+  <!-- Duplicate-mod dialog primary button: delete the old mod and install the new one. (Used from C#) -->
+  <data name="ModInstallerPage_OverwriteOldModButton_Content" xml:space="preserve">
+    <value>Overwrite old mod</value>
+  </data>
+  <!-- Preview-image source state shown on the ModInstallerPage. (Used from C#) -->
+  <data name="ModInstallerPage_ImageSource_Auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <!-- Preview-image source state shown on the ModInstallerPage. (Used from C#) -->
+  <data name="ModInstallerPage_ImageSource_FromExistingMod" xml:space="preserve">
+    <value>Image from existing Mod</value>
+  </data>
+  <!-- Preview-image source state shown on the ModInstallerPage. (Used from C#) -->
+  <data name="ModInstallerPage_ImageSource_FoundInNewMod" xml:space="preserve">
+    <value>Local image found in new Mod</value>
+  </data>
+  <!-- Preview-image source state shown on the ModInstallerPage. (Used from C#) -->
+  <data name="ModInstallerPage_ImageSource_SelectedFromNewMod" xml:space="preserve">
+    <value>Local image selected from new Mod</value>
+  </data>
+  <!-- Preview-image source state shown on the ModInstallerPage. (Used from C#) -->
+  <data name="ModInstallerPage_ImageSource_Manual" xml:space="preserve">
+    <value>Manual</value>
+  </data>
   <data name="ModInstallerPage_NewModLabel.Text" xml:space="preserve">
     <!-- Section heading text -->
     <value>New Mod:</value>
@@ -3826,5 +3874,17 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   <!-- Shown if a 1-click install ends up with no target. (One-click installer) -->
   <data name="OneClick_NoTarget_Message" xml:space="preserve">
     <value>No install target was selected.</value>
+  </data>
+  <!-- Tooltip of the "update folder path(s)" button in Settings. -->
+  <data name="Settings_UpdateButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Update folder path(s)?</value>
+  </data>
+  <!-- Tooltip of the "keep window size" checkbox in Settings. -->
+  <data name="Settings_WindowSize.ToolTipService.ToolTip" xml:space="preserve">
+    <value>If checked then the main window size is saved when JASM+ exits</value>
+  </data>
+  <!-- Tooltip of the "keep window position" checkbox in Settings. -->
+  <data name="Settings_WindowPosition.ToolTipService.ToolTip" xml:space="preserve">
+    <value>If checked then the main window position is saved when JASM+ exits</value>
   </data>
 </root>

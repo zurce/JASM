@@ -254,4 +254,13 @@ JASMはWUWAとZZZを部分的にサポートしています。</value>
 <data name="Settings_OneClickInstallStatus_Foreign" xml:space="preserve">
     <value>'{0}' リンクは別のアプリケーション ({1}) に属しています。</value>
   </data>
+<data name="Settings_OneClickInstallEnabled.ToolTipService.ToolTip" xml:space="preserve">
+    <value>GameBananaが開くリンクを登録します。オフにすると登録が削除されます</value>
+  </data>
+<data name="Settings_OneClickInstallWithoutConfirmation.ToolTipService.ToolTip" xml:space="preserve">
+    <value>リンクは開くとすぐにインストールされます。実行可能ファイルを含むアーカイブの警告は引き続き表示されます。</value>
+  </data>
+<data name="Settings_OneClickInstall.Text" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
 </root>

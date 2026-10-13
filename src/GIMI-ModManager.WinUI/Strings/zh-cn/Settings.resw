@@ -254,4 +254,13 @@ JASM部分支持鸣潮和绝区零。</value>
 <data name="Settings_OneClickInstallStatus_Foreign" xml:space="preserve">
     <value>'{0}' 链接属于其他应用程序（{1}）。</value>
   </data>
+<data name="Settings_OneClickInstallEnabled.ToolTipService.ToolTip" xml:space="preserve">
+    <value>注册 GameBanana 打开的链接；关闭后将删除注册</value>
+  </data>
+<data name="Settings_OneClickInstallWithoutConfirmation.ToolTipService.ToolTip" xml:space="preserve">
+    <value>链接打开后立即安装。包含可执行文件的压缩包警告仍会显示。</value>
+  </data>
+<data name="Settings_OneClickInstall.Text" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
 </root>

@@ -189,7 +189,7 @@
                 ToolTipService.ToolTip="{x:Bind ViewModel.SearchTooltip, Mode=OneWay}">
                 <StackPanel Orientation="Horizontal" Spacing="6">
                     <FontIcon FontSize="16" Glyph="&#xE721;" />
-                    <TextBlock VerticalAlignment="Center" l:Uids.Uid="ModPane_SearchButton" Text="Search" />
+                    <TextBlock VerticalAlignment="Center" Text="Search" l:Uids.Uid="ModPane_SearchButton" />
                 </StackPanel>
             </Button>
 

@@ -4550,4 +4550,49 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 <data name="OneClick_SwitchGame_Cancel" xml:space="preserve">
     <value>Cancelar instalação</value>
   </data>
+<data name="ModInstallerPage_ReplaceDuplicateModPreset.ToolTipService.ToolTip" xml:space="preserve">
+    <value>O mod duplicado será substituído nos presets pelo mod recém-instalado. Isso é mutuamente exclusivo com a caixa “substituir o mod antigo nos presets”.</value>
+  </data>
+<data name="ModInstallerPage_AlwaysOnTopToggle.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Manter a janela sempre visível</value>
+  </data>
+<data name="ModInstallerPage_RetrieveModInfoButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Obter as informações do mod na página do mod</value>
+  </data>
+<data name="ModInstallerPage_ForceOverwriteDifferentNameMod.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Se marcado, o JASM+ tentará sobrescrever o mod antigo pelo novo, mesmo que os nomes das pastas sejam diferentes. (A pasta antiga será excluída)</value>
+  </data>
+<data name="ModInstallerPage_EnableOnlyMod.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Isso ativará este mod e desativará todos os outros. Se for um personagem, só desativará para as skins dele</value>
+  </data>
+<data name="ModInstallerPage_AddRenameButton_Content" xml:space="preserve">
+    <value>Renomear e adicionar mod</value>
+  </data>
+<data name="ModInstallerPage_OverwriteOldModButton_Content" xml:space="preserve">
+    <value>Sobrescrever mod antigo</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_Auto" xml:space="preserve">
+    <value>Automático</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_FromExistingMod" xml:space="preserve">
+    <value>Imagem do mod existente</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_FoundInNewMod" xml:space="preserve">
+    <value>Imagem local encontrada no novo mod</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_SelectedFromNewMod" xml:space="preserve">
+    <value>Imagem local selecionada do novo mod</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_Manual" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+<data name="Settings_UpdateButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Atualizar caminho(s) de pasta?</value>
+  </data>
+<data name="Settings_WindowSize.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Se marcado, o tamanho da janela principal é salvo ao sair do JASM+</value>
+  </data>
+<data name="Settings_WindowPosition.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Se marcado, a posição da janela principal é salva ao sair do JASM+</value>
+  </data>
 </root>

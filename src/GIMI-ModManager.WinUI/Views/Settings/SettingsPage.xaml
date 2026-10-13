@@ -134,20 +134,20 @@
                     </StackPanel>
 
                     <StackPanel Margin="0,8,0,0">
-                        <TextBlock Text="GameBanana" l:Uids.Uid="Settings_OneClickInstall" />
+                        <TextBlock Text="GameBanana" l:Uids.Uid="/Settings/Settings_OneClickInstall" />
                         <CheckBox
                             Command="{x:Bind ViewModel.OneClickInstallEnabledToggleCommand}"
                             Content="Install mods from GameBanana 1-click links"
-                            l:Uids.Uid="Settings_OneClickInstallEnabled"
                             IsChecked="{x:Bind ViewModel.OneClickInstallEnabled, Mode=OneWay}"
-                            ToolTipService.ToolTip="Registers the link GameBanana opens; turning it off removes the registration" />
+                            ToolTipService.ToolTip="Registers the link GameBanana opens; turning it off removes the registration"
+                            l:Uids.Uid="/Settings/Settings_OneClickInstallEnabled" />
                         <CheckBox
                             Command="{x:Bind ViewModel.OneClickInstallWithoutConfirmationToggleCommand}"
                             Content="Install without asking for confirmation"
-                            l:Uids.Uid="Settings_OneClickInstallWithoutConfirmation"
                             IsChecked="{x:Bind ViewModel.OneClickInstallWithoutConfirmation, Mode=OneWay}"
                             IsEnabled="{x:Bind ViewModel.OneClickInstallEnabled, Mode=OneWay}"
-                            ToolTipService.ToolTip="Links install as soon as they are opened. The warning for archives that contain executable files is still shown." />
+                            ToolTipService.ToolTip="Links install as soon as they are opened. The warning for archives that contain executable files is still shown."
+                            l:Uids.Uid="/Settings/Settings_OneClickInstallWithoutConfirmation" />
                         <TextBlock
                             Text="{x:Bind ViewModel.OneClickInstallStatusText, Mode=OneWay}"
                             FontSize="12"
@@ -157,11 +157,11 @@
                             <Button
                                 Command="{x:Bind ViewModel.OneClickInstallRepairCommand}"
                                 Content="Re-register link"
-                                l:Uids.Uid="Settings_OneClickInstallRepair" />
+                                l:Uids.Uid="/Settings/Settings_OneClickInstallRepair" />
                             <Button
                                 Command="{x:Bind ViewModel.OneClickInstallRemoveCommand}"
                                 Content="Remove link"
-                                l:Uids.Uid="Settings_OneClickInstallRemove" />
+                                l:Uids.Uid="/Settings/Settings_OneClickInstallRemove" />
                         </StackPanel>
                     </StackPanel>
 
@@ -171,16 +171,16 @@
                             Command="{x:Bind ViewModel.WindowSizePositionToggleCommand}"
                             CommandParameter="size"
                             Content="Remember window size"
-                            l:Uids.Uid="Settings_WindowSize"
                             IsChecked="{x:Bind ViewModel.PersistWindowSize, Mode=OneWay}"
-                            ToolTipService.ToolTip="If checked then the main window size is saved when JASM+ exits" />
+                            ToolTipService.ToolTip="If checked then the main window size is saved when JASM+ exits"
+                            l:Uids.Uid="Settings_WindowSize" />
                         <CheckBox
                             Command="{x:Bind ViewModel.WindowSizePositionToggleCommand}"
                             CommandParameter="position"
                             Content="Remember window position"
-                            l:Uids.Uid="Settings_WindowPosition"
                             IsChecked="{x:Bind ViewModel.PersistWindowPosition, Mode=OneWay}"
-                            ToolTipService.ToolTip="If checked then the main window position is saved when JASM+ exits" />
+                            ToolTipService.ToolTip="If checked then the main window position is saved when JASM+ exits"
+                            l:Uids.Uid="Settings_WindowPosition" />
                     </StackPanel>
 
 
