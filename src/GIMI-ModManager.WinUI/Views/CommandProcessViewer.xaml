@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:GIMI_ModManager.WinUI.Views"
+    xmlns:l="using:WinUI3Localizer"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
@@ -27,7 +28,8 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">
-                <Run Text="Running: " />
+                <Run Text="Running: "
+                l:Uids.Uid="CommandProcessViewer_RunningLabel" />
                 <Run Text="{x:Bind ViewModel.CommandDisplayName, Mode=OneWay}" />
             </TextBlock>
 
@@ -35,7 +37,8 @@
                 Grid.Column="1"
                 HorizontalAlignment="Right"
                 Content="Auto scroll"
-                IsChecked="{x:Bind ViewModel.IsAutoScroll, Mode=TwoWay}" />
+                IsChecked="{x:Bind ViewModel.IsAutoScroll, Mode=TwoWay}"
+            l:Uids.Uid="CommandProcessViewer_AutoScroll" />
 
         </Grid>
 
@@ -65,11 +68,13 @@
                     Header="Write to Process, press enter to send"
                     IsEnabled="{x:Bind ViewModel.IsRunning, Mode=OneWay}"
                     KeyDown="InputTextBox_OnKeyDown"
-                    Text="{x:Bind ViewModel.InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    Text="{x:Bind ViewModel.InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                l:Uids.Uid="CommandProcessViewer_InputBox" />
                 <Button
                     HorizontalAlignment="Right"
                     Command="{x:Bind ViewModel.KillProcessCommand}"
-                    Content="Kill process" />
+                    Content="Kill process"
+                l:Uids.Uid="CommandProcessViewer_KillProcessButton" />
             </StackPanel>
         </Grid>
 

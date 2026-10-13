@@ -97,7 +97,8 @@
 
                     <local:InputWrapper InputField="{x:Bind ViewModel.Form.ReleaseDate}">
                         <local:InputWrapper.Input>
-                            <CalendarDatePicker Date="{x:Bind ViewModel.Form.ReleaseDate.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Release Date" />
+                            <CalendarDatePicker Date="{x:Bind ViewModel.Form.ReleaseDate.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Release Date"
+                            l:Uids.Uid="CreateCharacterPage_ReleaseDate" />
                         </local:InputWrapper.Input>
                     </local:InputWrapper>
 
@@ -113,7 +114,8 @@
                                     SnapsTo="Ticks"
                                     TickFrequency="1"
                                     TickPlacement="Outside"
-                                    Value="{x:Bind ViewModel.Form.Rarity.Value, Mode=TwoWay}" />
+                                    Value="{x:Bind ViewModel.Form.Rarity.Value, Mode=TwoWay}"
+                                l:Uids.Uid="CreateCharacterPage_RaritySlider" />
                                 <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.Form.Rarity.Value, Mode=OneWay}" />
                             </StackPanel>
                         </local:InputWrapper.Input>

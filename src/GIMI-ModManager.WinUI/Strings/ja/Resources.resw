@@ -4652,4 +4652,231 @@ JASMはModを移動したり削除したりしません。
     <!-- Section header -->
     <value>現在のインスタンスでJASMから起動されたコマンド</value>
   </data>
+<data name="CharacterDetails_LoadingText.Text" xml:space="preserve">
+    <!-- Loading indicator on the character details page -->
+    <value>読み込み中</value>
+  </data>
+<data name="CharacterDetails_AddModMenuItem.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: add a mod folder (character details menu) -->
+    <value>Modフォルダーを追加</value>
+  </data>
+<data name="CharacterDetails_AddArchiveMenuItem.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: add a mod from a compressed archive (character details menu) -->
+    <value>圧縮アーカイブ内のModを追加</value>
+  </data>
+<data name="CharacterDetails_SingleSelectToggle.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: restrict to one active mod per character -->
+    <value>これを選択すると、一度に1つのModのみ有効にできます。</value>
+  </data>
+<data name="ModPane_SetModIniFile.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: choose the mod .ini file JASM should read -->
+    <value>JASMが読み込むModの.iniファイルを設定</value>
+  </data>
+<data name="ModPane_IgnoreIniFile.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: ignore this mod's ini file and keyswaps -->
+    <value>JASMはmerged.ini/Script.iniを探さず、このModのキー割り当てを無視します</value>
+  </data>
+<data name="CharacterManagerPage_AddCharacterButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: add a new character -->
+    <value>新しいキャラクターを追加</value>
+  </data>
+<data name="EditCharacterPage_DisableCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip on the disable-character action -->
+    <value>先に詳細情報のポップアップを開きます</value>
+  </data>
+<data name="EditCharacterPage_EnableCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip on the enable-character action -->
+    <value>先に詳細情報のポップアップを開きます</value>
+  </data>
+<data name="EditCharacterPage_DeleteCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip on the delete-character action -->
+    <value>先に詳細情報のポップアップを開きます</value>
+  </data>
+<data name="EditCharacterPage_UndoChanges.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: revert unsaved changes -->
+    <value>保存されていない変更を元に戻します</value>
+  </data>
+<data name="EditCharacterPage_SaveChanges.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: save changes to disk -->
+    <value>変更をディスクに保存します</value>
+  </data>
+<data name="EditCharacterPage_ResetCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: reset character values to their defaults -->
+    <value>キャラクターの値を既定値に戻します</value>
+  </data>
+<data name="CharactersPage_SelectProcessDialog.PrimaryButtonText" xml:space="preserve">
+    <!-- Process picker dialog: save button -->
+    <value>保存</value>
+  </data>
+<data name="CharactersPage_SelectProcessDialog.SecondaryButtonText" xml:space="preserve">
+    <!-- Process picker dialog: cancel button -->
+    <value>キャンセル</value>
+  </data>
+<data name="CustomImage_PickImageButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: pick an image -->
+    <value>画像を選択</value>
+  </data>
+<data name="GbModPageWindow_CloseButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: close the window -->
+    <value>ウィンドウを閉じる</value>
+  </data>
+<data name="PresetDetailsPage_ReadAndSavePreferences.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: read the current 3Dmigoto user ini for the mod and store it in this preset -->
+    <value>このModの現在の3Dmigoto user iniを読み取り、このプリセットの設定として保存します</value>
+  </data>
+<data name="PresetPage_CreateEmptyPreset.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: create the preset without enabling any mod -->
+    <value>チェックすると、新しいプリセットはModを有効にせずに作成されます。</value>
+  </data>
+<data name="PresetPage_AutoSyncPreferences.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: automatically sync preferences when creating and switching presets -->
+    <value>チェックすると、プリセットの作成時と切り替え時にJASMが自動的に設定を同期します</value>
+  </data>
+<data name="PresetPage_SaveActivePreferencesButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: read d3dx_user.ini for the active mods into their .JASM_Config.json -->
+    <value>有効なModの3Dmigoto設定（d3dx_user.ini）を読み取り、各Modの.JASM_Config.jsonに保存します</value>
+  </data>
+<data name="PresetPage_ApplySavedPreferencesButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: write the saved mod preferences back to d3dx_user.ini -->
+    <value>現在有効なModの設定を.JASM_Config.jsonから読み取り、3Dmigotoが読めるようにd3dx_user.iniに書き込みます</value>
+  </data>
+<data name="PresetPage_ShowManualControls.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: control preferences manually instead of letting JASM do it -->
+    <value>JASMに任せず、設定を手動で管理したい場合</value>
+  </data>
+<data name="PresetPage_ApplyPresetButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: enable every mod in this preset and write its preferences -->
+    <value>このプリセット内のすべてのModを有効にし、プリセットの設定をModに書き込みます</value>
+  </data>
+<data name="PresetPage_DeleteMenuItem.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: permanently delete this preset -->
+    <value>このプリセットを完全に削除します</value>
+  </data>
+<data name="PresetPage_RandomizeModsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: opens a dialog with more info -->
+    <value>詳細情報のダイアログを開きます</value>
+  </data>
+<data name="PresetPage_ResetModPreferencesButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: clear the preferences stored in each mod's .JASM_ModConfig.json -->
+    <value>Modの.JASM_ModConfig.jsonに保存された設定を消去します</value>
+  </data>
+<data name="CreateCommandView_ChainedCommand.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: not implemented -->
+    <value>未実装</value>
+  </data>
+<data name="CreateCommandView_KillProcess.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: kill the process when JASM exits -->
+    <value>チェックすると、JASM終了時にプロセスが終了します</value>
+  </data>
+<data name="CreateCommandView_RunAsAdmin.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: run the executable as administrator -->
+    <value>実行ファイルを管理者として実行します</value>
+  </data>
+<data name="CreateCommandView_UseShellExecute.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: let the OS start the executable -->
+    <value>OSを使用して実行ファイルを起動します</value>
+  </data>
+<data name="CreateCommandView_CreateWindow.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: run the command in an external window -->
+    <value>チェックすると、外部ウィンドウで実行されます</value>
+  </data>
+<data name="CreateCharacterPage_ReleaseDate.Header" xml:space="preserve">
+    <value>リリース日</value>
+  </data>
+<data name="CreateCharacterPage_RaritySlider.AutomationProperties.Name" xml:space="preserve">
+    <value>目盛り付きスライダー</value>
+  </data>
+<data name="EditCharacterPage_OpenModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>キャラクターのModフォルダを開く</value>
+  </data>
+<data name="EditCharacterPage_DateAdded.ToolTipService.ToolTip" xml:space="preserve">
+    <value>JASMに追加された日付</value>
+  </data>
+<data name="CharactersPage_XxmiLaunchHint.Text" xml:space="preserve">
+    <value>XXMI経由でゲームを起動します（クイックスタートのショートカットと同じ）。</value>
+  </data>
+<data name="CharactersPage_InfoButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>詳細情報のダイアログを開きます</value>
+  </data>
+<data name="CharactersPage_ShowEnabledOnlyToggle.ToolTipService.ToolTip" xml:space="preserve">
+    <value>少なくとも1つのModが有効な場合のみ表示</value>
+  </data>
+<data name="CommandProcessViewer_RunningLabel.Text" xml:space="preserve">
+    <value>実行中: </value>
+  </data>
+<data name="CommandProcessViewer_AutoScroll.Content" xml:space="preserve">
+    <value>自動スクロール</value>
+  </data>
+<data name="CommandProcessViewer_InputBox.Header" xml:space="preserve">
+    <value>プロセスに書き込み、Enterで送信</value>
+  </data>
+<data name="CommandProcessViewer_KillProcessButton.Content" xml:space="preserve">
+    <value>プロセスを終了</value>
+  </data>
+<data name="GbModPageWindow_OpenModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Modフォルダを開く...</value>
+  </data>
+<data name="GbModPageWindow_OpenInBrowser.ToolTipService.ToolTip" xml:space="preserve">
+    <value>既定のブラウザーで開く...</value>
+  </data>
+<data name="ModsOverviewPage_OpenFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>フォルダを開く</value>
+  </data>
+<data name="ModsOverviewPage_OpenSkinFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>スキンフォルダを開く</value>
+  </data>
+<data name="ModsOverviewPage_OpenAllButton.Content" xml:space="preserve">
+    <value>すべて開く</value>
+  </data>
+<data name="ModUpdateAvailableWindow_OpenModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Modフォルダを開く...</value>
+  </data>
+<data name="ModUpdateAvailableWindow_IgnoreCloseTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>通知を削除してこのウィンドウを閉じます</value>
+  </data>
+<data name="ModUpdateAvailableWindow_OpenInBrowser.ToolTipService.ToolTip" xml:space="preserve">
+    <value>既定のブラウザーで開く...</value>
+  </data>
+<data name="PresetDetailsPage_MoreOptions.AutomationProperties.Name" xml:space="preserve">
+    <value>その他のオプション</value>
+  </data>
+<data name="SettingsPage_KeepFolderStructureTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>JASMのModフォルダ構造を維持します（例: Characters/Diluc/SomeDilucSkinMod）</value>
+  </data>
+<data name="SettingsPage_RemoveModFoldersTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>再帰的に実行され、.JASM_ で始まるすべてのファイルとフォルダを削除します</value>
+  </data>
+<data name="SettingsPage_DisabledPrefixTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>エクスポートしたModに「DISABLED_」プレフィックスを付けるか外すか</value>
+  </data>
+<data name="SettingsPage_TreatAsXxmi.Content" xml:space="preserve">
+    <value>このフォルダをXXMIインストールとして扱う（Modフォルダをロック）</value>
+  </data>
+<data name="SettingsPage_XxmiManagedLock.Text" xml:space="preserve">
+    <value>このゲームはXXMIで管理されています。ModフォルダはXXMIのModsフォルダに固定され、ゲームの起動はXXMIを通じて行われます。</value>
+  </data>
+<data name="StartupPage_TreatAsXxmi.Content" xml:space="preserve">
+    <value>このフォルダをXXMIインストールとして扱う（Modフォルダをロック）</value>
+  </data>
+<data name="StartupPage_LegacyHint.Text" xml:space="preserve">
+    <value>チェックを外すと、XXMI管理のインストールではなく従来の3DMigoto構成を使用します。</value>
+  </data>
+<data name="StartupPage_UnloadedModsHint.Text" xml:space="preserve">
+    <value>Modのアンロードは現在実装されていません。実装後は、選択したModをアンロード用フォルダに移動できるようになります。</value>
+  </data>
+<data name="StartupPage_UnloadedModsTitle.Title" xml:space="preserve">
+    <value>アンロード済みModフォルダ（任意）</value>
+  </data>
+<data name="StartupPage_AlsoDisableAllMods.Content" xml:space="preserve">
+    <value>すべてのModも無効にする</value>
+  </data>
+<data name="CreateCharacterPage_RaritySlider.Header" xml:space="preserve">
+    <value>レアリティ</value>
+  </data>
+<data name="ModUpdateAvailableWindow_IgnoreCloseTooltip.Content" xml:space="preserve">
+    <value>無視して閉じる</value>
+  </data>
+<data name="ModUpdateAvailableWindow_IgnoreCloseTooltip_Content" xml:space="preserve">
+    <value>無視して閉じる</value>
+  </data>
 </root>

@@ -4653,4 +4653,231 @@ JASM+ не будет перемещать ваши моды и не будет 
     <!-- Section header -->
     <value>Команды, запущенные из JASM+ для текущего экземпляра</value>
   </data>
+<data name="CharacterDetails_LoadingText.Text" xml:space="preserve">
+    <!-- Loading indicator on the character details page -->
+    <value>Загрузка</value>
+  </data>
+<data name="CharacterDetails_AddModMenuItem.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: add a mod folder (character details menu) -->
+    <value>Добавить папку мода</value>
+  </data>
+<data name="CharacterDetails_AddArchiveMenuItem.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: add a mod from a compressed archive (character details menu) -->
+    <value>Добавить мод из сжатого архива</value>
+  </data>
+<data name="CharacterDetails_SingleSelectToggle.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: restrict to one active mod per character -->
+    <value>При выборе этого параметра одновременно может быть включён только один мод.</value>
+  </data>
+<data name="ModPane_SetModIniFile.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: choose the mod .ini file JASM should read -->
+    <value>Укажите файл .ini мода, который будет читать JASM</value>
+  </data>
+<data name="ModPane_IgnoreIniFile.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: ignore this mod's ini file and keyswaps -->
+    <value>JASM не будет искать merged.ini/Script.ini и проигнорирует keyswaps для этого мода</value>
+  </data>
+<data name="CharacterManagerPage_AddCharacterButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: add a new character -->
+    <value>Добавить нового персонажа</value>
+  </data>
+<data name="EditCharacterPage_DisableCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip on the disable-character action -->
+    <value>Сначала открывает окно с дополнительной информацией</value>
+  </data>
+<data name="EditCharacterPage_EnableCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip on the enable-character action -->
+    <value>Сначала открывает окно с дополнительной информацией</value>
+  </data>
+<data name="EditCharacterPage_DeleteCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip on the delete-character action -->
+    <value>Сначала открывает окно с дополнительной информацией</value>
+  </data>
+<data name="EditCharacterPage_UndoChanges.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: revert unsaved changes -->
+    <value>Отменяет несохранённые изменения</value>
+  </data>
+<data name="EditCharacterPage_SaveChanges.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: save changes to disk -->
+    <value>Сохраняет изменения на диск</value>
+  </data>
+<data name="EditCharacterPage_ResetCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: reset character values to their defaults -->
+    <value>Сбрасывает значения персонажа к значениям по умолчанию</value>
+  </data>
+<data name="CharactersPage_SelectProcessDialog.PrimaryButtonText" xml:space="preserve">
+    <!-- Process picker dialog: save button -->
+    <value>Сохранить</value>
+  </data>
+<data name="CharactersPage_SelectProcessDialog.SecondaryButtonText" xml:space="preserve">
+    <!-- Process picker dialog: cancel button -->
+    <value>Отмена</value>
+  </data>
+<data name="CustomImage_PickImageButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: pick an image -->
+    <value>Выбрать изображение</value>
+  </data>
+<data name="GbModPageWindow_CloseButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: close the window -->
+    <value>Закрыть окно</value>
+  </data>
+<data name="PresetDetailsPage_ReadAndSavePreferences.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: read the current 3Dmigoto user ini for the mod and store it in this preset -->
+    <value>Считывает текущий 3Dmigoto user ini этого мода и сохраняет настройку для этого пресета</value>
+  </data>
+<data name="PresetPage_CreateEmptyPreset.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: create the preset without enabling any mod -->
+    <value>Если включено, новый пресет будет создан без включённых модов.</value>
+  </data>
+<data name="PresetPage_AutoSyncPreferences.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: automatically sync preferences when creating and switching presets -->
+    <value>Если включено, JASM будет автоматически синхронизировать настройки при создании пресетов и переключении между ними</value>
+  </data>
+<data name="PresetPage_SaveActivePreferencesButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: read d3dx_user.ini for the active mods into their .JASM_Config.json -->
+    <value>Считывает настройки модов 3Dmigoto (d3dx_user.ini) для активных модов и сохраняет их в файл .JASM_Config.json каждого мода</value>
+  </data>
+<data name="PresetPage_ApplySavedPreferencesButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: write the saved mod preferences back to d3dx_user.ini -->
+    <value>Считывает настройки активных модов из .JASM_Config.json и записывает их в d3dx_user.ini для 3Dmigoto</value>
+  </data>
+<data name="PresetPage_ShowManualControls.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: control preferences manually instead of letting JASM do it -->
+    <value>Если вы хотите вручную управлять настройками, а не позволять JASM делать это за вас</value>
+  </data>
+<data name="PresetPage_ApplyPresetButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: enable every mod in this preset and write its preferences -->
+    <value>Включает все моды в этом пресете и записывает настройки пресета в моды</value>
+  </data>
+<data name="PresetPage_DeleteMenuItem.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: permanently delete this preset -->
+    <value>Удалить этот пресет безвозвратно</value>
+  </data>
+<data name="PresetPage_RandomizeModsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: opens a dialog with more info -->
+    <value>Открывает диалоговое окно с дополнительной информацией</value>
+  </data>
+<data name="PresetPage_ResetModPreferencesButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: clear the preferences stored in each mod's .JASM_ModConfig.json -->
+    <value>Очищает настройки модов, сохранённые в .JASM_ModConfig.json модов</value>
+  </data>
+<data name="CreateCommandView_ChainedCommand.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: not implemented -->
+    <value>Не реализовано</value>
+  </data>
+<data name="CreateCommandView_KillProcess.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: kill the process when JASM exits -->
+    <value>Если включено, процесс будет завершён при выходе из JASM</value>
+  </data>
+<data name="CreateCommandView_RunAsAdmin.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: run the executable as administrator -->
+    <value>Запускать исполняемый файл от имени администратора</value>
+  </data>
+<data name="CreateCommandView_UseShellExecute.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: let the OS start the executable -->
+    <value>Использовать операционную систему для запуска исполняемого файла</value>
+  </data>
+<data name="CreateCommandView_CreateWindow.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: run the command in an external window -->
+    <value>Если включено, будет запущено во внешнем окне</value>
+  </data>
+<data name="CreateCharacterPage_ReleaseDate.Header" xml:space="preserve">
+    <value>Дата выхода</value>
+  </data>
+<data name="CreateCharacterPage_RaritySlider.AutomationProperties.Name" xml:space="preserve">
+    <value>Ползунок с делениями</value>
+  </data>
+<data name="EditCharacterPage_OpenModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Открыть папку модов персонажа</value>
+  </data>
+<data name="EditCharacterPage_DateAdded.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Дата добавления в JASM</value>
+  </data>
+<data name="CharactersPage_XxmiLaunchHint.Text" xml:space="preserve">
+    <value>Запускает игру через XXMI (как ярлык быстрого запуска).</value>
+  </data>
+<data name="CharactersPage_InfoButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Открывает диалоговое окно с дополнительной информацией</value>
+  </data>
+<data name="CharactersPage_ShowEnabledOnlyToggle.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Показывать, только если включён хотя бы один мод</value>
+  </data>
+<data name="CommandProcessViewer_RunningLabel.Text" xml:space="preserve">
+    <value>Выполняется: </value>
+  </data>
+<data name="CommandProcessViewer_AutoScroll.Content" xml:space="preserve">
+    <value>Автопрокрутка</value>
+  </data>
+<data name="CommandProcessViewer_InputBox.Header" xml:space="preserve">
+    <value>Записать в процесс, Enter — отправить</value>
+  </data>
+<data name="CommandProcessViewer_KillProcessButton.Content" xml:space="preserve">
+    <value>Завершить процесс</value>
+  </data>
+<data name="GbModPageWindow_OpenModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Открыть папку мода...</value>
+  </data>
+<data name="GbModPageWindow_OpenInBrowser.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Открыть в браузере по умолчанию...</value>
+  </data>
+<data name="ModsOverviewPage_OpenFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Открыть папку</value>
+  </data>
+<data name="ModsOverviewPage_OpenSkinFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Открыть папку скинов</value>
+  </data>
+<data name="ModsOverviewPage_OpenAllButton.Content" xml:space="preserve">
+    <value>Открыть все</value>
+  </data>
+<data name="ModUpdateAvailableWindow_OpenModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Открыть папку мода...</value>
+  </data>
+<data name="ModUpdateAvailableWindow_IgnoreCloseTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Удаляет уведомление и закрывает это окно</value>
+  </data>
+<data name="ModUpdateAvailableWindow_OpenInBrowser.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Открыть в браузере по умолчанию...</value>
+  </data>
+<data name="PresetDetailsPage_MoreOptions.AutomationProperties.Name" xml:space="preserve">
+    <value>Дополнительные параметры</value>
+  </data>
+<data name="SettingsPage_KeepFolderStructureTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Сохраняет структуру папок модов JASM. Например, Characters/Diluc/SomeDilucSkinMod</value>
+  </data>
+<data name="SettingsPage_RemoveModFoldersTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Рекурсивно удаляет все файлы И папки, начинающиеся с .JASM_</value>
+  </data>
+<data name="SettingsPage_DisabledPrefixTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Добавлять или убирать префикс 'DISABLED_' у экспортированных модов</value>
+  </data>
+<data name="SettingsPage_TreatAsXxmi.Content" xml:space="preserve">
+    <value>Считать эту папку установкой XXMI (блокирует папку модов)</value>
+  </data>
+<data name="SettingsPage_XxmiManagedLock.Text" xml:space="preserve">
+    <value>Эта игра управляется через XXMI. Папка модов закреплена за папкой Mods XXMI, а запуск игры выполняется через XXMI.</value>
+  </data>
+<data name="StartupPage_TreatAsXxmi.Content" xml:space="preserve">
+    <value>Считать эту папку установкой XXMI (блокирует папку модов)</value>
+  </data>
+<data name="StartupPage_LegacyHint.Text" xml:space="preserve">
+    <value>Снимите флажок, чтобы использовать старую схему 3DMigoto вместо установки под управлением XXMI.</value>
+  </data>
+<data name="StartupPage_UnloadedModsHint.Text" xml:space="preserve">
+    <value>Выгрузка модов пока не реализована. После реализации можно будет выгружать выбранные моды в папку выгруженных модов.</value>
+  </data>
+<data name="StartupPage_UnloadedModsTitle.Title" xml:space="preserve">
+    <value>Папка выгруженных модов (необязательно)</value>
+  </data>
+<data name="StartupPage_AlsoDisableAllMods.Content" xml:space="preserve">
+    <value>Также отключить все моды</value>
+  </data>
+<data name="CreateCharacterPage_RaritySlider.Header" xml:space="preserve">
+    <value>Редкость</value>
+  </data>
+<data name="ModUpdateAvailableWindow_IgnoreCloseTooltip.Content" xml:space="preserve">
+    <value>Игнорировать и закрыть</value>
+  </data>
+<data name="ModUpdateAvailableWindow_IgnoreCloseTooltip_Content" xml:space="preserve">
+    <value>Игнорировать и закрыть</value>
+  </data>
 </root>

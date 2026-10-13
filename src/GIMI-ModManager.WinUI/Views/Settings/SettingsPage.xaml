@@ -1,4 +1,4 @@
-﻿<Page
+<Page
     x:Class="GIMI_ModManager.WinUI.Views.SettingsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -47,7 +47,8 @@
                         <StackPanel
                             Grid.Row="1"
                             Orientation="Horizontal"
-                            ToolTipService.ToolTip="Keeps the jasm mod folder structure. I.e. Characters/Diluc/SomeDilucSkinMod">
+                            ToolTipService.ToolTip="Keeps the jasm mod folder structure. I.e. Characters/Diluc/SomeDilucSkinMod"
+                        l:Uids.Uid="SettingsPage_KeepFolderStructureTooltip">
                             <CheckBox IsChecked="{x:Bind KeepFolderStructure, Mode=TwoWay}" />
                             <TextBlock
                                 IsTextSelectionEnabled="True"
@@ -58,7 +59,8 @@
                         <StackPanel
                             Grid.Row="2"
                             Orientation="Horizontal"
-                            ToolTipService.ToolTip="This is recursive and removes all files AND folders starting with .JASM_">
+                            ToolTipService.ToolTip="This is recursive and removes all files AND folders starting with .JASM_"
+                        l:Uids.Uid="SettingsPage_RemoveModFoldersTooltip">
                             <CheckBox IsChecked="{x:Bind RemoveJasmSettings, Mode=TwoWay}" />
                             <TextBlock
                                 IsTextSelectionEnabled="True"
@@ -69,7 +71,8 @@
                         <StackPanel
                             Grid.Row="3"
                             Orientation="Horizontal"
-                            ToolTipService.ToolTip="Whether to prepend or remove the 'DISABLED_' prefix from the exported mods">
+                            ToolTipService.ToolTip="Whether to prepend or remove the 'DISABLED_' prefix from the exported mods"
+                        l:Uids.Uid="SettingsPage_DisabledPrefixTooltip">
                             <ComboBox ItemsSource="{x:Bind SetModStatuses, Mode=TwoWay}" SelectedItem="{x:Bind SetModStatus, Mode=TwoWay}" />
                             <TextBlock
                                 VerticalAlignment="Center"
@@ -376,11 +379,13 @@
                     <StackPanel Margin="4,8,4,8" Spacing="4" Visibility="{x:Bind ViewModel.ModTypeSectionVisibility, Mode=OneWay}">
                         <CheckBox
                             IsChecked="{x:Bind ViewModel.TreatAsXxmi, Mode=TwoWay}"
-                            Content="Treat this folder as an XXMI installation (locks the mods folder)" />
+                            Content="Treat this folder as an XXMI installation (locks the mods folder)"
+                        l:Uids.Uid="SettingsPage_TreatAsXxmi" />
                         <TextBlock
                             Style="{ThemeResource CaptionTextBlockStyle}"
                             TextWrapping="WrapWholeWords"
-                            Text="This game is managed by XXMI. The mods folder is locked to the XXMI Mods location and game launch is handled through XXMI." />
+                            Text="This game is managed by XXMI. The mods folder is locked to the XXMI Mods location and game launch is handled through XXMI."
+                        l:Uids.Uid="SettingsPage_XxmiManagedLock" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">

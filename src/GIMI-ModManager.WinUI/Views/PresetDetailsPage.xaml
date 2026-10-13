@@ -145,7 +145,8 @@
                                 Grid.Column="1"
                                 MaxHeight="32"
                                 HorizontalAlignment="Right"
-                                AutomationProperties.Name="More Options">
+                                AutomationProperties.Name="More Options"
+                            l:Uids.Uid="PresetDetailsPage_MoreOptions">
                                 <DropDownButton.Content>
                                     <FontIcon Glyph="&#xE712;" />
                                 </DropDownButton.Content>

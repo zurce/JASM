@@ -3946,4 +3946,231 @@ JASM+ no moverá ninguno de tus mods ni los eliminará.
     <!-- Section header -->
     <value>Comandos iniciados desde JASM+ para la instancia actual</value>
   </data>
+<data name="CharacterDetails_LoadingText.Text" xml:space="preserve">
+    <!-- Loading indicator on the character details page -->
+    <value>Cargando</value>
+  </data>
+<data name="CharacterDetails_AddModMenuItem.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: add a mod folder (character details menu) -->
+    <value>Agregar una carpeta de mod</value>
+  </data>
+<data name="CharacterDetails_AddArchiveMenuItem.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: add a mod from a compressed archive (character details menu) -->
+    <value>Agregar un mod dentro de un archivo comprimido</value>
+  </data>
+<data name="CharacterDetails_SingleSelectToggle.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: restrict to one active mod per character -->
+    <value>Seleccionar esto solo permitirá que un mod esté habilitado a la vez.</value>
+  </data>
+<data name="ModPane_SetModIniFile.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: choose the mod .ini file JASM should read -->
+    <value>Establecer el archivo .ini del mod que JASM leerá</value>
+  </data>
+<data name="ModPane_IgnoreIniFile.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: ignore this mod's ini file and keyswaps -->
+    <value>JASM no buscará el archivo merged.ini/Script.ini e ignorará los keyswaps de este mod</value>
+  </data>
+<data name="CharacterManagerPage_AddCharacterButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: add a new character -->
+    <value>Agregar nuevo personaje</value>
+  </data>
+<data name="EditCharacterPage_DisableCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip on the disable-character action -->
+    <value>Abre primero una ventana con más información</value>
+  </data>
+<data name="EditCharacterPage_EnableCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip on the enable-character action -->
+    <value>Abre primero una ventana con más información</value>
+  </data>
+<data name="EditCharacterPage_DeleteCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip on the delete-character action -->
+    <value>Abre primero una ventana con más información</value>
+  </data>
+<data name="EditCharacterPage_UndoChanges.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: revert unsaved changes -->
+    <value>Revierte los cambios no guardados</value>
+  </data>
+<data name="EditCharacterPage_SaveChanges.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: save changes to disk -->
+    <value>Guarda los cambios en el disco</value>
+  </data>
+<data name="EditCharacterPage_ResetCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: reset character values to their defaults -->
+    <value>Restablece los valores del personaje a los predeterminados</value>
+  </data>
+<data name="CharactersPage_SelectProcessDialog.PrimaryButtonText" xml:space="preserve">
+    <!-- Process picker dialog: save button -->
+    <value>Guardar</value>
+  </data>
+<data name="CharactersPage_SelectProcessDialog.SecondaryButtonText" xml:space="preserve">
+    <!-- Process picker dialog: cancel button -->
+    <value>Cancelar</value>
+  </data>
+<data name="CustomImage_PickImageButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: pick an image -->
+    <value>Seleccionar una Imagen</value>
+  </data>
+<data name="GbModPageWindow_CloseButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: close the window -->
+    <value>Cerrar ventana</value>
+  </data>
+<data name="PresetDetailsPage_ReadAndSavePreferences.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: read the current 3Dmigoto user ini for the mod and store it in this preset -->
+    <value>Lee el ini de usuario actual de 3Dmigoto de este mod y guarda la preferencia para este preset</value>
+  </data>
+<data name="PresetPage_CreateEmptyPreset.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: create the preset without enabling any mod -->
+    <value>Si está marcado, el nuevo preset se creará sin ningún mod habilitado.</value>
+  </data>
+<data name="PresetPage_AutoSyncPreferences.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: automatically sync preferences when creating and switching presets -->
+    <value>Si está marcado, JASM sincronizará automáticamente las preferencias al crear presets y al cambiar entre ellos</value>
+  </data>
+<data name="PresetPage_SaveActivePreferencesButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: read d3dx_user.ini for the active mods into their .JASM_Config.json -->
+    <value>Lee las preferencias de mod de 3Dmigoto (d3dx_user.ini) de los mods activos y guarda la configuración en el archivo .JASM_Config.json de cada mod</value>
+  </data>
+<data name="PresetPage_ApplySavedPreferencesButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: write the saved mod preferences back to d3dx_user.ini -->
+    <value>Lee las preferencias de los mods activos desde .JASM_Config.json y las escribe en d3dx_user.ini para que 3Dmigoto las lea</value>
+  </data>
+<data name="PresetPage_ShowManualControls.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: control preferences manually instead of letting JASM do it -->
+    <value>Si prefieres controlar manualmente las preferencias en lugar de dejar que JASM lo haga por ti</value>
+  </data>
+<data name="PresetPage_ApplyPresetButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: enable every mod in this preset and write its preferences -->
+    <value>Habilita todos los mods de este preset y escribe las preferencias del preset en los mods</value>
+  </data>
+<data name="PresetPage_DeleteMenuItem.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: permanently delete this preset -->
+    <value>Eliminar este preset de forma permanente</value>
+  </data>
+<data name="PresetPage_RandomizeModsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: opens a dialog with more info -->
+    <value>Abre un cuadro de diálogo con más información</value>
+  </data>
+<data name="PresetPage_ResetModPreferencesButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: clear the preferences stored in each mod's .JASM_ModConfig.json -->
+    <value>Borra las preferencias de mod guardadas en el .JASM_ModConfig.json de los mods</value>
+  </data>
+<data name="CreateCommandView_ChainedCommand.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: not implemented -->
+    <value>No Implementado</value>
+  </data>
+<data name="CreateCommandView_KillProcess.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: kill the process when JASM exits -->
+    <value>Si está marcado, el proceso se cerrará cuando JASM salga</value>
+  </data>
+<data name="CreateCommandView_RunAsAdmin.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: run the executable as administrator -->
+    <value>Ejecutar el ejecutable como administrador</value>
+  </data>
+<data name="CreateCommandView_UseShellExecute.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: let the OS start the executable -->
+    <value>Usar el sistema operativo para iniciar el ejecutable</value>
+  </data>
+<data name="CreateCommandView_CreateWindow.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: run the command in an external window -->
+    <value>Si está marcado, se ejecutará en una ventana externa</value>
+  </data>
+<data name="CreateCharacterPage_ReleaseDate.Header" xml:space="preserve">
+    <value>Fecha de Lanzamiento</value>
+  </data>
+<data name="CreateCharacterPage_RaritySlider.AutomationProperties.Name" xml:space="preserve">
+    <value>Control deslizante con marcas</value>
+  </data>
+<data name="EditCharacterPage_OpenModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Abrir la carpeta de mods del personaje</value>
+  </data>
+<data name="EditCharacterPage_DateAdded.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Fecha de adición a JASM</value>
+  </data>
+<data name="CharactersPage_XxmiLaunchHint.Text" xml:space="preserve">
+    <value>Inicia el juego a través de XXMI (igual que el acceso directo de inicio rápido).</value>
+  </data>
+<data name="CharactersPage_InfoButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Abre un cuadro de diálogo con más información</value>
+  </data>
+<data name="CharactersPage_ShowEnabledOnlyToggle.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Mostrar solo si hay al menos un mod habilitado</value>
+  </data>
+<data name="CommandProcessViewer_RunningLabel.Text" xml:space="preserve">
+    <value>En ejecución: </value>
+  </data>
+<data name="CommandProcessViewer_AutoScroll.Content" xml:space="preserve">
+    <value>Desplazamiento automático</value>
+  </data>
+<data name="CommandProcessViewer_InputBox.Header" xml:space="preserve">
+    <value>Escribir en el proceso, pulsa Intro para enviar</value>
+  </data>
+<data name="CommandProcessViewer_KillProcessButton.Content" xml:space="preserve">
+    <value>Terminar proceso</value>
+  </data>
+<data name="GbModPageWindow_OpenModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Abrir carpeta del mod...</value>
+  </data>
+<data name="GbModPageWindow_OpenInBrowser.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Abrir en el navegador predeterminado...</value>
+  </data>
+<data name="ModsOverviewPage_OpenFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Abrir carpeta</value>
+  </data>
+<data name="ModsOverviewPage_OpenSkinFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Abrir carpeta de skins</value>
+  </data>
+<data name="ModsOverviewPage_OpenAllButton.Content" xml:space="preserve">
+    <value>Abrir todo</value>
+  </data>
+<data name="ModUpdateAvailableWindow_OpenModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Abrir carpeta del mod...</value>
+  </data>
+<data name="ModUpdateAvailableWindow_IgnoreCloseTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Elimina la notificación y cierra esta ventana</value>
+  </data>
+<data name="ModUpdateAvailableWindow_OpenInBrowser.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Abrir en el navegador predeterminado...</value>
+  </data>
+<data name="PresetDetailsPage_MoreOptions.AutomationProperties.Name" xml:space="preserve">
+    <value>Más opciones</value>
+  </data>
+<data name="SettingsPage_KeepFolderStructureTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Mantiene la estructura de carpetas de mods de JASM. Es decir, Characters/Diluc/SomeDilucSkinMod</value>
+  </data>
+<data name="SettingsPage_RemoveModFoldersTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Es recursivo y elimina todos los archivos Y carpetas que empiezan por .JASM_</value>
+  </data>
+<data name="SettingsPage_DisabledPrefixTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Si se añade o se quita el prefijo 'DISABLED_' de los mods exportados</value>
+  </data>
+<data name="SettingsPage_TreatAsXxmi.Content" xml:space="preserve">
+    <value>Tratar esta carpeta como una instalación de XXMI (bloquea la carpeta de mods)</value>
+  </data>
+<data name="SettingsPage_XxmiManagedLock.Text" xml:space="preserve">
+    <value>Este juego está gestionado por XXMI. La carpeta de mods está bloqueada a la ubicación de Mods de XXMI y el inicio del juego se gestiona a través de XXMI.</value>
+  </data>
+<data name="StartupPage_TreatAsXxmi.Content" xml:space="preserve">
+    <value>Tratar esta carpeta como una instalación de XXMI (bloquea la carpeta de mods)</value>
+  </data>
+<data name="StartupPage_LegacyHint.Text" xml:space="preserve">
+    <value>Desmarca para usar la configuración heredada de 3DMigoto en lugar de una instalación gestionada por XXMI.</value>
+  </data>
+<data name="StartupPage_UnloadedModsHint.Text" xml:space="preserve">
+    <value>La descarga de mods aún no está implementada. Cuando lo esté, será posible descargar mods seleccionados a una carpeta de mods descargados.</value>
+  </data>
+<data name="StartupPage_UnloadedModsTitle.Title" xml:space="preserve">
+    <value>Carpeta de mods descargados (opcional)</value>
+  </data>
+<data name="StartupPage_AlsoDisableAllMods.Content" xml:space="preserve">
+    <value>Deshabilitar también todos los mods</value>
+  </data>
+<data name="CreateCharacterPage_RaritySlider.Header" xml:space="preserve">
+    <value>Rareza</value>
+  </data>
+<data name="ModUpdateAvailableWindow_IgnoreCloseTooltip.Content" xml:space="preserve">
+    <value>Ignorar y Cerrar</value>
+  </data>
+<data name="ModUpdateAvailableWindow_IgnoreCloseTooltip_Content" xml:space="preserve">
+    <value>Ignorar y Cerrar</value>
+  </data>
 </root>

@@ -268,7 +268,8 @@
                         <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.XxmiLaunchButtonText, Mode=OneWay}" />
                     </StackPanel>
                     <ToolTipService.ToolTip>
-                        <TextBlock TextWrapping="WrapWholeWords" Text="Launch the game through XXMI (same as the Quick Start shortcut)." />
+                        <TextBlock TextWrapping="WrapWholeWords" Text="Launch the game through XXMI (same as the Quick Start shortcut)."
+                        l:Uids.Uid="CharactersPage_XxmiLaunchHint" />
                     </ToolTipService.ToolTip>
                 </Button>
             </StackPanel>
@@ -352,7 +353,8 @@
                                         <Button 
                                             HorizontalAlignment="Stretch"
                                             Command="{x:Bind ViewModel.RandomizeModsCommand}"
-                                            ToolTipService.ToolTip="Opens a dialog with more info">
+                                            ToolTipService.ToolTip="Opens a dialog with more info"
+                                        l:Uids.Uid="CharactersPage_InfoButton">
                                             <StackPanel Orientation="Horizontal" Spacing="8">
                                                 <FontIcon Glyph="&#xE8B1;" />
                                                 <TextBlock Text="Randomize Mods" l:Uids.Uid="CharactersPage_RandomizeMods" />
@@ -377,7 +379,8 @@
                                             Command="{x:Bind ViewModel.ShowOnlyCharactersWithEnabledModsCommand}"
                                             Content="{x:Bind ViewModel.ModEnabledToggleText, Mode=OneWay}"
                                             IsChecked="{x:Bind ViewModel.ShowOnlyWithEnabledMods, Mode=OneWay}"
-                                            ToolTipService.ToolTip="Only show if at least one mod is enabled" />
+                                            ToolTipService.ToolTip="Only show if at least one mod is enabled"
+                                        l:Uids.Uid="CharactersPage_ShowEnabledOnlyToggle" />
                                         <ToggleButton
                                             Command="{x:Bind ViewModel.ShowOnlyCharactersWithModNotificationsCommand}"
                                             Content="{x:Bind ViewModel.ModNotificationsToggleText, Mode=OneWay}"
