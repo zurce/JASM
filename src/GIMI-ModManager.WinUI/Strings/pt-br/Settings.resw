@@ -228,4 +228,13 @@
 <data name="Settings_OneClickInstallStatus_Foreign" xml:space="preserve">
     <value>O link '{0}' pertence a outro aplicativo ({1}).</value>
   </data>
+<data name="Settings_OneClickInstallEnabled.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Registra o link que o GameBanana abre; desativar remove o registro</value>
+  </data>
+<data name="Settings_OneClickInstallWithoutConfirmation.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Os links são instalados assim que são abertos. O aviso para arquivos compactados que contêm executáveis continua sendo exibido.</value>
+  </data>
+<data name="Settings_OneClickInstall.Text" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
 </root>

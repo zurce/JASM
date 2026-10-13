@@ -254,4 +254,13 @@ JASM+ частично поддерживает WUWA и ZZZ</value>
 <data name="Settings_OneClickInstallStatus_Foreign" xml:space="preserve">
     <value>Связь «{0}» принадлежит другому приложению ({1}).</value>
   </data>
+<data name="Settings_OneClickInstallEnabled.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Регистрирует ссылку, которую открывает GameBanana; отключение удаляет регистрацию</value>
+  </data>
+<data name="Settings_OneClickInstallWithoutConfirmation.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Ссылки устанавливаются сразу при открытии. Предупреждение об архивах с исполняемыми файлами по-прежнему показывается.</value>
+  </data>
+<data name="Settings_OneClickInstall.Text" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
 </root>

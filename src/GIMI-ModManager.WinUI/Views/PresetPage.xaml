@@ -90,10 +90,10 @@
                         Spacing="8">
                         <Button Command="{x:Bind ViewModel.CreatePresetCommand}" Content="Save active mod preferences and create new preset" l:Uids.Uid="PresetPage_CreatePresetButton" />
                         <CheckBox
-                            Content="Create as an empty preset" l:Uids.Uid="PresetPage_CreateEmptyPreset"
+                            Content="Create as an empty preset"
                             IsChecked="{x:Bind ViewModel.CreateEmptyPresetInput, Mode=TwoWay}"
                             IsEnabled="{x:Bind ViewModel.IsNotBusy, Mode=OneWay}"
-                            ToolTipService.ToolTip="If checked, the new preset will be created without any mods enabled." />
+                            ToolTipService.ToolTip="If checked, the new preset will be created without any mods enabled." l:Uids.Uid="PresetPage_CreateEmptyPreset" />
 
                     </StackPanel>
                 </StackPanel>
@@ -112,9 +112,9 @@
                         Spacing="16">
                         <CheckBox
                             Command="{x:Bind ViewModel.ToggleAutoSyncCommand}"
-                            Content="Auto sync Mod Preferences when switching presets" l:Uids.Uid="PresetPage_AutoSyncPreferences"
+                            Content="Auto sync Mod Preferences when switching presets"
                             IsChecked="{x:Bind ViewModel.AutoSync3DMigotoConfig, Mode=OneWay}"
-                            ToolTipService.ToolTip="If checked, then JASM will automatically sync preferences when creating presets and when switching between presets" />
+                            ToolTipService.ToolTip="If checked, then JASM will automatically sync preferences when creating presets and when switching between presets" l:Uids.Uid="PresetPage_AutoSyncPreferences" />
                     </StackPanel>
 
                     <StackPanel
@@ -124,20 +124,20 @@
                         Spacing="16">
                         <Button
                             Command="{x:Bind ViewModel.SaveActivePreferencesCommand}"
-                            Content="Save active mod preferences (KeySwaps) to mods" l:Uids.Uid="PresetPage_SaveActivePreferencesButton"
+                            Content="Save active mod preferences (KeySwaps) to mods"
                             ToolTipService.ToolTip="Reads 3Dmigoto mod preferences (d3dx_user.ini) for active mods and stores the settings in each Mod's .JASM_Config.json file"
-                            Visibility="{x:Bind ViewModel.ShowManualControls, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            Visibility="{x:Bind ViewModel.ShowManualControls, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" l:Uids.Uid="PresetPage_SaveActivePreferencesButton" />
 
                         <Button
                             Command="{x:Bind ViewModel.ApplySavedModPreferencesCommand}"
-                            Content="Apply saved mod preferences (KeySwaps)" l:Uids.Uid="PresetPage_ApplySavedPreferencesButton"
+                            Content="Apply saved mod preferences (KeySwaps)"
                             ToolTipService.ToolTip="Reads currently active mods' preferences from .JASM_Config.json and writes them to d3dx_user.ini for 3Dmigoto to read"
-                            Visibility="{x:Bind ViewModel.ShowManualControls, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            Visibility="{x:Bind ViewModel.ShowManualControls, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" l:Uids.Uid="PresetPage_ApplySavedPreferencesButton" />
 
                         <CheckBox
-                            Content="Show Manual controls" l:Uids.Uid="PresetPage_ShowManualControls"
+                            Content="Show Manual controls"
                             IsChecked="{x:Bind ViewModel.ShowManualControls, Mode=TwoWay}"
-                            ToolTipService.ToolTip="If you'd like to manually control setting preferences instead of letting JASM handle it for you" />
+                            ToolTipService.ToolTip="If you'd like to manually control setting preferences instead of letting JASM handle it for you" l:Uids.Uid="PresetPage_ShowManualControls" />
 
                     </StackPanel>
 
@@ -214,7 +214,7 @@
                                     Grid.Column="2"
                                     Orientation="Horizontal"
                                     Spacing="16">
-                                    <Button Content="Apply Preset" l:Uids.Uid="PresetPage_ApplyPresetButton" ToolTipService.ToolTip="Enables all mods in this preset and writes the preset's mod preferences to mods">
+                                    <Button Content="Apply Preset" ToolTipService.ToolTip="Enables all mods in this preset and writes the preset's mod preferences to mods" l:Uids.Uid="PresetPage_ApplyPresetButton">
                                         <Button.Flyout>
                                             <Flyout Placement="Left">
                                                 <StackPanel>
@@ -263,8 +263,8 @@
                                                 <MenuFlyoutItem
                                                     Command="{x:Bind DeletePresetCommand}"
                                                     CommandParameter="{Binding Mode=OneWay}"
-                                                    Text="Delete" l:Uids.Uid="PresetPage_DeleteMenuItem"
-                                                    ToolTipService.ToolTip="Permanently delete this preset">
+                                                    Text="Delete"
+                                                    ToolTipService.ToolTip="Permanently delete this preset" l:Uids.Uid="PresetPage_DeleteMenuItem">
                                                     <MenuFlyoutItem.Icon>
                                                         <FontIcon Glyph="&#xE74D;" />
                                                     </MenuFlyoutItem.Icon>
@@ -292,10 +292,10 @@
             <StackPanel Orientation="Horizontal" Spacing="32">
                 <Button
                     Command="{x:Bind ViewModel.RandomizeModsCommand}"
-                    Content="Randomize Mods" l:Uids.Uid="PresetPage_RandomizeModsButton"
-                    ToolTipService.ToolTip="Opens a dialog with more info" />
+                    Content="Randomize Mods"
+                    ToolTipService.ToolTip="Opens a dialog with more info" l:Uids.Uid="PresetPage_RandomizeModsButton" />
 
-                <Button Content="Reset Mod Preferences" l:Uids.Uid="PresetPage_ResetModPreferencesButton" ToolTipService.ToolTip="Clear mod preferences stored in mods' .JASM_ModConfig.json">
+                <Button Content="Reset Mod Preferences" ToolTipService.ToolTip="Clear mod preferences stored in mods' .JASM_ModConfig.json" l:Uids.Uid="PresetPage_ResetModPreferencesButton">
                     <Button.Flyout>
                         <Flyout>
                             <StackPanel>

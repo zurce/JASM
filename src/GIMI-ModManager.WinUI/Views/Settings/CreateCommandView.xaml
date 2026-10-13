@@ -26,9 +26,9 @@
                 MinWidth="300"
                 HorizontalAlignment="Left"
                 Header="* Command Name:"
-                l:Uids.Uid="CreateCommandView_CommandName"
                 PlaceholderText="Command Display Name (Required)"
-                Text="{x:Bind ViewModel.CommandDisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                Text="{x:Bind ViewModel.CommandDisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                l:Uids.Uid="CreateCommandView_CommandName" />
         </StackPanel>
 
 
@@ -46,9 +46,9 @@
                 <controls:SegmentedItem Content="Custom Command" l:Uids.Uid="CreateCommandView_CustomCommand" />
                 <controls:SegmentedItem
                     Content="Custom Chained Command"
-                    l:Uids.Uid="CreateCommandView_ChainedCommand"
                     IsEnabled="False"
-                    ToolTipService.ToolTip="Not Implemented" />
+                    ToolTipService.ToolTip="Not Implemented"
+                    l:Uids.Uid="CreateCommandView_ChainedCommand" />
             </controls:Segmented>
 
 
@@ -78,9 +78,9 @@
                             <StackPanel>
                                 <TextBox x:Name="ArgumentsBox"
                                     Header="Arguments"
-                                    l:Uids.Uid="CreateCommandView_Arguments"
                                     PlaceholderText="Arguments that will be passed to the executable"
-                                    Text="{x:Bind ViewModel.Arguments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    Text="{x:Bind ViewModel.Arguments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    l:Uids.Uid="CreateCommandView_Arguments" />
                                 <TextBlock IsTextSelectionEnabled="True" Text="When command is run against a file system object (i.e. a skin/mod folder), {{TargetPath}} will be replaced by the actual path." l:Uids.Uid="CreateCommandView_TargetPathHelp" />
                             </StackPanel>
 
@@ -88,28 +88,28 @@
                             <StackPanel>
                                 <CheckBox
                                     Content="Kill Process on JASM exit"
-                                    l:Uids.Uid="CreateCommandView_KillProcess"
                                     IsChecked="{x:Bind ViewModel.KillProcessOnMainAppExit, Mode=TwoWay}"
-                                    ToolTipService.ToolTip="If checked the process will be killed when JASM exits" />
+                                    ToolTipService.ToolTip="If checked the process will be killed when JASM exits"
+                                    l:Uids.Uid="CreateCommandView_KillProcess" />
                                 <CheckBox
                                     Command="{x:Bind ViewModel.ToggleRunAsAdminCommand}"
                                     Content="Run as Admin"
-                                    l:Uids.Uid="CreateCommandView_RunAsAdmin"
                                     IsChecked="{x:Bind ViewModel.RunAsAdmin, Mode=TwoWay}"
-                                    ToolTipService.ToolTip="Run the executable as an Administrator" />
+                                    ToolTipService.ToolTip="Run the executable as an Administrator"
+                                    l:Uids.Uid="CreateCommandView_RunAsAdmin" />
                                 <CheckBox
                                     Command="{x:Bind ViewModel.ToggleUseShellExecuteCommand}"
                                     Content="Use Shell Execute"
-                                    l:Uids.Uid="CreateCommandView_UseShellExecute"
                                     IsChecked="{x:Bind ViewModel.UseShellExecute, Mode=TwoWay}"
                                     IsEnabled="{x:Bind ViewModel.CanToggleUseShellExecute, Mode=OneWay}"
-                                    ToolTipService.ToolTip="Use the Operating System to start the executable" />
+                                    ToolTipService.ToolTip="Use the Operating System to start the executable"
+                                    l:Uids.Uid="CreateCommandView_UseShellExecute" />
                                 <CheckBox
                                     Content="Create window"
-                                    l:Uids.Uid="CreateCommandView_CreateWindow"
                                     IsChecked="{x:Bind ViewModel.CreateWindow, Mode=TwoWay}"
                                     IsEnabled="False"
-                                    ToolTipService.ToolTip="If checked it will be run in an external window" />
+                                    ToolTipService.ToolTip="If checked it will be run in an external window"
+                                    l:Uids.Uid="CreateCommandView_CreateWindow" />
                             </StackPanel>
 
                         </StackPanel>

@@ -233,4 +233,13 @@ La verificación manual de actualizaciones siempre consulta directamente a GameB
 <data name="Settings_OneClickInstallStatus_Foreign" xml:space="preserve">
     <value>El enlace «{0}» pertenece a otra aplicación ({1}).</value>
   </data>
+<data name="Settings_OneClickInstallEnabled.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Registra el enlace que abre GameBanana; desactivarlo elimina el registro</value>
+  </data>
+<data name="Settings_OneClickInstallWithoutConfirmation.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Los enlaces se instalan en cuanto se abren. El aviso para archivos comprimidos que contienen ejecutables se sigue mostrando.</value>
+  </data>
+<data name="Settings_OneClickInstall.Text" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
 </root>

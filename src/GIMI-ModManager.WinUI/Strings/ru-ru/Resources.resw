@@ -4589,4 +4589,61 @@ JASM+ не будет перемещать ваши моды и не будет 
 <data name="OneClick_SwitchGame_Cancel" xml:space="preserve">
     <value>Отменить установку</value>
   </data>
+<data name="ModInstallerPage_ReplaceDuplicateModPreset.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Дублирующийся мод будет заменён в пресетах новым установленным модом. Это несовместимо с флажком «заменить старый мод в пресетах».</value>
+  </data>
+<data name="ModInstallerPage_AlwaysOnTopToggle.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Всегда держать окно поверх остальных</value>
+  </data>
+<data name="ModInstallerPage_RetrieveModInfoButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Получить информацию о моде со страницы мода</value>
+  </data>
+<data name="ModInstallerPage_ForceOverwriteDifferentNameMod.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Если отмечено, JASM+ попытается перезаписать старый мод новым, даже если имена папок различаются. (Старая папка будет удалена)</value>
+  </data>
+<data name="ModInstallerPage_EnableOnlyMod.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Это включит данный мод и отключит все остальные. Для персонажа отключит только его скины</value>
+  </data>
+<data name="ModInstallerPage_AddRenameButton_Content" xml:space="preserve">
+    <value>Переименовать и добавить мод</value>
+  </data>
+<data name="ModInstallerPage_OverwriteOldModButton_Content" xml:space="preserve">
+    <value>Перезаписать старый мод</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_Auto" xml:space="preserve">
+    <value>Автоматически</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_FromExistingMod" xml:space="preserve">
+    <value>Изображение из существующего мода</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_FoundInNewMod" xml:space="preserve">
+    <value>Локальное изображение, найденное в новом моде</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_SelectedFromNewMod" xml:space="preserve">
+    <value>Локальное изображение, выбранное из нового мода</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_Manual" xml:space="preserve">
+    <value>Вручную</value>
+  </data>
+<data name="Settings_UpdateButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Обновить путь(и) к папкам?</value>
+  </data>
+<data name="Settings_WindowSize.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Если включено, размер главного окна сохраняется при выходе из JASM+</value>
+  </data>
+<data name="Settings_WindowPosition.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Если включено, положение главного окна сохраняется при выходе из JASM+</value>
+  </data>
+<data name="ModInstallerPage_NewModCustomName.PlaceholderText" xml:space="preserve">
+    <value>Пользовательское имя</value>
+  </data>
+<data name="ModInstallerPage_NewModFolderName.PlaceholderText" xml:space="preserve">
+    <value>Имя папки</value>
+  </data>
+<data name="ModInstallerPage_OtherModCustomName.PlaceholderText" xml:space="preserve">
+    <value>Пользовательское имя</value>
+  </data>
+<data name="ModInstallerPage_OtherModFolderName.PlaceholderText" xml:space="preserve">
+    <value>Имя папки</value>
+  </data>
 </root>

@@ -4588,4 +4588,61 @@ JASMはModを移動したり削除したりしません。
 <data name="OneClick_SwitchGame_Cancel" xml:space="preserve">
     <value>インストールをキャンセル</value>
   </data>
+<data name="ModInstallerPage_ReplaceDuplicateModPreset.ToolTipService.ToolTip" xml:space="preserve">
+    <value>重複したModはプリセット内で新しくインストールされたModに置き換えられます。これは「プリセット内の古いModを置き換える」チェックボックスとは同時に使用できません。</value>
+  </data>
+<data name="ModInstallerPage_AlwaysOnTopToggle.ToolTipService.ToolTip" xml:space="preserve">
+    <value>ウィンドウを常に最前面に表示</value>
+  </data>
+<data name="ModInstallerPage_RetrieveModInfoButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>ModページからMod情報を取得</value>
+  </data>
+<data name="ModInstallerPage_ForceOverwriteDifferentNameMod.ToolTipService.ToolTip" xml:space="preserve">
+    <value>チェックすると、フォルダ名が異なっていても、古いModを新しいModで上書きしようとします。（古いフォルダは削除されます）</value>
+  </data>
+<data name="ModInstallerPage_EnableOnlyMod.ToolTipService.ToolTip" xml:space="preserve">
+    <value>このModを有効にし、他のすべてのModを無効にします。キャラクターの場合は、そのキャラクターのスキンのみが無効になります</value>
+  </data>
+<data name="ModInstallerPage_AddRenameButton_Content" xml:space="preserve">
+    <value>名前を変更してModを追加</value>
+  </data>
+<data name="ModInstallerPage_OverwriteOldModButton_Content" xml:space="preserve">
+    <value>古いModを上書き</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_Auto" xml:space="preserve">
+    <value>自動</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_FromExistingMod" xml:space="preserve">
+    <value>既存のModの画像</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_FoundInNewMod" xml:space="preserve">
+    <value>新しいMod内で見つかったローカル画像</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_SelectedFromNewMod" xml:space="preserve">
+    <value>新しいModから選択したローカル画像</value>
+  </data>
+<data name="ModInstallerPage_ImageSource_Manual" xml:space="preserve">
+    <value>手動</value>
+  </data>
+<data name="Settings_UpdateButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>フォルダパスを更新しますか？</value>
+  </data>
+<data name="Settings_WindowSize.ToolTipService.ToolTip" xml:space="preserve">
+    <value>チェックすると、JASM+終了時にメインウィンドウのサイズが保存されます</value>
+  </data>
+<data name="Settings_WindowPosition.ToolTipService.ToolTip" xml:space="preserve">
+    <value>チェックすると、JASM+終了時にメインウィンドウの位置が保存されます</value>
+  </data>
+<data name="ModInstallerPage_NewModCustomName.PlaceholderText" xml:space="preserve">
+    <value>カスタム名</value>
+  </data>
+<data name="ModInstallerPage_NewModFolderName.PlaceholderText" xml:space="preserve">
+    <value>フォルダー名</value>
+  </data>
+<data name="ModInstallerPage_OtherModCustomName.PlaceholderText" xml:space="preserve">
+    <value>カスタム名</value>
+  </data>
+<data name="ModInstallerPage_OtherModFolderName.PlaceholderText" xml:space="preserve">
+    <value>フォルダー名</value>
+  </data>
 </root>

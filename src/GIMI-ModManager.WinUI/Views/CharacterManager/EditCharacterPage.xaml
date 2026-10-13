@@ -46,28 +46,28 @@
                 Grid.Column="1"
                 HorizontalAlignment="Right"
                 Command="{x:Bind ViewModel.DisableCharacterCommand, Mode=OneWay}"
-                Content="Disable Character" l:Uids.Uid="EditCharacterPage_DisableCharacter"
+                Content="Disable Character"
                 IsEnabled="{x:Bind ViewModel.CharacterStatus.IsEnabledAndNotCustomCharacter, Mode=OneWay}"
                 ToolTipService.ToolTip="Opens a popup first with more information"
-                Visibility="{x:Bind ViewModel.CharacterStatus.IsEnabledAndNotCustomCharacter, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                Visibility="{x:Bind ViewModel.CharacterStatus.IsEnabledAndNotCustomCharacter, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" l:Uids.Uid="EditCharacterPage_DisableCharacter" />
 
             <Button
                 Grid.Column="1"
                 HorizontalAlignment="Right"
                 Command="{x:Bind ViewModel.EnableCharacterCommand, Mode=OneWay}"
-                Content="Enable Character" l:Uids.Uid="EditCharacterPage_EnableCharacter"
+                Content="Enable Character"
                 IsEnabled="{x:Bind ViewModel.CharacterStatus.IsDisabledAndNotCustomCharacter, Mode=OneWay}"
                 ToolTipService.ToolTip="Opens a popup first with more information"
-                Visibility="{x:Bind ViewModel.CharacterStatus.IsDisabledAndNotCustomCharacter, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                Visibility="{x:Bind ViewModel.CharacterStatus.IsDisabledAndNotCustomCharacter, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" l:Uids.Uid="EditCharacterPage_EnableCharacter" />
 
             <Button
                 Grid.Column="1"
                 HorizontalAlignment="Right"
                 Command="{x:Bind ViewModel.DeleteCustomCharacterCommand, Mode=OneWay}"
-                Content="Delete Custom Character" l:Uids.Uid="EditCharacterPage_DeleteCharacter"
+                Content="Delete Custom Character"
                 IsEnabled="{x:Bind ViewModel.CharacterStatus.IsCustomCharacter, Mode=OneWay}"
                 ToolTipService.ToolTip="Opens a popup first with more information"
-                Visibility="{x:Bind ViewModel.CharacterStatus.IsCustomCharacter, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                Visibility="{x:Bind ViewModel.CharacterStatus.IsCustomCharacter, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" l:Uids.Uid="EditCharacterPage_DeleteCharacter" />
 
 
 
@@ -315,16 +315,16 @@
                     Margin="0,16"
                     HorizontalAlignment="Center"
                     Command="{x:Bind ViewModel.RevertChangesCommand}"
-                    Content="Undo changes" l:Uids.Uid="EditCharacterPage_UndoChanges"
-                    ToolTipService.ToolTip="Reverts changes not saved" />
+                    Content="Undo changes"
+                    ToolTipService.ToolTip="Reverts changes not saved" l:Uids.Uid="EditCharacterPage_UndoChanges" />
                 <Button
                     Grid.Row="1"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
                     Background="{ThemeResource AccentFillColorDefaultBrush}"
                     Command="{x:Bind ViewModel.DummySaveCommand}"
-                    Content="Save changes" l:Uids.Uid="EditCharacterPage_SaveChanges"
-                    ToolTipService.ToolTip="Saves changes to disk">
+                    Content="Save changes"
+                    ToolTipService.ToolTip="Saves changes to disk" l:Uids.Uid="EditCharacterPage_SaveChanges">
                     <Button.Flyout>
                         <Flyout Placement="Bottom">
                             <Button Command="{x:Bind ViewModel.SaveChangesCommand}" Content="Save" />
@@ -351,9 +351,9 @@
                 Width="200"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                Content="Reset Character" l:Uids.Uid="EditCharacterPage_ResetCharacter"
+                Content="Reset Character"
                 ToolTipService.ToolTip="Resets Character values to their default"
-                Visibility="{x:Bind ViewModel.IsNotCustomCharacter, Converter={StaticResource BoolToVisibilityConverter}}">
+                Visibility="{x:Bind ViewModel.IsNotCustomCharacter, Converter={StaticResource BoolToVisibilityConverter}}" l:Uids.Uid="EditCharacterPage_ResetCharacter">
                 <Button.Flyout>
                     <Flyout>
                         <Button Command="{x:Bind ViewModel.ResetCharacterToDefaultCommand}" Content="Reset Character Settings" l:Uids.Uid="EditCharacterPage_ResetCharacterSettings" />

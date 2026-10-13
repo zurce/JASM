@@ -80,11 +80,11 @@
 
         <ContentDialog
             x:Name="SelectProcessDialog"
-            Title="Select Process Path" l:Uids.Uid="CharactersPage_SelectProcessDialog"
+            Title="Select Process Path"
             DefaultButton="Primary"
             IsPrimaryButtonEnabled="{x:Bind ViewModel.SimpleSelectProcessDialogVM.PathPicker.IsValid, Mode=OneWay}"
             PrimaryButtonText="Save"
-            SecondaryButtonText="Cancel">
+            SecondaryButtonText="Cancel" l:Uids.Uid="CharactersPage_SelectProcessDialog">
             <Grid MinWidth="500" MinHeight="200">
 
                 <Grid.RowDefinitions>
