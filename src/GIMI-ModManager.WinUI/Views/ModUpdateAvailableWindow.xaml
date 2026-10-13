@@ -45,12 +45,14 @@
                         Margin="10"
                         FontSize="20"
                         FontWeight="Bold"
-                        Text="New Downloadable Files Found" />
+                        Text="New Downloadable Files Found"
+                        l:Uids.Uid="ModUpdateAvailableWindow_Title" />
 
                     <controls:LinkButton
                         Link="{x:Bind ViewModel.ModPath, Mode=OneWay}"
                         Text="{x:Bind ViewModel.ModPath.LocalPath, Mode=OneWay, FallbackValue=ModPath}"
-                        ToolTipService.ToolTip="Open Mod folder..." />
+                        ToolTipService.ToolTip="Open Mod folder..."
+                    l:Uids.Uid="ModUpdateAvailableWindow_OpenModFolder" />
                 </StackPanel>
 
                 <controls1:SwitchPresenter Grid.Row="1" Value="{x:Bind ViewModel.Initializing, Mode=OneWay}">
@@ -59,7 +61,7 @@
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                             <StackPanel>
                                 <ProgressRing IsActive="True" />
-                                <TextBlock Text="Loading Mod Info from GameBanana..." />
+                                <TextBlock Text="Loading Mod Info from GameBanana..." l:Uids.Uid="ModUpdateAvailableWindow_LoadingText" />
                             </StackPanel>
                         </Grid>
 
@@ -189,14 +191,13 @@
                                                     Grid.ColumnSpan="2"
                                                     IsTextSelectionEnabled="True"
                                                     Text="{x:Bind Description}" />
-                                                <TextBlock
-                                                    Grid.Row="0"
-                                                    Grid.Column="3"
-                                                    HorizontalAlignment="Right"
-                                                    Text="New since last check"
-                                                    Visibility="{Binding Path=IsNew, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}" />
-
                                                 <StackPanel Grid.RowSpan="3" Grid.Column="3" VerticalAlignment="Center">
+                                                    <TextBlock
+                                                        Margin="0,0,0,2"
+                                                        HorizontalAlignment="Right"
+                                                        Text="New since last check"
+                                                        l:Uids.Uid="ModUpdateAvailableWindow_NewSinceLastCheck"
+                                                        Visibility="{Binding Path=IsNew, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}" />
                                                     <Grid>
                                                         <Button
                                                             Width="90"
@@ -282,7 +283,8 @@
                         Click="CloseCancel_Click"
                         Content="Ignore and Close"
                         IsEnabled="{x:Bind ViewModel.IsNotBusy, Mode=OneWay}"
-                        ToolTipService.ToolTip="Removes the notification and closes this window" />
+                        ToolTipService.ToolTip="Removes the notification and closes this window"
+                    l:Uids.Uid="ModUpdateAvailableWindow_IgnoreCloseTooltip" />
 
                     <StackPanel
                         Grid.Row="1"
@@ -311,7 +313,7 @@
                         HorizontalAlignment="Right"
                         Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
                         CornerRadius="4">
-                        <TextBlock Text="Last Check:" />
+                        <TextBlock Text="Last Check:" l:Uids.Uid="ModUpdateAvailableWindow_LastCheck" />
                         <TextBlock Text="{x:Bind ViewModel.LastUpdateCheck, Mode=OneWay}" />
                     </StackPanel>
 
@@ -334,12 +336,14 @@
                         <TextBlock
                             Margin="10,0"
                             VerticalAlignment="Center"
-                            Text="Mod Page:" />
+                            Text="Mod Page:"
+                            l:Uids.Uid="ModUpdateAvailableWindow_ModPageLabel" />
                         <controls:LinkButton
                             VerticalAlignment="Center"
                             Link="{x:Bind ViewModel.ModPage, Mode=OneWay}"
                             Text="{x:Bind ViewModel.ModPage, Mode=OneWay}"
-                            ToolTipService.ToolTip="Open in default browser..." />
+                            ToolTipService.ToolTip="Open in default browser..."
+                        l:Uids.Uid="ModUpdateAvailableWindow_OpenInBrowser" />
                     </StackPanel>
                     <Button
                         Grid.Column="1"
