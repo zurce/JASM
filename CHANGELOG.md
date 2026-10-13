@@ -13,7 +13,6 @@
 * install multiple GameBanana files as variants (phase 1 UI flow) ([6354a49](https://github.com/zurce/JASM/commit/6354a49e84a5600b65b6f58dc2a0252a863dfe55))
 * **oneclick:** "install without confirmation" skips the Mod Installer Helper, not the alert ([0359954](https://github.com/zurce/JASM/commit/0359954290aaffac445d54cbecb5f82001da04d5))
 * **oneclick:** confirm before installing, and warn about executable content ([574b49a](https://github.com/zurce/JASM/commit/574b49aaafe6672b8ab2f8d4decbbf8113182ab5))
-* **oneclick:** dev-only link options so the harness can drive skin/target cases ([2cfe977](https://github.com/zurce/JASM/commit/2cfe9776a10a13be59fa0c4075c5fb3a091738e0))
 * **oneclick:** leave the target picker's placeholder empty ([023929f](https://github.com/zurce/JASM/commit/023929f7e140947fb6dc33184e4318aeb8dbcd2a))
 * **oneclick:** offer to switch game when a link targets another game ([8c30614](https://github.com/zurce/JASM/commit/8c30614876daaeb2a50b44b5d3cfa2ba0bc41181))
 * **oneclick:** parse GameBanana 1-click links and own the scheme registration ([87e43c8](https://github.com/zurce/JASM/commit/87e43c8eb4cf3ee7abbbc21c5cf732c7c9796164))
