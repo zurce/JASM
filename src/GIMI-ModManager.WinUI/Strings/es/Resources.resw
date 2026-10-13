@@ -1403,10 +1403,6 @@ O
     <!-- Hint shown on a multi-install file hovered as a drop target for nesting -->
     <value>Soltar para anidar como addon</value>
   </data>
-  <data name="CancelButton.Text" xml:space="preserve">
-    <!-- Cancel button text (exits multi-install selection mode) -->
-    <value>Cancelar</value>
-  </data>
   <data name="GbModPageWindow_CloseButton.Content" xml:space="preserve">
     <!-- Button to close the window -->
     <value>Cerrar</value>
@@ -3485,17 +3481,9 @@ JASM+ no moverá ninguno de tus mods ni los eliminará.
     <!-- Toggle: when enabled, only one mod can be active at a time -->
     <value>Seleccionar esto solo permitirá habilitar un mod a la vez.</value>
   </data>
-  <data name="CharacterDetails_SavePreferences.Text" xml:space="preserve">
-    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
-    <value>Guardar preferencias para el mod seleccionado</value>
-  </data>
   <data name="CharacterDetails_SavePreferences.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
     <value>Lee las preferencias de mod de 3Dmigoto (d3dx_user.ini) para el mod seleccionado y almacena la configuración en el archivo .JASM_Config.json del Mod</value>
-  </data>
-  <data name="CharacterDetails_ReadPreferences.Text" xml:space="preserve">
-    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
-    <value>Leer preferencias para el mod seleccionado</value>
   </data>
   <data name="CharacterDetails_ReadPreferences.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
@@ -3544,18 +3532,6 @@ JASM+ no moverá ninguno de tus mods ni los eliminará.
   <data name="CharDetails_NewModFilesAvailable" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
     <value>Nuevos Archivos de Mod Disponibles: {0}</value>
-  </data>
-  <data name="CharDetails_SetButton.Text" xml:space="preserve">
-    <!-- Static label text on the CharDetails component -->
-    <value>Establecer</value>
-  </data>
-  <data name="CharDetails_SetImageButton.Text" xml:space="preserve">
-    <!-- Static label text on the CharDetails component -->
-    <value>Establecer Imagen</value>
-  </data>
-  <data name="CharacterDetails_OnlyOneSkin.ToolTip" xml:space="preserve">
-    <!-- Tooltip explanation on the CharacterDetails component -->
-    <value>Este personaje solo tiene una skin predeterminada, no se puede cambiar.</value>
   </data>
   <data name="ModPane_Unknown" xml:space="preserve">
     <!-- Fallback text when mod value is unknown -->
@@ -3933,5 +3909,41 @@ JASM+ no moverá ninguno de tus mods ni los eliminará.
   </data>
 <data name="ModInstallerPage_OtherModFolderName.PlaceholderText" xml:space="preserve">
     <value>Nombre de carpeta</value>
+  </data>
+<data name="CancelButton_Text" xml:space="preserve">
+    <!-- Cancel button text (exits multi-install selection mode) -->
+    <value>Cancelar</value>
+  </data>
+<data name="CharDetails_SetButton_Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>Establecer</value>
+  </data>
+<data name="CharDetails_SetImageButton_Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>Establecer Imagen</value>
+  </data>
+<data name="CharacterDetails_SavePreferences_Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Guardar preferencias para el mod seleccionado</value>
+  </data>
+<data name="CharacterDetails_ReadPreferences_Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Leer preferencias para el mod seleccionado</value>
+  </data>
+<data name="CharacterDetails_OnlyOneSkin_ToolTip" xml:space="preserve">
+    <!-- Tooltip explanation on the CharacterDetails component -->
+    <value>Este personaje solo tiene una skin predeterminada, no se puede cambiar.</value>
+  </data>
+<data name="CommandsSettingsPage_CreateCommand_Description" xml:space="preserve">
+    <!-- Button/section to create a new command -->
+    <value>Aquí puedes definir comandos personalizados que JASM+ puede ejecutar. Actualmente, los comandos que contienen {{TargetPath}} solo se pueden ejecutar desde la página de Resumen de Mods</value>
+  </data>
+<data name="CommandsSettingsPage_CommandDefinitions_Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>Aquí puedes ver y eliminar definiciones de comandos creadas</value>
+  </data>
+<data name="CommandsSettingsPage_RunningCommands_Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>Comandos iniciados desde JASM+ para la instancia actual</value>
   </data>
 </root>

@@ -1470,10 +1470,6 @@ Or
     <!-- Hint shown on a multi-install file hovered as a drop target for nesting -->
     <value>Drop to nest as addon</value>
   </data>
-  <data name="CancelButton.Text" xml:space="preserve">
-    <!-- Cancel button text (exits multi-install selection mode) -->
-    <value>Cancel</value>
-  </data>
   <data name="GbModPageWindow_CloseButton.Content" xml:space="preserve">
     <!-- Button to close the window -->
     <value>Close</value>
@@ -3459,17 +3455,9 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
     <!-- Toggle: when enabled, only one mod can be active at a time -->
     <value>Selecting this will only allow one mod to be enabled at a time.</value>
   </data>
-  <data name="CharacterDetails_SavePreferences.Text" xml:space="preserve">
-    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
-    <value>Save preferences for selected mod</value>
-  </data>
   <data name="CharacterDetails_SavePreferences.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
     <value>Reads 3Dmigoto mod preferences (d3dx_user.ini) for the selected mod and stores the settings in the Mod's .JASM_Config.json file</value>
-  </data>
-  <data name="CharacterDetails_ReadPreferences.Text" xml:space="preserve">
-    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
-    <value>Read preferences for selected mod</value>
   </data>
   <data name="CharacterDetails_ReadPreferences.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
@@ -3518,18 +3506,6 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   <data name="CharDetails_NewModFilesAvailable" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
     <value>New Mod Files Available: {0}</value>
-  </data>
-  <data name="CharDetails_SetButton.Text" xml:space="preserve">
-    <!-- Static label text on the CharDetails component -->
-    <value>Set</value>
-  </data>
-  <data name="CharDetails_SetImageButton.Text" xml:space="preserve">
-    <!-- Static label text on the CharDetails component -->
-    <value>Set Image</value>
-  </data>
-  <data name="CharacterDetails_OnlyOneSkin.ToolTip" xml:space="preserve">
-    <!-- Tooltip explanation on the CharacterDetails component -->
-    <value>This character only has one default in-game skin, so you can't change it.</value>
   </data>
   <data name="ModPane_Unknown" xml:space="preserve">
     <!-- Fallback text when mod value is unknown -->
@@ -3651,6 +3627,42 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   <data name="ModInstallerPage_Note_PlaceholderText" xml:space="preserve">
     <!-- Label/placeholder for a free-text note about this mod -->
     <value>Custom free text note, shown in grid on character details page</value>
+  </data>
+  <data name="CancelButton_Text" xml:space="preserve">
+    <!-- Cancel button text (exits multi-install selection mode) -->
+    <value>Cancel</value>
+  </data>
+  <data name="CharDetails_SetButton_Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>Set</value>
+  </data>
+  <data name="CharDetails_SetImageButton_Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>Set Image</value>
+  </data>
+  <data name="CharacterDetails_SavePreferences_Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Save preferences for selected mod</value>
+  </data>
+  <data name="CharacterDetails_ReadPreferences_Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Read preferences for selected mod</value>
+  </data>
+  <data name="CharacterDetails_OnlyOneSkin_ToolTip" xml:space="preserve">
+    <!-- Tooltip explanation on the CharacterDetails component -->
+    <value>This character only has one default in-game skin, so you can't change it.</value>
+  </data>
+  <data name="CommandsSettingsPage_CreateCommand_Description" xml:space="preserve">
+    <!-- Button/section to create a new command -->
+    <value>Here you can define custom commands that JASM+ can run for you. Currently, commands that contain {{TargetPath}} can only be run from the Mods Overview page</value>
+  </data>
+  <data name="CommandsSettingsPage_CommandDefinitions_Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>Here you can view and delete created command definitions</value>
+  </data>
+  <data name="CommandsSettingsPage_RunningCommands_Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>Commands started from JASM+ for the current running instance</value>
   </data>
   <!-- Missing keys from es that en-us should have -->
   <data name="Error" xml:space="preserve">

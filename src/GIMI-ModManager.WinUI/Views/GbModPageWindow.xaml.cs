@@ -67,7 +67,7 @@ public sealed partial class GbModPageWindow : WindowEx
     {
         var localizer = App.GetService<ILanguageLocalizer>();
         CloseCancelButton.Content = ViewModel.IsVariantMode
-            ? localizer.GetLocalizedStringOrDefault("CancelButton.Text") ?? "Cancel"
+            ? localizer.GetLocalizedStringOrDefault("CancelButton_Text") ?? "Cancel"
             : localizer.GetLocalizedStringOrDefault("WindowManagerService_Close") ?? "Close";
     }
 

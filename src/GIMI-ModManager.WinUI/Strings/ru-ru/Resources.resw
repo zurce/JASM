@@ -1645,10 +1645,6 @@
     <!-- Hint shown on a multi-install file hovered as a drop target for nesting -->
     <value>Отпустите, чтобы вложить как аддон</value>
   </data>
-  <data name="CancelButton.Text" xml:space="preserve">
-    <!-- Cancel button text (exits multi-install selection mode) -->
-    <value>Отмена</value>
-  </data>
 
   <data name="GbModPageWindow_CloseButton.Content" xml:space="preserve">
     <!-- Button to close the window -->
@@ -4101,19 +4097,9 @@ JASM+ не будет перемещать ваши моды и не будет 
     <value>При выборе этого параметра одновременно может быть включён только один мод.</value>
   </data>
 
-  <data name="CharacterDetails_SavePreferences.Text" xml:space="preserve">
-    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
-    <value>Сохранить настройки для выбранного мода</value>
-  </data>
-
   <data name="CharacterDetails_SavePreferences.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
     <value>Читает настройки модов 3Dmigoto (d3dx_user.ini) для выбранного мода и сохраняет их в файле .JASM_Config.json мода.</value>
-  </data>
-
-  <data name="CharacterDetails_ReadPreferences.Text" xml:space="preserve">
-    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
-    <value>Прочитать настройки для выбранного мода</value>
   </data>
 
   <data name="CharacterDetails_ReadPreferences.ToolTipService.ToolTip" xml:space="preserve">
@@ -4174,21 +4160,6 @@ JASM+ не будет перемещать ваши моды и не будет 
   <data name="CharDetails_NewModFilesAvailable" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
     <value>Доступны новые файлы модов: {0}</value>
-  </data>
-
-  <data name="CharDetails_SetButton.Text" xml:space="preserve">
-    <!-- Static label text on the CharDetails component -->
-    <value>Установить</value>
-  </data>
-
-  <data name="CharDetails_SetImageButton.Text" xml:space="preserve">
-    <!-- Static label text on the CharDetails component -->
-    <value>Установить изображение</value>
-  </data>
-
-  <data name="CharacterDetails_OnlyOneSkin.ToolTip" xml:space="preserve">
-    <!-- Tooltip explanation on the CharacterDetails component -->
-    <value>Активно несколько модов. В игре будет отображаться только один скин на персонажа.</value>
   </data>
 
   <data name="ModPane_Unknown" xml:space="preserve">
@@ -4645,5 +4616,41 @@ JASM+ не будет перемещать ваши моды и не будет 
   </data>
 <data name="ModInstallerPage_OtherModFolderName.PlaceholderText" xml:space="preserve">
     <value>Имя папки</value>
+  </data>
+<data name="CancelButton_Text" xml:space="preserve">
+    <!-- Cancel button text (exits multi-install selection mode) -->
+    <value>Отмена</value>
+  </data>
+<data name="CharDetails_SetButton_Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>Установить</value>
+  </data>
+<data name="CharDetails_SetImageButton_Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>Установить изображение</value>
+  </data>
+<data name="CharacterDetails_SavePreferences_Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Сохранить настройки для выбранного мода</value>
+  </data>
+<data name="CharacterDetails_ReadPreferences_Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Прочитать настройки для выбранного мода</value>
+  </data>
+<data name="CharacterDetails_OnlyOneSkin_ToolTip" xml:space="preserve">
+    <!-- Tooltip explanation on the CharacterDetails component -->
+    <value>У этого персонажа только один стандартный скин в игре, поэтому его нельзя изменить.</value>
+  </data>
+<data name="CommandsSettingsPage_CreateCommand_Description" xml:space="preserve">
+    <!-- Button/section to create a new command -->
+    <value>Здесь вы можете определить пользовательские команды, которые JASM+ может выполнять за вас. В настоящее время команды, содержащие {{TargetPath}}, могут быть запущены только со страницы обзора модов.</value>
+  </data>
+<data name="CommandsSettingsPage_CommandDefinitions_Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>Здесь вы можете просматривать и удалять созданные определения команд.</value>
+  </data>
+<data name="CommandsSettingsPage_RunningCommands_Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>Команды, запущенные из JASM+ для текущего экземпляра</value>
   </data>
 </root>

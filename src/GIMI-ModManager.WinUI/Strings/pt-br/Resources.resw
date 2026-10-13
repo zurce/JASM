@@ -1645,10 +1645,6 @@ Ou
     <!-- Hint shown on a multi-install file hovered as a drop target for nesting -->
     <value>Soltar para aninhar como addon</value>
   </data>
-  <data name="CancelButton.Text" xml:space="preserve">
-    <!-- Cancel button text (exits multi-install selection mode) -->
-    <value>Cancelar</value>
-  </data>
 
   <data name="GbModPageWindow_CloseButton.Content" xml:space="preserve">
     <!-- Button to close the window -->
@@ -4098,19 +4094,9 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
     <value>Selecionar isso permitirá que apenas um mod seja habilitado por vez.</value>
   </data>
 
-  <data name="CharacterDetails_SavePreferences.Text" xml:space="preserve">
-    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
-    <value>Salvar preferências para o mod selecionado</value>
-  </data>
-
   <data name="CharacterDetails_SavePreferences.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
     <value>Lê as preferências de mod do 3Dmigoto (d3dx_user.ini) para o mod selecionado e armazena as configurações no arquivo .JASM_Config.json do Mod.</value>
-  </data>
-
-  <data name="CharacterDetails_ReadPreferences.Text" xml:space="preserve">
-    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
-    <value>Ler preferências para o mod selecionado</value>
   </data>
 
   <data name="CharacterDetails_ReadPreferences.ToolTipService.ToolTip" xml:space="preserve">
@@ -4171,21 +4157,6 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
   <data name="CharDetails_NewModFilesAvailable" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
     <value>Novos Arquivos de Mod Disponíveis: {0}</value>
-  </data>
-
-  <data name="CharDetails_SetButton.Text" xml:space="preserve">
-    <!-- Static label text on the CharDetails component -->
-    <value>Definir</value>
-  </data>
-
-  <data name="CharDetails_SetImageButton.Text" xml:space="preserve">
-    <!-- Static label text on the CharDetails component -->
-    <value>Definir Imagem</value>
-  </data>
-
-  <data name="CharacterDetails_OnlyOneSkin.ToolTip" xml:space="preserve">
-    <!-- Tooltip explanation on the CharacterDetails component -->
-    <value> então não é possível alterá-la.</value>
   </data>
 
   <data name="ModPane_Unknown" xml:space="preserve">
@@ -4606,5 +4577,41 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
   </data>
 <data name="ModInstallerPage_OtherModFolderName.PlaceholderText" xml:space="preserve">
     <value>Nome da pasta</value>
+  </data>
+<data name="CancelButton_Text" xml:space="preserve">
+    <!-- Cancel button text (exits multi-install selection mode) -->
+    <value>Cancelar</value>
+  </data>
+<data name="CharDetails_SetButton_Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>Definir</value>
+  </data>
+<data name="CharDetails_SetImageButton_Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>Definir Imagem</value>
+  </data>
+<data name="CharacterDetails_SavePreferences_Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Salvar preferências para o mod selecionado</value>
+  </data>
+<data name="CharacterDetails_ReadPreferences_Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>Ler preferências para o mod selecionado</value>
+  </data>
+<data name="CharacterDetails_OnlyOneSkin_ToolTip" xml:space="preserve">
+    <!-- Tooltip explanation on the CharacterDetails component -->
+    <value>Este personagem tem apenas uma skin padrão no jogo, então não é possível alterá-la.</value>
+  </data>
+<data name="CommandsSettingsPage_CreateCommand_Description" xml:space="preserve">
+    <!-- Button/section to create a new command -->
+    <value>Aqui você pode definir comandos personalizados que o JASM+ pode executar. Atualmente, comandos que contêm {{TargetPath}} só podem ser executados na página de Visão Geral de Mods</value>
+  </data>
+<data name="CommandsSettingsPage_CommandDefinitions_Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>Aqui você pode visualizar e excluir definições de comandos criadas</value>
+  </data>
+<data name="CommandsSettingsPage_RunningCommands_Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>Comandos iniciados pelo JASM+ para a instância atual em execução</value>
   </data>
 </root>
