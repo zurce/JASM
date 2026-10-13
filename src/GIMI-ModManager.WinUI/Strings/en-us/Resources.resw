@@ -1024,6 +1024,22 @@ Or
   <data name="ModInstallerPage_ImageSource_Manual" xml:space="preserve">
     <value>Manual</value>
   </data>
+  <!-- Placeholder of the duplicate dialog's "new mod custom name" field. -->
+  <data name="ModInstallerPage_NewModCustomName.PlaceholderText" xml:space="preserve">
+    <value>Custom name</value>
+  </data>
+  <!-- Placeholder of the duplicate dialog's "new mod folder name" field. -->
+  <data name="ModInstallerPage_NewModFolderName.PlaceholderText" xml:space="preserve">
+    <value>Folder name</value>
+  </data>
+  <!-- Placeholder of the duplicate dialog's "existing mod custom name" field. -->
+  <data name="ModInstallerPage_OtherModCustomName.PlaceholderText" xml:space="preserve">
+    <value>Custom name</value>
+  </data>
+  <!-- Placeholder of the duplicate dialog's "existing mod folder name" field. -->
+  <data name="ModInstallerPage_OtherModFolderName.PlaceholderText" xml:space="preserve">
+    <value>Folder name</value>
+  </data>
   <data name="ModInstallerPage_NewModLabel.Text" xml:space="preserve">
     <!-- Section heading text -->
     <value>New Mod:</value>

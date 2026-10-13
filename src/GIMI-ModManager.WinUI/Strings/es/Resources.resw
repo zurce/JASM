@@ -3922,4 +3922,16 @@ JASM+ no moverá ninguno de tus mods ni los eliminará.
 <data name="Settings_WindowPosition.ToolTipService.ToolTip" xml:space="preserve">
     <value>Si se marca, la posición de la ventana principal se guarda al cerrar JASM+</value>
   </data>
+<data name="ModInstallerPage_NewModCustomName.PlaceholderText" xml:space="preserve">
+    <value>Nombre personalizado</value>
+  </data>
+<data name="ModInstallerPage_NewModFolderName.PlaceholderText" xml:space="preserve">
+    <value>Nombre de carpeta</value>
+  </data>
+<data name="ModInstallerPage_OtherModCustomName.PlaceholderText" xml:space="preserve">
+    <value>Nombre personalizado</value>
+  </data>
+<data name="ModInstallerPage_OtherModFolderName.PlaceholderText" xml:space="preserve">
+    <value>Nombre de carpeta</value>
+  </data>
 </root>

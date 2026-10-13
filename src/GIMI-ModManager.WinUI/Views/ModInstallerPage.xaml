@@ -122,12 +122,14 @@
                                 Margin="4"
                                 Header="Custom name"
                                 IsEnabled="{x:Bind ViewModel.OverwriteExistingMod, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}"
+                                PlaceholderText="Custom name"
                                 Text="{x:Bind ViewModel.CustomName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 l:Uids.Uid="ModInstallerPage_NewModCustomName" />
                             <TextBox
                                 Margin="4"
                                 Header="Folder name"
                                 IsEnabled="{x:Bind ViewModel.OverwriteExistingMod, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}"
+                                PlaceholderText="Folder name"
                                 Text="{x:Bind ViewModel.ModFolderName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 l:Uids.Uid="ModInstallerPage_NewModFolderName" />
                         </StackPanel>
@@ -138,12 +140,14 @@
                                 Margin="4"
                                 Header="Custom name"
                                 IsEnabled="{x:Bind ViewModel.OverwriteExistingMod, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}"
+                                PlaceholderText="Custom name"
                                 Text="{x:Bind ViewModel.DuplicateModCustomName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 l:Uids.Uid="ModInstallerPage_OtherModCustomName" />
                             <TextBox
                                 Margin="4"
                                 Header="Folder name"
                                 IsEnabled="{x:Bind ViewModel.OverwriteExistingMod, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}"
+                                PlaceholderText="Folder name"
                                 Text="{x:Bind ViewModel.DuplicateModFolderName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 l:Uids.Uid="ModInstallerPage_OtherModFolderName" />
                             <controls:LinkButton Link="{x:Bind ViewModel.DuplicateModPath, Mode=OneWay}" Text="Open existing mod folder..." l:Uids.Uid="ModInstallerPage_OpenExistingModFolder" />

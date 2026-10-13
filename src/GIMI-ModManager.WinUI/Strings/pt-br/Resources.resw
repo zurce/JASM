@@ -4595,4 +4595,16 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 <data name="Settings_WindowPosition.ToolTipService.ToolTip" xml:space="preserve">
     <value>Se marcado, a posição da janela principal é salva ao sair do JASM+</value>
   </data>
+<data name="ModInstallerPage_NewModCustomName.PlaceholderText" xml:space="preserve">
+    <value>Nome personalizado</value>
+  </data>
+<data name="ModInstallerPage_NewModFolderName.PlaceholderText" xml:space="preserve">
+    <value>Nome da pasta</value>
+  </data>
+<data name="ModInstallerPage_OtherModCustomName.PlaceholderText" xml:space="preserve">
+    <value>Nome personalizado</value>
+  </data>
+<data name="ModInstallerPage_OtherModFolderName.PlaceholderText" xml:space="preserve">
+    <value>Nome da pasta</value>
+  </data>
 </root>

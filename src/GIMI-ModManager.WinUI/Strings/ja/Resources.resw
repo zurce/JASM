@@ -4633,4 +4633,16 @@ JASMはModを移動したり削除したりしません。
 <data name="Settings_WindowPosition.ToolTipService.ToolTip" xml:space="preserve">
     <value>チェックすると、JASM+終了時にメインウィンドウの位置が保存されます</value>
   </data>
+<data name="ModInstallerPage_NewModCustomName.PlaceholderText" xml:space="preserve">
+    <value>カスタム名</value>
+  </data>
+<data name="ModInstallerPage_NewModFolderName.PlaceholderText" xml:space="preserve">
+    <value>フォルダー名</value>
+  </data>
+<data name="ModInstallerPage_OtherModCustomName.PlaceholderText" xml:space="preserve">
+    <value>カスタム名</value>
+  </data>
+<data name="ModInstallerPage_OtherModFolderName.PlaceholderText" xml:space="preserve">
+    <value>フォルダー名</value>
+  </data>
 </root>

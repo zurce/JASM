@@ -4634,4 +4634,16 @@ JASM+ не будет перемещать ваши моды и не будет 
 <data name="Settings_WindowPosition.ToolTipService.ToolTip" xml:space="preserve">
     <value>Если включено, положение главного окна сохраняется при выходе из JASM+</value>
   </data>
+<data name="ModInstallerPage_NewModCustomName.PlaceholderText" xml:space="preserve">
+    <value>Пользовательское имя</value>
+  </data>
+<data name="ModInstallerPage_NewModFolderName.PlaceholderText" xml:space="preserve">
+    <value>Имя папки</value>
+  </data>
+<data name="ModInstallerPage_OtherModCustomName.PlaceholderText" xml:space="preserve">
+    <value>Пользовательское имя</value>
+  </data>
+<data name="ModInstallerPage_OtherModFolderName.PlaceholderText" xml:space="preserve">
+    <value>Имя папки</value>
+  </data>
 </root>
