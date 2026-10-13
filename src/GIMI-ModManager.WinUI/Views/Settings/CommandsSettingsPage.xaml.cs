@@ -18,11 +18,11 @@ public sealed partial class CommandsSettingsPage : Page
         Loaded += (_, _) =>
         {
             var localizer = App.GetService<ILanguageLocalizer>();
-            var d1 = localizer.GetLocalizedStringOrDefault("CommandsSettingsPage_CreateCommand.Description");
+            var d1 = localizer.GetLocalizedStringOrDefault("CommandsSettingsPage_CreateCommand_Description");
             if (d1 != null) CreateCommandCard.Description = d1;
-            var d2 = localizer.GetLocalizedStringOrDefault("CommandsSettingsPage_CommandDefinitions.Description");
+            var d2 = localizer.GetLocalizedStringOrDefault("CommandsSettingsPage_CommandDefinitions_Description");
             if (d2 != null) CommandDefinitionsExpander.Description = d2;
-            var d3 = localizer.GetLocalizedStringOrDefault("CommandsSettingsPage_RunningCommands.Description");
+            var d3 = localizer.GetLocalizedStringOrDefault("CommandsSettingsPage_RunningCommands_Description");
             if (d3 != null) RunningCommandsExpander.Description = d3;
         };
     }

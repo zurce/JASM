@@ -31,8 +31,8 @@ public sealed partial class CharacterDetailsPage : Page
         MultipleModsInfoBar.Message = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharacterDetails_MultipleModsActiveMessage") ?? "Multiple Mods active";
 
         var localizer = App.GetService<ILanguageLocalizer>();
-        SavePreferencesMenuItem.Text = localizer.GetLocalizedStringOrDefault("CharacterDetails_SavePreferences.Text") ?? "Save preferences for selected mod";
-        ReadPreferencesMenuItem.Text = localizer.GetLocalizedStringOrDefault("CharacterDetails_ReadPreferences.Text") ?? "Read preferences for selected mod";
+        SavePreferencesMenuItem.Text = localizer.GetLocalizedStringOrDefault("CharacterDetails_SavePreferences_Text") ?? "Save preferences for selected mod";
+        ReadPreferencesMenuItem.Text = localizer.GetLocalizedStringOrDefault("CharacterDetails_ReadPreferences_Text") ?? "Read preferences for selected mod";
         MoveModSearchBox.PlaceholderText = localizer.GetLocalizedStringOrDefault("CharacterDetails_SearchMoveMod_PlaceholderText") ?? "Search...";
 
         ViewModel.OnModObjectLoaded += OnModObjectLoaded;
@@ -55,7 +55,7 @@ public sealed partial class CharacterDetailsPage : Page
         if (tooltip is ToolTip) return;
         var toolTip = new ToolTip
         {
-            Content = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharacterDetails_OnlyOneSkin.ToolTip") ?? "This character only has one default in-game skin, so you can't change it.",
+            Content = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharacterDetails_OnlyOneSkin_ToolTip") ?? "This character only has one default in-game skin, so you can't change it.",
             Placement = PlacementMode.Bottom
         };
 

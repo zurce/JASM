@@ -1645,10 +1645,6 @@
     <!-- Hint shown on a multi-install file hovered as a drop target for nesting -->
     <value>松开以嵌套为 addon</value>
   </data>
-  <data name="CancelButton.Text" xml:space="preserve">
-    <!-- Cancel button text (exits multi-install selection mode) -->
-    <value>取消</value>
-  </data>
 
   <data name="GbModPageWindow_CloseButton.Content" xml:space="preserve">
     <!-- Button to close the window -->
@@ -4101,19 +4097,9 @@ Ini路径：{1}</value>
     <value>选择此项后，一次只能启用一个Mod。</value>
   </data>
 
-  <data name="CharacterDetails_SavePreferences.Text" xml:space="preserve">
-    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
-    <value>保存所选Mod的偏好</value>
-  </data>
-
   <data name="CharacterDetails_SavePreferences.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
     <value>读取所选Mod的3Dmigoto Mod偏好（d3dx_user.ini）并将设置存储在Mod的.JASM_Config.json文件中。</value>
-  </data>
-
-  <data name="CharacterDetails_ReadPreferences.Text" xml:space="preserve">
-    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
-    <value>读取所选Mod的偏好</value>
   </data>
 
   <data name="CharacterDetails_ReadPreferences.ToolTipService.ToolTip" xml:space="preserve">
@@ -4174,21 +4160,6 @@ Ini路径：{1}</value>
   <data name="CharDetails_NewModFilesAvailable" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
     <value>新的Mod文件可用：{0}</value>
-  </data>
-
-  <data name="CharDetails_SetButton.Text" xml:space="preserve">
-    <!-- Static label text on the CharDetails component -->
-    <value>设置</value>
-  </data>
-
-  <data name="CharDetails_SetImageButton.Text" xml:space="preserve">
-    <!-- Static label text on the CharDetails component -->
-    <value>设置图片</value>
-  </data>
-
-  <data name="CharacterDetails_OnlyOneSkin.ToolTip" xml:space="preserve">
-    <!-- Tooltip explanation on the CharacterDetails component -->
-    <value>多个Mod处于活跃状态。每个角色在游戏中只会显示一个皮肤。</value>
   </data>
 
   <data name="ModPane_Unknown" xml:space="preserve">
@@ -4645,5 +4616,41 @@ Ini路径：{1}</value>
   </data>
 <data name="ModInstallerPage_OtherModFolderName.PlaceholderText" xml:space="preserve">
     <value>文件夹名称</value>
+  </data>
+<data name="CancelButton_Text" xml:space="preserve">
+    <!-- Cancel button text (exits multi-install selection mode) -->
+    <value>取消</value>
+  </data>
+<data name="CharDetails_SetButton_Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>设置</value>
+  </data>
+<data name="CharDetails_SetImageButton_Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>设置图片</value>
+  </data>
+<data name="CharacterDetails_SavePreferences_Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>保存所选Mod的偏好</value>
+  </data>
+<data name="CharacterDetails_ReadPreferences_Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>读取所选Mod的偏好</value>
+  </data>
+<data name="CharacterDetails_OnlyOneSkin_ToolTip" xml:space="preserve">
+    <!-- Tooltip explanation on the CharacterDetails component -->
+    <value>此角色只有一个默认游戏内皮肤，无法更改。</value>
+  </data>
+<data name="CommandsSettingsPage_CreateCommand_Description" xml:space="preserve">
+    <!-- Button/section to create a new command -->
+    <value>在这里你可以定义JASM可以为你运行的自定义命令。目前，包含{{TargetPath}}的命令只能从Mod概览页面运行。</value>
+  </data>
+<data name="CommandsSettingsPage_CommandDefinitions_Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>在这里你可以查看和删除已创建的命令定义。</value>
+  </data>
+<data name="CommandsSettingsPage_RunningCommands_Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>从JASM启动的当前实例的命令</value>
   </data>
 </root>

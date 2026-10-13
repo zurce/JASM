@@ -1645,10 +1645,6 @@
     <!-- Hint shown on a multi-install file hovered as a drop target for nesting -->
     <value>ドロップしてアドオンとしてネスト</value>
   </data>
-  <data name="CancelButton.Text" xml:space="preserve">
-    <!-- Cancel button text (exits multi-install selection mode) -->
-    <value>キャンセル</value>
-  </data>
 
   <data name="GbModPageWindow_CloseButton.Content" xml:space="preserve">
     <!-- Button to close the window -->
@@ -4100,19 +4096,9 @@ JASMはModを移動したり削除したりしません。
     <value>これを選択すると、一度に1つのModのみ有効にできます。</value>
   </data>
 
-  <data name="CharacterDetails_SavePreferences.Text" xml:space="preserve">
-    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
-    <value>選択したModの設定を保存</value>
-  </data>
-
   <data name="CharacterDetails_SavePreferences.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
     <value>選択したModの3Dmigoto Mod設定（d3dx_user.ini）を読み取り、設定をModの.JASM_Config.jsonファイルに保存します。</value>
-  </data>
-
-  <data name="CharacterDetails_ReadPreferences.Text" xml:space="preserve">
-    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
-    <value>選択したModの設定を読み込み</value>
   </data>
 
   <data name="CharacterDetails_ReadPreferences.ToolTipService.ToolTip" xml:space="preserve">
@@ -4173,21 +4159,6 @@ JASMはModを移動したり削除したりしません。
   <data name="CharDetails_NewModFilesAvailable" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
     <value>新しいModファイルが利用可能です: {0}</value>
-  </data>
-
-  <data name="CharDetails_SetButton.Text" xml:space="preserve">
-    <!-- Static label text on the CharDetails component -->
-    <value>設定</value>
-  </data>
-
-  <data name="CharDetails_SetImageButton.Text" xml:space="preserve">
-    <!-- Static label text on the CharDetails component -->
-    <value>画像を設定</value>
-  </data>
-
-  <data name="CharacterDetails_OnlyOneSkin.ToolTip" xml:space="preserve">
-    <!-- Tooltip explanation on the CharacterDetails component -->
-    <value>複数のModが有効です。キャラクターごとに1つのスキンのみがゲームに表示されます。</value>
   </data>
 
   <data name="ModPane_Unknown" xml:space="preserve">
@@ -4644,5 +4615,41 @@ JASMはModを移動したり削除したりしません。
   </data>
 <data name="ModInstallerPage_OtherModFolderName.PlaceholderText" xml:space="preserve">
     <value>フォルダー名</value>
+  </data>
+<data name="CancelButton_Text" xml:space="preserve">
+    <!-- Cancel button text (exits multi-install selection mode) -->
+    <value>キャンセル</value>
+  </data>
+<data name="CharDetails_SetButton_Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>設定</value>
+  </data>
+<data name="CharDetails_SetImageButton_Text" xml:space="preserve">
+    <!-- Static label text on the CharDetails component -->
+    <value>画像を設定</value>
+  </data>
+<data name="CharacterDetails_SavePreferences_Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>選択したModの設定を保存</value>
+  </data>
+<data name="CharacterDetails_ReadPreferences_Text" xml:space="preserve">
+    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
+    <value>選択したModの設定を読み込み</value>
+  </data>
+<data name="CharacterDetails_OnlyOneSkin_ToolTip" xml:space="preserve">
+    <!-- Tooltip explanation on the CharacterDetails component -->
+    <value>このキャラクターにはデフォルトのスキンが1つしかないため、変更できません。</value>
+  </data>
+<data name="CommandsSettingsPage_CreateCommand_Description" xml:space="preserve">
+    <!-- Button/section to create a new command -->
+    <value>JASMが実行できるカスタムコマンドを定義できます。現在、{{TargetPath}}を含むコマンドはMod概要ページからのみ実行できます。</value>
+  </data>
+<data name="CommandsSettingsPage_CommandDefinitions_Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>作成したコマンド定義の表示と削除ができます。</value>
+  </data>
+<data name="CommandsSettingsPage_RunningCommands_Description" xml:space="preserve">
+    <!-- Section header -->
+    <value>現在のインスタンスでJASMから起動されたコマンド</value>
   </data>
 </root>

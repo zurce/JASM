@@ -90,7 +90,8 @@
                 Style="{ThemeResource SubtitleTextBlockStyle}"
                 TextAlignment="Center"
                 ToolTipService.ToolTip="Change mod display name"
-                Text="{x:Bind ViewModel.ModModel.ModDisplayName, Mode=TwoWay}" />
+                Text="{x:Bind ViewModel.ModModel.ModDisplayName, Mode=TwoWay}"
+                l:Uids.Uid="ModPane_ChangeDisplayName" />
 
 
 

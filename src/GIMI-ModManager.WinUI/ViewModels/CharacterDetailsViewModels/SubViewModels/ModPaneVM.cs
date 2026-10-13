@@ -422,7 +422,7 @@ public sealed partial class ModPaneVM(
         var filePicker = new FileOpenPicker();
         filePicker.SettingsIdentifier = "IniFilerPicker";
         filePicker.FileTypeFilter.Add(".ini");
-        filePicker.CommitButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_SetButton.Text") ?? "Set";
+        filePicker.CommitButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_SetButton_Text") ?? "Set";
         var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
         WinRT.Interop.InitializeWithWindow.Initialize(filePicker, hwnd);
         var file = await filePicker.PickSingleFileAsync();
@@ -476,7 +476,7 @@ public sealed partial class ModPaneVM(
     {
         if (!IsModLoaded) return;
         var filePicker = new FileOpenPicker();
-        filePicker.CommitButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_SetImageButton.Text") ?? "Set Image";
+        filePicker.CommitButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharDetails_SetImageButton_Text") ?? "Set Image";
         filePicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
         filePicker.SettingsIdentifier = "ImagePicker";
         foreach (var supportedImageExtension in Constants.SupportedImageExtensions)
