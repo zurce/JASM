@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.1](https://github.com/zurce/JASM/compare/v3.1.0...v3.1.1) (2026-10-15)
+
+
+### Bug Fixes
+
+* **i18n:** give every remaining hardcoded string a uid and a key ([d28d7f7](https://github.com/zurce/JASM/commit/d28d7f7ee41a4b979ddd8cd5614a911e40abadab))
+* **modupdate:** populate the new-files window list, and stack the card's "new" label ([777e16d](https://github.com/zurce/JASM/commit/777e16d72c6602f7eede665dec1074e872be738b))
+
 ## [3.1.0](https://github.com/zurce/JASM/compare/v3.0.2...v3.1.0) (2026-10-13)
 
 
