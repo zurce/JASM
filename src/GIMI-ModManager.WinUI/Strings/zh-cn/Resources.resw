@@ -4653,4 +4653,231 @@ Ini路径：{1}</value>
     <!-- Section header -->
     <value>从JASM启动的当前实例的命令</value>
   </data>
+<data name="CharacterDetails_LoadingText.Text" xml:space="preserve">
+    <!-- Loading indicator on the character details page -->
+    <value>加载中</value>
+  </data>
+<data name="CharacterDetails_AddModMenuItem.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: add a mod folder (character details menu) -->
+    <value>添加Mod文件夹</value>
+  </data>
+<data name="CharacterDetails_AddArchiveMenuItem.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: add a mod from a compressed archive (character details menu) -->
+    <value>添加压缩包内的Mod</value>
+  </data>
+<data name="CharacterDetails_SingleSelectToggle.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: restrict to one active mod per character -->
+    <value>选择此项后，一次只能启用一个Mod。</value>
+  </data>
+<data name="ModPane_SetModIniFile.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: choose the mod .ini file JASM should read -->
+    <value>设置JASM要读取的Mod .ini文件</value>
+  </data>
+<data name="ModPane_IgnoreIniFile.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: ignore this mod's ini file and keyswaps -->
+    <value>JASM将不会查找merged.ini/Script.ini，并忽略此Mod的按键切换</value>
+  </data>
+<data name="CharacterManagerPage_AddCharacterButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: add a new character -->
+    <value>添加新角色</value>
+  </data>
+<data name="EditCharacterPage_DisableCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip on the disable-character action -->
+    <value>先打开包含更多信息的弹窗</value>
+  </data>
+<data name="EditCharacterPage_EnableCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip on the enable-character action -->
+    <value>先打开包含更多信息的弹窗</value>
+  </data>
+<data name="EditCharacterPage_DeleteCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip on the delete-character action -->
+    <value>先打开包含更多信息的弹窗</value>
+  </data>
+<data name="EditCharacterPage_UndoChanges.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: revert unsaved changes -->
+    <value>还原未保存的更改</value>
+  </data>
+<data name="EditCharacterPage_SaveChanges.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: save changes to disk -->
+    <value>将更改保存到磁盘</value>
+  </data>
+<data name="EditCharacterPage_ResetCharacter.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: reset character values to their defaults -->
+    <value>将角色数值重置为默认值</value>
+  </data>
+<data name="CharactersPage_SelectProcessDialog.PrimaryButtonText" xml:space="preserve">
+    <!-- Process picker dialog: save button -->
+    <value>保存</value>
+  </data>
+<data name="CharactersPage_SelectProcessDialog.SecondaryButtonText" xml:space="preserve">
+    <!-- Process picker dialog: cancel button -->
+    <value>取消</value>
+  </data>
+<data name="CustomImage_PickImageButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: pick an image -->
+    <value>选择图片</value>
+  </data>
+<data name="GbModPageWindow_CloseButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: close the window -->
+    <value>关闭窗口</value>
+  </data>
+<data name="PresetDetailsPage_ReadAndSavePreferences.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: read the current 3Dmigoto user ini for the mod and store it in this preset -->
+    <value>读取此Mod当前的3Dmigoto user ini，并为该预设保存偏好</value>
+  </data>
+<data name="PresetPage_CreateEmptyPreset.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: create the preset without enabling any mod -->
+    <value>如果选中，新预设将在没有启用任何Mod的情况下创建。</value>
+  </data>
+<data name="PresetPage_AutoSyncPreferences.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: automatically sync preferences when creating and switching presets -->
+    <value>如果选中，JASM将在创建预设和切换预设时自动同步偏好</value>
+  </data>
+<data name="PresetPage_SaveActivePreferencesButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: read d3dx_user.ini for the active mods into their .JASM_Config.json -->
+    <value>读取已启用Mod的3Dmigoto偏好（d3dx_user.ini），并将设置保存到每个Mod的.JASM_Config.json文件中</value>
+  </data>
+<data name="PresetPage_ApplySavedPreferencesButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: write the saved mod preferences back to d3dx_user.ini -->
+    <value>从.JASM_Config.json读取当前启用Mod的偏好，并写入d3dx_user.ini供3Dmigoto读取</value>
+  </data>
+<data name="PresetPage_ShowManualControls.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: control preferences manually instead of letting JASM do it -->
+    <value>如果你希望手动控制偏好设置，而不是让JASM替你处理</value>
+  </data>
+<data name="PresetPage_ApplyPresetButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: enable every mod in this preset and write its preferences -->
+    <value>启用此预设中的所有Mod，并将预设的Mod偏好写入Mod</value>
+  </data>
+<data name="PresetPage_DeleteMenuItem.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: permanently delete this preset -->
+    <value>永久删除此预设</value>
+  </data>
+<data name="PresetPage_RandomizeModsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: opens a dialog with more info -->
+    <value>打开包含更多信息的对话框</value>
+  </data>
+<data name="PresetPage_ResetModPreferencesButton.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: clear the preferences stored in each mod's .JASM_ModConfig.json -->
+    <value>清除存储在Mod的.JASM_ModConfig.json中的偏好</value>
+  </data>
+<data name="CreateCommandView_ChainedCommand.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: not implemented -->
+    <value>未实现</value>
+  </data>
+<data name="CreateCommandView_KillProcess.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: kill the process when JASM exits -->
+    <value>如果选中，JASM退出时将结束该进程</value>
+  </data>
+<data name="CreateCommandView_RunAsAdmin.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: run the executable as administrator -->
+    <value>以管理员身份运行可执行文件</value>
+  </data>
+<data name="CreateCommandView_UseShellExecute.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: let the OS start the executable -->
+    <value>使用操作系统启动可执行文件</value>
+  </data>
+<data name="CreateCommandView_CreateWindow.ToolTipService.ToolTip" xml:space="preserve">
+    <!-- Tooltip: run the command in an external window -->
+    <value>如果选中，将在外部窗口中运行</value>
+  </data>
+<data name="CreateCharacterPage_ReleaseDate.Header" xml:space="preserve">
+    <value>发布日期</value>
+  </data>
+<data name="CreateCharacterPage_RaritySlider.AutomationProperties.Name" xml:space="preserve">
+    <value>带刻度的滑块</value>
+  </data>
+<data name="EditCharacterPage_OpenModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>打开角色的Mod文件夹</value>
+  </data>
+<data name="EditCharacterPage_DateAdded.ToolTipService.ToolTip" xml:space="preserve">
+    <value>添加到JASM的日期</value>
+  </data>
+<data name="CharactersPage_XxmiLaunchHint.Text" xml:space="preserve">
+    <value>通过XXMI启动游戏（与快速启动快捷方式相同）。</value>
+  </data>
+<data name="CharactersPage_InfoButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>打开包含更多信息的对话框</value>
+  </data>
+<data name="CharactersPage_ShowEnabledOnlyToggle.ToolTipService.ToolTip" xml:space="preserve">
+    <value>仅在至少启用一个Mod时显示</value>
+  </data>
+<data name="CommandProcessViewer_RunningLabel.Text" xml:space="preserve">
+    <value>运行中：</value>
+  </data>
+<data name="CommandProcessViewer_AutoScroll.Content" xml:space="preserve">
+    <value>自动滚动</value>
+  </data>
+<data name="CommandProcessViewer_InputBox.Header" xml:space="preserve">
+    <value>写入进程，按回车发送</value>
+  </data>
+<data name="CommandProcessViewer_KillProcessButton.Content" xml:space="preserve">
+    <value>结束进程</value>
+  </data>
+<data name="GbModPageWindow_OpenModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>打开Mod文件夹...</value>
+  </data>
+<data name="GbModPageWindow_OpenInBrowser.ToolTipService.ToolTip" xml:space="preserve">
+    <value>在默认浏览器中打开...</value>
+  </data>
+<data name="ModsOverviewPage_OpenFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>打开文件夹</value>
+  </data>
+<data name="ModsOverviewPage_OpenSkinFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>打开皮肤文件夹</value>
+  </data>
+<data name="ModsOverviewPage_OpenAllButton.Content" xml:space="preserve">
+    <value>全部打开</value>
+  </data>
+<data name="ModUpdateAvailableWindow_OpenModFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>打开Mod文件夹...</value>
+  </data>
+<data name="ModUpdateAvailableWindow_IgnoreCloseTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>移除通知并关闭此窗口</value>
+  </data>
+<data name="ModUpdateAvailableWindow_OpenInBrowser.ToolTipService.ToolTip" xml:space="preserve">
+    <value>在默认浏览器中打开...</value>
+  </data>
+<data name="PresetDetailsPage_MoreOptions.AutomationProperties.Name" xml:space="preserve">
+    <value>更多选项</value>
+  </data>
+<data name="SettingsPage_KeepFolderStructureTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>保留JASM的Mod文件夹结构，例如 Characters/Diluc/SomeDilucSkinMod</value>
+  </data>
+<data name="SettingsPage_RemoveModFoldersTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>此为递归操作，会删除所有以 .JASM_ 开头的文件和文件夹</value>
+  </data>
+<data name="SettingsPage_DisabledPrefixTooltip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>是否为导出的Mod添加或移除“DISABLED_”前缀</value>
+  </data>
+<data name="SettingsPage_TreatAsXxmi.Content" xml:space="preserve">
+    <value>将此文件夹视为XXMI安装（锁定Mod文件夹）</value>
+  </data>
+<data name="SettingsPage_XxmiManagedLock.Text" xml:space="preserve">
+    <value>此游戏由XXMI管理。Mod文件夹被锁定为XXMI的Mods位置，游戏启动通过XXMI进行。</value>
+  </data>
+<data name="StartupPage_TreatAsXxmi.Content" xml:space="preserve">
+    <value>将此文件夹视为XXMI安装（锁定Mod文件夹）</value>
+  </data>
+<data name="StartupPage_LegacyHint.Text" xml:space="preserve">
+    <value>取消勾选以使用旧版3DMigoto配置，而不是XXMI管理的安装。</value>
+  </data>
+<data name="StartupPage_UnloadedModsHint.Text" xml:space="preserve">
+    <value>Mod卸载功能目前尚未实现。实现后，可将选定的Mod卸载到已卸载Mod文件夹。</value>
+  </data>
+<data name="StartupPage_UnloadedModsTitle.Title" xml:space="preserve">
+    <value>已卸载Mod文件夹（可选）</value>
+  </data>
+<data name="StartupPage_AlsoDisableAllMods.Content" xml:space="preserve">
+    <value>同时禁用所有Mod</value>
+  </data>
+<data name="CreateCharacterPage_RaritySlider.Header" xml:space="preserve">
+    <value>稀有度</value>
+  </data>
+<data name="ModUpdateAvailableWindow_IgnoreCloseTooltip.Content" xml:space="preserve">
+    <value>忽略并关闭</value>
+  </data>
+<data name="ModUpdateAvailableWindow_IgnoreCloseTooltip_Content" xml:space="preserve">
+    <value>忽略并关闭</value>
+  </data>
 </root>

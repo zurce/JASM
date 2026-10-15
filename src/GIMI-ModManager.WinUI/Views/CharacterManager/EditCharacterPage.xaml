@@ -36,7 +36,8 @@
                 <controls:LinkButton
                     Link="{x:Bind ViewModel.ModFolderUri, Mode=TwoWay}"
                     ToolTipService.ToolTip="Open Character's mod folder"
-                    Text="{x:Bind ViewModel.ModFolderString, Mode=TwoWay}" />
+                    Text="{x:Bind ViewModel.ModFolderString, Mode=TwoWay}"
+                l:Uids.Uid="EditCharacterPage_OpenModFolder" />
 
                 <Button Command="{x:Bind ViewModel.GoToCharacterCommand}" Content="Go to character" l:Uids.Uid="EditCharacterPage_GoToCharacter" />
             </StackPanel>
@@ -192,7 +193,8 @@
                                         HorizontalAlignment="Right"
                                         IsTextSelectionEnabled="True"
                                         ToolTipService.ToolTip="Date Added to JASM"
-                                        Text="{x:Bind DateAdded}" />
+                                        Text="{x:Bind DateAdded}"
+                                    l:Uids.Uid="EditCharacterPage_DateAdded" />
 
                                     <TextBlock
                                         Grid.Column="0"

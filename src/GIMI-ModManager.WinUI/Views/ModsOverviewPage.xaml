@@ -42,7 +42,8 @@
                         Grid.Column="1"
                         HorizontalAlignment="Right"
                         Command="{x:Bind ViewModel.OpenFolderCommand}"
-                        ToolTipService.ToolTip="Open Folder">
+                        ToolTipService.ToolTip="Open Folder"
+                    l:Uids.Uid="ModsOverviewPage_OpenFolder">
                         <FontIcon Glyph="&#xE838;" />
                     </Button>
 
@@ -190,7 +191,8 @@
                         Grid.Column="1"
                         Link="{x:Bind Mod.FolderPath}"
                         ToolTipService.ToolTip="Open skin folder"
-                        Text="{x:Bind Mod.FolderName}" />
+                        Text="{x:Bind Mod.FolderName}"
+                    l:Uids.Uid="ModsOverviewPage_OpenSkinFolder" />
 
                     <StackPanel Grid.Column="2" Orientation="Horizontal">
                         <TextBlock Margin="0,0,4,0" Text="Added:" l:Uids.Uid="ModsOverviewPage_AddedLabel" />
@@ -238,7 +240,8 @@
                     Orientation="Horizontal"
                     Spacing="16"
                     Visibility="Collapsed">
-                    <Button Command="{x:Bind ViewModel.CloseOpenAllCommand}" Content="Open All" />
+                    <Button Command="{x:Bind ViewModel.CloseOpenAllCommand}" Content="Open All"
+                    l:Uids.Uid="ModsOverviewPage_OpenAllButton" />
                     <Button
                         Command="{x:Bind ViewModel.CloseOpenAllCommand}"
                         CommandParameter="Close"

@@ -50,7 +50,8 @@
                     <controls:LinkButton
                         Link="{x:Bind ViewModel.CharacterModListPath, Mode=OneWay}"
                         ToolTipService.ToolTip="Open Mod folder..."
-                        Text="{x:Bind ViewModel.CharacterModListPath.LocalPath, Mode=OneWay, FallbackValue=ModPath}" />
+                        Text="{x:Bind ViewModel.CharacterModListPath.LocalPath, Mode=OneWay, FallbackValue=ModPath}"
+                    l:Uids.Uid="GbModPageWindow_OpenModFolder" />
                 </StackPanel>
 
                 <controls1:SwitchPresenter Grid.Row="1" Value="{x:Bind ViewModel.Initializing, Mode=OneWay}">
@@ -316,7 +317,8 @@
                             VerticalAlignment="Center"
                             Link="{x:Bind ViewModel.ModPage, Mode=OneWay}"
                             ToolTipService.ToolTip="Open in default browser..."
-                            Text="{x:Bind ViewModel.ModPage, Mode=OneWay}" />
+                            Text="{x:Bind ViewModel.ModPage, Mode=OneWay}"
+                        l:Uids.Uid="GbModPageWindow_OpenInBrowser" />
                     </StackPanel>
                     <Button
                         Grid.Column="1"

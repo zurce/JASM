@@ -196,6 +196,7 @@ public partial class ModUpdateVM : ObservableRecipient
                     SyncAddonCheckboxes(vm);
                 }
             };
+            ModFileInfos.Add(vm);
             await InitializeModFileVmAsync(vm);
         }
 

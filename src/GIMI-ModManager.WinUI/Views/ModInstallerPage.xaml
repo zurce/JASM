@@ -340,10 +340,11 @@
                         <CheckBox
                             Content="Auto"
                             IsChecked="True"
-                            IsEnabled="False" />
-                        <CheckBox Content="Url" IsEnabled="False" />
-                        <CheckBox Content="Mod Files" IsEnabled="False" />
-                        <CheckBox Content="Ignore" IsEnabled="False" />
+                            IsEnabled="False"
+                            l:Uids.Uid="ModInstallerPage_ImageSourceAuto" />
+                        <CheckBox Content="Url" IsEnabled="False" l:Uids.Uid="ModInstallerPage_ImageSourceUrl" />
+                        <CheckBox Content="Mod Files" IsEnabled="False" l:Uids.Uid="ModInstallerPage_ImageSourceModFiles" />
+                        <CheckBox Content="Ignore" IsEnabled="False" l:Uids.Uid="ModInstallerPage_ImageSourceIgnore" />
                     </StackPanel>
 
                     <TextBlock
@@ -402,12 +403,12 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Content="Auto" IsEnabled="False" />
+                            <CheckBox Content="Auto" IsEnabled="False" l:Uids.Uid="ModInstallerPage_ShaderFixesAuto" />
                             <CheckBox
                                 Content="Manual Select" l:Uids.Uid="ModInstallerPage_ShaderFixesManualSelect"
                                 IsChecked="True"
                                 IsEnabled="False" />
-                            <CheckBox Content="Ignore" IsEnabled="False" />
+                            <CheckBox Content="Ignore" IsEnabled="False" l:Uids.Uid="ModInstallerPage_ShaderFixesIgnore" />
                         </StackPanel>
 
                     </StackPanel>
