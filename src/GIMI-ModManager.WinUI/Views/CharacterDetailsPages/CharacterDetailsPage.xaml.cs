@@ -31,8 +31,6 @@ public sealed partial class CharacterDetailsPage : Page
         MultipleModsInfoBar.Message = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CharacterDetails_MultipleModsActiveMessage") ?? "Multiple Mods active";
 
         var localizer = App.GetService<ILanguageLocalizer>();
-        SavePreferencesMenuItem.Text = localizer.GetLocalizedStringOrDefault("CharacterDetails_SavePreferences_Text") ?? "Save preferences for selected mod";
-        ReadPreferencesMenuItem.Text = localizer.GetLocalizedStringOrDefault("CharacterDetails_ReadPreferences_Text") ?? "Read preferences for selected mod";
         MoveModSearchBox.PlaceholderText = localizer.GetLocalizedStringOrDefault("CharacterDetails_SearchMoveMod_PlaceholderText") ?? "Search...";
 
         ViewModel.OnModObjectLoaded += OnModObjectLoaded;
