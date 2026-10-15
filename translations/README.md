@@ -79,6 +79,52 @@ still-missing keys from English so a locale never loses key parity
 | `apply PATH --locale LOCALE [--no-seed]` | Write `Translation` values into the locale's `.resw` files |
 | `validate [--locale LOCALE] [--strict]` | Check key parity, XML well-formedness, placeholders |
 | `stats` | Per-locale translation coverage |
+| `orphans [--emit FILE]` | List keys no XAML uid / `x:Uid` / C# literal can reach |
+| `prune KEYS_FILE` | Delete keys (`File,Key` per line) from **every** locale |
+| `rename MAP_FILE` | Rename keys (`File,Old,New` per line) in every locale, keeping values |
+
+## Orphan (dead) keys
+
+`orphans` answers the opposite question to `validate`: which en-us keys can no
+code path ever reach? A key is **reachable** when
+
+1. an XAML element declares `l:Uids.Uid="X"` (or `"/<File>/X"`), so the localizer
+   applies every key whose *uid part* (the resw name up to the first `.`) is `X`
+   in that file's resw — including keyed elements that carry **no** literal,
+   because their text is set at runtime by the uid;
+2. an element declares the framework `x:Uid="X"`;
+3. the C# source contains the literal `"Key"` or `"/Settings/Key"` (the
+   `/Settings/` form is what resolves a key stored in `Settings.resw`);
+4. the key is an **enum member name** — `SettingsViewModel` localizes
+   `ModUpdateAvailableChecker.Status.ToString()` directly, so `Running`,
+   `Waiting`, `Stopped`, `Error` are live without ever being spelled out.
+
+Everything else is an orphan: leftovers from removed features, a key renamed
+under a new spelling (its live counterpart is looked up under the bare name, e.g.
+a leftover `Foo_Bar.Label` where the code asks for `Foo_Bar` — rename it, see
+`missing`), strings that moved to another resw file, and near-miss uid names (the
+element's `l:Uids.Uid` differs from the key's base by a suffix).
+
+Keys built at runtime from a literal prefix (`"Category_" + category`) are **not**
+orphans: the prefix is reported by `missing`, and any key starting with it is kept.
+
+```bash
+python translations/pipeline.py orphans                 # report
+python translations/pipeline.py orphans --emit translations/batches/orphans.csv
+python translations/pipeline.py prune translations/batches/orphans.csv --dry-run
+python translations/pipeline.py prune translations/batches/orphans.csv
+python translations/pipeline.py validate --strict
+```
+
+`prune` deletes the `<data>` block and the `<!-- ... -->` comment that guarded
+only that key, in every locale including `en-us` (a key left in one locale makes
+`validate` fail on "extra key"). `rename` moves a key *with* each locale's own
+value — do not "rename" by pruning and re-applying, `apply` would seed the new
+key from English and drop the translation.
+
+Deliberate exceptions (a dormant feature whose strings we keep wired) belong
+outside the orphan list; the check is a report, not a gate.
+
 
 `apply` accepts either a single CSV or a directory of CSVs.
 

@@ -65,45 +65,13 @@
     <value>JASM+ - Just Another Skin Manager</value>
   </data>
 
-  <data name="AppDescription" xml:space="preserve">
-    <!-- Application description -->
-    <value>JASM+ - Just Another Skin Manager</value>
-  </data>
 
-  <data name="Startup1.Text" xml:space="preserve">
-    <!-- Informational text on the first-time setup page (preserved for reference, may not be in use) -->
-    <value>作为首次设置的一部分，您需要选择原神模型导入器（GIMI）文件夹及其关联的模组文件夹。GIMI/3dmigoto文件夹包含3DMigoto Loader.exe和一个模组文件夹。如果您尚未设置GIMI，请立即执行此操作，请参见下面的链接。我发现大多数模组在Gamebanana上，但Nexusmods也有一些。</value>
-  </data>
 
-  <data name="Startup2.Text" xml:space="preserve">
-    <!-- Informational text on the first-time setup page (preserved for reference, may not be in use) -->
-    <value>保存设置后，应用程序将在模组文件夹内为每个角色创建一个模组文件夹。该应用程序通过在模组文件夹前缀中添加“DISABLED_”来启用和禁用模组。JASM还支持导出由其管理的模组，如果您希望将其与其他应用程序一起使用。目前，只有这个页面和部分设置页面已经翻译完成。翻译是通过ChatGPT进行的，可能包含错误。</value>
-  </data>
 
-  <data name="Startup3.Text" xml:space="preserve">
-    <!-- Informational text on the first-time setup page (preserved for reference, may not be in use) -->
-    <value>在使用与您的文件交互的应用程序之前，备份您的文件/模组总是一个好主意。</value>
-  </data>
 
-  <data name="ShellMenuItem_Views_Main.Text" xml:space="preserve">
-    <!-- Navigation menu item label. Takes user to the Main.Text page -->
-    <value>主页</value>
-  </data>
 
-  <data name="Main_Title.Text" xml:space="preserve">
-    <!-- Page title for the main view -->
-    <value>主页</value>
-  </data>
 
-  <data name="ShellMenuItem_Views_Startup.Text" xml:space="preserve">
-    <!-- Navigation menu item label. Takes user to the Startup.Text page -->
-    <value>启动</value>
-  </data>
 
-  <data name="Startup_Title.Text" xml:space="preserve">
-    <!-- UI text on the first-time setup page -->
-    <value>首次启动</value>
-  </data>
 
   <data name="Settings_Personalization.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
@@ -135,20 +103,8 @@
     <value>JASM的目标是使组织大量皮肤模组变得更容易</value>
   </data>
 
-  <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
-    <!-- Privacy statement hyperlink text -->
-    <value>隐私声明</value>
-  </data>
 
-  <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
-    <!-- URL for the privacy statement -->
-    <value>https://YourPrivacyUrlGoesHere/</value>
-  </data>
 
-  <data name="ShellMenuBarSettingsButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <!-- UI element in the main navigation shell -->
-    <value>设置</value>
-  </data>
 
   <data name="SettingsPage_Description.Text" xml:space="preserve">
     <!-- Description text on the settings page -->
@@ -160,30 +116,14 @@
     <value>设置</value>
   </data>
 
-  <data name="Startup/Tooltip1.Text" xml:space="preserve">
-    <!-- UI text on the first-time setup page -->
-    <value>启用此选项将提示应用程序将现有的模组按其各自角色分配的文件夹进行排序。任何无法合理匹配的模组将放入“其他”文件夹。</value>
-  </data>
 
-  <data name="Startup/Tooltip2.Text" xml:space="preserve">
-    <!-- UI text on the first-time setup page -->
-    <value>一个包含多个角色名称的模组文件夹可能会错误地移到一个角色的目录中。</value>
-  </data>
 
-  <data name="Startup/Tooltip3.Text" xml:space="preserve">
-    <!-- UI text on the first-time setup page -->
-    <value>这可以在设置页面中稍后激活。</value>
-  </data>
 
   <data name="Settings_About.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
     <value>关于此应用程序</value>
   </data>
 
-  <data name="Settings_ComboBox_Header.Text" xml:space="preserve">
-    <!-- Form field label in Settings page -->
-    <value>选择显示语言：</value>
-  </data>
 
   <data name="Settings_ExportDialog.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
@@ -225,15 +165,7 @@
     <value>导出/备份模组</value>
   </data>
 
-  <data name="Settings_Language.Text" xml:space="preserve">
-    <!-- Language selection UI in Settings -->
-    <value>语言</value>
-  </data>
 
-  <data name="Settings_Language_TexBlock.Text" xml:space="preserve">
-    <!-- Language selection UI in Settings -->
-    <value>语言选项目前有限。这是一个正在进行中的工作。这是由ChatGPT翻译的。</value>
-  </data>
 
   <data name="ShellPage_NavItem_CharacterManagement" xml:space="preserve">
     <!-- Navigation menu item label. Takes user to the CharacterManagement page -->
@@ -265,10 +197,6 @@
     <value>通知</value>
   </data>
 
-  <data name="ShellPage_SettingsItem" xml:space="preserve">
-    <!-- Navigation menu item label. Takes user to the SettingsItem page -->
-    <value>Settings</value>
-  </data>
 
   <data name="CharactersPage_CheckForUpdates.Text" xml:space="preserve">
     <!-- Static label text on the CharactersPage component -->
@@ -330,30 +258,18 @@
     <value>创建高级命令</value>
   </data>
 
-  <data name="CharactersPage_EnableAllDialog.Title" xml:space="preserve">
-    <!-- Section or dialog title on the CharactersPage component -->
-    <value>启用所有Mod？</value>
-  </data>
 
   <data name="CharactersPage_EnableAllDialog_Description.Text" xml:space="preserve">
     <!-- Static label text on the CharactersPage component -->
     <value>这将启用当前活跃类别中所有被追踪的Mod。</value>
   </data>
 
-  <data name="CharactersPage_DisableAllDialog.Title" xml:space="preserve">
-    <!-- Section or dialog title on the CharactersPage component -->
-    <value>禁用所有Mod？</value>
-  </data>
 
   <data name="CharactersPage_DisableAllDialog_Description.Text" xml:space="preserve">
     <!-- Static label text on the CharactersPage component -->
     <value>建议将当前配置保存为预设，以便轻松恢复。</value>
   </data>
 
-  <data name="CharactersPage_CleanUpDialog.Title" xml:space="preserve">
-    <!-- Section or dialog title on the CharactersPage component -->
-    <value>清理禁用的Mod？</value>
-  </data>
 
   <data name="CharactersPage_CleanUpDialog_Description.Text" xml:space="preserve">
     <!-- Static label text on the CharactersPage component -->
@@ -375,10 +291,6 @@
     <value>排序角色...</value>
   </data>
 
-  <data name="CharactersPage_RefreshMods.Content" xml:space="preserve">
-    <!-- Button label to refresh/scand mod files -->
-    <value>刷新Mod</value>
-  </data>
 
   <data name="CharactersPage_Start3Dmigoto.Content" xml:space="preserve">
     <!-- Button label to launch the 3DMigoto model importer process -->
@@ -401,7 +313,7 @@
     <value>启动{0}</value>
   </data>
 
-  <data name="CharactersPage_BatchConfigurations.Label" xml:space="preserve">
+  <data name="CharactersPage_BatchConfigurations" xml:space="preserve">
     <!-- Section label for character filters or batch operations -->
     <value>批量配置</value>
   </data>
@@ -434,29 +346,9 @@
     <!-- batch orphan repair -->
     <value>批量修复孤儿Mod</value>
   </data>
-  <data name="BatchRepair_Title" xml:space="preserve">
-    <!-- batch orphan repair -->
-    <value>修复孤儿Mod</value>
-  </data>
-  <data name="BatchRepair_WindowTitle" xml:space="preserve">
-    <!-- batch orphan repair -->
-    <value>修复孤儿Mod</value>
-  </data>
-  <data name="BatchRepair_Cancel" xml:space="preserve">
-    <!-- batch orphan repair -->
-    <value>取消</value>
-  </data>
-  <data name="BatchRepair_UseMod" xml:space="preserve">
-    <!-- batch orphan repair -->
-    <value>使用此Mod</value>
-  </data>
   <data name="BatchRepair_Skip" xml:space="preserve">
     <!-- batch orphan repair -->
     <value>跳过</value>
-  </data>
-  <data name="BatchRepair_PickTitle" xml:space="preserve">
-    <!-- batch orphan repair -->
-    <value>选择GameBanana的Mod：</value>
   </data>
   <data name="BatchRepair_NoOrphansTitle" xml:space="preserve">
     <!-- batch orphan repair -->
@@ -611,10 +503,6 @@
     <value>稀有度</value>
   </data>
 
-  <data name="CharactersPage_ConfirmPreset.Text" xml:space="preserve">
-    <!-- Confirmation text when applying a preset -->
-    <value>确认</value>
-  </data>
 
   <data name="CharactersPage_RandomizeMods.Text" xml:space="preserve">
     <!-- Static label text on the CharactersPage component -->
@@ -631,30 +519,10 @@
     <value>拖放到此处自动识别Mod...</value>
   </data>
 
-  <data name="CharactersPage_SortAlphabetical.Text" xml:space="preserve">
-    <!-- Section label for character filters or batch operations -->
-    <value>按字母顺序</value>
-  </data>
 
-  <data name="CharactersPage_SortModCount.Text" xml:space="preserve">
-    <!-- Section label for character filters or batch operations -->
-    <value>Mod数量</value>
-  </data>
 
-  <data name="CharactersPage_SortRecentlyAdded.Text" xml:space="preserve">
-    <!-- Section label for character filters or batch operations -->
-    <value>最近添加的Mod</value>
-  </data>
 
-  <data name="CharactersPage_SortReleaseDate.Text" xml:space="preserve">
-    <!-- Section label for character filters or batch operations -->
-    <value>发布日期</value>
-  </data>
 
-  <data name="CharactersPage_SortRarity.Text" xml:space="preserve">
-    <!-- Section label for character filters or batch operations -->
-    <value>稀有度</value>
-  </data>
 
   <data name="CharactersPage_SearchPrefix" xml:space="preserve">
     <!-- Text on the CharactersPage component -->
@@ -701,10 +569,6 @@
     <value>将Mod移动到另一个皮肤</value>
   </data>
 
-  <data name="CharacterDetails_OverrideButtonText.Text" xml:space="preserve">
-    <!-- UI for managing skin overrides on this character -->
-    <value>覆盖</value>
-  </data>
 
   <data name="CharacterDetails_OverrideSkinSetTo.Text" xml:space="preserve">
     <!-- UI for managing skin overrides on this character -->
@@ -726,25 +590,9 @@
     <value>工作目录：</value>
   </data>
 
-  <data name="CharacterDetails_TargetPath.Text" xml:space="preserve">
-    <!-- Static label text on the CharacterDetails component -->
-    <value>'{{TargetPath}}:</value>
-  </data>
 
-  <data name="CharacterDetails_RunCommand.Content" xml:space="preserve">
-    <!-- Button or section for running custom commands on a mod -->
-    <value>运行</value>
-  </data>
 
-  <data name="CharacterDetails_Loading.Text" xml:space="preserve">
-    <!-- Loading text -->
-    <value>加载中</value>
-  </data>
 
-  <data name="CharacterDetails_LoadingEllipsis.Text" xml:space="preserve">
-    <!-- Loading text -->
-    <value>...</value>
-  </data>
 
   <data name="CharacterDetails_MenuBar_Mods.Title" xml:space="preserve">
     <!-- Section or dialog title on the CharacterDetails component -->
@@ -761,20 +609,12 @@
     <value>添压缩包...</value>
   </data>
 
-  <data name="CharacterDetails_RefreshModsMenuItem.Text" xml:space="preserve">
-    <!-- Menu item or button to refresh mods -->
-    <value>刷新Mod</value>
-  </data>
 
   <data name="CharacterDetails_MenuBar_Folders.Title" xml:space="preserve">
     <!-- Section or dialog title on the CharacterDetails component -->
     <value>文件夹</value>
   </data>
 
-  <data name="CharacterDetails_OpenRootFolder.Text" xml:space="preserve">
-    <!-- Static label text on the CharacterDetails component -->
-    <value>打开3Dmigoto根文件夹...</value>
-  </data>
 
   <data name="CharacterDetails_OpenCharacterModFolder.Text" xml:space="preserve">
     <!-- Static label text on the CharacterDetails component -->
@@ -796,10 +636,6 @@
     <value>单选</value>
   </data>
 
-  <data name="CharacterDetails_ShowModFolderNames.Text" xml:space="preserve">
-    <!-- Toggle: shows/hides the mod folder name column -->
-    <value>显示'Mod文件夹名称'列</value>
-  </data>
 
   <data name="CharacterDetails_MenuBar_ModPreferences.Title" xml:space="preserve">
     <!-- Section or dialog title on the CharacterDetails component -->
@@ -816,20 +652,12 @@
     <value>读取所选Mod的偏好</value>
   </data>
 
-  <data name="CharacterDetails_MultipleModsActive.Message" xml:space="preserve">
-    <!-- Warning message shown when multiple mods are enabled simultaneously -->
-    <value>多个Mod处于活跃状态</value>
-  </data>
 
   <data name="CharacterDetails_SearchModsTextBox.PlaceholderText" xml:space="preserve">
     <!-- Placeholder text in the mod search box -->
     <value>搜索Mod...</value>
   </data>
 
-  <data name="CharacterDetails_ViewToggle.OffContent" xml:space="preserve">
-    <!-- Toggle switch to switch between Gallery View or Detailed View -->
-    <value>详细视图</value>
-  </data>
 
   <data name="ModPane_SetModIniFile.Text" xml:space="preserve">
     <!-- Button/checkbox for managing the mod .ini file -->
@@ -864,14 +692,6 @@
   <data name="ModPane_UseThisMod" xml:space="preserve">
     <!-- Primary button label to use the selected GameBanana search result as this mod's URL -->
     <value>使用此Mod</value>
-  </data>
-  <data name="ModPane_NoSearchResults" xml:space="preserve">
-    <!-- Notification title when a GameBanana search returns no results -->
-    <value>未找到结果</value>
-  </data>
-  <data name="ModPane_NoSearchResultsMsg" xml:space="preserve">
-    <!-- Notification body when a GameBanana search returns no results -->
-    <value>在GameBanana上找不到匹配的Mod。</value>
   </data>
   <data name="ModPane_SearchError" xml:space="preserve">
     <!-- Notification title when a GameBanana search fails -->
@@ -1167,15 +987,7 @@
     <value>覆盖现有Mod</value>
   </data>
 
-  <data name="ModInstallerPage_ReplaceInPresets.Text" xml:space="preserve">
-    <!-- Checkbox: replace old mod in presets with this new version -->
-    <value>用新Mod替换预设中的重复Mod</value>
-  </data>
 
-  <data name="ModInstallerPage_RetrieveModInfo.Text" xml:space="preserve">
-    <!-- Static label text on the ModInstallerPage component -->
-    <value>从Mod页面获取Mod信息</value>
-  </data>
 
   <data name="ModInstallerPage_ModPageUrl.Header" xml:space="preserve">
     <!-- Label/placeholder for the GameBanana mod page URL -->
@@ -1257,25 +1069,13 @@
     <value>在此处可以选择Mod文件夹的根目录。</value>
   </data>
 
-  <data name="ModInstallerPage_ModFolderDescription.Text" xml:space="preserve">
-    <!-- Static label text on the ModInstallerPage component -->
-    <value>这通常是包含'merged.ini/Script.ini'或'.JASM_ModConfig.json'的文件夹。JASM会自动检测Mod文件夹和merged.ini文件。如果你想手动选择Mod文件夹，可以在上面的概览中右键点击文件夹进行选择。</value>
-  </data>
 
-  <data name="ModInstallerPage_ManualImageSelectionHint.Text" xml:space="preserve">
-    <!-- Instruction for manual image selection -->
-    <value>你也可以手动选择Mod预览图的图片文件。通常只需点击「添加Mod」即可。</value>
-  </data>
 
   <data name="ModInstallerPage_ForceOverwriteDifferentNameMod.Content" xml:space="preserve">
     <!-- Checkbox: overwrite old mod even if folder names differ -->
     <value>强制覆盖不同名称的Mod？</value>
   </data>
 
-  <data name="ModInstallerPage_ReplaceInPresetsMain.Text" xml:space="preserve">
-    <!-- Checkbox: replace old mod in presets with this new version -->
-    <value>用新Mod替换预设中的重复Mod</value>
-  </data>
 
   <data name="ModInstallerPage_MergedIniFileFolderLabel.Text" xml:space="preserve">
     <!-- Section heading text -->
@@ -1361,30 +1161,14 @@
     <value>调整期望宽度：</value>
   </data>
 
-  <data name="CharacterGalleryPage_SingleSelect.ToolTip" xml:space="preserve">
-    <!-- Toggle/tooltip: restrict to one active mod per character -->
-    <value>选择此项后，一次只能启用一个Mod。</value>
-  </data>
 
   <data name="CharacterGalleryPage_SearchMods.PlaceholderText" xml:space="preserve">
     <!-- Placeholder text in the mod search box -->
     <value>搜索Mod...</value>
   </data>
 
-  <data name="CharacterGalleryPage_ViewToggleSwitch.OnContent" xml:space="preserve">
-    <!-- Toggle switch for Gallery View / Detailed View -->
-    <value>画廊视图</value>
-  </data>
 
-  <data name="CharacterGalleryPage_ViewToggleSwitch.OffContent" xml:space="preserve">
-    <!-- Toggle switch for Gallery View / Detailed View -->
-    <value>详细视图</value>
-  </data>
 
-  <data name="CharacterGalleryPage_SingleSelect.Content" xml:space="preserve">
-    <!-- Toggle/tooltip: restrict to one active mod per character -->
-    <value>单选</value>
-  </data>
 
   <data name="CharacterGalleryPage_SaveImage.Text" xml:space="preserve">
     <!-- Context menu item for mod operations -->
@@ -1556,20 +1340,8 @@
     <value>Mod名称</value>
   </data>
 
-  <data name="DebugPage_CreateButton.Content" xml:space="preserve">
-    <!-- Button label on the Debug page -->
-    <value>创建</value>
-  </data>
 
-  <data name="DebugPage_EditButton.Content" xml:space="preserve">
-    <!-- Button label on the Debug page -->
-    <value>编辑</value>
-  </data>
 
-  <data name="DebugPage_DeleteButton.Content" xml:space="preserve">
-    <!-- Button label on the Debug page -->
-    <value>删除</value>
-  </data>
 
   <data name="NotificationsPage_HeaderText.Text" xml:space="preserve">
     <!-- Page title for the notifications page -->
@@ -1666,15 +1438,7 @@
     <value>角色管理器</value>
   </data>
 
-  <data name="CharacterManagerPage_SearchBox.Header" xml:space="preserve">
-    <!-- Placeholder or label for the character search box -->
-    <value>搜索要编辑的角色或添加新角色</value>
-  </data>
 
-  <data name="CharacterManagerPage_SearchBox.PlaceholderText" xml:space="preserve">
-    <!-- Placeholder or label for the character search box -->
-    <value>开始输入以搜索...</value>
-  </data>
 
   <data name="CharacterManagerPage_SearchBox_Placeholder" xml:space="preserve">
     <!-- Placeholder or label for the character search box -->
@@ -1721,10 +1485,6 @@
     <value>自上次检查以来的新内容</value>
   </data>
 
-  <data name="ModUpdateAvailableWindow_DownloadButton.Content" xml:space="preserve">
-    <!-- Button to download the mod file -->
-    <value>下载</value>
-  </data>
 
   <data name="ModUpdateAvailableWindow_InstallButton.Content" xml:space="preserve">
     <!-- Button to install the mod -->
@@ -1739,10 +1499,6 @@
     <value>批量安装</value>
   </data>
 
-  <data name="ModUpdateAvailableWindow_IgnoreCloseButton.Content" xml:space="preserve">
-    <!-- Button to close the window -->
-    <value>忽略并关闭</value>
-  </data>
 
   <data name="ModUpdateAvailableWindow_LastCheck.Text" xml:space="preserve">
     <!-- Text showing update check time -->
@@ -1754,10 +1510,6 @@
     <value>Mod页面：</value>
   </data>
 
-  <data name="ModUpdateAvailableWindow_DownloadsButton.Content" xml:space="preserve">
-    <!-- Button to download the mod file -->
-    <value>下载</value>
-  </data>
 
   <data name="Settings_Window.Text" xml:space="preserve">
     <!-- Static label text on the Settings component -->
@@ -1879,10 +1631,6 @@
     <value>Mod已导出</value>
   </data>
 
-  <data name="Settings_Export_ModsExportedTo" xml:space="preserve">
-    <!-- The {0} placeholder is replaced with the mod name or count -->
-    <value>Mod已导出到{0}</value>
-  </data>
 
   <data name="Settings_Export_ErrorExporting" xml:space="preserve">
     <!-- Text on the Settings component -->
@@ -1944,10 +1692,6 @@
     <value>创建命令失败。</value>
   </data>
 
-  <data name="Settings_Notification_ModsExportedToFormat" xml:space="preserve">
-    <!-- The {0} placeholder is replaced with the mod name or count -->
-    <value>Mod已导出到{0}</value>
-  </data>
 
   <data name="Settings_Export_ModsExportedToFormat" xml:space="preserve">
     <!-- The {0} placeholder is replaced with the mod name or count -->
@@ -2823,10 +2567,6 @@ JASM不会移动你的任何Mod，也不会删除任何Mod。
     <value>禁用所有Mod</value>
   </data>
 
-  <data name="CharacterDetails_ViewToggle.OnContent" xml:space="preserve">
-    <!-- Toggle switch to switch between Gallery View or Detailed View -->
-    <value>画廊视图</value>
-  </data>
 
   <data name="ModGrid_EnabledColumn" xml:space="preserve">
     <!-- Column header in the mod list: EnabledColumn -->
@@ -2903,10 +2643,6 @@ JASM不会移动你的任何Mod，也不会删除任何Mod。
     <value>Mod文件名称</value>
   </data>
 
-  <data name="CreateCharacterPage_Rarity.Header" xml:space="preserve">
-    <!-- Label for the rarity selector -->
-    <value>稀有度</value>
-  </data>
 
   <data name="CreateCharacterPage_Element.Header" xml:space="preserve">
     <!-- Label for the element/type selector -->
@@ -4052,10 +3788,6 @@ Ini路径：{1}</value>
     <value>JASM无法确定此Mod适用于哪个游戏内皮肤，因此无法确定要禁用哪些Mod。</value>
   </data>
 
-  <data name="Notification_SystemError" xml:space="preserve">
-    <!-- Notification title or message. Related to: systemerror -->
-    <value>系统错误：{0}</value>
-  </data>
 
   <data name="CharacterCard_GoToModsOverview.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Tooltip: navigate to this character in Mods Overview -->
@@ -4072,15 +3804,7 @@ Ini路径：{1}</value>
     <value>搜索...</value>
   </data>
 
-  <data name="CharacterDetails_AddModFolder.ToolTipService.ToolTip" xml:space="preserve">
-    <!-- Tooltip explanation on the CharacterDetails component -->
-    <value>添加Mod文件夹</value>
-  </data>
 
-  <data name="CharacterDetails_AddArchive.ToolTipService.ToolTip" xml:space="preserve">
-    <!-- Tooltip explanation on the CharacterDetails component -->
-    <value>添加压缩包内的Mod</value>
-  </data>
 
   <data name="CharacterDetails_RefreshMods.Text" xml:space="preserve">
     <!-- Menu item or button to refresh mods -->
@@ -4092,17 +3816,13 @@ Ini路径：{1}</value>
     <value>打开3Dmigoto根文件夹...</value>
   </data>
 
-  <data name="CharacterDetails_SingleSelect.ToolTipService.ToolTip" xml:space="preserve">
-    <!-- Toggle: when enabled, only one mod can be active at a time -->
-    <value>选择此项后，一次只能启用一个Mod。</value>
-  </data>
 
-  <data name="CharacterDetails_SavePreferences.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="CharacterDetails_SavePreferencesToggle.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
     <value>读取所选Mod的3Dmigoto Mod偏好（d3dx_user.ini）并将设置存储在Mod的.JASM_Config.json文件中。</value>
   </data>
 
-  <data name="CharacterDetails_ReadPreferences.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="CharacterDetails_ReadPreferencesToggle.ToolTipService.ToolTip" xml:space="preserve">
     <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
     <value>从Mod的.JASM_Config.json文件中读取Mod偏好并将其写入3Dmigoto（d3dx_user.ini）。</value>
   </data>
@@ -4112,15 +3832,7 @@ Ini路径：{1}</value>
     <value>更改Mod的显示名称</value>
   </data>
 
-  <data name="ModPane_SetModIni.ToolTipService.ToolTip" xml:space="preserve">
-    <!-- Button/checkbox for managing the mod .ini file -->
-    <value>设置Mod的.ini文件</value>
-  </data>
 
-  <data name="ModPane_IgnoreIni.ToolTipService.ToolTip" xml:space="preserve">
-    <!-- Button/checkbox for managing the mod .ini file -->
-    <value>忽略此Mod的.ini文件</value>
-  </data>
 
   <data name="CharDetails_DeleteDialog_Content" xml:space="preserve">
     <!-- Checkbox label: whether to move deleted mods to Recycle Bin -->
@@ -4331,10 +4043,6 @@ Ini路径：{1}</value>
     <value>等待</value>
   </data>
 
-  <data name="Overview" xml:space="preserve">
-    <!-- Process status indicator: Overview -->
-    <value>概览</value>
-  </data>
 
   <data name="ModInstallerPage_AlwaysOnTopToggle.ToolTip" xml:space="preserve">
     <!-- Toggle tooltip: keep window always on top -->
@@ -4539,9 +4247,6 @@ Ini路径：{1}</value>
 <data name="OneClick_Confirm_DefaultSkin" xml:space="preserve">
     <value>默认</value>
   </data>
-<data name="OneClick_NoTarget_Message" xml:space="preserve">
-    <value>未选择安装目标。</value>
-  </data>
 <data name="OneClick_SwitchGame_Title" xml:space="preserve">
     <value>切换游戏？</value>
   </data>
@@ -4628,14 +4333,6 @@ Ini路径：{1}</value>
 <data name="CharDetails_SetImageButton_Text" xml:space="preserve">
     <!-- Static label text on the CharDetails component -->
     <value>设置图片</value>
-  </data>
-<data name="CharacterDetails_SavePreferences_Text" xml:space="preserve">
-    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
-    <value>保存所选Mod的偏好</value>
-  </data>
-<data name="CharacterDetails_ReadPreferences_Text" xml:space="preserve">
-    <!-- Toggle: saves/reads mod preferences (enabled state, order) for this mod -->
-    <value>读取所选Mod的偏好</value>
   </data>
 <data name="CharacterDetails_OnlyOneSkin_ToolTip" xml:space="preserve">
     <!-- Tooltip explanation on the CharacterDetails component -->
