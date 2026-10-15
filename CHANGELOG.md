@@ -1,5 +1,56 @@
 # Changelog
 
+## [3.1.1](https://github.com/zurce/JASM/compare/v3.1.0...v3.1.1) (2026-10-15)
+
+Everything since **v3.0.2**, in one release: the 3.1.0 feature work was never published on its
+own, so this is the first download since 3.0.2 and the notes below cover the whole line.
+
+### Highlights
+
+**GameBanana 1-click install** — a `jasm-plus:` link on a mod page installs it straight into
+JASM+: a confirmation dialog with category / target / skin pickers, a warning when the archive
+contains executable files, an optional "install without confirmation" that installs silently as
+a separate disabled copy, and links that belong to another game now offer to switch to it
+instead of dead-ending.
+
+**Install into a chosen in-game skin** from the Mod Installer, instead of only the default.
+
+**Variants and add-ons** — install several GameBanana files as variants of a single mod with an
+exclusive switcher, and nest dependent add-on mods as indented child rows (drag to nest in the
+download window).
+
+**XXMI support** — use XXMI as an alternative injector backend: detection, locked mods folder,
+"Launch `<game>`" / "Open XXMI" buttons and a wrong-game guard.
+
+**In-repo translation pipeline** — `translations/pipeline.py` (export / split / apply / validate /
+stats) keeps all six languages key-identical and refuses translations that drop `{0}`
+placeholders; repairing the 16 it found is included.
+
+**Direct (non-XXMI) 3DMigoto config persistence** — mod `.ini` lines are matched
+mount-agnostically against `d3dx_user.ini`, resolved by walking up to the real 3DMigoto root.
+
+### Major fixes
+
+* **GameBanana tools downloaded the wrong submission** — tools and mods share one numeric id
+  space, so a tool link could fetch an unrelated mod. Downloads now route to the Tool API and the
+  file list / cache are namespaced per submission type.
+* **`.JASM_ModConfig.json` data loss** — configs were read case-sensitively, which stripped the
+  custom name, author, mod URL and description on the next save and silently disabled update
+  checks for those mods. Fixed, with regression tests.
+* **The "new files" window listed nothing** — the file list was never populated (a regression
+  introduced when add-ons landed), so the update badge appeared and the window came up empty. The
+  card's "new since last check" label no longer overlaps its Install button either.
+* **Localization that silently stayed English** — three separate root causes fixed (`l:Uids.Uid`
+  placed before the strings it localizes, elements carrying no uid at all, and dotted keys passed
+  to C# lookups, which can never resolve) plus a full audit of the UI: 0 missing / 0 clobbered out
+  of 455 localizable pairs.
+* **Auto-updater safety** — the directory swap is blocked, or confined to the application's own
+  files, when a game's mods folder lives inside the install folder, so an update can no longer
+  delete user mods.
+
+Under the hood this release adds ~65 localized strings across all six languages and the audit
+tooling (`_scripts/audit_xaml_l10n.py`) that catches the "still English" bug classes before a release.
+
 ## [3.1.0](https://github.com/zurce/JASM/compare/v3.0.2...v3.1.0) (2026-10-13)
 
 
