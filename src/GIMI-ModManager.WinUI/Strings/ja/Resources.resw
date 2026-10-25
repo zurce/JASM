@@ -4576,4 +4576,12 @@ JASMはModを移動したり削除したりしません。
 <data name="ModUpdateAvailableWindow_IgnoreCloseTooltip_Content" xml:space="preserve">
     <value>無視して閉じる</value>
   </data>
+  <data name="Notification_AlreadyRunningTitle" xml:space="preserve">
+    <!-- Notification title when a launch is skipped because XXMI Launcher is already running. -->
+    <value>既に実行中</value>
+  </data>
+  <data name="Notification_XxmiAlreadyRunning" xml:space="preserve">
+    <!-- Notification body shown when a second XXMI launch was skipped. -->
+    <value>XXMI Launcherは既に開いています。</value>
+  </data>
 </root>

@@ -4538,4 +4538,12 @@ Tem certeza de que deseja desabilitar skins de personagem como personagens? O JA
 <data name="ModUpdateAvailableWindow_IgnoreCloseTooltip_Content" xml:space="preserve">
     <value>Ignorar e Fechar</value>
   </data>
+  <data name="Notification_AlreadyRunningTitle" xml:space="preserve">
+    <!-- Notification title when a launch is skipped because XXMI Launcher is already running. -->
+    <value>Já em execução</value>
+  </data>
+  <data name="Notification_XxmiAlreadyRunning" xml:space="preserve">
+    <!-- Notification body shown when a second XXMI launch was skipped. -->
+    <value>O XXMI Launcher já está aberto.</value>
+  </data>
 </root>

@@ -79,9 +79,42 @@ still-missing keys from English so a locale never loses key parity
 | `apply PATH --locale LOCALE [--no-seed]` | Write `Translation` values into the locale's `.resw` files |
 | `validate [--locale LOCALE] [--strict]` | Check key parity, XML well-formedness, placeholders |
 | `stats` | Per-locale translation coverage |
+| `audit [--details]` | Report **every** gap class; non-zero exit when a hard gap exists (CI gate) |
 | `orphans [--emit FILE]` | List keys no XAML uid / `x:Uid` / C# literal can reach |
 | `prune KEYS_FILE` | Delete keys (`File,Key` per line) from **every** locale |
 | `rename MAP_FILE` | Rename keys (`File,Old,New` per line) in every locale, keeping values |
+
+`apply` accepts either a single CSV or a directory of CSVs. Missing keys are added
+**before** the values are written, so one CSV can both introduce a key and carry its
+translation.
+
+## Gap classes — what `audit` checks
+
+`audit` is the single gate for "is anything still English / unreachable / lossy?".
+CI (`.github/workflows/i18n.yml`) runs it on every push and PR to `main`, together
+with `validate --strict`.
+
+| Class | Symptom | Gate |
+|---|---|---|
+| Missing XAML key | element has `l:Uids.Uid` + a literal, but no `{uid}.{Property}` entry | **hard** |
+| Clobbered uid | `l:Uids.Uid` sits *before* the literal it should localize (the literal wins) | **hard** |
+| Missing C# key | `GetLocalizedStringOrDefault("X")` with no `X` → silent English fallback | **hard** |
+| Orphan key | translation nothing can reach | **hard** |
+| Placeholder mismatch | translation dropped `{0}`/`{{TargetPath}}` → the value vanishes silently | **hard** |
+| Untranslated | locale value still equals `en-us` | info (burn-down) |
+
+```bash
+python translations/pipeline.py audit            # summary + hard-gap count
+python translations/pipeline.py audit --details  # every offending row, incl. untranslated keys
+```
+
+Fix recipes: a missing XAML key needs the resw entry (or the uid moved **last**);
+a missing C# key needs the key added — or, if the resw already holds the string
+under another spelling, a `rename` (see `missing`'s hint); an orphan goes through
+`prune`; a placeholder mismatch goes through `export --target <loc>` → patch →
+`apply`.
+
+Before a release, `audit` must print `OK -- no hard gaps`.
 
 ## Orphan (dead) keys
 
@@ -123,10 +156,8 @@ value — do not "rename" by pruning and re-applying, `apply` would seed the new
 key from English and drop the translation.
 
 Deliberate exceptions (a dormant feature whose strings we keep wired) belong
-outside the orphan list; the check is a report, not a gate.
-
-
-`apply` accepts either a single CSV or a directory of CSVs.
+outside the orphan list only when the strings are actually wired — `orphans` is a
+**hard** gap in `audit`, so an unreachable key fails CI.
 
 ## Key naming rules (unchanged, important)
 

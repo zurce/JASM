@@ -868,7 +868,7 @@ public sealed partial class ModPaneVM(
             XamlRoot = App.MainWindow.Content.XamlRoot,
             Title = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_SearchResultsTitle") ?? "Search GameBanana",
             PrimaryButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("ModPane_UseThisMod") ?? "Use this mod",
-            CloseButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("Common_Cancel") ?? "Cancel",
+            CloseButtonText = App.GetService<ILanguageLocalizer>().GetLocalizedStringOrDefault("CancelButton_Text") ?? "Cancel",
             DefaultButton = Microsoft.UI.Xaml.Controls.ContentDialogButton.Primary,
             Content = picker
         };

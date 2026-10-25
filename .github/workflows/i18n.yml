@@ -1,0 +1,32 @@
+name: i18n
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  localization-gaps:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    # Data integrity: every locale has the same keys as en-us, valid XML, and the
+    # same {0}/{{TargetPath}} placeholders.
+    - name: Validate locales
+      run: python translations/pipeline.py validate --strict
+
+    # Coverage: fails on any hard gap -- a XAML uid+literal with no key, a literal
+    # parsed after its uid, a C# lookup with no key, an unreachable key, or a
+    # placeholder mismatch. Untranslated strings are reported but not gated.
+    - name: Audit localization gaps
+      run: python translations/pipeline.py audit
