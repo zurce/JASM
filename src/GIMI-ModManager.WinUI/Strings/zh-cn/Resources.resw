@@ -4577,4 +4577,12 @@ Ini路径：{1}</value>
 <data name="ModUpdateAvailableWindow_IgnoreCloseTooltip_Content" xml:space="preserve">
     <value>忽略并关闭</value>
   </data>
+  <data name="Notification_AlreadyRunningTitle" xml:space="preserve">
+    <!-- Notification title when a launch is skipped because XXMI Launcher is already running. -->
+    <value>已在运行</value>
+  </data>
+  <data name="Notification_XxmiAlreadyRunning" xml:space="preserve">
+    <!-- Notification body shown when a second XXMI launch was skipped. -->
+    <value>XXMI Launcher 已打开。</value>
+  </data>
 </root>

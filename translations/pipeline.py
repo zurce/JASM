@@ -23,6 +23,7 @@ split    Chop a CSV into batches of N rows.
 apply    Write the ``Translation`` column back into a locale's ``.resw`` files.
 validate Check key parity, XML well-formedness, and placeholder preservation.
 stats    Show per-locale translation progress.
+audit    Report every localization gap class (non-zero exit on hard gaps).
 orphans  List keys no XAML uid / x:Uid / C# literal can reach (dead translations).
 missing  List C# key lookups with no key (silent English fallback in every locale).
 prune    Delete keys (File,Key list) from every locale's .resw files.
@@ -79,6 +80,9 @@ _DATA_RE = re.compile(r'<data\s+name="([^"]+)"[^>]*>(.*?)</data>', re.DOTALL)
 _VALUE_RE = re.compile(r'(<value(?:\s[^>]*)?>)(.*?)(</value>)', re.DOTALL)
 # Context comment. This is the <!-- ... --> form, NOT the <comment> element.
 _COMMENT_RE = re.compile(r"<!--\s*(.*?)\s*-->", re.DOTALL)
+# A <data> block *with* its leading indentation -- used when appending a key to a
+# locale so the new entry keeps the file's layout.
+_INDENTED_DATA_RE = re.compile(r'([ \t]*)<data\s+name="([^"]+)"[^>]*>.*?</data>', re.DOTALL)
 # Placeholders that must survive translation: {0}, {1}, {{TargetPath}}, ...
 _PLACEHOLDER_RE = re.compile(r"\{\{.*?\}\}|\{[^{}]*\}")
 
@@ -270,7 +274,7 @@ def _add_missing(
     keys that have a translation are added.
     """
     present = {m.group(1) for m in _DATA_RE.finditer(text)}
-    en_blocks = {m.group(1): m.group(0) for m in _DATA_RE.finditer(en_text)}
+    en_blocks = {m.group(2): m.group(0) for m in _INDENTED_DATA_RE.finditer(en_text)}
     en_entries = parse_entries(en_text)
     keys = en_entries if seed_all else [k for k in translations if k in en_entries]
     added = 0
@@ -338,8 +342,12 @@ def cmd_apply(args: argparse.Namespace) -> int:
             text, uses_crlf, trailing = load_resw(STRINGS_DIR / EN_LOCALE / f"{resw_file}.resw")
             print(f"  creating {rel(target_path)} from en-us seed")
 
-        text, applied = _apply_values(text, translations)
+        # Add missing keys *before* writing values: a CSV that introduces a key and
+        # carries its translation in one pass would otherwise be seeded from English
+        # and the translation silently dropped (the key did not exist yet when the
+        # value pass ran).
         text, added = _add_missing(text, translations, en_text, seed_all=not args.no_seed)
+        text, applied = _apply_values(text, translations)
         save_resw(target_path, text, uses_crlf, trailing)
         total_applied += applied
         total_added += added
@@ -667,6 +675,149 @@ def cmd_orphans(args: argparse.Namespace) -> int:
     return 0
 
 
+# --- Audit -------------------------------------------------------------------
+#
+# One report for every gap class this repo can detect. `--fail-on-gaps` makes the
+# hard classes (anything that leaves a string English or silently drops a runtime
+# value) fail CI; the untranslated count is informational so it can burn down.
+
+# Properties WinUI3Localizer can set on the element that declares the uid.
+LOCALIZABLE_PROPS = (
+    "Text", "Header", "Content", "Title", "Message", "PlaceholderText", "Description",
+    "CloseButtonText", "PrimaryButtonText", "SecondaryButtonText", "ToolTipService.ToolTip",
+    "ToolTip", "Watermark", "AutomationProperties.Name",
+)
+_XAML_TAG_RE = re.compile(r"<([A-Za-z][\w.:]*)([^<>]*?)/?>", re.S)
+_XAML_ATTR_RE = re.compile(r'([\w.:]+)\s*=\s*"([^"]*)"', re.S)
+
+
+def xaml_gaps(locale: str = EN_LOCALE) -> tuple[list[tuple], list[tuple]]:
+    """(missing uid+literal keys, clobbered uid+literal pairs) for one locale.
+
+    An element that declares `l:Uids.Uid="X"` with a design-time literal on a
+    localizable property needs `X.<Property>` in that file's resw. A literal that
+    the parser sees *after* the uid overwrites whatever the localizer applied, so
+    the key can never show (pitfall 22) -- reported separately as clobbered.
+    """
+    keys = {resw_file: read_locale(locale, resw_file) for resw_file in RESW_FILES}
+    missing: list[tuple] = []
+    clobbered: list[tuple] = []
+    for xaml in sorted(UI_DIR.rglob("*.xaml")):
+        if not _wanted(xaml):
+            continue
+        text = xaml.read_text(encoding="utf-8-sig", errors="replace")
+        for match in _XAML_TAG_RE.finditer(text):
+            ordered = _XAML_ATTR_RE.findall(match.group(2))
+            uid = dict(ordered).get("l:Uids.Uid")
+            if not uid:
+                continue
+            resw_file, key_base = split_uid(uid)
+            line = text.count("\n", 0, match.start()) + 1
+            uid_index = next(i for i, (name, _) in enumerate(ordered) if name == "l:Uids.Uid")
+            for index, (prop, value) in enumerate(ordered):
+                if prop not in LOCALIZABLE_PROPS or not value or value.startswith("{"):
+                    continue
+                key = f"{key_base}.{prop}"
+                row = (f"{rel(xaml)}:{line}", uid, key, " ".join(value.split())[:80])
+                if index > uid_index:
+                    clobbered.append(row)
+                elif key not in keys[resw_file]:
+                    missing.append(row)
+    return missing, clobbered
+
+
+def placeholder_gaps(locale: str | None = None) -> list[tuple[str, str, str, list[str], list[str]]]:
+    """Translations whose placeholders differ from en-us (the value vanishes at runtime)."""
+    en = {resw_file: read_locale(EN_LOCALE, resw_file) for resw_file in RESW_FILES}
+    gaps: list[tuple[str, str, str, list[str], list[str]]] = []
+    for loc in target_locales(locale):
+        if loc == EN_LOCALE:
+            continue
+        for resw_file in RESW_FILES:
+            for key, entry in read_locale(loc, resw_file).items():
+                source = en[resw_file].get(key)
+                if source is None:
+                    continue
+                expected, actual = placeholders(source.value), placeholders(entry.value)
+                if expected != actual:
+                    gaps.append((loc, resw_file, key, expected, actual))
+    return gaps
+
+
+def untranslated(locale: str = EN_LOCALE) -> dict[str, list[str]]:
+    """{resw file: keys whose value still equals en-us} for one locale."""
+    en = {resw_file: read_locale(EN_LOCALE, resw_file) for resw_file in RESW_FILES}
+    same: dict[str, list[str]] = {}
+    for resw_file in RESW_FILES:
+        for key, entry in read_locale(locale, resw_file).items():
+            source = en[resw_file].get(key)
+            if source is not None and entry.value.strip() and entry.value == source.value:
+                same.setdefault(resw_file, []).append(key)
+    return same
+
+
+def cmd_audit(args: argparse.Namespace) -> int:
+    xaml_missing, clobbered = xaml_gaps(args.locale)
+    csharp_missing = missing_keys(args.locale)
+    orphans = find_orphans(args.locale)
+    placeholders_ = placeholder_gaps(args.locale)
+    orphan_count = sum(len(keys) for keys in orphans.values())
+
+    hard = {
+        "missing keys (XAML uid + literal)": len(xaml_missing),
+        "clobbered uid order (literal parsed after the uid)": len(clobbered),
+        "missing keys (C# lookups)": len(csharp_missing),
+        "orphan keys (nothing references them)": orphan_count,
+        "placeholder mismatches (value would vanish)": len(placeholders_),
+    }
+    total = sum(hard.values())
+
+    print(f"Localization gaps ({args.locale} source, all locales for placeholders)\n")
+    width = max(len(label) for label in hard)
+    for label, count in hard.items():
+        print(f"  {label:<{width}}  {count:>4}")
+    print(f"  {'-' * width}  {'-' * 4}")
+    print(f"  {'hard gaps (CI gate)':<{width}}  {total:>4}\n")
+
+    for label, rows in (
+        ("missing XAML keys (add <uid>.<Property>, or move the uid last)", xaml_missing),
+        ("missing C# keys (add the key, or point the call site at the existing spelling)", csharp_missing),
+        ("orphan keys (delete with prune, or rename with rename)", [
+            (resw_file, key) for resw_file, keys in orphans.items() for key in keys
+        ]),
+        ("placeholder mismatches", placeholders_),
+    ):
+        if not rows:
+            continue
+        print(f"## {label}  ({len(rows)})")
+        if args.details:
+            for row in rows:
+                print("  " + "  ".join(str(part) for part in row))
+        else:
+            print(f"  {len(rows)} row(s) hidden -- re-run with --details")
+        print()
+
+    untranslated_counts = {}
+    for loc in target_locales(None):
+        if loc == EN_LOCALE:
+            continue
+        untranslated_counts[loc] = sum(len(keys) for keys in untranslated(loc).values())
+    print("Untranslated (value still equals en-us; informational, not gated)")
+    for loc, count in untranslated_counts.items():
+        print(f"  {loc:<7} {count:>4}")
+    if args.details and any(untranslated_counts.values()):
+        for loc in untranslated_counts:
+            keys = [key for keys in untranslated(loc).values() for key in keys]
+            if keys:
+                print(f"  {loc}: {', '.join(sorted(keys))}")
+
+    if total:
+        print(f"\nFAILED -- {total} hard gap(s).")
+        return 1
+    print("\nOK -- no hard gaps.")
+    return 0
+
+
 # --- Maintenance ------------------------------------------------------------
 #
 # Deleting or renaming a key must happen in *every* locale at once: ``validate``
@@ -914,6 +1065,11 @@ def build_parser() -> argparse.ArgumentParser:
     missing = sub.add_parser("missing", help="list C# key lookups that have no key (silent English fallback)")
     missing.add_argument("--locale", default=EN_LOCALE, help=f"locale to inspect (default: {EN_LOCALE})")
     missing.set_defaults(func=cmd_missing)
+
+    audit = sub.add_parser("audit", help="report every localization gap class (non-zero exit on hard gaps)")
+    audit.add_argument("--locale", default=EN_LOCALE, help=f"source locale to inspect (default: {EN_LOCALE})")
+    audit.add_argument("--details", action="store_true", help="print every offending row")
+    audit.set_defaults(func=cmd_audit)
 
     prune = sub.add_parser("prune", help="delete keys from every locale's .resw files")
     prune.add_argument("keys", help="file listing keys to delete ('File,Key' per line, or bare keys)")

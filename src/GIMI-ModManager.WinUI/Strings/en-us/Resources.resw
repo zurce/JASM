@@ -3831,4 +3831,12 @@ Are you sure you want to disable character skins as characters? JASM+ will resta
   <data name="ModUpdateAvailableWindow_IgnoreCloseTooltip_Content" xml:space="preserve">
     <value>Ignore and Close</value>
   </data>
+  <data name="Notification_AlreadyRunningTitle" xml:space="preserve">
+    <!-- Notification title when a launch is skipped because XXMI Launcher is already running. -->
+    <value>Already running</value>
+  </data>
+  <data name="Notification_XxmiAlreadyRunning" xml:space="preserve">
+    <!-- Notification body shown when a second XXMI launch was skipped. -->
+    <value>XXMI Launcher is already open.</value>
+  </data>
 </root>

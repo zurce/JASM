@@ -1496,7 +1496,7 @@ public partial class CharactersViewModel : ObservableRecipient, INavigationAware
             Title = titlePanel,
             PrimaryButtonText = _localizer.GetLocalizedStringOrDefault("ModPane_UseThisMod") ?? "Use this mod",
             SecondaryButtonText = _localizer.GetLocalizedStringOrDefault("BatchRepair_Skip") ?? "Skip",
-            CloseButtonText = _localizer.GetLocalizedStringOrDefault("Common_Cancel") ?? "Cancel",
+            CloseButtonText = _localizer.GetLocalizedStringOrDefault("CancelButton_Text") ?? "Cancel",
             DefaultButton = Microsoft.UI.Xaml.Controls.ContentDialogButton.Primary,
             Content = content
         };
