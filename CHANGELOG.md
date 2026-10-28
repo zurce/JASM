@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.2](https://github.com/zurce/JASM/compare/v3.1.1...v3.1.2) (2026-10-25)
+
+
+### Bug Fixes
+
+* **i18n:** localize the batch button and drop 76 unreachable keys ([6dc9f2c](https://github.com/zurce/JASM/commit/6dc9f2ca45d0ec8eef9953c10ac81ad77bae21f5))
+
 ## [3.1.1](https://github.com/zurce/JASM/compare/v3.1.0...v3.1.1) (2026-10-15)
 
 Everything since **v3.0.2**, in one release: the 3.1.0 feature work was never published on its
